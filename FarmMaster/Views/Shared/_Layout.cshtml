@@ -17,12 +17,16 @@
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
+    <partial name="_NavbarPartial" />
+
     <main role="main" class="ui centered grid">
         <div class="fifteen wide mobile fifteen wide computer ten wide large screen column">
             @RenderBody()
         </div>
     </main>
+    
     <div class="ui inverted divider"></div>
+
     <footer>
         <div class="ui centered grid">
             <p class="eight wide column right aligned">

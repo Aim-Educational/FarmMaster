@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Business.Model;
+using Microsoft.EntityFrameworkCore;
 
 namespace FarmMaster
 {
@@ -39,6 +41,9 @@ namespace FarmMaster
                 o.MaxAge = TimeSpan.FromDays(365);
             });
 
+            // Database
+            services.AddDbContext<FarmMasterContext>(o => o.UseSqlServer(Configuration.GetConnectionString("General")));
+
             // MVC
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
@@ -46,6 +51,9 @@ namespace FarmMaster
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            (new FarmMasterContext(Configuration.GetConnectionString("Migrate")))
+                .Database.Migrate();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
