@@ -1,0 +1,7 @@
+{
+	"fileVersion": "v1",
+	"name": "FarmMaster",
+	"domain": "farm.chatha.dev",
+	"port": 5010,
+	"secretsToExpose": null
+}
