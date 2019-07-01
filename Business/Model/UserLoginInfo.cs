@@ -22,6 +22,9 @@ namespace Business.Model
         [Required]
         public string Salt { get; set; }
 
+        public string SessionToken { get; set; }
+        public DateTimeOffset SessionTokenExpiry { get; set; }
+
         [Timestamp]
         public byte[] Timestamp { get; set; }
     }

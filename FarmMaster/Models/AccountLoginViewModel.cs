@@ -16,5 +16,8 @@ namespace FarmMaster.Models
         [DataType(DataType.Password)]
         [StringLength(255)]
         public string Password { get; set; }
+
+        // HTTP-GET ONLY
+        public bool VerifyEmail { get; set; }
     }
 }

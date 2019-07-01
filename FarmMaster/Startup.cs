@@ -15,6 +15,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using FarmMaster.Services;
 using FarmMaster.Misc;
+using FarmMaster.Middleware;
 
 namespace FarmMaster
 {
@@ -55,10 +56,18 @@ namespace FarmMaster
                 o.DefaultSignInScheme       = CookieAuthenticationDefaults.AuthenticationScheme;
                 o.DefaultChallengeScheme    = CookieAuthenticationDefaults.AuthenticationScheme;
             })
-            .AddCookie(o => 
+            .AddCookie(
+                CookieAuthenticationDefaults.AuthenticationScheme,
+                o => 
+                {
+                    o.ReturnUrlParameter = "redirectTo";
+                    o.LoginPath          = "/Account/Login";
+                }
+            );
+
+            services.Configure<IServiceUserManagerConfig>(o =>
             {
-                o.ReturnUrlParameter = "redirectTo";
-                o.LoginPath          = "/Account/Login";
+                o.SessionTokenLifespan = TimeSpan.FromHours(5);
             });
 
             // User manager
@@ -122,6 +131,7 @@ namespace FarmMaster
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseAuthentication();
+            app.UseFarmMasterUserMiddleware();
 
             app.UseMvc(routes =>
             {

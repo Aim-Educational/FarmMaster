@@ -6,6 +6,21 @@
 }
 
 <form class="ui large form" method="post" asp-action="Login">
+    @if(Model.VerifyEmail)
+    {
+        <div class="ui info message">
+            <div class="header">
+                Please Verify your Email
+            </div>
+            <p>
+                Before you can log into your account, please verify your account by click on the link emailed to you.
+            </p>
+            <p>
+                Please click <a asp-action="ResendEmailVerifyEmail">here</a> if you wish to resend the verification email.
+            </p>
+        </div>
+    }
+
     <section class="field">
         <div class="ui left icon input">
             <i class="user icon"></i>
@@ -23,4 +38,6 @@
     </section>
 
     <button class="ui large primary fluid button" type="submit">Login</button>
+
+    <div id="divAllErrors" class="ui visible error message" asp-validation-summary="All"></div>
 </form>
