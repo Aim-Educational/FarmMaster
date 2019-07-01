@@ -40,6 +40,12 @@ namespace FarmMaster.Controllers
             return RedirectToAction(nameof(Login), new { verifyEmail = true });
         }
 
+        public IActionResult VerifyEmail([FromQuery] string token)
+        {
+            this._users.FinishEmailVerify(token);
+            return Redirect("/");
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Signup(AccountSignupViewModel model)

@@ -27,6 +27,7 @@ namespace FarmMaster.Services
         User UserFromCookieSession(HttpContext http);
         User UserFromLoginInfo(string username, string password);
         void SendEmailVerifyEmail(User user);
+        void FinishEmailVerify(string token);
     }
 
     public class ServiceUserManager : IServiceUserManager
@@ -187,6 +188,17 @@ namespace FarmMaster.Services
                                       .Single(u => u.UserLoginInfo.Username == username);
 
             return this._user;
+        }
+
+        public void FinishEmailVerify(string token)
+        {
+            var info = this._context.UserPrivacy.SingleOrDefault(i => i.EmailVerificationToken == token);
+            if(info == null)
+                throw new Exception($"An email with that token doesn't exist.");
+
+            info.EmailVerificationToken = null;
+            info.HasVerifiedEmail = true;
+            this._context.SaveChanges();
         }
     }
 }
