@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace Business.Model
@@ -18,6 +19,11 @@ namespace Business.Model
 
         [Required]
         public int PrivacyPolicyVersionAgreedTo { get; set; }
+
+        public string EmailVerificationToken { get; set; }
+
+        [InverseProperty(nameof(Business.Model.User.UserPrivacy))]
+        public User User { get; set; }
 
         [Timestamp]
         byte[] Timestamp { get; set; }

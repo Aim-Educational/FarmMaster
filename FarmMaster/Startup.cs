@@ -14,6 +14,7 @@ using Business.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using FarmMaster.Services;
+using FarmMaster.Misc;
 
 namespace FarmMaster
 {
@@ -82,9 +83,11 @@ namespace FarmMaster
 
             services.Configure<IServiceSmtpTemplateConfig>(o =>
             {
+                o.EmailTemplates.Add(EnumEmailTemplateNames.EmailVerify, "/Views/EmailTemplates/EmailVerify.cshtml");
             });
 
             services.AddScoped<IServiceSmtpClient, ServiceSmtpClient>();
+            services.AddScoped<IViewRenderService, ViewRenderService>();
 
             // MVC
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);

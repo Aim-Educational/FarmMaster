@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Business.Model;
 using BCrypt.Net;
 using FarmMaster.Misc;
+using Microsoft.CodeAnalysis.Options;
+using Microsoft.Extensions.Options;
 
 namespace FarmMaster.Services
 {
@@ -19,10 +21,14 @@ namespace FarmMaster.Services
     public class ServiceUserManager : IServiceUserManager
     {
         readonly FarmMasterContext _context;
+        readonly IServiceSmtpClient _smtp;
+        readonly IOptions<IServiceSmtpDomainConfig> _domains;
 
-        public ServiceUserManager(FarmMasterContext context)
+        public ServiceUserManager(FarmMasterContext context, IServiceSmtpClient smtp, IOptions<IServiceSmtpDomainConfig> domains)
         {
             this._context = context;
+            this._smtp = smtp;
+            this._domains = domains;
         }
 
         public void CreateUser(string username, string password, string firstName, string middleNames, string lastName, string email, bool tosConsent, bool privacyConsent)
@@ -70,7 +76,10 @@ namespace FarmMaster.Services
             this._context.Add(loginInfo);
             this._context.Add(privacy);
             this._context.Add(user);
-            this._context.SaveChanges();
+            this._context.SaveChanges(); // We do a save hear despite the function below also doing so,
+                                         // so we can catch any errors *before* sending out the email.
+
+            this.SendEmailVerifyEmail(user);
         }
 
         public bool UserExists(string username)
@@ -88,6 +97,19 @@ namespace FarmMaster.Services
                 throw new NullReferenceException("Unknown error. Somehow 'info' is null.");
 
             return BCrypt.Net.BCrypt.EnhancedVerify(password + info.Salt, info.PassHash);
+        }
+
+        private void SendEmailVerifyEmail(User user)
+        {
+            user.UserPrivacy.EmailVerificationToken = Guid.NewGuid().ToString();
+            this._context.SaveChanges();
+
+            this._smtp.SendToWithTemplateAsync(
+                user,
+                EnumEmailTemplateNames.EmailVerify, 
+                "Please verify your email.",
+                this._domains.Value.VerifyEmail
+            ).Wait();
         }
     }
 }
