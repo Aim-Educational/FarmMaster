@@ -87,6 +87,21 @@
                     </section>
                 </section>
 
+                <!--Checkboxes-->
+                <section class="inline field">
+                    <div class="ui checkbox">
+                        <input class="hidden" asp-for="ConsentInfo.PrivacyPolicyConsent" />
+                        <label>I have read and accept the terms under the Privacy Statement and give consent for my personal data to be stored and processed.</label>
+                    </div>
+                </section>
+                <section class="inline field">
+                    <div class="ui checkbox">
+                        <input class="hidden" asp-for="ConsentInfo.TermsOfServiceConsent" />
+                        <label>I have read and accept the terms under the Terms of Service agreement.</label>
+                    </div>
+                </section>
+
+                <!--Submit and back button-->
                 <section class="two large buttons">
                     <button id="buttonContactInfoBack" class="ui left floated secondary button" type="button">
                         Back
@@ -105,6 +120,8 @@
 @section Scripts {
     <script>
         let sectionState = "login";
+
+        $(".ui.checkbox").checkbox();
 
         $("#breadcrumbLoginInfo, #buttonContactInfoBack")
             .click(function () {

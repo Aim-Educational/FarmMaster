@@ -24,10 +24,22 @@ namespace FarmMaster.Models
         public string PasswordConfirm { get; set; }
     }
 
+    public class AccountSignupConsentInfo
+    {
+        [Required]
+        public bool TermsOfServiceConsent { get; set; }
+
+        [Required]
+        public bool PrivacyPolicyConsent { get; set; }
+    }
+
     public class AccountSignupViewModel
     {
         [Required]
         public AccountSignupLoginInfo LoginInfo { get; set; }
+
+        [Required]
+        public AccountSignupConsentInfo ConsentInfo { get; set; }
         
         [Required]
         public Contact Contact { get; set; }

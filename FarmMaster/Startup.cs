@@ -63,6 +63,29 @@ namespace FarmMaster
             // User manager
             services.AddScoped<IServiceUserManager, ServiceUserManager>();
 
+            // SMTP
+            services.Configure<IServiceSmtpClientConfig>(o =>
+            {
+                o.Host        = Configuration.GetValue<string>("Smtp:Host");
+                o.Port        = Configuration.GetValue<ushort>("Smtp:Port");
+                o.Credentials = new System.Net.NetworkCredential(
+                    Configuration.GetValue<string>("Smtp:Username"),
+                    Configuration.GetValue<string>("Smtp:Password")
+                );
+            });
+
+            services.Configure<IServiceSmtpDomainConfig>(o =>
+            {
+                var domain = Configuration.GetValue<string>("AIMDEPLOY:DOMAIN");
+                o.VerifyEmail = $"https://{domain}/Account/VerifyEmail?token=";
+            });
+
+            services.Configure<IServiceSmtpTemplateConfig>(o =>
+            {
+            });
+
+            services.AddScoped<IServiceSmtpClient, ServiceSmtpClient>();
+
             // MVC
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }

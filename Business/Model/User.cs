@@ -21,6 +21,10 @@ namespace Business.Model
         public int UserLoginInfoId { get; set; }
         public UserLoginInfo UserLoginInfo { get; set; }
 
+        [Required]
+        public int UserPrivacyId { get; set; }
+        public UserPrivacy UserPrivacy { get; set; }
+
         [Timestamp]
         public byte[] Timestamp { get; set; }
     }

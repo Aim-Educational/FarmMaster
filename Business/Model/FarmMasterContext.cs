@@ -58,6 +58,7 @@ namespace Business.Model
         public DbSet<MapRolePermissionToRole>   MapRolePermissionToRoles    { get; set; }
         public DbSet<Role>                      Roles                       { get; set; }
         public DbSet<UserLoginInfo>             UserLoginInfo               { get; set; }
+        public DbSet<UserPrivacy>               UserPrivacy                 { get; set; }
         #endregion
 
         #region Data seeding
@@ -80,7 +81,8 @@ namespace Business.Model
     {
         public FarmMasterContext CreateDbContext(string[] args)
         {
-            return new FarmMasterContext("");
+            Console.Write("Please enter a connection string for migration: ");
+            return new FarmMasterContext(Console.ReadLine());
         }
     }
 }

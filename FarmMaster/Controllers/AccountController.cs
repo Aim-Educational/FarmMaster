@@ -35,9 +35,10 @@ namespace FarmMaster.Controllers
             if(!ModelState.IsValid)
                 return View(model);
 
-            this._users.CreateUser(model.LoginInfo.Username, model.LoginInfo.Password,
-                                   model.Contact.FirstName,  model.Contact.MiddleNames,
-                                   model.Contact.LastName,   model.Contact.Email);
+            this._users.CreateUser(model.LoginInfo.Username,                model.LoginInfo.Password,
+                                   model.Contact.FirstName,                 model.Contact.MiddleNames,
+                                   model.Contact.LastName,                  model.Contact.Email,
+                                   model.ConsentInfo.TermsOfServiceConsent, model.ConsentInfo.PrivacyPolicyConsent);
             return Redirect("/");
         }
     }

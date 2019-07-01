@@ -4,12 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using Business.Model;
 using BCrypt.Net;
+using FarmMaster.Misc;
 
 namespace FarmMaster.Services
 {
     public interface IServiceUserManager
     {
-        void CreateUser(string username, string password, string firstName, string middleNames, string lastName, string email);
+        void CreateUser(string username, string password, string firstName, string middleNames, string lastName, string email,
+                        bool tosConsent, bool privacyConsent);
         bool UserExists(string username);
         bool UserPasswordMatches(string username, string password);
     }
@@ -23,10 +25,16 @@ namespace FarmMaster.Services
             this._context = context;
         }
 
-        public void CreateUser(string username, string password, string firstName, string middleNames, string lastName, string email)
+        public void CreateUser(string username, string password, string firstName, string middleNames, string lastName, string email, bool tosConsent, bool privacyConsent)
         {
             if(this.UserExists(username))
                 throw new InvalidOperationException($"The user '{username}' already exists.");
+
+            if(!tosConsent)
+                throw new InvalidOperationException($"The user must give consent to the Terms of Service.");
+
+            if(!privacyConsent)
+                throw new InvalidOperationException($"The user must give consent to the Privacy Policy.");
             
             var contact = new Contact
             {
@@ -43,15 +51,24 @@ namespace FarmMaster.Services
                 Salt = salt,
                 PassHash = BCrypt.Net.BCrypt.EnhancedHashPassword(password + salt)
             };
+            
+            var privacy = new UserPrivacy
+            {
+                HasVerifiedEmail = false,
+                PrivacyPolicyVersionAgreedTo = GlobalConstants.PrivacyPolicyVersion,
+                TermsOfServiceVersionAgreedTo = GlobalConstants.TermsOfServiceVersion
+            };
 
             var user = new User
             {
                 Contact = contact,
-                UserLoginInfo = loginInfo
+                UserLoginInfo = loginInfo,
+                UserPrivacy = privacy
             };
 
             this._context.Add(contact);
             this._context.Add(loginInfo);
+            this._context.Add(privacy);
             this._context.Add(user);
             this._context.SaveChanges();
         }
