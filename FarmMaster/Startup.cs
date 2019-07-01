@@ -13,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Business.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using FarmMaster.Services;
 
 namespace FarmMaster
 {
@@ -58,6 +59,9 @@ namespace FarmMaster
                 o.ReturnUrlParameter = "redirectTo";
                 o.LoginPath          = "/Account/Login";
             });
+
+            // User manager
+            services.AddScoped<IServiceUserManager, ServiceUserManager>();
 
             // MVC
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);

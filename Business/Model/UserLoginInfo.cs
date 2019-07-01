@@ -16,8 +16,8 @@ namespace Business.Model
 
         [Required]
         [DataType(DataType.Password)]
-        [MaxLength(60)]
-        public byte[] PassHash { get; set; }
+        [StringLength(60)]
+        public string PassHash { get; set; }
 
         [Required]
         public string Salt { get; set; }
