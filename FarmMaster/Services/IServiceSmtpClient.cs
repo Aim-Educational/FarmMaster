@@ -95,9 +95,8 @@ namespace FarmMaster.Services
 
     public class ServiceSmtpClient : IServiceSmtpClient
     {
-        const string FROM_NAME = "Aim Educational Login";
-
-        readonly FarmMasterContext _context;
+        const string FROM_NAME = "FarmMaster System";
+        
         readonly IOptions<IServiceSmtpClientConfig> _config;
         readonly IOptions<IServiceSmtpTemplateConfig> _templates;
         readonly IViewRenderService _viewRenderer;
@@ -122,12 +121,10 @@ namespace FarmMaster.Services
         }
 
         public ServiceSmtpClient(IOptions<IServiceSmtpClientConfig> config,
-                             IOptions<IServiceSmtpTemplateConfig> templates,
-                             FarmMasterContext context,
-                             IViewRenderService viewRenderer)
+                                 IOptions<IServiceSmtpTemplateConfig> templates,
+                                 IViewRenderService viewRenderer)
         {
             this._config = config;
-            this._context = context;
             this._templates = templates;
             this._viewRenderer = viewRenderer;
         }
