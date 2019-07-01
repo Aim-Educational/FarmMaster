@@ -3,5 +3,12 @@
 	"name": "FarmMaster",
 	"domain": "farm.chatha.dev",
 	"port": 5010,
-	"secretsToExpose": null
+	"secretsToExpose": [
+		"Smtp:Host",
+		"Smtp:Port",
+		"ConnectionStrings:Migrate",
+		"ConnectionStrings:General",
+		"Smtp:Username",
+		"Smtp:Password"
+	]
 }
