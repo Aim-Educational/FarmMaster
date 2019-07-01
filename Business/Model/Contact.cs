@@ -14,8 +14,7 @@ namespace Business.Model
         [Required]
         [StringLength(50)]
         public string FirstName { get; set; }
-
-        [Required]
+        
         [StringLength(150)]
         public string MiddleNames { get; set; }
 

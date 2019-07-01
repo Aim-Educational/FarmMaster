@@ -12,7 +12,7 @@ namespace Business.Model
 
         [Required]
         [StringLength(75)]
-        public string Username;
+        public string Username { get; set; } 
 
         [Required]
         [DataType(DataType.Password)]

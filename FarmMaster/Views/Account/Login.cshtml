@@ -1,0 +1,26 @@
+﻿@model FarmMaster.Models.AccountLoginViewModel
+@{
+    ViewData["Title"] = "Login";
+    ViewData["WhichPage"] = "Login";
+    Layout = "~/Views/Shared/_LoginFormLayout.cshtml";
+}
+
+<form class="ui large form" method="post" asp-action="Login">
+    <section class="field">
+        <div class="ui left icon input">
+            <i class="user icon"></i>
+            <input asp-for="Username" placeholder="Username"/>
+        </div>
+        <span class="ui left floating red text" asp-validation-for="Username"></span>
+    </section>
+
+    <section class="field">
+        <div class="ui left icon input">
+            <i class="lock icon"></i>
+            <input asp-for="Password" placeholder="Password" />
+        </div>
+        <span class="ui left floating red text" asp-validation-for="Password"></span>
+    </section>
+
+    <button class="ui large primary fluid button" type="submit">Login</button>
+</form>

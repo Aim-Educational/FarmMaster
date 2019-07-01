@@ -1,30 +1,15 @@
 ﻿<!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - FarmMaster</title>
-
-    <!--External Style sheets-->
-    <environment include="Development">
-        <link rel="stylesheet" href="~/lib/fomantic-ui/semantic.css" />
-    </environment>
-    <environment exclude="Development">
-        <link rel="stylesheet" href="~/lib/fomantic-ui/semantic.min.css" />
-    </environment>
-
-    <!--Custom Style sheets-->
-    <link rel="stylesheet" href="~/css/site.css" />
-</head>
+<partial name="_LayoutCommonHeadPartial" />
 <body>
     <partial name="_NavbarPartial" />
 
-    <main role="main" class="ui centered grid">
+    <main role="main" class="ui center aligned grid">
         <div class="fifteen wide mobile fifteen wide computer ten wide large screen column">
             @RenderBody()
         </div>
     </main>
-    
+
     <div class="ui inverted divider"></div>
 
     <footer>
@@ -35,24 +20,7 @@
         </div>
     </footer>
 
-    <!--External Javascript-->
-    <environment include="Development">
-        <script src="~/lib/jquery/dist/jquery.js"></script>
-        <script src="~/lib/fomantic-ui/semantic.js"></script>
-    </environment>
-    <environment exclude="Development">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
-                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
-                asp-fallback-test="window.jQuery"
-                crossorigin="anonymous"
-                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=">
-        </script>
-        <script src="~/lib/fomantic-ui/semantic.min.js"></script>
-    </environment>
-
-    <!--Custom Javascript-->
-    <script src="~/js/site.js" asp-append-version="true"></script>
-
+    <partial name="_LayoutCommonJavascriptPartial" />
     @RenderSection("Scripts", required: false)
 </body>
 </html>

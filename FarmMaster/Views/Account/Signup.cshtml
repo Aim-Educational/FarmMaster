@@ -1,0 +1,155 @@
+﻿@model  FarmMaster.Models.AccountSignupViewModel
+@{
+    ViewData["Title"] = "Signup";
+    ViewData["WhichPage"] = "Signup";
+    Layout = "~/Views/Shared/_LoginFormLayout.cshtml";
+}
+
+<form class="ui large form" method="post" asp-action="Signup">
+    <section class="ui fluid grid">
+        <!--Breadcrumb-->
+        <section class="row">
+            <section class="left aligned column">
+                <section class="ui breadcrumb">
+                    <a id="breadcrumbLoginInfo" class="active section">Login Info</a>
+                    <i class="right angle icon divider"></i>
+                    <a id="breadcrumbContactInfo" class="section">Contact Info</a>
+                </section>
+            </section>
+        </section>
+
+        <!--Forms-->
+        <section class="row">
+            <!--Login info-->
+            <section id="sectionLoginInfo" class="sixteen wide column transition visible">
+                <section class="field">
+                    <div class="ui left icon input">
+                        <i class="user icon"></i>
+                        <input asp-for="LoginInfo.Username" placeholder="Username" />
+                    </div>
+                    <span class="ui left floating red text" asp-validation-for="LoginInfo.Username"></span>
+                </section>
+                <section class="field">
+                    <div class="ui left icon input">
+                        <i class="lock icon"></i>
+                        <input asp-for="LoginInfo.Password" placeholder="Password" />
+                    </div>
+                    <span class="ui left floating red text" asp-validation-for="LoginInfo.Password"></span>
+                </section>
+                <section class="field">
+                    <div class="ui left icon input">
+                        <i class="lock icon"></i>
+                        <input asp-for="LoginInfo.PasswordConfirm" placeholder="Confirm Password" />
+                    </div>
+                    <span class="ui left floating red text" asp-validation-for="LoginInfo.PasswordConfirm"></span>
+                </section>
+
+                <button id="buttonLoginInfoNext" class="ui fluid large primary button" type="button">
+                    Next
+                </button>
+            </section>
+
+            <!--Contact info-->
+            <section id="sectionContactInfo" class="sixteen wide left aligned column display none transition hidden">
+                <!--Names-->
+                <section class="field">
+                    <h3 class="ui dividing header">
+                        Name
+                    </h3>
+                    <section class="ui three fields">
+                        <section class="field">
+                            <input class="ui input" asp-for="Contact.FirstName" placeholder="First Name *" />
+                            <span class="ui left floating red text" asp-validation-for="Contact.FirstName"></span>
+                        </section>
+                        <section class="field">
+                            <input class="ui input" asp-for="Contact.MiddleNames" placeholder="[Middle Names]" />
+                            <span class="ui left floating red text" asp-validation-for="Contact.MiddleNames"></span>
+                        </section>
+                        <section class="field">
+                            <input class="ui input" asp-for="Contact.LastName" placeholder="Last Name *" />
+                            <span class="ui left floating red text" asp-validation-for="Contact.LastName"></span>
+                        </section>
+                    </section>
+                </section>
+
+                <!--Contact information-->
+                <section class="field">
+                    <h3 class="ui dividing header">
+                        Contact Information
+                    </h3>
+                    <section class="field">
+                        <input class="ui input" asp-for="Contact.Email" placeholder="Email *" />
+                        <span class="ui left floating red text" asp-validation-for="Contact.Email"></span>
+                    </section>
+                    <section class="field">
+                        <input class="ui input" asp-for="TelephoneNumbers" placeholder="Phone Number *" />
+                        <span class="ui left floating red text" asp-validation-for="TelephoneNumbers"></span>
+                    </section>
+                </section>
+
+                <section class="two large buttons">
+                    <button id="buttonContactInfoBack" class="ui left floated secondary button" type="button">
+                        Back
+                    </button>
+                    <button class="ui right floated primary button" type="submit">
+                        Signup
+                    </button>
+                </section>
+            </section>
+        </section>
+    </section>
+
+    <div class="ui error message" asp-validation-summary="All">
+
+    </div>
+</form>
+
+@section Scripts {
+    <script>
+        let sectionState = "login";
+
+        $("#breadcrumbLoginInfo, #buttonContactInfoBack")
+            .click(function () {
+                if (sectionState === "login")
+                    return;
+
+                sectionState = "login";
+
+                document.getElementById("breadcrumbLoginInfo").classList.add("active");
+                document.getElementById("breadcrumbContactInfo").classList.remove("active");
+
+                $("#sectionContactInfo")
+                    .transition({
+                        animation: "scale",
+                        onComplete: function () {
+                            document.getElementById("sectionContactInfo").classList.add("display", "none");
+                            document.getElementById("sectionLoginInfo").classList.remove("display", "none");
+
+                            $("#sectionLoginInfo").transition("scale");
+                        }
+                    });
+            });
+
+        $("#breadcrumbContactInfo, #buttonLoginInfoNext")
+            .click(function () {
+                if (sectionState === "contact")
+                    return;
+
+                sectionState = "contact";
+
+                document.getElementById("breadcrumbContactInfo").classList.add("active");
+                document.getElementById("breadcrumbLoginInfo").classList.remove("active");
+
+                $("#sectionLoginInfo")
+                    .transition({
+                        animation: "scale",
+                        onComplete: function () {
+                            document.getElementById("sectionLoginInfo").classList.add("display", "none");
+                            document.getElementById("sectionContactInfo").classList.remove("display", "none");
+
+                            $("#sectionContactInfo").transition("scale");
+                        }
+                    });
+            });
+    </script>
+}

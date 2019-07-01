@@ -1,0 +1,44 @@
+﻿@{
+    string buttonCommonClasses = "ui button";
+    string loginButtonClasses  = "" + buttonCommonClasses; // To create a copy instead of a reference.
+    string signupButtonClasses = "" + buttonCommonClasses;
+
+    if((string)ViewData["WhichPage"] == "Login")
+    {
+        loginButtonClasses += " positive";
+    }
+    else
+    {
+        signupButtonClasses += " positive";
+    }
+}
+
+<!DOCTYPE html>
+<html>
+<partial name="_LayoutCommonHeadPartial" />
+<body style="background-color: #DADADA;">
+    <main role="main" class="ui middle aligned center aligned grid" style="height:100%;">
+        <div class="sixteen wide six wide computer column">
+            <h2 class="ui teal header">
+                <div class="content">
+                    Farm Master
+                </div>
+            </h2>
+
+            <div class="ui stacked segment">
+                <div class="ui two buttons">
+                    <a class="@loginButtonClasses" asp-controller="Account" asp-action="Login">Login</a>
+                    <div class="or"></div>
+                    <a class="@signupButtonClasses" asp-controller="Account" asp-action="Signup">Signup</a>
+                </div>
+                <div class="bottom one padded"></div>
+
+                @RenderBody()
+            </div>
+        </div>
+    </main>
+
+    <partial name="_LayoutCommonJavascriptPartial" />
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

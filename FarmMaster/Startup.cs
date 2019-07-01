@@ -12,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Business.Model;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace FarmMaster
 {
@@ -43,6 +44,20 @@ namespace FarmMaster
 
             // Database
             services.AddDbContext<FarmMasterContext>(o => o.UseSqlServer(Configuration.GetConnectionString("General")));
+
+            // Auth
+            services
+            .AddAuthentication(o =>
+            {
+                o.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                o.DefaultSignInScheme       = CookieAuthenticationDefaults.AuthenticationScheme;
+                o.DefaultChallengeScheme    = CookieAuthenticationDefaults.AuthenticationScheme;
+            })
+            .AddCookie(o => 
+            {
+                o.ReturnUrlParameter = "redirectTo";
+                o.LoginPath          = "/Account/Login";
+            });
 
             // MVC
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
