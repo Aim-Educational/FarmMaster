@@ -17,7 +17,7 @@ var Validation = (function () {
         form.querySelectorAll(".field")
             .forEach(function (fieldSection) {
             var fieldInput = fieldSection.querySelector("input.needs.validation[data-validation-rules]");
-            if (fieldInput === null)
+            if (fieldInput === null || fieldInput.parentElement !== fieldSection)
                 return;
             var fieldError = fieldSection.querySelector(".ui.error.message, .ui.red.prompt");
             var fieldName = fieldInput.name;
@@ -27,6 +27,7 @@ var Validation = (function () {
                 fieldError.classList.add("visible");
                 fieldError.classList.remove("hidden");
                 fieldError.innerText = error;
+                fieldSection.classList.add("error");
             };
             for (var _i = 0, rules_1 = rules; _i < rules_1.length; _i++) {
                 var rule = rules_1[_i];

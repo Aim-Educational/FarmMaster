@@ -20,7 +20,7 @@
             .forEach(fieldSection =>
             {
                 let fieldInput = fieldSection.querySelector<HTMLInputElement>("input.needs.validation[data-validation-rules]");
-                if (fieldInput === null)
+                if (fieldInput === null || fieldInput.parentElement !== fieldSection)
                     return;
 
                 let fieldError = fieldSection.querySelector<HTMLDivElement>(".ui.error.message, .ui.red.prompt");
@@ -33,6 +33,8 @@
                     fieldError.classList.add("visible");
                     fieldError.classList.remove("hidden");
                     fieldError.innerText = error;
+
+                    fieldSection.classList.add("error");
                 };
 
                 for (let rule of rules) {
