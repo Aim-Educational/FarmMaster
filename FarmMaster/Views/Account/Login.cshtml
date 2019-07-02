@@ -34,10 +34,16 @@
             <i class="lock icon"></i>
             <input asp-for="Password" placeholder="Password" />
         </div>
-        <span class="ui left floating red text" asp-validation-for="Password"></span>
+        <div class="ui error message"></div>
     </section>
 
     <button class="ui large primary fluid button" type="submit">Login</button>
 
-    <div id="divAllErrors" class="ui visible error message" asp-validation-summary="All"></div>
+    <div id="divAllErrors" class="ui error message"></div>
 </form>
+
+@section Scripts {
+    <script>
+        Validation.hookupForm(document.querySelector(".ui.form"));
+    </script>
+}

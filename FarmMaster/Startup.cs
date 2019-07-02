@@ -99,7 +99,15 @@ namespace FarmMaster
             services.AddScoped<IViewRenderService, ViewRenderService>();
 
             // MVC
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services
+            .AddMvc()
+            .AddViewOptions(o =>
+            {
+                o.HtmlHelperOptions.ClientValidationEnabled = false; // JQuery Validate Unobtrusive is garbage, so I'm using my own solution :/
+                                                                     // Literally all I need is a callback when there's a validation error. *That's it*.
+                                                                     // But apparently that's too difficult ./shrug
+            })
+            .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

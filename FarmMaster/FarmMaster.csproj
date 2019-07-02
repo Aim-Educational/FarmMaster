@@ -4,7 +4,12 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>
     <AspNetCoreModuleName>AspNetCoreModule</AspNetCoreModuleName>
+    <TypeScriptToolsVersion>3.1</TypeScriptToolsVersion>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Scripts\Validation\validation.ts" />
+  </ItemGroup>
 
 
   <ItemGroup>
@@ -18,6 +23,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Business\Business.csproj" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\Validation\validation.ts" />
   </ItemGroup>
 
 </Project>
