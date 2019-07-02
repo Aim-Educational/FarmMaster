@@ -36,6 +36,10 @@ var Validation = (function () {
                         if (fieldInput.value.length == 0)
                             addError("The " + fieldName + " field is required.");
                         break;
+                    case "checked":
+                        if (!fieldInput.checked)
+                            addError("The " + fieldName + " field must be checked.");
+                        break;
                     default: break;
                 }
             }
