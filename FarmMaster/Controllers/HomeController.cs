@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using FarmMaster.Models;
 using Microsoft.AspNetCore.Authorization;
+using FarmMaster.Filters;
 
 namespace FarmMaster.Controllers
 {
-    [Authorize]
+    [FarmAuthorise]
     public class HomeController : Controller
     {
         public IActionResult Index()
