@@ -42,7 +42,8 @@ namespace FarmMaster.Middleware
                 if(!httpContext.Request.Path.Value.StartsWith("/Account/Login")
                 && !httpContext.Request.Path.Value.StartsWith("/Account/Signup")
                 && !httpContext.Request.Path.Value.StartsWith("/Account/VerifyEmail")
-                && !httpContext.Request.Path.Value.StartsWith("/Account/ResendEmailVerifyEmail"))
+                && !httpContext.Request.Path.Value.StartsWith("/Account/ResendEmailVerifyEmail")
+                )
                     httpContext.Response.Redirect("/Account/Login?verifyEmail=true");
                 return _next(httpContext);
             }
