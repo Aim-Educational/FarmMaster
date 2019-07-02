@@ -19,7 +19,7 @@ namespace FarmMaster.Services
 
     public interface IServiceUserManager
     {
-        void CreateUser(string username, string password, string firstName, string middleNames, string lastName, string email,
+        User CreateUser(string username, string password, string firstName, string middleNames, string lastName, string email,
                         bool tosConsent, bool privacyConsent);
         bool UserExists(string username);
         bool UserPasswordMatches(string username, string password);
@@ -49,7 +49,7 @@ namespace FarmMaster.Services
             this._config = config;
         }
 
-        public void CreateUser(string username, string password, string firstName, string middleNames, string lastName, string email, bool tosConsent, bool privacyConsent)
+        public User CreateUser(string username, string password, string firstName, string middleNames, string lastName, string email, bool tosConsent, bool privacyConsent)
         {
             if(this.UserExists(username))
                 throw new InvalidOperationException($"The user '{username}' already exists.");
@@ -98,6 +98,8 @@ namespace FarmMaster.Services
                                          // so we can catch any errors *before* sending out the email.
 
             this.SendEmailVerifyEmail(user);
+
+            return user;
         }
 
         public void RenewSession(User user, HttpContext http)

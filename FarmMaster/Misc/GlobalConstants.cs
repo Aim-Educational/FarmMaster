@@ -10,5 +10,6 @@ namespace FarmMaster.Misc
         public const int    TermsOfServiceVersion = 1;
         public const int    PrivacyPolicyVersion  = 1;
         public const string AuthCookieName        = "FarmMasterAuth";
+        public const string DefaultNumberName     = "Default";
     }
 }

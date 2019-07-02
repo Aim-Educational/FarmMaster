@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using FarmMaster.Misc;
 using FarmMaster.Models;
 using FarmMaster.Services;
 using Microsoft.AspNetCore.Authentication;
@@ -15,10 +16,12 @@ namespace FarmMaster.Controllers
     public class AccountController : Controller
     {
         readonly IServiceUserManager _users;
+        readonly IServiceUserData    _userData;
 
-        public AccountController(IServiceUserManager users)
+        public AccountController(IServiceUserManager users, IServiceUserData userData)
         {
             this._users = users;
+            this._userData = userData;
         }
 
         public IActionResult Login([FromQuery] bool? verifyEmail)
@@ -53,10 +56,13 @@ namespace FarmMaster.Controllers
             if(!ModelState.IsValid)
                 return View(model);
 
-            this._users.CreateUser(model.LoginInfo.Username,                model.LoginInfo.Password,
-                                   model.Contact.FirstName,                 model.Contact.MiddleNames,
-                                   model.Contact.LastName,                  model.Contact.Email,
-                                   model.ConsentInfo.TermsOfServiceConsent, model.ConsentInfo.PrivacyPolicyConsent);
+            var user = this._users.CreateUser(model.LoginInfo.Username,                model.LoginInfo.Password,
+                                              model.Contact.FirstName,                 model.Contact.MiddleNames,
+                                              model.Contact.LastName,                  model.Contact.Email,
+                                              model.ConsentInfo.TermsOfServiceConsent, model.ConsentInfo.PrivacyPolicyConsent);
+
+            // TODO: Support multiple number entries.
+            this._userData.AddTelephoneNumber(user, GlobalConstants.DefaultNumberName, model.TelephoneNumbers[0]);
             return RedirectToAction(nameof(Login), new { verifyEmail = true });
         }
 
