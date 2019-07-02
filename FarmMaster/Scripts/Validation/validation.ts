@@ -20,7 +20,10 @@
             .forEach(fieldSection =>
             {
                 let fieldInput = fieldSection.querySelector<HTMLInputElement>("input.needs.validation[data-validation-rules]");
-                let fieldError = fieldSection.querySelector<HTMLDivElement>(".ui.error.message");
+                if (fieldInput === null)
+                    return;
+
+                let fieldError = fieldSection.querySelector<HTMLDivElement>(".ui.error.message, .ui.red.prompt");
                 let fieldName = fieldInput.name;
                 let rules = fieldInput.dataset.validationRules.split("~");
 
@@ -28,6 +31,7 @@
                 {
                     allErrors.push(error);
                     fieldError.classList.add("visible");
+                    fieldError.classList.remove("hidden");
                     fieldError.innerText = error;
                 };
 
@@ -45,6 +49,7 @@
         );
 
         let divAllErrors = form.querySelector("#divAllErrors");
+        divAllErrors.innerHTML = "";
         if (divAllErrors !== undefined && divAllErrors !== null) {
             divAllErrors.classList.add("visible");
 

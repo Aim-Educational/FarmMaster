@@ -26,7 +26,7 @@
             <i class="user icon"></i>
             <input asp-for="Username" placeholder="Username"/>
         </div>
-        <span class="ui left floating red text" asp-validation-for="Username"></span>
+        <div class="ui basic red pointing prompt label transition hidden"></div>
     </section>
 
     <section class="field">
@@ -34,7 +34,7 @@
             <i class="lock icon"></i>
             <input asp-for="Password" placeholder="Password" />
         </div>
-        <div class="ui error message"></div>
+        <div class="ui basic red pointing prompt label transition hidden"></div>
     </section>
 
     <button class="ui large primary fluid button" type="submit">Login</button>

@@ -17,12 +17,15 @@ var Validation = (function () {
         form.querySelectorAll(".field")
             .forEach(function (fieldSection) {
             var fieldInput = fieldSection.querySelector("input.needs.validation[data-validation-rules]");
-            var fieldError = fieldSection.querySelector(".ui.error.message");
+            if (fieldInput === null)
+                return;
+            var fieldError = fieldSection.querySelector(".ui.error.message, .ui.red.prompt");
             var fieldName = fieldInput.name;
             var rules = fieldInput.dataset.validationRules.split("~");
             var addError = function (error) {
                 allErrors.push(error);
                 fieldError.classList.add("visible");
+                fieldError.classList.remove("hidden");
                 fieldError.innerText = error;
             };
             for (var _i = 0, rules_1 = rules; _i < rules_1.length; _i++) {
@@ -37,6 +40,7 @@ var Validation = (function () {
             }
         });
         var divAllErrors = form.querySelector("#divAllErrors");
+        divAllErrors.innerHTML = "";
         if (divAllErrors !== undefined && divAllErrors !== null) {
             divAllErrors.classList.add("visible");
             var list = document.createElement("ul");

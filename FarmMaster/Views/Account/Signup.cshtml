@@ -27,21 +27,21 @@
                         <i class="user icon"></i>
                         <input asp-for="LoginInfo.Username" placeholder="Username" />
                     </div>
-                    <span class="ui left floating red text" asp-validation-for="LoginInfo.Username"></span>
+                    <div class="ui basic red pointing prompt label transition hidden"></div>
                 </section>
                 <section class="field">
                     <div class="ui left icon input">
                         <i class="lock icon"></i>
                         <input asp-for="LoginInfo.Password" placeholder="Password" />
                     </div>
-                    <span class="ui left floating red text" asp-validation-for="LoginInfo.Password"></span>
+                    <div class="ui basic red pointing prompt label transition hidden"></div>
                 </section>
                 <section class="field">
                     <div class="ui left icon input">
                         <i class="lock icon"></i>
                         <input asp-for="LoginInfo.PasswordConfirm" placeholder="Confirm Password" />
                     </div>
-                    <span class="ui left floating red text" asp-validation-for="LoginInfo.PasswordConfirm"></span>
+                    <div class="ui basic red pointing prompt label transition hidden"></div>
                 </section>
 
                 <button id="buttonLoginInfoNext" class="ui fluid large primary button" type="button">
@@ -59,15 +59,15 @@
                     <section class="ui three fields">
                         <section class="field">
                             <input class="ui input" asp-for="Contact.FirstName" placeholder="First Name *" />
-                            <span class="ui left floating red text" asp-validation-for="Contact.FirstName"></span>
+                            <div class="ui basic red pointing prompt label transition hidden"></div>
                         </section>
                         <section class="field">
                             <input class="ui input" asp-for="Contact.MiddleNames" placeholder="[Middle Names]" />
-                            <span class="ui left floating red text" asp-validation-for="Contact.MiddleNames"></span>
+                            <div class="ui basic red pointing prompt label transition hidden"></div>
                         </section>
                         <section class="field">
                             <input class="ui input" asp-for="Contact.LastName" placeholder="Last Name *" />
-                            <span class="ui left floating red text" asp-validation-for="Contact.LastName"></span>
+                            <div class="ui basic red pointing prompt label transition hidden"></div>
                         </section>
                     </section>
                 </section>
@@ -79,11 +79,11 @@
                     </h3>
                     <section class="field">
                         <input class="ui input" asp-for="Contact.Email" placeholder="Email *" />
-                        <span class="ui left floating red text" asp-validation-for="Contact.Email"></span>
+                        <div class="ui basic red pointing prompt label transition hidden"></div>
                     </section>
                     <section class="field">
                         <input class="ui input" asp-for="TelephoneNumbers" placeholder="Phone Number *" />
-                        <span class="ui left floating red text" asp-validation-for="TelephoneNumbers"></span>
+                        <div class="ui basic red pointing prompt label transition hidden"></div>
                     </section>
                 </section>
 
@@ -114,7 +114,7 @@
         </section>
     </section>
 
-    <div id="divAllErrors" class="ui error message" asp-validation-summary="All"></div>
+    <div id="divAllErrors" class="ui error message"></div>
 </form>
 
 @section Scripts {
@@ -122,6 +122,7 @@
         let sectionState = "login";
 
         $(".ui.checkbox").checkbox();
+        Validation.hookupForm(document.querySelector(".ui.form"));
 
         $("#breadcrumbLoginInfo, #buttonContactInfoBack")
             .click(function () {
