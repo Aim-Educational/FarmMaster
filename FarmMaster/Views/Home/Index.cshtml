@@ -1,3 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+
+<section class="ui cards">
+    <partial name="_CardLinkPartial" model='new HomeCardLinkPartialViewModel{ Name = "Roles", Action = "Edit", Controller = "Role", Image = "/images/icons/default.png" }' />
+</section>

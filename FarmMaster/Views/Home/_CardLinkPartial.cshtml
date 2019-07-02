@@ -1,0 +1,16 @@
+﻿@model FarmMaster.Models.HomeCardLinkPartialViewModel
+<section class="ui four wide column">
+    <a asp-action="@Model.Action" asp-controller="@Model.Controller">
+        <div class="ui card">
+            <div class="image">
+                <img src="@Model.Image" />
+            </div>
+
+            <div class="content">
+                <div class="header">
+                    @Model.Name
+                </div>
+            </div>
+        </div>
+    </a>
+</section>
