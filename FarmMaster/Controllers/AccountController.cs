@@ -34,6 +34,11 @@ namespace FarmMaster.Controllers
             return View();
         }
 
+        public IActionResult AccessDenied()
+        {
+            return View();
+        }
+
         public IActionResult ResendEmailVerifyEmail()
         {
             var user = this._users.UserFromCookieSession(this.HttpContext);
