@@ -17,7 +17,7 @@ var Validation = (function () {
         form.querySelectorAll(".field")
             .forEach(function (fieldSection) {
             var fieldInput = fieldSection.querySelector("input.needs.validation[data-validation-rules]");
-            if (fieldInput === null || fieldInput.parentElement !== fieldSection)
+            if (fieldInput === null || (fieldInput.dataset.validateDirectParent !== undefined && fieldInput.parentElement !== fieldSection))
                 return;
             var fieldError = fieldSection.querySelector(".ui.error.message, .ui.red.prompt");
             var fieldName = fieldInput.name;

@@ -20,7 +20,7 @@
             .forEach(fieldSection =>
             {
                 let fieldInput = fieldSection.querySelector<HTMLInputElement>("input.needs.validation[data-validation-rules]");
-                if (fieldInput === null || fieldInput.parentElement !== fieldSection)
+                if (fieldInput === null || (fieldInput.dataset.validateDirectParent !== undefined && fieldInput.parentElement !== fieldSection))
                     return;
 
                 let fieldError = fieldSection.querySelector<HTMLDivElement>(".ui.error.message, .ui.red.prompt");

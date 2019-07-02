@@ -58,15 +58,15 @@
                     </h3>
                     <section class="ui three fields">
                         <section class="field">
-                            <input class="ui input" asp-for="Contact.FirstName" placeholder="First Name *" />
+                            <input class="ui input" asp-for="Contact.FirstName" placeholder="First Name *" data-validate-direct-parent />
                             <div class="ui basic red pointing prompt label transition hidden"></div>
                         </section>
                         <section class="field">
-                            <input class="ui input" asp-for="Contact.MiddleNames" placeholder="[Middle Names]" />
+                            <input class="ui input" asp-for="Contact.MiddleNames" placeholder="[Middle Names]" data-validate-direct-parent />
                             <div class="ui basic red pointing prompt label transition hidden"></div>
                         </section>
                         <section class="field">
-                            <input class="ui input" asp-for="Contact.LastName" placeholder="Last Name *" />
+                            <input class="ui input" asp-for="Contact.LastName" placeholder="Last Name *" data-validate-direct-parent />
                             <div class="ui basic red pointing prompt label transition hidden"></div>
                         </section>
                     </section>
@@ -78,11 +78,11 @@
                         Contact Information
                     </h3>
                     <section class="field">
-                        <input class="ui input" asp-for="Contact.Email" placeholder="Email *" />
+                        <input class="ui input" asp-for="Contact.Email" placeholder="Email *"  data-validate-direct-parent />
                         <div class="ui basic red pointing prompt label transition hidden"></div>
                     </section>
                     <section class="field">
-                        <input class="ui input" asp-for="TelephoneNumbers" placeholder="Phone Number *" />
+                        <input class="ui input" asp-for="TelephoneNumbers" placeholder="Phone Number *"  data-validate-direct-parent />
                         <div class="ui basic red pointing prompt label transition hidden"></div>
                     </section>
                 </section>
