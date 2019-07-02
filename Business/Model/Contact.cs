@@ -29,6 +29,6 @@ namespace Business.Model
         [Timestamp]
         public byte[] Timestamp { get; set; }
 
-        public IQueryable<Telephone> PhoneNumbers { get; set; }
+        public IEnumerable<Telephone> PhoneNumbers { get; set; }
     }
 }

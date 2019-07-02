@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Business.Model.Role>
+@{
+    ViewData["Title"] = "Index - Role";
+}
+
+<h1>Index</h1>
+
+<section class="row">
+    <section class="sixteen wide column">
+        <a class="ui primary button" asp-action="Create">Create New Role</a>
+    </section>
+</section>
+
+<table class="ui celled table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Permissions</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var role in Model)
+        {
+            <tr>
+                <td>@role.Name</td>
+                <td>Lorem Ipsum</td>
+                <td>@(role.Permissions?.Count() ?? 0)</td>
+                <td>
+                    <section class="ui two buttons">
+                        <a class="ui inverted tiny secondary left button" asp-action="Edit" asp-route-id="@(role.RoleId)">
+                            Edit
+                        </a>
+                        <div class="or divider"></div>
+                        <a class="ui inverted tiny secondary right button">
+                            Delete
+                        </a>
+                    </section>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

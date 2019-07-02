@@ -45,7 +45,7 @@ namespace FarmMaster.Filters
                 return;
             }
 
-            var perms = user.Role?.Permissions.Include(p => p.EnumRolePermission)
+            var perms = user.Role?.Permissions
                      ?? new MapRolePermissionToRole[]{ }.AsQueryable();
 
             if(PermsAND.Count() > 0

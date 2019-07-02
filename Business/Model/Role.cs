@@ -18,8 +18,8 @@ namespace Business.Model
         public int? ParentRoleId { get; set; }
         public Role ParentRole { get; set; }
 
-        public IQueryable<MapRolePermissionToRole> Permissions { get; set; }
-        public IQueryable<User> Users { get; set; }
+        public IEnumerable<MapRolePermissionToRole> Permissions { get; set; }
+        public IEnumerable<User> Users { get; set; }
 
         [Timestamp]
         public byte[] Timestamp { get; set; }

@@ -1,0 +1,45 @@
+﻿@model RoleEditViewModel
+@{
+    ViewData["Title"] = "Edit - Role";
+
+    const int CHECKBOXES_PER_ROW = 6;
+}
+
+<h1>Edit Role</h1>
+
+<form class="ui form" asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Role.RoleId" />
+    <input type="hidden" asp-for="Role.Timestamp" />
+
+    <section class="field">
+        <input asp-for="Role.Name" placeholder="Name" />
+    </section>
+
+    <h2 class="ui dividing header">Permissions</h2>
+    @{int permsToSkip = 0;}
+    @while(permsToSkip < Model.AllKnownPermissions.Count())
+    {
+    <section class="inline fields">
+        @foreach(var perm in Model.AllKnownPermissions.Skip(permsToSkip).Take(CHECKBOXES_PER_ROW))
+            {
+        <section class="field">
+            <div class="ui checkbox">
+                <input type="checkbox" asp-for="Permissions[perm.InternalName]" />
+                <label>@perm.Description</label>
+            </div>
+        </section>
+                permsToSkip++;
+            }
+    </section>
+    }
+
+    <button class="ui primary fluid button" type="submit">Edit Role</button>
+</form>
+
+@section Scripts {
+    <script>
+        $(".ui.checkbox").checkbox();
+
+        Validation.hookupForm(document.querySelector(".ui.form"));
+    </script>
+}
