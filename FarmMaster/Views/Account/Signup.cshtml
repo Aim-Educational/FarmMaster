@@ -78,11 +78,17 @@
                         Contact Information
                     </h3>
                     <section class="field">
-                        <input class="ui input" asp-for="Contact.Email" placeholder="Email *"  data-validate-direct-parent />
+                        <div class="ui left icon input">
+                            <i class="envelope icon"></i>
+                            <input asp-for="Contact.Email" placeholder="Email *" data-validate-direct-parent />
+                        </div>
                         <div class="ui basic red pointing prompt label transition hidden"></div>
                     </section>
                     <section class="field">
-                        <input class="ui input" asp-for="TelephoneNumbers" placeholder="Phone Number *"  data-validate-direct-parent />
+                        <div class="ui left icon input">
+                            <i class="phone icon"></i>
+                            <input asp-for="TelephoneNumbers" placeholder="Phone Number *" data-validate-direct-parent />
+                        </div>
                         <div class="ui basic red pointing prompt label transition hidden"></div>
                     </section>
                 </section>
