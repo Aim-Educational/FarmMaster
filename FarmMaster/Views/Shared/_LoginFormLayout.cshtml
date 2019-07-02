@@ -19,21 +19,25 @@
 <body>
     <main role="main" class="ui middle aligned center aligned grid" style="height:100%;">
         <div class="sixteen wide six wide computer column">
-            <h2 class="ui teal header">
-                <div class="content">
-                    Farm Master
+            <div class="ui segments">
+                <div class="ui bottom attached inverted purple segment">
+                    <h2 class="ui teal header">
+                        <div class="content">
+                            Farm Master
+                        </div>
+                    </h2>
                 </div>
-            </h2>
 
-            <div class="ui stacked segment">
-                <div class="ui two buttons">
-                    <a class="@loginButtonClasses" asp-controller="Account" asp-action="Login">Login</a>
-                    <div class="or"></div>
-                    <a class="@signupButtonClasses" asp-controller="Account" asp-action="Signup">Signup</a>
+                <div class="ui raised segment">
+                    <div class="ui two buttons">
+                        <a class="@loginButtonClasses" asp-controller="Account" asp-action="Login">Login</a>
+                        <div class="or"></div>
+                        <a class="@signupButtonClasses" asp-controller="Account" asp-action="Signup">Signup</a>
+                    </div>
+                    <div class="bottom one padded"></div>
+
+                    @RenderBody()
                 </div>
-                <div class="bottom one padded"></div>
-
-                @RenderBody()
             </div>
         </div>
     </main>
