@@ -14,6 +14,10 @@ namespace Business.Model
         [Required]
         [StringLength(50)]
         public string Name { get; set; }
+
+        [Required]
+        [StringLength(150)]
+        public string Description { get; set; }
         
         public int? ParentRoleId { get; set; }
         public Role ParentRole { get; set; }

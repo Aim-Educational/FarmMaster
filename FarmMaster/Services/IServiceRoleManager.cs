@@ -9,7 +9,7 @@ namespace FarmMaster.Services
 {
     public interface IServiceRoleManager
     {
-        Role CreateRole(string name, params string[] permInternalNames);
+        Role CreateRole(string name, string description, params string[] permInternalNames);
         Role RoleFromId(int id);
         void RemoveRole(Role role);
         void AddPermission(Role role, string permInternalName, SaveChanges saveChanges = SaveChanges.Yes);
@@ -46,14 +46,15 @@ namespace FarmMaster.Services
             }
         }
 
-        public Role CreateRole(string name, params string[] permInternalNames)
+        public Role CreateRole(string name, string description, params string[] permInternalNames)
         {
             if(this._context.Roles.Any(r => r.Name == name))
                 throw new ArgumentException($"A role called {name} already exists.", "name");
 
             var role = new Role
             {
-                Name = name
+                Name = name,
+                Description = description
             };
 
             this._context.Add(role);

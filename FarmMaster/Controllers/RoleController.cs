@@ -61,7 +61,8 @@ namespace FarmMaster.Controllers
             }
 
             roles.CreateRole(
-                model.Name, 
+                model.Name,
+                model.Description,
                 model.Permissions
                      .Where(kvp => kvp.Value)
                      .Select(kvp => kvp.Key)

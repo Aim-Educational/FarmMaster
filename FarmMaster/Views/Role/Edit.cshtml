@@ -12,25 +12,31 @@
     <input type="hidden" asp-for="Role.Timestamp" />
 
     <section class="field">
+        <label>Name</label>
         <input asp-for="Role.Name" placeholder="Name" />
+    </section>
+
+    <section class="field">
+        <label>Description</label>
+        <input asp-for="Role.Description" placeholder="Description" />
     </section>
 
     <h2 class="ui dividing header">Permissions</h2>
     @{int permsToSkip = 0;}
-    @while(permsToSkip < Model.AllKnownPermissions.Count())
+    @while (permsToSkip < Model.AllKnownPermissions.Count())
     {
-    <section class="inline fields">
-        @foreach(var perm in Model.AllKnownPermissions.Skip(permsToSkip).Take(CHECKBOXES_PER_ROW))
+        <section class="inline fields">
+            @foreach (var perm in Model.AllKnownPermissions.Skip(permsToSkip).Take(CHECKBOXES_PER_ROW))
             {
-        <section class="field">
-            <div class="ui checkbox">
-                <input type="checkbox" asp-for="Permissions[perm.InternalName]" />
-                <label>@perm.Description</label>
-            </div>
-        </section>
+                <section class="field">
+                    <div class="ui checkbox">
+                        <input type="checkbox" asp-for="Permissions[perm.InternalName]" />
+                        <label>@perm.Description</label>
+                    </div>
+                </section>
                 permsToSkip++;
             }
-    </section>
+        </section>
     }
 
     <button class="ui primary fluid button" type="submit">Edit Role</button>

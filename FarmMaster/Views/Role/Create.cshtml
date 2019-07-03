@@ -9,7 +9,13 @@
 
 <form class="ui form" asp-action="Create" method="post">
     <section class="field">
+        <label>Name</label>
         <input asp-for="Name" placeholder="Name" />
+    </section>
+
+    <section class="field">
+        <label>Description</label>
+        <input asp-for="Description" placeholder="Description" />
     </section>
 
     <h2 class="ui dividing header">Permissions</h2>

@@ -12,6 +12,9 @@ namespace FarmMaster.Models
         [Required]
         public string Name { get; set; }
 
+        [Required]
+        public string Description { get; set; }
+
         public Dictionary<string, bool> Permissions { get; set; }
 
         // MUST BE REFRESHED EVERY REQUEST.
