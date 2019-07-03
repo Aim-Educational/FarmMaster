@@ -26,4 +26,10 @@ namespace FarmMaster.Models
         // MUST BE REFRESHED EVERY REQUEST.
         public IEnumerable<EnumRolePermission> AllKnownPermissions { get; set; }
     }
+
+    // GET only.
+    public class RoleIndexViewModel : ViewModelWithMessage
+    {
+        public IEnumerable<Role> Roles;
+    }
 }

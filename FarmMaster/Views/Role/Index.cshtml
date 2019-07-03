@@ -1,9 +1,11 @@
-﻿@model IEnumerable<Business.Model.Role>
+﻿@model RoleIndexViewModel
 @{
     ViewData["Title"] = "Index - Role";
 }
 
 <h1>Index</h1>
+
+<partial name="_ViewModelWithMessagePartial" model="@Model" />
 
 <section class="row">
     <section class="sixteen wide column">
@@ -21,7 +23,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach(var role in Model)
+        @foreach(var role in Model.Roles)
         {
             <tr>
                 <td>@role.Name</td>
@@ -33,7 +35,7 @@
                             Edit
                         </a>
                         <div class="or divider"></div>
-                        <a class="ui inverted tiny secondary right button">
+                        <a class="ui inverted tiny secondary right button" asp-action="Delete" asp-route-id="@role.RoleId">
                             Delete
                         </a>
                     </section>

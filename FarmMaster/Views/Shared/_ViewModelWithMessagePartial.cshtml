@@ -1,0 +1,31 @@
+﻿@model ViewModelWithMessage
+
+@{
+    string messageClassType = "";
+
+    switch(Model.MessageType)
+    {
+        case ViewModelWithMessage.Type.Error:
+            messageClassType = "visible error";
+            break;
+
+        case ViewModelWithMessage.Type.Information:
+            messageClassType = "visible info";
+            break;
+
+        case ViewModelWithMessage.Type.Warning:
+            messageClassType = "visible warning";
+            break;
+
+        default:
+            messageClassType = "transition hidden";
+            break;
+    }
+}
+
+@if(Model.HasMessage)
+{
+<section class="ui @messageClassType message">
+    @Model.Message
+</section>
+}

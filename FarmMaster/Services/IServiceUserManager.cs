@@ -138,6 +138,8 @@ namespace FarmMaster.Services
             var user = this._context.Users
                                     .Include(u => u.Contact)
                                     .Include(u => u.Role)
+                                     .ThenInclude(r => r.Permissions)
+                                     .ThenInclude(p => p.EnumRolePermission)
                                     .Include(u => u.UserLoginInfo)
                                     .Include(u => u.UserPrivacy)
                                     .SingleOrDefault(u => u.UserLoginInfo.SessionToken == http.Request.Cookies[GlobalConstants.AuthCookieName]);

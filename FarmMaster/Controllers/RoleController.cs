@@ -12,9 +12,15 @@ namespace FarmMaster.Controllers
 {
     public class RoleController : Controller
     {
-        public IActionResult Index([FromServices] FarmMasterContext db)
+        public IActionResult Index([FromQuery] string message, [FromServices] FarmMasterContext db)
         {
-            return View(db.Roles);
+            var model = new RoleIndexViewModel
+            {
+                Roles = db.Roles.Include(r => r.Permissions)
+            };
+            model.ParseMessageQueryString(message);
+
+            return View(model);
         }
 
         public IActionResult Create([FromServices] FarmMasterContext db)
@@ -87,6 +93,34 @@ namespace FarmMaster.Controllers
 
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        //[HttpPost]
+        public IActionResult Delete(int id, [FromServices] IServiceRoleManager roles, [FromServices] FarmMasterContext db)
+        {
+            try
+            {
+                var role = roles.RoleFromId(id);
+                roles.RemoveRole(role);
+
+                return RedirectToAction(
+                    nameof(Index),
+                    new
+                    {
+                        message = ViewModelWithMessage.CreateMessageQueryString(ViewModelWithMessage.Type.Information, "Deleted role succesfully.")
+                    }
+                );
+            }
+            catch(Exception ex)
+            {
+                return RedirectToAction(
+                    nameof(Index), 
+                    new
+                    {
+                        message = ViewModelWithMessage.CreateMessageQueryString(ViewModelWithMessage.Type.Error, ex.Message)
+                    }
+                );
+            }
         }
     }
 }

@@ -10,6 +10,8 @@ namespace FarmMaster.Services
     public interface IServiceRoleManager
     {
         Role CreateRole(string name, params string[] permInternalNames);
+        Role RoleFromId(int id);
+        void RemoveRole(Role role);
         void AddPermission(Role role, string permInternalName, SaveChanges saveChanges = SaveChanges.Yes);
         void RemovePermission(Role role, string permInternalName, SaveChanges saveChanges = SaveChanges.Yes);
         bool HasPermission(Role role, string permInternalName);
@@ -61,6 +63,31 @@ namespace FarmMaster.Services
 
             this._context.SaveChanges();
             return role;
+        }
+
+        public Role RoleFromId(int id)
+        {
+            var role = this._context.Roles.Find(id);
+            if(role == null)
+                throw new KeyNotFoundException($"There is no role with the id #{id}");
+
+            this.LoadPermissions(role);
+            return role;
+        }
+
+        public void RemoveRole(Role role)
+        {
+            if(this._context.Entry(role).State == Microsoft.EntityFrameworkCore.EntityState.Detached)
+                throw new ArgumentException("The given role object is not being tracked by Entity Framework.");
+
+            if(this._context.Users.Any(u => u.RoleId == role.RoleId))
+                throw new InvalidOperationException("The role is still in use by at least one user. Unable to delete.");
+
+            foreach(var map in role.Permissions)
+                this._context.Remove(map);
+
+            this._context.Remove(role);
+            this._context.SaveChanges();
         }
 
         public bool HasPermission(Role role, string permInternalName)
