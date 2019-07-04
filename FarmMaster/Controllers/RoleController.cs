@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Business.Model;
+using FarmMaster.Filters;
 using FarmMaster.Models;
 using FarmMaster.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -10,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FarmMaster.Controllers
 {
+    [FarmAuthorise(PermsAND: new[] { EnumRolePermissionNames.VIEW_ROLES })]
     public class RoleController : Controller
     {
         public IActionResult Index([FromQuery] string message, [FromServices] FarmMasterContext db)
@@ -23,6 +25,7 @@ namespace FarmMaster.Controllers
             return View(model);
         }
 
+        [FarmAuthorise(PermsAND: new[] { EnumRolePermissionNames.EDIT_ROLES })]
         public IActionResult Create([FromServices] FarmMasterContext db)
         {
             return View(new RoleCreateViewModel
@@ -31,6 +34,7 @@ namespace FarmMaster.Controllers
             });
         }
 
+        [FarmAuthorise(PermsAND: new[] { EnumRolePermissionNames.EDIT_ROLES })]
         public IActionResult Edit(int id, [FromServices] FarmMasterContext db)
         {
             var role = db.Roles.Include(r => r.Permissions)
@@ -51,6 +55,7 @@ namespace FarmMaster.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [FarmAuthorise(PermsAND: new[] { EnumRolePermissionNames.EDIT_ROLES })]
         public IActionResult Create(RoleCreateViewModel model, [FromServices] IServiceRoleManager roles,
                                     [FromServices] FarmMasterContext db)
         {
@@ -74,6 +79,7 @@ namespace FarmMaster.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [FarmAuthorise(PermsAND: new[] { EnumRolePermissionNames.EDIT_ROLES })]
         public IActionResult Edit(RoleEditViewModel model, [FromServices] IServiceRoleManager roles,
                                   [FromServices] FarmMasterContext db)
         {
@@ -97,6 +103,7 @@ namespace FarmMaster.Controllers
         }
 
         //[HttpPost]
+        [FarmAuthorise(PermsAND: new[] { EnumRolePermissionNames.EDIT_ROLES })]
         public IActionResult Delete(int id, [FromServices] IServiceRoleManager roles, [FromServices] FarmMasterContext db)
         {
             try

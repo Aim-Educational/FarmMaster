@@ -11,6 +11,7 @@ namespace FarmMaster.Services
     {
         Role CreateRole(string name, string description, params string[] permInternalNames);
         Role RoleFromId(int id);
+        Role RoleFromName(string name);
         void RemoveRole(Role role);
         void AddPermission(Role role, string permInternalName, SaveChanges saveChanges = SaveChanges.Yes);
         void RemovePermission(Role role, string permInternalName, SaveChanges saveChanges = SaveChanges.Yes);
@@ -70,7 +71,7 @@ namespace FarmMaster.Services
         {
             var role = this._context.Roles.Find(id);
             if(role == null)
-                throw new KeyNotFoundException($"There is no role with the id #{id}");
+                return null;
 
             this.LoadPermissions(role);
             return role;
@@ -119,6 +120,11 @@ namespace FarmMaster.Services
                 foreach(var map in role.Permissions)
                     this._context.Entry(map).Reference(m => m.EnumRolePermission).Load();
             }
+        }
+
+        public Role RoleFromName(string name)
+        {
+            return this._context.Roles.SingleOrDefault(p => p.Name == name);
         }
     }
 }

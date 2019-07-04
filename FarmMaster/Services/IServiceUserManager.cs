@@ -34,12 +34,14 @@ namespace FarmMaster.Services
     {
         readonly FarmMasterContext _context;
         readonly IServiceSmtpClient _smtp;
+        readonly IServiceRoleManager _roles;
         readonly IOptions<IServiceSmtpDomainConfig> _domains;
         readonly IOptions<IServiceUserManagerConfig> _config;
         User _user; // This service is scoped, so we cache the user each time we get a request to reduce server load.
 
         public ServiceUserManager(FarmMasterContext context, 
                                   IServiceSmtpClient smtp, 
+                                  IServiceRoleManager roles,
                                   IOptions<IServiceSmtpDomainConfig> domains,
                                   IOptions<IServiceUserManagerConfig> config)
         {
@@ -47,6 +49,7 @@ namespace FarmMaster.Services
             this._smtp = smtp;
             this._domains = domains;
             this._config = config;
+            this._roles = roles;
         }
 
         public User CreateUser(string username, string password, string firstName, string middleNames, string lastName, string email, bool tosConsent, bool privacyConsent)
@@ -98,6 +101,21 @@ namespace FarmMaster.Services
                                          // so we can catch any errors *before* sending out the email.
 
             this.SendEmailVerifyEmail(user);
+
+            // If this is the first user to be registered, give them a role that can modify Roles,
+            // as they're likely to be the account for setting up the system.
+            if(this._context.Users.Count() == 1)
+            {
+                var role = this._roles.CreateRole(
+                    "Admin", 
+                    "An administrator", 
+                    EnumRolePermissionNames.VIEW_ROLES, 
+                    EnumRolePermissionNames.EDIT_ROLES
+                );
+
+                user.Role = role;
+                this._context.SaveChanges();
+            }
 
             return user;
         }
