@@ -48,6 +48,10 @@ namespace Business.Model
              .HasIndex(r => r.InternalName)
              .IsUnique();
 
+            b.Entity<Role>()
+             .HasIndex(r => r.Name)
+             .IsUnique();
+
             this.SeedRolePermissions(b);
         }
 
@@ -71,7 +75,8 @@ namespace Business.Model
                 new EnumRolePermission { EnumRolePermissionId = 3, InternalName = EnumRolePermissionNames.EDIT_ROLES, Description = "Edit Roles" },
                 new EnumRolePermission { EnumRolePermissionId = 4, InternalName = EnumRolePermissionNames.VIEW_ROLES, Description = "View Roles" },
                 new EnumRolePermission { EnumRolePermissionId = 5, InternalName = EnumRolePermissionNames.EDIT_USERS, Description = "Edit Users" },
-                new EnumRolePermission { EnumRolePermissionId = 6, InternalName = EnumRolePermissionNames.VIEW_USERS, Description = "View Users" }
+                new EnumRolePermission { EnumRolePermissionId = 6, InternalName = EnumRolePermissionNames.VIEW_USERS, Description = "View Users" },
+                new EnumRolePermission { EnumRolePermissionId = 7, InternalName = EnumRolePermissionNames.ASSIGN_ROLES, Description = "Assign Roles" }
             );
         }
         #endregion

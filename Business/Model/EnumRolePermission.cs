@@ -28,6 +28,7 @@ namespace Business.Model
         public const string EDIT_CONTACTS = "edit_contacts";
         public const string VIEW_ROLES    = "view_roles";
         public const string EDIT_ROLES    = "edit_roles";
+        public const string ASSIGN_ROLES  = "assign_roles";
         public const string VIEW_USERS    = "view_users";
         public const string EDIT_USERS    = "edit_users";
     }

@@ -7,6 +7,7 @@
 
 <h1>Edit Role</h1>
 
+<partial name="_ViewModelWithMessagePartial" model="Model" />
 <form class="ui form" asp-action="Edit" method="post">
     <input type="hidden" asp-for="Role.RoleId" />
     <input type="hidden" asp-for="Role.Timestamp" />
@@ -23,13 +24,19 @@
         <span class="@GlobalConstants.FormErrorClasses" asp-validation-for="Role.Description"></span>
     </section>
 
+    <section class="field">
+        <label>Hierarchy Order</label>
+        <input asp-for="Role.HierarchyOrder" placeholder="Hierarchy Order" />
+        <span class="@GlobalConstants.FormErrorClasses" asp-validation-for="Role.HierarchyOrder"></span>
+    </section>
+
     <div id="divAllErrors" class="ui error message"></div>
 
     <h2 class="ui dividing header">Permissions</h2>
     @{int permsToSkip = 0;}
     @while (permsToSkip < Model.AllKnownPermissions.Count())
     {
-        <section class="inline fields">
+        <section class="six inline fields">
             @foreach (var perm in Model.AllKnownPermissions.Skip(permsToSkip).Take(CHECKBOXES_PER_ROW))
             {
                 <section class="field">

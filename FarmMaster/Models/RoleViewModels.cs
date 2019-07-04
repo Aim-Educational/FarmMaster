@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FarmMaster.Models
 {
-    public class RoleCreateViewModel
+    public class RoleCreateViewModel : ViewModelWithMessage
     {
         [Required]
         public string Name { get; set; }
@@ -15,13 +15,16 @@ namespace FarmMaster.Models
         [Required]
         public string Description { get; set; }
 
+        [Required]
+        public int HierarchyOrder { get; set; }
+
         public Dictionary<string, bool> Permissions { get; set; }
 
         // MUST BE REFRESHED EVERY REQUEST.
         public IEnumerable<EnumRolePermission> AllKnownPermissions { get; set; }
     }
 
-    public class RoleEditViewModel
+    public class RoleEditViewModel : ViewModelWithMessage
     {
         public Role Role { get; set; }
         public Dictionary<string, bool> Permissions { get; set; }

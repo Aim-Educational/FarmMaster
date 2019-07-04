@@ -35,13 +35,20 @@ namespace FarmMaster.Controllers
         }
 
         [FarmAuthorise(PermsAND: new[] { EnumRolePermissionNames.EDIT_ROLES })]
-        public IActionResult Edit(int id, [FromServices] FarmMasterContext db)
+        public IActionResult Edit(int id, [FromQuery] string message, [FromServices] FarmMasterContext db, 
+                                  [FromServices] IServiceUserManager users)
         {
             var role = db.Roles.Include(r => r.Permissions)
                                .ThenInclude(p => p.EnumRolePermission)
                                .FirstOrDefault(r => r.RoleId == id);
             if(role == null)
                 return NotFound();
+
+            var user = users.UserFromCookieSession(HttpContext);
+            if(!user.Role.CanModify(role))
+                return this.RedirectToIndexWithMessage(ViewModelWithMessage.Type.Error, "You cannot modify a role that is higher in the hierarchy than your own.");
+            if(user.Role.RoleId == role.RoleId)
+                return this.RedirectToIndexWithMessage(ViewModelWithMessage.Type.Error, "You cannot modify your own role.");
 
             return View(new RoleEditViewModel
             {
@@ -57,10 +64,35 @@ namespace FarmMaster.Controllers
         [ValidateAntiForgeryToken]
         [FarmAuthorise(PermsAND: new[] { EnumRolePermissionNames.EDIT_ROLES })]
         public IActionResult Create(RoleCreateViewModel model, [FromServices] IServiceRoleManager roles,
-                                    [FromServices] FarmMasterContext db)
+                                    [FromServices] FarmMasterContext db, [FromServices] IServiceUserManager users)
         {
             if(!ModelState.IsValid)
             {
+                model.AllKnownPermissions = db.EnumRolePermissions;
+                return View(model);
+            }
+
+            var user = users.UserFromCookieSession(HttpContext);
+            if(user.Role.HierarchyOrder > model.HierarchyOrder)
+            {
+                model.MessageType = ViewModelWithMessage.Type.Error;
+                model.Message = "You cannot create a role that is higher up in the hierarchy than your own.";
+                model.AllKnownPermissions = db.EnumRolePermissions;
+                return View(model);
+            }
+
+            var roleErrors = model.Permissions.Where(kvp =>
+                !user.Role.IsGodRole
+                && !roles.HasPermission(user.Role, kvp.Key)
+                && kvp.Value
+            );
+            if (roleErrors.Count() > 0)
+            {
+                var errorList = roleErrors.Select(r => r.Key)
+                                          .Aggregate((s1, s2) => $"{s1}, {s2}");
+
+                model.MessageType = ViewModelWithMessage.Type.Error;
+                model.Message = $"You cannot create a role that has a permission your own role doesn't have. Pemissions = {errorList}";
                 model.AllKnownPermissions = db.EnumRolePermissions;
                 return View(model);
             }
@@ -81,17 +113,44 @@ namespace FarmMaster.Controllers
         [ValidateAntiForgeryToken]
         [FarmAuthorise(PermsAND: new[] { EnumRolePermissionNames.EDIT_ROLES })]
         public IActionResult Edit(RoleEditViewModel model, [FromServices] IServiceRoleManager roles,
-                                  [FromServices] FarmMasterContext db)
+                                  [FromServices] FarmMasterContext db, [FromServices] IServiceUserManager users)
         {
             if (!ModelState.IsValid)
             {
                 model.AllKnownPermissions = db.EnumRolePermissions;
                 return View(model);
             }
+            
+            var user = users.UserFromCookieSession(HttpContext);
+            if(!user.Role.CanModify(model.Role))
+            {
+                model.MessageType = ViewModelWithMessage.Type.Error;
+                model.Message = "You cannot place a role higher up the hierarchy than your own.";
+                model.AllKnownPermissions = db.EnumRolePermissions;
+                return View(model);
+            }
 
+            if(user.Role.RoleId == model.Role.RoleId)
+            {
+                model.MessageType = ViewModelWithMessage.Type.Error;
+                model.Message = "You cannot modify your own role.";
+                model.AllKnownPermissions = db.EnumRolePermissions;
+                return View(model);
+            }
+            
             db.Update(model.Role);
             foreach(var kvp in model.Permissions)
             {
+                if(!user.Role.IsGodRole
+                && !roles.HasPermission(user.Role, kvp.Key) 
+                && roles.HasPermission(model.Role, kvp.Key) != kvp.Value)
+                {
+                    model.MessageType = ViewModelWithMessage.Type.Error;
+                    model.Message = $"You cannot modify permissions your role does not have. Permission = {kvp.Key}";
+                    model.AllKnownPermissions = db.EnumRolePermissions;
+                    return View(model);
+                }
+
                 if(kvp.Value)
                     roles.AddPermission(model.Role, kvp.Key, Misc.SaveChanges.No);
                 else
@@ -104,31 +163,34 @@ namespace FarmMaster.Controllers
 
         //[HttpPost]
         [FarmAuthorise(PermsAND: new[] { EnumRolePermissionNames.EDIT_ROLES })]
-        public IActionResult Delete(int id, [FromServices] IServiceRoleManager roles, [FromServices] FarmMasterContext db)
+        public IActionResult Delete(int id, [FromServices] IServiceRoleManager roles, [FromServices] FarmMasterContext db,
+                                    [FromServices] IServiceUserManager users)
         {
             try
             {
                 var role = roles.RoleFromId(id);
-                roles.RemoveRole(role);
+                var user = users.UserFromCookieSession(HttpContext);
+                if (!user.Role.CanModify(role))
+                    return this.RedirectToIndexWithMessage(ViewModelWithMessage.Type.Error, "Cannot delete a role further up in the hierarchy than your own.");
 
-                return RedirectToAction(
-                    nameof(Index),
-                    new
-                    {
-                        message = ViewModelWithMessage.CreateMessageQueryString(ViewModelWithMessage.Type.Information, "Deleted role succesfully.")
-                    }
-                );
+                roles.RemoveRole(role);
+                return this.RedirectToIndexWithMessage(ViewModelWithMessage.Type.Information, "Deleted role succesfully.");
             }
             catch(Exception ex)
             {
-                return RedirectToAction(
-                    nameof(Index), 
+                return this.RedirectToIndexWithMessage(ViewModelWithMessage.Type.Error, ex.Message);
+            }
+        }
+
+        private IActionResult RedirectToIndexWithMessage(ViewModelWithMessage.Type type, string message)
+        {
+            return RedirectToAction(
+                    nameof(Index),
                     new
                     {
-                        message = ViewModelWithMessage.CreateMessageQueryString(ViewModelWithMessage.Type.Error, ex.Message)
+                        message = ViewModelWithMessage.CreateMessageQueryString(type, message)
                     }
                 );
-            }
         }
     }
 }
