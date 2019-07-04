@@ -11,5 +11,6 @@ namespace FarmMaster.Misc
         public const int    PrivacyPolicyVersion  = 1;
         public const string AuthCookieName        = "FarmMasterAuth";
         public const string DefaultNumberName     = "Default";
+        public const string FormErrorClasses      = "ui basic red pointing prompt label transition hidden";
     }
 }

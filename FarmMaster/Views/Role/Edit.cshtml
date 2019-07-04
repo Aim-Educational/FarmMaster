@@ -14,12 +14,16 @@
     <section class="field">
         <label>Name</label>
         <input asp-for="Role.Name" placeholder="Name" />
+        <span class="@GlobalConstants.FormErrorClasses" asp-validation-for="Role.Name"></span>
     </section>
 
     <section class="field">
         <label>Description</label>
         <input asp-for="Role.Description" placeholder="Description" />
+        <span class="@GlobalConstants.FormErrorClasses" asp-validation-for="Role.Description"></span>
     </section>
+
+    <div id="divAllErrors" class="ui error message"></div>
 
     <h2 class="ui dividing header">Permissions</h2>
     @{int permsToSkip = 0;}

@@ -11,18 +11,22 @@
     <section class="field">
         <label>Name</label>
         <input asp-for="Name" placeholder="Name" />
+        <span class="@GlobalConstants.FormErrorClasses" asp-validation-for="Name"></span>
     </section>
 
     <section class="field">
         <label>Description</label>
         <input asp-for="Description" placeholder="Description" />
+        <span class="@GlobalConstants.FormErrorClasses" asp-validation-for="Name"></span>
     </section>
+
+    <div id="divAllErrors" class="ui error message"></div>
 
     <h2 class="ui dividing header">Permissions</h2>
     @{int permsToSkip = 0;}
     @while(permsToSkip < Model.AllKnownPermissions.Count())
     {
-        <section class="inline fields">
+        <section class="six inline fields">
             @foreach(var perm in Model.AllKnownPermissions.Skip(permsToSkip).Take(CHECKBOXES_PER_ROW))
             {
                 <section class="field">
