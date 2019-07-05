@@ -95,8 +95,9 @@ namespace FarmMaster.Services
         public bool HasPermission(Role role, string permInternalName)
         {
             this.LoadPermissions(role);
-            return role.Permissions?.Any(p => p.EnumRolePermission.InternalName == permInternalName)
-                ?? false;
+            return role.IsGodRole
+                || (role.Permissions?.Any(p => p.EnumRolePermission.InternalName == permInternalName)
+                        ?? false);
         }
 
         public void RemovePermission(Role role, string permInternalName, SaveChanges saveChanges = SaveChanges.Yes)

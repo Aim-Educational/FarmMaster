@@ -97,8 +97,7 @@ namespace FarmMaster.Controllers
             }
 
             var roleErrors = model.Permissions.Where(kvp =>
-                !user.Role.IsGodRole
-                && !roles.HasPermission(user.Role, kvp.Key)
+                !roles.HasPermission(user.Role, kvp.Key)
                 && kvp.Value
             );
             if (roleErrors.Count() > 0)
@@ -158,8 +157,7 @@ namespace FarmMaster.Controllers
             db.Update(model.Role);
             foreach(var kvp in model.Permissions)
             {
-                if(!user.Role.IsGodRole
-                && !roles.HasPermission(user.Role, kvp.Key) 
+                if(!roles.HasPermission(user.Role, kvp.Key) 
                 && roles.HasPermission(model.Role, kvp.Key) != kvp.Value)
                 {
                     model.MessageType = ViewModelWithMessage.Type.Error;
@@ -220,8 +218,7 @@ namespace FarmMaster.Controllers
                 if(role == null && data.roleId != int.MaxValue) // int.MaxValue is intentionally allowed to be null, so you can remove roles out right.
                     throw new Exception($"The role with the id #{data.roleId} does not exist.");
 
-                if(!roles.HasPermission(myUser.Role, EnumRolePermissionNames.ASSIGN_ROLES)
-                && !myUser.Role.IsGodRole)
+                if(!roles.HasPermission(myUser.Role, EnumRolePermissionNames.ASSIGN_ROLES))
                     throw new Exception($"You do not have permission to do that.");
                 if(db.Entry(toModifyUser).State == EntityState.Detached)
                     throw new Exception("Internal error. toModifyUser is not being tracked by EF");                
