@@ -36,7 +36,9 @@ namespace FarmMaster.Controllers
         }
 
         [FarmAuthorise(PermsAND: new[] { EnumRolePermissionNames.EDIT_ROLES })]
-        public IActionResult Edit(int id, [FromQuery] string message, [FromServices] FarmMasterContext db, 
+        public IActionResult Edit(int id, 
+                                  [FromQuery] string message, 
+                                  [FromServices] FarmMasterContext db, 
                                   [FromServices] IServiceUserManager users)
         {
             var role = db.Roles.Include(r => r.Permissions)
@@ -74,8 +76,10 @@ namespace FarmMaster.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [FarmAuthorise(PermsAND: new[] { EnumRolePermissionNames.EDIT_ROLES })]
-        public IActionResult Create(RoleCreateViewModel model, [FromServices] IServiceRoleManager roles,
-                                    [FromServices] FarmMasterContext db, [FromServices] IServiceUserManager users)
+        public IActionResult Create(RoleCreateViewModel model, 
+                                    [FromServices] IServiceRoleManager roles,
+                                    [FromServices] FarmMasterContext db, 
+                                    [FromServices] IServiceUserManager users)
         {
             if(!ModelState.IsValid)
             {
@@ -123,8 +127,10 @@ namespace FarmMaster.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [FarmAuthorise(PermsAND: new[] { EnumRolePermissionNames.EDIT_ROLES })]
-        public IActionResult Edit(RoleEditViewModel model, [FromServices] IServiceRoleManager roles,
-                                  [FromServices] FarmMasterContext db, [FromServices] IServiceUserManager users)
+        public IActionResult Edit(RoleEditViewModel model, 
+                                  [FromServices] IServiceRoleManager roles,
+                                  [FromServices] FarmMasterContext db, 
+                                  [FromServices] IServiceUserManager users)
         {
             if (!ModelState.IsValid)
             {
@@ -174,7 +180,9 @@ namespace FarmMaster.Controllers
 
         //[HttpPost]
         [FarmAuthorise(PermsAND: new[] { EnumRolePermissionNames.EDIT_ROLES })]
-        public IActionResult Delete(int id, [FromServices] IServiceRoleManager roles, [FromServices] FarmMasterContext db,
+        public IActionResult Delete(int id, 
+                                    [FromServices] IServiceRoleManager roles, 
+                                    [FromServices] FarmMasterContext db,
                                     [FromServices] IServiceUserManager users)
         {
             try
