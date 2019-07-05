@@ -48,6 +48,9 @@ namespace FarmMaster.Filters
             var perms = user.Role?.Permissions
                      ?? new MapRolePermissionToRole[]{ }.AsQueryable();
 
+            if(user.Role?.IsGodRole ?? false)
+                return;
+
             if(PermsAND.Count() > 0
             && !PermsAND.All(p => perms.Any(up => up.EnumRolePermission.InternalName == p)))
                 context.Result = new ForbidResult();

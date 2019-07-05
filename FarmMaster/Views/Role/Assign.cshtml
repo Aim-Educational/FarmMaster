@@ -1,0 +1,96 @@
+﻿@model RoleAssignViewModel
+@{
+    ViewData["Title"] = "Assign Roles";
+}
+
+<h1>Assign Roles</h1>
+
+<table class="ui celled table">
+    <thead>
+        <tr>
+            <th>User</th>
+            <th>Role</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model.Users.OrderBy(u => u.Contact.FullName))
+        {
+            <tr>
+                <td>@user.Contact.FullName</td>
+                <td>
+                    <div class="ui search selection dropdown">
+                        <input type="hidden" autocomplete="off" data-user-id="@user.UserId" value="@(user.RoleId ?? int.MaxValue)" />
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Role</div>
+                        <div class="menu">
+                            <div class="item" data-value="@int.MaxValue">[NO ROLE]</div>
+                            @foreach (var role in Model.Roles.OrderBy(r => r.Name))
+                            {
+                                <div class="item" data-value="@role.RoleId">@role.Name</div>
+                            }
+                        </div>
+                    </div>
+                    <div class="ui message transition hidden">
+
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script>
+        $(".ui.dropdown").dropdown();
+
+        document
+            .querySelectorAll(".ui.search input[data-user-id]")
+            .forEach(elem =>
+            {
+                elem.parentElement
+                    .addEventListener("click", () => {
+                        if (elem.classList.contains("disabled"))
+                            return;
+
+                        elem.dataset.prevValue = elem.value
+                    })
+
+                elem.addEventListener("change", () =>
+                {
+                    let prevValue = elem.dataset.prevValue;
+                    elem.parentElement.classList.add("disabled", "loading");
+                    FarmAjax.postWithMessageResponse(
+                        "/Role/AjaxSetUserRole",
+                        {
+                            userId: parseInt(elem.dataset.userId),
+                            roleId: parseInt(elem.value)
+                        },
+                        response =>
+                        {
+                            elem.parentElement.classList.remove("disabled", "loading");
+
+                            let messageBox = elem.parentElement
+                                                 .parentElement
+                                                 .querySelector(".ui.message.transition.hidden");
+
+                            switch (response.type) {
+                                case FarmAjaxMessageType.Error:
+                                    messageBox.classList.add("error");
+                                    elem.value = prevValue
+                                    break;
+
+                                case FarmAjaxMessageType.Information:
+                                    messageBox.classList.add("info");
+                                    break;
+
+                                default: break;
+                            }
+
+                            messageBox.classList.add("visible");
+                            messageBox.innerHTML = response.message;
+                        }
+                    );
+                });
+            })
+    </script>
+}

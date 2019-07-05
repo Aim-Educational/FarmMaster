@@ -25,7 +25,9 @@ namespace FarmMaster.Services
         bool UserPasswordMatches(string username, string password);
         void RenewSession(User user, HttpContext http);
         User UserFromCookieSession(HttpContext http);
+        User UserFromCookieSession(string sessionToken);
         User UserFromLoginInfo(string username, string password);
+        User UserFromId(int id);
         void SendEmailVerifyEmail(User user);
         void FinishEmailVerify(string token);
     }
@@ -145,22 +147,29 @@ namespace FarmMaster.Services
             return this._context.UserLoginInfo.Any(i => i.Username == username);
         }
 
+        public User UserFromId(int id)
+        {
+            return this.GetUserQuery().SingleOrDefault(u => u.UserId == id);
+        }
+
         public User UserFromCookieSession(HttpContext http)
+        {
+            return this.UserFromCookieSession(
+                (http.Request.Cookies.ContainsKey(GlobalConstants.AuthCookieName))
+                ? http.Request.Cookies[GlobalConstants.AuthCookieName]
+                : null
+            );
+        }
+
+        public User UserFromCookieSession(string sessionToken)
         {
             if(this._user != null)
                 return this._user;
 
-            if(!http.Request.Cookies.ContainsKey(GlobalConstants.AuthCookieName))
+            if(sessionToken == null)
                 return null;
             
-            var user = this._context.Users
-                                    .Include(u => u.Contact)
-                                    .Include(u => u.Role)
-                                     .ThenInclude(r => r.Permissions)
-                                     .ThenInclude(p => p.EnumRolePermission)
-                                    .Include(u => u.UserLoginInfo)
-                                    .Include(u => u.UserPrivacy)
-                                    .SingleOrDefault(u => u.UserLoginInfo.SessionToken == http.Request.Cookies[GlobalConstants.AuthCookieName]);
+            var user = this.GetUserQuery().SingleOrDefault(u => u.UserLoginInfo.SessionToken == sessionToken);
             if(user == null
             || user.UserLoginInfo.SessionTokenExpiry <= DateTimeOffset.UtcNow)
                 return null;
@@ -202,14 +211,7 @@ namespace FarmMaster.Services
             if(!this.UserPasswordMatches(username, password))
                 throw new Exception($"The password is incorrect.");
 
-            this._user = this._context.Users
-                                      .Include(u => u.Contact)
-                                      .Include(u => u.Role)
-                                      .Include(u => u.UserLoginInfo)
-                                      .Include(u => u.UserPrivacy)
-                                      .Single(u => u.UserLoginInfo.Username == username);
-
-            return this._user;
+            return this.GetUserQuery().Single(u => u.UserLoginInfo.Username == username);
         }
 
         public void FinishEmailVerify(string token)
@@ -221,6 +223,17 @@ namespace FarmMaster.Services
             info.EmailVerificationToken = null;
             info.HasVerifiedEmail = true;
             this._context.SaveChanges();
+        }
+
+        private IQueryable<User> GetUserQuery()
+        {
+            return this._context.Users
+                                .Include(u => u.Contact)
+                                .Include(u => u.Role)
+                                 .ThenInclude(r => r.Permissions)
+                                 .ThenInclude(p => p.EnumRolePermission)
+                                .Include(u => u.UserLoginInfo)
+                                .Include(u => u.UserPrivacy);
         }
     }
 }

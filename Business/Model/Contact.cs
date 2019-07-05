@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 
@@ -30,5 +31,8 @@ namespace Business.Model
         public byte[] Timestamp { get; set; }
 
         public IEnumerable<Telephone> PhoneNumbers { get; set; }
+
+        [NotMapped]
+        public string FullName => $"{this.FirstName} {this.MiddleNames ?? ""} {this.LastName}";
     }
 }

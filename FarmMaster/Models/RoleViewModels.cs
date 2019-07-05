@@ -38,4 +38,11 @@ namespace FarmMaster.Models
     {
         public IEnumerable<Role> Roles;
     }
+
+    // GET only. POST is done via AJAX.
+    public class RoleAssignViewModel
+    {
+        public IEnumerable<User> Users;
+        public IEnumerable<Role> Roles;
+    }
 }

@@ -6,6 +6,7 @@ using Business.Model;
 using FarmMaster.Filters;
 using FarmMaster.Models;
 using FarmMaster.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -57,6 +58,16 @@ namespace FarmMaster.Controllers
                 Permissions = db.EnumRolePermissions
                                 .ToDictionary(p => p.InternalName,
                                               p => role.Permissions.Any(m => m.EnumRolePermission == p))
+            });
+        }
+
+        public IActionResult Assign([FromServices] FarmMasterContext db, [FromServices] IServiceUserManager users)
+        {
+            var myUser = users.UserFromCookieSession(HttpContext);
+            return View(new RoleAssignViewModel
+            {
+                Users = db.Users.Include(u => u.Contact).Include(u => u.Role).Where(u => u != myUser),
+                Roles = db.Roles
             });
         }
 
@@ -182,6 +193,56 @@ namespace FarmMaster.Controllers
             }
         }
 
+        [HttpPost]
+        [AllowAnonymous]
+        public IActionResult AjaxSetUserRole([FromBody] AjaxSetUserRoleData data,
+                                             [FromServices] FarmMasterContext db, 
+                                             [FromServices] IServiceUserManager users, 
+                                             [FromServices] IServiceRoleManager roles)
+        {
+            try
+            {
+                var myUser = users.UserFromCookieSession(data.sessionToken);
+                var toModifyUser = users.UserFromId(data.userId);
+                var role = roles.RoleFromId(data.roleId);
+                if(myUser == null)
+                    throw new Exception("You are not logged in.");
+                if(toModifyUser == null)
+                    throw new Exception($"The user with id #{data.userId} does not exist.");
+                if(role == null && data.roleId != int.MaxValue) // int.MaxValue is intentionally allowed to be null, so you can remove roles out right.
+                    throw new Exception($"The role with the id #{data.roleId} does not exist.");
+
+                if(!roles.HasPermission(myUser.Role, EnumRolePermissionNames.ASSIGN_ROLES)
+                && !myUser.Role.IsGodRole)
+                    throw new Exception($"You do not have permission to do that.");
+                if(db.Entry(toModifyUser).State == EntityState.Detached)
+                    throw new Exception("Internal error. toModifyUser is not being tracked by EF");                
+                if(!myUser.Role.CanModify(toModifyUser.Role))
+                    throw new Exception("You cannot change the role of someone who's role is higher in the hierarchy than your own.");
+                if(!myUser.Role.CanModify(role))
+                    throw new Exception($"You cannot assign the '{role.Name}' role as it is higher in the hierarchy than your own.");
+                if(myUser == toModifyUser)
+                    throw new Exception("You cannot assign your own role, this is for security purposes, and to avoid accidental role lock outs.");
+
+                toModifyUser.Role = role;
+                db.SaveChanges();
+            }
+            catch(Exception ex)
+            {
+                return Json(new
+                {
+                    message = ex.Message,
+                    type = 3 // TODO: Enum for this. This is 'Error'
+                });
+            }
+
+            return Json(new
+            {
+                message = "Success",
+                type = 1 // TODO: Enum for this. This is 'Information'
+            });
+        }
+
         private IActionResult RedirectToIndexWithMessage(ViewModelWithMessage.Type type, string message)
         {
             return RedirectToAction(
@@ -192,5 +253,12 @@ namespace FarmMaster.Controllers
                     }
                 );
         }
+    }
+
+    public class AjaxSetUserRoleData
+    {
+       public int userId { get; set; }
+       public int roleId { get; set; }
+       public string sessionToken { get; set; }
     }
 }
