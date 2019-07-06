@@ -46,7 +46,7 @@ namespace FarmMaster
             });
 
             // Database
-            services.AddDbContext<FarmMasterContext>(o => o.UseSqlServer(Configuration.GetConnectionString("General")));
+            services.AddDbContext<FarmMasterContext>(o => o.UseNpgsql(Configuration.GetConnectionString("General")));
 
             // Auth
             services

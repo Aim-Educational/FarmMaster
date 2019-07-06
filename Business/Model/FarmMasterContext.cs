@@ -24,7 +24,7 @@ namespace Business.Model
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(this._connectionString);
+                optionsBuilder.UseNpgsql(this._connectionString);
             }
         }
         #endregion
