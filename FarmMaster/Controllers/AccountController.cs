@@ -34,6 +34,17 @@ namespace FarmMaster.Controllers
             return View();
         }
 
+        public IActionResult Logout()
+        {
+            var user = this._users.UserFromCookieSession(HttpContext);
+            if(user == null)
+                return RedirectToAction(nameof(Login));
+
+            this._users.EndSession(user, HttpContext);
+            HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme).Wait();
+            return RedirectToAction(nameof(Login));
+        }
+
         public IActionResult AccessDenied()
         {
             return View();

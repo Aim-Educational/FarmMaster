@@ -24,6 +24,7 @@ namespace FarmMaster.Services
         bool UserExists(string username);
         bool UserPasswordMatches(string username, string password);
         void RenewSession(User user, HttpContext http);
+        void EndSession(User user, HttpContext http);
         User UserFromCookieSession(HttpContext http);
         User UserFromCookieSession(string sessionToken);
         User UserFromLoginInfo(string username, string password);
@@ -139,6 +140,12 @@ namespace FarmMaster.Services
                 }
             );
 
+            this._context.SaveChanges();
+        }
+
+        public void EndSession(User user, HttpContext http)
+        {
+            user.UserLoginInfo.SessionTokenExpiry = DateTimeOffset.UtcNow;
             this._context.SaveChanges();
         }
 
