@@ -1,7 +1,16 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+
+    var cards = new List<(string Name, string Action, string Controller, string Image)>
+    {
+        ("Roles",      "Index",    "Role",      "/images/icons/default.png"),
+        ("Contacts",   "Index",    "Contact",   "/images/icons/default.png")
+    };
 }
 
 <section class="ui cards">
-    <partial name="_CardLinkPartial" model='new HomeCardLinkPartialViewModel{ Name = "Roles", Action = "Index", Controller = "Role", Image = "/images/icons/default.png" }' />
+    @foreach(var card in cards)
+    {
+        <partial name="_CardLinkPartial" model="new HomeCardLinkPartialViewModel{ Name = card.Name, Action = card.Action, Controller = card.Controller, Image = card.Image }" />
+    }
 </section>
