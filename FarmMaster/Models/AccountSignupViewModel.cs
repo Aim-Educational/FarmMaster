@@ -31,6 +31,9 @@ namespace FarmMaster.Models
 
         [Required]
         public bool PrivacyPolicyConsent { get; set; }
+
+        [Required]
+        public bool AgeConsent { get; set; }
     }
 
     public class AccountSignupViewModel

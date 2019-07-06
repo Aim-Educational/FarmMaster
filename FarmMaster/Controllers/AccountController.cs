@@ -72,13 +72,25 @@ namespace FarmMaster.Controllers
             if(!ModelState.IsValid)
                 return View(model);
 
-            var user = this._users.CreateUser(model.LoginInfo.Username,                model.LoginInfo.Password,
-                                              model.Contact.FirstName,                 model.Contact.MiddleNames,
-                                              model.Contact.LastName,                  model.Contact.Email,
-                                              model.ConsentInfo.TermsOfServiceConsent, model.ConsentInfo.PrivacyPolicyConsent);
+            try
+            {
+                if(!model.ConsentInfo.AgeConsent)
+                    throw new Exception("You must state that you're 13 or over before you can sign up.");
 
-            // TODO: Support multiple number entries.
-            this._userData.AddTelephoneNumber(user, GlobalConstants.DefaultNumberName, model.TelephoneNumbers[0]);
+                var user = this._users.CreateUser(model.LoginInfo.Username,                model.LoginInfo.Password,
+                                                  model.Contact.FirstName,                 model.Contact.MiddleNames,
+                                                  model.Contact.LastName,                  model.Contact.Email,
+                                                  model.ConsentInfo.TermsOfServiceConsent, model.ConsentInfo.PrivacyPolicyConsent);
+
+                // TODO: Support multiple number entries.
+                this._userData.AddTelephoneNumber(user, GlobalConstants.DefaultNumberName, model.TelephoneNumbers[0]);
+            }
+            catch(Exception ex)
+            {
+                ModelState.AddModelError(null, ex.Message);
+                return View(model);
+            }
+            
             return RedirectToAction(nameof(Login), new { verifyEmail = true });
         }
 
