@@ -1,12 +1,27 @@
-﻿class ValidationRuleInfo {
+﻿/** A class that contains information about a rule. */
+class ValidationRuleInfo {
+    /** The name of the rule. */
     name: string;
+
+    /** The parameters given to the rule. */
     params: string[];
 
+    ///
     constructor() {
         this.name = "";
         this.params = [];
     }
 
+    /**
+     * Parses a rule string into an instance of ValidationRuleInfo.
+     * 
+     * @param ruleString The rule string to parse.
+     * 
+     * @throws If there is a mis match between the count of left square brackets ('[') and right square brackets.
+     * 
+     * Format:
+     *  The format of a rule string is: NAME[PARAM1][PARAM2]...[PARAM_N]
+     * */
     static fromString(ruleString: string): ValidationRuleInfo
     {
         let rule                = new ValidationRuleInfo();
@@ -64,6 +79,15 @@
     }
 }
 
+/** 
+ * A class that provides automatic validation capabilities to forms.
+ * 
+ * Validation is done via 'data-' attributes.
+ * 
+ * Attributes:
+ *  'data-validation-rules' is a list of rules delmitated by the '¬' character, and contains all of the validation rules to apply
+ *  against the field.
+ * */
 class Validation {
     static hookupForm(form: string | HTMLFormElement) {
         let actualForm: HTMLFormElement = null;
