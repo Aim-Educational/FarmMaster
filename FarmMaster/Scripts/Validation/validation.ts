@@ -79,6 +79,82 @@ class ValidationRuleInfo {
     }
 }
 
+enum ValidationFailed {
+    No,
+    Yes
+}
+
+enum IgnoreEmptyFields {
+    No,
+    Yes
+}
+
+class ValidationRuleResult {
+    failed: ValidationFailed;
+    reason: string;
+
+    constructor(failed: ValidationFailed, reason: string) {
+        this.failed = failed;
+        this.reason = reason;
+    }
+}
+
+abstract class ValidationRule {
+    public readonly expectedParamCount: number = 0;
+    public readonly name: string;
+    public readonly ignoreEmpty: IgnoreEmptyFields;
+
+    constructor(name: string, expectedParamCount: number, ignoreEmpty: IgnoreEmptyFields) {
+        this.name = name;
+        this.expectedParamCount = expectedParamCount;
+        this.ignoreEmpty = ignoreEmpty;
+    }
+
+    public abstract doValidate(target: HTMLInputElement, params: string[]): ValidationRuleResult;
+}
+
+class ValidationRuleEmpty extends ValidationRule {
+    constructor() {
+        super("empty", 0, IgnoreEmptyFields.No);
+    }
+
+    public doValidate(target: HTMLInputElement, params: string[]): ValidationRuleResult {
+        return (
+            target.value.length > 0
+                ? null
+                : new ValidationRuleResult(ValidationFailed.Yes, "is empty.")
+        );
+    }
+}
+
+class ValidationRuleChecked extends ValidationRule {
+    constructor() {
+        super("checked", 0, IgnoreEmptyFields.No);
+    }
+
+    public doValidate(target: HTMLInputElement, params: string[]): ValidationRuleResult {
+        return (
+            target.checked
+                ? null
+                : new ValidationRuleResult(ValidationFailed.Yes, "is not checked.")
+        );
+    }
+}
+
+class ValidationRuleRegex extends ValidationRule {
+    constructor() {
+        super("regex", 1, IgnoreEmptyFields.Yes);
+    }
+
+    public doValidate(target: HTMLInputElement, params: string[]): ValidationRuleResult {
+        return (
+            new RegExp(params[0]).test(target.value)
+                ? null
+                : new ValidationRuleResult(ValidationFailed.Yes, "does not match pattern: "+params[0])
+        );
+    }
+}
+
 /** 
  * A class that provides automatic validation capabilities to forms.
  * 
@@ -89,77 +165,101 @@ class ValidationRuleInfo {
  *  against the field.
  * */
 class Validation {
-    static hookupForm(form: string | HTMLFormElement) {
-        let actualForm: HTMLFormElement = null;
+    private static rules: ValidationRule[] = [
+        new ValidationRuleEmpty(),
+        new ValidationRuleChecked(),
+        new ValidationRuleRegex()
+    ];
 
+    static addRule(rule: ValidationRule): void {
+        this.rules.push(rule);
+    }
+
+    static hookupForm(form: string | HTMLFormElement) {
+        // Get the form.
+        let actualForm: HTMLFormElement = null;
         if (typeof form === "string")
             actualForm = <HTMLFormElement>document.getElementById(form);
         else
             actualForm = form;
 
+        // If we don't validate or an exception is thrown, stop the form from submitting.
         actualForm.addEventListener("submit", function (e) {
-            if (!Validation.validateForm(actualForm))
+            try {
+                if (!Validation.validateForm(actualForm))
+                    e.preventDefault();
+            }
+            catch(ex) {
                 e.preventDefault();
+                throw ex;
+            }
         }, false);
     }
 
     static validateForm(form: HTMLFormElement): boolean {
         let allErrors: string[] = [];
+        let handledInputs: HTMLInputElement[] = [];
 
         form.querySelectorAll(".field")
             .forEach(fieldSection =>
             {
+                // Only get inputs with validation rules.
                 let fieldInput = fieldSection.querySelector<HTMLInputElement>("input.needs.validation[data-validation-rules]");
-                if (fieldInput === null || (fieldInput.dataset.validateDirectParent !== undefined && fieldInput.parentElement !== fieldSection))
+                if (fieldInput === null)
                     return;
 
+                // Don't handle the same input multiple times (which is possible for fields nested inside other fields).
+                if (handledInputs.filter(i => i == fieldInput).length == 1)
+                    return;
+
+                handledInputs.push(fieldInput);
+
+                // querySelector will look deeper than a single node level, so we need to work our way back up the the deepest 'field' parent.
+                fieldSection = fieldInput.parentElement;
+                while (!fieldSection.classList.contains("field"))
+                    fieldSection = fieldSection.parentElement;
+
+                // Get the error message box (if it exists), and several other pieces of data.
                 let fieldError = fieldSection.querySelector<HTMLDivElement>(".ui.error.message, .ui.red.prompt");
                 let fieldName = fieldInput.name;
+                let errorPrefix = "The " + fieldName.split('.').slice(-1)[0] + " field ";
                 let rules = fieldInput.dataset.validationRules.split("¬");
 
-                let addError = (error: string) =>
-                {
-                    allErrors.push(error);
-                    fieldError.classList.add("visible");
-                    fieldError.classList.remove("hidden");
-                    fieldError.innerText = error;
+                // Hide the error box in case this isn't the first time validation was run (so old errors don't stick around).
+                if (fieldError !== null) {
+                    fieldError.classList.remove("visible");
+                }
 
-                    fieldSection.classList.add("error");
-                };
-
+                // Apply all rules that the element specifies.
                 for (let ruleString of rules) {
-                    let rule = ValidationRuleInfo.fromString(ruleString);
+                    let ruleInfo = ValidationRuleInfo.fromString(ruleString);
+                    let ruleFilter = this.rules.filter(v => v.name === ruleInfo.name);
+                    if (ruleFilter.length == 0)
+                        throw "There is no ValidationRule registered for rule: " + ruleInfo.name;
+                    if (ruleFilter.length > 1)
+                        throw "There are more than one ValidationRules registered for rule: " + ruleInfo.name;
 
-                    switch (rule.name) {
-                        case "empty":
-                            if (fieldInput.value.length == 0)
-                                addError("The " + fieldName + " field is required.");
-                            break;
+                    let rule = ruleFilter[0];
+                    if (rule.expectedParamCount > -1 && ruleInfo.params.length != rule.expectedParamCount)
+                        throw "Expected " + rule.expectedParamCount + " parameters for rule " + ruleInfo.name + " but got " + ruleInfo.params.length + " parameters instead.";
 
-                        case "checked":
-                            if (!fieldInput.checked)
-                                addError("The " + fieldName + " field must be checked.");
-                            break;
+                    if (fieldInput.value.length == 0 && rule.ignoreEmpty == IgnoreEmptyFields.Yes)
+                        continue;
 
-                        case "regex":
-                            if (rule.params.length != 1)
-                                throw "Expected 1 parameter for rule 'regex', but got " + rule.params.length + " instead.";
-
-                            let regex = new RegExp(rule.params[0]);
-                            if (fieldInput.value.length > 0 && !regex.test(fieldInput.value))
-                                addError("The " + fieldName + " field does not match the regex: " + rule.params[0]);
-                            break;
-
-                        default: break;
+                    let result = rule.doValidate(fieldInput, ruleInfo.params);
+                    if (result !== null && result.failed == ValidationFailed.Yes) {
+                        allErrors.push(errorPrefix + result.reason);
+                        fieldError.classList.add("visible");
+                        fieldError.innerHTML = allErrors.slice(-1)[0];
                     }
                 }
             }
         );
 
+        // Populate the div containing all of the errors found.
         let divAllErrors = form.querySelector("#divAllErrors");
-        divAllErrors.innerHTML = "";
         if (divAllErrors !== undefined && divAllErrors !== null) {
-            divAllErrors.classList.add("visible");
+            divAllErrors.innerHTML = "";
 
             let list = document.createElement("ul");
             divAllErrors.appendChild(list);
@@ -169,6 +269,11 @@ class Validation {
                 item.innerText = error;
                 list.appendChild(item);
             }
+
+            if (allErrors.length > 0)
+                divAllErrors.classList.add("visible");
+            else
+                divAllErrors.classList.remove("visible");
         }
 
         return allErrors.length == 0;
