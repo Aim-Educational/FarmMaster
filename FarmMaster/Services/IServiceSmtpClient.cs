@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Text;
@@ -72,6 +73,8 @@ namespace FarmMaster.Services
         /// <param name="message">The message to send.</param>
         Task SendToAsync(User user, MailMessage message);
 
+        Task SendToAsync(IEnumerable<string> emails, MailMessage message);
+
         /// <summary>
         /// Renders a razor template with the given <paramref name="templateName"/>, and sends the rendered HTML to the
         /// specified <paramref name="user"/>.
@@ -84,6 +87,8 @@ namespace FarmMaster.Services
         /// <param name="subject">The subject to give the message.</param>
         /// <param name="model">The model to pass to the template.</param>
         Task SendToWithTemplateAsync(User user, string templateName, string subject, object model);
+
+        Task SendToWithTemplateAsync(IEnumerable<string> emails, string templateName, string subject, object model);
 
         /// <summary>
         /// Determines whether a template exists.
@@ -129,15 +134,20 @@ namespace FarmMaster.Services
             this._viewRenderer = viewRenderer;
         }
 
-        public async Task SendToAsync(User user, MailMessage message)
+        public async Task SendToAsync(IEnumerable<string> emails, MailMessage message)
         {
-            foreach(var email in user.Contact.EmailAddresses)
-                this.SetToAndFrom(email.Address, ref message);
+            foreach (var email in emails)
+                this.SetToAndFrom(email, ref message);
 
             await this._smtp.SendMailAsync(message);
         }
 
-        public async Task SendToWithTemplateAsync(User user, string templateName, string subject, object model)
+        public Task SendToAsync(User user, MailMessage message)
+        {
+            return this.SendToAsync(user.Contact.EmailAddresses.Select(e => e.Address), message);
+        }
+
+        public async Task SendToWithTemplateAsync(IEnumerable<string> emails, string templateName, string subject, object model)
         {
             if (this._templates.Value == null)
                 throw new InvalidOperationException($"Please configure the AimSmtpTemplateConfig type.");
@@ -154,7 +164,12 @@ namespace FarmMaster.Services
                 Body = await this._viewRenderer.RenderToStringAsync(this._templates.Value.EmailTemplates[templateName], model)
             };
 
-            await this.SendToAsync(user, message);
+            await this.SendToAsync(emails, message);
+        }
+
+        public Task SendToWithTemplateAsync(User user, string templateName, string subject, object model)
+        {
+            return this.SendToWithTemplateAsync(user.Contact.EmailAddresses.Select(e => e.Address), templateName, subject, model);
         }
 
         private void SetToAndFrom(string email, /*To make it clear this will be mutated*/ref MailMessage message)
