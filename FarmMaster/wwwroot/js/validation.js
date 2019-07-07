@@ -11,8 +11,6 @@ var ValidationRuleInfo = (function () {
         for (var _i = 0, ruleString_1 = ruleString; _i < ruleString_1.length; _i++) {
             var char = ruleString_1[_i];
             if (readingName) {
-                if (char == ';')
-                    break;
                 if (char == '[') {
                     leftBracketCount = 1;
                     readingName = false;

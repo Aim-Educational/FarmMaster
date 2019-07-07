@@ -15,8 +15,6 @@
         let paramIndex          = 0;
         for (let char of ruleString) {
             if (readingName) {
-                if (char == ';')
-                    break;
                 if (char == '[') {
                     leftBracketCount = 1;
                     readingName = false;
