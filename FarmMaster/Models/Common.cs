@@ -16,7 +16,14 @@ namespace FarmMaster.Models
             Error
         }
 
+        public enum Format
+        {
+            Default,
+            UnorderedList
+        }
+
         public Type MessageType;
+        public Format MessageFormat;
         public string Message;
 
         public bool HasMessage => Message != null;

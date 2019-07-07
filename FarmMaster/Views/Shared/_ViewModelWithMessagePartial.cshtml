@@ -25,12 +25,26 @@
 
 @if(Model?.HasMessage ?? false)
 {
-<section class="ui @messageClassType message">
-    @foreach(var split in Model?.Message.Split('\n', StringSplitOptions.RemoveEmptyEntries))
-    {
-        <p>
-            @split
-        </p>
-    }
-</section>
+    var lines = Model.Message.Split('\n', StringSplitOptions.RemoveEmptyEntries);
+
+    <section class="ui @messageClassType message">
+        @if(Model.MessageFormat == ViewModelWithMessage.Format.Default)
+        {
+            @foreach(var line in lines)
+            {
+                <p>
+                    @line
+                </p>
+            }
+        }
+        else if(Model.MessageFormat == ViewModelWithMessage.Format.UnorderedList)
+        {
+            <ul>
+                @foreach(var line in lines)
+                {
+                    <li>@line</li>
+                }
+            </ul>
+        }
+    </section>
 }

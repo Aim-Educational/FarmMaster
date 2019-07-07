@@ -57,9 +57,6 @@ namespace FarmMaster.Models
 
         [Required]
         public AccountSignupConsentInfo ConsentInfo { get; set; }
-        
-        [Required]
-        public Contact Contact { get; set; }
 
         [Required]
         public AccountSignupNameInfo NameInfo { get; set; }
