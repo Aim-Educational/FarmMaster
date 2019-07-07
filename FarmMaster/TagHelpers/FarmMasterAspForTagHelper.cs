@@ -16,7 +16,7 @@ namespace FarmMaster.TagHelpers
     {
         static readonly string[] VALIDATION_CLASSES        = { "needs", "validation" };
         static readonly string   VALIDATION_DATA_ATTRIBUTE = "data-validation-rules";
-        static readonly string   RULE_DELIMINIATOR         = "~";
+        static readonly string   RULE_DELIMINIATOR         = "¬";
 
         [HtmlAttributeName("asp-for")]
         public ModelExpression For { get; set; }
@@ -32,6 +32,8 @@ namespace FarmMaster.TagHelpers
             {
                 if(metadata is RequiredAttribute)
                     this.HandleRequired(context, output);
+                else if(metadata is RegularExpressionAttribute)
+                    this.HandleRegex(context, output, metadata as RegularExpressionAttribute);
             }
 
             if(this.ValidationRules.Count > 0)
@@ -47,11 +49,17 @@ namespace FarmMaster.TagHelpers
         void HandleRequired(TagHelperContext context, TagHelperOutput output)
         {
             this.AddClasses(output);
-            
-            if(this.For.Metadata.ModelType == typeof(bool))
+
+            if (this.For.Metadata.ModelType == typeof(bool))
                 this.ValidationRules.Add("checked");
-            else if(this.For.Metadata.ModelType == typeof(string))
+            else if (this.For.Metadata.ModelType == typeof(string))
                 this.ValidationRules.Add("empty");
+        }
+
+        void HandleRegex(TagHelperContext context, TagHelperOutput output, RegularExpressionAttribute attrib)
+        {
+            this.AddClasses(output);
+            this.ValidationRules.Add($"regex[{attrib.Pattern}]");
         }
     }
 }

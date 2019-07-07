@@ -1,4 +1,72 @@
-﻿class Validation {
+﻿class ValidationRuleInfo {
+    name: string;
+    params: string[];
+
+    constructor() {
+        this.name = "";
+        this.params = [];
+    }
+
+    static fromString(ruleString: string): ValidationRuleInfo
+    {
+        let rule                = new ValidationRuleInfo();
+        let readingName         = true;
+        let leftBracketCount    = 0;
+        let paramIndex          = 0;
+        for (let char of ruleString) {
+            if (readingName) {
+                if (char == ';')
+                    break;
+                if (char == '[') {
+                    leftBracketCount = 1;
+                    readingName = false;
+                    continue;
+                }
+
+                rule.name += char;
+                continue;
+            }
+
+            if (leftBracketCount == 0) {
+                if (char == '[') {
+                    leftBracketCount++;
+                    continue;
+                }
+                else
+                    break;
+            }
+
+            while (rule.params.length <= paramIndex)
+                rule.params.push("");
+
+            if (char == '[') {
+                leftBracketCount++;
+                rule.params[paramIndex] += char;
+                continue;
+            }
+
+            if (char == ']') {
+                leftBracketCount--;
+
+                if (leftBracketCount == 0)
+                    paramIndex++;
+                else
+                    rule.params[paramIndex] += char;
+
+                continue;
+            }
+
+            rule.params[paramIndex] += char;
+        }
+
+        if (leftBracketCount > 0)
+            throw "Square bracket mis-match, too many '[' or not enough ']'.";
+
+        return rule;
+    }
+}
+
+class Validation {
     static hookupForm(form: string | HTMLFormElement) {
         let actualForm: HTMLFormElement = null;
 
@@ -25,7 +93,7 @@
 
                 let fieldError = fieldSection.querySelector<HTMLDivElement>(".ui.error.message, .ui.red.prompt");
                 let fieldName = fieldInput.name;
-                let rules = fieldInput.dataset.validationRules.split("~");
+                let rules = fieldInput.dataset.validationRules.split("¬");
 
                 let addError = (error: string) =>
                 {
@@ -37,8 +105,10 @@
                     fieldSection.classList.add("error");
                 };
 
-                for (let rule of rules) {
-                    switch (rule) {
+                for (let ruleString of rules) {
+                    let rule = ValidationRuleInfo.fromString(ruleString);
+
+                    switch (rule.name) {
                         case "empty":
                             if (fieldInput.value.length == 0)
                                 addError("The " + fieldName + " field is required.");
@@ -47,6 +117,15 @@
                         case "checked":
                             if (!fieldInput.checked)
                                 addError("The " + fieldName + " field must be checked.");
+                            break;
+
+                        case "regex":
+                            if (rule.params.length != 1)
+                                throw "Expected 1 parameter for rule 'regex', but got " + rule.params.length + " instead.";
+
+                            let regex = new RegExp(rule.params[0]);
+                            if (fieldInput.value.length > 0 && !regex.test(fieldInput.value))
+                                addError("The " + fieldName + " field does not match the regex: " + rule.params[0]);
                             break;
 
                         default: break;
