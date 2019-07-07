@@ -39,15 +39,18 @@ namespace FarmMaster.Models
     public class AccountSignupNameInfo
     {
         [Required]
+        [RegularExpression("[a-zA-Z-]")]
         public string FirstName { get; set; }
 
+        [RegularExpression(@"[a-zA-Z-\s]")]
         public string MiddleNames { get; set; }
 
         [Required]
+        [RegularExpression("[a-zA-Z-]")]
         public string LastName { get; set; }
     }
 
-    public class AccountSignupViewModel
+    public class AccountSignupViewModel : ViewModelWithMessage
     {
         [Required]
         public AccountSignupLoginInfo LoginInfo { get; set; }

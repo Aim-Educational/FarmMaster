@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace FarmMaster.Models
 {
@@ -39,6 +40,18 @@ namespace FarmMaster.Models
         public static string CreateMessageQueryString(Type type, string message)
         {
             return Enum.GetName(typeof(Type), type).ToLower()[0] + message;
+        }
+
+        public static string CreateMessageQueryString(ModelStateDictionary modelState)
+        {
+            return ViewModelWithMessage.CreateMessageQueryString(
+                Type.Error,
+                modelState
+                .Select(s => s.Value)
+                .SelectMany(e => e.Errors)
+                .Select(e => e.ErrorMessage)
+                .Aggregate((s1, s2) => $"{s1}\n{s2}")
+            );
         }
     }
 }

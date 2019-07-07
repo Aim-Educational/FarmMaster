@@ -3,7 +3,7 @@
 @{
     string messageClassType = "";
 
-    switch(Model.MessageType)
+    switch(Model?.MessageType ?? ViewModelWithMessage.Type.None)
     {
         case ViewModelWithMessage.Type.Error:
             messageClassType = "visible error";
@@ -23,9 +23,14 @@
     }
 }
 
-@if(Model.HasMessage)
+@if(Model?.HasMessage ?? false)
 {
 <section class="ui @messageClassType message">
-    @Model.Message
+    @foreach(var split in Model?.Message.Split('\n', StringSplitOptions.RemoveEmptyEntries))
+    {
+        <p>
+            @split
+        </p>
+    }
 </section>
 }

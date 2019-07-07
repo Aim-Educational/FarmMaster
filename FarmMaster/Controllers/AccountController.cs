@@ -70,7 +70,11 @@ namespace FarmMaster.Controllers
         public IActionResult Signup(AccountSignupViewModel model)
         {
             if(!ModelState.IsValid)
+            {
+                model.MessageType = ViewModelWithMessage.Type.Error;
+                model.Message = ViewModelWithMessage.CreateMessageQueryString(ModelState);
                 return View(model);
+            }
 
             try
             {

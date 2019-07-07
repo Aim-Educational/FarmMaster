@@ -1,4 +1,4 @@
-﻿@model  FarmMaster.Models.AccountSignupViewModel
+﻿@model FarmMaster.Models.AccountSignupViewModel
 @{
     ViewData["Title"] = "Signup";
     ViewData["WhichPage"] = "Signup";
@@ -130,6 +130,7 @@
     </section>
 
     <div id="divAllErrors" class="ui error message"></div>
+    <partial name="_ViewModelWithMessagePartial" model="Model" />
 </form>
 
 @section Scripts {
