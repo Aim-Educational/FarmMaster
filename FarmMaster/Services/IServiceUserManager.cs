@@ -19,7 +19,7 @@ namespace FarmMaster.Services
 
     public interface IServiceUserManager
     {
-        User CreateUser(string username, string password, string firstName, string middleNames, string lastName, string email,
+        User CreateUser(string username, string password, string fullName, string email,
                         bool tosConsent, bool privacyConsent);
         bool UserExists(string username);
         bool UserPasswordMatches(string username, string password);
@@ -55,7 +55,7 @@ namespace FarmMaster.Services
             this._roles = roles;
         }
 
-        public User CreateUser(string username, string password, string firstName, string middleNames, string lastName, string email, bool tosConsent, bool privacyConsent)
+        public User CreateUser(string username, string password, string fullName, string email, bool tosConsent, bool privacyConsent)
         {
             if(this.UserExists(username))
                 throw new InvalidOperationException($"The user '{username}' already exists.");
@@ -68,10 +68,7 @@ namespace FarmMaster.Services
             
             var contact = new Contact
             {
-                FirstName = firstName,
-                MiddleNames = middleNames,
-                LastName = lastName,
-                Email = email
+                FullName = fullName
             };
 
             var salt = BCrypt.Net.BCrypt.GenerateSalt();
@@ -96,10 +93,18 @@ namespace FarmMaster.Services
                 UserPrivacy = privacy
             };
 
+            var emailDb = new Email
+            {
+                Contact = contact,
+                Name = "Default",
+                Address = email
+            };
+
             this._context.Add(contact);
             this._context.Add(loginInfo);
             this._context.Add(privacy);
             this._context.Add(user);
+            this._context.Add(emailDb);
             this._context.SaveChanges(); // We do a save here despite the function below also doing so,
                                          // so we can catch any errors *before* sending out the email.
 
@@ -236,6 +241,9 @@ namespace FarmMaster.Services
         {
             return this._context.Users
                                 .Include(u => u.Contact)
+                                 .ThenInclude(c => c.EmailAddresses)
+                                .Include(u => u.Contact)
+                                 .ThenInclude(c => c.PhoneNumbers)
                                 .Include(u => u.Role)
                                  .ThenInclude(r => r.Permissions)
                                  .ThenInclude(p => p.EnumRolePermission)

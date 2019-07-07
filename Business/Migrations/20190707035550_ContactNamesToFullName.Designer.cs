@@ -3,15 +3,17 @@ using System;
 using Business.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Business.Migrations
 {
     [DbContext(typeof(FarmMasterContext))]
-    partial class FarmMasterContextModelSnapshot : ModelSnapshot
+    [Migration("20190707035550_ContactNamesToFullName")]
+    partial class ContactNamesToFullName
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -24,9 +26,12 @@ namespace Business.Migrations
                     b.Property<int>("ContactId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("FullName")
+                    b.Property<string>("Email")
                         .IsRequired()
-                        .HasMaxLength(150);
+                        .HasMaxLength(100);
+
+                    b.Property<string>("FullName")
+                        .IsRequired();
 
                     b.Property<byte[]>("Timestamp")
                         .IsConcurrencyToken()
@@ -34,33 +39,10 @@ namespace Business.Migrations
 
                     b.HasKey("ContactId");
 
+                    b.HasIndex("Email")
+                        .IsUnique();
+
                     b.ToTable("Contacts");
-                });
-
-            modelBuilder.Entity("Business.Model.Email", b =>
-                {
-                    b.Property<int>("EmailId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasMaxLength(100);
-
-                    b.Property<int>("ContactId");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50);
-
-                    b.Property<byte[]>("Timestamp")
-                        .IsConcurrencyToken()
-                        .ValueGeneratedOnAddOrUpdate();
-
-                    b.HasKey("EmailId");
-
-                    b.HasIndex("ContactId");
-
-                    b.ToTable("Emails");
                 });
 
             modelBuilder.Entity("Business.Model.EnumRolePermission", b =>
@@ -289,14 +271,6 @@ namespace Business.Migrations
                     b.HasKey("UserPrivacyId");
 
                     b.ToTable("UserPrivacy");
-                });
-
-            modelBuilder.Entity("Business.Model.Email", b =>
-                {
-                    b.HasOne("Business.Model.Contact", "Contact")
-                        .WithMany("EmailAddresses")
-                        .HasForeignKey("ContactId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Business.Model.MapRolePermissionToRole", b =>

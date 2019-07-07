@@ -13,26 +13,13 @@ namespace Business.Model
         public int ContactId { get; set; }
 
         [Required]
-        [StringLength(50)]
-        public string FirstName { get; set; }
-        
         [StringLength(150)]
-        public string MiddleNames { get; set; }
-
-        [Required]
-        [StringLength(100)]
-        public string LastName { get; set; }
-
-        [Required]
-        [StringLength(100)]
-        public string Email { get; set; }
+        public string FullName { get; set; }
 
         [Timestamp]
         public byte[] Timestamp { get; set; }
 
         public IEnumerable<Telephone> PhoneNumbers { get; set; }
-
-        [NotMapped]
-        public string FullName => $"{this.FirstName} {this.MiddleNames ?? ""} {this.LastName}";
+        public IEnumerable<Email> EmailAddresses{ get; set; }
     }
 }

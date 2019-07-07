@@ -36,10 +36,6 @@ namespace Business.Model
              .HasIndex(u => u.ContactId)
              .IsUnique();
 
-            b.Entity<Contact>()
-             .HasIndex(c => c.Email)
-             .IsUnique();
-
             b.Entity<MapRolePermissionToRole>()
              .HasIndex(m => new { m.EnumRolePermissionId, m.RoleId })
              .IsUnique();
@@ -63,6 +59,7 @@ namespace Business.Model
         public DbSet<Role>                      Roles                       { get; set; }
         public DbSet<UserLoginInfo>             UserLoginInfo               { get; set; }
         public DbSet<UserPrivacy>               UserPrivacy                 { get; set; }
+        public DbSet<Email>                     Emails                      { get; set; }
         #endregion
 
         #region Data seeding

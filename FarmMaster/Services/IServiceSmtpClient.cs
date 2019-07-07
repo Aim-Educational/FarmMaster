@@ -131,8 +131,9 @@ namespace FarmMaster.Services
 
         public async Task SendToAsync(User user, MailMessage message)
         {
-            var email = user.Contact.Email;
-            this.SetToAndFrom(email, ref message);
+            foreach(var email in user.Contact.EmailAddresses)
+                this.SetToAndFrom(email.Address, ref message);
+
             await this._smtp.SendMailAsync(message);
         }
 
@@ -144,7 +145,6 @@ namespace FarmMaster.Services
             if (!this._templates.Value.EmailTemplates.ContainsKey(templateName))
                 throw new IndexOutOfRangeException($"No template called '{templateName}' was found.");
 
-            var email = user.Contact.Email;
             var message = new MailMessage
             {
                 IsBodyHtml = true,
@@ -154,8 +154,7 @@ namespace FarmMaster.Services
                 Body = await this._viewRenderer.RenderToStringAsync(this._templates.Value.EmailTemplates[templateName], model)
             };
 
-            this.SetToAndFrom(email, ref message);
-            await this._smtp.SendMailAsync(message);
+            await this.SendToAsync(user, message);
         }
 
         private void SetToAndFrom(string email, /*To make it clear this will be mutated*/ref MailMessage message)

@@ -36,6 +36,17 @@ namespace FarmMaster.Models
         public bool AgeConsent { get; set; }
     }
 
+    public class AccountSignupNameInfo
+    {
+        [Required]
+        public string FirstName { get; set; }
+
+        public string MiddleNames { get; set; }
+
+        [Required]
+        public string LastName { get; set; }
+    }
+
     public class AccountSignupViewModel
     {
         [Required]
@@ -46,6 +57,12 @@ namespace FarmMaster.Models
         
         [Required]
         public Contact Contact { get; set; }
+
+        [Required]
+        public AccountSignupNameInfo NameInfo { get; set; }
+
+        [Required]
+        public string Email { get; set; }
 
         [Required]
         [MinLength(1)]

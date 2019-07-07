@@ -77,10 +77,12 @@ namespace FarmMaster.Controllers
                 if(!model.ConsentInfo.AgeConsent)
                     throw new Exception("You must state that you're 13 or over before you can sign up.");
 
-                var user = this._users.CreateUser(model.LoginInfo.Username,                model.LoginInfo.Password,
-                                                  model.Contact.FirstName,                 model.Contact.MiddleNames,
-                                                  model.Contact.LastName,                  model.Contact.Email,
-                                                  model.ConsentInfo.TermsOfServiceConsent, model.ConsentInfo.PrivacyPolicyConsent);
+                var user = this._users.CreateUser(model.LoginInfo.Username, 
+                                                  model.LoginInfo.Password,
+                                                  model.NameInfo.FirstName + model.NameInfo.MiddleNames + model.NameInfo.LastName,
+                                                  model.Email,
+                                                  model.ConsentInfo.TermsOfServiceConsent, 
+                                                  model.ConsentInfo.PrivacyPolicyConsent);
 
                 // TODO: Support multiple number entries.
                 this._userData.AddTelephoneNumber(user, GlobalConstants.DefaultNumberName, model.TelephoneNumbers[0]);
