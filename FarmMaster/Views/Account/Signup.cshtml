@@ -23,23 +23,32 @@
             <!--Login info-->
             <section id="sectionLoginInfo" class="sixteen wide column transition visible">
                 <section class="field">
-                    <div class="ui left icon input">
+                    <div class="ui left icon labeled input">
                         <i class="user icon"></i>
                         <input asp-for="LoginInfo.Username" placeholder="Username" />
+                        <div class="ui corner label">
+                            <i class="asterisk icon"></i>
+                        </div>
                     </div>
                     <div class="ui basic red pointing prompt label transition hidden"></div>
                 </section>
                 <section class="field">
-                    <div class="ui left icon input">
+                    <div class="ui left icon labeled input">
                         <i class="lock icon"></i>
                         <input asp-for="LoginInfo.Password" placeholder="Password" />
+                        <div class="ui corner label">
+                            <i class="asterisk icon"></i>
+                        </div>
                     </div>
                     <div class="ui basic red pointing prompt label transition hidden"></div>
                 </section>
                 <section class="field">
-                    <div class="ui left icon input">
+                    <div class="ui left icon labeled input">
                         <i class="lock icon"></i>
                         <input asp-for="LoginInfo.PasswordConfirm" placeholder="Confirm Password" />
+                        <div class="ui corner label">
+                            <i class="asterisk icon"></i>
+                        </div>
                     </div>
                     <div class="ui basic red pointing prompt label transition hidden"></div>
                 </section>
@@ -58,7 +67,12 @@
                     </h3>
                     <section class="ui three fields">
                         <section class="field">
-                            <input class="ui input" asp-for="NameInfo.FirstName" placeholder="First Name *" />
+                            <div class="ui labeled input">
+                                <input asp-for="NameInfo.FirstName" placeholder="First Name " />
+                                <div class="ui corner label">
+                                    <i class="asterisk icon"></i>
+                                </div>
+                            </div>
                             <div class="ui basic red pointing prompt label transition hidden"></div>
                         </section>
                         <section class="field">
@@ -66,7 +80,12 @@
                             <div class="ui basic red pointing prompt label transition hidden"></div>
                         </section>
                         <section class="field">
-                            <input class="ui input" asp-for="NameInfo.LastName" placeholder="Last Name *" />
+                            <div class="ui labeled input">
+                                <input asp-for="NameInfo.LastName" placeholder="Last Name" />
+                                <div class="ui corner label">
+                                    <i class="asterisk icon"></i>
+                                </div>
+                            </div>
                             <div class="ui basic red pointing prompt label transition hidden"></div>
                         </section>
                     </section>
@@ -78,16 +97,22 @@
                         Contact Information
                     </h3>
                     <section class="field">
-                        <div class="ui left icon input">
+                        <div class="ui left icon labeled input">
                             <i class="envelope icon"></i>
-                            <input asp-for="Email" placeholder="Email *" />
+                            <input asp-for="Email" placeholder="Email" />
+                            <div class="ui corner label">
+                                <i class="asterisk icon"></i>
+                            </div>
                         </div>
                         <div class="ui basic red pointing prompt label transition hidden"></div>
                     </section>
                     <section class="field">
-                        <div class="ui left icon input">
+                        <div class="ui left icon labeled input">
                             <i class="phone icon"></i>
-                            <input asp-for="TelephoneNumbers" placeholder="Phone Number *" />
+                            <input asp-for="TelephoneNumbers" placeholder="Phone Number" />
+                            <div class="ui corner label">
+                                <i class="asterisk icon"></i>
+                            </div>
                         </div>
                         <div class="ui basic red pointing prompt label transition hidden"></div>
                     </section>
