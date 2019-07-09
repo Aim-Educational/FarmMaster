@@ -5,6 +5,35 @@
 
 <h1>Index</h1>
 
+<partial name="_ViewModelWithMessagePartial" model="@Model" />
+
+<section class="ui modal">
+    <section class="content">
+        <section class="ui visible warning message">
+            <p class="ui header">Warning!</p>
+            <p>
+                Accessing the contact information of a user or individual will fire off an email alerting them to
+                your action. This is to deter people from mis-using their permissions to view data they shouldn't.
+            </p>
+        </section>
+        <h4>Reason</h4>
+        <div class="ui labeled fluid input">
+            <input id="txtReasonForEdit" placeholder="Reason for edit" />
+            <div class="ui corner label">
+                <i class="asterisk icon"></i>
+            </div>
+        </div>
+    </section>
+    <section class="actions">
+        <div class="ui black deny button">
+            Cancel
+        </div>
+        <div class="ui positive button">
+            Continue
+        </div>
+    </section>
+</section>
+
 <table class="ui celled table">
     <thead>
         <tr>
@@ -24,11 +53,11 @@
                 <td>@name</td>
                 <td>@contact.ContactType</td>
                 <td class="ui two buttons">
-                    <a class="ui inverted tiny secondary left button" asp-action="Edit" asp-route-id="@contact.ContactId">
+                    <a class="ui inverted tiny secondary left button" onclick="showEditModal(@contact.ContactId)">
                         Edit
                     </a>
                     <div class="or divide hide mobile"></div>
-                    <a class="ui inverted tiny secondary right button" asp-action="Delete" asp-route-id="@contact.ContactId">
+                    <a class="ui inverted tiny secondary right button">
                         Delete
                     </a>
                 </td>
@@ -36,3 +65,18 @@
         }
     </tbody>
 </table>
+
+@section Scripts {
+    <script>
+        function showEditModal(contactId) {
+            $(".ui.modal")
+                .modal({
+                    onApprove: function () {
+                        let reasonForEdit = document.querySelector("#txtReasonForEdit").value;
+                        window.location = "/Contact/Edit/" + contactId + "?reason=" + reasonForEdit;
+                    }
+                })
+                .modal('show');
+        }
+    </script>
+}
