@@ -16,9 +16,9 @@ namespace FarmMaster.Controllers
     public class AccountController : Controller
     {
         readonly IServiceUserManager _users;
-        readonly IServiceUserData    _userData;
+        readonly IServiceContactData    _userData;
 
-        public AccountController(IServiceUserManager users, IServiceUserData userData)
+        public AccountController(IServiceUserManager users, IServiceContactData userData)
         {
             this._users = users;
             this._userData = userData;
@@ -90,7 +90,7 @@ namespace FarmMaster.Controllers
                                                   model.ConsentInfo.PrivacyPolicyConsent);
 
                 // TODO: Support multiple number entries.
-                this._userData.AddTelephoneNumber(user, GlobalConstants.DefaultNumberName, model.TelephoneNumbers[0]);
+                this._userData.AddTelephoneNumber(user.Contact, GlobalConstants.DefaultNumberName, model.TelephoneNumbers[0]);
             }
             catch(Exception ex)
             {

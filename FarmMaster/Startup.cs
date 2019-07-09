@@ -72,7 +72,7 @@ namespace FarmMaster
 
             // User manager
             services.AddScoped<IServiceUserManager, ServiceUserManager>();
-            services.AddScoped<IServiceUserData, ServiceUserData>();
+            services.AddScoped<IServiceContactData, ServiceContactData>();
             services.AddScoped<IServiceRoleManager, ServiceRoleManager>();
 
             // SMTP

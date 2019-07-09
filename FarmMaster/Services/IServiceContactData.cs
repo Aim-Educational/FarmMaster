@@ -6,26 +6,26 @@ using System.Threading.Tasks;
 
 namespace FarmMaster.Services
 {
-    public interface IServiceUserData
+    public interface IServiceContactData
     {
-        void AddTelephoneNumber(User user, string name, string number);
+        void AddTelephoneNumber(Contact contact, string name, string number);
     }
     
-    public class ServiceUserData : IServiceUserData
+    public class ServiceContactData : IServiceContactData
     {
         readonly FarmMasterContext _context;
 
-        public ServiceUserData(FarmMasterContext context)
+        public ServiceContactData(FarmMasterContext context)
         {
             this._context = context;
         }
 
-        public void AddTelephoneNumber(User user, string name, string number)
+        public void AddTelephoneNumber(Contact contact, string name, string number)
         {
             var item = new Telephone
             {
                 Name = name,
-                Contact = user.Contact,
+                Contact = contact,
                 Number = number
             };
 
