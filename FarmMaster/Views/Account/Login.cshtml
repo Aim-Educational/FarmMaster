@@ -26,7 +26,7 @@
             <i class="user icon"></i>
             <input asp-for="Username" placeholder="Username"/>
         </div>
-        <div class="ui basic red pointing prompt label transition hidden"></div>
+        <div class="@GlobalConstants.FormErrorClasses"></div>
     </section>
 
     <section class="field">
@@ -34,7 +34,7 @@
             <i class="lock icon"></i>
             <input asp-for="Password" placeholder="Password" />
         </div>
-        <div class="ui basic red pointing prompt label transition hidden"></div>
+        <div class="@GlobalConstants.FormErrorClasses"></div>
     </section>
 
     <button class="ui large primary fluid button" type="submit">Login</button>

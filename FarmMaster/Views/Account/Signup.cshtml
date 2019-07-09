@@ -30,7 +30,7 @@
                             <i class="asterisk icon"></i>
                         </div>
                     </div>
-                    <div class="ui basic red pointing prompt label transition hidden"></div>
+                    <div class="@GlobalConstants.FormErrorClasses"></div>
                 </section>
                 <section class="field">
                     <div class="ui left icon labeled input">
@@ -40,7 +40,7 @@
                             <i class="asterisk icon"></i>
                         </div>
                     </div>
-                    <div class="ui basic red pointing prompt label transition hidden"></div>
+                    <div class="@GlobalConstants.FormErrorClasses"></div>
                 </section>
                 <section class="field">
                     <div class="ui left icon labeled input">
@@ -50,7 +50,7 @@
                             <i class="asterisk icon"></i>
                         </div>
                     </div>
-                    <div class="ui basic red pointing prompt label transition hidden"></div>
+                    <div class="@GlobalConstants.FormErrorClasses"></div>
                 </section>
 
                 <button id="buttonLoginInfoNext" class="ui fluid large primary button" type="button">
@@ -73,11 +73,11 @@
                                     <i class="asterisk icon"></i>
                                 </div>
                             </div>
-                            <div class="ui basic red pointing prompt label transition hidden"></div>
+                            <div class="@GlobalConstants.FormErrorClasses"></div>
                         </section>
                         <section class="field">
                             <input class="ui input" asp-for="NameInfo.MiddleNames" placeholder="[Middle Names]" />
-                            <div class="ui basic red pointing prompt label transition hidden"></div>
+                            <div class="@GlobalConstants.FormErrorClasses"></div>
                         </section>
                         <section class="field">
                             <div class="ui labeled input">
@@ -86,7 +86,7 @@
                                     <i class="asterisk icon"></i>
                                 </div>
                             </div>
-                            <div class="ui basic red pointing prompt label transition hidden"></div>
+                            <div class="@GlobalConstants.FormErrorClasses"></div>
                         </section>
                     </section>
                 </section>
@@ -104,7 +104,7 @@
                                 <i class="asterisk icon"></i>
                             </div>
                         </div>
-                        <div class="ui basic red pointing prompt label transition hidden"></div>
+                        <div class="@GlobalConstants.FormErrorClasses"></div>
                     </section>
                     <section class="field">
                         <div class="ui left icon labeled input">
@@ -114,7 +114,7 @@
                                 <i class="asterisk icon"></i>
                             </div>
                         </div>
-                        <div class="ui basic red pointing prompt label transition hidden"></div>
+                        <div class="@GlobalConstants.FormErrorClasses"></div>
                     </section>
                 </section>
 
@@ -123,21 +123,21 @@
                     <div class="ui checkbox">
                         <input class="hidden" asp-for="ConsentInfo.PrivacyPolicyConsent" />
                         <label>I have read and accept the terms under the Privacy Statement and give consent for my personal data to be stored and processed.</label>
-                        <div class="ui basic red pointing prompt label transition hidden"></div>
+                        <div class="@GlobalConstants.FormErrorClasses"></div>
                     </div>
                 </section>
                 <section class="inline field">
                     <div class="ui checkbox">
                         <input class="hidden" asp-for="ConsentInfo.TermsOfServiceConsent" />
                         <label>I have read and accept the terms under the Terms of Service agreement.</label>
-                        <div class="ui basic red pointing prompt label transition hidden"></div>
+                        <div class="@GlobalConstants.FormErrorClasses"></div>
                     </div>
                 </section>
                 <section class="inline field">
                     <div class="ui checkbox">
                         <input class="hidden" asp-for="ConsentInfo.AgeConsent" />
                         <label>I am at least 13 years or older.</label>
-                        <div class="ui basic red pointing prompt label transition hidden"></div>
+                        <div class="@GlobalConstants.FormErrorClasses"></div>
                     </div>
                 </section>
 
@@ -146,7 +146,7 @@
                     <button id="buttonContactInfoBack" class="ui left floated secondary button" type="button">
                         Back
                     </button>
-                    <button class="ui right floated primary button" type="submit">
+                    <button class="@GlobalConstants.FormErrorClasses" type="submit">
                         Signup
                     </button>
                 </section>
