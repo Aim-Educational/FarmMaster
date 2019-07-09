@@ -12,6 +12,12 @@ body {
     }
 }
 
+@media (max-width: 768px) {
+    html *.hide.mobile {
+        display: none;
+    }
+}
+
 html * [class*="top one padded"] {
     padding-top: 1em;
 }
