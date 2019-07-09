@@ -52,13 +52,17 @@ namespace FarmMaster.Controllers
                     });
             }
 
-            var user = this._users.UserFromCookieSession(HttpContext);
-            this._mail.SendToWithTemplateAsync(
-                contactDb.EmailAddresses.Select(e => e.Address),
-                EnumEmailTemplateNames.ContactEditAlert,
-                "Your contact information has been viewed or modified",
-                new EmailContactEditAlertViewModel{ Who = user.Contact.FirstName + " " + user.Contact.LastName, Why = reason }
-            ).Wait();
+            if(contactDb.ContactType == Contact.Type.Individual
+            || contactDb.ContactType == Contact.Type.User)
+            {
+                var user = this._users.UserFromCookieSession(HttpContext);
+                this._mail.SendToWithTemplateAsync(
+                    contactDb.EmailAddresses.Select(e => e.Address),
+                    EnumEmailTemplateNames.ContactEditAlert,
+                    "Your contact information has been viewed or modified",
+                    new EmailContactEditAlertViewModel{ Who = user.Contact.FirstName + " " + user.Contact.LastName, Why = reason }
+                ).Wait();
+            }
 
             return View(new ContactEditViewModel{ Contact = contactDb });
         }
