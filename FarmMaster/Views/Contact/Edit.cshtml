@@ -1,0 +1,63 @@
+﻿@model ContactEditViewModel
+@{
+    ViewData["Title"] = "Edit - Contact";
+}
+
+<h1>Edit</h1>
+
+@if (Model.Contact.ContactType == Business.Model.Contact.Type.Individual)
+{
+    <div class="ui visible warning message">
+        <div class="header">Attention about GDPR!</div>
+
+        When adding in new data about an individual, <strong>ensure you have their consent!</strong>
+    </div>
+}
+
+@if (Model.Contact.ContactType == Business.Model.Contact.Type.Entity)
+{
+    <div class="ui visible warning message">
+        <div class="header">Attention about GDPR!</div>
+
+        When adding in new data about an entity, if that data belongs to an individual person
+        instead of the entity as a whole, then you must <strong>ensure you have that individual's consent!</strong>
+    </div>
+}
+
+<form class="ui form" method="post" asp-action="Edit">
+    <input type="hidden" asp-for="Contact.ContactId" />
+    <input type="hidden" asp-for="Contact.ContactType" />
+    <input type="hidden" asp-for="Contact.Timestamp" />
+
+    <section class="field">
+        <label>Full Name</label>
+        <input asp-for="Contact.FullName" />
+        <span class="@GlobalConstants.FormErrorClasses" asp-validation-for="Contact.FullName"></span>
+    </section>
+
+    <section class="field">
+        <label>Phone Numbers</label>
+        <table class="ui celled table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Number</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var number in Model.Contact.PhoneNumbers)
+                {
+                    <tr>
+                        <td>@number.Name</td>
+                        <td>@number.Number</td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+
+            </tfoot>
+        </table>
+    </section>
+</form>
+
+<partial name="_ViewModelWithMessagePartial" model="Model" />
