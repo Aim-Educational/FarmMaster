@@ -1,0 +1,38 @@
+﻿@model ContactIndexViewModel
+@{
+    ViewData["Title"] = "Index - Contacts";
+}
+
+<h1>Index</h1>
+
+<table class="ui celled table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var contact in Model.Contacts)
+        {
+            var name = (contact.ContactType == Business.Model.Contact.Type.Entity)
+                     ? contact.FullName
+                     : $"{contact.FirstName} {contact.LastName}"; // Don't show middle names by default, because that's probably against GDPR
+
+            <tr>
+                <td>@name</td>
+                <td>@contact.ContactType</td>
+                <td class="ui two buttons">
+                    <a class="ui inverted tiny secondary left button" asp-action="Edit" asp-route-id="@contact.ContactId">
+                        Edit
+                    </a>
+                    <div class="or divider"></div>
+                    <a class="ui inverted tiny secondary right button" asp-action="Delete" asp-route-id="@contact.ContactId">
+                        Delete
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

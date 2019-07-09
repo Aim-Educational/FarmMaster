@@ -48,6 +48,10 @@ namespace Business.Model
              .HasIndex(r => r.Name)
              .IsUnique();
 
+            b.Entity<Contact>()
+             .Property(c => c.ContactType)
+             .HasConversion<string>();
+
             this.SeedRolePermissions(b);
         }
 
