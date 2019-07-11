@@ -6,8 +6,24 @@ var FarmAjaxMessageType;
     FarmAjaxMessageType[FarmAjaxMessageType["Error"] = 3] = "Error";
 })(FarmAjaxMessageType || (FarmAjaxMessageType = {}));
 var FarmAjaxMessageResponse = (function () {
-    function FarmAjaxMessageResponse() {
+    function FarmAjaxMessageResponse(type, message) {
+        this.type = type;
+        this.message = message;
     }
+    FarmAjaxMessageResponse.prototype.populateMessageBox = function (box) {
+        box.classList.remove("info", "error", "warning");
+        switch (this.type) {
+            case FarmAjaxMessageType.Error:
+                box.classList.add("error");
+                break;
+            case FarmAjaxMessageType.Information:
+                box.classList.add("info");
+                break;
+            default: break;
+        }
+        box.classList.add("visible");
+        box.innerHTML = this.message;
+    };
     return FarmAjaxMessageResponse;
 }());
 var FarmAjax = (function () {
@@ -27,10 +43,7 @@ var FarmAjax = (function () {
             .done(function (response) {
             onDone(response);
         })
-            .fail(function (error) { return onDone({
-            message: JSON.stringify(error),
-            type: FarmAjaxMessageType.Error
-        }); });
+            .fail(function (error) { return onDone(new FarmAjaxMessageResponse(FarmAjaxMessageType.Error, JSON.stringify(error))); });
     };
     return FarmAjax;
 }());

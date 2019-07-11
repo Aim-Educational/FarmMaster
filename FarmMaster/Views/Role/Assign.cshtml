@@ -73,21 +73,10 @@
                                                  .parentElement
                                                  .querySelector(".ui.message.transition.hidden");
 
-                            switch (response.type) {
-                                case FarmAjaxMessageType.Error:
-                                    messageBox.classList.add("error");
-                                    elem.value = prevValue
-                                    break;
+                            if (response.type == FarmAjaxMessageType.Error)
+                                elem.value = prevValue;
 
-                                case FarmAjaxMessageType.Information:
-                                    messageBox.classList.add("info");
-                                    break;
-
-                                default: break;
-                            }
-
-                            messageBox.classList.add("visible");
-                            messageBox.innerHTML = response.message;
+                            response.populateMessageBox(messageBox);
                         }
                     );
                 });

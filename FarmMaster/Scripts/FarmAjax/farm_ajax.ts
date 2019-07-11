@@ -8,6 +8,30 @@
 class FarmAjaxMessageResponse {
     type: FarmAjaxMessageType;
     message: string;
+
+    constructor(type: FarmAjaxMessageType, message: string) {
+        this.type = type;
+        this.message = message;
+    }
+
+    public populateMessageBox(box: HTMLElement) {
+        box.classList.remove("info", "error", "warning");
+
+        switch (this.type) {
+            case FarmAjaxMessageType.Error:
+                box.classList.add("error");
+                break;
+
+            case FarmAjaxMessageType.Information:
+                box.classList.add("info");
+                break;
+
+            default: break;
+        }
+
+        box.classList.add("visible");
+        box.innerHTML = this.message;
+    }
 }
 
 class FarmAjax {
@@ -26,9 +50,9 @@ class FarmAjax {
         .done(function (response: FarmAjaxMessageResponse) {
             onDone(response);
         })
-        .fail((error) => onDone({
-            message: JSON.stringify(error),
-            type: FarmAjaxMessageType.Error
-        }));
+        .fail((error) => onDone(new FarmAjaxMessageResponse(
+            FarmAjaxMessageType.Error, 
+            JSON.stringify(error)
+        )));
     }
 }

@@ -36,27 +36,52 @@
     </section>
 
     <section class="field">
-        <label>Phone Numbers</label>
-        <table class="ui celled table">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Number</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach(var number in Model.Contact.PhoneNumbers)
-                {
-                    <tr>
-                        <td>@number.Name</td>
-                        <td>@number.Number</td>
-                    </tr>
-                }
-            </tbody>
-            <tfoot>
+        <h4 class="ui top attached header">
+            Phone Numbers
+        </h4>
 
-            </tfoot>
-        </table>
+        <section class="ui attached segment">
+            <table class="ui striped celled table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Number</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var number in Model.Contact.PhoneNumbers)
+                    {
+                        <tr>
+                            <td>@number.Name</td>
+                            <td>@number.Number</td>
+                            <td class="collapsing">
+                                <a class="ui red inverted button">
+                                    Remove
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </section>
+
+        <section class="ui bottom attached segment">
+            <section class="three inline fields">
+                <div class="field">
+                    <label>Name:</label>
+                    <input id="txtPhoneName" type="text" />
+                </div>
+                <div class="field">
+                    <label>Number:</label>
+                    <input id="txtPhoneNumber" type="text" />
+                </div>
+                <div class="field">
+                    <button class="ui primary fluid button" type="button">Add Phone Number</button>
+                </div>
+            </section>
+            <div class="ui error message"></div>
+        </section>
     </section>
 </form>
 
