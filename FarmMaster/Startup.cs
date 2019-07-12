@@ -16,6 +16,8 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using FarmMaster.Services;
 using FarmMaster.Misc;
 using FarmMaster.Middleware;
+using Microsoft.Extensions.Hosting;
+using FarmMaster.BackgroundServices;
 
 namespace FarmMaster
 {
@@ -75,6 +77,9 @@ namespace FarmMaster
             services.AddScoped<IServiceContactData, ServiceContactData>();
             services.AddScoped<IServiceRoleManager, ServiceRoleManager>();
 
+            // Background services
+            services.AddHostedService<FarmBackgroundServiceHost<BackgroundServiceUserActionEmailer>>();
+
             // SMTP
             services.Configure<IServiceSmtpClientConfig>(o =>
             {
@@ -95,7 +100,7 @@ namespace FarmMaster
             services.Configure<IServiceSmtpTemplateConfig>(o =>
             {
                 o.EmailTemplates.Add(EnumEmailTemplateNames.EmailVerify,      "/Views/EmailTemplates/EmailVerify.cshtml");
-                o.EmailTemplates.Add(EnumEmailTemplateNames.ContactEditAlert, "/Views/EmailTemplates/ContactEditAlert.cshtml");
+                o.EmailTemplates.Add(EnumEmailTemplateNames.ContactInfoAudit, "/Views/EmailTemplates/ContactInfoAudit.cshtml");
             });
 
             services.AddScoped<IServiceSmtpClient, ServiceSmtpClient>();
@@ -114,7 +119,7 @@ namespace FarmMaster
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, Microsoft.AspNetCore.Hosting.IHostingEnvironment env)
         {
             (new FarmMasterContext(Configuration.GetConnectionString("Migrate")))
                 .Database.Migrate();

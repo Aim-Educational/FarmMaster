@@ -5,9 +5,17 @@ using System.Threading.Tasks;
 
 namespace FarmMaster.Models
 {
-    public class EmailContactEditAlertViewModel
+    public class EmailContactInfoAuditViewModel
     {
-        public string Who;
-        public string Why;
+        public class Data
+        {
+            public string Who;
+            public string What;
+            public string When;
+            public string Why;
+            public string AdditionalInfo;
+        }
+
+        public IEnumerable<Data> ActionsTaken;
     }
 }

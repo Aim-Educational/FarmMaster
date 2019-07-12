@@ -90,7 +90,13 @@ namespace FarmMaster.Controllers
                                                   model.ConsentInfo.PrivacyPolicyConsent);
 
                 // TODO: Support multiple number entries.
-                this._userData.AddTelephoneNumber(user.Contact, GlobalConstants.DefaultNumberName, model.TelephoneNumbers[0]);
+                this._userData.AddTelephoneNumber(
+                    user.Contact,
+                    user,
+                    "User signup requires a default phone number.",
+                    GlobalConstants.DefaultNumberName, 
+                    model.TelephoneNumbers[0]
+                );
             }
             catch(Exception ex)
             {

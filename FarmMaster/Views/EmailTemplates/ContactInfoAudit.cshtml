@@ -1,0 +1,57 @@
+﻿@model EmailContactInfoAuditViewModel
+@{
+    Layout = "_EmailLayout";
+}
+
+<h3>The latest audit log of the actions taken upon your contact information.</h3>
+
+<table>
+    <thead>
+        <tr>
+            <th>Who</th>
+            <th>What</th>
+            <th>When</th>
+            <th>Why</th>
+            <th>Additional Info</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var action in Model.ActionsTaken)
+        {
+            <tr>
+                <td>@action.Who</td>
+                <td>@action.What</td>
+                <td>@action.When</td>
+                <td>@action.Why</td>
+                <td>@action.AdditionalInfo</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h3>Why am I getting this email?</h3>
+<p>
+    This email is sent after any action is performed in regards to your contact information.
+</p>
+<p>
+    This is to detect potential misuse of your data, as well as to be transparent on when possibly sensitive data is accessed with or without your
+    knowledge.
+</p>
+<p>
+    If you wish to opt-out of these emails, please click this link: TODO
+</p>
+
+<h3>What should I do?</h3>
+<p>
+    If you have given prior consent to all of these actions, no action needs to be taken.
+</p>
+<p>
+    If you haven't given prior consent to any of these actions, but are fine with them. No action needs to be taken.
+</p>
+<p>
+    If you haven't given prior consent to any of these actions, and are not fine with them. Contact the company as soon as possible to sort the issue out.
+</p>
+<p>
+    If you are recieving this email in error. <strong>Get into immediate contact with the company</strong> as this is likely a data privacy violation, and
+    needs to be handled ASAP. After sending them the details of what was sent to you by error in this email, please delete this email.
+</p>

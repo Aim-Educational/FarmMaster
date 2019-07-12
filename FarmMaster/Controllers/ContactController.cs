@@ -18,16 +18,19 @@ namespace FarmMaster.Controllers
         readonly FarmMasterContext _context;
         readonly IServiceSmtpClient _mail;
         readonly IServiceUserManager _users;
+        readonly IServiceContactData _contacts;
 
         public ContactController(
             FarmMasterContext context,
             IServiceSmtpClient mail,
-            IServiceUserManager users
+            IServiceUserManager users,
+            IServiceContactData contacts
         )
         {
             this._context = context;
             this._mail = mail;
             this._users = users;
+            this._contacts = contacts;
         }
 
         public IActionResult Index([FromQuery] string message)
@@ -57,14 +60,14 @@ namespace FarmMaster.Controllers
             {
                 var user = this._users.UserFromCookieSession(HttpContext);
 
-                if(user.Contact != contactDb)
+                if(user.Contact == contactDb)
                 {
-                    this._mail.SendToWithTemplateAsync(
-                        contactDb.EmailAddresses.Select(e => e.Address),
-                        EnumEmailTemplateNames.ContactEditAlert,
-                        "Your contact information has been viewed or modified",
-                        new EmailContactEditAlertViewModel{ Who = user.Contact.FirstName + " " + user.Contact.LastName, Why = reason }
-                    ).Wait();
+                    this._contacts.LogAction(
+                        contactDb,
+                        user,
+                        ActionAgainstContactInfo.Type.View_ContactInfo,
+                        reason
+                    );
                 }
             }
 
