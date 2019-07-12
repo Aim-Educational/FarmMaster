@@ -44,12 +44,12 @@ namespace FarmMaster.BackgroundServices
                 // Get the first uninformed action, then get the rest of the uninformed actions for that particular contact.
                 var first = this._context.ActionsAgainstContactInfo.First(a => !a.HasContactBeenInformed);
                 var allActions = this._context.ActionsAgainstContactInfo
-                                                .Where(a => a.ContactAffectedId == first.ContactAffectedId)
-                                                .Where(a => !a.HasContactBeenInformed)
-                                                .Include(a => a.ContactAffected)
-                                                 .ThenInclude(c => c.EmailAddresses)
-                                                .Include(a => a.UserResponsible)
-                                                 .ThenInclude(u => u.Contact);
+                                              .Where(a => a.ContactAffectedId == first.ContactAffectedId)
+                                              .Where(a => !a.HasContactBeenInformed)
+                                              .Include(a => a.ContactAffected)
+                                               .ThenInclude(c => c.EmailAddresses)
+                                              .Include(a => a.UserResponsible)
+                                               .ThenInclude(u => u.Contact);
 
                 // Send the email.
                 await this._mail.SendToWithTemplateAsync(
