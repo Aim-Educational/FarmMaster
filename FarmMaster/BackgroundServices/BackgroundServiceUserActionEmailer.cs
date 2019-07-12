@@ -45,6 +45,7 @@ namespace FarmMaster.BackgroundServices
                 var first = this._context.ActionsAgainstContactInfo.First(a => !a.HasContactBeenInformed);
                 var allActions = this._context.ActionsAgainstContactInfo
                                                 .Where(a => a.ContactAffectedId == first.ContactAffectedId)
+                                                .Where(a => !a.HasContactBeenInformed)
                                                 .Include(a => a.ContactAffected)
                                                  .ThenInclude(c => c.EmailAddresses)
                                                 .Include(a => a.UserResponsible)
