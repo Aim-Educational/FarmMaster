@@ -85,10 +85,9 @@ namespace FarmMaster.Controllers
         [AllowAnonymous]
         public IActionResult AjaxAddPhoneNumber([FromBody] ContactAjaxAddPhoneNumber model)
         {
-            return this.DoAjaxWithMessageResponse(() => 
+            return this.DoAjaxWithMessageResponse(this._users, (myUser) => 
             {
-                var myUser = this._users.UserFromCookieSession(model.SessionToken);
-                var contact = this._context.Contacts.Find(model.ContactId);
+                var contact = this._context.Contacts.Include(c => c.PhoneNumbers).First(c => c.ContactId == model.ContactId);
                 if (myUser == null)
                     throw new Exception("You are not logged in.");
                 if (contact == null)

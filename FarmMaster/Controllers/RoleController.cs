@@ -207,9 +207,8 @@ namespace FarmMaster.Controllers
                                              [FromServices] IServiceUserManager users, 
                                              [FromServices] IServiceRoleManager roles)
         {
-            return this.DoAjaxWithMessageResponse(() => 
+            return this.DoAjaxWithMessageResponse(users, (myUser) => 
             {
-                var myUser = users.UserFromCookieSession(data.sessionToken);
                 var toModifyUser = users.UserFromId(data.userId);
                 var role = roles.RoleFromId(data.roleId);
                 if(myUser == null)

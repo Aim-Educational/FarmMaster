@@ -2,14 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Business.Model;
 using FarmMaster.Models;
+using FarmMaster.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FarmMaster.Misc
 {
     public static class AjaxHelper
     {
-        public static IActionResult DoAjaxWithMessageResponse(this Controller controller, Action action)
+        public static IActionResult DoAjaxWithMessageResponse(
+            this Controller controller,
+            IServiceUserManager users,
+            Action<User> action)
         {
             var message = new AjaxModelWithMessage();
 
@@ -21,7 +26,7 @@ namespace FarmMaster.Misc
 
             try
             {
-                action();
+                action(users.UserFromCookieSession(controller.HttpContext));
             }
             catch (Exception ex)
             {
