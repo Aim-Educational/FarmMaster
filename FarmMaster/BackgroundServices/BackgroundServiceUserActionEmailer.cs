@@ -20,7 +20,7 @@ namespace FarmMaster.BackgroundServices
 
         public IFarmBackgroundServiceConfig Config => new IFarmBackgroundServiceConfig
         {
-            DelayPerTicks = TimeSpan.FromMinutes(1),
+            DelayPerTicks = TimeSpan.FromMinutes(30),
             RestartOnException = true
         };
 
