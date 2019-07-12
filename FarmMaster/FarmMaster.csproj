@@ -7,10 +7,6 @@
     <TypeScriptToolsVersion>3.1</TypeScriptToolsVersion>
   </PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="Scripts\Validation\validation.ts" />
-  </ItemGroup>
-
 
   <ItemGroup>
     <PackageReference Include="BCrypt.Net-Next" Version="3.1.3" />
@@ -28,7 +24,7 @@
 
 
   <ItemGroup>
-    <TypeScriptCompile Include="Scripts\Validation\validation.ts" />
+    <TypeScriptCompile Include="Scripts\validation.ts" />
   </ItemGroup>
 
 </Project>
