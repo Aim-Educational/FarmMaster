@@ -5,6 +5,38 @@
 
 <h1>Edit</h1>
 
+<section class="ui modal">
+    <section class="content">
+        <section class="ui visible warning message">
+            <p class="ui header">Your action will be logged!</p>
+            <p>
+                Performing any action on the information of a contact will be logged, and at some point
+                today it will be emailed to all emails assigned to this contact!
+            </p>
+            <p>
+                This is to prevent data mis-use, catch errors, and comply with being fully transparent about how 
+                a contact's data is handled. (Helpful for GDPR)
+            </p>
+            <p>
+                Please provide a reason in the below text box for the action you're performing.
+            </p>
+        </section>
+
+        <h4>Reason</h4>
+        <div class="ui fluid input">
+            <input id="txtReason" placeholder="Reason for action" />
+        </div>
+    </section>
+    <section class="actions">
+        <div class="ui black deny button">
+            Cancel
+        </div>
+        <div class="ui positive button">
+            Continue
+        </div>
+    </section>
+</section>
+
 @if (Model.Contact.ContactType == Business.Model.Contact.Type.Individual)
 {
     <div class="ui visible warning message">
@@ -34,13 +66,15 @@
         <input asp-for="Contact.FullName" />
         <span class="@GlobalConstants.FormErrorClasses" asp-validation-for="Contact.FullName"></span>
     </section>
+</form>
 
+<section class="ui form"> <!--ui form is just for the styling stuff-->
     <section class="field">
         <h4 class="ui top attached header">
             Phone Numbers
         </h4>
 
-        <section class="ui attached segment">
+        <section id="segmentPhoneTable" class="ui attached segment">
             <table class="ui striped celled table">
                 <thead>
                     <tr>
@@ -66,7 +100,7 @@
             </table>
         </section>
 
-        <section class="ui bottom attached segment">
+        <section id="segmentPhoneInput" class="ui bottom attached segment">
             <section class="three inline fields">
                 <div class="field">
                     <label>Name:</label>
@@ -77,12 +111,85 @@
                     <input id="txtPhoneNumber" type="text" />
                 </div>
                 <div class="field">
-                    <button class="ui primary fluid button" type="button">Add Phone Number</button>
+                    <button class="ui primary fluid button" type="button" onclick="showReasonModel(addPhoneNumber)">
+                        Add Phone Number
+                    </button>
                 </div>
             </section>
-            <div class="ui error message"></div>
+            <div id="errorPhone" class="ui error message"></div>
         </section>
     </section>
-</form>
+</section>
 
 <partial name="_ViewModelWithMessagePartial" model="Model" />
+
+@section Scripts {
+    <script>
+        function showReasonModel(callback) {
+            $(".ui.modal")
+                .modal({
+                    onApprove: function () {
+                        callback();
+                    }
+                })
+                .modal('show');
+        }
+
+        function addPhoneNumber() {
+            let reason = document.getElementById("txtReason").value;
+            let name = document.getElementById("txtPhoneName").value;
+            let number = document.getElementById("txtPhoneNumber").value;
+
+            let errorBox = document.getElementById("errorPhone");
+            let tableSeg = document.getElementById("segmentPhoneTable");
+            let inputSeg = document.getElementById("segmentPhoneInput");
+
+            errorBox.classList.remove("visible");
+
+            tableSeg.classList.add("loading");
+            inputSeg.classList.add("loading");
+            FarmAjax.postWithMessageResponse(
+                "/Contact/AjaxAddPhoneNumber",
+                {
+                    Name: name,
+                    Number: number,
+                    Reason: reason,
+                    ContactId: @Model.Contact.ContactId
+                },
+                response => {
+                    tableSeg.classList.remove("loading");
+                    inputSeg.classList.remove("loading");
+
+                    if (response.messageType !== FarmAjaxMessageType.None)
+                        response.populateMessageBox(errorBox);
+                    else {
+                        // Create table row
+                        let tr = document.createElement("tr");
+
+                        let td = document.createElement("td");
+                        td.innerText = name;
+                        tr.appendChild(td);
+
+                        td = document.createElement("td");
+                        td.innerText = number;
+                        tr.appendChild(td);
+
+                        td = document.createElement("td");
+                        let a = document.createElement("a");
+                        a.classList.add("ui", "red", "inverted", "button");
+                        a.innerText = "Remove";
+                        td.appendChild(a);
+                        tr.appendChild(td);
+
+                        // Clear inputs
+                        inputSeg
+                            .querySelectorAll("input")
+                            .forEach(i => i.value = "");
+
+                        tableSeg.querySelector("table").appendChild(tr);
+                    }
+                }
+            );
+        }
+    </script>
+}

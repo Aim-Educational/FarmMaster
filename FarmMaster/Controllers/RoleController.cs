@@ -206,6 +206,8 @@ namespace FarmMaster.Controllers
                                              [FromServices] IServiceUserManager users, 
                                              [FromServices] IServiceRoleManager roles)
         {
+            var message = new AjaxModelWithMessage();
+
             try
             {
                 var myUser = users.UserFromCookieSession(data.sessionToken);
@@ -234,18 +236,14 @@ namespace FarmMaster.Controllers
             }
             catch(Exception ex)
             {
-                return Json(new
-                {
-                    message = ex.Message,
-                    type = 3 // TODO: Enum for this. This is 'Error'
-                });
+                message.Message = ex.Message;
+                message.MessageType = ViewModelWithMessage.Type.Error;
+                return Json(message);
             }
 
-            return Json(new
-            {
-                message = "Success",
-                type = 1 // TODO: Enum for this. This is 'Information'
-            });
+            message.Message = "Success";
+            message.MessageType = ViewModelWithMessage.Type.Information;
+            return Json(message);
         }
 
         private IActionResult RedirectToIndexWithMessage(ViewModelWithMessage.Type type, string message)

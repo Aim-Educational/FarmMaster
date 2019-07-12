@@ -73,7 +73,7 @@
                                                  .parentElement
                                                  .querySelector(".ui.message.transition.hidden");
 
-                            if (response.type == FarmAjaxMessageType.Error)
+                            if (response.messageType === FarmAjaxMessageType.Error)
                                 elem.value = prevValue;
 
                             response.populateMessageBox(messageBox);

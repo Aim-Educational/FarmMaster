@@ -30,7 +30,7 @@ namespace FarmMaster.Models
 
         public void ParseMessageQueryString(string message)
         {
-            if(message == null || message.Length == 0)
+            if(message == null || message.Length < 2)
                 return;
 
             Type type = Type.None;
@@ -38,15 +38,23 @@ namespace FarmMaster.Models
             else if(message[0] == 'w') type = Type.Warning;
             else if(message[0] == 'e') type = Type.Error;
 
-            this.MessageType = type;
+            Format format = Format.Default;
+                 if(message[1] == 'd') format = Format.Default;
+            else if(message[1] == 'u') format = Format.UnorderedList;
 
-            if(message.Length > 1)
-                this.Message = message.Substring(1);
+            this.MessageType = type;
+            this.MessageFormat = format;
+
+            if(message.Length > 2)
+                this.Message = message.Substring(2);
         }
 
-        public static string CreateMessageQueryString(Type type, string message)
+        public static string CreateMessageQueryString(Type type, string message, Format format = Format.Default)
         {
-            return Enum.GetName(typeof(Type), type).ToLower()[0] + message;
+            return 
+                $"{Enum.GetName(typeof(Type), type).ToLower()[0]}"
+              + $"{Enum.GetName(typeof(Format), format).ToLower()[0]}"
+              + message;
         }
 
         public static string CreateMessageQueryString(ModelStateDictionary modelState)
@@ -57,8 +65,14 @@ namespace FarmMaster.Models
                 .Select(s => s.Value)
                 .SelectMany(e => e.Errors)
                 .Select(e => e.ErrorMessage)
-                .Aggregate((s1, s2) => $"{s1}\n{s2}")
+                .Aggregate((s1, s2) => $"{s1}\n{s2}"),
+                Format.UnorderedList
             );
         }
+    }
+
+    public class AjaxModelWithMessage : ViewModelWithMessage
+    {
+
     }
 }

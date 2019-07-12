@@ -29,3 +29,11 @@ html * [class*="bottom one padded"] {
 html * [class*="display none"] {
     display: none !important;
 }
+
+/* Stuff to get the footer to stick to the bottom */
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+}

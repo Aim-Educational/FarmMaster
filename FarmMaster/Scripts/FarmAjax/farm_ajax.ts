@@ -1,23 +1,30 @@
 ﻿enum FarmAjaxMessageType {
     None,
-    Warning,
     Information,
+    Warning,
     Error
 }
 
+enum FarmAjaxMessageFormat {
+    Default,
+    UnorderedList
+}
+
 class FarmAjaxMessageResponse {
-    type: FarmAjaxMessageType;
+    messageFormat: FarmAjaxMessageFormat;
+    messageType: FarmAjaxMessageType;
     message: string;
 
-    constructor(type: FarmAjaxMessageType, message: string) {
-        this.type = type;
+    constructor(type: FarmAjaxMessageType, message: string, format: FarmAjaxMessageFormat) {
+        this.messageType = type;
         this.message = message;
+        this.messageFormat = format;
     }
 
     public populateMessageBox(box: HTMLElement) {
         box.classList.remove("info", "error", "warning");
 
-        switch (this.type) {
+        switch (this.messageType) {
             case FarmAjaxMessageType.Error:
                 box.classList.add("error");
                 break;
@@ -26,20 +33,44 @@ class FarmAjaxMessageResponse {
                 box.classList.add("info");
                 break;
 
+            case FarmAjaxMessageType.Warning:
+                box.classList.add("warning");
+                break;
+
             default: break;
         }
 
         box.classList.add("visible");
-        box.innerHTML = this.message;
+
+        switch (this.messageFormat) {
+            case FarmAjaxMessageFormat.Default:
+                box.innerHTML = this.message;
+                break;
+
+            case FarmAjaxMessageFormat.UnorderedList:
+                box.innerHTML = "";
+
+                let ul = document.createElement("ul");
+                box.appendChild(ul);
+
+                for (let item of this.message.split("\n")) {
+                    let li = document.createElement("li");
+                    li.innerText = item;
+                    ul.appendChild(li);
+                }
+                break;
+
+            default: break;
+        }
     }
 }
 
 class FarmAjax {
     static postWithMessageResponse(url: string, data: any, onDone: (response: FarmAjaxMessageResponse) => void) {
-        if (data.sessionToken !== undefined)
-            throw "Please don't define your own 'sessionToken' field, FarmAjax will handle that for you.";
+        if (data.SessionToken !== undefined)
+            throw "Please don't define your own 'SessionToken' field, FarmAjax will handle that for you.";
 
-        data.sessionToken = Cookies.get("FarmMasterAuth");
+        data.SessionToken = Cookies.get("FarmMasterAuth");
         $.ajax({
             type: "POST",
             url: url,
@@ -48,11 +79,16 @@ class FarmAjax {
             data: JSON.stringify(data)
         })
         .done(function (response: FarmAjaxMessageResponse) {
-            onDone(response);
+            onDone(new FarmAjaxMessageResponse(
+                response.messageType,
+                response.message,
+                response.messageFormat
+            ));
         })
         .fail((error) => onDone(new FarmAjaxMessageResponse(
             FarmAjaxMessageType.Error, 
-            JSON.stringify(error)
+            JSON.stringify(error),
+            FarmAjaxMessageFormat.UnorderedList
         )));
     }
 }

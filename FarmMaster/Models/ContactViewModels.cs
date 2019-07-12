@@ -17,4 +17,23 @@ namespace FarmMaster.Models
         [Required]
         public Contact Contact { get; set; }
     }
+
+    public class ContactAjaxAddPhoneNumber
+    {
+        [Required]
+        public int ContactId { get; set; }
+
+        [Required(ErrorMessage = "A name is required.")]
+        public string Name { get; set; }
+
+        [Required(ErrorMessage = "A number is required.")]
+        [RegularExpression(@"^\+?[0-9]*$", ErrorMessage = "Invalid Phone Number. Only '+', and digits are allowed.")]
+        public string Number { get; set; }
+
+        [Required(ErrorMessage = "You must give a reason for adding this number.")]
+        public string Reason { get; set; }
+
+        [Required]
+        public string SessionToken { get; set; }
+    }
 }
