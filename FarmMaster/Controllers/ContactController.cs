@@ -85,15 +85,7 @@ namespace FarmMaster.Controllers
         [AllowAnonymous]
         public IActionResult AjaxAddPhoneNumber([FromBody] ContactAjaxAddPhoneNumber model)
         {
-            var message = new AjaxModelWithMessage();
-
-            if (!ModelState.IsValid)
-            {
-                message.ParseMessageQueryString(ViewModelWithMessage.CreateMessageQueryString(ModelState));
-                return Json(message);
-            }
-
-            try
+            return this.DoAjaxWithMessageResponse(() => 
             {
                 var myUser = this._users.UserFromCookieSession(model.SessionToken);
                 var contact = this._context.Contacts.Find(model.ContactId);
@@ -112,32 +104,8 @@ namespace FarmMaster.Controllers
                 if(contact.PhoneNumbers.Any(n => n.Number == model.Number))
                     throw new Exception("That phone number is already in use.");
 
-                var number = new Telephone
-                {
-                    Contact = contact,
-                    Name = model.Name,
-                    Number = model.Number
-                };
-
-                this._context.Add(number);
-                this._context.SaveChanges();
-
-                this._contacts.LogAction(
-                    contact,
-                    myUser,
-                    ActionAgainstContactInfo.Type.Add_PhoneNumber,
-                    model.Reason,
-                    $"{model.Name}={model.Number}"
-                );
-            }
-            catch (Exception ex)
-            {
-                message.Message = ex.Message;
-                message.MessageType = ViewModelWithMessage.Type.Error;
-                return Json(message);
-            }
-
-            return Json(message);
+                this._contacts.AddTelephoneNumber(contact, myUser, model.Reason, model.Name, model.Number);
+            });
         }
         #endregion
     }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Business.Model;
 using FarmMaster.Filters;
+using FarmMaster.Misc;
 using FarmMaster.Models;
 using FarmMaster.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -206,9 +207,7 @@ namespace FarmMaster.Controllers
                                              [FromServices] IServiceUserManager users, 
                                              [FromServices] IServiceRoleManager roles)
         {
-            var message = new AjaxModelWithMessage();
-
-            try
+            return this.DoAjaxWithMessageResponse(() => 
             {
                 var myUser = users.UserFromCookieSession(data.sessionToken);
                 var toModifyUser = users.UserFromId(data.userId);
@@ -233,17 +232,7 @@ namespace FarmMaster.Controllers
 
                 toModifyUser.Role = role;
                 db.SaveChanges();
-            }
-            catch(Exception ex)
-            {
-                message.Message = ex.Message;
-                message.MessageType = ViewModelWithMessage.Type.Error;
-                return Json(message);
-            }
-
-            message.Message = "Success";
-            message.MessageType = ViewModelWithMessage.Type.Information;
-            return Json(message);
+            });
         }
 
         private IActionResult RedirectToIndexWithMessage(ViewModelWithMessage.Type type, string message)
