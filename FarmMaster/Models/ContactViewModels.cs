@@ -28,7 +28,7 @@ namespace FarmMaster.Models
 
         [Required(ErrorMessage = "A number is required.")]
         [RegularExpression(@"^\+?[0-9]*$", ErrorMessage = "Invalid Phone Number. Only '+', and digits are allowed.")]
-        public string Number { get; set; }
+        public string Value { get; set; }
 
         [Required(ErrorMessage = "You must give a reason for adding this number.")]
         public string Reason { get; set; }

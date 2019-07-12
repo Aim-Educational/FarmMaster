@@ -136,19 +136,19 @@
                 .modal('show');
         }
 
-        function deletePhoneByName(name) {
+        function deleteGeneric(name, errorBoxId, tableSegId, ajaxUrl) {
             // Data
             let reason = document.getElementById("txtReason").value;
 
             // Elements
-            let errorBox = document.getElementById("errorPhoneTable");
-            let tableSeg = document.getElementById("segmentPhoneTable");
+            let errorBox = document.getElementById(errorBoxId);
+            let tableSeg = document.getElementById(tableSegId);
 
             errorBox.classList.remove("visible");
             tableSeg.classList.add("loading");
 
             FarmAjax.postWithMessageResponse(
-                "/Contact/AjaxRemovePhoneNumberByName",
+                ajaxUrl,
                 {
                     ContactId: @Model.Contact.ContactId,
                     Name: name,
@@ -163,7 +163,7 @@
                     else {
                         // Find the row with the name, and delete it.
                         tableSeg
-                            .querySelectorAll("tr")
+                            .querySelectorAll("tbody tr")
                             .forEach((row) => {
                                 for (let td of row.querySelectorAll("td")) {
                                     if (td.innerText === name) {
@@ -177,26 +177,26 @@
             );
         }
 
-        function addPhoneNumber() {
+        function addNameValueGeneric(txtNameId, txtValueId, errorBoxId, tableSegId, inputSegId, ajaxUrl, deleteFunc) {
             // Data
             let reason = document.getElementById("txtReason").value;
-            let name = document.getElementById("txtPhoneName").value;
-            let number = document.getElementById("txtPhoneNumber").value;
+            let name = document.getElementById(txtNameId).value;
+            let value = document.getElementById(txtValueId).value;
 
             // Elements
-            let errorBox = document.getElementById("errorPhone");
-            let tableSeg = document.getElementById("segmentPhoneTable");
-            let inputSeg = document.getElementById("segmentPhoneInput");
+            let errorBox = document.getElementById(errorBoxId);
+            let tableSeg = document.getElementById(tableSegId);
+            let inputSeg = document.getElementById(inputSegId);
 
             errorBox.classList.remove("visible");
             tableSeg.classList.add("loading");
             inputSeg.classList.add("loading");
 
             FarmAjax.postWithMessageResponse(
-                "/Contact/AjaxAddPhoneNumber",
+                ajaxUrl,
                 {
                     Name: name,
-                    Number: number,
+                    Value: value,
                     Reason: reason,
                     ContactId: @Model.Contact.ContactId
                 },
@@ -215,14 +215,14 @@
                         tr.appendChild(td);
 
                         td = document.createElement("td");
-                        td.innerText = number;
+                        td.innerText = value;
                         tr.appendChild(td);
 
                         td = document.createElement("td");
                         let a = document.createElement("a");
                         a.classList.add("ui", "red", "inverted", "button");
                         a.innerText = "Remove";
-                        a.onclick = () => deletePhoneByName(name);
+                        a.onclick = () => showReasonModel(() => deleteFunc(name));
                         td.appendChild(a);
                         tr.appendChild(td);
 
@@ -231,9 +231,25 @@
                             .querySelectorAll("input")
                             .forEach(i => i.value = "");
 
-                        tableSeg.querySelector("table").appendChild(tr);
+                        tableSeg.querySelector("table").tBodies.item(0).appendChild(tr);
                     }
                 }
+            );
+        }
+
+        function deletePhoneByName(name) {
+            deleteGeneric(name, "errorPhoneTable", "segmentPhoneTable", "/Contact/AjaxRemovePhoneNumberByName");
+        }
+
+        function addPhoneNumber() {
+            addNameValueGeneric(
+                "txtPhoneName",
+                "txtPhoneNumber",
+                "errorPhone",
+                "segmentPhoneTable",
+                "segmentPhoneInput",
+                "/Contact/AjaxAddPhoneNumber",
+                deletePhoneByName
             );
         }
     </script>

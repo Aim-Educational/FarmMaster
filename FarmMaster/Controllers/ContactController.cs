@@ -94,10 +94,10 @@ namespace FarmMaster.Controllers
 
                 if(contact.PhoneNumbers.Any(n => n.Name == model.Name))
                     throw new Exception("There is already a phone number using that name.");
-                if(contact.PhoneNumbers.Any(n => n.Number == model.Number))
+                if(contact.PhoneNumbers.Any(n => n.Number == model.Value))
                     throw new Exception("That phone number is already in use.");
 
-                this._contacts.AddTelephoneNumber(contact, myUser, model.Reason, model.Name, model.Number);
+                this._contacts.AddTelephoneNumber(contact, myUser, model.Reason, model.Name, model.Value);
             });
         }
 
