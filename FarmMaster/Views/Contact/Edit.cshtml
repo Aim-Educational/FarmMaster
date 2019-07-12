@@ -90,7 +90,7 @@
                             <td>@number.Name</td>
                             <td>@number.Number</td>
                             <td class="collapsing">
-                                <a class="ui red inverted button">
+                                <a class="ui red inverted button" onclick="showReasonModel(() => deletePhoneByName('@number.Name'))">
                                     Remove
                                 </a>
                             </td>
@@ -98,6 +98,7 @@
                     }
                 </tbody>
             </table>
+            <div id="errorPhoneTable" class="ui error message"></div>
         </section>
 
         <section id="segmentPhoneInput" class="ui bottom attached segment">
@@ -135,19 +136,62 @@
                 .modal('show');
         }
 
+        function deletePhoneByName(name) {
+            // Data
+            let reason = document.getElementById("txtReason").value;
+
+            // Elements
+            let errorBox = document.getElementById("errorPhoneTable");
+            let tableSeg = document.getElementById("segmentPhoneTable");
+
+            errorBox.classList.remove("visible");
+            tableSeg.classList.add("loading");
+
+            FarmAjax.postWithMessageResponse(
+                "/Contact/AjaxRemovePhoneNumberByName",
+                {
+                    ContactId: @Model.Contact.ContactId,
+                    Name: name,
+                    Reason: reason
+                },
+                response =>
+                {
+                    tableSeg.classList.remove("loading");
+
+                    if (response.messageType !== FarmAjaxMessageType.None)
+                        response.populateMessageBox(errorBox);
+                    else {
+                        // Find the row with the name, and delete it.
+                        tableSeg
+                            .querySelectorAll("tr")
+                            .forEach((row) => {
+                                for (let td of row.querySelectorAll("td")) {
+                                    if (td.innerText === name) {
+                                        tableSeg.querySelector("tbody").removeChild(row);
+                                        return;
+                                    }
+                                }
+                            });
+                    }
+                }
+            );
+        }
+
         function addPhoneNumber() {
+            // Data
             let reason = document.getElementById("txtReason").value;
             let name = document.getElementById("txtPhoneName").value;
             let number = document.getElementById("txtPhoneNumber").value;
 
+            // Elements
             let errorBox = document.getElementById("errorPhone");
             let tableSeg = document.getElementById("segmentPhoneTable");
             let inputSeg = document.getElementById("segmentPhoneInput");
 
             errorBox.classList.remove("visible");
-
             tableSeg.classList.add("loading");
             inputSeg.classList.add("loading");
+
             FarmAjax.postWithMessageResponse(
                 "/Contact/AjaxAddPhoneNumber",
                 {
@@ -178,6 +222,7 @@
                         let a = document.createElement("a");
                         a.classList.add("ui", "red", "inverted", "button");
                         a.innerText = "Remove";
+                        a.onclick = () => deletePhoneByName(name);
                         td.appendChild(a);
                         tr.appendChild(td);
 

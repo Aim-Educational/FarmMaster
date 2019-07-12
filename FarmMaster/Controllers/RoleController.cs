@@ -207,19 +207,16 @@ namespace FarmMaster.Controllers
                                              [FromServices] IServiceUserManager users, 
                                              [FromServices] IServiceRoleManager roles)
         {
-            return this.DoAjaxWithMessageResponse(users, (myUser) => 
+            return this.DoAjaxWithMessageResponse(data, users, roles, new[]{ EnumRolePermissionNames.ASSIGN_ROLES },
+            (myUser) => 
             {
                 var toModifyUser = users.UserFromId(data.userId);
                 var role = roles.RoleFromId(data.roleId);
-                if(myUser == null)
-                    throw new Exception("You are not logged in.");
                 if(toModifyUser == null)
                     throw new Exception($"The user with id #{data.userId} does not exist.");
                 if(role == null && data.roleId != int.MaxValue) // int.MaxValue is intentionally allowed to be null, so you can remove roles out right.
                     throw new Exception($"The role with the id #{data.roleId} does not exist.");
 
-                if(!roles.HasPermission(myUser.Role, EnumRolePermissionNames.ASSIGN_ROLES))
-                    throw new Exception($"You do not have permission to do that.");
                 if(db.Entry(toModifyUser).State == EntityState.Detached)
                     throw new Exception("Internal error. toModifyUser is not being tracked by EF");                
                 if(!myUser.Role.CanModify(toModifyUser.Role))
@@ -246,10 +243,9 @@ namespace FarmMaster.Controllers
         }
     }
 
-    public class AjaxSetUserRoleData
+    public class AjaxSetUserRoleData : AjaxModel
     {
        public int userId { get; set; }
        public int roleId { get; set; }
-       public string sessionToken { get; set; }
     }
 }

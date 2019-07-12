@@ -11,7 +11,8 @@ namespace Business.Model
         {
             Unknown,
             View_ContactInfo,
-            Add_PhoneNumber
+            Add_PhoneNumber,
+            Delete_PhoneNumber
         }
 
         [Key]

@@ -13,10 +13,13 @@ namespace FarmMaster.Misc
     {
         public static IActionResult DoAjaxWithMessageResponse(
             this Controller controller,
+            AjaxModel model,
             IServiceUserManager users,
+            IServiceRoleManager roles,
+            string[] permsNeeded,
             Action<User> action)
         {
-            var message = new AjaxModelWithMessage();
+            var message = new EmptyViewModelWithMessage();
 
             if (!controller.ModelState.IsValid)
             {
@@ -26,7 +29,14 @@ namespace FarmMaster.Misc
 
             try
             {
-                action(users.UserFromCookieSession(controller.HttpContext));
+                var user = users.UserFromCookieSession(model.SessionToken);
+                if(user == null)
+                    throw new Exception("You are not logged in.");
+
+                if(permsNeeded != null && !permsNeeded.All(p => roles.HasPermission(user.Role, p)))
+                    throw new Exception("You do not have permission to do that.");
+
+                action(user);
             }
             catch (Exception ex)
             {

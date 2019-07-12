@@ -9,6 +9,7 @@ namespace FarmMaster.Services
     public interface IServiceContactData
     {
         void AddTelephoneNumber(Contact contact, User responsible, string reason, string name, string number);
+        bool RemoveTelephoneNumberByName(Contact contact, User responsible, string reason, string name);
         void LogAction(Contact affected, User responsible, ActionAgainstContactInfo.Type type, string reason, string additionalInfo = null);
     }
     
@@ -40,6 +41,25 @@ namespace FarmMaster.Services
                 reason, 
                 $"{name}={number}"
             );
+        }
+
+        public bool RemoveTelephoneNumberByName(Contact contact, User responsible, string reason, string name)
+        {
+            var number = contact.PhoneNumbers.FirstOrDefault(p => p.Name == name);
+            if(number == null)
+                return false;
+
+            this._context.Telephones.Remove(number);
+            this._context.SaveChanges();
+
+            this.LogAction(
+                contact,
+                responsible,
+                ActionAgainstContactInfo.Type.Delete_PhoneNumber,
+                reason,
+                $"{name}={number.Number}"
+            );
+            return true;
         }
 
         public void LogAction(Contact affected, User responsible, ActionAgainstContactInfo.Type type, string reason, string additionalInfo = null)

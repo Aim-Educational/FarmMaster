@@ -85,18 +85,12 @@ namespace FarmMaster.Controllers
         [AllowAnonymous]
         public IActionResult AjaxAddPhoneNumber([FromBody] ContactAjaxAddPhoneNumber model)
         {
-            return this.DoAjaxWithMessageResponse(this._users, (myUser) => 
+            return this.DoAjaxWithMessageResponse(model, this._users, this._roles, new[]{ EnumRolePermissionNames.EDIT_CONTACTS }, 
+            (myUser) => 
             {
                 var contact = this._context.Contacts.Include(c => c.PhoneNumbers).First(c => c.ContactId == model.ContactId);
-                if (myUser == null)
-                    throw new Exception("You are not logged in.");
                 if (contact == null)
                     throw new Exception($"The contact with id #{model.ContactId} does not exist.");
-
-                if (!this._roles.HasPermission(myUser.Role, EnumRolePermissionNames.EDIT_CONTACTS))
-                    throw new Exception($"You do not have permission to do that.");
-                if (this._context.Entry(contact).State == EntityState.Detached)
-                    throw new Exception("Internal error. contact is not being tracked by EF");
 
                 if(contact.PhoneNumbers.Any(n => n.Name == model.Name))
                     throw new Exception("There is already a phone number using that name.");
@@ -104,6 +98,23 @@ namespace FarmMaster.Controllers
                     throw new Exception("That phone number is already in use.");
 
                 this._contacts.AddTelephoneNumber(contact, myUser, model.Reason, model.Name, model.Number);
+            });
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public IActionResult AjaxRemovePhoneNumberByName([FromBody] ContactAjaxRemovePhoneNumberByName model)
+        {
+            return this.DoAjaxWithMessageResponse(model, this._users, this._roles, new[] { EnumRolePermissionNames.EDIT_CONTACTS }, 
+            (myUser) => 
+            {
+                var contact = this._context.Contacts.Include(c => c.PhoneNumbers).First(c => c.ContactId == model.ContactId);
+                if (contact == null)
+                    throw new Exception($"The contact with id #{model.ContactId} does not exist.");
+
+                var couldDelete = this._contacts.RemoveTelephoneNumberByName(contact, myUser, model.Reason, model.Name);
+                if (!couldDelete)
+                    throw new Exception($"No phone number called '{model.Name}' was found.");
             });
         }
         #endregion

@@ -18,7 +18,7 @@ namespace FarmMaster.Models
         public Contact Contact { get; set; }
     }
 
-    public class ContactAjaxAddPhoneNumber
+    public class ContactAjaxAddPhoneNumber : AjaxModel
     {
         [Required]
         public int ContactId { get; set; }
@@ -32,8 +32,17 @@ namespace FarmMaster.Models
 
         [Required(ErrorMessage = "You must give a reason for adding this number.")]
         public string Reason { get; set; }
+    }
+
+    public class ContactAjaxRemovePhoneNumberByName : AjaxModel
+    {
+        [Required]
+        public int ContactId { get; set; }
 
         [Required]
-        public string SessionToken { get; set; }
+        public string Name { get; set; }
+
+        [Required]
+        public string Reason { get; set; }
     }
 }

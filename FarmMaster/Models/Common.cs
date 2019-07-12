@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
@@ -70,9 +71,15 @@ namespace FarmMaster.Models
             );
         }
     }
-
-    public class AjaxModelWithMessage : ViewModelWithMessage
+    
+    public class EmptyViewModelWithMessage : ViewModelWithMessage
     {
 
+    }
+
+    public abstract class AjaxModel
+    {
+        [Required]
+        public string SessionToken { get; set; }
     }
 }
