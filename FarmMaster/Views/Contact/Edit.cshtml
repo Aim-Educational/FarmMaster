@@ -130,6 +130,7 @@
             $(".ui.modal")
                 .modal({
                     onApprove: function () {
+                        $(".ui.modal").modal("hide");
                         callback();
                     }
                 })
