@@ -75,7 +75,6 @@ namespace FarmMaster.BackgroundServices
                     action.HasContactBeenInformed = true;
                 this._context.SaveChanges();
                 
-                this._context.Entry(allActions.First().ContactAffected).State = EntityState.Detached;
                 foreach (var action in allActions)
                     this._context.Entry(action).State = EntityState.Detached;
             }
