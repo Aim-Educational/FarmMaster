@@ -122,6 +122,60 @@
     </section>
 </section>
 
+<section class="ui form">
+    <section class="field">
+        <h4 class="ui top attached header">
+            Email Addresses
+        </h4>
+
+        <section id="segmentEmailTable" class="ui attached segment">
+            <table class="ui striped celled table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Address</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var email in Model.Contact.EmailAddresses)
+                    {
+                        <tr>
+                            <td>@email.Name</td>
+                            <td>@email.Address</td>
+                            <td class="collapsing">
+                                <a class="ui red inverted button" onclick="showReasonModel(() => deleteEmailByName('@email.Name'))">
+                                    Remove
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div id="errorEmailTable" class="ui error message"></div>
+        </section>
+
+        <section id="segmentEmailInput" class="ui bottom attached segment">
+            <section class="three inline fields">
+                <div class="field">
+                    <label>Name:</label>
+                    <input id="txtEmailName" type="text" />
+                </div>
+                <div class="field">
+                    <label>Address:</label>
+                    <input id="txtEmailAddress" type="text" />
+                </div>
+                <div class="field">
+                    <button class="ui primary fluid button" type="button" onclick="showReasonModel(addEmailAddress)">
+                        Add Email Address
+                    </button>
+                </div>
+            </section>
+            <div id="errorEmail" class="ui error message"></div>
+        </section>
+    </section>
+</section>
+
 <partial name="_ViewModelWithMessagePartial" model="Model" />
 
 @section Scripts {
@@ -242,6 +296,10 @@
             deleteGeneric(name, "errorPhoneTable", "segmentPhoneTable", "/Contact/AjaxRemovePhoneNumberByName");
         }
 
+        function deleteEmailByName(name) {
+            deleteGeneric(name, "errorEmailTable", "segmentEmailTable", "/Contact/AjaxRemoveEmailAddressByName");
+        }
+
         function addPhoneNumber() {
             addNameValueGeneric(
                 "txtPhoneName",
@@ -251,6 +309,18 @@
                 "segmentPhoneInput",
                 "/Contact/AjaxAddPhoneNumber",
                 deletePhoneByName
+            );
+        }
+
+        function addEmailAddress() {
+            addNameValueGeneric(
+                "txtEmailName",
+                "txtEmailAddress",
+                "errorEmail",
+                "segmentEmailTable",
+                "segmentEmailInput",
+                "/Contact/AjaxAddEmailAddress",
+                deleteEmailByName
             );
         }
     </script>

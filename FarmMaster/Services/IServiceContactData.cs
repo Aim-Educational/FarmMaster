@@ -10,6 +10,8 @@ namespace FarmMaster.Services
     {
         void AddTelephoneNumber(Contact contact, User responsible, string reason, string name, string number);
         bool RemoveTelephoneNumberByName(Contact contact, User responsible, string reason, string name);
+        void AddEmailAddress(Contact contact, User myUser, string reason, string name, string value);
+        bool RemoveEmailAddressByName(Contact contact, User myUser, string reason, string name);
         void LogAction(Contact affected, User responsible, ActionAgainstContactInfo.Type type, string reason, string additionalInfo = null);
     }
     
@@ -77,6 +79,46 @@ namespace FarmMaster.Services
 
             this._context.Add(action);
             this._context.SaveChanges();
+        }
+
+        public void AddEmailAddress(Contact contact, User responsible, string reason, string name, string address)
+        {
+            var item = new Email
+            {
+                Address = address,
+                Contact = contact,
+                Name = name
+            };
+
+            this._context.Add(item);
+            this._context.SaveChanges();
+
+            this.LogAction(
+                contact,
+                responsible,
+                ActionAgainstContactInfo.Type.Add_EmailAddress,
+                reason,
+                $"{name}={address}"
+            );
+        }
+
+        public bool RemoveEmailAddressByName(Contact contact, User responsible, string reason, string name)
+        {
+            var email = contact.EmailAddresses.FirstOrDefault(p => p.Name == name);
+            if (email == null)
+                return false;
+
+            this._context.Remove(email);
+            this._context.SaveChanges();
+
+            this.LogAction(
+                contact,
+                responsible,
+                ActionAgainstContactInfo.Type.Delete_EmailAddress,
+                reason,
+                $"{name}={email.Address}"
+            );
+            return true;
         }
     }
 }

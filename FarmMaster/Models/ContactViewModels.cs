@@ -34,7 +34,23 @@ namespace FarmMaster.Models
         public string Reason { get; set; }
     }
 
-    public class ContactAjaxRemovePhoneNumberByName : AjaxModel
+    public class ContactAjaxAddEmailAddress : AjaxModel
+    {
+        [Required]
+        public int ContactId { get; set; }
+
+        [Required(ErrorMessage = "A name is required.")]
+        public string Name { get; set; }
+
+        [Required(ErrorMessage = "An email is required.")]
+        [RegularExpression(@"^[\w\-\.]+\@(?:[\w\-\.]+)+\.\w+$", ErrorMessage = "Invalid Email Address.")]
+        public string Value { get; set; }
+
+        [Required(ErrorMessage = "You must give a reason for adding this number.")]
+        public string Reason { get; set; }
+    }
+
+    public class ContactAjaxRemoveByName : AjaxModel
     {
         [Required]
         public int ContactId { get; set; }

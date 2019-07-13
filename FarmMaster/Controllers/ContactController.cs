@@ -85,16 +85,16 @@ namespace FarmMaster.Controllers
         [AllowAnonymous]
         public IActionResult AjaxAddPhoneNumber([FromBody] ContactAjaxAddPhoneNumber model)
         {
-            return this.DoAjaxWithMessageResponse(model, this._users, this._roles, new[]{ EnumRolePermissionNames.EDIT_CONTACTS }, 
-            (myUser) => 
+            return this.DoAjaxWithMessageResponse(model, this._users, this._roles, new[] { EnumRolePermissionNames.EDIT_CONTACTS },
+            (myUser) =>
             {
                 var contact = this._context.Contacts.Include(c => c.PhoneNumbers).First(c => c.ContactId == model.ContactId);
                 if (contact == null)
                     throw new Exception($"The contact with id #{model.ContactId} does not exist.");
 
-                if(contact.PhoneNumbers.Any(n => n.Name == model.Name))
+                if (contact.PhoneNumbers.Any(n => n.Name == model.Name))
                     throw new Exception("There is already a phone number using that name.");
-                if(contact.PhoneNumbers.Any(n => n.Number == model.Value))
+                if (contact.PhoneNumbers.Any(n => n.Number == model.Value))
                     throw new Exception("That phone number is already in use.");
 
                 this._contacts.AddTelephoneNumber(contact, myUser, model.Reason, model.Name, model.Value);
@@ -103,10 +103,10 @@ namespace FarmMaster.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public IActionResult AjaxRemovePhoneNumberByName([FromBody] ContactAjaxRemovePhoneNumberByName model)
+        public IActionResult AjaxRemovePhoneNumberByName([FromBody] ContactAjaxRemoveByName model)
         {
-            return this.DoAjaxWithMessageResponse(model, this._users, this._roles, new[] { EnumRolePermissionNames.EDIT_CONTACTS }, 
-            (myUser) => 
+            return this.DoAjaxWithMessageResponse(model, this._users, this._roles, new[] { EnumRolePermissionNames.EDIT_CONTACTS },
+            (myUser) =>
             {
                 var contact = this._context.Contacts.Include(c => c.PhoneNumbers).First(c => c.ContactId == model.ContactId);
                 if (contact == null)
@@ -115,6 +115,45 @@ namespace FarmMaster.Controllers
                 var couldDelete = this._contacts.RemoveTelephoneNumberByName(contact, myUser, model.Reason, model.Name);
                 if (!couldDelete)
                     throw new Exception($"No phone number called '{model.Name}' was found.");
+            });
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public IActionResult AjaxAddEmailAddress([FromBody] ContactAjaxAddEmailAddress model)
+        {
+            return this.DoAjaxWithMessageResponse(model, this._users, this._roles, new[] { EnumRolePermissionNames.EDIT_CONTACTS },
+            (myUser) =>
+            {
+                var contact = this._context.Contacts.Include(c => c.EmailAddresses).First(c => c.ContactId == model.ContactId);
+                if (contact == null)
+                    throw new Exception($"The contact with id #{model.ContactId} does not exist.");
+
+                if (contact.EmailAddresses.Any(n => n.Name == model.Name))
+                    throw new Exception("There is already an email using that name.");
+                if (contact.EmailAddresses.Any(n => n.Address == model.Value))
+                    throw new Exception("That email address is already in use.");
+
+                this._contacts.AddEmailAddress(contact, myUser, model.Reason, model.Name, model.Value);
+            });
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public IActionResult AjaxRemoveEmailAddressByName([FromBody] ContactAjaxRemoveByName model)
+        {
+            return this.DoAjaxWithMessageResponse(model, this._users, this._roles, new[] { EnumRolePermissionNames.EDIT_CONTACTS },
+            (myUser) =>
+            {
+                var contact = this._context.Contacts.Include(c => c.EmailAddresses).First(c => c.ContactId == model.ContactId);
+                if (contact == null)
+                    throw new Exception($"The contact with id #{model.ContactId} does not exist.");
+                if(contact.EmailAddresses.Count() == 1)
+                    throw new Exception($"Contacts must have at least one email address. You cannot delete the last one.");
+
+                var couldDelete = this._contacts.RemoveEmailAddressByName(contact, myUser, model.Reason, model.Name);
+                if (!couldDelete)
+                    throw new Exception($"No email address called '{model.Name}' was found.");
             });
         }
         #endregion

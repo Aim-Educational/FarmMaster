@@ -10,9 +10,17 @@ namespace Business.Model
         public enum Type
         {
             Unknown,
+            
+            // VIEW
             View_ContactInfo,
+
+            // ADD
             Add_PhoneNumber,
-            Delete_PhoneNumber
+            Add_EmailAddress,
+
+            // DELETE
+            Delete_PhoneNumber,
+            Delete_EmailAddress
         }
 
         [Key]
