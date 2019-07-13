@@ -14,7 +14,7 @@
                 today it will be emailed to all emails assigned to this contact!
             </p>
             <p>
-                This is to prevent data mis-use, catch errors, and comply with being fully transparent about how 
+                This is to prevent data mis-use, catch errors, and comply with being fully transparent about how
                 a contact's data is handled. (Helpful for GDPR)
             </p>
             <p>
@@ -56,19 +56,32 @@
     </div>
 }
 
+<partial name="_ViewModelWithMessagePartial" model="Model" />
+
 <form class="ui form" method="post" asp-action="Edit">
     <input type="hidden" asp-for="Contact.ContactId" />
     <input type="hidden" asp-for="Contact.ContactType" />
     <input type="hidden" asp-for="Contact.Timestamp" />
 
-    <section class="field">
-        <label>Full Name</label>
-        <input asp-for="Contact.FullName" />
-        <span class="@GlobalConstants.FormErrorClasses" asp-validation-for="Contact.FullName"></span>
+    <h4 class="ui top attached header">
+        General Info
+    </h4>
+    <section class="ui attached segment">
+        <section class="field">
+            <label>Full Name</label>
+            <input asp-for="Contact.FullName" />
+            <span class="@GlobalConstants.FormErrorClasses" asp-validation-for="Contact.FullName"></span>
+        </section>
+    </section>
+    <section class="ui bottom attached segment">
+        <button type="submit" class="ui fluid primary button">
+            Update Information
+        </button>
     </section>
 </form>
 
-<section class="ui form"> <!--ui form is just for the styling stuff-->
+<section class="ui form">
+    <!--ui form is just for the styling stuff-->
     <section class="field">
         <h4 class="ui top attached header">
             Phone Numbers
@@ -175,8 +188,6 @@
         </section>
     </section>
 </section>
-
-<partial name="_ViewModelWithMessagePartial" model="Model" />
 
 @section Scripts {
     <script>

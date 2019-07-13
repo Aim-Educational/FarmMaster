@@ -80,6 +80,32 @@ namespace FarmMaster.Controllers
             return View(new ContactEditViewModel{ Contact = contactDb });
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [FarmAuthorise(PermsAND: new[]{ EnumRolePermissionNames.EDIT_CONTACTS })]
+        public IActionResult Edit(ContactEditViewModel model)
+        {
+            if(!ModelState.IsValid)
+            {
+                model.ParseMessageQueryString(ViewModelWithMessage.CreateMessageQueryString(ModelState));
+                return View(model);
+            }
+
+            var contactDb = this._context.Contacts.First(c => c.ContactId == model.Contact.ContactId);
+            contactDb.FullName = model.Contact.FullName;
+            this._context.SaveChanges();
+
+            this._contacts.LogAction(
+                contactDb,
+                this._users.UserFromCookieSession(HttpContext),
+                ActionAgainstContactInfo.Type.Edit_ContactInfo_General,
+                "User was not prompted for reason.",
+                $"FullName={model.Contact.FullName}"
+            );
+
+            return RedirectToAction(nameof(Index));
+        }
+
         #region AJAX
         [HttpPost]
         [AllowAnonymous]

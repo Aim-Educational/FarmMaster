@@ -20,7 +20,10 @@ namespace Business.Model
 
             // DELETE
             Delete_PhoneNumber,
-            Delete_EmailAddress
+            Delete_EmailAddress,
+
+            // EDIT
+            Edit_ContactInfo_General
         }
 
         [Key]
