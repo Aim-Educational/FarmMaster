@@ -88,7 +88,8 @@ namespace Business.Model
                 new EnumRolePermission { EnumRolePermissionId = 4, InternalName = EnumRolePermissionNames.VIEW_ROLES, Description = "View Roles" },
                 new EnumRolePermission { EnumRolePermissionId = 5, InternalName = EnumRolePermissionNames.EDIT_USERS, Description = "Edit Users" },
                 new EnumRolePermission { EnumRolePermissionId = 6, InternalName = EnumRolePermissionNames.VIEW_USERS, Description = "View Users" },
-                new EnumRolePermission { EnumRolePermissionId = 7, InternalName = EnumRolePermissionNames.ASSIGN_ROLES, Description = "Assign Roles" }
+                new EnumRolePermission { EnumRolePermissionId = 7, InternalName = EnumRolePermissionNames.ASSIGN_ROLES, Description = "Assign Roles" },
+                new EnumRolePermission { EnumRolePermissionId = 8, InternalName = EnumRolePermissionNames.DELETE_CONTACTS, Description = "Delete Contacts" }
             );
         }
         #endregion

@@ -43,6 +43,7 @@ namespace FarmMaster.Controllers
             var model = new ContactIndexViewModel
             {
                 Contacts = this._context.Contacts
+                                        .Where(c => !c.IsAnonymous)
             };
             model.ParseMessageQueryString(message);
 
@@ -52,6 +53,30 @@ namespace FarmMaster.Controllers
         public IActionResult Create()
         {
             return View();
+        }
+
+        [FarmAuthorise(PermsAND: new[] { EnumRolePermissionNames.DELETE_CONTACTS })]
+        public IActionResult Delete(int id)
+        {
+            var contactDb = this._contacts.ContactFromId(id);
+            if (contactDb == null)
+            {
+                return RedirectToAction(
+                    nameof(Index),
+                    new { message = ViewModelWithMessage.CreateMessageQueryString(ViewModelWithMessage.Type.Error, $"Contact with ID #{id} not found.") }
+                );
+            }
+
+            if(contactDb.ContactType == Contact.Type.User)
+            {
+                return RedirectToAction(
+                    nameof(Index),
+                    new { message = ViewModelWithMessage.CreateMessageQueryString(ViewModelWithMessage.Type.Error, "User contacts cannot be deleted by another user.") }
+                );
+            }
+
+            this._contacts.MakeAnonymous(contactDb);
+            return RedirectToAction(nameof(Index));
         }
 
         [FarmAuthorise(PermsAND: new[]{ EnumRolePermissionNames.EDIT_CONTACTS })]

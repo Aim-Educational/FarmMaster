@@ -27,6 +27,9 @@ namespace Business.Model
         [Required]
         public Type ContactType { get; set; }
 
+        [Required]
+        public bool IsAnonymous { get; set; }
+
         [Timestamp]
         public byte[] Timestamp { get; set; }
 

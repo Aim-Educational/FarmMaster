@@ -1,4 +1,5 @@
 ﻿using Business.Model;
+using FarmMaster.Misc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ namespace FarmMaster.Services
         void AddEmailAddress(Contact contact, User myUser, string reason, string name, string value);
         bool RemoveEmailAddressByName(Contact contact, User myUser, string reason, string name);
         void LogAction(Contact affected, User responsible, ActionAgainstContactInfo.Type type, string reason, string additionalInfo = null);
+        void MakeAnonymous(Contact contact);
     }
     
     public class ServiceContactData : IServiceContactData
@@ -128,7 +130,22 @@ namespace FarmMaster.Services
             return this._context.Contacts
                                 .Include(c => c.PhoneNumbers)
                                 .Include(c => c.EmailAddresses)
+                                .Where(c => !c.IsAnonymous)
                                 .FirstOrDefault(c => c.ContactId == id);
+        }
+
+        public void MakeAnonymous(Contact contact)
+        {
+            contact = this.ContactFromId(contact.ContactId); // Ensure we have all their data loaded, so we don't miss any.
+            contact.IsAnonymous = true;
+
+            foreach(var phone in contact.PhoneNumbers)
+                this._context.Remove(phone);
+
+            foreach(var email in contact.EmailAddresses)
+                this._context.Remove(email);
+            
+            this._context.SaveChanges();
         }
     }
 }

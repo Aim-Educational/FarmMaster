@@ -65,6 +65,8 @@ namespace Business.Migrations
                         .IsRequired()
                         .HasMaxLength(150);
 
+                    b.Property<bool>("IsAnonymous");
+
                     b.Property<byte[]>("Timestamp")
                         .IsConcurrencyToken()
                         .ValueGeneratedOnAddOrUpdate();
@@ -166,6 +168,12 @@ namespace Business.Migrations
                             EnumRolePermissionId = 7,
                             Description = "Assign Roles",
                             InternalName = "assign_roles"
+                        },
+                        new
+                        {
+                            EnumRolePermissionId = 8,
+                            Description = "Delete Contacts",
+                            InternalName = "delete_contacts"
                         });
                 });
 
