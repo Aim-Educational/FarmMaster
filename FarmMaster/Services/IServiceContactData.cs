@@ -1,4 +1,5 @@
 ﻿using Business.Model;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,7 @@ namespace FarmMaster.Services
 {
     public interface IServiceContactData
     {
+        Contact ContactFromId(int id);
         void AddTelephoneNumber(Contact contact, User responsible, string reason, string name, string number);
         bool RemoveTelephoneNumberByName(Contact contact, User responsible, string reason, string name);
         void AddEmailAddress(Contact contact, User myUser, string reason, string name, string value);
@@ -119,6 +121,14 @@ namespace FarmMaster.Services
                 $"{name}={email.Address}"
             );
             return true;
+        }
+
+        public Contact ContactFromId(int id)
+        {
+            return this._context.Contacts
+                                .Include(c => c.PhoneNumbers)
+                                .Include(c => c.EmailAddresses)
+                                .FirstOrDefault(c => c.ContactId == id);
         }
     }
 }

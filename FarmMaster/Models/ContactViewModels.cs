@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Business.Model;
+using FarmMaster.Misc;
 
 namespace FarmMaster.Models
 {
@@ -18,6 +19,19 @@ namespace FarmMaster.Models
         public Contact Contact { get; set; }
     }
 
+    public class ContactCreateViewModel : ViewModelWithMessage
+    {
+        [Required]
+        public string FullName { get; set; }
+
+        [Required]
+        public Contact.Type Type { get; set; }
+
+        [Required]
+        [RegularExpression(GlobalConstants.RegexEmail, ErrorMessage = "Invalid Email Address.")]
+        public string Email { get; set; }
+    }
+
     public class ContactAjaxAddPhoneNumber : AjaxModel
     {
         [Required]
@@ -27,7 +41,7 @@ namespace FarmMaster.Models
         public string Name { get; set; }
 
         [Required(ErrorMessage = "A number is required.")]
-        [RegularExpression(@"^\+?[0-9]*$", ErrorMessage = "Invalid Phone Number. Only '+', and digits are allowed.")]
+        [RegularExpression(GlobalConstants.RegexPhone, ErrorMessage = "Invalid Phone Number. Only '+', and digits are allowed.")]
         public string Value { get; set; }
 
         [Required(ErrorMessage = "You must give a reason for adding this number.")]
@@ -43,7 +57,7 @@ namespace FarmMaster.Models
         public string Name { get; set; }
 
         [Required(ErrorMessage = "An email is required.")]
-        [RegularExpression(@"^[\w\-\.]+\@(?:[\w\-\.]+)+\.\w+$", ErrorMessage = "Invalid Email Address.")]
+        [RegularExpression(GlobalConstants.RegexEmail, ErrorMessage = "Invalid Email Address.")]
         public string Value { get; set; }
 
         [Required(ErrorMessage = "You must give a reason for adding this number.")]

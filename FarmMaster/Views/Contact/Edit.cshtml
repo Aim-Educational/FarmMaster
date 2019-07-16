@@ -1,4 +1,5 @@
 ﻿@model ContactEditViewModel
+@using Business.Model
 @{
     ViewData["Title"] = "Edit - Contact";
 }
@@ -97,7 +98,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var number in Model.Contact.PhoneNumbers)
+                    @foreach (var number in Model.Contact.PhoneNumbers ?? new Telephone[]{ })
                     {
                         <tr>
                             <td>@number.Name</td>

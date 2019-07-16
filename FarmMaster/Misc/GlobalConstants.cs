@@ -12,5 +12,7 @@ namespace FarmMaster.Misc
         public const string AuthCookieName        = "FarmMasterAuth";
         public const string DefaultNumberName     = "Default";
         public const string FormErrorClasses      = "ui basic red pointing prompt label transition hidden";
+        public const string RegexEmail            = @"^[\w\-\.]+\@(?:[\w\-\.]+)+\.\w+$";
+        public const string RegexPhone            = @"^\+?[0-9]*$";
     }
 }

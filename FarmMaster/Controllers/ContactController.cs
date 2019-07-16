@@ -49,10 +49,15 @@ namespace FarmMaster.Controllers
             return View(model);
         }
 
+        public IActionResult Create()
+        {
+            return View();
+        }
+
         [FarmAuthorise(PermsAND: new[]{ EnumRolePermissionNames.EDIT_CONTACTS })]
         public IActionResult Edit(int id, [FromQuery] string reason)
         {
-            var contactDb = this._context.Contacts.Find(id);
+            var contactDb = this._contacts.ContactFromId(id);
             if(contactDb == null)
             {
                 return RedirectToAction(nameof(Index), 
@@ -82,6 +87,36 @@ namespace FarmMaster.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [FarmAuthorise(PermsAND: new[] { EnumRolePermissionNames.EDIT_CONTACTS })]
+        public IActionResult Create(ContactCreateViewModel model)
+        {
+            if(!ModelState.IsValid)
+            {
+                model.ParseMessageQueryString(ViewModelWithMessage.CreateMessageQueryString(ModelState));
+                return View(model);
+            }
+
+            var contact = new Contact
+            {
+                ContactType = model.Type,
+                FullName = model.FullName
+            };
+
+            this._context.Add(contact);
+            this._contacts.AddEmailAddress(
+                contact,
+                this._users.UserFromCookieSession(HttpContext),
+                "The user is required to specify an email when creating a new contact.",
+                GlobalConstants.DefaultNumberName,
+                model.Email
+            );
+            this._context.SaveChanges();
+
+            return RedirectToAction(nameof(Edit), new{ id = contact.ContactId, reason = "The user needs to edit your information after creation." });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         [FarmAuthorise(PermsAND: new[]{ EnumRolePermissionNames.EDIT_CONTACTS })]
         public IActionResult Edit(ContactEditViewModel model)
         {
@@ -91,7 +126,7 @@ namespace FarmMaster.Controllers
                 return View(model);
             }
 
-            var contactDb = this._context.Contacts.First(c => c.ContactId == model.Contact.ContactId);
+            var contactDb = this._contacts.ContactFromId(model.Contact.ContactId);
             contactDb.FullName = model.Contact.FullName;
             this._context.SaveChanges();
 

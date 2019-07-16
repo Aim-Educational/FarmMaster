@@ -1,0 +1,45 @@
+﻿@model ContactCreateViewModel
+@using Business.Model
+@{
+    ViewData["Title"] = "Create - Contact";
+}
+
+<h1>Create</h1>
+
+<form class="ui form" method="post" asp-action="Create">
+    <section class="ui top attached header">
+        Required Information
+    </section>
+    <section class="ui attached segment">
+        <section class="field">
+            <label>Full Name</label>
+            <input asp-for="FullName" />
+            <span class="@GlobalConstants.FormErrorClasses" asp-validation-for="FullName"></span>
+        </section>        
+        <section class="field">
+            <label>Email</label>
+            <input asp-for="Email" />
+            <span class="@GlobalConstants.FormErrorClasses" asp-validation-for="Email"></span>
+        </section>        
+        <section class="ui grouped fields">
+            <label>What type of contact is this?</label>
+            <section class="field">
+                <div class="ui radio checkbox">
+                    <input type="radio" asp-for="Type" value="@Contact.Type.Entity" />
+                    <label>An Entity (Business, Organisation, etc.)</label>
+                </div>
+            </section>            
+            <section class="field">
+                <div class="ui radio checkbox">
+                    <input type="radio" asp-for="Type" value="@Contact.Type.Individual" />
+                    <label>An Individual Person</label>
+                </div>
+            </section>
+        </section>
+    </section>
+    <section class="ui bottom attached segment">
+        <button class="ui primary fluid button" type="submit">
+            Create Contact
+        </button>
+    </section>
+</form>
