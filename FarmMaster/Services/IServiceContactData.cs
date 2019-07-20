@@ -11,10 +11,15 @@ namespace FarmMaster.Services
     public interface IServiceContactData
     {
         Contact ContactFromId(int id);
+
         void AddTelephoneNumber(Contact contact, User responsible, string reason, string name, string number);
+        void AddEmailAddress(Contact contact, User responsible, string reason, string name, string value);
+        void AddRelationship(Contact first, Contact second, User responsible, string reason, string description);
+
         bool RemoveTelephoneNumberByName(Contact contact, User responsible, string reason, string name);
-        void AddEmailAddress(Contact contact, User myUser, string reason, string name, string value);
-        bool RemoveEmailAddressByName(Contact contact, User myUser, string reason, string name);
+        bool RemoveEmailAddressByName(Contact contact, User responsible, string reason, string name);
+        bool RemoveRelationshipById(Contact contact, User responsible, string reason, int id);
+
         void LogAction(Contact affected, User responsible, ActionAgainstContactInfo.Type type, string reason, string additionalInfo = null);
         void MakeAnonymous(Contact contact);
     }
@@ -149,6 +154,62 @@ namespace FarmMaster.Services
                 this._context.Remove(relationship);
             
             this._context.SaveChanges();
+        }
+
+        public void AddRelationship(Contact first, Contact second, User responsible, string reason, string description)
+        {
+            var relation = new MapContactRelationship
+            {
+                ContactOne = first,
+                ContactTwo = second,
+                Description = description
+            };
+
+            this._context.Add(relation);
+            this._context.SaveChanges();
+
+            this.LogAction(
+                first, 
+                responsible, 
+                ActionAgainstContactInfo.Type.Add_Relation, 
+                reason,
+                $"{description}: {second.ShortName}"
+            );
+
+            this.LogAction(
+                second, 
+                responsible, 
+                ActionAgainstContactInfo.Type.Add_Relation, 
+                reason,
+                $"{description}: {first.ShortName}"
+            );
+        }
+
+        public bool RemoveRelationshipById(Contact contact, User responsible, string reason, int id)
+        {
+            var relation = contact.GetRelationships(this._context).FirstOrDefault(r => r.MapContactRelationshipId == id);
+            if(relation == null)
+                return false;
+
+            this.LogAction(
+                relation.ContactOne,
+                responsible,
+                ActionAgainstContactInfo.Type.Delete_Relation,
+                reason,
+                $"{relation.Description}: {relation.ContactTwo.ShortName}"
+            );
+
+            this.LogAction(
+                relation.ContactTwo,
+                responsible,
+                ActionAgainstContactInfo.Type.Delete_Relation,
+                reason,
+                $"{relation.Description}: {relation.ContactOne.ShortName}"
+            );
+
+            this._context.Remove(relation);
+            this._context.SaveChanges();
+            return true;
         }
     }
 }

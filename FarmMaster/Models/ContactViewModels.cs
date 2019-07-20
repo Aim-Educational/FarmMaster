@@ -64,6 +64,21 @@ namespace FarmMaster.Models
         public string Reason { get; set; }
     }
 
+    public class ContactAjaxAddRelationship : AjaxModel
+    {
+        [Required]
+        public int Id { get; set; }
+
+        [Required(ErrorMessage = "A description of the relationship is required.")]
+        public string Name { get; set; }
+
+        [Required(ErrorMessage = "A contact to make a relationship with is required.")]
+        public string Value { get; set; }
+
+        [Required(ErrorMessage = "You must give a reason for adding this relationship.")]
+        public string Reason { get; set; }
+    }
+
     public class ContactAjaxRemoveByName : AjaxModel
     {
         [Required]

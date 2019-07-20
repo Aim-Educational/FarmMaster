@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using Microsoft.EntityFrameworkCore;
 
 namespace Business.Model
 {
@@ -40,6 +41,8 @@ namespace Business.Model
         public IQueryable<MapContactRelationship> GetRelationships(FarmMasterContext context)
         {
             return context.MapContactRelationships
+                          .Include(r => r.ContactOne)
+                          .Include(r => r.ContactTwo)
                           .Where(m => m.ContactOneId == this.ContactId || m.ContactTwoId == this.ContactId);
         }
 

@@ -33,10 +33,10 @@
                     @foreach (var nameValue in Model.NameValues)
                     {
                         <tr>
-                            <td>@nameValue.Key</td>
+                            <td>@nameValue.Name</td>
                             <td>@nameValue.Value</td>
                             <td class="collapsing">
-                                <a class="ui red inverted button" onclick="@onClickRemove(nameValue.Key)">
+                                <a class="ui red inverted button" onclick="@onClickRemove(nameValue.AjaxName?.ToString() ?? nameValue.Name)">
                                     Remove
                                 </a>
                             </td>

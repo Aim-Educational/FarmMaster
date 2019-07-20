@@ -17,10 +17,12 @@ namespace Business.Model
             // ADD
             Add_PhoneNumber,
             Add_EmailAddress,
+            Add_Relation,
 
             // DELETE
             Delete_PhoneNumber,
             Delete_EmailAddress,
+            Delete_Relation,
 
             // EDIT
             Edit_ContactInfo_General

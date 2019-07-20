@@ -20,14 +20,21 @@ namespace FarmMaster.Models
         public Dictionary<string, string> SelectValues { get; set; }
     }
 
+    public class ComponentTableNameValue
+    {
+        public string Name;
+        public string Value;
+        public object AjaxName; // The 'Name' sent to the Ajax callback. Only used if not null.
+    }
+
     public class ComponentTableViewModel
     {
-        public string                       Name        { get; set; }
-        public string                       Header      { get; set; }
-        public Dictionary<string, string>   NameValues  { get; set; }
-        public ComponentTableInputBase      Input       { get; set; }
-        public string                       AjaxAdd     { get; set; }
-        public string                       AjaxRemove  { get; set; }
-        public int?                         DataId      { get; set; }
+        public string                               Name        { get; set; }
+        public string                               Header      { get; set; }
+        public IEnumerable<ComponentTableNameValue> NameValues  { get; set; }
+        public ComponentTableInputBase              Input       { get; set; }
+        public string                               AjaxAdd     { get; set; }
+        public string                               AjaxRemove  { get; set; }
+        public int?                                 DataId      { get; set; }
     }
 }

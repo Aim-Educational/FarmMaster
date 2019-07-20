@@ -58,7 +58,11 @@
     {
         Header = "Phone Numbers",
         Name = "Phone",
-        NameValues = Model.Contact.PhoneNumbers.ToDictionary(p => p.Name, p => p.Number),
+        NameValues = Model.Contact.PhoneNumbers.Select(p => new ComponentTableNameValue
+        {
+            Name = p.Name,
+            Value = p.Number
+        }),
         Input = new ComponentTableTextNameTextValueInput(),
         AjaxAdd = "/Contact/AjaxAddPhoneNumber",
         AjaxRemove = "/Contact/AjaxRemovePhoneNumberByName",
@@ -71,7 +75,11 @@
     {
         Header = "Email Addresses",
         Name = "Email",
-        NameValues = Model.Contact.EmailAddresses.ToDictionary(a => a.Name, a => a.Address),
+        NameValues = Model.Contact.EmailAddresses.Select(e => new ComponentTableNameValue
+        {
+            Name = e.Name,
+            Value =  e.Address
+        }),
         Input = new ComponentTableTextNameTextValueInput(),
         AjaxAdd = "/Contact/AjaxAddEmailAddress",
         AjaxRemove = "/Contact/AjaxRemoveEmailAddressByName",
@@ -84,13 +92,18 @@
     {
         Header = "Relationships",
         Name = "Relation",
-        NameValues = Model.Contact.GetRelationships(dbContext).ToDictionary(r => r.Description, r => r.GetContactNotMe(Model.Contact).ShortName),
+        NameValues = Model.Contact.GetRelationships(dbContext).Select(r => new ComponentTableNameValue
+        {
+            AjaxName = r.MapContactRelationshipId,
+            Name = r.Description,
+            Value = r.GetContactNotMe(Model.Contact).ShortName
+        }),
         Input = new ComponentTableTextNameSelectValueInput
         {
             SelectValues = dbContext.Contacts.Where(c => !c.IsAnonymous).ToDictionary(c => c.ShortName, c => Convert.ToString(c.ContactId))
         },
-        AjaxAdd = "/Contact/AjaxAddPhoneNumber",
-        AjaxRemove = "/Contact/AjaxRemovePhoneNumberByName",
+        AjaxAdd = "/Contact/AjaxAddRelation",
+        AjaxRemove = "/Contact/AjaxRemoveRelationById",
         DataId = Model.Contact.ContactId
     }
 }' />

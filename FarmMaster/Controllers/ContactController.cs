@@ -234,12 +234,48 @@ namespace FarmMaster.Controllers
                 var contact = this._context.Contacts.Include(c => c.EmailAddresses).First(c => c.ContactId == model.Id);
                 if (contact == null)
                     throw new Exception($"The contact with id #{model.Id} does not exist.");
-                if(contact.EmailAddresses.Count() == 1)
+                if (contact.EmailAddresses.Count() == 1)
                     throw new Exception($"Contacts must have at least one email address. You cannot delete the last one.");
 
                 var couldDelete = this._contacts.RemoveEmailAddressByName(contact, myUser, model.Reason, model.Name);
                 if (!couldDelete)
                     throw new Exception($"No email address called '{model.Name}' was found.");
+            });
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public IActionResult AjaxAddRelation([FromBody] ContactAjaxAddRelationship model)
+        {
+            return this.DoAjaxWithMessageResponse(model, this._users, this._roles, new[] { EnumRolePermissionNames.EDIT_CONTACTS },
+            (myUser) =>
+            {
+                var contactOne = this._contacts.ContactFromId(model.Id);
+                if (contactOne == null)
+                    throw new Exception($"The contact with id #{model.Id} does not exist.");
+
+                var contactTwo = this._contacts.ContactFromId(Convert.ToInt32(model.Value));
+                if (contactTwo == null)
+                    throw new Exception($"The contact with id #{model.Value} does not exist.");
+
+                this._contacts.AddRelationship(contactOne, contactTwo, myUser, model.Reason, model.Name);
+            });
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public IActionResult AjaxRemoveRelationById([FromBody] ContactAjaxRemoveByName model)
+        {
+            return this.DoAjaxWithMessageResponse(model, this._users, this._roles, new[] { EnumRolePermissionNames.EDIT_CONTACTS },
+            (myUser) =>
+            {
+                var contact = this._context.Contacts.Include(c => c.EmailAddresses).First(c => c.ContactId == model.Id);
+                if (contact == null)
+                    throw new Exception($"The contact with id #{model.Id} does not exist.");
+
+                var couldDelete = this._contacts.RemoveRelationshipById(contact, myUser, model.Reason, Convert.ToInt32(model.Name));
+                if (!couldDelete)
+                    throw new Exception($"No relationship with id #{model.Name} was found.");
             });
         }
         #endregion
