@@ -68,12 +68,8 @@
     <tbody>
         @foreach(var contact in Model.Contacts)
         {
-            var name = (contact.ContactType == Business.Model.Contact.Type.Entity)
-                     ? contact.FullName
-                     : $"{contact.FirstName} {contact.LastName}"; // Don't show middle names by default, because that's probably against GDPR
-
             <tr>
-                <td>@name</td>
+                <td>@contact.ShortName</td>
                 <td>@contact.ContactType</td>
                 <td class="ui two buttons">
                     <a class="ui inverted tiny secondary left button" onclick="showEditModal(@contact.ContactId)">

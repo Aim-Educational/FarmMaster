@@ -144,6 +144,9 @@ namespace FarmMaster.Services
 
             foreach(var email in contact.EmailAddresses)
                 this._context.Remove(email);
+
+            foreach(var relationship in contact.GetRelationships(this._context).ToList()) // ToList, since it's possible removing the entries messes up the original iterator.
+                this._context.Remove(relationship);
             
             this._context.SaveChanges();
         }

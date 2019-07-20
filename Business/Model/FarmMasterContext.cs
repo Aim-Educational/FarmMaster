@@ -55,12 +55,18 @@ namespace Business.Model
             b.Entity<ActionAgainstContactInfo>()
              .Property(a => a.ActionType)
              .HasConversion<string>();
-
             b.Entity<ActionAgainstContactInfo>()
              .HasIndex(a => a.ContactAffectedId);
-
             b.Entity<ActionAgainstContactInfo>()
              .HasIndex(a => a.HasContactBeenInformed);
+
+            b.Entity<MapContactRelationship>()
+             .HasIndex(m => m.ContactOneId);
+            b.Entity<MapContactRelationship>()
+             .HasIndex(m => m.ContactTwoId);
+            b.Entity<MapContactRelationship>()
+             .HasIndex(nameof(MapContactRelationship.ContactOneId), nameof(MapContactRelationship.ContactTwoId))
+             .IsUnique();
 
             this.SeedRolePermissions(b);
         }
@@ -75,6 +81,7 @@ namespace Business.Model
         public DbSet<UserPrivacy>               UserPrivacy                 { get; set; }
         public DbSet<Email>                     Emails                      { get; set; }
         public DbSet<ActionAgainstContactInfo>  ActionsAgainstContactInfo   { get; set; }
+        public DbSet<MapContactRelationship>    MapContactRelationships        { get; set; }
         #endregion
 
         #region Data seeding

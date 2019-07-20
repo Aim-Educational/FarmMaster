@@ -1,0 +1,144 @@
+﻿@model ComponentTableViewModel
+
+@{
+    var idSegmentTable = $"segment{Model.Name}Table";
+    var idErrorTable   = $"error{Model.Name}Table";
+    var idSegmentInput = $"segment{Model.Name}Input";
+    var idTxtName      = $"txt{Model.Name}Name";
+    var idTxtValue     = $"txt{Model.Name}Value";
+    var idError        = $"error{Model.Name}";
+    var funcOnAdd      = $"on{Model.Name}Add";
+    var funcOnRemove   = $"on{Model.Name}Remove";
+    var onClickAdd     = $"{funcOnAdd}()";
+
+    Func<string, string> onClickRemove  = (string key) => $"{funcOnRemove}('{key}')";
+}
+
+<section class="ui form">
+    <section class="field">
+        <h4 class="ui top attached header">
+            @Model.Header
+        </h4>
+
+        <section id="@idSegmentTable" class="ui attached segment">
+            <table class="ui striped celled table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Value</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var nameValue in Model.NameValues)
+                    {
+                        <tr>
+                            <td>@nameValue.Key</td>
+                            <td>@nameValue.Value</td>
+                            <td class="collapsing">
+                                <a class="ui red inverted button" onclick="@onClickRemove(nameValue.Key)">
+                                    Remove
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div id="@idErrorTable" class="ui error message"></div>
+        </section>
+
+        <section id="@idSegmentInput" class="ui bottom attached segment">
+            <section class="three inline fields">
+                @*Create the Name field.*@
+                @if(Model.Input is ComponentTableTextNameTextValueInput
+                 || Model.Input is ComponentTableTextNameSelectValueInput)
+                {
+                    <div class="field">
+                        <label>Name:</label>
+                        <input id="@idTxtName" type="text" />
+                    </div>
+                }
+                else
+                {
+                    throw new Exception($"Unhandled type for name field: {Model.Input.GetType().Name}");
+                }
+
+                @*Create the value field.*@
+                @if(Model.Input is ComponentTableTextNameTextValueInput)
+                {
+                    <div class="field">
+                        <label>Value:</label>
+                        <input id="@idTxtValue" type="text" />
+                    </div>
+                }
+                else if(Model.Input is ComponentTableTextNameSelectValueInput)
+                {
+                    <div class="field">
+                        <div class="ui fluid search selection dropdown @Model.Name.ToLower()">
+                            <input id="@idTxtValue" type="hidden" />
+                            <i class="dropdown icon"></i>
+                            <div class="default text">Value</div>
+                            <div class="menu">
+                                @foreach (var value in (Model.Input as ComponentTableTextNameSelectValueInput).SelectValues)
+                                {
+                                    <div class="item" data-value="@value.Value">@value.Key</div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <script>
+                        $(function () {
+                            $("div.dropdown.@Model.Name.ToLower()").dropdown()
+                        });
+                    </script>
+                }
+                else
+                {
+                    throw new Exception($"Unhandled type for value field: {Model.Input.GetType().Name}");
+                }
+
+                <div class="compact field">
+                    <button class="ui primary fluid button" type="button" onclick="@onClickAdd">
+                        Add
+                    </button>
+                </div>
+            </section>
+            <div id="@idError" class="ui error message"></div>
+        </section>
+    </section>
+</section>
+
+<script>
+    function @funcOnAdd () {
+        ComponentModal.showContactActionReasonModal(function (reason)
+        {
+            let name = document.getElementById("@idTxtName").value;
+
+            ComponentTable.onAddAjax(
+                document.getElementById("@idTxtName"),
+                document.getElementById("@idTxtValue"),
+                document.getElementById("@idError"),
+                document.getElementById("@idSegmentTable"),
+                document.getElementById("@idSegmentInput"),
+                '@Model.AjaxAdd',
+                reason,
+                @Model.DataId,
+                () => @funcOnRemove (name)
+            );
+        });
+    }
+
+    function @funcOnRemove (name) {
+        ComponentModal.showContactActionReasonModal(function (reason)
+        {
+            ComponentTable.onDeleteAjax(
+                document.getElementById("@idErrorTable"),
+                document.getElementById("@idSegmentTable"),
+                '@Model.AjaxRemove',
+                reason,
+                name,
+                @Model.DataId
+            );
+        });
+    }
+</script>

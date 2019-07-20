@@ -35,7 +35,7 @@ namespace FarmMaster.Models
     public class ContactAjaxAddPhoneNumber : AjaxModel
     {
         [Required]
-        public int ContactId { get; set; }
+        public int Id { get; set; }
 
         [Required(ErrorMessage = "A name is required.")]
         public string Name { get; set; }
@@ -51,7 +51,7 @@ namespace FarmMaster.Models
     public class ContactAjaxAddEmailAddress : AjaxModel
     {
         [Required]
-        public int ContactId { get; set; }
+        public int Id { get; set; }
 
         [Required(ErrorMessage = "A name is required.")]
         public string Name { get; set; }
@@ -67,7 +67,7 @@ namespace FarmMaster.Models
     public class ContactAjaxRemoveByName : AjaxModel
     {
         [Required]
-        public int ContactId { get; set; }
+        public int Id { get; set; }
 
         [Required]
         public string Name { get; set; }

@@ -36,6 +36,13 @@ namespace Business.Model
         public IEnumerable<Telephone> PhoneNumbers { get; set; }
         public IEnumerable<Email> EmailAddresses{ get; set; }
 
+        // Relationships have two references to Contact, and I don't trust/know how to make EF handle this properly on its own.
+        public IQueryable<MapContactRelationship> GetRelationships(FarmMasterContext context)
+        {
+            return context.MapContactRelationships
+                          .Where(m => m.ContactOneId == this.ContactId || m.ContactTwoId == this.ContactId);
+        }
+
         // Not too useful for entities.
         [NotMapped]
         public string FirstName => this.FullName.Split(' ').First();
@@ -43,5 +50,10 @@ namespace Business.Model
         // Not too useful for entities.
         [NotMapped]
         public string LastName => this.FullName.Split(' ').Last();
+
+        [NotMapped]
+        public string ShortName => (this.LastName.Trim().Count() == 0)
+                                   ? this.FirstName
+                                   : $"{this.FirstName} {this.LastName}";
     }
 }

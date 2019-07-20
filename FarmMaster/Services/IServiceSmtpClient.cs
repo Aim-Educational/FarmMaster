@@ -136,6 +136,9 @@ namespace FarmMaster.Services
 
         public async Task SendToAsync(IEnumerable<string> emails, MailMessage message)
         {
+            if(emails.Count() == 0)
+                return;
+
             foreach (var email in emails)
                 this.SetToAndFrom(email, ref message);
 

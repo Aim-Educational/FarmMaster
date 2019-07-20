@@ -2,41 +2,13 @@
 @using Business.Model
 @{
     ViewData["Title"] = "Edit - Contact";
+
+    var dbContext = Context.RequestServices.GetRequiredService<FarmMasterContext>();
 }
 
 <h1>Edit</h1>
 
-<section class="ui modal">
-    <section class="content">
-        <section class="ui visible warning message">
-            <p class="ui header">Your action will be logged!</p>
-            <p>
-                Performing any action on the information of a contact will be logged, and at some point
-                today it will be emailed to all emails assigned to this contact!
-            </p>
-            <p>
-                This is to prevent data mis-use, catch errors, and comply with being fully transparent about how
-                a contact's data is handled. (Helpful for GDPR)
-            </p>
-            <p>
-                Please provide a reason in the below text box for the action you're performing.
-            </p>
-        </section>
-
-        <h4>Reason</h4>
-        <div class="ui fluid input">
-            <input id="txtReason" placeholder="Reason for action" />
-        </div>
-    </section>
-    <section class="actions">
-        <div class="ui black deny button">
-            Cancel
-        </div>
-        <div class="ui positive button">
-            Continue
-        </div>
-    </section>
-</section>
+<partial name="_ComponentModalContactActionReason" />
 
 @if (Model.Contact.ContactType == Business.Model.Contact.Type.Individual)
 {
@@ -81,259 +53,44 @@
     </section>
 </form>
 
-<section class="ui form">
-    <!--ui form is just for the styling stuff-->
-    <section class="field">
-        <h4 class="ui top attached header">
-            Phone Numbers
-        </h4>
+<partial name="_ComponentTable" model='@{
+    new ComponentTableViewModel
+    {
+        Header = "Phone Numbers",
+        Name = "Phone",
+        NameValues = Model.Contact.PhoneNumbers.ToDictionary(p => p.Name, p => p.Number),
+        Input = new ComponentTableTextNameTextValueInput(),
+        AjaxAdd = "/Contact/AjaxAddPhoneNumber",
+        AjaxRemove = "/Contact/AjaxRemovePhoneNumberByName",
+        DataId = Model.Contact.ContactId
+    }
+}' />
 
-        <section id="segmentPhoneTable" class="ui attached segment">
-            <table class="ui striped celled table">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Number</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var number in Model.Contact.PhoneNumbers ?? new Telephone[]{ })
-                    {
-                        <tr>
-                            <td>@number.Name</td>
-                            <td>@number.Number</td>
-                            <td class="collapsing">
-                                <a class="ui red inverted button" onclick="showReasonModel(() => deletePhoneByName('@number.Name'))">
-                                    Remove
-                                </a>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-            <div id="errorPhoneTable" class="ui error message"></div>
-        </section>
+<partial name="_ComponentTable" model='@{
+    new ComponentTableViewModel
+    {
+        Header = "Email Addresses",
+        Name = "Email",
+        NameValues = Model.Contact.EmailAddresses.ToDictionary(a => a.Name, a => a.Address),
+        Input = new ComponentTableTextNameTextValueInput(),
+        AjaxAdd = "/Contact/AjaxAddEmailAddress",
+        AjaxRemove = "/Contact/AjaxRemoveEmailAddressByName",
+        DataId = Model.Contact.ContactId
+    }
+}' />
 
-        <section id="segmentPhoneInput" class="ui bottom attached segment">
-            <section class="three inline fields">
-                <div class="field">
-                    <label>Name:</label>
-                    <input id="txtPhoneName" type="text" />
-                </div>
-                <div class="field">
-                    <label>Number:</label>
-                    <input id="txtPhoneNumber" type="text" />
-                </div>
-                <div class="field">
-                    <button class="ui primary fluid button" type="button" onclick="showReasonModel(addPhoneNumber)">
-                        Add Phone Number
-                    </button>
-                </div>
-            </section>
-            <div id="errorPhone" class="ui error message"></div>
-        </section>
-    </section>
-</section>
-
-<section class="ui form">
-    <section class="field">
-        <h4 class="ui top attached header">
-            Email Addresses
-        </h4>
-
-        <section id="segmentEmailTable" class="ui attached segment">
-            <table class="ui striped celled table">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Address</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var email in Model.Contact.EmailAddresses)
-                    {
-                        <tr>
-                            <td>@email.Name</td>
-                            <td>@email.Address</td>
-                            <td class="collapsing">
-                                <a class="ui red inverted button" onclick="showReasonModel(() => deleteEmailByName('@email.Name'))">
-                                    Remove
-                                </a>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-            <div id="errorEmailTable" class="ui error message"></div>
-        </section>
-
-        <section id="segmentEmailInput" class="ui bottom attached segment">
-            <section class="three inline fields">
-                <div class="field">
-                    <label>Name:</label>
-                    <input id="txtEmailName" type="text" />
-                </div>
-                <div class="field">
-                    <label>Address:</label>
-                    <input id="txtEmailAddress" type="text" />
-                </div>
-                <div class="field">
-                    <button class="ui primary fluid button" type="button" onclick="showReasonModel(addEmailAddress)">
-                        Add Email Address
-                    </button>
-                </div>
-            </section>
-            <div id="errorEmail" class="ui error message"></div>
-        </section>
-    </section>
-</section>
-
-@section Scripts {
-    <script>
-        function showReasonModel(callback) {
-            $(".ui.modal")
-                .modal({
-                    onApprove: function () {
-                        $(".ui.modal").modal("hide");
-                        callback();
-                    }
-                })
-                .modal('show');
-        }
-
-        function deleteGeneric(name, errorBoxId, tableSegId, ajaxUrl) {
-            // Data
-            let reason = document.getElementById("txtReason").value;
-
-            // Elements
-            let errorBox = document.getElementById(errorBoxId);
-            let tableSeg = document.getElementById(tableSegId);
-
-            errorBox.classList.remove("visible");
-            tableSeg.classList.add("loading");
-
-            FarmAjax.postWithMessageResponse(
-                ajaxUrl,
-                {
-                    ContactId: @Model.Contact.ContactId,
-                    Name: name,
-                    Reason: reason
-                },
-                response =>
-                {
-                    tableSeg.classList.remove("loading");
-
-                    if (response.messageType !== FarmAjaxMessageType.None)
-                        response.populateMessageBox(errorBox);
-                    else {
-                        // Find the row with the name, and delete it.
-                        tableSeg
-                            .querySelectorAll("tbody tr")
-                            .forEach((row) => {
-                                for (let td of row.querySelectorAll("td")) {
-                                    if (td.innerText === name) {
-                                        tableSeg.querySelector("tbody").removeChild(row);
-                                        return;
-                                    }
-                                }
-                            });
-                    }
-                }
-            );
-        }
-
-        function addNameValueGeneric(txtNameId, txtValueId, errorBoxId, tableSegId, inputSegId, ajaxUrl, deleteFunc) {
-            // Data
-            let reason = document.getElementById("txtReason").value;
-            let name = document.getElementById(txtNameId).value;
-            let value = document.getElementById(txtValueId).value;
-
-            // Elements
-            let errorBox = document.getElementById(errorBoxId);
-            let tableSeg = document.getElementById(tableSegId);
-            let inputSeg = document.getElementById(inputSegId);
-
-            errorBox.classList.remove("visible");
-            tableSeg.classList.add("loading");
-            inputSeg.classList.add("loading");
-
-            FarmAjax.postWithMessageResponse(
-                ajaxUrl,
-                {
-                    Name: name,
-                    Value: value,
-                    Reason: reason,
-                    ContactId: @Model.Contact.ContactId
-                },
-                response => {
-                    tableSeg.classList.remove("loading");
-                    inputSeg.classList.remove("loading");
-
-                    if (response.messageType !== FarmAjaxMessageType.None)
-                        response.populateMessageBox(errorBox);
-                    else {
-                        // Create table row
-                        let tr = document.createElement("tr");
-
-                        let td = document.createElement("td");
-                        td.innerText = name;
-                        tr.appendChild(td);
-
-                        td = document.createElement("td");
-                        td.innerText = value;
-                        tr.appendChild(td);
-
-                        td = document.createElement("td");
-                        let a = document.createElement("a");
-                        a.classList.add("ui", "red", "inverted", "button");
-                        a.innerText = "Remove";
-                        a.onclick = () => showReasonModel(() => deleteFunc(name));
-                        td.appendChild(a);
-                        tr.appendChild(td);
-
-                        // Clear inputs
-                        inputSeg
-                            .querySelectorAll("input")
-                            .forEach(i => i.value = "");
-
-                        tableSeg.querySelector("table").tBodies.item(0).appendChild(tr);
-                    }
-                }
-            );
-        }
-
-        function deletePhoneByName(name) {
-            deleteGeneric(name, "errorPhoneTable", "segmentPhoneTable", "/Contact/AjaxRemovePhoneNumberByName");
-        }
-
-        function deleteEmailByName(name) {
-            deleteGeneric(name, "errorEmailTable", "segmentEmailTable", "/Contact/AjaxRemoveEmailAddressByName");
-        }
-
-        function addPhoneNumber() {
-            addNameValueGeneric(
-                "txtPhoneName",
-                "txtPhoneNumber",
-                "errorPhone",
-                "segmentPhoneTable",
-                "segmentPhoneInput",
-                "/Contact/AjaxAddPhoneNumber",
-                deletePhoneByName
-            );
-        }
-
-        function addEmailAddress() {
-            addNameValueGeneric(
-                "txtEmailName",
-                "txtEmailAddress",
-                "errorEmail",
-                "segmentEmailTable",
-                "segmentEmailInput",
-                "/Contact/AjaxAddEmailAddress",
-                deleteEmailByName
-            );
-        }
-    </script>
-}
+<partial name="_ComponentTable" model='@{
+    new ComponentTableViewModel
+    {
+        Header = "Relationships",
+        Name = "Relation",
+        NameValues = Model.Contact.GetRelationships(dbContext).ToDictionary(r => r.Description, r => r.GetContactNotMe(Model.Contact).ShortName),
+        Input = new ComponentTableTextNameSelectValueInput
+        {
+            SelectValues = dbContext.Contacts.Where(c => !c.IsAnonymous).ToDictionary(c => c.ShortName, c => Convert.ToString(c.ContactId))
+        },
+        AjaxAdd = "/Contact/AjaxAddPhoneNumber",
+        AjaxRemove = "/Contact/AjaxRemovePhoneNumberByName",
+        DataId = Model.Contact.ContactId
+    }
+}' />
