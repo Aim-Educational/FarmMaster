@@ -1,0 +1,44 @@
+﻿@model HoldingIndexViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<partial name="_ViewModelWithMessagePartial" model="@Model" />
+
+<table class="ui celled table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Number</th>
+            <th>GridRef</th>
+            <th>Owner</th>
+            <th>Address</th>
+            <th>Postcode</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var holding in Model.Holdings)
+        {
+            <tr>
+                <td>@holding.Name</td>
+                <td>@holding.HoldingNumber</td>
+                <td>@holding.GridReference</td>
+                <td>@holding.OwnerContact.ShortName</td> <!--If this is null then .Include wasn't used-->
+                <td>@holding.Address</td>
+                <td>@holding.Postcode</td>
+                <td class="ui two buttons">
+                    <a class="ui inverted tiny secondary left button">
+                        Edit
+                    </a>
+                    <div class="or divide hide mobile"></div>
+                    <a class="ui inverted tiny secondary right button">
+                        Delete
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

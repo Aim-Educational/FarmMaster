@@ -72,10 +72,11 @@ namespace FarmMaster
                 o.SessionTokenLifespan = TimeSpan.FromHours(5);
             });
 
-            // User manager
+            // Data managers
             services.AddScoped<IServiceUserManager, ServiceUserManager>();
             services.AddScoped<IServiceContactData, ServiceContactData>();
             services.AddScoped<IServiceRoleManager, ServiceRoleManager>();
+            services.AddScoped<IServiceHoldingData, ServiceHoldingData>();
 
             // Background services
             services.AddHostedService<FarmBackgroundServiceHost<BackgroundServiceUserActionEmailer>>();
