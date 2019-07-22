@@ -50,52 +50,24 @@
         <section id="@idSegmentInput" class="ui bottom attached segment">
             <section class="three inline fields">
                 @*Create the Name field.*@
-                @if(Model.Input is ComponentTableTextNameTextValueInput
-                 || Model.Input is ComponentTableTextNameSelectValueInput)
-                {
-                    <div class="field">
-                        <label>Name:</label>
-                        <input id="@idTxtName" type="text" />
-                    </div>
-                }
-                else
-                {
-                    throw new Exception($"Unhandled type for name field: {Model.Input.GetType().Name}");
-                }
+                <partial name="_ComponentTable_InputPartial" model="@{
+                    new ComponentTableInputPartialViewModel
+                    {
+                        IdInput = idTxtName,
+                        Input = Model.NameInput,
+                        InputHeader = "Name"
+                    }
+                }" />
 
                 @*Create the value field.*@
-                @if(Model.Input is ComponentTableTextNameTextValueInput)
-                {
-                    <div class="field">
-                        <label>Value:</label>
-                        <input id="@idTxtValue" type="text" />
-                    </div>
-                }
-                else if(Model.Input is ComponentTableTextNameSelectValueInput)
-                {
-                    <div class="field">
-                        <div class="ui fluid search selection dropdown @Model.Name.ToLower()">
-                            <input id="@idTxtValue" type="hidden" />
-                            <i class="dropdown icon"></i>
-                            <div class="default text">Value</div>
-                            <div class="menu">
-                                @foreach (var value in (Model.Input as ComponentTableTextNameSelectValueInput).SelectValues)
-                                {
-                                    <div class="item" data-value="@value.Value">@value.Key</div>
-                                }
-                            </div>
-                        </div>
-                    </div>
-                    <script>
-                        $(function () {
-                            $("div.dropdown.@Model.Name.ToLower()").dropdown()
-                        });
-                    </script>
-                }
-                else
-                {
-                    throw new Exception($"Unhandled type for value field: {Model.Input.GetType().Name}");
-                }
+                <partial name="_ComponentTable_InputPartial" model="@{
+                    new ComponentTableInputPartialViewModel
+                    {
+                        IdInput = idTxtValue,
+                        Input = Model.ValueInput,
+                        InputHeader = "Value"
+                    }
+                }" />
 
                 <div class="compact field">
                     <button class="ui primary fluid button" type="button" onclick="@onClickAdd">

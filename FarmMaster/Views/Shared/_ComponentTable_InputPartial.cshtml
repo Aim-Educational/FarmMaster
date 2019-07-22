@@ -1,0 +1,34 @@
+﻿@model ComponentTableInputPartialViewModel
+
+@if (Model.Input is ComponentTableTextInput)
+{
+    <div class="field">
+        <label>@Model.InputHeader:</label>
+        <input id="@Model.IdInput" type="text" />
+    </div>
+}
+else if (Model.Input is ComponentTableSelectInput)
+{
+    <div class="field">
+        <div class="ui fluid search selection dropdown @Model.IdInput.ToLower()">
+            <input id="@Model.IdInput" type="hidden" />
+            <i class="dropdown icon"></i>
+            <div class="default text">@Model.InputHeader</div>
+            <div class="menu">
+                @foreach (var value in (Model.Input as ComponentTableSelectInput).SelectValues)
+                {
+                    <div class="item" data-value="@value.Value">@value.Key</div>
+                }
+            </div>
+        </div>
+    </div>
+    <script>
+        $(function () {
+            $("div.dropdown.@Model.IdInput.ToLower()").dropdown()
+        });
+    </script>
+}
+else
+{
+    throw new Exception($"Unhandled type for value field: {Model.Input.GetType().Name}");
+}

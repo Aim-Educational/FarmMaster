@@ -63,7 +63,8 @@
             Name = p.Name,
             Value = p.Number
         }),
-        Input = new ComponentTableTextNameTextValueInput(),
+        NameInput = new ComponentTableTextInput(),
+        ValueInput = new ComponentTableTextInput(),
         AjaxAdd = "/Contact/AjaxAddPhoneNumber",
         AjaxRemove = "/Contact/AjaxRemovePhoneNumberByName",
         DataId = Model.Contact.ContactId
@@ -80,7 +81,8 @@
             Name = e.Name,
             Value =  e.Address
         }),
-        Input = new ComponentTableTextNameTextValueInput(),
+        NameInput = new ComponentTableTextInput(),
+        ValueInput = new ComponentTableTextInput(),
         AjaxAdd = "/Contact/AjaxAddEmailAddress",
         AjaxRemove = "/Contact/AjaxRemoveEmailAddressByName",
         DataId = Model.Contact.ContactId
@@ -98,7 +100,8 @@
             Name = r.Description,
             Value = r.GetContactNotMe(Model.Contact).ShortName
         }),
-        Input = new ComponentTableTextNameSelectValueInput
+        NameInput = new ComponentTableTextInput(),
+        ValueInput = new ComponentTableSelectInput
         {
             SelectValues = dbContext.Contacts.Where(c => !c.IsAnonymous).ToDictionary(c => c.ShortName, c => Convert.ToString(c.ContactId))
         },
