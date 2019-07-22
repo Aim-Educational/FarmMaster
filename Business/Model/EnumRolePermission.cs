@@ -7,6 +7,18 @@ namespace Business.Model
 {
     public class EnumRolePermission
     {
+        public static class Names
+        {
+            public const string VIEW_CONTACTS = "view_contacts";
+            public const string EDIT_CONTACTS = "edit_contacts";
+            public const string DELETE_CONTACTS = "delete_contacts";
+            public const string VIEW_ROLES = "view_roles";
+            public const string EDIT_ROLES = "edit_roles";
+            public const string ASSIGN_ROLES = "assign_roles";
+            public const string VIEW_USERS = "view_users";
+            public const string EDIT_USERS = "edit_users";
+        }
+
         [Key]
         public int EnumRolePermissionId { get; set; }
 
@@ -20,17 +32,5 @@ namespace Business.Model
 
         [Timestamp]
         public byte[] Timestamp { get; set; }
-    }
-
-    public static class EnumRolePermissionNames
-    {
-        public const string VIEW_CONTACTS   = "view_contacts";
-        public const string EDIT_CONTACTS   = "edit_contacts";
-        public const string DELETE_CONTACTS = "delete_contacts";
-        public const string VIEW_ROLES      = "view_roles";
-        public const string EDIT_ROLES      = "edit_roles";
-        public const string ASSIGN_ROLES    = "assign_roles";
-        public const string VIEW_USERS      = "view_users";
-        public const string EDIT_USERS      = "edit_users";
     }
 }

@@ -68,20 +68,30 @@ namespace Business.Model
              .HasIndex(nameof(MapContactRelationship.ContactOneId), nameof(MapContactRelationship.ContactTwoId))
              .IsUnique();
 
+            b.Entity<MapHoldingRegistrationToHolding>()
+             .HasIndex(m => m.HoldingId);
+            b.Entity<MapHoldingRegistrationToHolding>()
+             .HasIndex(nameof(MapHoldingRegistrationToHolding.HoldingId), nameof(MapHoldingRegistrationToHolding.HoldingRegistrationId))
+             .IsUnique();
+
             this.SeedRolePermissions(b);
+            this.SeedHoldingRegistrations(b);
         }
 
-        public DbSet<User>                      Users                       { get; set; }
-        public DbSet<Contact>                   Contacts                    { get; set; }
-        public DbSet<Telephone>                 Telephones                  { get; set; }
-        public DbSet<EnumRolePermission>        EnumRolePermissions         { get; set; }
-        public DbSet<MapRolePermissionToRole>   MapRolePermissionToRoles    { get; set; }
-        public DbSet<Role>                      Roles                       { get; set; }
-        public DbSet<UserLoginInfo>             UserLoginInfo               { get; set; }
-        public DbSet<UserPrivacy>               UserPrivacy                 { get; set; }
-        public DbSet<Email>                     Emails                      { get; set; }
-        public DbSet<ActionAgainstContactInfo>  ActionsAgainstContactInfo   { get; set; }
-        public DbSet<MapContactRelationship>    MapContactRelationships        { get; set; }
+        public DbSet<User>                              Users                            { get; set; }
+        public DbSet<Contact>                           Contacts                         { get; set; }
+        public DbSet<Telephone>                         Telephones                       { get; set; }
+        public DbSet<EnumRolePermission>                EnumRolePermissions              { get; set; }
+        public DbSet<MapRolePermissionToRole>           MapRolePermissionToRoles         { get; set; }
+        public DbSet<Role>                              Roles                            { get; set; }
+        public DbSet<UserLoginInfo>                     UserLoginInfo                    { get; set; }
+        public DbSet<UserPrivacy>                       UserPrivacy                      { get; set; }
+        public DbSet<Email>                             Emails                           { get; set; }
+        public DbSet<ActionAgainstContactInfo>          ActionsAgainstContactInfo        { get; set; }
+        public DbSet<MapContactRelationship>            MapContactRelationships          { get; set; }
+        public DbSet<EnumHoldingRegistration>           EnumHoldingRegistrations         { get; set; }
+        public DbSet<Holding>                           Holdings                         { get; set; }
+        public DbSet<MapHoldingRegistrationToHolding>   MapHoldingRegistrationToHoldings { get; set; }
         #endregion
 
         #region Data seeding
@@ -89,14 +99,26 @@ namespace Business.Model
         {
             b.Entity<EnumRolePermission>()
              .HasData(
-                new EnumRolePermission { EnumRolePermissionId = 1, InternalName = EnumRolePermissionNames.EDIT_CONTACTS, Description = "Edit Contacts" },
-                new EnumRolePermission { EnumRolePermissionId = 2, InternalName = EnumRolePermissionNames.VIEW_CONTACTS, Description = "View Contacts" },
-                new EnumRolePermission { EnumRolePermissionId = 3, InternalName = EnumRolePermissionNames.EDIT_ROLES, Description = "Edit Roles" },
-                new EnumRolePermission { EnumRolePermissionId = 4, InternalName = EnumRolePermissionNames.VIEW_ROLES, Description = "View Roles" },
-                new EnumRolePermission { EnumRolePermissionId = 5, InternalName = EnumRolePermissionNames.EDIT_USERS, Description = "Edit Users" },
-                new EnumRolePermission { EnumRolePermissionId = 6, InternalName = EnumRolePermissionNames.VIEW_USERS, Description = "View Users" },
-                new EnumRolePermission { EnumRolePermissionId = 7, InternalName = EnumRolePermissionNames.ASSIGN_ROLES, Description = "Assign Roles" },
-                new EnumRolePermission { EnumRolePermissionId = 8, InternalName = EnumRolePermissionNames.DELETE_CONTACTS, Description = "Delete Contacts" }
+                new EnumRolePermission { EnumRolePermissionId = 1, InternalName = EnumRolePermission.Names.EDIT_CONTACTS, Description = "Edit Contacts" },
+                new EnumRolePermission { EnumRolePermissionId = 2, InternalName = EnumRolePermission.Names.VIEW_CONTACTS, Description = "View Contacts" },
+                new EnumRolePermission { EnumRolePermissionId = 3, InternalName = EnumRolePermission.Names.EDIT_ROLES, Description = "Edit Roles" },
+                new EnumRolePermission { EnumRolePermissionId = 4, InternalName = EnumRolePermission.Names.VIEW_ROLES, Description = "View Roles" },
+                new EnumRolePermission { EnumRolePermissionId = 5, InternalName = EnumRolePermission.Names.EDIT_USERS, Description = "Edit Users" },
+                new EnumRolePermission { EnumRolePermissionId = 6, InternalName = EnumRolePermission.Names.VIEW_USERS, Description = "View Users" },
+                new EnumRolePermission { EnumRolePermissionId = 7, InternalName = EnumRolePermission.Names.ASSIGN_ROLES, Description = "Assign Roles" },
+                new EnumRolePermission { EnumRolePermissionId = 8, InternalName = EnumRolePermission.Names.DELETE_CONTACTS, Description = "Delete Contacts" }
+            );
+        }
+
+        private void SeedHoldingRegistrations(ModelBuilder b)
+        {
+            b.Entity<EnumHoldingRegistration>()
+             .HasData(
+                new EnumHoldingRegistration { EnumHoldingRegistrationId = 1, InternalName = EnumHoldingRegistration.Names.COW, Description = "Cows" },
+                new EnumHoldingRegistration { EnumHoldingRegistrationId = 2, InternalName = EnumHoldingRegistration.Names.FISH, Description = "Fish" },
+                new EnumHoldingRegistration { EnumHoldingRegistrationId = 3, InternalName = EnumHoldingRegistration.Names.PIG, Description = "Pigs" },
+                new EnumHoldingRegistration { EnumHoldingRegistrationId = 4, InternalName = EnumHoldingRegistration.Names.POULTRY, Description = "Poultry" },
+                new EnumHoldingRegistration { EnumHoldingRegistrationId = 5, InternalName = EnumHoldingRegistration.Names.SHEEP_AND_GOAT, Description = "Sheeps and Goats" }
             );
         }
         #endregion

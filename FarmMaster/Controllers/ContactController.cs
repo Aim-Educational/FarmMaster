@@ -14,7 +14,7 @@ using Microsoft.Extensions.Options;
 
 namespace FarmMaster.Controllers
 {
-    [FarmAuthorise(PermsOR: new[]{ EnumRolePermissionNames.VIEW_CONTACTS })]
+    [FarmAuthorise(PermsOR: new[]{ EnumRolePermission.Names.VIEW_CONTACTS })]
     public class ContactController : Controller
     {
         readonly FarmMasterContext _context;
@@ -55,7 +55,7 @@ namespace FarmMaster.Controllers
             return View();
         }
 
-        [FarmAuthorise(PermsAND: new[] { EnumRolePermissionNames.DELETE_CONTACTS })]
+        [FarmAuthorise(PermsAND: new[] { EnumRolePermission.Names.DELETE_CONTACTS })]
         public IActionResult Delete(int id)
         {
             var contactDb = this._contacts.ContactFromId(id);
@@ -79,7 +79,7 @@ namespace FarmMaster.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        [FarmAuthorise(PermsAND: new[]{ EnumRolePermissionNames.EDIT_CONTACTS })]
+        [FarmAuthorise(PermsAND: new[]{ EnumRolePermission.Names.EDIT_CONTACTS })]
         public IActionResult Edit(int id, [FromQuery] string reason)
         {
             var contactDb = this._contacts.ContactFromId(id);
@@ -112,7 +112,7 @@ namespace FarmMaster.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [FarmAuthorise(PermsAND: new[] { EnumRolePermissionNames.EDIT_CONTACTS })]
+        [FarmAuthorise(PermsAND: new[] { EnumRolePermission.Names.EDIT_CONTACTS })]
         public IActionResult Create(ContactCreateViewModel model)
         {
             if(!ModelState.IsValid)
@@ -142,7 +142,7 @@ namespace FarmMaster.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [FarmAuthorise(PermsAND: new[]{ EnumRolePermissionNames.EDIT_CONTACTS })]
+        [FarmAuthorise(PermsAND: new[]{ EnumRolePermission.Names.EDIT_CONTACTS })]
         public IActionResult Edit(ContactEditViewModel model)
         {
             if(!ModelState.IsValid)
@@ -171,7 +171,7 @@ namespace FarmMaster.Controllers
         [AllowAnonymous]
         public IActionResult AjaxAddPhoneNumber([FromBody] ContactAjaxAddPhoneNumber model)
         {
-            return this.DoAjaxWithMessageResponse(model, this._users, this._roles, new[] { EnumRolePermissionNames.EDIT_CONTACTS },
+            return this.DoAjaxWithMessageResponse(model, this._users, this._roles, new[] { EnumRolePermission.Names.EDIT_CONTACTS },
             (myUser) =>
             {
                 var contact = this._context.Contacts.Include(c => c.PhoneNumbers).First(c => c.ContactId == model.Id);
@@ -191,7 +191,7 @@ namespace FarmMaster.Controllers
         [AllowAnonymous]
         public IActionResult AjaxRemovePhoneNumberByName([FromBody] ContactAjaxRemoveByName model)
         {
-            return this.DoAjaxWithMessageResponse(model, this._users, this._roles, new[] { EnumRolePermissionNames.EDIT_CONTACTS },
+            return this.DoAjaxWithMessageResponse(model, this._users, this._roles, new[] { EnumRolePermission.Names.EDIT_CONTACTS },
             (myUser) =>
             {
                 var contact = this._context.Contacts.Include(c => c.PhoneNumbers).First(c => c.ContactId == model.Id);
@@ -208,7 +208,7 @@ namespace FarmMaster.Controllers
         [AllowAnonymous]
         public IActionResult AjaxAddEmailAddress([FromBody] ContactAjaxAddEmailAddress model)
         {
-            return this.DoAjaxWithMessageResponse(model, this._users, this._roles, new[] { EnumRolePermissionNames.EDIT_CONTACTS },
+            return this.DoAjaxWithMessageResponse(model, this._users, this._roles, new[] { EnumRolePermission.Names.EDIT_CONTACTS },
             (myUser) =>
             {
                 var contact = this._context.Contacts.Include(c => c.EmailAddresses).First(c => c.ContactId == model.Id);
@@ -228,7 +228,7 @@ namespace FarmMaster.Controllers
         [AllowAnonymous]
         public IActionResult AjaxRemoveEmailAddressByName([FromBody] ContactAjaxRemoveByName model)
         {
-            return this.DoAjaxWithMessageResponse(model, this._users, this._roles, new[] { EnumRolePermissionNames.EDIT_CONTACTS },
+            return this.DoAjaxWithMessageResponse(model, this._users, this._roles, new[] { EnumRolePermission.Names.EDIT_CONTACTS },
             (myUser) =>
             {
                 var contact = this._context.Contacts.Include(c => c.EmailAddresses).First(c => c.ContactId == model.Id);
@@ -247,7 +247,7 @@ namespace FarmMaster.Controllers
         [AllowAnonymous]
         public IActionResult AjaxAddRelation([FromBody] ContactAjaxAddRelationship model)
         {
-            return this.DoAjaxWithMessageResponse(model, this._users, this._roles, new[] { EnumRolePermissionNames.EDIT_CONTACTS },
+            return this.DoAjaxWithMessageResponse(model, this._users, this._roles, new[] { EnumRolePermission.Names.EDIT_CONTACTS },
             (myUser) =>
             {
                 var contactOne = this._contacts.ContactFromId(model.Id);
@@ -266,7 +266,7 @@ namespace FarmMaster.Controllers
         [AllowAnonymous]
         public IActionResult AjaxRemoveRelationById([FromBody] ContactAjaxRemoveByName model)
         {
-            return this.DoAjaxWithMessageResponse(model, this._users, this._roles, new[] { EnumRolePermissionNames.EDIT_CONTACTS },
+            return this.DoAjaxWithMessageResponse(model, this._users, this._roles, new[] { EnumRolePermission.Names.EDIT_CONTACTS },
             (myUser) =>
             {
                 var contact = this._context.Contacts.Include(c => c.EmailAddresses).First(c => c.ContactId == model.Id);
