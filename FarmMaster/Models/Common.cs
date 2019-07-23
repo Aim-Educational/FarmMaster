@@ -71,15 +71,29 @@ namespace FarmMaster.Models
             );
         }
     }
-    
-    public class EmptyViewModelWithMessage : ViewModelWithMessage
-    {
 
-    }
+    public class EmptyViewModelWithMessage : ViewModelWithMessage { }
 
-    public abstract class AjaxModel
+    public class AjaxModel
     {
         [Required]
         public string SessionToken { get; set; }
+    }
+
+    public class AjaxModelWithMessage : AjaxModel
+    {
+        [Required]
+        public EmptyViewModelWithMessage Message { get; set; }
+
+        public AjaxModelWithMessage()
+        {
+            this.Message = new EmptyViewModelWithMessage();
+        }
+    }
+
+    public class AjaxModelWithValueAndMessage<T> : AjaxModelWithMessage
+    where T : class
+    {
+        public T Value { get; set; }
     }
 }

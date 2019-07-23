@@ -65,30 +65,69 @@ class FarmAjaxMessageResponse {
     }
 }
 
+class FarmAjaxMessageAndValueResponse<T> {
+    public message: FarmAjaxMessageResponse;
+    public value: T | null;
+
+    constructor(message: FarmAjaxMessageResponse, value: T | null) {
+        this.message = message;
+        this.value = value;
+    }
+}
+
 class FarmAjax {
     static postWithMessageResponse(url: string, data: any, onDone: (response: FarmAjaxMessageResponse) => void) {
+        FarmAjax
+            .doAjax(url, data)
+            .done(function (response: FarmAjaxMessageResponse) {
+                onDone(new FarmAjaxMessageResponse(
+                    response.messageType,
+                    response.message,
+                    response.messageFormat
+                ));
+            })
+            .fail((error) => onDone(new FarmAjaxMessageResponse(
+                FarmAjaxMessageType.Error, 
+                JSON.stringify(error),
+                FarmAjaxMessageFormat.UnorderedList
+            )));
+    }
+
+    static postWithMessageAndValueResponse<T>(url: string, data: any, onDone: (response: FarmAjaxMessageAndValueResponse<T>) => void) {
+        FarmAjax
+            .doAjax(url, data)
+            .done(function (response: FarmAjaxMessageAndValueResponse<T>) {
+                let message = new FarmAjaxMessageResponse(
+                    response.message.messageType,
+                    response.message.message,
+                    response.message.messageFormat
+                );
+                onDone(new FarmAjaxMessageAndValueResponse(message, response.value));
+            })
+            .fail((error) => {
+                let message = new FarmAjaxMessageResponse(
+                    FarmAjaxMessageType.Error,
+                    JSON.stringify(error),
+                    FarmAjaxMessageFormat.UnorderedList
+                );
+                onDone(new FarmAjaxMessageAndValueResponse(message, null));
+            });
+    }
+
+    private static doAjax(url: string, data: any): JQuery.jqXHR {
+        if (data === null)
+            data = {};
+
         if (data.SessionToken !== undefined)
             throw "Please don't define your own 'SessionToken' field, FarmAjax will handle that for you.";
 
         data.SessionToken = Cookies.get("FarmMasterAuth");
-        $.ajax({
+        return $.ajax({
             type: "POST",
             url: url,
             contentType: "application/json",
             dataType: "json",
             data: JSON.stringify(data)
-        })
-        .done(function (response: FarmAjaxMessageResponse) {
-            onDone(new FarmAjaxMessageResponse(
-                response.messageType,
-                response.message,
-                response.messageFormat
-            ));
-        })
-        .fail((error) => onDone(new FarmAjaxMessageResponse(
-            FarmAjaxMessageType.Error, 
-            JSON.stringify(error),
-            FarmAjaxMessageFormat.UnorderedList
-        )));
+        });
     }
 }

@@ -10,4 +10,12 @@ namespace FarmMaster.Models
     {
         public IEnumerable<Holding> Holdings;
     }
+
+    public class HoldingCreateEditViewModel : ViewModelWithMessage
+    {
+        public bool IsCreate { get; set; } // Only the view cares about this.
+        public Holding Holding { get; set; }
+        public IDictionary<string, EnumHoldingRegistration> SelectedRegistrations { get; set; }
+        public IEnumerable<EnumHoldingRegistration> AllRegistrations { get; set; }
+    }
 }

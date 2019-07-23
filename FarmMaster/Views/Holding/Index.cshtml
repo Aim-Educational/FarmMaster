@@ -1,11 +1,15 @@
 ﻿@model HoldingIndexViewModel
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Index - Holdings";
 }
 
 <h1>Index</h1>
 
 <partial name="_ViewModelWithMessagePartial" model="@Model" />
+
+<a class="ui primary button" asp-action="Create">
+    Create New Holding
+</a>
 
 <table class="ui celled table">
     <thead>

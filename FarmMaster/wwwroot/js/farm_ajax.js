@@ -51,24 +51,49 @@ var FarmAjaxMessageResponse = (function () {
     };
     return FarmAjaxMessageResponse;
 }());
+var FarmAjaxMessageAndValueResponse = (function () {
+    function FarmAjaxMessageAndValueResponse(message, value) {
+        this.message = message;
+        this.value = value;
+    }
+    return FarmAjaxMessageAndValueResponse;
+}());
 var FarmAjax = (function () {
     function FarmAjax() {
     }
     FarmAjax.postWithMessageResponse = function (url, data, onDone) {
+        FarmAjax
+            .doAjax(url, data)
+            .done(function (response) {
+            onDone(new FarmAjaxMessageResponse(response.messageType, response.message, response.messageFormat));
+        })
+            .fail(function (error) { return onDone(new FarmAjaxMessageResponse(FarmAjaxMessageType.Error, JSON.stringify(error), FarmAjaxMessageFormat.UnorderedList)); });
+    };
+    FarmAjax.postWithMessageAndValueResponse = function (url, data, onDone) {
+        FarmAjax
+            .doAjax(url, data)
+            .done(function (response) {
+            var message = new FarmAjaxMessageResponse(response.message.messageType, response.message.message, response.message.messageFormat);
+            onDone(new FarmAjaxMessageAndValueResponse(message, response.value));
+        })
+            .fail(function (error) {
+            var message = new FarmAjaxMessageResponse(FarmAjaxMessageType.Error, JSON.stringify(error), FarmAjaxMessageFormat.UnorderedList);
+            onDone(new FarmAjaxMessageAndValueResponse(message, null));
+        });
+    };
+    FarmAjax.doAjax = function (url, data) {
+        if (data === null)
+            data = {};
         if (data.SessionToken !== undefined)
             throw "Please don't define your own 'SessionToken' field, FarmAjax will handle that for you.";
         data.SessionToken = Cookies.get("FarmMasterAuth");
-        $.ajax({
+        return $.ajax({
             type: "POST",
             url: url,
             contentType: "application/json",
             dataType: "json",
             data: JSON.stringify(data)
-        })
-            .done(function (response) {
-            onDone(new FarmAjaxMessageResponse(response.messageType, response.message, response.messageFormat));
-        })
-            .fail(function (error) { return onDone(new FarmAjaxMessageResponse(FarmAjaxMessageType.Error, JSON.stringify(error), FarmAjaxMessageFormat.UnorderedList)); });
+        });
     };
     return FarmAjax;
 }());

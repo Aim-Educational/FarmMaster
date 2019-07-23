@@ -278,6 +278,22 @@ namespace FarmMaster.Controllers
                     throw new Exception($"No relationship with id #{model.Name} was found.");
             });
         }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public IActionResult AjaxGetNameAndValueAll([FromBody] AjaxModel model)
+        {
+            return this.DoAjaxWithValueAndMessageResponse(
+                model, this._users, this._roles, new string[]{ },
+                (myUser) =>
+                {
+                    return this._context.Contacts
+                                        .Where(c => !c.IsAnonymous)
+                                        .Select(c => new ComponentSelectOption{ Description = c.ShortName, Value = Convert.ToString(c.ContactId) })
+                                        .ToList();
+                }
+            );
+        }
         #endregion
     }
 }
