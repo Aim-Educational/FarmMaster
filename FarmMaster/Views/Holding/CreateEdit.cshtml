@@ -47,7 +47,7 @@
             <label>Owner</label>
 
             <div class="ui search selection dropdown">
-                <input id="selectOwner" type="hidden" asp-for="Holding.OwnerContactId" />
+                <input id="selectOwner" type="hidden" asp-for="Holding.OwnerContactId" data-default-value="@Model.Holding.OwnerContactId" />
                 <i class="dropdown icon"></i>
                 <div class="text"></div>
                 <div class="menu">
@@ -85,7 +85,7 @@
         }
     </section>
     <section class="ui bottom attached segment">
-        <button type="submit" class="ui primary button">
+        <button type="submit" class="ui fluid primary button">
             @(Model.IsCreate ? "Create Holding" : "Edit Holding")
         </button>
         <br />

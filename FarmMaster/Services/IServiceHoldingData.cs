@@ -10,7 +10,8 @@ namespace FarmMaster.Services
     public interface IServiceHoldingData : IServiceEntityData<Holding>
     {
         Holding Create(string name, string holdingNumber, string gridReference, string address, string postCode, Contact owner);
-        void AddRegistrationByName(Holding holding, string regInternalName);
+        bool AddRegistrationByName(Holding holding, string regInternalName);
+        bool RemoveRegistrationByName(Holding holding, string regInternalName);
     }
 
     public class ServiceHoldingData : IServiceHoldingData
@@ -62,17 +63,14 @@ namespace FarmMaster.Services
             return holding;
         }
 
-        public void AddRegistrationByName(Holding holding, string regInternalName)
+        public bool AddRegistrationByName(Holding holding, string regInternalName)
         {
             if(holding == null)
                 throw new ArgumentNullException("holding");
 
-            var reg = this._context.EnumHoldingRegistrations.FirstOrDefault(r => r.InternalName == regInternalName);
-            if(reg == null)
-                throw new ArgumentOutOfRangeException($"There is no registration with the internal name of '{regInternalName}'");
-
+            var reg = this.GetRegistrationByName(regInternalName);
             if(holding.Registrations.Any(r => r.HoldingRegistrationId == reg.EnumHoldingRegistrationId))
-                return;
+                return false;
 
             var map = new MapHoldingRegistrationToHolding
             {
@@ -82,6 +80,33 @@ namespace FarmMaster.Services
 
             this._context.Add(map);
             this._context.SaveChanges();
+
+            return true;
+        }
+
+        public bool RemoveRegistrationByName(Holding holding, string regInternalName)
+        {
+            if (holding == null)
+                throw new ArgumentNullException("holding");
+
+            var reg = this.GetRegistrationByName(regInternalName);
+            var map = holding.Registrations.FirstOrDefault(m => m.HoldingRegistrationId == reg.EnumHoldingRegistrationId);
+            if(map == null)
+                return false;
+
+            this._context.Remove(map);
+            this._context.SaveChanges();
+
+            return true;
+        }
+
+        private EnumHoldingRegistration GetRegistrationByName(string regInternalName)
+        {
+            var reg = this._context.EnumHoldingRegistrations.FirstOrDefault(r => r.InternalName == regInternalName);
+            if (reg == null)
+                throw new ArgumentOutOfRangeException($"There is no registration with the internal name of '{regInternalName}'");
+
+            return reg;
         }
     }
 }

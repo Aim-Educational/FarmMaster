@@ -34,7 +34,7 @@
                 <td>@holding.Address</td>
                 <td>@holding.Postcode</td>
                 <td class="ui two buttons">
-                    <a class="ui inverted tiny secondary left button">
+                    <a class="ui inverted tiny secondary left button" asp-action="Edit" asp-route-id="@holding.HoldingId">
                         Edit
                     </a>
                     <div class="or divide hide mobile"></div>

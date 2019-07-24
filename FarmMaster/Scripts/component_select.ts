@@ -42,12 +42,7 @@ class ComponentSelect {
                 let menu = inputSelect.querySelector("div.menu");
                 menu.querySelectorAll("div.item").forEach(e => menu.removeChild(e));
 
-                let text = inputSelect.querySelector("div.text");
-                text.innerHTML = "";
-
-                let input = inputSelect.querySelector("input");
-                input.value = "";
-
+                // Add all the items.
                 for (let value of response.value) {
                     let div = document.createElement("div");
                     div.classList.add("item");
@@ -55,6 +50,18 @@ class ComponentSelect {
                     div.innerText = value.description;
                     menu.appendChild(div);
                 }
+
+                // If there's a default value, set all the appropriate things, otherwise just clear the value.
+                let input = inputSelect.querySelector("input");
+                input.value = (input.dataset.defaultValue) ? input.dataset.defaultValue : "";
+                
+                let text = inputSelect.querySelector("div.text");
+                text.innerHTML = "";
+
+                menu.querySelectorAll("div.item").forEach((item: HTMLDivElement) => {
+                    if (item.dataset.value == input.value)
+                        text.innerHTML = item.innerHTML;
+                });
             }
             else
                 throw typeof inputSelect;

@@ -33,10 +33,6 @@ var ComponentSelect = (function () {
             else if (inputSelect instanceof HTMLDivElement) {
                 var menu_1 = inputSelect.querySelector("div.menu");
                 menu_1.querySelectorAll("div.item").forEach(function (e) { return menu_1.removeChild(e); });
-                var text = inputSelect.querySelector("div.text");
-                text.innerHTML = "";
-                var input = inputSelect.querySelector("input");
-                input.value = "";
                 for (var _b = 0, _c = response.value; _b < _c.length; _b++) {
                     var value = _c[_b];
                     var div = document.createElement("div");
@@ -45,6 +41,14 @@ var ComponentSelect = (function () {
                     div.innerText = value.description;
                     menu_1.appendChild(div);
                 }
+                var input_1 = inputSelect.querySelector("input");
+                input_1.value = (input_1.dataset.defaultValue) ? input_1.dataset.defaultValue : "";
+                var text_1 = inputSelect.querySelector("div.text");
+                text_1.innerHTML = "";
+                menu_1.querySelectorAll("div.item").forEach(function (item) {
+                    if (item.dataset.value == input_1.value)
+                        text_1.innerHTML = item.innerHTML;
+                });
             }
             else
                 throw typeof inputSelect;
