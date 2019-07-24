@@ -34,7 +34,7 @@
             <span class="@GlobalConstants.FormErrorClasses" asp-validation-for="Holding.GridReference"></span>
         </section>
         <section class="field">
-            <label>Name</label>
+            <label>Address</label>
             <input asp-for="Holding.Address" />
             <span class="@GlobalConstants.FormErrorClasses" asp-validation-for="Holding.Address"></span>
         </section>
@@ -45,7 +45,15 @@
         </section>
         <section class="field">
             <label>Owner</label>
-            <select id="selectOwner" class="ui search selection dropdown" asp-for="Holding.OwnerContactId"></select>
+
+            <div class="ui search selection dropdown">
+                <input id="selectOwner" type="hidden" asp-for="Holding.OwnerContactId" />
+                <i class="dropdown icon"></i>
+                <div class="text"></div>
+                <div class="menu">
+
+                </div>
+            </div>
 
             <a class="ui primary button" asp-action="Index" asp-controller="Contact" target="_blank">
                 GOTO
@@ -57,10 +65,29 @@
             <span id="errorOwner" class="@GlobalConstants.FormErrorClasses" asp-validation-for="Holding.OwnerContactId"></span>
         </section>
     </section>
+    <section class="ui attached segment">
+        <h3 class="ui dividing header">Registered for</h3>
+        @{int toSkip = 0;}
+        @while (toSkip < Model.AllRegistrations.Count())
+        {
+            <section class="six inline fields">
+                @foreach (var reg in Model.AllRegistrations.Skip(toSkip).Take(6))
+                {
+                    <section class="field">
+                        <div class="ui checkbox">
+                            <input type="checkbox" asp-for="SelectedRegistrations[reg.InternalName]" />
+                            <label>@reg.Description</label>
+                        </div>
+                    </section>
+                    toSkip++;
+                }
+            </section>
+        }
+    </section>
     <section class="ui bottom attached segment">
-        <a class="ui primary button">
+        <button type="submit" class="ui primary button">
             @(Model.IsCreate ? "Create Holding" : "Edit Holding")
-        </a>
+        </button>
         <br />
         <div id="divAllErrors" class="ui error message"></div>
     </section>

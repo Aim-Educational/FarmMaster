@@ -9,7 +9,8 @@ namespace FarmMaster.Services
 {
     public interface IServiceHoldingData : IServiceEntityData<Holding>
     {
-        
+        Holding Create(string name, string holdingNumber, string gridReference, string address, string postCode, Contact owner);
+        void AddRegistrationByName(Holding holding, string regInternalName);
     }
 
     public class ServiceHoldingData : IServiceHoldingData
@@ -37,6 +38,50 @@ namespace FarmMaster.Services
                                 .Include(h => h.OwnerContact)
                                 .Include(h => h.Registrations)
                                  .ThenInclude(m => m.HoldingRegistration);
+        }
+
+        public Holding Create(string name, string holdingNumber, string gridReference, string address, string postCode, Contact owner)
+        {
+            if(owner == null)
+                throw new ArgumentNullException("owner");
+
+            var holding = new Holding
+            {
+                Name = name,
+                HoldingNumber = holdingNumber,
+                GridReference = gridReference,
+                Address = address,
+                Postcode = postCode,
+                OwnerContact = owner
+            };
+
+            this._context.Add(holding);
+            this._context.SaveChanges();
+
+            this._context.Entry(holding).Collection(h => h.Registrations).Load();
+            return holding;
+        }
+
+        public void AddRegistrationByName(Holding holding, string regInternalName)
+        {
+            if(holding == null)
+                throw new ArgumentNullException("holding");
+
+            var reg = this._context.EnumHoldingRegistrations.FirstOrDefault(r => r.InternalName == regInternalName);
+            if(reg == null)
+                throw new ArgumentOutOfRangeException($"There is no registration with the internal name of '{regInternalName}'");
+
+            if(holding.Registrations.Any(r => r.HoldingRegistrationId == reg.EnumHoldingRegistrationId))
+                return;
+
+            var map = new MapHoldingRegistrationToHolding
+            {
+                Holding = holding,
+                HoldingRegistration = reg                
+            };
+
+            this._context.Add(map);
+            this._context.SaveChanges();
         }
     }
 }

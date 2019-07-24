@@ -15,7 +15,7 @@ namespace FarmMaster.Models
     {
         public bool IsCreate { get; set; } // Only the view cares about this.
         public Holding Holding { get; set; }
-        public IDictionary<string, EnumHoldingRegistration> SelectedRegistrations { get; set; }
+        public IDictionary<string, bool> SelectedRegistrations { get; set; }
         public IEnumerable<EnumHoldingRegistration> AllRegistrations { get; set; }
     }
 }

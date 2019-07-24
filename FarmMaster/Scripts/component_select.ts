@@ -42,6 +42,12 @@ class ComponentSelect {
                 let menu = inputSelect.querySelector("div.menu");
                 menu.querySelectorAll("div.item").forEach(e => menu.removeChild(e));
 
+                let text = inputSelect.querySelector("div.text");
+                text.innerHTML = "";
+
+                let input = inputSelect.querySelector("input");
+                input.value = "";
+
                 for (let value of response.value) {
                     let div = document.createElement("div");
                     div.classList.add("item");

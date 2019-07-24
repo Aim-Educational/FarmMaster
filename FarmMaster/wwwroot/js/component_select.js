@@ -33,6 +33,10 @@ var ComponentSelect = (function () {
             else if (inputSelect instanceof HTMLDivElement) {
                 var menu_1 = inputSelect.querySelector("div.menu");
                 menu_1.querySelectorAll("div.item").forEach(function (e) { return menu_1.removeChild(e); });
+                var text = inputSelect.querySelector("div.text");
+                text.innerHTML = "";
+                var input = inputSelect.querySelector("input");
+                input.value = "";
                 for (var _b = 0, _c = response.value; _b < _c.length; _b++) {
                     var value = _c[_b];
                     var div = document.createElement("div");
