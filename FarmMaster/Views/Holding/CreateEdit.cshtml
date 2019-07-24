@@ -46,6 +46,14 @@
         <section class="field">
             <label>Owner</label>
             <select id="selectOwner" class="ui search selection dropdown" asp-for="Holding.OwnerContactId"></select>
+
+            <a class="ui primary button" asp-action="Index" asp-controller="Contact" target="_blank">
+                GOTO
+            </a>
+            <button class="ui primary button" type="button" onclick="refreshOwner()">
+                REFRESH
+            </button>
+            
             <span id="errorOwner" class="@GlobalConstants.FormErrorClasses" asp-validation-for="Holding.OwnerContactId"></span>
         </section>
     </section>
@@ -64,11 +72,15 @@
         $(".ui.dropdown").dropdown();
 
         Validation.hookupForm(document.querySelector(".ui.form"));
-        ComponentSelect.populateFromAjaxWithMessageResponse(
-            document.getElementById("selectOwner"),
-            document.getElementById("errorOwner"),
-            "/Contact/AjaxGetNameAndValueAll",
-            null
-        );
+
+        function refreshOwner() {
+            ComponentSelect.populateFromAjaxWithMessageResponse(
+                document.getElementById("selectOwner"),
+                document.getElementById("errorOwner"),
+                "/Contact/AjaxGetNameAndValueAll",
+                null
+            );
+        }
+        refreshOwner();
     </script>
 }

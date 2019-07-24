@@ -8,7 +8,7 @@ var ComponentSelect = (function () {
     }
     ComponentSelect.populateFromAjaxWithMessageResponse = function (inputSelect, boxError, ajaxUrl, data) {
         if ((inputSelect instanceof HTMLInputElement && inputSelect.type == "hidden")
-            || (inputSelect instanceof HTMLSelectElement && inputSelect.classList.contains("noselection")))
+            || (inputSelect instanceof HTMLSelectElement && inputSelect.parentElement.classList.contains("dropdown")))
             inputSelect = inputSelect.parentElement;
         if (!inputSelect.classList.contains("ui") && !inputSelect.classList.contains("dropdown"))
             throw "When using Fomantic UI style dropdowns, the 'ui dropdown' classes must be used.";
@@ -32,7 +32,7 @@ var ComponentSelect = (function () {
             }
             else if (inputSelect instanceof HTMLDivElement) {
                 var menu_1 = inputSelect.querySelector("div.menu");
-                menu_1.querySelectorAll("div.item").forEach(function (e) { return menu_1.removeChild(menu_1); });
+                menu_1.querySelectorAll("div.item").forEach(function (e) { return menu_1.removeChild(e); });
                 for (var _b = 0, _c = response.value; _b < _c.length; _b++) {
                     var value = _c[_b];
                     var div = document.createElement("div");

@@ -11,7 +11,7 @@ class ComponentSelect {
         data:        any
     ): void {
         if ((inputSelect instanceof HTMLInputElement && inputSelect.type == "hidden")
-            || (inputSelect instanceof HTMLSelectElement && inputSelect.classList.contains("noselection")))
+            || (inputSelect instanceof HTMLSelectElement && inputSelect.parentElement.classList.contains("dropdown")))
             inputSelect = <HTMLDivElement>inputSelect.parentElement;
 
         if (!inputSelect.classList.contains("ui") && !inputSelect.classList.contains("dropdown"))
@@ -40,7 +40,7 @@ class ComponentSelect {
             }
             else if (inputSelect instanceof HTMLDivElement) {
                 let menu = inputSelect.querySelector("div.menu");
-                menu.querySelectorAll("div.item").forEach(e => menu.removeChild(menu));
+                menu.querySelectorAll("div.item").forEach(e => menu.removeChild(e));
 
                 for (let value of response.value) {
                     let div = document.createElement("div");
