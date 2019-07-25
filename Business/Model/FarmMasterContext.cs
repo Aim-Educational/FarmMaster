@@ -106,7 +106,9 @@ namespace Business.Model
                 new EnumRolePermission { EnumRolePermissionId = 5, InternalName = EnumRolePermission.Names.EDIT_USERS, Description = "Edit Users" },
                 new EnumRolePermission { EnumRolePermissionId = 6, InternalName = EnumRolePermission.Names.VIEW_USERS, Description = "View Users" },
                 new EnumRolePermission { EnumRolePermissionId = 7, InternalName = EnumRolePermission.Names.ASSIGN_ROLES, Description = "Assign Roles" },
-                new EnumRolePermission { EnumRolePermissionId = 8, InternalName = EnumRolePermission.Names.DELETE_CONTACTS, Description = "Delete Contacts" }
+                new EnumRolePermission { EnumRolePermissionId = 8, InternalName = EnumRolePermission.Names.DELETE_CONTACTS, Description = "Delete Contacts" },
+                new EnumRolePermission { EnumRolePermissionId = 9, InternalName = EnumRolePermission.Names.VIEW_HOLDINGS, Description = "Delete Contacts" },
+                new EnumRolePermission { EnumRolePermissionId = 19, InternalName = EnumRolePermission.Names.EDIT_HOLDINGS, Description = "Edit Holdings" }
             );
         }
 

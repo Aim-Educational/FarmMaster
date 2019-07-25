@@ -9,14 +9,16 @@ namespace Business.Model
     {
         public static class Names
         {
-            public const string VIEW_CONTACTS = "view_contacts";
-            public const string EDIT_CONTACTS = "edit_contacts";
+            public const string VIEW_CONTACTS   = "view_contacts";
+            public const string EDIT_CONTACTS   = "edit_contacts";
             public const string DELETE_CONTACTS = "delete_contacts";
-            public const string VIEW_ROLES = "view_roles";
-            public const string EDIT_ROLES = "edit_roles";
-            public const string ASSIGN_ROLES = "assign_roles";
-            public const string VIEW_USERS = "view_users";
-            public const string EDIT_USERS = "edit_users";
+            public const string VIEW_ROLES      = "view_roles";
+            public const string EDIT_ROLES      = "edit_roles";
+            public const string ASSIGN_ROLES    = "assign_roles";
+            public const string VIEW_USERS      = "view_users";
+            public const string EDIT_USERS      = "edit_users";
+            public const string VIEW_HOLDINGS   = "view_holdings";
+            public const string EDIT_HOLDINGS   = "edit_holdings";
         }
 
         [Key]

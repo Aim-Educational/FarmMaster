@@ -10,6 +10,7 @@ namespace FarmMaster.Services
     public interface IServiceHoldingData : IServiceEntityData<Holding>
     {
         Holding Create(string name, string holdingNumber, string gridReference, string address, string postCode, Contact owner);
+        void RemoveByReference(Holding holding);
         bool AddRegistrationByName(Holding holding, string regInternalName, string herdNumber);
         bool RemoveRegistrationByName(Holding holding, string regInternalName);
     }
@@ -108,6 +109,22 @@ namespace FarmMaster.Services
                 throw new ArgumentOutOfRangeException($"There is no registration with the internal name of '{regInternalName}'");
 
             return reg;
+        }
+
+        public void RemoveByReference(Holding holding)
+        {
+            if(holding == null)
+                throw new ArgumentNullException("holding");
+
+            var holdingDb = this.FromIdAllIncluded(holding.HoldingId); // Ensure we have all data loaded.
+            if(holdingDb == null)
+                return; // Assume it was already deleted.
+
+            // TODO: Once critters can reference a holding, check to make sure the holding isn't being referenced
+            //       Before deleting it.
+            
+            this._context.Remove(holdingDb);
+            this._context.SaveChanges();
         }
     }
 }

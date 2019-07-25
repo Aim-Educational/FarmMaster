@@ -5,6 +5,7 @@
 
 <h1>Index</h1>
 
+<partial name="_ComponentModalAreYouSure" />
 <partial name="_ViewModelWithMessagePartial" model="@Model" />
 
 <a class="ui primary button" asp-action="Create">
@@ -38,11 +39,19 @@
                         Edit
                     </a>
                     <div class="or divide hide mobile"></div>
-                    <a class="ui inverted tiny secondary right button">
+                    <button class="ui inverted tiny secondary right button" onclick="showDeleteModal(@holding.HoldingId)">
                         Delete
-                    </a>
+                    </button>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+@section Scripts {
+    <script>
+        function showDeleteModal(id) {
+            ComponentModal.showAreYouSureModal(() => document.location = "/Holding/Delete/" + id);
+        }
+    </script>
+}

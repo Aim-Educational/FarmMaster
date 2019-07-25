@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Business.Model;
+using FarmMaster.Filters;
 using FarmMaster.Models;
 using FarmMaster.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FarmMaster.Controllers
 {
+    [FarmAuthorise(PermsOR: new[] { EnumRolePermission.Names.VIEW_HOLDINGS })]
     public class HoldingController : Controller
     {
         readonly FarmMasterContext _context;
@@ -33,6 +35,7 @@ namespace FarmMaster.Controllers
             return View(model);
         }
 
+        [FarmAuthorise(PermsOR: new[] { EnumRolePermission.Names.EDIT_HOLDINGS })]
         public IActionResult Create()
         {
             return View("CreateEdit", new HoldingCreateEditViewModel
@@ -42,6 +45,7 @@ namespace FarmMaster.Controllers
             });
         }
 
+        [FarmAuthorise(PermsOR: new[] { EnumRolePermission.Names.EDIT_HOLDINGS })]
         public IActionResult Edit(int id)
         {
             var holding = this._holdings.FromIdAllIncluded(id);
@@ -77,8 +81,24 @@ namespace FarmMaster.Controllers
             });
         }
 
+        [FarmAuthorise(PermsOR: new[] { EnumRolePermission.Names.EDIT_HOLDINGS })]
+        public IActionResult Delete(int id)
+        {
+            var holding = this._holdings.FromId(id);
+            if(holding == null)
+            {
+                return RedirectToAction(nameof(Index),
+                    new{ message = ViewModelWithMessage.CreateMessageQueryString(ViewModelWithMessage.Type.Error, $"The holding with the ID #{id} was not found.") }    
+                );
+            }
+
+            this._holdings.RemoveByReference(holding);
+            return RedirectToAction(nameof(Index));
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [FarmAuthorise(PermsOR: new[] { EnumRolePermission.Names.EDIT_HOLDINGS })]
         public IActionResult Create(HoldingCreateEditViewModel model)
         {
             model.IsCreate = true;
@@ -122,6 +142,7 @@ namespace FarmMaster.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [FarmAuthorise(PermsOR: new[] { EnumRolePermission.Names.EDIT_HOLDINGS })]
         public IActionResult Edit(HoldingCreateEditViewModel model)
         {
             foreach (var kvp in model.SelectedRegistrationHerdNumbers.Where(kvp => model.SelectedRegistrations[kvp.Key]))
