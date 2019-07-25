@@ -84,7 +84,7 @@ namespace FarmMaster.Controllers
 
                 var user = this._users.CreateUser(model.LoginInfo.Username, 
                                                   model.LoginInfo.Password,
-                                                  model.NameInfo.FirstName + model.NameInfo.MiddleNames + model.NameInfo.LastName,
+                                                  model.NameInfo.FirstName + " " + model.NameInfo.MiddleNames + " " + model.NameInfo.LastName,
                                                   model.Email,
                                                   model.ConsentInfo.TermsOfServiceConsent, 
                                                   model.ConsentInfo.PrivacyPolicyConsent);

@@ -15,5 +15,7 @@ namespace FarmMaster.Misc
         public const string RegexEmail                  = @"^[\w\-\.]+\@(?:[\w\-\.]+)+\.\w+$";
         public const string RegexPhone                  = @"^\+?[0-9]*$";
         public const string IdModalContactActionReason  = "modalContactActionReason";
+        public const string IdModalAreYouSure           = "modalAreYouSure";
+        public const string IdViewModelWithMessageBox   = "boxViewModelWithMessagePartial";
     }
 }

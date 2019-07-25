@@ -7,6 +7,11 @@
         ComponentModal.showModal(elemModal, () => onAccept(inputReason.value));
     }
 
+    public static showAreYouSureModal(onAccept: () => void) {
+        let elemModal = $("#modalAreYouSure"); // GlobalConstants.IdModalAreYouSure
+        ComponentModal.showModal(elemModal, onAccept);
+    }
+
     public static showModal(elemModal: JQuery<HTMLElement>, onAccept: () => void) {
         elemModal
             .modal({

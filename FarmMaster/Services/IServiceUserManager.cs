@@ -68,7 +68,8 @@ namespace FarmMaster.Services
             
             var contact = new Contact
             {
-                FullName = fullName
+                FullName = fullName,
+                ContactType = Contact.Type.User
             };
 
             var salt = BCrypt.Net.BCrypt.GenerateSalt();

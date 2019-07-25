@@ -23,7 +23,7 @@ namespace FarmMaster.Misc
 
             if (!controller.ModelState.IsValid)
             {
-                message.Message.ParseMessageQueryString(ViewModelWithMessage.CreateMessageQueryString(controller.ModelState));
+                message.ParseMessageQueryString(ViewModelWithMessage.CreateMessageQueryString(controller.ModelState));
                 return controller.Json(message);
             }
 
@@ -34,8 +34,8 @@ namespace FarmMaster.Misc
             }
             catch (Exception ex)
             {
-                message.Message.Message = ex.Message;
-                message.Message.MessageType = ViewModelWithMessage.Type.Error;
+                message.Message = ex.Message;
+                message.MessageType = ViewModelWithMessage.Type.Error;
                 return controller.Json(message);
             }
 
@@ -55,7 +55,7 @@ namespace FarmMaster.Misc
 
             if (!controller.ModelState.IsValid)
             {
-                response.Message.ParseMessageQueryString(ViewModelWithMessage.CreateMessageQueryString(controller.ModelState));
+                response.ParseMessageQueryString(ViewModelWithMessage.CreateMessageQueryString(controller.ModelState));
                 return controller.Json(response);
             }
 
@@ -66,8 +66,8 @@ namespace FarmMaster.Misc
             }
             catch (Exception ex)
             {
-                response.Message.Message = ex.Message;
-                response.Message.MessageType = ViewModelWithMessage.Type.Error;
+                response.Message = ex.Message;
+                response.MessageType = ViewModelWithMessage.Type.Error;
                 return controller.Json(response);
             }
 

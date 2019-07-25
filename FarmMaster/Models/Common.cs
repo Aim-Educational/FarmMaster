@@ -80,15 +80,10 @@ namespace FarmMaster.Models
         public string SessionToken { get; set; }
     }
 
-    public class AjaxModelWithMessage : AjaxModel
+    public class AjaxModelWithMessage : ViewModelWithMessage
     {
         [Required]
-        public EmptyViewModelWithMessage Message { get; set; }
-
-        public AjaxModelWithMessage()
-        {
-            this.Message = new EmptyViewModelWithMessage();
-        }
+        public string SessionToken { get; set; }
     }
 
     public class AjaxModelWithValueAndMessage<T> : AjaxModelWithMessage

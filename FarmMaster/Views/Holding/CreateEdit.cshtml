@@ -47,7 +47,7 @@
             <label>Owner</label>
 
             <div class="ui search selection dropdown">
-                <input id="selectOwner" type="hidden" asp-for="Holding.OwnerContactId" data-default-value="@Model.Holding.OwnerContactId" />
+                <input id="selectOwner" type="hidden" asp-for="Holding.OwnerContactId" data-default-value="@(Model.Holding?.OwnerContactId ?? -1)" />
                 <i class="dropdown icon"></i>
                 <div class="text"></div>
                 <div class="menu">

@@ -6,6 +6,10 @@ var ComponentModal = (function () {
         var inputReason = document.getElementById("modalContactActionReason").querySelector("input");
         ComponentModal.showModal(elemModal, function () { return onAccept(inputReason.value); });
     };
+    ComponentModal.showAreYouSureModal = function (onAccept) {
+        var elemModal = $("#modalAreYouSure");
+        ComponentModal.showModal(elemModal, onAccept);
+    };
     ComponentModal.showModal = function (elemModal, onAccept) {
         elemModal
             .modal({
