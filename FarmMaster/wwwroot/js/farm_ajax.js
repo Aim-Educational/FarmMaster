@@ -1,3 +1,16 @@
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    }
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var FarmAjaxMessageType;
 (function (FarmAjaxMessageType) {
     FarmAjaxMessageType[FarmAjaxMessageType["None"] = 0] = "None";
@@ -51,13 +64,15 @@ var FarmAjaxMessageResponse = (function () {
     };
     return FarmAjaxMessageResponse;
 }());
-var FarmAjaxMessageAndValueResponse = (function () {
+var FarmAjaxMessageAndValueResponse = (function (_super) {
+    __extends(FarmAjaxMessageAndValueResponse, _super);
     function FarmAjaxMessageAndValueResponse(message, value) {
-        this.message = message;
-        this.value = value;
+        var _this = _super.call(this, message.messageType, message.message, message.messageFormat) || this;
+        _this.value = value;
+        return _this;
     }
     return FarmAjaxMessageAndValueResponse;
-}());
+}(FarmAjaxMessageResponse));
 var FarmAjax = (function () {
     function FarmAjax() {
     }
@@ -73,7 +88,7 @@ var FarmAjax = (function () {
         FarmAjax
             .doAjax(url, data)
             .done(function (response) {
-            var message = new FarmAjaxMessageResponse(response.message.messageType, response.message.message, response.message.messageFormat);
+            var message = new FarmAjaxMessageResponse(response.messageType, response.message, response.messageFormat);
             onDone(new FarmAjaxMessageAndValueResponse(message, response.value));
         })
             .fail(function (error) {

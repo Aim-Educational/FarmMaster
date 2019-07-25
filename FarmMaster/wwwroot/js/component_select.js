@@ -15,8 +15,8 @@ var ComponentSelect = (function () {
         inputSelect.classList.add("loading");
         FarmAjax.postWithMessageAndValueResponse(ajaxUrl, data, function (response) {
             inputSelect.classList.remove("loading");
-            if (response.message.messageType == FarmAjaxMessageType.Error) {
-                response.message.populateMessageBox(boxError);
+            if (response.messageType == FarmAjaxMessageType.Error) {
+                response.populateMessageBox(boxError);
                 return;
             }
             if (inputSelect instanceof HTMLSelectElement) {

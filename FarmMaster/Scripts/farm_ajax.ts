@@ -65,12 +65,11 @@ class FarmAjaxMessageResponse {
     }
 }
 
-class FarmAjaxMessageAndValueResponse<T> {
-    public message: FarmAjaxMessageResponse;
+class FarmAjaxMessageAndValueResponse<T> extends FarmAjaxMessageResponse {
     public value: T | null;
 
     constructor(message: FarmAjaxMessageResponse, value: T | null) {
-        this.message = message;
+        super(message.messageType, message.message, message.messageFormat);
         this.value = value;
     }
 }
@@ -98,9 +97,9 @@ class FarmAjax {
             .doAjax(url, data)
             .done(function (response: FarmAjaxMessageAndValueResponse<T>) {
                 let message = new FarmAjaxMessageResponse(
-                    response.message.messageType,
-                    response.message.message,
-                    response.message.messageFormat
+                    response.messageType,
+                    response.message,
+                    response.messageFormat
                 );
                 onDone(new FarmAjaxMessageAndValueResponse(message, response.value));
             })

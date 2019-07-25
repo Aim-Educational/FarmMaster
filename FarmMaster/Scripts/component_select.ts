@@ -22,8 +22,8 @@ class ComponentSelect {
         {
             inputSelect.classList.remove("loading");
 
-            if (response.message.messageType == FarmAjaxMessageType.Error) {
-                response.message.populateMessageBox(boxError);
+            if (response.messageType == FarmAjaxMessageType.Error) {
+                response.populateMessageBox(boxError);
                 return;
             }
 
