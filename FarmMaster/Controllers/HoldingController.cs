@@ -63,7 +63,9 @@ namespace FarmMaster.Controllers
                 SelectedRegistrations = this._context.EnumHoldingRegistrations
                                                      .ToDictionary(
                                                         r => r.InternalName, 
-                                                        r => holding.Registrations.Select(r2 => r2.HoldingRegistration).Any(r2 => r2.InternalName == r.InternalName)
+                                                        r => holding.Registrations
+                                                                    .Select(r2 => r2.HoldingRegistration)
+                                                                    .Any(r2 => r2.InternalName == r.InternalName)
                                                       ),
                 SelectedRegistrationHerdNumbers = this._context.EnumHoldingRegistrations
                                                                .ToDictionary(
