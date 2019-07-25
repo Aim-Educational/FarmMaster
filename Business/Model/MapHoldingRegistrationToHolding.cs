@@ -11,6 +11,7 @@ namespace Business.Model
         public int MapHoldingRegistrationToHoldingId { get; set; }
         
         [Required]
+        [StringLength(25)]
         public string HerdNumber { get; set; }
 
         [Required]
