@@ -118,7 +118,7 @@ namespace Business.Model
                 new EnumHoldingRegistration { EnumHoldingRegistrationId = 2, InternalName = EnumHoldingRegistration.Names.FISH, Description = "Fish" },
                 new EnumHoldingRegistration { EnumHoldingRegistrationId = 3, InternalName = EnumHoldingRegistration.Names.PIG, Description = "Pigs" },
                 new EnumHoldingRegistration { EnumHoldingRegistrationId = 4, InternalName = EnumHoldingRegistration.Names.POULTRY, Description = "Poultry" },
-                new EnumHoldingRegistration { EnumHoldingRegistrationId = 5, InternalName = EnumHoldingRegistration.Names.SHEEP_AND_GOAT, Description = "Sheeps and Goats" }
+                new EnumHoldingRegistration { EnumHoldingRegistrationId = 5, InternalName = EnumHoldingRegistration.Names.SHEEP_AND_GOAT, Description = "Sheep and Goats" }
             );
         }
         #endregion
