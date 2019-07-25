@@ -10,7 +10,7 @@ namespace FarmMaster.Services
     public interface IServiceHoldingData : IServiceEntityData<Holding>
     {
         Holding Create(string name, string holdingNumber, string gridReference, string address, string postCode, Contact owner);
-        bool AddRegistrationByName(Holding holding, string regInternalName);
+        bool AddRegistrationByName(Holding holding, string regInternalName, string herdNumber);
         bool RemoveRegistrationByName(Holding holding, string regInternalName);
     }
 
@@ -63,7 +63,7 @@ namespace FarmMaster.Services
             return holding;
         }
 
-        public bool AddRegistrationByName(Holding holding, string regInternalName)
+        public bool AddRegistrationByName(Holding holding, string regInternalName, string herdNumber)
         {
             if(holding == null)
                 throw new ArgumentNullException("holding");
@@ -75,7 +75,8 @@ namespace FarmMaster.Services
             var map = new MapHoldingRegistrationToHolding
             {
                 Holding = holding,
-                HoldingRegistration = reg                
+                HoldingRegistration = reg,
+                HerdNumber = herdNumber
             };
 
             this._context.Add(map);

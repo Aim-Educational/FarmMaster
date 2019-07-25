@@ -64,7 +64,14 @@ namespace FarmMaster.Controllers
                                                      .ToDictionary(
                                                         r => r.InternalName, 
                                                         r => holding.Registrations.Select(r2 => r2.HoldingRegistration).Any(r2 => r2.InternalName == r.InternalName)
-                                                      )
+                                                      ),
+                SelectedRegistrationHerdNumbers = this._context.EnumHoldingRegistrations
+                                                               .ToDictionary(
+                                                                    r => r.InternalName,
+                                                                    r => holding.Registrations
+                                                                                .FirstOrDefault(r2 => r2.HoldingRegistration.InternalName == r.InternalName)
+                                                                                ?.HerdNumber
+                                                               )
             });
         }
 
@@ -74,11 +81,17 @@ namespace FarmMaster.Controllers
         {
             model.IsCreate = true;
 
+            foreach(var kvp in model.SelectedRegistrationHerdNumbers.Where(kvp => model.SelectedRegistrations[kvp.Key]))
+            {
+                if(String.IsNullOrEmpty(kvp.Value))
+                    ModelState.AddModelError(kvp.Key, "A herd number must be specified for registered critter types.");
+            }
+
             if(!ModelState.IsValid)
             {
                 model.ParseMessageQueryString(ViewModelWithMessage.CreateMessageQueryString(ModelState));
                 model.AllRegistrations = this._context.EnumHoldingRegistrations;
-                return View(model);
+                return View("CreateEdit", model);
             }
 
             var contact = this._contacts.ContactFromId(model.Holding.OwnerContactId);
@@ -87,7 +100,7 @@ namespace FarmMaster.Controllers
                 model.MessageType = ViewModelWithMessage.Type.Error;
                 model.Message = $"No contact with ID of #{model.Holding.OwnerContactId}";
                 model.AllRegistrations = this._context.EnumHoldingRegistrations;
-                return View(model);
+                return View("CreateEdit", model);
             }
 
             var holding = this._holdings.Create(
@@ -100,7 +113,7 @@ namespace FarmMaster.Controllers
             );
 
             foreach(var reg in model.SelectedRegistrations.Where(kvp => kvp.Value).Select(kvp => kvp.Key))
-                this._holdings.AddRegistrationByName(holding, reg);
+                this._holdings.AddRegistrationByName(holding, reg, model.SelectedRegistrationHerdNumbers[reg]);
 
             return RedirectToAction(nameof(Index));
         }
@@ -109,11 +122,17 @@ namespace FarmMaster.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Edit(HoldingCreateEditViewModel model)
         {
+            foreach (var kvp in model.SelectedRegistrationHerdNumbers.Where(kvp => model.SelectedRegistrations[kvp.Key]))
+            {
+                if (String.IsNullOrEmpty(kvp.Value))
+                    ModelState.AddModelError(kvp.Key, "A herd number must be specified for registered critter types.");
+            }
+
             if (!ModelState.IsValid)
             {
                 model.ParseMessageQueryString(ViewModelWithMessage.CreateMessageQueryString(ModelState));
                 model.AllRegistrations = this._context.EnumHoldingRegistrations;
-                return View(model);
+                return View("CreateEdit", model);
             }
 
             var contact = this._contacts.ContactFromId(model.Holding.OwnerContactId);
@@ -122,7 +141,7 @@ namespace FarmMaster.Controllers
                 model.MessageType = ViewModelWithMessage.Type.Error;
                 model.Message = $"No contact with ID of #{model.Holding.OwnerContactId}";
                 model.AllRegistrations = this._context.EnumHoldingRegistrations;
-                return View(model);
+                return View("CreateEdit", model);
             }
 
             var holdingDb           = this._holdings.FromIdAllIncluded(model.Holding.HoldingId);
@@ -138,7 +157,7 @@ namespace FarmMaster.Controllers
                 if(!kvp.Value)
                     this._holdings.RemoveRegistrationByName(holdingDb, kvp.Key);
                 else
-                    this._holdings.AddRegistrationByName(holdingDb, kvp.Key);
+                    this._holdings.AddRegistrationByName(holdingDb, kvp.Key, model.SelectedRegistrationHerdNumbers[kvp.Key]);
             }
 
             return RedirectToAction(nameof(Edit), new { id = model.Holding.HoldingId });

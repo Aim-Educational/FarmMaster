@@ -9,6 +9,9 @@ namespace Business.Model
     {
         [Key]
         public int MapHoldingRegistrationToHoldingId { get; set; }
+        
+        [Required]
+        public string HerdNumber { get; set; }
 
         [Required]
         public int HoldingId { get; set; }
