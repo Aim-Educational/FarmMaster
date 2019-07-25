@@ -74,6 +74,14 @@ namespace Business.Model
              .HasIndex(nameof(MapHoldingRegistrationToHolding.HoldingId), nameof(MapHoldingRegistrationToHolding.HoldingRegistrationId))
              .IsUnique();
 
+            b.Entity<Species>()
+             .HasIndex(s => s.Name)
+             .IsUnique();
+
+            b.Entity<Breed>()
+             .HasIndex(bb => bb.Name)
+             .IsUnique();
+
             this.SeedRolePermissions(b);
             this.SeedHoldingRegistrations(b);
         }
@@ -92,6 +100,8 @@ namespace Business.Model
         public DbSet<EnumHoldingRegistration>           EnumHoldingRegistrations         { get; set; }
         public DbSet<Holding>                           Holdings                         { get; set; }
         public DbSet<MapHoldingRegistrationToHolding>   MapHoldingRegistrationToHoldings { get; set; }
+        public DbSet<Species>                           Species                          { get; set; }
+        public DbSet<Breed>                             Breeds                           { get; set; }
         #endregion
 
         #region Data seeding
@@ -122,6 +132,28 @@ namespace Business.Model
                 new EnumHoldingRegistration { EnumHoldingRegistrationId = 4, InternalName = EnumHoldingRegistration.Names.POULTRY, Description = "Poultry" },
                 new EnumHoldingRegistration { EnumHoldingRegistrationId = 5, InternalName = EnumHoldingRegistration.Names.SHEEP_AND_GOAT, Description = "Sheep and Goats" }
             );
+        }
+
+        private void SeedSpecies(ModelBuilder b)
+        { // Pig Sheep Goat Wallabies Crocodile Aardvark Ants Gerbals Fish
+            b.Entity<Species>()
+             .HasData(
+                new Species { SpeciesId = 1, Name = "Pig", IsPoultry = false, GestrationPeriod = TimeSpan.FromDays((30 * 3) + (7 * 3) + 3) },
+                new Species { SpeciesId = 2, Name = "Sheep", IsPoultry = false, GestrationPeriod = TimeSpan.FromDays(147) },
+                new Species { SpeciesId = 3, Name = "Goat", IsPoultry = false, GestrationPeriod = TimeSpan.FromDays(150) },
+                new Species { SpeciesId = 4, Name = "Wallaby", IsPoultry = false, GestrationPeriod = TimeSpan.FromDays(30) },
+                new Species { SpeciesId = 5, Name = "Crocodile", IsPoultry = false, GestrationPeriod = TimeSpan.FromDays(30 * 3) },
+                new Species { SpeciesId = 6, Name = "Aardvark", IsPoultry = false, GestrationPeriod = TimeSpan.FromDays(213) },
+                new Species { SpeciesId = 7, Name = "Ant", IsPoultry = false, GestrationPeriod = TimeSpan.FromDays(14) },
+                new Species { SpeciesId = 8, Name = "Queen Bee", IsPoultry = false, GestrationPeriod = TimeSpan.FromDays(15) },
+                new Species { SpeciesId = 9, Name = "Gerbal", IsPoultry = false, GestrationPeriod = TimeSpan.FromDays(25) },
+                new Species { SpeciesId = 10, Name = "Fish", IsPoultry = false, GestrationPeriod = TimeSpan.FromDays(7) }
+            );
+        }
+
+        private void SeedBreeds(ModelBuilder b)
+        {
+
         }
         #endregion
     }
