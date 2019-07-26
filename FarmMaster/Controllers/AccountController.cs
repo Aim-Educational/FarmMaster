@@ -16,9 +16,9 @@ namespace FarmMaster.Controllers
     public class AccountController : Controller
     {
         readonly IServiceUserManager _users;
-        readonly IServiceContactData    _userData;
+        readonly IServiceContactManager    _userData;
 
-        public AccountController(IServiceUserManager users, IServiceContactData userData)
+        public AccountController(IServiceUserManager users, IServiceContactManager userData)
         {
             this._users = users;
             this._userData = userData;
@@ -82,7 +82,7 @@ namespace FarmMaster.Controllers
                 if(!model.ConsentInfo.AgeConsent)
                     throw new Exception("You must state that you're 13 or over before you can sign up.");
 
-                var user = this._users.CreateUser(model.LoginInfo.Username, 
+                var user = this._users.Create(model.LoginInfo.Username, 
                                                   model.LoginInfo.Password,
                                                   model.NameInfo.FirstName + " " + model.NameInfo.MiddleNames + " " + model.NameInfo.LastName,
                                                   model.Email,

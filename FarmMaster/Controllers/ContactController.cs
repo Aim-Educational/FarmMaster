@@ -20,14 +20,14 @@ namespace FarmMaster.Controllers
         readonly FarmMasterContext _context;
         readonly IServiceSmtpClient _mail;
         readonly IServiceUserManager _users;
-        readonly IServiceContactData _contacts;
+        readonly IServiceContactManager _contacts;
         readonly IServiceRoleManager _roles;
 
         public ContactController(
             FarmMasterContext context,
             IServiceSmtpClient mail,
             IServiceUserManager users,
-            IServiceContactData contacts,
+            IServiceContactManager contacts,
             IServiceRoleManager roles
         )
         {
@@ -58,7 +58,7 @@ namespace FarmMaster.Controllers
         [FarmAuthorise(PermsAND: new[] { EnumRolePermission.Names.DELETE_CONTACTS })]
         public IActionResult Delete(int id)
         {
-            var contactDb = this._contacts.ContactFromId(id);
+            var contactDb = this._contacts.FromIdAllIncluded(id);
             if (contactDb == null)
             {
                 return RedirectToAction(
@@ -82,7 +82,7 @@ namespace FarmMaster.Controllers
         [FarmAuthorise(PermsAND: new[]{ EnumRolePermission.Names.EDIT_CONTACTS })]
         public IActionResult Edit(int id, [FromQuery] string reason)
         {
-            var contactDb = this._contacts.ContactFromId(id);
+            var contactDb = this._contacts.FromIdAllIncluded(id);
             if(contactDb == null)
             {
                 return RedirectToAction(nameof(Index), 
@@ -121,13 +121,7 @@ namespace FarmMaster.Controllers
                 return View(model);
             }
 
-            var contact = new Contact
-            {
-                ContactType = model.Type,
-                FullName = model.FullName
-            };
-
-            this._context.Add(contact);
+            var contact = this._contacts.Create(model.Type, model.FullName);
             this._contacts.AddEmailAddress(
                 contact,
                 this._users.UserFromCookieSession(HttpContext),
@@ -135,7 +129,6 @@ namespace FarmMaster.Controllers
                 GlobalConstants.DefaultNumberName,
                 model.Email
             );
-            this._context.SaveChanges();
 
             return RedirectToAction(nameof(Edit), new{ id = contact.ContactId, reason = "The user needs to edit your information after creation." });
         }
@@ -151,7 +144,7 @@ namespace FarmMaster.Controllers
                 return View(model);
             }
 
-            var contactDb = this._contacts.ContactFromId(model.Contact.ContactId);
+            var contactDb = this._contacts.FromIdAllIncluded(model.Contact.ContactId);
             contactDb.FullName = model.Contact.FullName;
             this._context.SaveChanges();
 
@@ -250,11 +243,11 @@ namespace FarmMaster.Controllers
             return this.DoAjaxWithMessageResponse(model, this._users, this._roles, new[] { EnumRolePermission.Names.EDIT_CONTACTS },
             (myUser) =>
             {
-                var contactOne = this._contacts.ContactFromId(model.Id);
+                var contactOne = this._contacts.FromIdAllIncluded(model.Id);
                 if (contactOne == null)
                     throw new Exception($"The contact with id #{model.Id} does not exist.");
 
-                var contactTwo = this._contacts.ContactFromId(Convert.ToInt32(model.Value));
+                var contactTwo = this._contacts.FromIdAllIncluded(Convert.ToInt32(model.Value));
                 if (contactTwo == null)
                     throw new Exception($"The contact with id #{model.Value} does not exist.");
 

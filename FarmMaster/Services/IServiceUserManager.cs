@@ -17,10 +17,10 @@ namespace FarmMaster.Services
         public TimeSpan SessionTokenLifespan { get; set; }
     }
 
-    public interface IServiceUserManager
+    public interface IServiceUserManager : IServiceEntityManager<User>
     {
-        User CreateUser(string username, string password, string fullName, string email,
-                        bool tosConsent, bool privacyConsent);
+        User Create(string username, string password, string fullName, string email,
+                    bool tosConsent, bool privacyConsent);
         bool UserExists(string username);
         bool UserPasswordMatches(string username, string password);
         void RenewSession(User user, HttpContext http);
@@ -28,7 +28,6 @@ namespace FarmMaster.Services
         User UserFromCookieSession(HttpContext http);
         User UserFromCookieSession(string sessionToken);
         User UserFromLoginInfo(string username, string password);
-        User UserFromId(int id);
         void SendEmailVerifyEmail(User user);
         void FinishEmailVerify(string token);
     }
@@ -38,6 +37,7 @@ namespace FarmMaster.Services
         readonly FarmMasterContext _context;
         readonly IServiceSmtpClient _smtp;
         readonly IServiceRoleManager _roles;
+        readonly IServiceContactManager _contacts;
         readonly IOptions<IServiceSmtpDomainConfig> _domains;
         readonly IOptions<IServiceUserManagerConfig> _config;
         User _user; // This service is scoped, so we cache the user each time we get a request to reduce server load.
@@ -45,6 +45,7 @@ namespace FarmMaster.Services
         public ServiceUserManager(FarmMasterContext context, 
                                   IServiceSmtpClient smtp, 
                                   IServiceRoleManager roles,
+                                  IServiceContactManager contacts,
                                   IOptions<IServiceSmtpDomainConfig> domains,
                                   IOptions<IServiceUserManagerConfig> config)
         {
@@ -53,9 +54,10 @@ namespace FarmMaster.Services
             this._domains = domains;
             this._config = config;
             this._roles = roles;
+            this._contacts = contacts;
         }
 
-        public User CreateUser(string username, string password, string fullName, string email, bool tosConsent, bool privacyConsent)
+        public User Create(string username, string password, string fullName, string email, bool tosConsent, bool privacyConsent)
         {
             if(this.UserExists(username))
                 throw new InvalidOperationException($"The user '{username}' already exists.");
@@ -66,12 +68,7 @@ namespace FarmMaster.Services
             if(!privacyConsent)
                 throw new InvalidOperationException($"The user must give consent to the Privacy Policy.");
             
-            var contact = new Contact
-            {
-                FullName = fullName,
-                ContactType = Contact.Type.User
-            };
-
+            var contact = this._contacts.Create(Contact.Type.User, fullName, SaveChanges.No);
             var salt = BCrypt.Net.BCrypt.GenerateSalt();
             var loginInfo = new UserLoginInfo
             {
@@ -100,8 +97,7 @@ namespace FarmMaster.Services
                 Name = "Default",
                 Address = email
             };
-
-            this._context.Add(contact);
+            
             this._context.Add(loginInfo);
             this._context.Add(privacy);
             this._context.Add(user);
@@ -115,7 +111,7 @@ namespace FarmMaster.Services
             // as they're likely to be the account for setting up the system.
             if(this._context.Users.Count() == 1)
             {
-                var role = this._roles.CreateRole(
+                var role = this._roles.Create(
                     "Admin", 
                     "An administrator", 
                     EnumRolePermission.Names.VIEW_ROLES, 
@@ -160,11 +156,6 @@ namespace FarmMaster.Services
             return this._context.UserLoginInfo.Any(i => i.Username == username);
         }
 
-        public User UserFromId(int id)
-        {
-            return this.GetUserQuery().SingleOrDefault(u => u.UserId == id);
-        }
-
         public User UserFromCookieSession(HttpContext http)
         {
             return this.UserFromCookieSession(
@@ -182,7 +173,7 @@ namespace FarmMaster.Services
             if(sessionToken == null)
                 return null;
             
-            var user = this.GetUserQuery().SingleOrDefault(u => u.UserLoginInfo.SessionToken == sessionToken);
+            var user = this.QueryAllIncluded().SingleOrDefault(u => u.UserLoginInfo.SessionToken == sessionToken);
             if(user == null
             || user.UserLoginInfo.SessionTokenExpiry <= DateTimeOffset.UtcNow)
                 return null;
@@ -224,7 +215,7 @@ namespace FarmMaster.Services
             if(!this.UserPasswordMatches(username, password))
                 throw new Exception($"The password is incorrect.");
 
-            return this.GetUserQuery().Single(u => u.UserLoginInfo.Username == username);
+            return this.QueryAllIncluded().Single(u => u.UserLoginInfo.Username == username);
         }
 
         public void FinishEmailVerify(string token)
@@ -238,7 +229,7 @@ namespace FarmMaster.Services
             this._context.SaveChanges();
         }
 
-        private IQueryable<User> GetUserQuery()
+        public IQueryable<User> QueryAllIncluded()
         {
             return this._context.Users
                                 .Include(u => u.Contact)
@@ -250,6 +241,16 @@ namespace FarmMaster.Services
                                  .ThenInclude(p => p.EnumRolePermission)
                                 .Include(u => u.UserLoginInfo)
                                 .Include(u => u.UserPrivacy);
+        }
+
+        public IQueryable<User> Query()
+        {
+            return this._context.Users;
+        }
+
+        public int GetIdFor(User entity)
+        {
+            return entity.UserId;
         }
     }
 }

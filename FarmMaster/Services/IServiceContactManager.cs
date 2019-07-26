@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace FarmMaster.Services
 {
-    public interface IServiceContactData
+    public interface IServiceContactManager : IServiceEntityManager<Contact>
     {
-        Contact ContactFromId(int id);
+        Contact Create(Contact.Type type, string fullName, SaveChanges saveChanges = SaveChanges.Yes);
 
         void AddTelephoneNumber(Contact contact, User responsible, string reason, string name, string number);
         void AddEmailAddress(Contact contact, User responsible, string reason, string name, string value);
@@ -24,11 +24,11 @@ namespace FarmMaster.Services
         void MakeAnonymous(Contact contact);
     }
     
-    public class ServiceContactData : IServiceContactData
+    public class ServiceContactManager : IServiceContactManager
     {
         readonly FarmMasterContext _context;
 
-        public ServiceContactData(FarmMasterContext context)
+        public ServiceContactManager(FarmMasterContext context)
         {
             this._context = context;
         }
@@ -130,18 +130,9 @@ namespace FarmMaster.Services
             return true;
         }
 
-        public Contact ContactFromId(int id)
-        {
-            return this._context.Contacts
-                                .Include(c => c.PhoneNumbers)
-                                .Include(c => c.EmailAddresses)
-                                .Where(c => !c.IsAnonymous)
-                                .FirstOrDefault(c => c.ContactId == id);
-        }
-
         public void MakeAnonymous(Contact contact)
         {
-            contact = this.ContactFromId(contact.ContactId); // Ensure we have all their data loaded, so we don't miss any.
+            contact = this.FromIdAllIncluded(contact.ContactId); // Ensure we have all their data loaded, so we don't miss any.
             contact.IsAnonymous = true;
 
             foreach(var phone in contact.PhoneNumbers)
@@ -210,6 +201,41 @@ namespace FarmMaster.Services
             this._context.Remove(relation);
             this._context.SaveChanges();
             return true;
+        }
+
+        public IQueryable<Contact> Query()
+        {
+            return this._context.Contacts;
+        }
+
+        public IQueryable<Contact> QueryAllIncluded()
+        {
+            return this._context.Contacts
+                                .Include(c => c.PhoneNumbers)
+                                .Include(c => c.EmailAddresses)
+                                .Where(c => !c.IsAnonymous);
+        }
+
+        public int GetIdFor(Contact entity)
+        {
+            return entity.ContactId;
+        }
+
+        public Contact Create(Contact.Type type, string fullName, SaveChanges saveChanges = SaveChanges.Yes)
+        {
+            var contact = new Contact
+            {
+                ContactType = type,
+                FullName = fullName,
+                IsAnonymous = false
+            };
+
+            this._context.Add(contact);
+
+            if(saveChanges == SaveChanges.Yes)
+                this._context.SaveChanges();
+
+            return contact;
         }
     }
 }

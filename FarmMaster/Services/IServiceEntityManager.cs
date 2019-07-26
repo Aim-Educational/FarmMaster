@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace FarmMaster.Services
 {
-    public interface IServiceEntityData<T> where T : class
+    public interface IServiceEntityManager<T> where T : class
     {
         IQueryable<T> Query();
         IQueryable<T> QueryAllIncluded();
@@ -14,12 +14,12 @@ namespace FarmMaster.Services
 
     public static class IServiceEntityDataExtentions
     {
-        public static T FromId<T>(this IServiceEntityData<T> data, int id) where T : class
+        public static T FromId<T>(this IServiceEntityManager<T> data, int id) where T : class
         {
             return data.Query().FirstOrDefault(d => data.GetIdFor(d) == id);
         }
 
-        public static T FromIdAllIncluded<T>(this IServiceEntityData<T> data, int id) where T : class
+        public static T FromIdAllIncluded<T>(this IServiceEntityManager<T> data, int id) where T : class
         {
             return data.QueryAllIncluded().FirstOrDefault(d => data.GetIdFor(d) == id);
         }

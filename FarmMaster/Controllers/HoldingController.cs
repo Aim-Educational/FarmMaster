@@ -14,10 +14,10 @@ namespace FarmMaster.Controllers
     public class HoldingController : Controller
     {
         readonly FarmMasterContext _context;
-        readonly IServiceHoldingData _holdings;
-        readonly IServiceContactData _contacts;
+        readonly IServiceHoldingManager _holdings;
+        readonly IServiceContactManager _contacts;
 
-        public HoldingController(FarmMasterContext context, IServiceHoldingData holdings, IServiceContactData contacts)
+        public HoldingController(FarmMasterContext context, IServiceHoldingManager holdings, IServiceContactManager contacts)
         {
             this._holdings = holdings;
             this._context = context;
@@ -116,7 +116,7 @@ namespace FarmMaster.Controllers
                 return View("CreateEdit", model);
             }
 
-            var contact = this._contacts.ContactFromId(model.Holding.OwnerContactId);
+            var contact = this._contacts.FromIdAllIncluded(model.Holding.OwnerContactId);
             if(contact == null)
             {
                 model.MessageType = ViewModelWithMessage.Type.Error;
@@ -158,7 +158,7 @@ namespace FarmMaster.Controllers
                 return View("CreateEdit", model);
             }
 
-            var contact = this._contacts.ContactFromId(model.Holding.OwnerContactId);
+            var contact = this._contacts.FromIdAllIncluded(model.Holding.OwnerContactId);
             if (contact == null)
             {
                 model.MessageType = ViewModelWithMessage.Type.Error;

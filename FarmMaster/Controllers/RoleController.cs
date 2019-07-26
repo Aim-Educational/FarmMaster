@@ -112,7 +112,7 @@ namespace FarmMaster.Controllers
                 return View(model);
             }
 
-            roles.CreateRole(
+            roles.Create(
                 model.Name,
                 model.Description,
                 model.Permissions
@@ -186,7 +186,7 @@ namespace FarmMaster.Controllers
         {
             try
             {
-                var role = roles.RoleFromId(id);
+                var role = roles.FromIdAllIncluded(id);
                 var user = users.UserFromCookieSession(HttpContext);
                 if (!user.Role.CanModify(role))
                     return this.RedirectToIndexWithMessage(ViewModelWithMessage.Type.Error, "Cannot delete a role further up in the hierarchy than your own.");
@@ -210,8 +210,8 @@ namespace FarmMaster.Controllers
             return this.DoAjaxWithMessageResponse(data, users, roles, new[]{ EnumRolePermission.Names.ASSIGN_ROLES },
             (myUser) => 
             {
-                var toModifyUser = users.UserFromId(data.userId);
-                var role = roles.RoleFromId(data.roleId);
+                var toModifyUser = users.FromIdAllIncluded(data.userId);
+                var role = roles.FromIdAllIncluded(data.roleId);
                 if(toModifyUser == null)
                     throw new Exception($"The user with id #{data.userId} does not exist.");
                 if(role == null && data.roleId != int.MaxValue) // int.MaxValue is intentionally allowed to be null, so you can remove roles out right.

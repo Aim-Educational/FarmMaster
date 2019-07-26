@@ -7,10 +7,9 @@ using System.Threading.Tasks;
 
 namespace FarmMaster.Services
 {
-    public interface IServiceRoleManager
+    public interface IServiceRoleManager : IServiceEntityManager<Role>
     {
-        Role CreateRole(string name, string description, params string[] permInternalNames);
-        Role RoleFromId(int id);
+        Role Create(string name, string description, params string[] permInternalNames);
         Role RoleFromName(string name);
         void RemoveRole(Role role);
         void AddPermission(Role role, string permInternalName, SaveChanges saveChanges = SaveChanges.Yes);
@@ -47,7 +46,7 @@ namespace FarmMaster.Services
             }
         }
 
-        public Role CreateRole(string name, string description, params string[] permInternalNames)
+        public Role Create(string name, string description, params string[] permInternalNames)
         {
             if(this._context.Roles.Any(r => r.Name == name))
                 throw new ArgumentException($"A role called {name} already exists.", "name");
@@ -64,16 +63,6 @@ namespace FarmMaster.Services
                 this.AddPermission(role, permName, SaveChanges.No);
 
             this._context.SaveChanges();
-            return role;
-        }
-
-        public Role RoleFromId(int id)
-        {
-            var role = this._context.Roles.Find(id);
-            if(role == null)
-                return null;
-
-            this.LoadPermissions(role);
             return role;
         }
 
@@ -113,7 +102,7 @@ namespace FarmMaster.Services
             }
         }
 
-        private void LoadPermissions(Role role)
+        private Role LoadPermissions(Role role)
         {
             this._context.Entry(role).Collection(r => r.Permissions).Load();
             if(role.Permissions != null)
@@ -121,11 +110,29 @@ namespace FarmMaster.Services
                 foreach(var map in role.Permissions)
                     this._context.Entry(map).Reference(m => m.EnumRolePermission).Load();
             }
+
+            return role;
         }
 
         public Role RoleFromName(string name)
         {
             return this._context.Roles.SingleOrDefault(p => p.Name == name);
+        }
+
+        public IQueryable<Role> Query()
+        {
+            return this._context.Roles;
+        }
+
+        public IQueryable<Role> QueryAllIncluded()
+        {
+            return this._context.Roles
+                                .Select(r => this.LoadPermissions(r));
+        }
+
+        public int GetIdFor(Role entity)
+        {
+            return entity.RoleId;
         }
     }
 }

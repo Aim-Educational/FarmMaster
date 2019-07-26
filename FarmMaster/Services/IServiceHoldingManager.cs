@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FarmMaster.Services
 {
-    public interface IServiceHoldingData : IServiceEntityData<Holding>
+    public interface IServiceHoldingManager : IServiceEntityManager<Holding>
     {
         Holding Create(string name, string holdingNumber, string gridReference, string address, string postCode, Contact owner);
         void RemoveByReference(Holding holding);
@@ -15,11 +15,11 @@ namespace FarmMaster.Services
         bool RemoveRegistrationByName(Holding holding, string regInternalName);
     }
 
-    public class ServiceHoldingData : IServiceHoldingData
+    public class ServiceHoldingManager : IServiceHoldingManager
     {
         readonly FarmMasterContext _context;
 
-        public ServiceHoldingData(FarmMasterContext db)
+        public ServiceHoldingManager(FarmMasterContext db)
         {
             this._context = db;
         }
