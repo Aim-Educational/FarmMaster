@@ -16,12 +16,12 @@ namespace FarmMaster.Controllers
     public class AccountController : Controller
     {
         readonly IServiceUserManager _users;
-        readonly IServiceContactManager    _userData;
+        readonly IServiceContactManager _contacts;
 
         public AccountController(IServiceUserManager users, IServiceContactManager userData)
         {
             this._users = users;
-            this._userData = userData;
+            this._contacts = userData;
         }
 
         public IActionResult Login([FromQuery] bool? verifyEmail)
@@ -90,7 +90,7 @@ namespace FarmMaster.Controllers
                                                   model.ConsentInfo.PrivacyPolicyConsent);
 
                 // TODO: Support multiple number entries.
-                this._userData.AddTelephoneNumber(
+                this._contacts.AddTelephoneNumber(
                     user.Contact,
                     user,
                     "User signup requires a default phone number.",

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
+using Newtonsoft.Json.Linq;
 
 namespace Business.Model
 {
@@ -82,6 +83,19 @@ namespace Business.Model
              .HasIndex(bb => bb.Name)
              .IsUnique();
 
+            b.Entity<AnimalCharacteristic>()
+             .Property(c => c.Data)
+             .HasConversion(
+                c => c.ToJson().ToString(),
+                s => (new AnimalCharacteristicFactory()).FromJson(JObject.Parse(s))
+             );
+            b.Entity<AnimalCharacteristic>()
+             .Property(c => c.CalculatedType)
+             .HasConversion<string>();
+            b.Entity<AnimalCharacteristic>()
+             .Property(c => c.CalculatedType)
+             .HasComputedColumnSql($"\"CalculatedType\"::json->'{AnimalCharacteristicBase.TYPE_KEY}'");
+
             this.SeedRolePermissions(b);
             this.SeedHoldingRegistrations(b);
         }
@@ -117,7 +131,7 @@ namespace Business.Model
                 new EnumRolePermission { EnumRolePermissionId = 6, InternalName = EnumRolePermission.Names.VIEW_USERS, Description = "View Users" },
                 new EnumRolePermission { EnumRolePermissionId = 7, InternalName = EnumRolePermission.Names.ASSIGN_ROLES, Description = "Assign Roles" },
                 new EnumRolePermission { EnumRolePermissionId = 8, InternalName = EnumRolePermission.Names.DELETE_CONTACTS, Description = "Delete Contacts" },
-                new EnumRolePermission { EnumRolePermissionId = 9, InternalName = EnumRolePermission.Names.VIEW_HOLDINGS, Description = "Delete Contacts" },
+                new EnumRolePermission { EnumRolePermissionId = 9, InternalName = EnumRolePermission.Names.VIEW_HOLDINGS, Description = "View Holdings" },
                 new EnumRolePermission { EnumRolePermissionId = 19, InternalName = EnumRolePermission.Names.EDIT_HOLDINGS, Description = "Edit Holdings" }
             );
         }
@@ -135,20 +149,7 @@ namespace Business.Model
         }
 
         private void SeedSpecies(ModelBuilder b)
-        { // Pig Sheep Goat Wallabies Crocodile Aardvark Ants Gerbals Fish
-            b.Entity<Species>()
-             .HasData(
-                new Species { SpeciesId = 1,    Name = "Pig",          IsPoultry = false, GestrationPeriod = TimeSpan.FromDays((30 * 3) + (7 * 3) + 3) },
-                new Species { SpeciesId = 2,    Name = "Sheep",        IsPoultry = false, GestrationPeriod = TimeSpan.FromDays(147) },
-                new Species { SpeciesId = 3,    Name = "Goat",         IsPoultry = false, GestrationPeriod = TimeSpan.FromDays(150) },
-                new Species { SpeciesId = 4,    Name = "Wallaby",      IsPoultry = false, GestrationPeriod = TimeSpan.FromDays(30) },
-                new Species { SpeciesId = 5,    Name = "Crocodile",    IsPoultry = false, GestrationPeriod = TimeSpan.FromDays(30 * 3) },
-                new Species { SpeciesId = 6,    Name = "Aardvark",     IsPoultry = false, GestrationPeriod = TimeSpan.FromDays(213) },
-                new Species { SpeciesId = 7,    Name = "Ant",          IsPoultry = false, GestrationPeriod = TimeSpan.FromDays(14) },
-                new Species { SpeciesId = 8,    Name = "Queen Bee",    IsPoultry = false, GestrationPeriod = TimeSpan.FromDays(15) },
-                new Species { SpeciesId = 9,    Name = "Gerbal",       IsPoultry = false, GestrationPeriod = TimeSpan.FromDays(25) },
-                new Species { SpeciesId = 10,   Name = "Fish",         IsPoultry = false, GestrationPeriod = TimeSpan.FromDays(7) }
-            );
+        {
         }
 
         private void SeedBreeds(ModelBuilder b)

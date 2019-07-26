@@ -1,0 +1,97 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Text;
+using Newtonsoft.Json.Linq;
+
+namespace Business.Model
+{
+    public abstract class AnimalCharacteristicBase
+    {
+        public const string TYPE_KEY = "__TYPE";
+        public AnimalCharacteristic.Type Type { private set; get; }
+
+        public AnimalCharacteristicBase(AnimalCharacteristic.Type type)
+        {
+            this.Type = type;
+        }
+
+        protected abstract JObject ToJsonImpl();
+        public abstract void FromJson(JObject json);
+
+        public JObject ToJson()
+        {
+            var json = this.ToJsonImpl();
+            json[TYPE_KEY] = Enum.GetName(typeof(AnimalCharacteristic.Type), this.Type);
+
+            return json;
+        }
+    }
+
+    public class AnimalCharacteristic
+    {
+        public enum Type
+        {
+            Error_Unknown,
+            TimeSpan
+        }
+
+        [Key]
+        public int AnimalCharacteristicId { get; set; }
+
+        [Required]
+        [StringLength(75)]
+        public string Name { get; set; }
+
+        [Required]
+        [StringLength(ushort.MaxValue)]
+        public AnimalCharacteristicBase Data { get; set; }
+
+        [Required]
+        public int ListId { get; set; }
+        public AnimalCharacteristicList List { get; set; }
+
+        // CALCULATED FIELD
+        public Type CalculatedType { get; set; }
+    }
+
+    public class AnimalCharacteristicFactory
+    {
+        public AnimalCharacteristicBase FromJson(JObject json)
+        {
+            var typeKey = json.GetValue(AnimalCharacteristicBase.TYPE_KEY).Value<string>();
+
+            switch(typeKey)
+            {
+                case nameof(AnimalCharacteristic.Type.TimeSpan):
+                    var c = new AnimalCharacteristicTimeSpan();
+                    c.FromJson(json);
+                    return c;
+
+                default: throw new InvalidOperationException($"The type key '{typeKey}' does not exist.");
+            }
+        }
+    }
+
+    public class AnimalCharacteristicTimeSpan : AnimalCharacteristicBase
+    {
+        public TimeSpan TimeSpan { get; set; }
+
+        public AnimalCharacteristicTimeSpan() : base(AnimalCharacteristic.Type.TimeSpan)
+        {
+        }
+
+        public override void FromJson(JObject json)
+        {
+            this.TimeSpan = TimeSpan.Parse(json["v"].Value<string>());
+        }
+
+        protected override JObject ToJsonImpl()
+        {
+            var json = new JObject();
+            json["v"] = this.TimeSpan.ToString();
+
+            return json;
+        }
+    }
+}

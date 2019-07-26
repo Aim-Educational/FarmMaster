@@ -15,11 +15,12 @@ namespace Business.Model
         [StringLength(50)]
         public string Name { get; set; }
 
-        [Column(TypeName = "interval")]
-        public TimeSpan GestrationPeriod { get; set; }
-
         [Required]
         public bool IsPoultry { get; set; }
+
+        [Required]
+        public int CharacteristicListId { get; set; }
+        public AnimalCharacteristicList CharacteristicList { get; set; }
 
         [Timestamp]
         public byte[] Timestamp { get; set; }

@@ -167,13 +167,15 @@ namespace FarmMaster.Controllers
                 return View("CreateEdit", model);
             }
 
-            var holdingDb           = this._holdings.FromIdAllIncluded(model.Holding.HoldingId);
-            holdingDb.Timestamp     = model.Holding.Timestamp;
-            holdingDb.Name          = model.Holding.Name;
-            holdingDb.HoldingNumber = model.Holding.HoldingNumber;
-            holdingDb.GridReference = model.Holding.GridReference;
-            holdingDb.Address       = model.Holding.Address;
-            holdingDb.Postcode      = model.Holding.Postcode;
+            var holdingDb            = this._holdings.FromIdAllIncluded(model.Holding.HoldingId);
+            holdingDb.Timestamp      = model.Holding.Timestamp;
+            holdingDb.Name           = model.Holding.Name;
+            holdingDb.HoldingNumber  = model.Holding.HoldingNumber;
+            holdingDb.GridReference  = model.Holding.GridReference;
+            holdingDb.Address        = model.Holding.Address;
+            holdingDb.Postcode       = model.Holding.Postcode;
+            holdingDb.OwnerContactId = contact.ContactId;
+            this._context.SaveChanges();
 
             foreach(var kvp in model.SelectedRegistrations)
             {
