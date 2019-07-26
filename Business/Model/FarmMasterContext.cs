@@ -138,16 +138,16 @@ namespace Business.Model
         { // Pig Sheep Goat Wallabies Crocodile Aardvark Ants Gerbals Fish
             b.Entity<Species>()
              .HasData(
-                new Species { SpeciesId = 1, Name = "Pig", IsPoultry = false, GestrationPeriod = TimeSpan.FromDays((30 * 3) + (7 * 3) + 3) },
-                new Species { SpeciesId = 2, Name = "Sheep", IsPoultry = false, GestrationPeriod = TimeSpan.FromDays(147) },
-                new Species { SpeciesId = 3, Name = "Goat", IsPoultry = false, GestrationPeriod = TimeSpan.FromDays(150) },
-                new Species { SpeciesId = 4, Name = "Wallaby", IsPoultry = false, GestrationPeriod = TimeSpan.FromDays(30) },
-                new Species { SpeciesId = 5, Name = "Crocodile", IsPoultry = false, GestrationPeriod = TimeSpan.FromDays(30 * 3) },
-                new Species { SpeciesId = 6, Name = "Aardvark", IsPoultry = false, GestrationPeriod = TimeSpan.FromDays(213) },
-                new Species { SpeciesId = 7, Name = "Ant", IsPoultry = false, GestrationPeriod = TimeSpan.FromDays(14) },
-                new Species { SpeciesId = 8, Name = "Queen Bee", IsPoultry = false, GestrationPeriod = TimeSpan.FromDays(15) },
-                new Species { SpeciesId = 9, Name = "Gerbal", IsPoultry = false, GestrationPeriod = TimeSpan.FromDays(25) },
-                new Species { SpeciesId = 10, Name = "Fish", IsPoultry = false, GestrationPeriod = TimeSpan.FromDays(7) }
+                new Species { SpeciesId = 1,    Name = "Pig",          IsPoultry = false, GestrationPeriod = TimeSpan.FromDays((30 * 3) + (7 * 3) + 3) },
+                new Species { SpeciesId = 2,    Name = "Sheep",        IsPoultry = false, GestrationPeriod = TimeSpan.FromDays(147) },
+                new Species { SpeciesId = 3,    Name = "Goat",         IsPoultry = false, GestrationPeriod = TimeSpan.FromDays(150) },
+                new Species { SpeciesId = 4,    Name = "Wallaby",      IsPoultry = false, GestrationPeriod = TimeSpan.FromDays(30) },
+                new Species { SpeciesId = 5,    Name = "Crocodile",    IsPoultry = false, GestrationPeriod = TimeSpan.FromDays(30 * 3) },
+                new Species { SpeciesId = 6,    Name = "Aardvark",     IsPoultry = false, GestrationPeriod = TimeSpan.FromDays(213) },
+                new Species { SpeciesId = 7,    Name = "Ant",          IsPoultry = false, GestrationPeriod = TimeSpan.FromDays(14) },
+                new Species { SpeciesId = 8,    Name = "Queen Bee",    IsPoultry = false, GestrationPeriod = TimeSpan.FromDays(15) },
+                new Species { SpeciesId = 9,    Name = "Gerbal",       IsPoultry = false, GestrationPeriod = TimeSpan.FromDays(25) },
+                new Species { SpeciesId = 10,   Name = "Fish",         IsPoultry = false, GestrationPeriod = TimeSpan.FromDays(7) }
             );
         }
 
