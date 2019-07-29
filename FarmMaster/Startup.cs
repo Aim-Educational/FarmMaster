@@ -145,7 +145,6 @@ namespace FarmMaster
             app.UseHttpsRedirection();
             app.UseStatusCodePages();
             app.UseStaticFiles();
-            app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseAuthentication();
             app.UseFarmMasterUserMiddleware();
