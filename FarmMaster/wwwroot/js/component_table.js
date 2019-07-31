@@ -65,6 +65,53 @@ var ComponentTable = (function () {
             }
         });
     };
+    ComponentTable.setupPagingTable = function (boxError, table, ajaxPageCount, ajaxRender, itemsPerPage) {
+        if (itemsPerPage === void 0) { itemsPerPage = null; }
+        var tableFooter = table.tFoot;
+        FarmAjax.postWithMessageAndValueResponse(ajaxPageCount, { itemsPerPage: itemsPerPage }, function (responseAndValue) {
+            if (responseAndValue.messageType !== FarmAjaxMessageType.None)
+                responseAndValue.populateMessageBox(boxError);
+            else if (tableFooter !== null) {
+                tableFooter.innerHTML = "";
+                var tr = document.createElement("tr");
+                tableFooter.appendChild(tr);
+                var th = document.createElement("th");
+                th.colSpan = 9999;
+                tr.appendChild(th);
+                var div = document.createElement('div');
+                div.classList.add("ui", "center", "aligned", "pagination", "menu");
+                th.appendChild(div);
+                var _loop_1 = function (i) {
+                    var a = document.createElement("a");
+                    a.innerText = "" + (i + 1);
+                    a.classList.add("item");
+                    a.onclick = function () {
+                        ComponentTable.getPage(boxError, table, ajaxRender, i, itemsPerPage);
+                        tableFooter.querySelectorAll("a").forEach(function (item) { return item.classList.remove("active"); });
+                        a.classList.add("active");
+                    };
+                    div.appendChild(a);
+                    var divider = document.createElement("div");
+                    divider.classList.add("divider");
+                    div.appendChild(divider);
+                };
+                for (var i = 0; i < responseAndValue.value.value; i++) {
+                    _loop_1(i);
+                }
+            }
+        });
+    };
+    ComponentTable.getPage = function (boxError, table, ajaxRender, pageToRender, itemsPerPage) {
+        if (itemsPerPage === void 0) { itemsPerPage = null; }
+        var tableBody = table.tBodies.item(0);
+        FarmAjax.postWithMessageAndValueResponse(ajaxRender, { pageToRender: pageToRender, itemsPerPage: itemsPerPage }, function (responseAndValue) {
+            if (responseAndValue.messageType !== FarmAjaxMessageType.None)
+                responseAndValue.populateMessageBox(boxError);
+            else if (tableBody !== null) {
+                tableBody.innerHTML = (responseAndValue).value;
+            }
+        });
+    };
     return ComponentTable;
 }());
 //# sourceMappingURL=component_table.js.map

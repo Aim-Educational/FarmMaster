@@ -73,6 +73,11 @@ var FarmAjaxMessageAndValueResponse = (function (_super) {
     }
     return FarmAjaxMessageAndValueResponse;
 }(FarmAjaxMessageResponse));
+var FarmAjaxGenericValue = (function () {
+    function FarmAjaxGenericValue() {
+    }
+    return FarmAjaxGenericValue;
+}());
 var FarmAjax = (function () {
     function FarmAjax() {
     }

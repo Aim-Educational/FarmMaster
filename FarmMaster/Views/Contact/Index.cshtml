@@ -57,7 +57,7 @@
     Create New Contact
 </a>
 
-<table class="ui celled table">
+<table id="tableIndex" class="ui celled table">
     <thead>
         <tr>
             <th>Name</th>
@@ -66,24 +66,15 @@
         </tr>
     </thead>
     <tbody>
-        @foreach(var contact in Model.Contacts)
-        {
-            <tr>
-                <td>@contact.ShortName</td>
-                <td>@contact.ContactType</td>
-                <td class="ui two buttons">
-                    <a class="ui inverted tiny secondary left button" onclick="showEditModal(@contact.ContactId)">
-                        Edit
-                    </a>
-                    <div class="or divide hide mobile"></div>
-                    <a class="ui inverted tiny secondary right button" onclick="showDeleteModal(@contact.ContactId)">
-                        Delete
-                    </a>
-                </td>
-            </tr>
-        }
+        <partial name="_IndexTableBodyPartial" model="Model.Contacts.Take(GlobalConstants.DefaultPageItemCount)" />
     </tbody>
+    <tfoot>
+
+    </tfoot>
 </table>
+
+<section id="boxError" class="ui error message transition hidden">
+</section>
 
 @section Scripts {
     <script>
@@ -107,5 +98,12 @@
                 })
                 .modal('show');
         }
+
+        ComponentTable.setupPagingTable(
+            document.getElementById("boxError"),
+            document.getElementById("tableIndex"),
+            "/Contact/AjaxGetTablePageCount",
+            "/Contact/AjaxRenderTablePage"
+        );
     </script>
 }

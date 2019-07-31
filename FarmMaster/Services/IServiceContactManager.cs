@@ -205,7 +205,8 @@ namespace FarmMaster.Services
 
         public IQueryable<Contact> Query()
         {
-            return this._context.Contacts;
+            return this._context.Contacts
+                                .Where(c => !c.IsAnonymous);
         }
 
         public IQueryable<Contact> QueryAllIncluded()

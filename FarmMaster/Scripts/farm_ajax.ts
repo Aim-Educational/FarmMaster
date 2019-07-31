@@ -74,6 +74,10 @@ class FarmAjaxMessageAndValueResponse<T> extends FarmAjaxMessageResponse {
     }
 }
 
+class FarmAjaxGenericValue<T> {
+    public value: T;
+}
+
 class FarmAjax {
     static postWithMessageResponse(url: string, data: any, onDone: (response: FarmAjaxMessageResponse) => void) {
         FarmAjax

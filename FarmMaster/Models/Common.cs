@@ -91,4 +91,14 @@ namespace FarmMaster.Models
     {
         public T Value { get; set; }
     }
+
+    public class AjaxBuiltInValue<T> where T : struct
+    {
+        public T Value { get; set; }
+
+        public AjaxBuiltInValue(T value)
+        {
+            this.Value = value;
+        }
+    }
 }

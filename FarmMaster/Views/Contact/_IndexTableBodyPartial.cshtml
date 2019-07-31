@@ -1,0 +1,21 @@
+﻿@model IEnumerable<Contact>
+@{
+    Layout = null;
+}
+
+@foreach (var contact in Model.ToList())
+{
+    <tr>
+        <td>@contact.ShortName</td>
+        <td>@contact.ContactType</td>
+        <td class="ui two compact buttons">
+            <a class="ui inverted tiny secondary left button" onclick="showEditModal(@contact.ContactId)">
+                Edit
+            </a>
+            <div class="or divide hide mobile"></div>
+            <a class="ui inverted tiny secondary right button" onclick="showDeleteModal(@contact.ContactId)">
+                Delete
+            </a>
+        </td>
+    </tr>
+}

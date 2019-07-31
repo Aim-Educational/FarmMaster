@@ -15,20 +15,22 @@ using Microsoft.Extensions.Options;
 namespace FarmMaster.Controllers
 {
     [FarmAuthorise(PermsOR: new[]{ EnumRolePermission.Names.VIEW_CONTACTS })]
-    public class ContactController : Controller
+    public class ContactController : Controller, IPagingController<Contact>
     {
         readonly FarmMasterContext _context;
         readonly IServiceSmtpClient _mail;
         readonly IServiceUserManager _users;
         readonly IServiceContactManager _contacts;
         readonly IServiceRoleManager _roles;
+        readonly IViewRenderService _viewRenderer;
 
         public ContactController(
             FarmMasterContext context,
             IServiceSmtpClient mail,
             IServiceUserManager users,
             IServiceContactManager contacts,
-            IServiceRoleManager roles
+            IServiceRoleManager roles,
+            IViewRenderService viewRender
         )
         {
             this._context = context;
@@ -36,6 +38,7 @@ namespace FarmMaster.Controllers
             this._users = users;
             this._contacts = contacts;
             this._roles = roles;
+            this._viewRenderer = viewRender;
         }
 
         public IActionResult Index([FromQuery] string message)
@@ -284,6 +287,35 @@ namespace FarmMaster.Controllers
                                         .Where(c => !c.IsAnonymous)
                                         .Select(c => new ComponentSelectOption{ Description = c.ShortName, Value = Convert.ToString(c.ContactId) })
                                         .ToList();
+                }
+            );
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public IActionResult AjaxGetTablePageCount([FromBody] AjaxPagingControllerRequestModel model)
+        {
+            return this.DoAjaxWithValueAndMessageResponse(
+                model, this._users, this._roles, new string[]{ EnumRolePermission.Names.VIEW_CONTACTS },
+                (myUser) =>
+                {
+                    return new AjaxBuiltInValue<int>(PagingHelper.CalculatePageCount(this._contacts.Query().Count(), model.ItemsPerPage));
+                }
+            );
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public IActionResult AjaxRenderTablePage([FromBody] AjaxPagingControllerRenderRequestModel model)
+        {
+            return this.DoAjaxWithValueAndMessageResponse(
+                model, this._users, this._roles, new string[] { EnumRolePermission.Names.VIEW_CONTACTS },
+                (myUser) =>
+                {
+                    return this._viewRenderer.RenderToStringAsync(
+                        "/Views/Contact/_IndexTableBodyPartial.cshtml", 
+                        PagingHelper.GetPage(this._contacts.Query(), model.PageToRender, model.ItemsPerPage)
+                    ).Result;
                 }
             );
         }

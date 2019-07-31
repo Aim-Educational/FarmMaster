@@ -101,4 +101,76 @@
             }
         );
     }
+
+    public static setupPagingTable(
+        boxError: HTMLDivElement,
+        table: HTMLTableElement,
+        ajaxPageCount: string,
+        ajaxRender: string,
+        itemsPerPage: number | null = null
+    ) {
+        let tableFooter = table.tFoot;
+
+        FarmAjax.postWithMessageAndValueResponse<FarmAjaxGenericValue<number>>(
+            ajaxPageCount,
+            { itemsPerPage: itemsPerPage },
+            responseAndValue => {
+                if (responseAndValue.messageType !== FarmAjaxMessageType.None)
+                    responseAndValue.populateMessageBox(boxError);
+                else if (tableFooter !== null) {
+                    tableFooter.innerHTML = "";
+
+                    let tr = document.createElement("tr");
+                    tableFooter.appendChild(tr);
+
+                    let th = document.createElement("th");
+                    th.colSpan = 9999;
+                    tr.appendChild(th);
+
+                    let div = document.createElement('div');
+                    div.classList.add("ui", "center", "aligned", "pagination", "menu");
+                    th.appendChild(div);
+
+                    for (let i = 0; i < responseAndValue.value.value; i++) {
+                        let a = document.createElement("a");
+                        a.innerText = "" + (i + 1);
+                        a.classList.add("item");
+                        a.onclick = function () {
+                            ComponentTable.getPage(boxError, table, ajaxRender, i, itemsPerPage);
+
+                            tableFooter.querySelectorAll("a").forEach(item => item.classList.remove("active"));
+                            a.classList.add("active");
+                        }
+                        div.appendChild(a);
+
+                        let divider = document.createElement("div");
+                        divider.classList.add("divider");
+                        div.appendChild(divider);
+                    }
+                }
+            }
+        );
+    }
+
+    public static getPage(
+        boxError: HTMLDivElement,
+        table: HTMLTableElement,
+        ajaxRender: string,
+        pageToRender: number,
+        itemsPerPage: number | null = null
+    ) {
+        let tableBody = table.tBodies.item(0);
+
+        FarmAjax.postWithMessageAndValueResponse<FarmAjaxGenericValue<string>>(
+            ajaxRender,
+            { pageToRender: pageToRender, itemsPerPage: itemsPerPage },
+            responseAndValue => {
+                if (responseAndValue.messageType !== FarmAjaxMessageType.None)
+                    responseAndValue.populateMessageBox(boxError);
+                else if (tableBody !== null) {
+                    tableBody.innerHTML = <any>(responseAndValue).value;
+                }
+            }
+        );
+    }
 }
