@@ -107,13 +107,14 @@
         table: HTMLTableElement,
         ajaxPageCount: string,
         ajaxRender: string,
+        entityType: string | null = null,
         itemsPerPage: number | null = null
     ) {
         let tableFooter = table.tFoot;
 
         FarmAjax.postWithMessageAndValueResponse<FarmAjaxGenericValue<number>>(
             ajaxPageCount,
-            { itemsPerPage: itemsPerPage },
+            { itemsPerPage: itemsPerPage, entityType: entityType },
             responseAndValue => {
                 if (responseAndValue.messageType !== FarmAjaxMessageType.None)
                     responseAndValue.populateMessageBox(boxError);
@@ -136,7 +137,7 @@
                         a.innerText = "" + (i + 1);
                         a.classList.add("item");
                         a.onclick = function () {
-                            ComponentTable.getPage(boxError, table, ajaxRender, i, itemsPerPage);
+                            ComponentTable.getPage(boxError, table, ajaxRender, i, entityType, itemsPerPage);
 
                             tableFooter.querySelectorAll("a").forEach(item => item.classList.remove("active"));
                             a.classList.add("active");
@@ -157,13 +158,14 @@
         table: HTMLTableElement,
         ajaxRender: string,
         pageToRender: number,
+        entityType: string | null = null,
         itemsPerPage: number | null = null
     ) {
         let tableBody = table.tBodies.item(0);
 
         FarmAjax.postWithMessageAndValueResponse<FarmAjaxGenericValue<string>>(
             ajaxRender,
-            { pageToRender: pageToRender, itemsPerPage: itemsPerPage },
+            { pageToRender: pageToRender, itemsPerPage: itemsPerPage, entityType: entityType },
             responseAndValue => {
                 if (responseAndValue.messageType !== FarmAjaxMessageType.None)
                     responseAndValue.populateMessageBox(boxError);

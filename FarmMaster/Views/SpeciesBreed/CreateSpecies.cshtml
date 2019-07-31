@@ -1,0 +1,36 @@
+﻿@model SpeciesCreateViewModel
+@{
+    ViewData["Title"] = "Create - Species";
+}
+
+<section class="ui center aligned top attached header">
+    <h2>Create a species</h2>
+</section>
+<section class="ui attached segment">
+    <form class="ui form" method="post" asp-action="CreateSpecies">
+        <section class="field">
+            <label>Name</label>
+            <input asp-for="Name" placeholder="Name" />
+            <span class="@GlobalConstants.FormErrorClasses" asp-validation-for="Name"></span>
+        </section>
+        <section class="field">
+            <div class="ui checkbox">
+                <input type="checkbox" asp-for="IsPoultry" />
+                <label>Species is poultry?</label>
+            </div>
+        </section>
+
+        <partial name="_ViewModelWithMessagePartial" model="Model" />
+        <div id="divAllErrors" class="ui error message transition hidden"></div>
+
+        <button class="ui primary button" type="submit">Create Species</button>
+    </form>
+</section>
+
+@section Scripts {
+    <script>
+        $(".ui.checkbox").checkbox();
+
+        Validation.hookupForm(document.querySelector(".ui.form"));
+    </script>
+}

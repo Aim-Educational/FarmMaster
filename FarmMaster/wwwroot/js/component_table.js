@@ -65,10 +65,11 @@ var ComponentTable = (function () {
             }
         });
     };
-    ComponentTable.setupPagingTable = function (boxError, table, ajaxPageCount, ajaxRender, itemsPerPage) {
+    ComponentTable.setupPagingTable = function (boxError, table, ajaxPageCount, ajaxRender, entityType, itemsPerPage) {
+        if (entityType === void 0) { entityType = null; }
         if (itemsPerPage === void 0) { itemsPerPage = null; }
         var tableFooter = table.tFoot;
-        FarmAjax.postWithMessageAndValueResponse(ajaxPageCount, { itemsPerPage: itemsPerPage }, function (responseAndValue) {
+        FarmAjax.postWithMessageAndValueResponse(ajaxPageCount, { itemsPerPage: itemsPerPage, entityType: entityType }, function (responseAndValue) {
             if (responseAndValue.messageType !== FarmAjaxMessageType.None)
                 responseAndValue.populateMessageBox(boxError);
             else if (tableFooter !== null) {
@@ -86,7 +87,7 @@ var ComponentTable = (function () {
                     a.innerText = "" + (i + 1);
                     a.classList.add("item");
                     a.onclick = function () {
-                        ComponentTable.getPage(boxError, table, ajaxRender, i, itemsPerPage);
+                        ComponentTable.getPage(boxError, table, ajaxRender, i, entityType, itemsPerPage);
                         tableFooter.querySelectorAll("a").forEach(function (item) { return item.classList.remove("active"); });
                         a.classList.add("active");
                     };
@@ -101,10 +102,11 @@ var ComponentTable = (function () {
             }
         });
     };
-    ComponentTable.getPage = function (boxError, table, ajaxRender, pageToRender, itemsPerPage) {
+    ComponentTable.getPage = function (boxError, table, ajaxRender, pageToRender, entityType, itemsPerPage) {
+        if (entityType === void 0) { entityType = null; }
         if (itemsPerPage === void 0) { itemsPerPage = null; }
         var tableBody = table.tBodies.item(0);
-        FarmAjax.postWithMessageAndValueResponse(ajaxRender, { pageToRender: pageToRender, itemsPerPage: itemsPerPage }, function (responseAndValue) {
+        FarmAjax.postWithMessageAndValueResponse(ajaxRender, { pageToRender: pageToRender, itemsPerPage: itemsPerPage, entityType: entityType }, function (responseAndValue) {
             if (responseAndValue.messageType !== FarmAjaxMessageType.None)
                 responseAndValue.populateMessageBox(boxError);
             else if (tableBody !== null) {

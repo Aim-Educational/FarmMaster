@@ -40,9 +40,4 @@
     <TypeScriptCompile Include="Scripts\validation.ts" />
   </ItemGroup>
 
-
-  <ItemGroup>
-    <Folder Include="Views\Species\" />
-  </ItemGroup>
-
 </Project>

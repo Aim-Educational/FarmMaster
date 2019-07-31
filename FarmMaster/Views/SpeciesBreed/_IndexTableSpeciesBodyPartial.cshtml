@@ -1,0 +1,22 @@
+﻿@model IEnumerable<Species>
+@{
+    Layout = null;
+}
+
+@foreach(var species in Model.ToList())
+{
+    <tr>
+        <td>@species.Name</td>
+        <td>
+            <section class="ui two buttons">
+                <a class="ui inverted tiny secondary left button" href="/SpeciesBreed/EditSpecies/@species.SpeciesId">
+                    Edit
+                </a>
+                <div class="or divider"></div>
+                <a class="ui inverted tiny secondary right button" href="/SpeciesBreed/DeleteSpecies/@species.SpeciesId">
+                    Delete
+                </a>
+            </section>
+        </td>
+    </tr>
+}

@@ -1,0 +1,52 @@
+﻿@model SpeciesBreedIndexViewModel
+@{
+    ViewData["Title"] = "Index - Species & Breeds";
+}
+
+<partial name="_ViewModelWithMessagePartial" model="Model" />
+
+<section class="ui centered stackable grid">
+    <section class="two column row">
+        <section class="column">
+            <section class="ui center aligned attached header">
+                <h2>Species</h2>
+                <a class="ui fluid primary button" asp-action="CreateSpecies">Create</a>
+            </section>
+            <section class="ui attached segment">
+                <table id="tableSpecies" class="ui celled table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <partial name="_IndexTableSpeciesBodyPartial" model="Model.Species.Take(GlobalConstants.DefaultPageItemCount)" />
+                    </tbody>
+                    <tfoot></tfoot>
+                </table>
+                <div id="boxErrorSpecies" class="ui error message transition hidden"></div>
+            </section>
+        </section>
+        <section class="column">
+            <section class="ui center aligned attached header">
+                <h2>Breeds</h2>
+                <a class="ui fluid primary button" asp-action="CreateBreed">Create</a>
+            </section>
+            <section class="ui attached segment">
+            </section>
+        </section>
+    </section>
+</section>
+
+@section Scripts {
+    <script>
+        ComponentTable.setupPagingTable(
+            document.getElementById("boxErrorSpecies"),
+            document.getElementById("tableSpecies"),
+            "/SpeciesBreed/AjaxGetTablePageCount",
+            "/SpeciesBreed/AjaxRenderTablePage",
+            "Species"
+        );
+    </script>
+}

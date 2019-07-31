@@ -4,12 +4,14 @@
 <body>
     <partial name="_NavbarPartial" />
 
-    <main role="main" class="ui grid">
-        <div class="one wide mobile one wide computer three wide large screen column"></div>
-        <div class="fourteen wide mobile fourteen wide computer ten wide large screen column">
-            @RenderBody()
-        </div>
-        <div class="one wide mobile one wide computer three wide large screen column"></div>
+    <main role="main" class="main container">
+        <section class="ui grid">
+            <div class="zero wide mobile one wide computer three wide large screen column"></div>
+            <div class="sixteen wide mobile fourteen wide computer ten wide large screen centered column">
+                @RenderBody()
+            </div>
+            <div class="zero wide mobile one wide computer three wide large screen column"></div>
+        </section>
     </main>
 
     <footer>

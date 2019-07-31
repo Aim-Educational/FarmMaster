@@ -42,6 +42,7 @@ namespace FarmMaster.Controllers
     public class AjaxPagingControllerRequestModel : AjaxModel
     {
         public int? ItemsPerPage { get; set; }
+        public string EntityType { get; set; }
     }
 
     public class AjaxPagingControllerRenderRequestModel : AjaxPagingControllerRequestModel

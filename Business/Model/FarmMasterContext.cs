@@ -132,7 +132,9 @@ namespace Business.Model
                 new EnumRolePermission { EnumRolePermissionId = 7, InternalName = EnumRolePermission.Names.ASSIGN_ROLES, Description = "Assign Roles" },
                 new EnumRolePermission { EnumRolePermissionId = 8, InternalName = EnumRolePermission.Names.DELETE_CONTACTS, Description = "Delete Contacts" },
                 new EnumRolePermission { EnumRolePermissionId = 9, InternalName = EnumRolePermission.Names.VIEW_HOLDINGS, Description = "View Holdings" },
-                new EnumRolePermission { EnumRolePermissionId = 19, InternalName = EnumRolePermission.Names.EDIT_HOLDINGS, Description = "Edit Holdings" }
+                new EnumRolePermission { EnumRolePermissionId = 10, InternalName = EnumRolePermission.Names.EDIT_HOLDINGS, Description = "Edit Holdings" },
+                new EnumRolePermission { EnumRolePermissionId = 11, InternalName = EnumRolePermission.Names.VIEW_SPECIES_BREEDS, Description = "View Species/Breeds" },
+                new EnumRolePermission { EnumRolePermissionId = 12, InternalName = EnumRolePermission.Names.EDIT_SPECIES_BREEDS, Description = "Edit Species/Breeds" }
             );
         }
 

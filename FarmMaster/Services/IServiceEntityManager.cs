@@ -23,5 +23,14 @@ namespace FarmMaster.Services
         {
             return data.QueryAllIncluded().FirstOrDefault(d => data.GetIdFor(d) == id);
         }
+
+        // NOTE: Intelisense seems a bit bugged with this function, and can't figure out it exists when giving the function list.
+        // For managers that manage multiple entity types, there's a specific issue of not being able to choose,
+        // which entity to use the functions for easily, so this identity function is just an easy way to access,
+        // the functions for a specific entity type.
+        public static IServiceEntityManager<T> For<T>(this IServiceEntityManager<T> data) where T: class
+        {
+            return data;
+        }
     }
 }

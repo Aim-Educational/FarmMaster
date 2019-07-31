@@ -77,6 +77,7 @@ namespace FarmMaster
             services.AddScoped<IServiceContactManager, ServiceContactManager>();
             services.AddScoped<IServiceRoleManager, ServiceRoleManager>();
             services.AddScoped<IServiceHoldingManager, ServiceHoldingManager>();
+            services.AddScoped<IServiceSpeciesBreedManager, ServiceSpeciesBreedManager>();
 
             // Background services
             services.AddHostedService<FarmBackgroundServiceHost<BackgroundServiceUserActionEmailer>>();
