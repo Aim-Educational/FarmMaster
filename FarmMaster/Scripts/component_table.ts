@@ -172,10 +172,19 @@
     ) {
         let tableBody = table.tBodies.item(0);
 
+        let segment = table.parentElement;
+        if (segment !== null && segment.classList.contains("segment"))
+            segment.classList.add("loading");
+        else
+            segment = null;
+
         FarmAjax.postWithMessageAndValueResponse<FarmAjaxGenericValue<string>>(
             ajaxRender,
             { pageToRender: pageToRender, itemsPerPage: itemsPerPage, entityType: entityType },
             responseAndValue => {
+                if (segment !== null)
+                    segment.classList.remove("loading");
+
                 if (responseAndValue.messageType !== FarmAjaxMessageType.None)
                     responseAndValue.populateMessageBox(boxError);
                 else if (tableBody !== null) {

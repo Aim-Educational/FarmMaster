@@ -113,7 +113,14 @@ var ComponentTable = (function () {
         if (entityType === void 0) { entityType = null; }
         if (itemsPerPage === void 0) { itemsPerPage = null; }
         var tableBody = table.tBodies.item(0);
+        var segment = table.parentElement;
+        if (segment !== null && segment.classList.contains("segment"))
+            segment.classList.add("loading");
+        else
+            segment = null;
         FarmAjax.postWithMessageAndValueResponse(ajaxRender, { pageToRender: pageToRender, itemsPerPage: itemsPerPage, entityType: entityType }, function (responseAndValue) {
+            if (segment !== null)
+                segment.classList.remove("loading");
             if (responseAndValue.messageType !== FarmAjaxMessageType.None)
                 responseAndValue.populateMessageBox(boxError);
             else if (tableBody !== null) {
