@@ -112,10 +112,19 @@
     ) {
         let tableFooter = table.tFoot;
 
+        let segment = table.parentElement;
+        if (segment !== null && segment.classList.contains("segment"))
+            segment.classList.add("loading");
+        else
+            segment = null;
+
         FarmAjax.postWithMessageAndValueResponse<FarmAjaxGenericValue<number>>(
             ajaxPageCount,
             { itemsPerPage: itemsPerPage, entityType: entityType },
             responseAndValue => {
+                if (segment !== null)
+                    segment.classList.remove("loading");
+
                 if (responseAndValue.messageType !== FarmAjaxMessageType.None)
                     responseAndValue.populateMessageBox(boxError);
                 else if (tableFooter !== null) {

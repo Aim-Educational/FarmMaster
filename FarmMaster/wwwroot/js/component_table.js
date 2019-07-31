@@ -69,7 +69,14 @@ var ComponentTable = (function () {
         if (entityType === void 0) { entityType = null; }
         if (itemsPerPage === void 0) { itemsPerPage = null; }
         var tableFooter = table.tFoot;
+        var segment = table.parentElement;
+        if (segment !== null && segment.classList.contains("segment"))
+            segment.classList.add("loading");
+        else
+            segment = null;
         FarmAjax.postWithMessageAndValueResponse(ajaxPageCount, { itemsPerPage: itemsPerPage, entityType: entityType }, function (responseAndValue) {
+            if (segment !== null)
+                segment.classList.remove("loading");
             if (responseAndValue.messageType !== FarmAjaxMessageType.None)
                 responseAndValue.populateMessageBox(boxError);
             else if (tableFooter !== null) {
