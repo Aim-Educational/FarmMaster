@@ -29,7 +29,8 @@ class ComponentCharacteristics {
                     divSegment.classList.remove("loading");
 
                 if (responseAndValue.messageType !== FarmAjaxMessageType.None) {
-                    responseAndValue.populateMessageBox(boxError);
+                    if (boxError !== null)
+                        responseAndValue.populateMessageBox(boxError);
                     return;
                 }
 
@@ -56,6 +57,9 @@ class ComponentCharacteristics {
         tdName.innerText = value.name;
         tr.appendChild(tdName);
 
+        let tdType = document.createElement("td");
+        tr.appendChild(tdType);
+
         let tdValue = document.createElement("td");
         tr.appendChild(tdValue);
 
@@ -65,12 +69,12 @@ class ComponentCharacteristics {
 
         switch (value.type) {
             case ComponentCharacteristicsValueType.TimeSpan:
-                tr.dataset.type = "TimeSpan";
+                tdType.innerText = "TimeSpan";
 
                 let input = document.createElement("input");
                 input.type = "text";
                 input.placeholder = "#d #m #s";
-                input.innerText = value.value;
+                input.value = value.value;
                 div.appendChild(input);
                 break;
 

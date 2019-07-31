@@ -1,4 +1,5 @@
-﻿@{
+﻿@model ComponentCharacteristicsViewModel
+@{
     // __cc__ = __ComponentCharacteristics__
     var idInputName     = "__cc__inputName";
     var idInputType     = "__cc__inputType";
@@ -37,6 +38,7 @@
     <thead>
         <tr>
             <th>Name</th>
+            <th>Type</th>
             <th>Value</th>
             <th>Actions</th>
         </tr>
@@ -57,6 +59,15 @@
 
     $(function ()
     {
+        ComponentCharacteristics.getValuesAjax(
+            null,
+            @varSegment,
+            @idTable,
+            "@Model.AjaxUrl",
+            "@Model.EntityType",
+            @Model.EntityId
+        );
+
         ComponentCharacteristics.addValue(
             @idTable,
             { name: "Debug", type: ComponentCharacteristicsValueType.TimeSpan, value: "3d 59m 30s" }

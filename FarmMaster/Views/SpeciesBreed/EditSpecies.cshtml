@@ -32,7 +32,12 @@
 </section>
 <section class="ui attached segment">
     <h2 class="ui dividing header">Characteristics</h2>
-    <partial name="_ComponentCharacteristics" />
+    <partial name="_ComponentCharacteristics" model='new ComponentCharacteristicsViewModel
+    {
+        AjaxUrl = "/SpeciesBreed/AjaxGetCharacteristics",
+        EntityType = nameof(Species),
+        EntityId = Model.Species.SpeciesId
+    }' />
 </section>
 
 @section Scripts {

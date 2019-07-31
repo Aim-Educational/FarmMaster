@@ -18,7 +18,8 @@ var ComponentCharacteristics = (function () {
             if (divSegment !== null)
                 divSegment.classList.remove("loading");
             if (responseAndValue.messageType !== FarmAjaxMessageType.None) {
-                responseAndValue.populateMessageBox(boxError);
+                if (boxError !== null)
+                    responseAndValue.populateMessageBox(boxError);
                 return;
             }
             var tbody = table.tBodies.item(0);
@@ -36,6 +37,8 @@ var ComponentCharacteristics = (function () {
         var tdName = document.createElement("td");
         tdName.innerText = value.name;
         tr.appendChild(tdName);
+        var tdType = document.createElement("td");
+        tr.appendChild(tdType);
         var tdValue = document.createElement("td");
         tr.appendChild(tdValue);
         var div = document.createElement("div");
@@ -43,11 +46,11 @@ var ComponentCharacteristics = (function () {
         tdValue.appendChild(div);
         switch (value.type) {
             case ComponentCharacteristicsValueType.TimeSpan:
-                tr.dataset.type = "TimeSpan";
+                tdType.innerText = "TimeSpan";
                 var input = document.createElement("input");
                 input.type = "text";
                 input.placeholder = "#d #m #s";
-                input.innerText = value.value;
+                input.value = value.value;
                 div.appendChild(input);
                 break;
             default: break;
