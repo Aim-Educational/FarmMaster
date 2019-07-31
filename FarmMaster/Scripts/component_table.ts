@@ -12,6 +12,7 @@
     ) {
         let name  = inputName.value;
         let value = inputValue.value;
+        let displayValue = inputValue.innerHTML;
 
         boxError.classList.remove("visible");
         segTable.classList.add("loading");
@@ -39,7 +40,7 @@
                     tr.appendChild(td);
 
                     td = document.createElement("td");
-                    td.innerText = value;
+                    td.innerText = displayValue;
                     tr.appendChild(td);
 
                     td = document.createElement("td");
@@ -66,7 +67,7 @@
         segTable: HTMLDivElement,
         ajaxUrl: string,
         reason: string,
-        name: string,
+        value: string,
         id: number
     ) {
         boxError.classList.remove("visible");
@@ -76,7 +77,7 @@
             ajaxUrl,
             {
                 Id: id,
-                Name: name,
+                Name: value,
                 Reason: reason
             },
             response => {
@@ -90,7 +91,7 @@
                         .querySelectorAll("tbody tr")
                         .forEach((row) => {
                             row.querySelectorAll("td").forEach(td => {
-                                if (td.innerText === name) {
+                                if (td.innerText === value) {
                                     segTable.querySelector("tbody").removeChild(row);
                                     return;
                                 }

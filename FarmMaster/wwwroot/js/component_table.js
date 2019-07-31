@@ -4,6 +4,7 @@ var ComponentTable = (function () {
     ComponentTable.onAddAjax = function (inputName, inputValue, boxError, segTable, segInput, ajaxUrl, reason, id, deleteFunc) {
         var name = inputName.value;
         var value = inputValue.value;
+        var displayValue = inputValue.innerHTML;
         boxError.classList.remove("visible");
         segTable.classList.add("loading");
         segInput.classList.add("loading");
@@ -23,7 +24,7 @@ var ComponentTable = (function () {
                 td.innerText = name;
                 tr.appendChild(td);
                 td = document.createElement("td");
-                td.innerText = value;
+                td.innerText = displayValue;
                 tr.appendChild(td);
                 td = document.createElement("td");
                 var a = document.createElement("a");
@@ -39,12 +40,12 @@ var ComponentTable = (function () {
             }
         });
     };
-    ComponentTable.onDeleteAjax = function (boxError, segTable, ajaxUrl, reason, name, id) {
+    ComponentTable.onDeleteAjax = function (boxError, segTable, ajaxUrl, reason, value, id) {
         boxError.classList.remove("visible");
         segTable.classList.add("loading");
         FarmAjax.postWithMessageResponse(ajaxUrl, {
             Id: id,
-            Name: name,
+            Name: value,
             Reason: reason
         }, function (response) {
             segTable.classList.remove("loading");
@@ -55,7 +56,7 @@ var ComponentTable = (function () {
                     .querySelectorAll("tbody tr")
                     .forEach(function (row) {
                     row.querySelectorAll("td").forEach(function (td) {
-                        if (td.innerText === name) {
+                        if (td.innerText === value) {
                             segTable.querySelector("tbody").removeChild(row);
                             return;
                         }
