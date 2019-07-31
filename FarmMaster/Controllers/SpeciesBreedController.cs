@@ -51,7 +51,11 @@ namespace FarmMaster.Controllers
         [FarmAuthorise(PermsAND: new[] { EnumRolePermission.Names.EDIT_SPECIES_BREEDS })]
         public IActionResult EditSpecies(int id)
         {
-            throw new NotImplementedException();
+            var species = this._speciesBreeds.For<Species>().FromId(id);
+            if(species == null)
+                return RedirectToAction(nameof(Index));
+
+            return View(new SpeciesEditViewModel{ Species = species });
         }
 
         [HttpPost]

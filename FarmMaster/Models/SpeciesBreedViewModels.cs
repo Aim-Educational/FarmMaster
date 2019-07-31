@@ -19,4 +19,10 @@ namespace FarmMaster.Models
         public string Name { get; set; }
         public bool IsPoultry { get; set; }
     }
+
+    public class SpeciesEditViewModel : ViewModelWithMessage
+    {
+        [Required]
+        public Species Species { get; set; }
+    }
 }

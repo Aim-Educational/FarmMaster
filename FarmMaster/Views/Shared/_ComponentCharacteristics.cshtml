@@ -1,0 +1,60 @@
+﻿@{
+    // __cc__ = __ComponentCharacteristics__
+    var idInputName     = "__cc__inputName";
+    var idInputType     = "__cc__inputType";
+    var idTable         = "__cc__table";
+    var funcGetValues   = "__cc__getValues";
+    var varSegment      = "__cc__segment";
+}
+
+<section class="ui segment">
+    <h3 class="ui dividing header">Add new characteristic</h3>
+    <section class="ui form">
+        <div class="field">
+            <label>Name</label>
+            <input id="@idInputName" placeholder="Name" />
+        </div>
+        <div class="field">
+            <label>Type</label>
+            <div class="ui fluid search selection dropdown">
+                <input id="@idInputType" type="hidden" />
+                <i class="dropdown icon"></i>
+                <div class="default text">Type</div>
+                <div class="menu">
+                    <div class="item">TimeSpan</div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
+
+<table id="@idTable" class="ui table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Value</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+</table>
+
+<script>
+    let @idTable     = document.getElementById("@idTable");
+    let @idInputType = document.getElementById("@idInputType");
+    let @idInputName = document.getElementById("@idInputName");
+    let @varSegment  = @(idTable).parentElement;
+
+    if (@varSegment !== null && !@(varSegment).classList.contains("segment"))
+        @varSegment = null;
+
+    $(function ()
+    {
+        ComponentCharacteristics.addValue(
+            @idTable,
+            { name: "Debug", type: ComponentCharacteristicsValueType.TimeSpan, value: "3d 59m 30s" }
+        );
+    });
+</script>

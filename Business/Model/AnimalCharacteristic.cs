@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json.Linq;
 
 namespace Business.Model
@@ -18,6 +19,8 @@ namespace Business.Model
 
         protected abstract JObject ToJsonImpl();
         public abstract void FromJson(JObject json);
+        public abstract string ToHtmlString();
+        public abstract void FromHtmlString(string html);
 
         public JObject ToJson()
         {
@@ -92,6 +95,32 @@ namespace Business.Model
             json["v"] = this.TimeSpan.ToString();
 
             return json;
+        }
+
+        public override string ToHtmlString()
+        {
+            var builder = new StringBuilder(30);
+
+            if(this.TimeSpan.Days > 0)    builder.Append($"{this.TimeSpan.Days}d ");
+            if(this.TimeSpan.Minutes > 0) builder.Append($"{this.TimeSpan.Minutes}m ");
+            if(this.TimeSpan.Seconds > 0) builder.Append($"{this.TimeSpan.Seconds}s");
+
+            return builder.ToString();
+        }
+
+        public override void FromHtmlString(string html)
+        {
+            var match = Regex.Match(html, @"^(\d+d)?\s*(\d+m)?\s*(\d+s)?$");
+            if(!match.Success)
+                throw new ArgumentOutOfRangeException($"The html string '{html}' does not meet the pattern of '#d #m #s'");
+
+            this.TimeSpan = new TimeSpan();
+            if (!String.IsNullOrWhiteSpace(match.Groups[1].Value))
+                this.TimeSpan.Add(TimeSpan.FromDays(Convert.ToDouble(match.Groups[1].Value)));
+            if (!String.IsNullOrWhiteSpace(match.Groups[2].Value))
+                this.TimeSpan.Add(TimeSpan.FromMinutes(Convert.ToDouble(match.Groups[2].Value)));
+            if (!String.IsNullOrWhiteSpace(match.Groups[3].Value))
+                this.TimeSpan.Add(TimeSpan.FromSeconds(Convert.ToDouble(match.Groups[3].Value)));
         }
     }
 }
