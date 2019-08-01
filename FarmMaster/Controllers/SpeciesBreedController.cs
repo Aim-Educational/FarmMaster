@@ -118,7 +118,7 @@ namespace FarmMaster.Controllers
                model, this._users, this._roles, new string[] { EnumRolePermission.Names.VIEW_SPECIES_BREEDS },
                (myUser) =>
                {
-                   if(model.EntityType != null && model.EntityType.ToUpper() == "SPECIES")
+                   if (model.EntityType != null && model.EntityType.ToUpper() == "SPECIES")
                    {
                        return this._viewRenderer.RenderToStringAsync(
                            "/Views/SpeciesBreed/_IndexTableSpeciesBodyPartial.cshtml",
@@ -129,6 +129,30 @@ namespace FarmMaster.Controllers
                    {
                        throw new NotImplementedException();
                    }
+               }
+            );
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public IActionResult AjaxGetCharacteristics([FromBody] AjaxCharacteristicsRequest model)
+        {
+            return this.DoAjaxWithValueAndMessageResponse(
+               model, this._users, this._roles, new string[] { EnumRolePermission.Names.VIEW_SPECIES_BREEDS },
+               (myUser) =>
+               {
+                   if(model.Type == "Species")
+                   {
+                       var species = this._speciesBreeds.FromIdAllIncluded<Species>(model.Id);
+                       if(species == null)
+                           throw new NullReferenceException("species");
+                       
+                       return species.CharacteristicList
+                                     .Characteristics
+                                     .Select(c => new AjaxCharacteristicsResponseValue{ Name = c.Name, Value = c.Data.ToHtmlString(), Type = (int)c.CalculatedType });
+                   }
+                   else
+                       throw new NotImplementedException(model.Type);
                }
             );
         }
