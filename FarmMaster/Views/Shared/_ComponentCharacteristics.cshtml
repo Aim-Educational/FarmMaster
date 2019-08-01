@@ -60,17 +60,12 @@
     $(function ()
     {
         ComponentCharacteristics.getValuesAjax(
-            null,
+            document.getElementById('@Model.IdBoxError'),
             @varSegment,
             @idTable,
             "@Model.AjaxUrl",
             "@Model.EntityType",
             @Model.EntityId
-        );
-
-        ComponentCharacteristics.addValue(
-            @idTable,
-            { name: "Debug", type: ComponentCharacteristicsValueType.TimeSpan, value: "3d 59m 30s" }
         );
     });
 </script>

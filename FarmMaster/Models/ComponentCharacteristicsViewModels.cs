@@ -7,6 +7,7 @@ namespace FarmMaster.Models
 {
     public class ComponentCharacteristicsViewModel
     {
+        public string IdBoxError { get; set; }
         public string AjaxUrl { get; set; }
         public string EntityType { get; set; }
         public int EntityId { get; set; }

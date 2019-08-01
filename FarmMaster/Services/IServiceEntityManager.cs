@@ -10,6 +10,7 @@ namespace FarmMaster.Services
         IQueryable<T> Query();
         IQueryable<T> QueryAllIncluded();
         int GetIdFor(T entity);
+        void Update(T entity);
     }
 
     public static class IServiceEntityDataExtentions

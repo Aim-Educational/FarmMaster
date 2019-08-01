@@ -70,6 +70,18 @@ namespace FarmMaster.Services
                                  .ThenInclude(c => c.Characteristics);
         }
 
+        public void Update(Species entity)
+        {
+            this._context.Update(entity);
+            this._context.SaveChanges();
+        }
+
+        public void Update(Breed entity)
+        {
+            this._context.Update(entity);
+            this._context.SaveChanges();
+        }
+
         IQueryable<Breed> IServiceEntityManager<Breed>.Query()
         {
             return this._context.Breeds;

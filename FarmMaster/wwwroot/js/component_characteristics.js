@@ -41,6 +41,12 @@ var ComponentCharacteristics = (function () {
         tr.appendChild(tdType);
         var tdValue = document.createElement("td");
         tr.appendChild(tdValue);
+        var tdActions = document.createElement("td");
+        tr.appendChild(tdActions);
+        var btnDelete = document.createElement("button");
+        btnDelete.classList.add("ui", "secondary", "button");
+        btnDelete.innerText = "Delete";
+        tdActions.appendChild(btnDelete);
         var div = document.createElement("div");
         div.classList.add("ui", "form");
         tdValue.appendChild(div);

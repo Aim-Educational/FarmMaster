@@ -238,5 +238,11 @@ namespace FarmMaster.Services
 
             return contact;
         }
+
+        public void Update(Contact entity)
+        {
+            this._context.Update(entity);
+            this._context.SaveChanges();
+        }
     }
 }

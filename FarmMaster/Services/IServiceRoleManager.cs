@@ -134,5 +134,11 @@ namespace FarmMaster.Services
         {
             return entity.RoleId;
         }
+
+        public void Update(Role entity)
+        {
+            this._context.Update(entity);
+            this._context.SaveChanges();
+        }
     }
 }

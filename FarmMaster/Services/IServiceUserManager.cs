@@ -252,5 +252,11 @@ namespace FarmMaster.Services
         {
             return entity.UserId;
         }
+
+        public void Update(User entity)
+        {
+            this._context.Update(entity);
+            this._context.SaveChanges();
+        }
     }
 }

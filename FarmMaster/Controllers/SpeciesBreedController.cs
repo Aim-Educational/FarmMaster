@@ -72,6 +72,24 @@ namespace FarmMaster.Controllers
             var species = this._speciesBreeds.CreateSpecies(model.Name, model.IsPoultry);
             return RedirectToAction(nameof(EditSpecies), new { id = species.SpeciesId});
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [FarmAuthorise(PermsAND: new[] { EnumRolePermission.Names.EDIT_SPECIES_BREEDS })]
+        public IActionResult EditSpecies(SpeciesEditViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                model.ParseMessageQueryString(ViewModelWithMessage.CreateMessageQueryString(ModelState));
+                return View(model);
+            }
+
+            this._speciesBreeds.Update(model.Species);
+
+            model.MessageType = ViewModelWithMessage.Type.Information;
+            model.Message = "Success";
+            return View(model);
+        }
         #endregion
 
         #region AJAX

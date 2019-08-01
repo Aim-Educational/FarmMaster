@@ -126,5 +126,11 @@ namespace FarmMaster.Services
             this._context.Remove(holdingDb);
             this._context.SaveChanges();
         }
+
+        public void Update(Holding entity)
+        {
+            this._context.Update(entity);
+            this._context.SaveChanges();
+        }
     }
 }
