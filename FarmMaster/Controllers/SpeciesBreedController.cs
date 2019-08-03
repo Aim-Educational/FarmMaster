@@ -105,7 +105,7 @@ namespace FarmMaster.Controllers
                                    ? this._speciesBreeds.For<Species>().Query().Count()
                                    : this._speciesBreeds.For<Breed>().Query().Count();
 
-                   return new AjaxBuiltInValue<int>(PagingHelper.CalculatePageCount(itemCount, model.ItemsPerPage));
+                   return new AjaxStructReturnValue<int>(PagingHelper.CalculatePageCount(itemCount, model.ItemsPerPage));
                }
            );
         }

@@ -13,13 +13,13 @@ namespace FarmMaster.Misc
     {
         public static IActionResult DoAjaxWithMessageResponse(
             this Controller controller,
-            AjaxModel model,
+            AjaxRequestModel model,
             IServiceUserManager users,
             IServiceRoleManager roles,
             string[] permsNeeded,
             Action<User> action)
         {
-            var message = new AjaxModelWithMessage();
+            var message = new AjaxResponseWithMessageModel();
 
             if (!controller.ModelState.IsValid)
             {
@@ -44,14 +44,14 @@ namespace FarmMaster.Misc
 
         public static IActionResult DoAjaxWithValueAndMessageResponse<T>(
             this Controller controller,
-            AjaxModel model,
+            AjaxRequestModel model,
             IServiceUserManager users,
             IServiceRoleManager roles,
             string[] permsNeeded,
             Func<User, T> action)
         where T : class
         {
-            var response = new AjaxModelWithValueAndMessage<T>();
+            var response = new AjaxResponseWithMessageAndValueModel<T>();
 
             if (!controller.ModelState.IsValid)
             {
@@ -75,7 +75,7 @@ namespace FarmMaster.Misc
         }
 
         private static User DoValidation(
-            AjaxModel model,
+            AjaxRequestModel model,
             IServiceUserManager users,
             IServiceRoleManager roles,
             string[] permsNeeded)

@@ -277,7 +277,7 @@ namespace FarmMaster.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public IActionResult AjaxGetNameAndValueAll([FromBody] AjaxModel model)
+        public IActionResult AjaxGetNameAndValueAll([FromBody] AjaxRequestModel model)
         {
             return this.DoAjaxWithValueAndMessageResponse(
                 model, this._users, this._roles, new string[]{ },
@@ -299,7 +299,7 @@ namespace FarmMaster.Controllers
                 model, this._users, this._roles, new string[]{ EnumRolePermission.Names.VIEW_CONTACTS },
                 (myUser) =>
                 {
-                    return new AjaxBuiltInValue<int>(PagingHelper.CalculatePageCount(this._contacts.Query().Count(), model.ItemsPerPage));
+                    return new AjaxStructReturnValue<int>(PagingHelper.CalculatePageCount(this._contacts.Query().Count(), model.ItemsPerPage));
                 }
             );
         }

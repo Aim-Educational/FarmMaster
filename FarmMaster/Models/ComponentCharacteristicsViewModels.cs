@@ -14,7 +14,7 @@ namespace FarmMaster.Models
         public int EntityId { get; set; }
     }
 
-    public class AjaxCharacteristicsRequest : AjaxModel
+    public class AjaxCharacteristicsRequest : AjaxRequestModel
     {
         [Required]
         public string Type { get; set; }

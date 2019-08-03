@@ -32,7 +32,7 @@ namespace FarmMaster.Models
         public string Email { get; set; }
     }
 
-    public class ContactAjaxAddPhoneNumber : AjaxModel
+    public class ContactAjaxAddPhoneNumber : AjaxRequestModel
     {
         [Required]
         public int Id { get; set; }
@@ -48,7 +48,7 @@ namespace FarmMaster.Models
         public string Reason { get; set; }
     }
 
-    public class ContactAjaxAddEmailAddress : AjaxModel
+    public class ContactAjaxAddEmailAddress : AjaxRequestModel
     {
         [Required]
         public int Id { get; set; }
@@ -64,7 +64,7 @@ namespace FarmMaster.Models
         public string Reason { get; set; }
     }
 
-    public class ContactAjaxAddRelationship : AjaxModel
+    public class ContactAjaxAddRelationship : AjaxRequestModel
     {
         [Required]
         public int Id { get; set; }
@@ -79,7 +79,7 @@ namespace FarmMaster.Models
         public string Reason { get; set; }
     }
 
-    public class ContactAjaxRemoveByName : AjaxModel
+    public class ContactAjaxRemoveByName : AjaxRequestModel
     {
         [Required]
         public int Id { get; set; }

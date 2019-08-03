@@ -243,7 +243,7 @@ namespace FarmMaster.Controllers
         }
     }
 
-    public class AjaxSetUserRoleData : AjaxModel
+    public class AjaxSetUserRoleData : AjaxRequestModel
     {
        public int userId { get; set; }
        public int roleId { get; set; }
