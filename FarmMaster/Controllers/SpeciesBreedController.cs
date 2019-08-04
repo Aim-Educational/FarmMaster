@@ -168,19 +168,7 @@ namespace FarmMaster.Controllers
                model, this._users, this._roles, new string[] { EnumRolePermission.Names.VIEW_SPECIES_BREEDS },
                (myUser) =>
                {
-                   AnimalCharacteristicList list = null;
-
-                   // Get or create the list.
-                   if(model.EntityType == "Species")
-                   {
-                       var species = this._speciesBreeds.For<Species>().FromIdAllIncluded(model.EntityId);
-                       if(species == null)
-                           throw new NullReferenceException("species");
-
-                       list = species.CharacteristicList;
-                   }
-                   else
-                       throw new NotImplementedException(model.EntityType);
+                   AnimalCharacteristicList list = this.GetOrCreateListForEntity(model.EntityType, model.EntityId);                    
                    
                    var chara = this._characteristics.CreateFromHtmlString(
                        list, 
@@ -190,6 +178,22 @@ namespace FarmMaster.Controllers
                    );
                }
             );
+        }
+        #endregion
+
+        #region Helpers
+        private AnimalCharacteristicList GetOrCreateListForEntity(string type, int id)
+        {
+            if (type == "Species")
+            {
+                var species = this._speciesBreeds.For<Species>().FromIdAllIncluded(id);
+                if (species == null)
+                    throw new NullReferenceException("species");
+
+                return species.CharacteristicList;
+            }
+            else
+                throw new NotImplementedException(type);
         }
         #endregion
     }

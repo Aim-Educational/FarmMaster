@@ -22,9 +22,12 @@ namespace FarmMaster.Services
 
         public AnimalCharacteristic CreateFromHtmlString(AnimalCharacteristicList list, string name, AnimalCharacteristic.Type type, string htmlString)
         {
+            if(list.Characteristics.Any(c => c.Name == name))
+                throw new Exception("A characteristic with that name already exists.");
+
             var factory = new AnimalCharacteristicFactory();
             var data = factory.FromTypeAndHtmlString(type, htmlString);
-       
+                   
             var chara = new AnimalCharacteristic
             {
                 Data = data,
