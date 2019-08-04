@@ -13,6 +13,16 @@ namespace FarmMaster.Services
         void Update(T entity);
     }
 
+    public interface IServiceEntityManagerFullDeletion<T> where T : class
+    {
+        void FullDelete(T entity);
+    }
+
+    public interface IServiceEntityManagerAnonymousDeletion<T> where T : class
+    {
+        void AnonymiseDelete(T entity);
+    }
+
     public static class IServiceEntityDataExtentions
     {
         public static T FromId<T>(this IServiceEntityManager<T> data, int id) where T : class

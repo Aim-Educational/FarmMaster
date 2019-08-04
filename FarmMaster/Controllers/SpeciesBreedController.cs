@@ -168,14 +168,31 @@ namespace FarmMaster.Controllers
                model, this._users, this._roles, new string[] { EnumRolePermission.Names.VIEW_SPECIES_BREEDS },
                (myUser) =>
                {
-                   AnimalCharacteristicList list = this.GetOrCreateListForEntity(model.EntityType, model.EntityId);                    
-                   
+                   var list = this.GetOrCreateListForEntity(model.EntityType, model.EntityId);
                    var chara = this._characteristics.CreateFromHtmlString(
-                       list, 
-                       model.CharaName, 
+                       list,
+                       model.CharaName,
                        model.CharaType,
                        model.CharaValue
                    );
+               }
+            );
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public IActionResult AjaxDeleteCharacteristicByName([FromBody] AjaxCharacteristicsDeleteByNameRequest model)
+        {
+            return this.DoAjaxWithMessageResponse(
+               model, this._users, this._roles, new string[] { EnumRolePermission.Names.VIEW_SPECIES_BREEDS },
+               (myUser) =>
+               {
+                   var list = this.GetOrCreateListForEntity(model.EntityType, model.EntityId);
+                   var chara = list.Characteristics.FirstOrDefault(c => c.Name == model.CharaName);
+                   if(chara == null)
+                       throw new KeyNotFoundException(model.CharaName);
+
+                   this._characteristics.FullDelete(chara);
                }
             );
         }

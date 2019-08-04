@@ -11,7 +11,7 @@ var ComponentCharacteristicsValue = (function () {
 var ComponentCharacteristics = (function () {
     function ComponentCharacteristics() {
     }
-    ComponentCharacteristics.getValuesAjax = function (boxError, divSegment, table, ajaxUrl, type, id) {
+    ComponentCharacteristics.getValuesAjax = function (boxError, divSegment, table, funcDelete, ajaxUrl, type, id) {
         if (divSegment !== null)
             divSegment.classList.add("loading");
         FarmAjax.postWithMessageAndValueResponse(ajaxUrl, { type: type, id: id }, function (responseAndValue) {
@@ -26,11 +26,11 @@ var ComponentCharacteristics = (function () {
             tbody.innerHTML = "";
             for (var _i = 0, _a = responseAndValue.value; _i < _a.length; _i++) {
                 var characteristic = _a[_i];
-                ComponentCharacteristics.addValue(table, characteristic);
+                ComponentCharacteristics.addValue(table, funcDelete, characteristic);
             }
         });
     };
-    ComponentCharacteristics.addValue = function (table, value) {
+    ComponentCharacteristics.addValue = function (table, funcDelete, value) {
         var tbody = table.tBodies.item(0);
         var tr = document.createElement("tr");
         tbody.appendChild(tr);
@@ -46,6 +46,7 @@ var ComponentCharacteristics = (function () {
         var btnDelete = document.createElement("button");
         btnDelete.classList.add("ui", "secondary", "button");
         btnDelete.innerText = "Delete";
+        btnDelete.onclick = function () { return funcDelete(value); };
         tdActions.appendChild(btnDelete);
         var div = document.createElement("div");
         div.classList.add("ui", "form");

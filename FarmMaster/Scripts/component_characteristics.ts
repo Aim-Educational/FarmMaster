@@ -14,6 +14,7 @@ class ComponentCharacteristics {
         boxError: HTMLDivElement | null,
         divSegment: HTMLDivElement | null,
         table: HTMLTableElement,
+        funcDelete: (value: ComponentCharacteristicsValue) => void,
         ajaxUrl: string,
         type: string,
         id: string
@@ -38,7 +39,7 @@ class ComponentCharacteristics {
                 tbody.innerHTML = "";
 
                 for (let characteristic of responseAndValue.value) {
-                    ComponentCharacteristics.addValue(table, characteristic);
+                    ComponentCharacteristics.addValue(table, funcDelete, characteristic);
                 }
             }
         );
@@ -46,6 +47,7 @@ class ComponentCharacteristics {
 
     public static addValue(
         table: HTMLTableElement,
+        funcDelete: (value: ComponentCharacteristicsValue) => void,
         value: ComponentCharacteristicsValue
     ) {
         let tbody = table.tBodies.item(0);
@@ -69,6 +71,7 @@ class ComponentCharacteristics {
         let btnDelete = document.createElement("button");
         btnDelete.classList.add("ui", "secondary", "button");
         btnDelete.innerText = "Delete";
+        btnDelete.onclick = () => funcDelete(value);
         tdActions.appendChild(btnDelete);
 
         let div = document.createElement("div");

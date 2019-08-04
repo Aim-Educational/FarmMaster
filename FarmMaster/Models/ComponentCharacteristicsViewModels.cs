@@ -12,6 +12,7 @@ namespace FarmMaster.Models
         public string IdBoxError { get; set; }
         public string AjaxListUrl { get; set; }
         public string AjaxAddUrl { get; set; }
+        public string AjaxDeleteUrl { get; set; }
         public string EntityType { get; set; }
         public int EntityId { get; set; }
     }
@@ -48,5 +49,17 @@ namespace FarmMaster.Models
 
         [Required]
         public string CharaValue { get; set; }
+    }
+
+    public class AjaxCharacteristicsDeleteByNameRequest : AjaxRequestModel
+    {
+        [Required]
+        public int EntityId { get; set; }
+        
+        [Required]
+        public string EntityType { get; set; }
+
+        [Required]
+        public string CharaName { get; set; }
     }
 }

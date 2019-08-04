@@ -1,4 +1,8 @@
-﻿@model ComponentCharacteristicsViewModel
+﻿<!--
+    REQUIRES "_ComponentModalAreYouSure" PARTIAL TO BE INCLUDED AS WELL.    
+-->
+
+@model ComponentCharacteristicsViewModel
 @{
     // __cc__ = __ComponentCharacteristics__
     var idInputName             = "__cc__inputName";
@@ -11,6 +15,7 @@
     var funcRefresh             = "__cc__refresh";
     var funcAddGeneric          = "__cc__addGeneric";
     var funcAddTimeSpan         = "__cc__addTimeSpan";
+    var funcDeleteByName        = "__cc__deleteByName";
     var varSegment              = "__cc__segment";
     var classDivCreate          = "ui transition hidden";
 }
@@ -92,9 +97,31 @@
             document.getElementById('@Model.IdBoxError'),
             @varSegment,
             @idTable,
+            @funcDeleteByName,
             "@Model.AjaxListUrl",
             "@Model.EntityType",
             @Model.EntityId
+        );
+    }
+
+    function @funcDeleteByName (value) {
+        ComponentModal.showAreYouSureModal(() =>
+            FarmAjax.postWithMessageResponse(
+                "@Model.AjaxDeleteUrl",
+                {
+                    entityId: @Model.EntityId,
+                    entityType: "@Model.EntityType",
+                    charaName: value.name
+                },
+                response => {
+                    if (response.messageType == FarmAjaxMessageType.Error) {
+                        //response.populateMessageBox(boxError);
+                        return;
+                    }
+
+                    @funcRefresh ();
+                }
+            )
         );
     }
 

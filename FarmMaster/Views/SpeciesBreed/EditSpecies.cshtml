@@ -3,6 +3,8 @@
     ViewData["Title"] = "Edit - Species";
 }
 
+<partial name="_ComponentModalAreYouSure" />
+
 <section class="ui top attached header">
     <h2>Edit Species</h2>
 </section>
@@ -37,6 +39,7 @@
         IdBoxError = "divAllErrors",
         AjaxListUrl = "/SpeciesBreed/AjaxGetCharacteristics",
         AjaxAddUrl = "/SpeciesBreed/AjaxAddCharacteristic",
+        AjaxDeleteUrl = "/SpeciesBreed/AjaxDeleteCharacteristicByName",
         EntityType = nameof(Species),
         EntityId = Model.Species.SpeciesId
     }' />
