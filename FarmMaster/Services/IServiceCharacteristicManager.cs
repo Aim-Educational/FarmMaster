@@ -1,0 +1,71 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Business.Model;
+
+namespace FarmMaster.Services
+{
+    public interface IServiceCharacteristicManager : IServiceEntityManager<AnimalCharacteristic>
+    {
+        AnimalCharacteristic CreateFromHtmlString(AnimalCharacteristicList list, string name, AnimalCharacteristic.Type type, string htmlString);
+    }
+
+    public class ServiceCharacteristicManager : IServiceCharacteristicManager
+    {
+        readonly FarmMasterContext _context;
+
+        public ServiceCharacteristicManager(FarmMasterContext context)
+        {
+            this._context = context;
+        }
+
+        public AnimalCharacteristic CreateFromHtmlString(AnimalCharacteristicList list, string name, AnimalCharacteristic.Type type, string htmlString)
+        {
+            var factory = new AnimalCharacteristicFactory();
+            var data = factory.FromTypeAndHtmlString(type, htmlString);
+       
+            var chara = new AnimalCharacteristic
+            {
+                Data = data,
+                List = list,
+                Name = name,
+                DataType = type
+            };
+
+            this._context.Add(chara);
+            this._context.SaveChanges();
+
+            return chara;
+        }
+
+        public int GetIdFor(AnimalCharacteristic entity)
+        {
+            return entity.AnimalCharacteristicId;
+        }
+
+        public IQueryable<AnimalCharacteristic> Query()
+        {
+            // TBH, no real reason the query stuff needs to even be used with this entity.
+            throw new NotImplementedException();
+        }
+
+        public IQueryable<AnimalCharacteristic> QueryAllIncluded()
+        {
+            // See above.
+            throw new NotImplementedException();
+        }
+
+        public void Update(AnimalCharacteristic entity)
+        {
+            if(entity == null)
+                throw new ArgumentNullException("entity");
+
+            // Because of the slightly dodgy way we're handling the 'Data' field, it's safer to just always
+            // assume it's been modified, instead of letting EF determine.
+            this._context.Update(entity);
+            this._context.Entry(entity).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            this._context.SaveChanges();
+        }
+    }
+}

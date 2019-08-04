@@ -1,11 +1,18 @@
 ﻿@model ComponentCharacteristicsViewModel
 @{
     // __cc__ = __ComponentCharacteristics__
-    var idInputName     = "__cc__inputName";
-    var idInputType     = "__cc__inputType";
-    var idTable         = "__cc__table";
-    var funcGetValues   = "__cc__getValues";
-    var varSegment      = "__cc__segment";
+    var idInputName             = "__cc__inputName";
+    var idInputType             = "__cc__inputType";
+    var idTable                 = "__cc__table";
+    var idCharacteristicError   = "__cc__boxCharaError";
+    var idInputTimeSpanDays     = "__cc__inputTimeSpanDays";
+    var idInputTimeSpanMinutes  = "__cc__inputTimeSpanMins";
+    var idInputTimeSpanSeconds  = "__cc__inputTimeSpanSecs";
+    var funcRefresh             = "__cc__refresh";
+    var funcAddGeneric          = "__cc__addGeneric";
+    var funcAddTimeSpan         = "__cc__addTimeSpan";
+    var varSegment              = "__cc__segment";
+    var classDivCreate          = "ui transition hidden";
 }
 
 <section class="ui styled fluid accordion">
@@ -26,10 +33,33 @@
                     <i class="dropdown icon"></i>
                     <div class="default text">Type</div>
                     <div class="menu">
-                        <div class="item">TimeSpan</div>
+                        <div class="item" data-content-id="divCreateTimespan">TimeSpan</div>
                     </div>
                 </div>
             </div>
+            <hr />
+            <section class="field">
+                <section id="divCreateTimespan" class="@classDivCreate">
+                    <div class="three inline fields">
+                        <div class="field">
+                            <label>Days</label>
+                            <input id="@idInputTimeSpanDays" type="number" value="0" />
+                        </div>                        
+                        <div class="field">
+                            <label>Minutes</label>
+                            <input id="@idInputTimeSpanMinutes" type="number" value="0" />
+                        </div>                        
+                        <div class="field">
+                            <label>Seconds</label>
+                            <input id="@idInputTimeSpanSeconds" type="number" value="0" />
+                        </div>
+                    </div>
+                    <div class="field">
+                        <button class="ui fluid button" onclick="@funcAddTimeSpan ();">Add TimeSpan Characteristic</button>
+                    </div>
+                </section>
+            </section>
+            <div id="@idCharacteristicError" class="ui error message transition hidden"></div>
         </section>
     </div>
 </section>
@@ -57,15 +87,60 @@
     if (@varSegment !== null && !@(varSegment).classList.contains("segment"))
         @varSegment = null;
 
-    $(function ()
-    {
+    function @funcRefresh () {
         ComponentCharacteristics.getValuesAjax(
             document.getElementById('@Model.IdBoxError'),
             @varSegment,
             @idTable,
-            "@Model.AjaxUrl",
+            "@Model.AjaxListUrl",
             "@Model.EntityType",
             @Model.EntityId
         );
+    }
+
+    function @funcAddGeneric (url, boxError, entityId, entityType, charaName, charaType, charaValue) {
+        boxError.classList.add("transition", "hidden");
+        FarmAjax.postWithMessageResponse(
+            url,
+            {
+                entityId: entityId,
+                entityType: entityType,
+                charaName: charaName,
+                charaType: charaType,
+                charaValue: charaValue
+            },
+            response => {
+                if (response.messageType == FarmAjaxMessageType.Error) {
+                    response.populateMessageBox(boxError);
+                    return;
+                }
+
+                @funcRefresh ();
+            }
+        );
+    }
+
+    function @funcAddTimeSpan () {
+        let days = document.getElementById("@idInputTimeSpanDays").value || "0";
+        let mins = document.getElementById("@idInputTimeSpanMinutes").value || "0";
+        let secs = document.getElementById("@idInputTimeSpanSeconds").value || "0";
+        let value = days + "d " + mins + "m " + secs + "s";
+
+        @funcAddGeneric (
+            "@Model.AjaxAddUrl",
+            document.getElementById("@idCharacteristicError"),
+            @Model.EntityId,
+            "@Model.EntityType",
+            document.getElementById("@idInputName").value,
+            "TimeSpan",
+            value
+        );
+    }
+
+    $(function ()
+    {
+        @funcRefresh ();
+
+        ComponentSelect.asContentSelector(document.getElementById("@idInputType"));
     });
 </script>

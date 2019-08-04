@@ -53,9 +53,9 @@ namespace Business.Model
         [Required]
         public int ListId { get; set; }
         public AnimalCharacteristicList List { get; set; }
-
-        // CALCULATED FIELD
-        public Type CalculatedType { get; set; }
+        
+        [Required]
+        public Type DataType { get; set; }
     }
 
     public class AnimalCharacteristicFactory
@@ -63,15 +63,29 @@ namespace Business.Model
         public AnimalCharacteristicBase FromJson(JObject json)
         {
             var typeKey = json.GetValue(AnimalCharacteristicBase.TYPE_KEY).Value<string>();
+            var type = Enum.Parse<AnimalCharacteristic.Type>(typeKey);
+            var data = this.FromType(type);
 
-            switch(typeKey)
+            data.FromJson(json);
+            return data;
+        }
+
+        public AnimalCharacteristicBase FromTypeAndHtmlString(AnimalCharacteristic.Type type, string htmlString)
+        {
+            var data = this.FromType(type);
+            data.FromHtmlString(htmlString);
+            return data;
+        }
+
+        private AnimalCharacteristicBase FromType(AnimalCharacteristic.Type type)
+        {
+            switch (type)
             {
-                case nameof(AnimalCharacteristic.Type.TimeSpan):
+                case AnimalCharacteristic.Type.TimeSpan:
                     var c = new AnimalCharacteristicTimeSpan();
-                    c.FromJson(json);
                     return c;
 
-                default: throw new InvalidOperationException($"The type key '{typeKey}' does not exist.");
+                default: throw new InvalidOperationException($"The type key '{type}' does not exist.");
             }
         }
     }
@@ -110,17 +124,17 @@ namespace Business.Model
 
         public override void FromHtmlString(string html)
         {
-            var match = Regex.Match(html, @"^(\d+d)?\s*(\d+m)?\s*(\d+s)?$");
+            var match = Regex.Match(html, @"^(\d+)d?\s*(\d+)m?\s*(\d+)s?$");
             if(!match.Success)
                 throw new ArgumentOutOfRangeException($"The html string '{html}' does not meet the pattern of '#d #m #s'");
 
             this.TimeSpan = new TimeSpan();
             if (!String.IsNullOrWhiteSpace(match.Groups[1].Value))
-                this.TimeSpan.Add(TimeSpan.FromDays(Convert.ToDouble(match.Groups[1].Value)));
+                this.TimeSpan = this.TimeSpan.Add(TimeSpan.FromDays(Convert.ToDouble(match.Groups[1].Value)));
             if (!String.IsNullOrWhiteSpace(match.Groups[2].Value))
-                this.TimeSpan.Add(TimeSpan.FromMinutes(Convert.ToDouble(match.Groups[2].Value)));
+                this.TimeSpan = this.TimeSpan.Add(TimeSpan.FromMinutes(Convert.ToDouble(match.Groups[2].Value)));
             if (!String.IsNullOrWhiteSpace(match.Groups[3].Value))
-                this.TimeSpan.Add(TimeSpan.FromSeconds(Convert.ToDouble(match.Groups[3].Value)));
+                this.TimeSpan = this.TimeSpan.Add(TimeSpan.FromSeconds(Convert.ToDouble(match.Groups[3].Value)));
         }
     }
 }

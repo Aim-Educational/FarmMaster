@@ -90,11 +90,8 @@ namespace Business.Model
                 s => (new AnimalCharacteristicFactory()).FromJson(JObject.Parse(s))
              );
             b.Entity<AnimalCharacteristic>()
-             .Property(c => c.CalculatedType)
+             .Property(c => c.DataType)
              .HasConversion<string>();
-            b.Entity<AnimalCharacteristic>()
-             .Property(c => c.CalculatedType)
-             .HasComputedColumnSql($"\"CalculatedType\"::json->'{AnimalCharacteristicBase.TYPE_KEY}'");
 
             this.SeedRolePermissions(b);
             this.SeedHoldingRegistrations(b);
@@ -116,6 +113,8 @@ namespace Business.Model
         public DbSet<MapHoldingRegistrationToHolding>   MapHoldingRegistrationToHoldings { get; set; }
         public DbSet<Species>                           Species                          { get; set; }
         public DbSet<Breed>                             Breeds                           { get; set; }
+        public DbSet<AnimalCharacteristic>              AnimalCharacteristics            { get; set; }
+        public DbSet<AnimalCharacteristicList>          AnimalCharacteristicLists        { get; set; }
         #endregion
 
         #region Data seeding

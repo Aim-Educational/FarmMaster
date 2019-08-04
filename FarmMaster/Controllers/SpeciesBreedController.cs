@@ -19,18 +19,21 @@ namespace FarmMaster.Controllers
         readonly IServiceRoleManager _roles;
         readonly IServiceSpeciesBreedManager _speciesBreeds;
         readonly IViewRenderService _viewRenderer;
+        readonly IServiceCharacteristicManager _characteristics;
 
         public SpeciesBreedController(
             IServiceUserManager users, 
             IServiceRoleManager roles, 
             IServiceSpeciesBreedManager speciesBreeds,
-            IViewRenderService viewRenderer
+            IViewRenderService viewRenderer,
+            IServiceCharacteristicManager characteristics
         )
         {
             this._users = users;
             this._roles = roles;
             this._speciesBreeds = speciesBreeds;
             this._viewRenderer = viewRenderer;
+            this._characteristics = characteristics;
         }
 
         public IActionResult Index()
@@ -137,22 +140,54 @@ namespace FarmMaster.Controllers
         [AllowAnonymous]
         public IActionResult AjaxGetCharacteristics([FromBody] AjaxCharacteristicsRequest model)
         {
-            return this.DoAjaxWithValueAndMessageResponse(
+            return (this).DoAjaxWithValueAndMessageResponse(
                model, this._users, this._roles, new string[] { EnumRolePermission.Names.VIEW_SPECIES_BREEDS },
                (myUser) =>
                {
-                   if(model.Type == "Species")
+                   if (model.Type == "Species")
                    {
                        var species = this._speciesBreeds.FromIdAllIncluded<Species>(model.Id);
-                       if(species == null)
+                       if (species == null)
                            throw new NullReferenceException("species");
-                       
+
                        return species.CharacteristicList
                                      .Characteristics
-                                     .Select(c => new AjaxCharacteristicsResponseValue{ Name = c.Name, Value = c.Data.ToHtmlString(), Type = (int)c.CalculatedType });
+                                     .Select(c => new AjaxCharacteristicsResponseValue { Name = c.Name, Value = c.Data.ToHtmlString(), Type = (int)c.DataType });
                    }
                    else
                        throw new NotImplementedException(model.Type);
+               }
+            );
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public IActionResult AjaxAddCharacteristic([FromBody] AjaxCharacteristicsAddRequest model)
+        {
+            return this.DoAjaxWithMessageResponse(
+               model, this._users, this._roles, new string[] { EnumRolePermission.Names.VIEW_SPECIES_BREEDS },
+               (myUser) =>
+               {
+                   AnimalCharacteristicList list = null;
+
+                   // Get or create the list.
+                   if(model.EntityType == "Species")
+                   {
+                       var species = this._speciesBreeds.For<Species>().FromIdAllIncluded(model.EntityId);
+                       if(species == null)
+                           throw new NullReferenceException("species");
+
+                       list = species.CharacteristicList;
+                   }
+                   else
+                       throw new NotImplementedException(model.EntityType);
+                   
+                   var chara = this._characteristics.CreateFromHtmlString(
+                       list, 
+                       model.CharaName, 
+                       model.CharaType,
+                       model.CharaValue
+                   );
                }
             );
         }

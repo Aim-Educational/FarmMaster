@@ -54,6 +54,51 @@ var ComponentSelect = (function () {
                 throw typeof inputSelect;
         });
     };
+    ComponentSelect.asContentSelector = function (inputSelect) {
+        inputSelect.addEventListener("change", function () {
+            var idContent = "";
+            if (inputSelect instanceof HTMLSelectElement) {
+                var item = inputSelect.selectedOptions.item(0);
+                idContent = (item.dataset.contentId) ? item.dataset.contentId : item.value;
+            }
+            else {
+                var options_2 = ComponentSelect.getOptions(inputSelect);
+                var item = options_2.filter(function (opt) { return opt.value == inputSelect.value; })[0];
+                idContent = (item.dataset.contentId) ? item.dataset.contentId : item.value;
+            }
+            var options = ComponentSelect.getOptions(inputSelect);
+            for (var _i = 0, options_1 = options; _i < options_1.length; _i++) {
+                var option = options_1[_i];
+                document.getElementById((option.dataset.contentId) ? option.dataset.contentId : option.value)
+                    .classList.add("transition", "hidden");
+            }
+            document.getElementById(idContent).classList.remove("transition", "hidden");
+        });
+    };
+    ComponentSelect.getOptions = function (inputSelect) {
+        if ((inputSelect instanceof HTMLSelectElement || inputSelect instanceof HTMLInputElement)
+            && inputSelect.parentElement.classList.contains("dropdown")) {
+            inputSelect = inputSelect.parentElement;
+        }
+        if (inputSelect instanceof HTMLSelectElement) {
+            var list = [];
+            for (var i = 0; i < inputSelect.item.length; i++) {
+                var item = inputSelect.options.item(i);
+                list.push({ value: item.value.toLowerCase(), description: item.innerText, dataset: item.dataset });
+            }
+            return list;
+        }
+        if (inputSelect instanceof HTMLDivElement) {
+            var list_1 = [];
+            inputSelect.querySelectorAll(".menu .item")
+                .forEach(function (item) {
+                var value = (item.dataset.value) ? item.dataset.value : item.innerText;
+                list_1.push({ value: value.toLowerCase(), description: item.innerText, dataset: item.dataset });
+            });
+            return list_1;
+        }
+        throw "Unsupported type: " + inputSelect;
+    };
     return ComponentSelect;
 }());
 //# sourceMappingURL=component_select.js.map

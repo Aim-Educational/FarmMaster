@@ -1,6 +1,9 @@
 ﻿class ComponentSelectOption {
     public value: string;
     public description: string;
+
+    // Not returned by server, but other helper functions:
+    public dataset: DOMStringMap;
 }
 
 class ComponentSelect {
@@ -66,5 +69,63 @@ class ComponentSelect {
             else
                 throw typeof inputSelect;
         });
+    }
+
+    public static asContentSelector(inputSelect: HTMLSelectElement | HTMLInputElement) {
+        inputSelect.addEventListener("change", function ()
+        {
+            let idContent: string = "";
+
+            if (inputSelect instanceof HTMLSelectElement) {
+                let item = inputSelect.selectedOptions.item(0);
+                idContent = (item.dataset.contentId) ? item.dataset.contentId : item.value;
+            }
+            else {
+                let options = ComponentSelect.getOptions(inputSelect);
+                let item = options.filter(opt => opt.value == inputSelect.value)[0];
+                idContent = (item.dataset.contentId) ? item.dataset.contentId : item.value;
+            }
+
+            // Hide all other options.
+            let options = ComponentSelect.getOptions(inputSelect);
+            for (let option of options) {
+                document.getElementById((option.dataset.contentId) ? option.dataset.contentId : option.value)
+                    .classList.add("transition", "hidden");
+            }
+
+            // Show the one we want.
+            document.getElementById(idContent).classList.remove("transition", "hidden");
+        });
+    }
+
+    // A universal way to get the options of either a normal <select>, or a Fomantic UI style select.
+    public static getOptions(inputSelect: HTMLSelectElement | HTMLInputElement | HTMLDivElement): ComponentSelectOption[] {
+        if ((inputSelect instanceof HTMLSelectElement || inputSelect instanceof HTMLInputElement)
+            && inputSelect.parentElement.classList.contains("dropdown")) {
+            inputSelect = <HTMLDivElement>inputSelect.parentElement;
+        }
+
+        if (inputSelect instanceof HTMLSelectElement) {
+            let list: ComponentSelectOption[] = [];
+            for (let i = 0; i < inputSelect.item.length; i++) {
+                let item = inputSelect.options.item(i);
+                list.push({ value: item.value.toLowerCase(), description: item.innerText, dataset: item.dataset });
+            }
+
+            return list;
+        }
+        if (inputSelect instanceof HTMLDivElement) {
+            let list: ComponentSelectOption[] = [];
+
+            inputSelect.querySelectorAll(".menu .item")
+                .forEach(function (item: HTMLDivElement) {
+                    let value = (item.dataset.value) ? item.dataset.value : item.innerText;
+                    list.push({ value: value.toLowerCase(), description: item.innerText, dataset: item.dataset });
+                });
+
+            return list;
+        }
+
+        throw "Unsupported type: " + inputSelect;
     }
 }
