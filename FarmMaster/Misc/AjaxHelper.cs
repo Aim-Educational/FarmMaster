@@ -39,6 +39,8 @@ namespace FarmMaster.Misc
                 return controller.Json(message);
             }
 
+            message.Message = "Success";
+            message.MessageType = ViewModelWithMessage.Type.Information;
             return controller.Json(message);
         }
 
