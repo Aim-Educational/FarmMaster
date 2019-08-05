@@ -2,6 +2,7 @@ var ComponentCharacteristicsValueType;
 (function (ComponentCharacteristicsValueType) {
     ComponentCharacteristicsValueType[ComponentCharacteristicsValueType["Error_Unknown"] = 0] = "Error_Unknown";
     ComponentCharacteristicsValueType[ComponentCharacteristicsValueType["TimeSpan"] = 1] = "TimeSpan";
+    ComponentCharacteristicsValueType[ComponentCharacteristicsValueType["Text"] = 2] = "Text";
 })(ComponentCharacteristicsValueType || (ComponentCharacteristicsValueType = {}));
 var ComponentCharacteristicsValue = (function () {
     function ComponentCharacteristicsValue() {
@@ -57,6 +58,14 @@ var ComponentCharacteristics = (function () {
                 var input = document.createElement("input");
                 input.type = "text";
                 input.placeholder = "#d #m #s";
+                input.value = value.value;
+                div.appendChild(input);
+                break;
+            case ComponentCharacteristicsValueType.Text:
+                tdType.innerText = "Text";
+                var input = document.createElement("input");
+                input.type = "text";
+                input.placeholder = "Text";
                 input.value = value.value;
                 div.appendChild(input);
                 break;

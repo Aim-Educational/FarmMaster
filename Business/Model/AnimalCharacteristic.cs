@@ -36,7 +36,8 @@ namespace Business.Model
         public enum Type
         {
             Error_Unknown,
-            TimeSpan
+            TimeSpan,
+            Text
         }
 
         [Key]
@@ -82,8 +83,10 @@ namespace Business.Model
             switch (type)
             {
                 case AnimalCharacteristic.Type.TimeSpan:
-                    var c = new AnimalCharacteristicTimeSpan();
-                    return c;
+                    return new AnimalCharacteristicTimeSpan();
+
+                case AnimalCharacteristic.Type.Text:
+                    return new AnimalCharacteristicText();
 
                 default: throw new InvalidOperationException($"The type key '{type}' does not exist.");
             }
@@ -135,6 +138,39 @@ namespace Business.Model
                 this.TimeSpan = this.TimeSpan.Add(TimeSpan.FromMinutes(Convert.ToDouble(match.Groups[2].Value)));
             if (!String.IsNullOrWhiteSpace(match.Groups[3].Value))
                 this.TimeSpan = this.TimeSpan.Add(TimeSpan.FromSeconds(Convert.ToDouble(match.Groups[3].Value)));
+        }
+    }
+
+    public class AnimalCharacteristicText : AnimalCharacteristicBase
+    {
+        public string Text { set; get; }
+
+        public AnimalCharacteristicText() : base(AnimalCharacteristic.Type.Text)
+        {
+
+        }
+
+        public override void FromHtmlString(string html)
+        {
+            this.Text = html;
+        }
+
+        public override string ToHtmlString()
+        {
+            return this.Text;
+        }
+
+        public override void FromJson(JObject json)
+        {
+            this.Text = json.GetValue("v").Value<string>();
+        }        
+
+        protected override JObject ToJsonImpl()
+        {
+            var json = new JObject();
+            json["v"] = this.Text;
+
+            return json;
         }
     }
 }

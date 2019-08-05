@@ -12,9 +12,11 @@
     var idInputTimeSpanDays     = "__cc__inputTimeSpanDays";
     var idInputTimeSpanMinutes  = "__cc__inputTimeSpanMins";
     var idInputTimeSpanSeconds  = "__cc__inputTimeSpanSecs";
+    var idInputTextText         = "__cc__inputTextText";
     var funcRefresh             = "__cc__refresh";
     var funcAddGeneric          = "__cc__addGeneric";
     var funcAddTimeSpan         = "__cc__addTimeSpan";
+    var funcAddText             = "__cc__addText";
     var funcDeleteByName        = "__cc__deleteByName";
     var varSegment              = "__cc__segment";
     var classDivCreate          = "ui transition hidden";
@@ -39,6 +41,7 @@
                     <div class="default text">Type</div>
                     <div class="menu">
                         <div class="item" data-content-id="divCreateTimespan">TimeSpan</div>
+                        <div class="item" data-content-id="divCreateText">Text</div>
                     </div>
                 </div>
             </div>
@@ -61,6 +64,15 @@
                     </div>
                     <div class="field">
                         <button class="ui fluid button" onclick="@funcAddTimeSpan ();">Add TimeSpan Characteristic</button>
+                    </div>
+                </section>
+                <section id="divCreateText" class="@classDivCreate">
+                    <div class="field">
+                        <label>Text</label>
+                        <input id="@idInputTextText" type="text" />
+                    </div>
+                    <div class="field">
+                        <button class="ui fluid button" onclick="@funcAddText ();">Add Text Characteristic</button>
                     </div>
                 </section>
             </section>
@@ -161,6 +173,18 @@
             document.getElementById("@idInputName").value,
             "TimeSpan",
             value
+        );
+    }
+
+    function @funcAddText () {
+        @funcAddGeneric (
+            "@Model.AjaxAddUrl",
+            document.getElementById("@idCharacteristicError"),
+            @Model.EntityId,
+            "@Model.EntityType",
+            document.getElementById("@idInputName").value,
+            "Text",
+            document.getElementById("@idInputTextText").value
         );
     }
 

@@ -1,6 +1,7 @@
 ﻿enum ComponentCharacteristicsValueType {
     Error_Unknown,
-    TimeSpan
+    TimeSpan,
+    Text
 }
 
 class ComponentCharacteristicsValue {
@@ -82,9 +83,19 @@ class ComponentCharacteristics {
             case ComponentCharacteristicsValueType.TimeSpan:
                 tdType.innerText = "TimeSpan";
 
-                let input = document.createElement("input");
+                var input = document.createElement("input");
                 input.type = "text";
                 input.placeholder = "#d #m #s";
+                input.value = value.value;
+                div.appendChild(input);
+                break;
+
+            case ComponentCharacteristicsValueType.Text:
+                tdType.innerText = "Text";
+
+                var input = document.createElement("input");
+                input.type = "text";
+                input.placeholder = "Text";
                 input.value = value.value;
                 div.appendChild(input);
                 break;
