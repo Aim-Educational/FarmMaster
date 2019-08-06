@@ -39,13 +39,15 @@ namespace FarmMaster.Controllers
             this._contacts = contacts;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string message)
         {
-            return View(new SpeciesBreedIndexViewModel
+            var model = new SpeciesBreedIndexViewModel
             {
                 Species = this._speciesBreeds.For<Species>().Query(),
                 Breeds = this._speciesBreeds.For<Breed>().Query()
-            });
+            };
+            model.ParseMessageQueryString(message);
+            return View(model);
         }
 
         #region Species
@@ -62,6 +64,31 @@ namespace FarmMaster.Controllers
                 return RedirectToAction(nameof(Index));
 
             return View(new SpeciesEditViewModel{ Species = species });
+        }
+
+        [FarmAuthorise(PermsAND: new[] { EnumRolePermission.Names.EDIT_SPECIES_BREEDS })]
+        public IActionResult DeleteSpecies(int id)
+        {
+            var species = this._speciesBreeds.For<Species>().FromIdAllIncluded(id);
+            if (species == null)
+                return RedirectToAction(nameof(Index));
+
+            if(!species.Breeds.All(b => b.IsSafeToDelete))
+            {
+                return RedirectToAction(
+                    nameof(Index),
+                    new
+                    {
+                        message = ViewModelWithMessage.CreateMessageQueryString(
+                            ViewModelWithMessage.Type.Error, 
+                            "Some of the breeds of this species are still in use. Cannot delete."
+                        )
+                    }
+                );
+            }
+
+            this._speciesBreeds.FullDelete(species);
+            return RedirectToAction(nameof(Index));
         }
 
         [HttpPost]
@@ -112,6 +139,31 @@ namespace FarmMaster.Controllers
                 return RedirectToAction(nameof(Index));
 
             return View(new BreedEditViewModel { Breed = breed });
+        }
+
+        [FarmAuthorise(PermsAND: new[] { EnumRolePermission.Names.EDIT_SPECIES_BREEDS })]
+        public IActionResult DeleteBreed(int id)
+        {
+            var breed = this._speciesBreeds.For<Breed>().FromIdAllIncluded(id);
+            if (breed == null)
+                return RedirectToAction(nameof(Index));
+
+            if (!breed.IsSafeToDelete)
+            {
+                return RedirectToAction(
+                    nameof(Index),
+                    new
+                    {
+                        message = ViewModelWithMessage.CreateMessageQueryString(
+                            ViewModelWithMessage.Type.Error,
+                            "This breed is still in use. Cannot delete."
+                        )
+                    }
+                );
+            }
+
+            this._speciesBreeds.FullDelete(breed);
+            return RedirectToAction(nameof(Index));
         }
 
         [HttpPost]

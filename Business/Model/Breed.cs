@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace Business.Model
@@ -13,8 +14,7 @@ namespace Business.Model
         [Required]
         [StringLength(75)]
         public string Name { get; set; }
-
-        [Required]
+        
         public bool IsRegisterable { get; set; }
 
         [Required]
@@ -31,5 +31,15 @@ namespace Business.Model
 
         [Timestamp]
         public byte[] Timestamp { get; set; }
+        
+        [NotMapped]
+        public bool IsSafeToDelete
+        {
+            get
+            {
+                // TODO: Once things can actually reference this (outside of species), add checks here.
+                return true;
+            }
+        }
     }
 }

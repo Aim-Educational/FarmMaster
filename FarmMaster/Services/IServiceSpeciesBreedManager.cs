@@ -7,7 +7,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FarmMaster.Services
 {
-    public interface IServiceSpeciesBreedManager : IServiceEntityManager<Species>, IServiceEntityManager<Breed>
+    public interface IServiceSpeciesBreedManager : IServiceEntityManager<Species>, 
+                                                   IServiceEntityManager<Breed>,
+                                                   IServiceEntityManagerFullDeletion<Species>,
+                                                   IServiceEntityManagerFullDeletion<Breed>
     {
         Species CreateSpecies(string name, bool isPoultry);
         Breed CreateBreed(string name, Species species, Contact breedSociety, bool isRegisterable);
@@ -64,6 +67,21 @@ namespace FarmMaster.Services
             this._context.Add(list);
             this._context.SaveChanges();
             return species;
+        }
+
+        public void FullDelete(Species entity)
+        {
+            foreach(var breed in entity.Breeds)
+                this._context.Remove(breed);
+
+            this._context.Remove(entity);
+            this._context.SaveChanges();
+        }
+
+        public void FullDelete(Breed entity)
+        {
+            this._context.Remove(entity);
+            this._context.SaveChanges();
         }
 
         public int GetIdFor(Species entity)
