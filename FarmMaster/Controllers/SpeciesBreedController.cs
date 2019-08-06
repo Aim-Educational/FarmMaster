@@ -104,6 +104,16 @@ namespace FarmMaster.Controllers
             return View();
         }
 
+        [FarmAuthorise(PermsAND: new[] { EnumRolePermission.Names.EDIT_SPECIES_BREEDS })]
+        public IActionResult EditBreed(int id)
+        {
+            var breed = this._speciesBreeds.For<Breed>().FromId(id);
+            if (breed == null)
+                return RedirectToAction(nameof(Index));
+
+            return View(new BreedEditViewModel { Breed = breed });
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         [FarmAuthorise(PermsAND: new[] { EnumRolePermission.Names.EDIT_SPECIES_BREEDS })]
@@ -133,6 +143,24 @@ namespace FarmMaster.Controllers
 
             var breed = this._speciesBreeds.CreateBreed(model.Name, species, contact, model.IsRegisterable);
             return RedirectToAction("EditBreed", new{ id = breed.BreedId });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [FarmAuthorise(PermsAND: new[] { EnumRolePermission.Names.EDIT_SPECIES_BREEDS })]
+        public IActionResult EditBreed(BreedEditViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                model.ParseMessageQueryString(ViewModelWithMessage.CreateMessageQueryString(ModelState));
+                return View(model);
+            }
+
+            this._speciesBreeds.Update(model.Breed);
+
+            model.MessageType = ViewModelWithMessage.Type.Information;
+            model.Message = "Success";
+            return View(model);
         }
         #endregion
 
@@ -202,6 +230,16 @@ namespace FarmMaster.Controllers
                        return species.CharacteristicList
                                      .Characteristics
                                      .Select(c => new AjaxCharacteristicsResponseValue { Name = c.Name, Value = c.Data.ToHtmlString(), Type = (int)c.DataType });
+                   }
+                   else if(model.Type == "Breed")
+                   {
+                       var breed = this._speciesBreeds.FromIdAllIncluded<Breed>(model.Id);
+                       if(breed == null)
+                           throw new NullReferenceException("breed");
+
+                       return breed.CharacteristicList
+                                   .Characteristics
+                                   .Select(c => new AjaxCharacteristicsResponseValue { Name = c.Name, Value = c.Data.ToHtmlString(), Type = (int)c.DataType });
                    }
                    else
                        throw new NotImplementedException(model.Type);
@@ -274,6 +312,14 @@ namespace FarmMaster.Controllers
                     throw new NullReferenceException("species");
 
                 return species.CharacteristicList;
+            }
+            else if(type == "Breed")
+            {
+                var breed = this._speciesBreeds.For<Breed>().FromIdAllIncluded(id);
+                if (breed == null)
+                    throw new NullReferenceException("breed");
+
+                return breed.CharacteristicList;
             }
             else
                 throw new NotImplementedException(type);

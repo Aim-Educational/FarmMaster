@@ -39,4 +39,10 @@ namespace FarmMaster.Models
 
         public bool IsRegisterable { get; set; }
     }
+
+    public class BreedEditViewModel : ViewModelWithMessage
+    {
+        [Required]
+        public Breed Breed { get; set; }
+    }
 }
