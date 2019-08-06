@@ -40,9 +40,9 @@
                 <td>@holding.Address</td>
                 <td>@holding.Postcode</td>
                 <td class="ui two buttons">
-                    <a class="ui inverted tiny secondary left button" asp-action="Edit" asp-route-id="@holding.HoldingId">
+                    <button class="ui inverted tiny secondary left button" onclick="window.location='/Holding/Edit/@holding.HoldingId'">
                         Edit
-                    </a>
+                    </button>
                     <div class="or divide hide mobile"></div>
                     <button class="ui inverted tiny secondary right button" onclick="showDeleteModal(@holding.HoldingId)">
                         Delete

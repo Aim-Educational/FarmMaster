@@ -37,13 +37,13 @@
                 <td>@(role.Permissions?.Count() ?? 0)</td>
                 <td>
                     <section class="ui two buttons">
-                        <a class="ui inverted tiny secondary left button" asp-action="Edit" asp-route-id="@(role.RoleId)">
+                        <button class="ui inverted tiny secondary left button" onclick="window.location='/Role/Edit/@role.RoleId'">
                             Edit
-                        </a>
+                        </button>
                         <div class="or divider"></div>
-                        <a class="ui inverted tiny secondary right button" asp-action="Delete" asp-route-id="@role.RoleId">
+                        <button class="ui inverted tiny secondary right button" onclick="window.location='/Role/Delete/@role.RoleId'">
                             Delete
-                        </a>
+                        </button>
                     </section>
                 </td>
             </tr>

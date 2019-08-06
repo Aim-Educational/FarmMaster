@@ -10,13 +10,13 @@
         <td>@breed.Species.Name</td>
         <td>
             <section class="ui two buttons">
-                <a class="ui inverted tiny secondary left button" href="/SpeciesBreed/EditBreed/@breed.BreedId">
+                <button class="ui inverted tiny secondary left button" onclick="window.location='/SpeciesBreed/EditBreed/@breed.BreedId'">
                     Edit
-                </a>
+                </button>
                 <div class="or divider"></div>
-                <a class="ui inverted tiny secondary right button" href="/SpeciesBreed/DeleteBreed/@breed.BreedId">
+                <button class="ui inverted tiny secondary right button" onclick="window.location='/SpeciesBreed/DeleteBreed/@breed.BreedId'">
                     Delete
-                </a>
+                </button>
             </section>
         </td>
     </tr>
