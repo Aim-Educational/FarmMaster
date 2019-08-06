@@ -2,6 +2,12 @@
 @using Business.Model
 @{
     ViewData["Title"] = "Edit - Contact";
+    ViewData["Breadcrumb"] = new[]
+    {
+        "Home:/Home/Index",
+        "Contacts:/Contact/Index",
+        "Edit:#"
+    };
 
     var dbContext = Context.RequestServices.GetRequiredService<FarmMasterContext>();
 }

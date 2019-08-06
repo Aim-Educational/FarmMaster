@@ -1,6 +1,12 @@
 ﻿@model RoleAssignViewModel
 @{
     ViewData["Title"] = "Assign Roles";
+    ViewData["Breadcrumb"] = new[]
+    {
+        "Home:/Home/Index",
+        "Roles:/Role/Index",
+        "Assign:/Role/Assign"
+    };
 }
 
 <h1>Assign Roles</h1>

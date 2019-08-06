@@ -1,6 +1,11 @@
 ﻿@model SpeciesBreedIndexViewModel
 @{
     ViewData["Title"] = "Index - Species & Breeds";
+    ViewData["Breadcrumb"] = new[]
+    {
+        "Home:/Home/Index",
+        "Species & Breeds:/SpeciesBreed/Index"
+    };
 }
 
 <partial name="_ViewModelWithMessagePartial" model="Model" />

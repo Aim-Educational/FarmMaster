@@ -1,6 +1,11 @@
 ﻿@model RoleIndexViewModel
 @{
     ViewData["Title"] = "Index - Role";
+    ViewData["Breadcrumb"] = new[]
+    {
+        "Home:/Home/Index",
+        "Roles:/Role/Index"
+    };
 }
 
 <h1>Index</h1>

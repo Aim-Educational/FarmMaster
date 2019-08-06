@@ -1,6 +1,12 @@
 ﻿@model RoleCreateViewModel
 @{
     ViewData["Title"] = "Create - Role";
+    ViewData["Breadcrumb"] = new[]
+    {
+        "Home:/Home/Index",
+        "Roles:/Role/Index",
+        "Create:/Role/Create"
+    };
 
     const int CHECKBOXES_PER_ROW = 6;
 }

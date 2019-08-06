@@ -8,6 +8,18 @@
         <section class="ui grid">
             <div class="zero wide mobile one wide computer three wide large screen column"></div>
             <div class="sixteen wide mobile fourteen wide computer ten wide large screen centered column">
+                @if(ViewData.ContainsKey("Breadcrumb"))
+                {
+                    <div class="ui breadcrumb">
+                        @foreach(var crumb in ViewData["Breadcrumb"] as IEnumerable<string>)
+                        {
+                            var split = crumb.Split(":");
+                            <a class="section" href="@split[1]">@split[0]</a>
+                            <div class="divider">/</div>
+                        }
+                    </div>
+                }
+
                 @RenderBody()
             </div>
             <div class="zero wide mobile one wide computer three wide large screen column"></div>

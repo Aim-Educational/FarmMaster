@@ -1,6 +1,11 @@
 ﻿@model ContactIndexViewModel
 @{
     ViewData["Title"] = "Index - Contacts";
+    ViewData["Breadcrumb"] = new[]
+    {
+        "Home:/Home/Index",
+        "Contacts:/Contact/Index"
+    };
 }
 
 <h1>Index</h1>

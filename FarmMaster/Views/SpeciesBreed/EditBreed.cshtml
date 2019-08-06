@@ -1,6 +1,12 @@
 ﻿@model BreedEditViewModel
 @{
     ViewData["Title"] = "Edit - Breed";
+    ViewData["Breadcrumb"] = new[]
+    {
+        "Home:/Home/Index",
+        "Species & Breeds:/SpeciesBreed/Index",
+        "Edit Breed:#"
+    };
 }
 
 <partial name="_ComponentModalAreYouSure" />

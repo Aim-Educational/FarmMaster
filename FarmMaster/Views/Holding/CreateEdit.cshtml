@@ -1,6 +1,12 @@
 ﻿@model HoldingCreateEditViewModel
 @{
     ViewData["Title"] = Model.IsCreate ? "Create Holding" : "Edit Holding";
+    ViewData["Breadcrumb"] = new[]
+    {
+        "Home:/Home/Index",
+        "Holdings:/Holding/Index",
+        $"{(Model.IsCreate ? "Create" : "Edit")}:#"
+    };
 }
 
 <partial name="_ViewModelWithMessagePartial" model="@Model" />
