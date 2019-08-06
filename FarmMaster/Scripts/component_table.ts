@@ -157,6 +157,8 @@
                         divider.classList.add("divider");
                         div.appendChild(divider);
                     }
+
+                    ComponentTable.getPage(boxError, table, ajaxRender, 0, entityType, itemsPerPage);
                 }
             }
         );

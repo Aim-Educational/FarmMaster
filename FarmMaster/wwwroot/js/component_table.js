@@ -106,6 +106,7 @@ var ComponentTable = (function () {
                 for (var i = 0; i < responseAndValue.value.value; i++) {
                     _loop_1(i);
                 }
+                ComponentTable.getPage(boxError, table, ajaxRender, 0, entityType, itemsPerPage);
             }
         });
     };

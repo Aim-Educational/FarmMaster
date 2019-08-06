@@ -1,0 +1,76 @@
+﻿@model BreedCreateViewModel
+@{
+    ViewData["Title"] = "Create - Breed";
+}
+
+<section class="ui center aligned top attached header">
+    <h2>Create a breed</h2>
+</section>
+<section class="ui attached segment">
+    <form class="ui form" method="post" asp-action="CreateBreed">
+        <section class="field">
+            <label>Name</label>
+            <input asp-for="Name" placeholder="Name" />
+            <span class="@GlobalConstants.FormErrorClasses" asp-validation-for="Name"></span>
+        </section>
+        <section class="field">
+            <label>Species</label>
+            <div class="ui search selection dropdown">
+                <input id="inputSpecies" type="hidden" data-default-value="-1" asp-for="SpeciesId" />
+                <i class="dropdown icon"></i>
+                <div class="default text">Species</div>
+                <div class="menu">
+
+                </div>
+            </div>
+            <span class="@GlobalConstants.FormErrorClasses" asp-validation-for="SpeciesId"></span>
+        </section>
+        <section class="field">
+            <label>Breed Society</label>
+            <div class="ui search selection dropdown">
+                <input id="inputBreedSociety" type="hidden" data-default-value="-1" asp-for="BreedSocietyContactId" />
+                <i class="dropdown icon"></i>
+                <div class="default text">Contacts</div>
+                <div class="menu">
+
+                </div>
+            </div>
+            <span class="@GlobalConstants.FormErrorClasses" asp-validation-for="BreedSocietyContactId"></span>
+        </section>
+        <section class="field">
+            <div class="ui checkbox">
+                <input type="checkbox" asp-for="IsRegisterable" />
+                <label>Breed can be registered?</label>
+            </div>
+            <span class="@GlobalConstants.FormErrorClasses" asp-validation-for="IsRegisterable"></span>
+        </section>
+
+        <partial name="_ViewModelWithMessagePartial" model="Model" />
+        <div id="divAllErrors" class="ui error message transition hidden"></div>
+
+        <button class="ui primary fluid button" type="submit">Create Breed</button>
+    </form>
+</section>
+
+@section Scripts {
+    <script>
+        $(".ui.dropdown").dropdown();
+        $(".ui.checkbox").checkbox();
+
+        Validation.hookupForm(document.querySelector(".ui.form"));
+
+        ComponentSelect.populateFromAjaxWithMessageResponse(
+            document.getElementById("inputSpecies"),
+            document.getElementById("divAllErrors"),
+            "/SpeciesBreed/AjaxGetAllSpecies",
+            null
+        );
+
+        ComponentSelect.populateFromAjaxWithMessageResponse(
+            document.getElementById("inputBreedSociety"),
+            document.getElementById("divAllErrors"),
+            "/Contact/AjaxGetNameAndValueAll",
+            null
+        );
+    </script>
+}

@@ -10,7 +10,7 @@ namespace FarmMaster.Services
     public interface IServiceSpeciesBreedManager : IServiceEntityManager<Species>, IServiceEntityManager<Breed>
     {
         Species CreateSpecies(string name, bool isPoultry);
-        Breed CreateBreed();
+        Breed CreateBreed(string name, Species species, Contact breedSociety, bool isRegisterable);
     }
 
     public class ServiceSpeciesBreedManager : IServiceSpeciesBreedManager
@@ -22,9 +22,28 @@ namespace FarmMaster.Services
             this._context = context;
         }
 
-        public Breed CreateBreed()
+        public Breed CreateBreed(string name, Species species, Contact breedSociety, bool isRegisterable)
         {
-            throw new NotImplementedException();
+            if (String.IsNullOrWhiteSpace(name))
+                throw new ArgumentNullException(nameof(name));
+            
+            if(species == null)
+                throw new ArgumentNullException(nameof(species));
+
+            var list = new AnimalCharacteristicList();
+            var breed = new Breed
+            {
+                BreedSociety = breedSociety,
+                CharacteristicList = list,
+                IsRegisterable = isRegisterable,
+                Name = name,
+                Species = species
+            };
+
+            this._context.Add(list);
+            this._context.Add(breed);
+            this._context.SaveChanges();
+            return breed;
         }
 
         public Species CreateSpecies(string name, bool isPoultry)
@@ -90,7 +109,7 @@ namespace FarmMaster.Services
         IQueryable<Breed> IServiceEntityManager<Breed>.QueryAllIncluded()
         {
             return this._context.Breeds
-                                .Include(s => s.SpeciesType)
+                                .Include(s => s.Species)
                                  .ThenInclude(s => s.CharacteristicList)
                                   .ThenInclude(c => c.Characteristics)
                                 .Include(s => s.CharacteristicList)

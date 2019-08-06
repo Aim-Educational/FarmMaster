@@ -20,9 +20,7 @@
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <partial name="_IndexTableSpeciesBodyPartial" model="Model.Species.Take(GlobalConstants.DefaultPageItemCount)" />
-                    </tbody>
+                    <tbody></tbody>
                     <tfoot></tfoot>
                 </table>
                 <div id="boxErrorSpecies" class="ui error message transition hidden"></div>
@@ -34,6 +32,18 @@
                 <a class="ui fluid primary button" asp-action="CreateBreed">Create</a>
             </section>
             <section class="ui attached segment">
+                <table id="tableBreeds" class="ui celled table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Species</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                    <tfoot></tfoot>
+                </table>
+                <div id="boxErrorBreeds" class="ui error message transition hidden"></div>
             </section>
         </section>
     </section>
@@ -47,6 +57,13 @@
             "/SpeciesBreed/AjaxGetTablePageCount",
             "/SpeciesBreed/AjaxRenderTablePage",
             "Species"
+        );
+        ComponentTable.setupPagingTable(
+            document.getElementById("boxErrorBreeds"),
+            document.getElementById("tableBreeds"),
+            "/SpeciesBreed/AjaxGetTablePageCount",
+            "/SpeciesBreed/AjaxRenderTablePage",
+            "Breed"
         );
     </script>
 }

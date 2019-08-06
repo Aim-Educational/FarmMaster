@@ -82,6 +82,9 @@ namespace Business.Model
             b.Entity<Breed>()
              .HasIndex(bb => bb.Name)
              .IsUnique();
+            b.Entity<Breed>()
+             .HasIndex(nameof(Breed.Name), nameof(Breed.SpeciesId))
+             .IsUnique();
 
             b.Entity<AnimalCharacteristic>()
              .Property(c => c.Data)

@@ -285,6 +285,7 @@ namespace FarmMaster.Controllers
                 {
                     return this._context.Contacts
                                         .Where(c => !c.IsAnonymous)
+                                        .OrderBy(c => c.ShortName)
                                         .Select(c => new ComponentSelectOption{ Description = c.ShortName, Value = Convert.ToString(c.ContactId) })
                                         .ToList();
                 }

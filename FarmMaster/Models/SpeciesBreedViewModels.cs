@@ -25,4 +25,18 @@ namespace FarmMaster.Models
         [Required]
         public Species Species { get; set; }
     }
+
+    public class BreedCreateViewModel : ViewModelWithMessage
+    {
+        [Required]
+        public string Name { get; set; }
+
+        [Required]
+        public int? SpeciesId { get; set; }
+
+        [Required]
+        public int? BreedSocietyContactId { get; set; }
+
+        public bool IsRegisterable { get; set; }
+    }
 }

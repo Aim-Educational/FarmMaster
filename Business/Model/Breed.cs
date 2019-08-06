@@ -23,9 +23,10 @@ namespace Business.Model
 
         [Required]
         public int SpeciesId { get; set; }
-        public Species SpeciesType { get; set; }
+        public Species Species { get; set; }
         
-        public int? CharacteristicListId { get; set; }
+        [Required]
+        public int CharacteristicListId { get; set; }
         public AnimalCharacteristicList CharacteristicList { get; set; }
 
         [Timestamp]

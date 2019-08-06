@@ -20,13 +20,15 @@ namespace FarmMaster.Controllers
         readonly IServiceSpeciesBreedManager _speciesBreeds;
         readonly IViewRenderService _viewRenderer;
         readonly IServiceCharacteristicManager _characteristics;
+        readonly IServiceContactManager _contacts;
 
         public SpeciesBreedController(
             IServiceUserManager users, 
             IServiceRoleManager roles, 
             IServiceSpeciesBreedManager speciesBreeds,
             IViewRenderService viewRenderer,
-            IServiceCharacteristicManager characteristics
+            IServiceCharacteristicManager characteristics,
+            IServiceContactManager contacts
         )
         {
             this._users = users;
@@ -34,6 +36,7 @@ namespace FarmMaster.Controllers
             this._speciesBreeds = speciesBreeds;
             this._viewRenderer = viewRenderer;
             this._characteristics = characteristics;
+            this._contacts = contacts;
         }
 
         public IActionResult Index()
@@ -95,6 +98,44 @@ namespace FarmMaster.Controllers
         }
         #endregion
 
+        #region Breed
+        public IActionResult CreateBreed()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [FarmAuthorise(PermsAND: new[] { EnumRolePermission.Names.EDIT_SPECIES_BREEDS })]
+        public IActionResult CreateBreed(BreedCreateViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                model.ParseMessageQueryString(ViewModelWithMessage.CreateMessageQueryString(ModelState));
+                return View(model);
+            }
+            
+            var species = this._speciesBreeds.For<Species>().FromId(model.SpeciesId ?? -1); // Id should never be null because of the model binding checks.
+            var contact = this._contacts.FromId(model.BreedSocietyContactId ?? -1);
+
+            if (species == null)
+            {
+                model.MessageType = ViewModelWithMessage.Type.Error;
+                model.Message = $"The species with ID #{model.SpeciesId} could not be found.";
+                return View(model);
+            }
+            if (contact == null)
+            {
+                model.MessageType = ViewModelWithMessage.Type.Error;
+                model.Message = $"The species with ID #{model.BreedSocietyContactId} could not be found.";
+                return View(model);
+            }
+
+            var breed = this._speciesBreeds.CreateBreed(model.Name, species, contact, model.IsRegisterable);
+            return RedirectToAction("EditBreed", new{ id = breed.BreedId });
+        }
+        #endregion
+
         #region AJAX
         [HttpPost]
         [AllowAnonymous]
@@ -121,11 +162,19 @@ namespace FarmMaster.Controllers
                model, this._users, this._roles, new string[] { EnumRolePermission.Names.VIEW_SPECIES_BREEDS },
                (myUser) =>
                {
-                   if (model.EntityType != null && model.EntityType.ToUpper() == "SPECIES")
+                   var type = (model.EntityType == null) ? "" : model.EntityType.ToUpper();
+                   if (type == "SPECIES")
                    {
                        return this._viewRenderer.RenderToStringAsync(
                            "/Views/SpeciesBreed/_IndexTableSpeciesBodyPartial.cshtml",
                            this._speciesBreeds.For<Species>().QueryAllIncluded()
+                       ).Result;
+                   }
+                   else if(type == "BREED")
+                   {
+                       return this._viewRenderer.RenderToStringAsync(
+                           "/Views/SpeciesBreed/_IndexTableBreedBodyPartial.cshtml",
+                           this._speciesBreeds.For<Breed>().QueryAllIncluded()
                        ).Result;
                    }
                    else
@@ -165,7 +214,7 @@ namespace FarmMaster.Controllers
         public IActionResult AjaxAddCharacteristic([FromBody] AjaxCharacteristicsAddRequest model)
         {
             return this.DoAjaxWithMessageResponse(
-               model, this._users, this._roles, new string[] { EnumRolePermission.Names.VIEW_SPECIES_BREEDS },
+               model, this._users, this._roles, new string[] { EnumRolePermission.Names.EDIT_SPECIES_BREEDS },
                (myUser) =>
                {
                    var list = this.GetOrCreateListForEntity(model.EntityType, model.EntityId);
@@ -184,7 +233,7 @@ namespace FarmMaster.Controllers
         public IActionResult AjaxDeleteCharacteristicByName([FromBody] AjaxCharacteristicsDeleteByNameRequest model)
         {
             return this.DoAjaxWithMessageResponse(
-               model, this._users, this._roles, new string[] { EnumRolePermission.Names.VIEW_SPECIES_BREEDS },
+               model, this._users, this._roles, new string[] { EnumRolePermission.Names.EDIT_SPECIES_BREEDS },
                (myUser) =>
                {
                    var list = this.GetOrCreateListForEntity(model.EntityType, model.EntityId);
@@ -193,6 +242,23 @@ namespace FarmMaster.Controllers
                        throw new KeyNotFoundException(model.CharaName);
 
                    this._characteristics.FullDelete(chara);
+               }
+            );
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public IActionResult AjaxGetAllSpecies([FromBody] AjaxRequestModel model)
+        {
+            return this.DoAjaxWithValueAndMessageResponse(
+               model, this._users, this._roles, new string[] { EnumRolePermission.Names.VIEW_SPECIES_BREEDS },
+               (myUser) =>
+               {
+                   return this._speciesBreeds
+                              .For<Species>()
+                              .Query()
+                              .OrderBy(s => s.Name)
+                              .Select(s => new ComponentSelectOption{ Description = s.Name, Value = $"{s.SpeciesId}" });
                }
             );
         }
