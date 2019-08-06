@@ -221,28 +221,9 @@ namespace FarmMaster.Controllers
                model, this._users, this._roles, new string[] { EnumRolePermission.Names.VIEW_SPECIES_BREEDS },
                (myUser) =>
                {
-                   if (model.Type == "Species")
-                   {
-                       var species = this._speciesBreeds.FromIdAllIncluded<Species>(model.Id);
-                       if (species == null)
-                           throw new NullReferenceException("species");
-
-                       return species.CharacteristicList
-                                     .Characteristics
-                                     .Select(c => new AjaxCharacteristicsResponseValue { Name = c.Name, Value = c.Data.ToHtmlString(), Type = (int)c.DataType });
-                   }
-                   else if(model.Type == "Breed")
-                   {
-                       var breed = this._speciesBreeds.FromIdAllIncluded<Breed>(model.Id);
-                       if(breed == null)
-                           throw new NullReferenceException("breed");
-
-                       return breed.CharacteristicList
-                                   .Characteristics
-                                   .Select(c => new AjaxCharacteristicsResponseValue { Name = c.Name, Value = c.Data.ToHtmlString(), Type = (int)c.DataType });
-                   }
-                   else
-                       throw new NotImplementedException(model.Type);
+                   var list = this.GetOrCreateListForEntity(model.Type, model.Id);
+                   return list.Characteristics
+                              .Select(c => new AjaxCharacteristicsResponseValue { Name = c.Name, Value = c.Data.ToHtmlString(), Type = (int)c.DataType });
                }
             );
         }
