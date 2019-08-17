@@ -1,0 +1,20 @@
+image: mcr.microsoft.com/dotnet/core/sdk
+
+stages:
+  - test
+  - package
+
+job:
+  stage: test
+  script:
+    - dotnet test
+
+job:
+  stage: package
+  script:
+    - wget https://gitlab.com/SealabJaster/AimCLITool/-/jobs/274446546/artifacts/raw/linux-x64/aim?job=Bundle -O aim
+    - dotnet publish -o ./../bin/build
+    - aim deploy pack -d ./bin/build -a ./.aim/ -v
+  artifacts:
+    paths:
+      - deploy-dist.tar
