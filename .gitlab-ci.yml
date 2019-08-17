@@ -18,4 +18,4 @@ publish_and_package:
     - ./aim deploy pack -d ./bin/build -a ./.aim/ -v
   artifacts:
     paths:
-      - deploy-dist.tar
+      - deploy-package.tar
