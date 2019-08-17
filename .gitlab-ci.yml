@@ -4,12 +4,12 @@ stages:
   - test
   - package
 
-job:
+test:
   stage: test
   script:
     - dotnet test
 
-job:
+publish_and_package:
   stage: package
   script:
     - wget https://gitlab.com/SealabJaster/AimCLITool/-/jobs/274446546/artifacts/raw/linux-x64/aim?job=Bundle -O aim
