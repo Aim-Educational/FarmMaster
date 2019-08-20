@@ -275,7 +275,7 @@ namespace FarmMaster.Controllers
                {
                    var list = this.GetOrCreateListForEntity(model.Type, model.Id);
                    return list.Characteristics
-                              .Select(c => new AjaxCharacteristicsResponseValue { Name = c.Name, Value = c.Data.ToHtmlString(), Type = (int)c.DataType });
+                              .Select(c => new AjaxCharacteristicsResponseValue { Name = c.Name, Value = c.Data.ToHtmlString(), Type = (int)c.Data.FieldType });
                }
             );
         }

@@ -88,13 +88,7 @@ namespace Business.Model
 
             b.Entity<AnimalCharacteristic>()
              .Property(c => c.Data)
-             .HasConversion(
-                c => c.ToJson().ToString(),
-                s => (new AnimalCharacteristicFactory()).FromJson(JObject.Parse(s))
-             );
-            b.Entity<AnimalCharacteristic>()
-             .Property(c => c.DataType)
-             .HasConversion<string>();
+             .IsDynamicField();
 
             this.SeedRolePermissions(b);
             this.SeedHoldingRegistrations(b);

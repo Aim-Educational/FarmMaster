@@ -7,39 +7,8 @@ using Newtonsoft.Json.Linq;
 
 namespace Business.Model
 {
-    public abstract class AnimalCharacteristicBase
-    {
-        public const string TYPE_KEY = "__TYPE";
-        public AnimalCharacteristic.Type Type { private set; get; }
-
-        public AnimalCharacteristicBase(AnimalCharacteristic.Type type)
-        {
-            this.Type = type;
-        }
-
-        protected abstract JObject ToJsonImpl();
-        public abstract void FromJson(JObject json);
-        public abstract string ToHtmlString();
-        public abstract void FromHtmlString(string html);
-
-        public JObject ToJson()
-        {
-            var json = this.ToJsonImpl();
-            json[TYPE_KEY] = Enum.GetName(typeof(AnimalCharacteristic.Type), this.Type);
-
-            return json;
-        }
-    }
-
     public class AnimalCharacteristic
     {
-        public enum Type
-        {
-            Error_Unknown,
-            TimeSpan,
-            Text
-        }
-
         [Key]
         public int AnimalCharacteristicId { get; set; }
 
@@ -49,128 +18,10 @@ namespace Business.Model
 
         [Required]
         [StringLength(ushort.MaxValue)]
-        public AnimalCharacteristicBase Data { get; set; }
+        public DynamicField Data { get; set; }
 
         [Required]
         public int ListId { get; set; }
         public AnimalCharacteristicList List { get; set; }
-        
-        [Required]
-        public Type DataType { get; set; }
-    }
-
-    public class AnimalCharacteristicFactory
-    {
-        public AnimalCharacteristicBase FromJson(JObject json)
-        {
-            var typeKey = json.GetValue(AnimalCharacteristicBase.TYPE_KEY).Value<string>();
-            var type = Enum.Parse<AnimalCharacteristic.Type>(typeKey);
-            var data = this.FromType(type);
-
-            data.FromJson(json);
-            return data;
-        }
-
-        public AnimalCharacteristicBase FromTypeAndHtmlString(AnimalCharacteristic.Type type, string htmlString)
-        {
-            var data = this.FromType(type);
-            data.FromHtmlString(htmlString);
-            return data;
-        }
-
-        private AnimalCharacteristicBase FromType(AnimalCharacteristic.Type type)
-        {
-            switch (type)
-            {
-                case AnimalCharacteristic.Type.TimeSpan:
-                    return new AnimalCharacteristicTimeSpan();
-
-                case AnimalCharacteristic.Type.Text:
-                    return new AnimalCharacteristicText();
-
-                default: throw new InvalidOperationException($"The type key '{type}' does not exist.");
-            }
-        }
-    }
-
-    public class AnimalCharacteristicTimeSpan : AnimalCharacteristicBase
-    {
-        public TimeSpan TimeSpan { get; set; }
-
-        public AnimalCharacteristicTimeSpan() : base(AnimalCharacteristic.Type.TimeSpan)
-        {
-        }
-
-        public override void FromJson(JObject json)
-        {
-            this.TimeSpan = TimeSpan.Parse(json["v"].Value<string>());
-        }
-
-        protected override JObject ToJsonImpl()
-        {
-            var json = new JObject();
-            json["v"] = this.TimeSpan.ToString();
-
-            return json;
-        }
-
-        public override string ToHtmlString()
-        {
-            var builder = new StringBuilder(30);
-
-            if(this.TimeSpan.Days > 0)    builder.Append($"{this.TimeSpan.Days}d ");
-            if(this.TimeSpan.Minutes > 0) builder.Append($"{this.TimeSpan.Minutes}m ");
-            if(this.TimeSpan.Seconds > 0) builder.Append($"{this.TimeSpan.Seconds}s");
-
-            return builder.ToString();
-        }
-
-        public override void FromHtmlString(string html)
-        {
-            var match = Regex.Match(html, @"^(\d+)d?\s*(\d+)m?\s*(\d+)s?$");
-            if(!match.Success)
-                throw new ArgumentOutOfRangeException($"The html string '{html}' does not meet the pattern of '#d #m #s'");
-
-            this.TimeSpan = new TimeSpan();
-            if (!String.IsNullOrWhiteSpace(match.Groups[1].Value))
-                this.TimeSpan = this.TimeSpan.Add(TimeSpan.FromDays(Convert.ToDouble(match.Groups[1].Value)));
-            if (!String.IsNullOrWhiteSpace(match.Groups[2].Value))
-                this.TimeSpan = this.TimeSpan.Add(TimeSpan.FromMinutes(Convert.ToDouble(match.Groups[2].Value)));
-            if (!String.IsNullOrWhiteSpace(match.Groups[3].Value))
-                this.TimeSpan = this.TimeSpan.Add(TimeSpan.FromSeconds(Convert.ToDouble(match.Groups[3].Value)));
-        }
-    }
-
-    public class AnimalCharacteristicText : AnimalCharacteristicBase
-    {
-        public string Text { set; get; }
-
-        public AnimalCharacteristicText() : base(AnimalCharacteristic.Type.Text)
-        {
-
-        }
-
-        public override void FromHtmlString(string html)
-        {
-            this.Text = html;
-        }
-
-        public override string ToHtmlString()
-        {
-            return this.Text;
-        }
-
-        public override void FromJson(JObject json)
-        {
-            this.Text = json.GetValue("v").Value<string>();
-        }        
-
-        protected override JObject ToJsonImpl()
-        {
-            var json = new JObject();
-            json["v"] = this.Text;
-
-            return json;
-        }
     }
 }

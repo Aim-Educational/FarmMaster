@@ -45,7 +45,7 @@ namespace FarmMaster.Models
         public string CharaName { get; set; }
 
         [Required]
-        public AnimalCharacteristic.Type CharaType { get; set; }
+        public DynamicField.Type CharaType { get; set; }
 
         [Required]
         public string CharaValue { get; set; }
