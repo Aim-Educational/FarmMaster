@@ -117,6 +117,9 @@ namespace Business.Model
 
         public override string ToHtmlString()
         {
+            if(this.TimeSpan.TotalSeconds == 0)
+                return "0d 0m 0s";
+
             var builder = new StringBuilder(30);
 
             if (this.TimeSpan.Days > 0) builder.Append($"{this.TimeSpan.Days}d ");
