@@ -1,16 +1,18 @@
-﻿enum FarmAjaxMessageType {
+﻿import { getCookie } from "./cookies.js"
+
+export enum FarmAjaxMessageType {
     None,
     Information,
     Warning,
     Error
 }
 
-enum FarmAjaxMessageFormat {
+export enum FarmAjaxMessageFormat {
     Default,
     UnorderedList
 }
 
-class FarmAjaxMessageResponse {
+export class FarmAjaxMessageResponse {
     messageFormat: FarmAjaxMessageFormat;
     messageType: FarmAjaxMessageType;
     message: string;
@@ -65,7 +67,7 @@ class FarmAjaxMessageResponse {
     }
 }
 
-class FarmAjaxMessageAndValueResponse<T> extends FarmAjaxMessageResponse {
+export class FarmAjaxMessageAndValueResponse<T> extends FarmAjaxMessageResponse {
     public value: T | null;
 
     constructor(message: FarmAjaxMessageResponse, value: T | null) {
@@ -74,11 +76,15 @@ class FarmAjaxMessageAndValueResponse<T> extends FarmAjaxMessageResponse {
     }
 }
 
-class FarmAjaxGenericValue<T> {
+export class FarmAjaxGenericValue<T> {
     public value: T;
+
+    constructor(value: T) {
+        this.value = value;
+    }
 }
 
-class FarmAjax {
+export class FarmAjax {
     static postWithMessageResponse(url: string, data: any, onDone: (response: FarmAjaxMessageResponse) => void) {
         FarmAjax
             .doAjax(url, data)
@@ -96,7 +102,7 @@ class FarmAjax {
             )));
     }
 
-    static postWithMessageAndValueResponse<T>(url: string, data: any, onDone: (response: FarmAjaxMessageAndValueResponse<T>) => void) {
+    static postWithMessageAndValueResponse<T>(url: string, data: any, onDone: (response: FarmAjaxMessageAndValueResponse<T | null>) => void) {
         FarmAjax
             .doAjax(url, data)
             .done(function (response: FarmAjaxMessageAndValueResponse<T>) {
@@ -124,7 +130,7 @@ class FarmAjax {
         if (data.SessionToken !== undefined)
             throw "Please don't define your own 'SessionToken' field, FarmAjax will handle that for you.";
 
-        data.SessionToken = Cookies.get("FarmMasterAuth");
+        data.SessionToken = getCookie("FarmMasterAuth");
         return $.ajax({
             type: "POST",
             url: url,

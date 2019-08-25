@@ -95,7 +95,9 @@
     </tbody>
 </table>
 
-<script>
+<script type="module">
+    import { FarmAjax, ComponentCharacteristics, ComponentModal, ComponentSelect, FarmAjaxMessageType } from "/js/index.js"
+
     let @idTable     = document.getElementById("@idTable");
     let @idInputType = document.getElementById("@idInputType");
     let @idInputName = document.getElementById("@idInputName");
@@ -115,6 +117,7 @@
             @Model.EntityId
         );
     }
+    window.@funcRefresh = @funcRefresh;
 
     function @funcDeleteByName (value) {
         ComponentModal.showAreYouSureModal(() =>
@@ -136,6 +139,7 @@
             )
         );
     }
+    window.@funcDeleteByName = @funcDeleteByName;
 
     function @funcAddGeneric (url, boxError, entityId, entityType, charaName, charaType, charaValue) {
         boxError.classList.add("transition", "hidden");
@@ -158,6 +162,7 @@
             }
         );
     }
+    window.@funcAddGeneric = @funcAddGeneric;
 
     function @funcAddTimeSpan () {
         let days = document.getElementById("@idInputTimeSpanDays").value || "0";
@@ -175,6 +180,7 @@
             value
         );
     }
+    window.@funcAddTimeSpan = @funcAddTimeSpan;
 
     function @funcAddText () {
         @funcAddGeneric (
@@ -187,6 +193,7 @@
             document.getElementById("@idInputTextText").value
         );
     }
+    window.@funcAddText = @funcAddText;
 
     $(function ()
     {

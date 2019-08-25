@@ -82,7 +82,9 @@
 </section>
 
 @section Scripts {
-    <script>
+    <script type="module">
+        import { ComponentTable } from "/js/index.js"
+
         function showEditModal(contactId) {
             $("#modalReason")
                 .modal({
@@ -93,6 +95,7 @@
                 })
                 .modal('show');
         }
+        window.showEditModal = showEditModal;
 
         function showDeleteModal(contactId) {
             $("#modalConfirm")
@@ -103,6 +106,7 @@
                 })
                 .modal('show');
         }
+        window.showDeleteModal = showDeleteModal;
 
         ComponentTable.setupPagingTable(
             document.getElementById("boxError"),

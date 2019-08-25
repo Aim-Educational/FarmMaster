@@ -54,9 +54,12 @@
 </table>
 
 @section Scripts {
-    <script>
+    <script type="module">
+        import { ComponentModal } from "/js/index.js";
+
         function showDeleteModal(id) {
             ComponentModal.showAreYouSureModal(() => document.location = "/Holding/Delete/" + id);
         }
+        window.showDeleteModal = showDeleteModal;
     </script>
 }

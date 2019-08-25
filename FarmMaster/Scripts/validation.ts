@@ -121,7 +121,7 @@ class ValidationRuleEmpty extends ValidationRule {
     public doValidate(target: HTMLInputElement, params: string[]): ValidationRuleResult {
         return (
             target.value.length > 0
-                ? null
+                ? new ValidationRuleResult(ValidationFailed.No, "")
                 : new ValidationRuleResult(ValidationFailed.Yes, "is empty.")
         );
     }
@@ -135,7 +135,7 @@ class ValidationRuleChecked extends ValidationRule {
     public doValidate(target: HTMLInputElement, params: string[]): ValidationRuleResult {
         return (
             target.checked
-                ? null
+                ? new ValidationRuleResult(ValidationFailed.No, "")
                 : new ValidationRuleResult(ValidationFailed.Yes, "is not checked.")
         );
     }
@@ -149,7 +149,7 @@ class ValidationRuleRegex extends ValidationRule {
     public doValidate(target: HTMLInputElement, params: string[]): ValidationRuleResult {
         return (
             new RegExp(params[0]).test(target.value)
-                ? null
+                ? new ValidationRuleResult(ValidationFailed.No, "")
                 : new ValidationRuleResult(ValidationFailed.Yes, "does not match pattern: "+params[0])
         );
     }
@@ -177,7 +177,7 @@ class Validation {
 
     static hookupForm(form: string | HTMLFormElement) {
         // Get the form.
-        let actualForm: HTMLFormElement = null;
+        let actualForm: HTMLFormElement | null = null;
         if (typeof form === "string")
             actualForm = <HTMLFormElement>document.getElementById(form);
         else
@@ -186,7 +186,7 @@ class Validation {
         // If we don't validate or an exception is thrown, stop the form from submitting.
         actualForm.addEventListener("submit", function (e) {
             try {
-                if (!Validation.validateForm(actualForm))
+                if (!Validation.validateForm(actualForm!))
                     e.preventDefault();
             }
             catch(ex) {
@@ -215,15 +215,15 @@ class Validation {
                 handledInputs.push(fieldInput);
 
                 // querySelector will look deeper than a single node level, so we need to work our way back up the the deepest 'field' parent.
-                fieldSection = fieldInput.parentElement;
+                fieldSection = <Element>fieldInput.parentElement;
                 while (!fieldSection.classList.contains("field"))
-                    fieldSection = fieldSection.parentElement;
+                    fieldSection = fieldSection.parentElement!;
 
                 // Get the error message box (if it exists), and several other pieces of data.
-                let fieldError = fieldSection.querySelector<HTMLDivElement>(".ui.error.message, .ui.red.prompt");
+                let fieldError = fieldSection.querySelector<HTMLDivElement>(".ui.error.message, .ui.red.prompt")!;
                 let fieldName = fieldInput.name;
                 let errorPrefix = "The " + fieldName.split('.').slice(-1)[0] + " field ";
-                let rules = fieldInput.dataset.validationRules.split("¬");
+                let rules = fieldInput.dataset.validationRules!.split("¬");
 
                 // Hide the error box in case this isn't the first time validation was run (so old errors don't stick around).
                 if (fieldError !== null) {

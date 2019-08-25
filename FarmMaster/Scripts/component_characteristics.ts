@@ -1,16 +1,18 @@
-﻿enum ComponentCharacteristicsValueType {
+﻿import { FarmAjax, FarmAjaxMessageType } from "./farm_ajax.js";
+
+export enum ComponentCharacteristicsValueType {
     Error_Unknown,
     TimeSpan,
     Text
 }
 
-class ComponentCharacteristicsValue {
-    public name: string;
-    public type: ComponentCharacteristicsValueType;
-    public value: any;
+export class ComponentCharacteristicsValue {
+    public name: string = "";
+    public type: ComponentCharacteristicsValueType = ComponentCharacteristicsValueType.Error_Unknown;
+    public value: any = null;
 }
 
-class ComponentCharacteristics {
+export class ComponentCharacteristics {
     public static getValuesAjax(
         boxError: HTMLDivElement | null,
         divSegment: HTMLDivElement | null,
@@ -36,10 +38,10 @@ class ComponentCharacteristics {
                     return;
                 }
 
-                let tbody = table.tBodies.item(0);
+                let tbody = table.tBodies.item(0)!;
                 tbody.innerHTML = "";
 
-                for (let characteristic of responseAndValue.value) {
+                for (let characteristic of responseAndValue.value!) {
                     ComponentCharacteristics.addValue(table, funcDelete, characteristic);
                 }
             }
@@ -51,7 +53,7 @@ class ComponentCharacteristics {
         funcDelete: (value: ComponentCharacteristicsValue) => void,
         value: ComponentCharacteristicsValue
     ) {
-        let tbody = table.tBodies.item(0);
+        let tbody = table.tBodies.item(0)!;
 
         let tr = document.createElement("tr");
         tbody.appendChild(tr);

@@ -78,7 +78,9 @@
 </section>
 
 @section Scripts {
-    <script>        
+    <script type="module">
+        import { ComponentSelect } from "/js/index.js"
+
         $(".ui.dropdown").dropdown();
         $(".ui.checkbox").checkbox();
         $(".accordion").accordion();

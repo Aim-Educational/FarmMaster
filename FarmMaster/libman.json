@@ -5,6 +5,10 @@
     {
       "library": "fomantic-ui@2.7.6",
       "destination": "wwwroot/lib/fomantic-ui/"
+    },
+    {
+      "library": "js-cookie@2.2.1",
+      "destination": "wwwroot/lib/js-cookie/"
     }
   ]
 }

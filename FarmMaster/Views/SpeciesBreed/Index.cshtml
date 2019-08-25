@@ -55,7 +55,9 @@
 </section>
 
 @section Scripts {
-    <script>
+    <script type="module">
+        import { ComponentTable } from "/js/index.js"
+
         ComponentTable.setupPagingTable(
             document.getElementById("boxErrorSpecies"),
             document.getElementById("tableSpecies"),

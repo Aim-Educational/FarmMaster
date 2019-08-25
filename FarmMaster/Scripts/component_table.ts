@@ -1,4 +1,6 @@
-﻿class ComponentTable {
+﻿import { FarmAjax, FarmAjaxMessageType, FarmAjaxGenericValue } from "./farm_ajax.js";
+
+export class ComponentTable {
     public static onAddAjax(
         inputName: HTMLInputElement,
         inputValue: HTMLInputElement,
@@ -32,7 +34,8 @@
 
                 if (response.messageType !== FarmAjaxMessageType.None)
                     response.populateMessageBox(boxError);
-                else {
+
+                if (response.messageType === FarmAjaxMessageType.Information) {
                     let tr = document.createElement("tr");
 
                     let td = document.createElement("td");
@@ -56,7 +59,7 @@
                         .querySelectorAll("input")
                         .forEach(i => i.value = "");
 
-                    segTable.querySelector("table").tBodies.item(0).appendChild(tr);
+                    segTable.querySelector("table")!.tBodies.item(0)!.appendChild(tr);
                 }
             }
         );
@@ -85,14 +88,15 @@
 
                 if (response.messageType !== FarmAjaxMessageType.None)
                     response.populateMessageBox(boxError);
-                else {
+
+                if (response.messageType === FarmAjaxMessageType.Information) {
                     // Find the row with the name, and delete it.
                     segTable
                         .querySelectorAll("tbody tr")
                         .forEach((row) => {
                             row.querySelectorAll("td").forEach(td => {
                                 if (td.innerText === value) {
-                                    segTable.querySelector("tbody").removeChild(row);
+                                    segTable.querySelector("tbody")!.removeChild(row);
                                     return;
                                 }
                             })
@@ -110,7 +114,7 @@
         entityType: string | null = null,
         itemsPerPage: number | null = null
     ) {
-        let tableFooter = table.tFoot;
+        let tableFooter = table.tFoot!;
 
         let segment = table.parentElement;
         if (segment !== null && segment.classList.contains("segment"))
@@ -141,14 +145,14 @@
                     div.classList.add("ui", "center", "aligned", "pagination", "menu");
                     th.appendChild(div);
 
-                    for (let i = 0; i < responseAndValue.value.value; i++) {
+                    for (let i = 0; i < responseAndValue.value!.value!; i++) {
                         let a = document.createElement("a");
                         a.innerText = "" + (i + 1);
                         a.classList.add("item");
                         a.onclick = function () {
                             ComponentTable.getPage(boxError, table, ajaxRender, i, entityType, itemsPerPage);
 
-                            tableFooter.querySelectorAll("a").forEach(item => item.classList.remove("active"));
+                            tableFooter.querySelectorAll("a")!.forEach(item => item.classList.remove("active"));
                             a.classList.add("active");
                         }
                         div.appendChild(a);
@@ -172,7 +176,7 @@
         entityType: string | null = null,
         itemsPerPage: number | null = null
     ) {
-        let tableBody = table.tBodies.item(0);
+        let tableBody = table.tBodies.item(0)!;
 
         let segment = table.parentElement;
         if (segment !== null && segment.classList.contains("segment"))

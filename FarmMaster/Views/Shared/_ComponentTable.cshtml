@@ -80,7 +80,9 @@
     </section>
 </section>
 
-<script>
+<script type="module">
+    import { ComponentModal, ComponentTable } from "/js/index.js";
+
     function @funcOnAdd () {
         ComponentModal.showContactActionReasonModal(function (reason)
         {
@@ -99,6 +101,7 @@
             );
         });
     }
+    window.@funcOnAdd = @funcOnAdd;
 
     function @funcOnRemove (name) {
         ComponentModal.showContactActionReasonModal(function (reason)
@@ -113,4 +116,5 @@
             );
         });
     }
+    window.@funcOnRemove = @funcOnRemove;
 </script>
