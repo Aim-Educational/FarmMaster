@@ -273,9 +273,34 @@ namespace FarmMaster.Controllers
                model, this._users, this._roles, new string[] { EnumRolePermission.Names.VIEW_SPECIES_BREEDS },
                (myUser) =>
                {
-                   var list = this.GetOrCreateListForEntity(model.Type, model.Id);
-                   return list.Characteristics
-                              .Select(c => new AjaxCharacteristicsResponseValue { Name = c.Name, Value = c.Data.ToHtmlString(), Type = (int)c.Data.FieldType });
+                   if(model.Type == "Species")
+                   {
+                       var list = this.GetOrCreateListForEntity(model.Type, model.Id);
+                       return list.Characteristics
+                                  .Select(c => new AjaxCharacteristicsResponseValue
+                                  {
+                                      Name = c.Name,
+                                      Value = c.Data.ToHtmlString(),
+                                      Type = (int)c.Data.FieldType,
+                                      IsInherited = false
+                                  });
+                   }
+                   else if(model.Type == "Breed") // For breeds, also show their species' characteristics as inherited.
+                   {
+                       var list = this.GetOrCreateListForEntity(model.Type, model.Id);
+                       var speciesList = this._speciesBreeds.For<Breed>().FromIdAllIncluded(model.Id).Species.CharacteristicList;
+                       var combined = list.Characteristics.Concat(speciesList.Characteristics);
+
+                       return combined.Select(c => new AjaxCharacteristicsResponseValue
+                       {
+                           Name = c.Name,
+                           Value = c.Data.ToHtmlString(),
+                           Type = (int)c.Data.FieldType,
+                           IsInherited = speciesList.Characteristics.Any(sc => sc.AnimalCharacteristicId == c.AnimalCharacteristicId)
+                       });
+                   }
+                   else
+                       throw new NotImplementedException(model.Type);
                }
             );
         }

@@ -31,6 +31,7 @@ namespace FarmMaster.Models
         public string Name { get; set; }
         public int Type { get; set; }
         public string Value { get; set; }
+        public bool IsInherited { get; set; }
     }
 
     public class AjaxCharacteristicsAddRequest : AjaxRequestModel

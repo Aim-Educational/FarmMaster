@@ -10,6 +10,7 @@ export class ComponentCharacteristicsValue {
     public name: string = "";
     public type: ComponentCharacteristicsValueType = ComponentCharacteristicsValueType.Error_Unknown;
     public value: any = null;
+    public isInherited: boolean = false;
 }
 
 export class ComponentCharacteristics {
@@ -57,6 +58,8 @@ export class ComponentCharacteristics {
 
         let tr = document.createElement("tr");
         tbody.appendChild(tr);
+        if (value.isInherited)
+            tr.classList.add("grey");
 
         let tdName = document.createElement("td");
         tdName.innerText = value.name;
@@ -71,15 +74,26 @@ export class ComponentCharacteristics {
         let tdActions = document.createElement("td");
         tr.appendChild(tdActions);
 
-        let btnDelete = document.createElement("button");
-        btnDelete.classList.add("ui", "secondary", "button");
-        btnDelete.innerText = "Delete";
-        btnDelete.onclick = () => funcDelete(value);
-        tdActions.appendChild(btnDelete);
+        if (value.isInherited) {
+            let msgInherited = document.createElement("div");
+            msgInherited.classList.add("ui", "message", "transition", "visible");
+            msgInherited.innerText = "Inherited";
+            tdActions.appendChild(msgInherited);
+        }
+        else {
+            let btnDelete = document.createElement("button");
+            btnDelete.classList.add("ui", "secondary", "button");
+            btnDelete.innerText = "Delete";
+            btnDelete.onclick = () => funcDelete(value);
+            tdActions.appendChild(btnDelete);
+        }
 
         let div = document.createElement("div");
         div.classList.add("ui", "form");
         tdValue.appendChild(div);
+
+        if (value.isInherited)
+            div.classList.add("disabled");
 
         switch (value.type) {
             case ComponentCharacteristicsValueType.TimeSpan:
@@ -89,6 +103,8 @@ export class ComponentCharacteristics {
                 input.type = "text";
                 input.placeholder = "#d #m #s";
                 input.value = value.value;
+                input.disabled = value.isInherited;
+                if (input.disabled) input.classList.add("ui", "disabled", "input");
                 div.appendChild(input);
                 break;
 
@@ -99,6 +115,8 @@ export class ComponentCharacteristics {
                 input.type = "text";
                 input.placeholder = "Text";
                 input.value = value.value;
+                input.disabled = value.isInherited;
+                if (input.disabled) input.classList.add("ui", "disabled", "input");
                 div.appendChild(input);
                 break;
 

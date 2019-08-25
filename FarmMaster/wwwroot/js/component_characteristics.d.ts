@@ -7,6 +7,7 @@ export declare class ComponentCharacteristicsValue {
     name: string;
     type: ComponentCharacteristicsValueType;
     value: any;
+    isInherited: boolean;
 }
 export declare class ComponentCharacteristics {
     static getValuesAjax(boxError: HTMLDivElement | null, divSegment: HTMLDivElement | null, table: HTMLTableElement, funcDelete: (value: ComponentCharacteristicsValue) => void, ajaxUrl: string, type: string, id: string): void;
