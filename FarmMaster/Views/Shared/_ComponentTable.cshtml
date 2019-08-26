@@ -33,7 +33,7 @@
                     @foreach (var nameValue in Model.NameValues)
                     {
                         <tr>
-                            <td>@nameValue.Name</td>
+                            <td data-name="@(nameValue.AjaxName?.ToString() ?? nameValue.Name)">@nameValue.Name</td>
                             <td>@nameValue.Value</td>
                             <td class="collapsing">
                                 <a class="ui red inverted button" onclick="@onClickRemove(nameValue.AjaxName?.ToString() ?? nameValue.Name)">
@@ -86,8 +86,6 @@
     function @funcOnAdd () {
         ComponentModal.showContactActionReasonModal(function (reason)
         {
-            let name = document.getElementById("@idTxtName").value;
-
             ComponentTable.onAddAjax(
                 document.getElementById("@idTxtName"),
                 document.getElementById("@idTxtValue"),
@@ -97,7 +95,7 @@
                 '@Model.AjaxAdd',
                 reason,
                 @Model.DataId,
-                () => @funcOnRemove (name)
+                (name) => window.@funcOnRemove (name)
             );
         });
     }

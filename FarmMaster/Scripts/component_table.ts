@@ -10,11 +10,31 @@ export class ComponentTable {
         ajaxUrl: string,
         reason: string,
         id: number,
-        deleteFunc: Function
+        deleteFunc: (name: string) => void
     ) {
         let name  = inputName.value;
         let value = inputValue.value;
-        let displayValue = inputValue.innerHTML;
+        let displayValue: string = "";
+        let deleteFuncParam: string | null = "";
+
+        if (inputValue.type === "text") {
+            displayValue = inputValue.value;
+            deleteFuncParam = name;
+        }
+        else if (inputValue.type === "hidden") { // Special Fomantic UI Style dropdown
+            let menu = inputValue.parentElement!.querySelector("div.menu")!;
+
+            menu.querySelectorAll("div.item")
+                .forEach(item => {
+                    if (displayValue.length > 0)
+                        return;
+
+                    if ((item as HTMLDivElement).dataset.value == value || item.innerHTML == value)
+                        displayValue = item.innerHTML;
+                });
+
+            deleteFuncParam = null;
+        }
 
         boxError.classList.remove("visible");
         segTable.classList.add("loading");
@@ -42,17 +62,27 @@ export class ComponentTable {
                     td.innerText = name;
                     tr.appendChild(td);
 
+                    if (value !== displayValue)
+                        td.dataset.name = value; // E.g For dropdowns, the visual value (displayValue) and actual value (value) are different.
+
                     td = document.createElement("td");
                     td.innerText = displayValue;
                     tr.appendChild(td);
 
                     td = document.createElement("td");
-                    let a = document.createElement("a");
-                    a.classList.add("ui", "red", "inverted", "button");
-                    a.innerText = "Remove";
-                    a.onclick = () => deleteFunc;
-                    td.appendChild(a);
-                    tr.appendChild(td);
+
+                    if (deleteFuncParam !== null) {
+                        let a = document.createElement("a");
+                        a.classList.add("ui", "red", "inverted", "button");
+                        a.innerText = "Remove";
+                        a.onclick = () => deleteFunc(deleteFuncParam);
+                        td.appendChild(a);
+                        tr.appendChild(td);
+                    }
+                    else {
+                        td.innerHTML = "Please refresh the page";
+                        tr.appendChild(td);
+                    }
 
                     // Clear inputs
                     segInput
@@ -94,12 +124,11 @@ export class ComponentTable {
                     segTable
                         .querySelectorAll("tbody tr")
                         .forEach((row) => {
-                            row.querySelectorAll("td").forEach(td => {
-                                if (td.innerText === value) {
-                                    segTable.querySelector("tbody")!.removeChild(row);
-                                    return;
-                                }
-                            })
+                            let td = (row as HTMLTableRowElement).cells.item(0)!;
+                            if (td.innerText === value || td.dataset.name == value) {
+                                segTable.querySelector("tbody")!.removeChild(row);
+                                return;
+                            }
                         });
                 }
             }
