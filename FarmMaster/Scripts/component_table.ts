@@ -75,7 +75,7 @@ export class ComponentTable {
                         let a = document.createElement("a");
                         a.classList.add("ui", "red", "inverted", "button");
                         a.innerText = "Remove";
-                        a.onclick = () => deleteFunc(deleteFuncParam);
+                        a.onclick = () => deleteFunc(deleteFuncParam!);
                         td.appendChild(a);
                         tr.appendChild(td);
                     }
