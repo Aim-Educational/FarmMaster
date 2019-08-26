@@ -90,6 +90,24 @@ namespace Business.Model
              .Property(c => c.Data)
              .IsDynamicField();
 
+            b.Entity<LifeEventDynamicFieldInfo>()
+             .Property(e => e.Type)
+             .HasConversion<string>();
+            b.Entity<LifeEventDynamicFieldInfo>()
+             .HasIndex("Name", "LifeEventId")
+             .IsUnique();
+
+            b.Entity<LifeEventDynamicFieldValue>()
+             .Property(v => v.Value)
+             .IsDynamicField();
+            b.Entity<LifeEventDynamicFieldValue>()
+             .HasIndex(nameof(LifeEventDynamicFieldValue.LifeEventDynamicFieldInfoId), nameof(LifeEventDynamicFieldValue.LifeEventEntryId))
+             .IsUnique();
+
+            b.Entity<LifeEvent>()
+             .HasIndex(e => e.Name)
+             .IsUnique();
+
             this.SeedRolePermissions(b);
             this.SeedHoldingRegistrations(b);
         }
@@ -112,6 +130,10 @@ namespace Business.Model
         public DbSet<Breed>                             Breeds                           { get; set; }
         public DbSet<AnimalCharacteristic>              AnimalCharacteristics            { get; set; }
         public DbSet<AnimalCharacteristicList>          AnimalCharacteristicLists        { get; set; }
+        public DbSet<LifeEvent>                         LifeEvents                       { get; set; }
+        public DbSet<LifeEventDynamicFieldInfo>         LifeEventDynamicFieldInfo        { get; set; }
+        public DbSet<LifeEventDynamicFieldValue>        LifeEventDynamicFieldValues      { get; set; }
+        public DbSet<LifeEventEntry>                    LifeEventEntries                 { get; set; }
         #endregion
 
         #region Data seeding
