@@ -11,11 +11,16 @@
                 @if(ViewData.ContainsKey("Breadcrumb"))
                 {
                     <div class="ui breadcrumb">
+                        @{ 
+                            var crumbLength = (ViewData["Breadcrumb"] as IEnumerable<string>).Count();
+                            var index = 0;
+                        }
                         @foreach(var crumb in ViewData["Breadcrumb"] as IEnumerable<string>)
                         {
                             var split = crumb.Split(":");
-                            <a class="section" href="@split[1]">@split[0]</a>
+                            <a class="section @(index == crumbLength - 1 ? "active" : "")" href="@split[1]">@split[0]</a>
                             <div class="divider">/</div>
+                            index++;
                         }
                     </div>
                 }
