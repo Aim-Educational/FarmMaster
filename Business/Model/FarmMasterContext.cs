@@ -52,6 +52,8 @@ namespace Business.Model
             b.Entity<Contact>()
              .Property(c => c.ContactType)
              .HasConversion<string>();
+            b.Entity<Contact>()
+             .HasIndex(c => c.IsAnonymous);
 
             b.Entity<ActionAgainstContactInfo>()
              .Property(a => a.ActionType)
@@ -110,6 +112,7 @@ namespace Business.Model
 
             this.SeedRolePermissions(b);
             this.SeedHoldingRegistrations(b);
+            this.SeedLifeEvents(b);
         }
 
         public DbSet<User>                              Users                            { get; set; }
@@ -174,7 +177,20 @@ namespace Business.Model
 
         private void SeedBreeds(ModelBuilder b)
         {
+        }
 
+        private void SeedLifeEvents(ModelBuilder b)
+        {
+            b.Entity<LifeEvent>()
+             .HasData(
+                new LifeEvent{ LifeEventId = 1, Name = LifeEvent.BuiltinNames.BORN, Description = "The animal was born.", IsBuiltin = true }
+            );
+            
+            b.Entity<LifeEventDynamicFieldInfo>()
+             .HasData(
+                // BORN
+                new LifeEventDynamicFieldInfo{ LifeEventDynamicFieldInfoId = 1, LifeEventId = 1, Name = "Date", Type = DynamicField.Type.DateTime, Description = "When the animal was born." }
+            );
         }
         #endregion
     }

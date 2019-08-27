@@ -3,15 +3,17 @@ using System;
 using Business.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Business.Migrations
 {
     [DbContext(typeof(FarmMasterContext))]
-    partial class FarmMasterContextModelSnapshot : ModelSnapshot
+    [Migration("20190827141845_LifeEventStuff1")]
+    partial class LifeEventStuff1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -386,15 +388,6 @@ namespace Business.Migrations
                         .IsUnique();
 
                     b.ToTable("LifeEvents");
-
-                    b.HasData(
-                        new
-                        {
-                            LifeEventId = 1,
-                            Description = "The animal was born.",
-                            IsBuiltin = true,
-                            Name = "Born"
-                        });
                 });
 
             modelBuilder.Entity("Business.Model.LifeEventDynamicFieldInfo", b =>
@@ -426,16 +419,6 @@ namespace Business.Migrations
                         .IsUnique();
 
                     b.ToTable("LifeEventDynamicFieldInfo");
-
-                    b.HasData(
-                        new
-                        {
-                            LifeEventDynamicFieldInfoId = 1,
-                            Description = "When the animal was born.",
-                            LifeEventId = 1,
-                            Name = "Date",
-                            Type = "DateTime"
-                        });
                 });
 
             modelBuilder.Entity("Business.Model.LifeEventDynamicFieldValue", b =>

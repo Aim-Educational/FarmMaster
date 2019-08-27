@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Reflection.Emit;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -23,7 +24,8 @@ namespace Business.Model
         {
             Error_Unknown,
             TimeSpan,
-            Text
+            Text,
+            DateTime // Stored in UTC.
         }
 
         public const string TYPE_KEY = "__TYPE";
@@ -88,6 +90,9 @@ namespace Business.Model
 
                 case DynamicField.Type.Text:
                     return new DynamicFieldText();
+
+                case DynamicField.Type.DateTime:
+                    return new DynamicFieldDateTime();
 
                 default: throw new InvalidOperationException($"The type key '{type}' does not exist.");
             }
@@ -173,6 +178,40 @@ namespace Business.Model
         {
             var json = new JObject();
             json["v"] = this.Text;
+
+            return json;
+        }
+    }
+
+    public class DynamicFieldDateTime : DynamicField
+    {
+        public DateTimeOffset DateTime { set; get; }
+
+        public DynamicFieldDateTime() : base(DynamicField.Type.DateTime)
+        {
+
+        }
+
+        public override void FromHtmlString(string html)
+        {
+            // "O" is full datetime with timezone info
+            this.DateTime = DateTimeOffset.ParseExact(html, "O", CultureInfo.InvariantCulture);
+        }
+
+        public override string ToHtmlString()
+        {
+            return this.DateTime.ToString("O", CultureInfo.InvariantCulture);
+        }
+
+        public override void FromJson(JObject json)
+        {
+            this.FromHtmlString(json.GetValue("v").Value<string>());
+        }
+
+        protected override JObject ToJsonImpl()
+        {
+            var json = new JObject();
+            json["v"] = this.ToHtmlString();
 
             return json;
         }

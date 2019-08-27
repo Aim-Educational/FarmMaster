@@ -1,0 +1,53 @@
+﻿@model LifeEventIndexViewModel
+@{
+    ViewData["Title"] = "Index - Life Events";
+    ViewData["Breadcrumb"] = new[]
+    {
+"Home:/Home/Index",
+"Life Events:/LifeEvent/Index"
+};
+}
+
+<h1>Index</h1>
+
+<partial name="_ComponentModalAreYouSure" />
+<partial name="_ViewModelWithMessagePartial" model="@Model" />
+
+<table class="ui celled table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var lifeEvent in Model.LifeEvents)
+        {
+            <tr>
+                <td>@lifeEvent.Name</td>
+                <td>@lifeEvent.Description</td>
+                <td class="ui two buttons">
+                    <button class="ui inverted tiny secondary left button" onclick="window.location='/LifeEvent/Edit/@lifeEvent.LifeEventId'">
+                        Edit
+                    </button>
+                    <div class="or divide hide mobile"></div>
+                    <button class="ui inverted tiny secondary right button" onclick="showDeleteModal(@lifeEvent.LifeEventId)">
+                        Delete
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script type="module">
+        import { ComponentModal } from "/js/index.js";
+
+        function showDeleteModal(id) {
+            ComponentModal.showAreYouSureModal(() => document.location = "/LifeEvent/Delete/" + id);
+        }
+        window.showDeleteModal = showDeleteModal;
+    </script>
+}
