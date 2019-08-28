@@ -9,6 +9,8 @@ namespace FarmMaster.Models
 {
     public abstract class ViewModelWithMessage
     {
+        const int PREFIX_LENGTH = 2;
+
         public enum Type
         {
             None,
@@ -31,7 +33,7 @@ namespace FarmMaster.Models
 
         public void ParseMessageQueryString(string message)
         {
-            if(message == null || message.Length < 2)
+            if(message == null || message.Length < PREFIX_LENGTH)
                 return;
 
             Type type = Type.None;
@@ -46,8 +48,13 @@ namespace FarmMaster.Models
             this.MessageType = type;
             this.MessageFormat = format;
 
-            if(message.Length > 2)
-                this.Message = message.Substring(2);
+            if(message.Length > PREFIX_LENGTH)
+                this.Message = message.Substring(PREFIX_LENGTH);
+        }
+
+        public void ParseInvalidModelState(ModelStateDictionary modelState)
+        {
+            this.ParseMessageQueryString(ViewModelWithMessage.CreateQueryString(modelState));
         }
 
         public static string CreateMessageQueryString(Type type, string message, Format format = Format.Default)
@@ -58,7 +65,7 @@ namespace FarmMaster.Models
               + message;
         }
 
-        public static string CreateMessageQueryString(ModelStateDictionary modelState)
+        public static string CreateQueryString(ModelStateDictionary modelState)
         {
             return ViewModelWithMessage.CreateMessageQueryString(
                 Type.Error,
@@ -69,6 +76,21 @@ namespace FarmMaster.Models
                 .Aggregate((s1, s2) => $"{s1}\n{s2}"),
                 Format.UnorderedList
             );
+        }
+
+        public static string CreateErrorQueryString(string message, Format format = Format.Default)
+        {
+            return ViewModelWithMessage.CreateMessageQueryString(Type.Error, message, format);
+        }
+
+        public static string CreateWarningQueryString(string message, Format format = Format.Default)
+        {
+            return ViewModelWithMessage.CreateMessageQueryString(Type.Warning, message, format);
+        }
+
+        public static string CreateInfoQueryString(string message, Format format = Format.Default)
+        {
+            return ViewModelWithMessage.CreateMessageQueryString(Type.Information, message, format);
         }
     }
 

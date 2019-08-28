@@ -98,7 +98,7 @@ namespace FarmMaster.Controllers
         {
             if(!ModelState.IsValid)
             {
-                model.ParseMessageQueryString(ViewModelWithMessage.CreateMessageQueryString(ModelState));
+                model.ParseMessageQueryString(ViewModelWithMessage.CreateQueryString(ModelState));
                 return View(model);
             }
 
@@ -113,7 +113,7 @@ namespace FarmMaster.Controllers
         {
             if (!ModelState.IsValid)
             {
-                model.ParseMessageQueryString(ViewModelWithMessage.CreateMessageQueryString(ModelState));
+                model.ParseMessageQueryString(ViewModelWithMessage.CreateQueryString(ModelState));
                 return View(model);
             }
 
@@ -173,7 +173,7 @@ namespace FarmMaster.Controllers
         {
             if (!ModelState.IsValid)
             {
-                model.ParseMessageQueryString(ViewModelWithMessage.CreateMessageQueryString(ModelState));
+                model.ParseMessageQueryString(ViewModelWithMessage.CreateQueryString(ModelState));
                 return View(model);
             }
             
@@ -204,7 +204,7 @@ namespace FarmMaster.Controllers
         {
             if (!ModelState.IsValid)
             {
-                model.ParseMessageQueryString(ViewModelWithMessage.CreateMessageQueryString(ModelState));
+                model.ParseMessageQueryString(ViewModelWithMessage.CreateQueryString(ModelState));
                 return View(model);
             }
 

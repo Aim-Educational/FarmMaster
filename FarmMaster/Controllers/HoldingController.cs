@@ -55,7 +55,7 @@ namespace FarmMaster.Controllers
                     nameof(Index), 
                     new
                     {
-                        message = ViewModelWithMessage.CreateMessageQueryString(ViewModelWithMessage.Type.Error, "No contact with that ID was found.")
+                        message = ViewModelWithMessage.CreateErrorQueryString("No contact with that ID was found.")
                     }
                 );
             }
@@ -75,8 +75,8 @@ namespace FarmMaster.Controllers
                                                                .ToDictionary(
                                                                     r => r.InternalName,
                                                                     r => holding.Registrations
-                                                                                .FirstOrDefault(r2 => r2.HoldingRegistration.InternalName == r.InternalName)
-                                                                                ?.HerdNumber
+                                                                                .FirstOrDefault(r2 => r2.HoldingRegistration.InternalName == r.InternalName)?
+                                                                                .HerdNumber
                                                                )
             });
         }
@@ -88,7 +88,7 @@ namespace FarmMaster.Controllers
             if(holding == null)
             {
                 return RedirectToAction(nameof(Index),
-                    new{ message = ViewModelWithMessage.CreateMessageQueryString(ViewModelWithMessage.Type.Error, $"The holding with the ID #{id} was not found.") }    
+                    new{ message = ViewModelWithMessage.CreateErrorQueryString($"The holding with the ID #{id} was not found.") }    
                 );
             }
 
@@ -111,7 +111,7 @@ namespace FarmMaster.Controllers
 
             if(!ModelState.IsValid)
             {
-                model.ParseMessageQueryString(ViewModelWithMessage.CreateMessageQueryString(ModelState));
+                model.ParseMessageQueryString(ViewModelWithMessage.CreateQueryString(ModelState));
                 model.AllRegistrations = this._context.EnumHoldingRegistrations;
                 return View("CreateEdit", model);
             }
@@ -153,7 +153,7 @@ namespace FarmMaster.Controllers
 
             if (!ModelState.IsValid)
             {
-                model.ParseMessageQueryString(ViewModelWithMessage.CreateMessageQueryString(ModelState));
+                model.ParseMessageQueryString(ViewModelWithMessage.CreateQueryString(ModelState));
                 model.AllRegistrations = this._context.EnumHoldingRegistrations;
                 return View("CreateEdit", model);
             }

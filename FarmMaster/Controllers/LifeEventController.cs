@@ -45,10 +45,7 @@ namespace FarmMaster.Controllers
             {
                 return RedirectToAction(nameof(Index), new
                 {
-                    message = ViewModelWithMessage.CreateMessageQueryString(
-                        ViewModelWithMessage.Type.Error,
-                        $"No Life Event with ID #{id} was found."
-                    )
+                    message = ViewModelWithMessage.CreateErrorQueryString($"No Life Event with ID #{id} was found.")
                 });
             }
 
@@ -56,8 +53,7 @@ namespace FarmMaster.Controllers
             {
                 return RedirectToAction(nameof(Index), new
                 {
-                    message = ViewModelWithMessage.CreateMessageQueryString(
-                        ViewModelWithMessage.Type.Error,
+                    message = ViewModelWithMessage.CreateErrorQueryString(
                         $"The '{@event.Name}' Life Event is a builtin event, and cannot be modified."
                     )
                 });
@@ -81,7 +77,7 @@ namespace FarmMaster.Controllers
         {
             if (!ModelState.IsValid)
             {
-                model.ParseMessageQueryString(ViewModelWithMessage.CreateMessageQueryString(ModelState));
+                model.ParseInvalidModelState(ModelState);
                 return View(model);
             }
             
@@ -108,7 +104,7 @@ namespace FarmMaster.Controllers
         {
             if (!ModelState.IsValid)
             {
-                model.ParseMessageQueryString(ViewModelWithMessage.CreateMessageQueryString(ModelState));
+                model.ParseMessageQueryString(ViewModelWithMessage.CreateQueryString(ModelState));
                 return View(model);
             }
 
@@ -117,18 +113,14 @@ namespace FarmMaster.Controllers
             {
                 return RedirectToAction(nameof(Index), new
                 {
-                    message = ViewModelWithMessage.CreateMessageQueryString(
-                        ViewModelWithMessage.Type.Error,
-                        $"No Life Event with the ID #{model.Id} was found."
-                    )
+                    message = ViewModelWithMessage.CreateErrorQueryString($"No Life Event with the ID #{model.Id} was found.")
                 });
             }
             if (@event.IsBuiltin)
             {
                 return RedirectToAction(nameof(Index), new
                 {
-                    message = ViewModelWithMessage.CreateMessageQueryString(
-                        ViewModelWithMessage.Type.Error,
+                    message = ViewModelWithMessage.CreateErrorQueryString(
                         $"The '{@event.Name}' Life Event is a builtin event, and cannot be modified."
                     )
                 });

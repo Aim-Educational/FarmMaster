@@ -71,9 +71,7 @@ namespace FarmMaster.Controllers
         {
             if(!ModelState.IsValid)
             {
-                model.MessageFormat = ViewModelWithMessage.Format.UnorderedList;
-                model.MessageType = ViewModelWithMessage.Type.Error;
-                model.Message = ViewModelWithMessage.CreateMessageQueryString(ModelState).Substring(1); // The substring is to cut off the error type mark.
+                model.ParseInvalidModelState(ModelState);
                 return View(model);
             }
 

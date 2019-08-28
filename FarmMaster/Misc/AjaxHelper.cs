@@ -23,7 +23,7 @@ namespace FarmMaster.Misc
 
             if (!controller.ModelState.IsValid)
             {
-                message.ParseMessageQueryString(ViewModelWithMessage.CreateMessageQueryString(controller.ModelState));
+                message.ParseMessageQueryString(ViewModelWithMessage.CreateQueryString(controller.ModelState));
                 return controller.Json(message);
             }
 
@@ -57,7 +57,7 @@ namespace FarmMaster.Misc
 
             if (!controller.ModelState.IsValid)
             {
-                response.ParseMessageQueryString(ViewModelWithMessage.CreateMessageQueryString(controller.ModelState));
+                response.ParseMessageQueryString(ViewModelWithMessage.CreateQueryString(controller.ModelState));
                 return controller.Json(response);
             }
 

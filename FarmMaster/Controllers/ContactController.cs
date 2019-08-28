@@ -66,7 +66,7 @@ namespace FarmMaster.Controllers
             {
                 return RedirectToAction(
                     nameof(Index),
-                    new { message = ViewModelWithMessage.CreateMessageQueryString(ViewModelWithMessage.Type.Error, $"Contact with ID #{id} not found.") }
+                    new { message = ViewModelWithMessage.CreateErrorQueryString($"Contact with ID #{id} not found.") }
                 );
             }
 
@@ -74,7 +74,7 @@ namespace FarmMaster.Controllers
             {
                 return RedirectToAction(
                     nameof(Index),
-                    new { message = ViewModelWithMessage.CreateMessageQueryString(ViewModelWithMessage.Type.Error, "User contacts cannot be deleted by another user.") }
+                    new { message = ViewModelWithMessage.CreateErrorQueryString("User contacts cannot be deleted by another user.") }
                 );
             }
 
@@ -90,7 +90,7 @@ namespace FarmMaster.Controllers
             {
                 return RedirectToAction(nameof(Index), 
                     new{
-                        message = ViewModelWithMessage.CreateMessageQueryString(ViewModelWithMessage.Type.Error, $"Contact with ID #{id} does not exist")
+                        message = ViewModelWithMessage.CreateErrorQueryString($"Contact with ID #{id} does not exist")
                     });
             }
 
@@ -120,7 +120,7 @@ namespace FarmMaster.Controllers
         {
             if(!ModelState.IsValid)
             {
-                model.ParseMessageQueryString(ViewModelWithMessage.CreateMessageQueryString(ModelState));
+                model.ParseInvalidModelState(ModelState);
                 return View(model);
             }
 
@@ -143,7 +143,7 @@ namespace FarmMaster.Controllers
         {
             if(!ModelState.IsValid)
             {
-                model.ParseMessageQueryString(ViewModelWithMessage.CreateMessageQueryString(ModelState));
+                model.ParseInvalidModelState(ModelState);
                 return View(model);
             }
 
