@@ -30,6 +30,9 @@ namespace FarmMaster.Services
 
         public LifeEvent CreateEvent(string name, string description)
         {
+            if(this._context.LifeEvents.Any(e => e.Name.ToLower() == name.ToLower()))
+                throw new InvalidOperationException($"A Life Event called '{name}' already exists.");
+
             var @event = new LifeEvent
             {
                 Description = description,
@@ -153,21 +156,25 @@ namespace FarmMaster.Services
         public void Update(LifeEvent entity)
         {
             this._context.Update(entity);
+            this._context.SaveChanges();
         }
 
         public void Update(LifeEventDynamicFieldInfo entity)
         {
             this._context.Update(entity);
+            this._context.SaveChanges();
         }
 
         public void Update(LifeEventDynamicFieldValue entity)
         {
             this._context.Update(entity);
+            this._context.SaveChanges();
         }
 
         public void Update(LifeEventEntry entity)
         {
             this._context.Update(entity);
+            this._context.SaveChanges();
         }
 
         IQueryable<LifeEventDynamicFieldInfo> IServiceEntityManager<LifeEventDynamicFieldInfo>.Query()

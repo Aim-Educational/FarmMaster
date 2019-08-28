@@ -21,6 +21,8 @@ namespace Business.Model
             public const string EDIT_HOLDINGS       = "edit_holdings";
             public const string VIEW_SPECIES_BREEDS = "view_species_breeds";
             public const string EDIT_SPECIES_BREEDS = "edit_species_breeds";
+            public const string VIEW_LIFE_EVENTS    = "view_life_events";
+            public const string EDIT_LIFE_EVENTS    = "edit_life_events";
         }
 
         [Key]

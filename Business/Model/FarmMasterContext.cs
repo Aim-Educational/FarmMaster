@@ -155,7 +155,9 @@ namespace Business.Model
                 new EnumRolePermission { EnumRolePermissionId = 9, InternalName = EnumRolePermission.Names.VIEW_HOLDINGS, Description = "View Holdings" },
                 new EnumRolePermission { EnumRolePermissionId = 10, InternalName = EnumRolePermission.Names.EDIT_HOLDINGS, Description = "Edit Holdings" },
                 new EnumRolePermission { EnumRolePermissionId = 11, InternalName = EnumRolePermission.Names.VIEW_SPECIES_BREEDS, Description = "View Species/Breeds" },
-                new EnumRolePermission { EnumRolePermissionId = 12, InternalName = EnumRolePermission.Names.EDIT_SPECIES_BREEDS, Description = "Edit Species/Breeds" }
+                new EnumRolePermission { EnumRolePermissionId = 12, InternalName = EnumRolePermission.Names.EDIT_SPECIES_BREEDS, Description = "Edit Species/Breeds" },
+                new EnumRolePermission { EnumRolePermissionId = 13, InternalName = EnumRolePermission.Names.VIEW_LIFE_EVENTS, Description = "View Life Events" },
+                new EnumRolePermission { EnumRolePermissionId = 14, InternalName = EnumRolePermission.Names.EDIT_LIFE_EVENTS, Description = "Edit Life Events" }
             );
         }
 

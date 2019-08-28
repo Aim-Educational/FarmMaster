@@ -1,0 +1,46 @@
+﻿@model LifeEventCreateViewModel
+@{
+    ViewData["Title"] = "Create - LifeEvent";
+    ViewData["Breadcrumb"] = new[]
+    {
+        "Home:/Home/Index",
+        "Contacts:/LifeEvent/Index",
+        "Create:/LifeEvent/Create"
+    };
+}
+
+<h1>Create</h1>
+
+<partial name="_ViewModelWithMessagePartial" model="@Model" />
+
+<form class="ui form" method="post" asp-action="Create">
+    <section class="ui top attached header">
+        General Information
+    </section>
+    <section class="ui attached segment">
+        <div class="field">
+            <label>Name</label>
+            <input asp-for="Name" autocomplete="off" />
+            <span class="@GlobalConstants.FormErrorClasses" asp-validation-for="Name"></span>
+        </div>
+        <div class="field">
+            <label>Description</label>
+            <input asp-for="Description" autocomplete="off" />
+            <span class="@GlobalConstants.FormErrorClasses" asp-validation-for="Description"></span>
+        </div>
+        <div class="ui info message transition visible">
+            Further configuration can be done once the Life Event is created.
+        </div>
+    </section>
+    <section class="ui bottom attached segment">
+        <button class="ui primary fluid button" type="submit">
+            Create Life Event
+        </button>
+    </section>
+</form>
+
+@section Scripts {
+    <script type="module">
+        Validation.hookupForm(document.querySelector(".ui.form"));
+    </script>
+}
