@@ -202,33 +202,33 @@ namespace FarmMaster.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public IActionResult AjaxSetUserRole([FromBody] AjaxSetUserRoleData data,
+        [FarmAjaxReturnsMessage(EnumRolePermission.Names.ASSIGN_ROLES)]
+        public IActionResult AjaxSetUserRole([FromBody]     AjaxSetUserRoleData data,
                                              [FromServices] FarmMasterContext db, 
                                              [FromServices] IServiceUserManager users, 
-                                             [FromServices] IServiceRoleManager roles)
+                                             [FromServices] IServiceRoleManager roles,
+                                                            User myUser)
         {
-            return this.DoAjaxWithMessageResponse(data, users, roles, new[]{ EnumRolePermission.Names.ASSIGN_ROLES },
-            (myUser) => 
-            {
-                var toModifyUser = users.FromIdAllIncluded(data.userId);
-                var role = roles.FromIdAllIncluded(data.roleId);
-                if(toModifyUser == null)
-                    throw new Exception($"The user with id #{data.userId} does not exist.");
-                if(role == null && data.roleId != int.MaxValue) // int.MaxValue is intentionally allowed to be null, so you can remove roles out right.
-                    throw new Exception($"The role with the id #{data.roleId} does not exist.");
+            var toModifyUser = users.FromIdAllIncluded(data.userId);
+            var role = roles.FromIdAllIncluded(data.roleId);
+            if (toModifyUser == null)
+                throw new Exception($"The user with id #{data.userId} does not exist.");
+            if (role == null && data.roleId != int.MaxValue) // int.MaxValue is intentionally allowed to be null, so you can remove roles out right.
+                throw new Exception($"The role with the id #{data.roleId} does not exist.");
 
-                if(db.Entry(toModifyUser).State == EntityState.Detached)
-                    throw new Exception("Internal error. toModifyUser is not being tracked by EF");                
-                if(!myUser.Role.CanModify(toModifyUser.Role))
-                    throw new Exception("You cannot change the role of someone who's role is higher in the hierarchy than your own.");
-                if(!myUser.Role.CanModify(role))
-                    throw new Exception($"You cannot assign the '{role.Name}' role as it is higher in the hierarchy than your own.");
-                if(myUser == toModifyUser)
-                    throw new Exception("You cannot assign your own role, this is for security purposes, and to avoid accidental role lock outs.");
+            if (db.Entry(toModifyUser).State == EntityState.Detached)
+                throw new Exception("Internal error. toModifyUser is not being tracked by EF");
+            if (!myUser.Role.CanModify(toModifyUser.Role))
+                throw new Exception("You cannot change the role of someone who's role is higher in the hierarchy than your own.");
+            if (!myUser.Role.CanModify(role))
+                throw new Exception($"You cannot assign the '{role.Name}' role as it is higher in the hierarchy than your own.");
+            if (myUser == toModifyUser)
+                throw new Exception("You cannot assign your own role, this is for security purposes, and to avoid accidental role lock outs.");
 
-                toModifyUser.Role = role;
-                db.SaveChanges();
-            });
+            toModifyUser.Role = role;
+            db.SaveChanges();
+
+            return new EmptyResult();
         }
 
         private IActionResult RedirectToIndexWithMessage(ViewModelWithMessage.Type type, string message)

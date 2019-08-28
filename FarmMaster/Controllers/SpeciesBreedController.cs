@@ -219,143 +219,129 @@ namespace FarmMaster.Controllers
         #region AJAX
         [HttpPost]
         [AllowAnonymous]
-        public IActionResult AjaxGetTablePageCount([FromBody] AjaxPagingControllerRequestModel model)
+        [FarmAjaxReturnsMessageAndValue(EnumRolePermission.Names.VIEW_SPECIES_BREEDS)]
+        public IActionResult AjaxGetTablePageCount([FromBody] AjaxPagingControllerRequestModel model, User _)
         {
-            return this.DoAjaxWithValueAndMessageResponse(
-               model, this._users, this._roles, new string[] { EnumRolePermission.Names.VIEW_SPECIES_BREEDS },
-               (myUser) =>
-               {
-                   var itemCount = (model.EntityType != null && model.EntityType.ToUpper() == "SPECIES")
-                                   ? this._speciesBreeds.For<Species>().Query().Count()
-                                   : this._speciesBreeds.For<Breed>().Query().Count();
+            var itemCount = (model.EntityType != null && model.EntityType.ToUpper() == "SPECIES")
+                            ? this._speciesBreeds.For<Species>().Query().Count()
+                            : this._speciesBreeds.For<Breed>().Query().Count();
 
-                   return new AjaxStructReturnValue<int>(PagingHelper.CalculatePageCount(itemCount, model.ItemsPerPage));
-               }
-           );
-        }
-
-        [HttpPost]
-        [AllowAnonymous]
-        public IActionResult AjaxRenderTablePage([FromBody] AjaxPagingControllerRenderRequestModel model)
-        {
-            return this.DoAjaxWithValueAndMessageResponse(
-               model, this._users, this._roles, new string[] { EnumRolePermission.Names.VIEW_SPECIES_BREEDS },
-               (myUser) =>
-               {
-                   var type = (model.EntityType == null) ? "" : model.EntityType.ToUpper();
-                   if (type == "SPECIES")
-                   {
-                       return this._viewRenderer.RenderToStringAsync(
-                           "/Views/SpeciesBreed/_IndexTableSpeciesBodyPartial.cshtml",
-                           this._speciesBreeds.For<Species>().QueryAllIncluded()
-                       ).Result;
-                   }
-                   else if(type == "BREED")
-                   {
-                       return this._viewRenderer.RenderToStringAsync(
-                           "/Views/SpeciesBreed/_IndexTableBreedBodyPartial.cshtml",
-                           this._speciesBreeds.For<Breed>().QueryAllIncluded()
-                       ).Result;
-                   }
-                   else
-                   {
-                       throw new NotImplementedException();
-                   }
-               }
+            return new AjaxValueResult(
+                new AjaxStructReturnValue<int>(PagingHelper.CalculatePageCount(itemCount, model.ItemsPerPage))
             );
         }
 
         [HttpPost]
         [AllowAnonymous]
-        public IActionResult AjaxGetCharacteristics([FromBody] AjaxCharacteristicsRequest model)
+        [FarmAjaxReturnsMessageAndValue(EnumRolePermission.Names.VIEW_SPECIES_BREEDS)]
+        public IActionResult AjaxRenderTablePage([FromBody] AjaxPagingControllerRenderRequestModel model, User _)
         {
-            return (this).DoAjaxWithValueAndMessageResponse(
-               model, this._users, this._roles, new string[] { EnumRolePermission.Names.VIEW_SPECIES_BREEDS },
-               (myUser) =>
-               {
-                   if(model.Type == "Species")
-                   {
-                       var list = this.GetOrCreateListForEntity(model.Type, model.Id);
-                       return list.Characteristics
-                                  .Select(c => new AjaxCharacteristicsResponseValue
-                                  {
-                                      Name = c.Name,
-                                      Value = c.Data.ToHtmlString(),
-                                      Type = (int)c.Data.FieldType,
-                                      IsInherited = false
-                                  });
-                   }
-                   else if(model.Type == "Breed") // For breeds, also show their species' characteristics as inherited.
-                   {
-                       var list = this.GetOrCreateListForEntity(model.Type, model.Id);
-                       var speciesList = this._speciesBreeds.For<Breed>().FromIdAllIncluded(model.Id).Species.CharacteristicList;
-                       var combined = list.Characteristics.Concat(speciesList.Characteristics);
+            string result;
 
-                       return combined.Select(c => new AjaxCharacteristicsResponseValue
-                       {
-                           Name = c.Name,
-                           Value = c.Data.ToHtmlString(),
-                           Type = (int)c.Data.FieldType,
-                           IsInherited = speciesList.Characteristics.Any(sc => sc.AnimalCharacteristicId == c.AnimalCharacteristicId)
-                       });
-                   }
-                   else
-                       throw new NotImplementedException(model.Type);
-               }
-            );
+            var type = (model.EntityType == null) ? "" : model.EntityType.ToUpper();
+            if (type == "SPECIES")
+            {
+                result = this._viewRenderer.RenderToStringAsync(
+                    "/Views/SpeciesBreed/_IndexTableSpeciesBodyPartial.cshtml",
+                    this._speciesBreeds.For<Species>().QueryAllIncluded()
+                ).Result;
+            }
+            else if (type == "BREED")
+            {
+                result = this._viewRenderer.RenderToStringAsync(
+                    "/Views/SpeciesBreed/_IndexTableBreedBodyPartial.cshtml",
+                    this._speciesBreeds.For<Breed>().QueryAllIncluded()
+                ).Result;
+            }
+            else
+            {
+                throw new NotImplementedException();
+            }
+
+            return new AjaxValueResult(result);
         }
 
         [HttpPost]
         [AllowAnonymous]
-        public IActionResult AjaxAddCharacteristic([FromBody] AjaxCharacteristicsAddRequest model)
+        [FarmAjaxReturnsMessageAndValue(EnumRolePermission.Names.VIEW_SPECIES_BREEDS)]
+        public IActionResult AjaxGetCharacteristics([FromBody] AjaxCharacteristicsRequest model, User _)
         {
-            return this.DoAjaxWithMessageResponse(
-               model, this._users, this._roles, new string[] { EnumRolePermission.Names.EDIT_SPECIES_BREEDS },
-               (myUser) =>
-               {
-                   var list = this.GetOrCreateListForEntity(model.EntityType, model.EntityId);
-                   var chara = this._characteristics.CreateFromHtmlString(
-                       list,
-                       model.CharaName,
-                       model.CharaType,
-                       model.CharaValue
-                   );
-               }
-            );
+            IEnumerable<AjaxCharacteristicsResponseValue> result;
+
+            if (model.Type == "Species")
+            {
+                var list = this.GetOrCreateListForEntity(model.Type, model.Id);
+                result = list.Characteristics
+                           .Select(c => new AjaxCharacteristicsResponseValue
+                           {
+                               Name = c.Name,
+                               Value = c.Data.ToHtmlString(),
+                               Type = (int)c.Data.FieldType,
+                               IsInherited = false
+                           });
+            }
+            else if (model.Type == "Breed") // For breeds, also show their species' characteristics as inherited.
+            {
+                var list = this.GetOrCreateListForEntity(model.Type, model.Id);
+                var speciesList = this._speciesBreeds.For<Breed>().FromIdAllIncluded(model.Id).Species.CharacteristicList;
+                var combined = list.Characteristics.Concat(speciesList.Characteristics);
+
+                result = combined.Select(c => new AjaxCharacteristicsResponseValue
+                {
+                    Name = c.Name,
+                    Value = c.Data.ToHtmlString(),
+                    Type = (int)c.Data.FieldType,
+                    IsInherited = speciesList.Characteristics.Any(sc => sc.AnimalCharacteristicId == c.AnimalCharacteristicId)
+                });
+            }
+            else
+                throw new NotImplementedException(model.Type);
+
+            return new AjaxValueResult(result);
         }
 
         [HttpPost]
         [AllowAnonymous]
+        [FarmAjaxReturnsMessage(EnumRolePermission.Names.EDIT_SPECIES_BREEDS)]
+        public IActionResult AjaxAddCharacteristic([FromBody] AjaxCharacteristicsAddRequest model, User _)
+        {
+            var list = this.GetOrCreateListForEntity(model.EntityType, model.EntityId);
+            var chara = this._characteristics.CreateFromHtmlString(
+                list,
+                model.CharaName,
+                model.CharaType,
+                model.CharaValue
+            );
+
+            return new EmptyResult();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [FarmAjaxReturnsMessage(EnumRolePermission.Names.EDIT_SPECIES_BREEDS)]
         public IActionResult AjaxDeleteCharacteristicByName([FromBody] AjaxCharacteristicsDeleteByNameRequest model)
         {
-            return this.DoAjaxWithMessageResponse(
-               model, this._users, this._roles, new string[] { EnumRolePermission.Names.EDIT_SPECIES_BREEDS },
-               (myUser) =>
-               {
-                   var list = this.GetOrCreateListForEntity(model.EntityType, model.EntityId);
-                   var chara = list.Characteristics.FirstOrDefault(c => c.Name == model.CharaName);
-                   if(chara == null)
-                       throw new KeyNotFoundException(model.CharaName);
+            var list = this.GetOrCreateListForEntity(model.EntityType, model.EntityId);
+            var chara = list.Characteristics.FirstOrDefault(c => c.Name == model.CharaName);
+            if (chara == null)
+                throw new KeyNotFoundException(model.CharaName);
 
-                   this._characteristics.FullDelete(chara);
-               }
-            );
+            this._characteristics.FullDelete(chara);
+
+            return new EmptyResult();
         }
 
         [HttpPost]
         [AllowAnonymous]
-        public IActionResult AjaxGetAllSpecies([FromBody] AjaxRequestModel model)
+        [FarmAjaxReturnsMessageAndValue(EnumRolePermission.Names.VIEW_SPECIES_BREEDS)]
+        public IActionResult AjaxGetAllSpecies([FromBody] AjaxRequestModel model, User _)
         {
-            return this.DoAjaxWithValueAndMessageResponse(
-               model, this._users, this._roles, new string[] { EnumRolePermission.Names.VIEW_SPECIES_BREEDS },
-               (myUser) =>
-               {
-                   return this._speciesBreeds
-                              .For<Species>()
-                              .Query()
-                              .OrderBy(s => s.Name)
-                              .Select(s => new ComponentSelectOption{ Description = s.Name, Value = $"{s.SpeciesId}" });
-               }
+            return new AjaxValueResult(
+                this._speciesBreeds
+                    .For<Species>()
+                    .Query()
+                    .OrderBy(s => s.Name)
+                    .Select(s => new ComponentSelectOption { Description = s.Name, Value = $"{s.SpeciesId}" })
             );
         }
         #endregion

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using Business.Model;
 using FarmMaster.Misc;
 using FarmMaster.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -14,11 +15,11 @@ namespace FarmMaster.Controllers
     {
         [HttpPost]
         [AllowAnonymous]
-        IActionResult AjaxGetTablePageCount([FromBody] AjaxPagingControllerRequestModel model);
+        IActionResult AjaxGetTablePageCount([FromBody] AjaxPagingControllerRequestModel model, User user);
 
         [HttpPost]
         [AllowAnonymous]
-        IActionResult AjaxRenderTablePage([FromBody] AjaxPagingControllerRenderRequestModel model);
+        IActionResult AjaxRenderTablePage([FromBody] AjaxPagingControllerRenderRequestModel model, User user);
     }
 
     public static class PagingHelper

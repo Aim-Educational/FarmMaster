@@ -165,159 +165,144 @@ namespace FarmMaster.Controllers
         #region AJAX
         [HttpPost]
         [AllowAnonymous]
-        public IActionResult AjaxAddPhoneNumber([FromBody] ContactAjaxAddPhoneNumber model)
+        [FarmAjaxReturnsMessage(EnumRolePermission.Names.EDIT_CONTACTS)]
+        public IActionResult AjaxAddPhoneNumber([FromBody] ContactAjaxAddPhoneNumber model, User user)
         {
-            return this.DoAjaxWithMessageResponse(model, this._users, this._roles, new[] { EnumRolePermission.Names.EDIT_CONTACTS },
-            (myUser) =>
-            {
-                var contact = this._context.Contacts.Include(c => c.PhoneNumbers).First(c => c.ContactId == model.Id);
-                if (contact == null)
-                    throw new Exception($"The contact with id #{model.Id} does not exist.");
+            var contact = this._context.Contacts.Include(c => c.PhoneNumbers).First(c => c.ContactId == model.Id);
+            if (contact == null)
+                throw new Exception($"The contact with id #{model.Id} does not exist.");
 
-                if (contact.PhoneNumbers.Any(n => n.Name == model.Name))
-                    throw new Exception("There is already a phone number using that name.");
-                if (contact.PhoneNumbers.Any(n => n.Number == model.Value))
-                    throw new Exception("That phone number is already in use.");
+            if (contact.PhoneNumbers.Any(n => n.Name == model.Name))
+                throw new Exception("There is already a phone number using that name.");
+            if (contact.PhoneNumbers.Any(n => n.Number == model.Value))
+                throw new Exception("That phone number is already in use.");
 
-                this._contacts.AddTelephoneNumber(contact, myUser, model.Reason, model.Name, model.Value);
-            });
+            this._contacts.AddTelephoneNumber(contact, user, model.Reason, model.Name, model.Value);
+
+            return new EmptyResult();
         }
 
         [HttpPost]
         [AllowAnonymous]
-        public IActionResult AjaxRemovePhoneNumberByName([FromBody] ContactAjaxRemoveByName model)
+        [FarmAjaxReturnsMessage(EnumRolePermission.Names.EDIT_CONTACTS)]
+        public IActionResult AjaxRemovePhoneNumberByName([FromBody] ContactAjaxRemoveByName model, User user)
         {
-            return this.DoAjaxWithMessageResponse(model, this._users, this._roles, new[] { EnumRolePermission.Names.EDIT_CONTACTS },
-            (myUser) =>
-            {
-                var contact = this._context.Contacts.Include(c => c.PhoneNumbers).First(c => c.ContactId == model.Id);
-                if (contact == null)
-                    throw new Exception($"The contact with id #{model.Id} does not exist.");
+            var contact = this._context.Contacts.Include(c => c.PhoneNumbers).First(c => c.ContactId == model.Id);
+            if (contact == null)
+                throw new Exception($"The contact with id #{model.Id} does not exist.");
 
-                var couldDelete = this._contacts.RemoveTelephoneNumberByName(contact, myUser, model.Reason, model.Name);
-                if (!couldDelete)
-                    throw new Exception($"No phone number called '{model.Name}' was found.");
-            });
+            var couldDelete = this._contacts.RemoveTelephoneNumberByName(contact, user, model.Reason, model.Name);
+            if (!couldDelete)
+                throw new Exception($"No phone number called '{model.Name}' was found.");
+
+            return new EmptyResult();
         }
 
         [HttpPost]
         [AllowAnonymous]
-        public IActionResult AjaxAddEmailAddress([FromBody] ContactAjaxAddEmailAddress model)
+        [FarmAjaxReturnsMessage(EnumRolePermission.Names.EDIT_CONTACTS)]
+        public IActionResult AjaxAddEmailAddress([FromBody] ContactAjaxAddEmailAddress model, User user)
         {
-            return this.DoAjaxWithMessageResponse(model, this._users, this._roles, new[] { EnumRolePermission.Names.EDIT_CONTACTS },
-            (myUser) =>
-            {
-                var contact = this._context.Contacts.Include(c => c.EmailAddresses).First(c => c.ContactId == model.Id);
-                if (contact == null)
-                    throw new Exception($"The contact with id #{model.Id} does not exist.");
+            var contact = this._context.Contacts.Include(c => c.EmailAddresses).First(c => c.ContactId == model.Id);
+            if (contact == null)
+                throw new Exception($"The contact with id #{model.Id} does not exist.");
 
-                if (contact.EmailAddresses.Any(n => n.Name == model.Name))
-                    throw new Exception("There is already an email using that name.");
-                if (contact.EmailAddresses.Any(n => n.Address == model.Value))
-                    throw new Exception("That email address is already in use.");
+            if (contact.EmailAddresses.Any(n => n.Name == model.Name))
+                throw new Exception("There is already an email using that name.");
+            if (contact.EmailAddresses.Any(n => n.Address == model.Value))
+                throw new Exception("That email address is already in use.");
 
-                this._contacts.AddEmailAddress(contact, myUser, model.Reason, model.Name, model.Value);
-            });
+            this._contacts.AddEmailAddress(contact, user, model.Reason, model.Name, model.Value);
+
+            return new EmptyResult();
         }
 
         [HttpPost]
         [AllowAnonymous]
-        public IActionResult AjaxRemoveEmailAddressByName([FromBody] ContactAjaxRemoveByName model)
+        [FarmAjaxReturnsMessage(EnumRolePermission.Names.EDIT_CONTACTS)]
+        public IActionResult AjaxRemoveEmailAddressByName([FromBody] ContactAjaxRemoveByName model, User myUser)
         {
-            return this.DoAjaxWithMessageResponse(model, this._users, this._roles, new[] { EnumRolePermission.Names.EDIT_CONTACTS },
-            (myUser) =>
-            {
-                var contact = this._context.Contacts.Include(c => c.EmailAddresses).First(c => c.ContactId == model.Id);
-                if (contact == null)
-                    throw new Exception($"The contact with id #{model.Id} does not exist.");
-                if (contact.EmailAddresses.Count() == 1)
-                    throw new Exception($"Contacts must have at least one email address. You cannot delete the last one.");
+            var contact = this._context.Contacts.Include(c => c.EmailAddresses).First(c => c.ContactId == model.Id);
+            if (contact == null)
+                throw new Exception($"The contact with id #{model.Id} does not exist.");
+            if (contact.EmailAddresses.Count() == 1)
+                throw new Exception($"Contacts must have at least one email address. You cannot delete the last one.");
 
-                var couldDelete = this._contacts.RemoveEmailAddressByName(contact, myUser, model.Reason, model.Name);
-                if (!couldDelete)
-                    throw new Exception($"No email address called '{model.Name}' was found.");
-            });
+            var couldDelete = this._contacts.RemoveEmailAddressByName(contact, myUser, model.Reason, model.Name);
+            if (!couldDelete)
+                throw new Exception($"No email address called '{model.Name}' was found.");
+
+            return new EmptyResult();
         }
 
         [HttpPost]
         [AllowAnonymous]
-        public IActionResult AjaxAddRelation([FromBody] ContactAjaxAddRelationship model)
+        [FarmAjaxReturnsMessage(EnumRolePermission.Names.EDIT_CONTACTS)]
+        public IActionResult AjaxAddRelation([FromBody] ContactAjaxAddRelationship model, User myUser)
         {
-            return this.DoAjaxWithMessageResponse(model, this._users, this._roles, new[] { EnumRolePermission.Names.EDIT_CONTACTS },
-            (myUser) =>
-            {
-                var contactOne = this._contacts.FromIdAllIncluded(model.Id);
-                if (contactOne == null)
-                    throw new Exception($"The contact with id #{model.Id} does not exist.");
+            var contactOne = this._contacts.FromIdAllIncluded(model.Id);
+            if (contactOne == null)
+                throw new Exception($"The contact with id #{model.Id} does not exist.");
 
-                var contactTwo = this._contacts.FromIdAllIncluded(Convert.ToInt32(model.Value));
-                if (contactTwo == null)
-                    throw new Exception($"The contact with id #{model.Value} does not exist.");
+            var contactTwo = this._contacts.FromIdAllIncluded(Convert.ToInt32(model.Value));
+            if (contactTwo == null)
+                throw new Exception($"The contact with id #{model.Value} does not exist.");
 
-                this._contacts.AddRelationship(contactOne, contactTwo, myUser, model.Reason, model.Name);
-            });
+            this._contacts.AddRelationship(contactOne, contactTwo, myUser, model.Reason, model.Name);
+
+            return new EmptyResult();
         }
 
         [HttpPost]
         [AllowAnonymous]
-        public IActionResult AjaxRemoveRelationById([FromBody] ContactAjaxRemoveByName model)
+        [FarmAjaxReturnsMessage(EnumRolePermission.Names.EDIT_CONTACTS)]
+        public IActionResult AjaxRemoveRelationById([FromBody] ContactAjaxRemoveByName model, User myUser)
         {
-            return this.DoAjaxWithMessageResponse(model, this._users, this._roles, new[] { EnumRolePermission.Names.EDIT_CONTACTS },
-            (myUser) =>
-            {
-                var contact = this._context.Contacts.Include(c => c.EmailAddresses).First(c => c.ContactId == model.Id);
-                if (contact == null)
-                    throw new Exception($"The contact with id #{model.Id} does not exist.");
+            var contact = this._context.Contacts.Include(c => c.EmailAddresses).First(c => c.ContactId == model.Id);
+            if (contact == null)
+                throw new Exception($"The contact with id #{model.Id} does not exist.");
 
-                var couldDelete = this._contacts.RemoveRelationshipById(contact, myUser, model.Reason, Convert.ToInt32(model.Name));
-                if (!couldDelete)
-                    throw new Exception($"No relationship with id #{model.Name} was found.");
-            });
+            var couldDelete = this._contacts.RemoveRelationshipById(contact, myUser, model.Reason, Convert.ToInt32(model.Name));
+            if (!couldDelete)
+                throw new Exception($"No relationship with id #{model.Name} was found.");
+
+            return new EmptyResult();
         }
 
         [HttpPost]
         [AllowAnonymous]
-        public IActionResult AjaxGetNameAndValueAll([FromBody] AjaxRequestModel model)
+        [FarmAjaxReturnsMessageAndValue(EnumRolePermission.Names.EDIT_CONTACTS)]
+        public IActionResult AjaxGetNameAndValueAll([FromBody] AjaxRequestModel model, User _)
         {
-            return this.DoAjaxWithValueAndMessageResponse(
-                model, this._users, this._roles, new string[]{ },
-                (myUser) =>
-                {
-                    return this._context.Contacts
-                                        .Where(c => !c.IsAnonymous)
-                                        .OrderBy(c => c.ShortName)
-                                        .Select(c => new ComponentSelectOption{ Description = c.ShortName, Value = Convert.ToString(c.ContactId) })
-                                        .ToList();
-                }
+            return new AjaxValueResult(
+                    this._context.Contacts
+                                 .Where(c => !c.IsAnonymous)
+                                 .OrderBy(c => c.ShortName)
+                                 .Select(c => new ComponentSelectOption{ Description = c.ShortName, Value = Convert.ToString(c.ContactId) })
+                                 .ToList()
             );
         }
 
         [HttpPost]
         [AllowAnonymous]
-        public IActionResult AjaxGetTablePageCount([FromBody] AjaxPagingControllerRequestModel model)
+        [FarmAjaxReturnsMessageAndValue(EnumRolePermission.Names.VIEW_CONTACTS)]
+        public IActionResult AjaxGetTablePageCount([FromBody] AjaxPagingControllerRequestModel model, User _)
         {
-            return this.DoAjaxWithValueAndMessageResponse(
-                model, this._users, this._roles, new string[]{ EnumRolePermission.Names.VIEW_CONTACTS },
-                (myUser) =>
-                {
-                    return new AjaxStructReturnValue<int>(PagingHelper.CalculatePageCount(this._contacts.Query().Count(), model.ItemsPerPage));
-                }
-            );
+            var pageCount = PagingHelper.CalculatePageCount(this._contacts.Query().Count(), model.ItemsPerPage);
+
+            return new AjaxValueResult(new AjaxStructReturnValue<int>(pageCount));
         }
 
         [HttpPost]
         [AllowAnonymous]
-        public IActionResult AjaxRenderTablePage([FromBody] AjaxPagingControllerRenderRequestModel model)
+        [FarmAjaxReturnsMessageAndValue(EnumRolePermission.Names.VIEW_CONTACTS)]
+        public IActionResult AjaxRenderTablePage([FromBody] AjaxPagingControllerRenderRequestModel model, User _)
         {
-            return this.DoAjaxWithValueAndMessageResponse(
-                model, this._users, this._roles, new string[] { EnumRolePermission.Names.VIEW_CONTACTS },
-                (myUser) =>
-                {
-                    return this._viewRenderer.RenderToStringAsync(
-                        "/Views/Contact/_IndexTableBodyPartial.cshtml", 
-                        PagingHelper.GetPage(this._contacts.Query(), model.PageToRender, model.ItemsPerPage)
-                    ).Result;
-                }
+            return new AjaxValueResult(
+                this._viewRenderer.RenderToStringAsync(
+                    "/Views/Contact/_IndexTableBodyPartial.cshtml", 
+                    PagingHelper.GetPage(this._contacts.Query(), model.PageToRender, model.ItemsPerPage)
+                ).Result
             );
         }
         #endregion

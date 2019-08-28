@@ -52,7 +52,7 @@ export class ComponentTable {
                 segTable.classList.remove("loading");
                 segInput.classList.remove("loading");
 
-                if (response.messageType !== FarmAjaxMessageType.None)
+                if (response.messageType !== FarmAjaxMessageType.Information)
                     response.populateMessageBox(boxError);
 
                 if (response.messageType === FarmAjaxMessageType.Information) {
@@ -116,7 +116,7 @@ export class ComponentTable {
             response => {
                 segTable.classList.remove("loading");
 
-                if (response.messageType !== FarmAjaxMessageType.None)
+                if (response.messageType !== FarmAjaxMessageType.Information)
                     response.populateMessageBox(boxError);
 
                 if (response.messageType === FarmAjaxMessageType.Information) {
@@ -158,7 +158,7 @@ export class ComponentTable {
                 if (segment !== null)
                     segment.classList.remove("loading");
 
-                if (responseAndValue.messageType !== FarmAjaxMessageType.None)
+                if (responseAndValue.messageType !== FarmAjaxMessageType.Information)
                     responseAndValue.populateMessageBox(boxError);
                 else if (tableFooter !== null) {
                     tableFooter.innerHTML = "";
@@ -220,7 +220,7 @@ export class ComponentTable {
                 if (segment !== null)
                     segment.classList.remove("loading");
 
-                if (responseAndValue.messageType !== FarmAjaxMessageType.None)
+                if (responseAndValue.messageType !== FarmAjaxMessageType.Information)
                     responseAndValue.populateMessageBox(boxError);
                 else if (tableBody !== null) {
                     tableBody.innerHTML = <any>(responseAndValue).value;
