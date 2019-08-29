@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 using System.Text;
 
 namespace Business.Model
@@ -31,5 +33,14 @@ namespace Business.Model
 
         public IEnumerable<LifeEventDynamicFieldInfo> Fields { get; set; }
         public IEnumerable<LifeEventEntry> Entries { get; set; }
+
+        [NotMapped]
+        public bool IsInUse
+        {
+            get
+            {
+                return this.Entries.Count() > 0;
+            }
+        }
     }
 }

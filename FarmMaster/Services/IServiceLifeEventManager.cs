@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Business.Model;
+using FarmMaster.Misc;
 using Microsoft.EntityFrameworkCore;
 
 namespace FarmMaster.Services
@@ -17,6 +18,8 @@ namespace FarmMaster.Services
         LifeEvent CreateEvent(string name, string description);
         LifeEventDynamicFieldInfo CreateEventField(LifeEvent @event, string name, string description, DynamicField.Type type);
         LifeEventEntry CreateEventEntry(LifeEvent @event, string name, IDictionary<string, DynamicField> values);
+
+        CouldDelete RemoveEventFieldByName(LifeEvent @event, string fieldName);
     }
     
     public class ServiceLifeEventManager : IServiceLifeEventManager
@@ -117,6 +120,24 @@ namespace FarmMaster.Services
             this._context.AddRange(valuesToAdd);
             this._context.SaveChanges();
             return entry;
+        }
+
+        public CouldDelete RemoveEventFieldByName(LifeEvent @event, string fieldName)
+        {
+            // Make sure we have what we need included.
+            @event = this.For<LifeEvent>()
+                         .Query()
+                         .Include(e => e.Fields)
+                         .First(e => e.LifeEventId == @event.LifeEventId);
+
+            // Check that it exists, then delete it.
+            var field = @event.Fields.FirstOrDefault(f => f.Name == fieldName);
+            if(field == null)
+                return CouldDelete.No;
+
+            this._context.Remove(field);
+            this._context.SaveChanges();
+            return CouldDelete.Yes;
         }
 
         #region Impl IServiceEntityManager (If there's a god, please spare my soul)

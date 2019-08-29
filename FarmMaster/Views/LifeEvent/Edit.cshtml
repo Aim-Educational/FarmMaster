@@ -4,17 +4,18 @@
     ViewData["Breadcrumb"] = new[]
     {
         "Home:/Home/Index",
-        "Contacts:/LifeEvent/Index",
+        "Life Events:/LifeEvent/Index",
         "Edit:/LifeEvent/Edit"
     };
 }
 
 <h1>Edit</h1>
 
+<partial name="_ComponentModalAreYouSure" />
 <partial name="_ViewModelWithMessagePartial" model="@Model" />
 
 <form class="ui form" method="post" asp-action="Edit">
-    <input type="hidden" asp-for="Id" />
+    <input id="inputEventId" type="hidden" asp-for="Id" />
 
     <section class="ui top attached header">
         General Information
@@ -37,3 +38,179 @@
         </button>
     </section>
 </form>
+
+<section class="ui form">
+    <section class="ui top attached header">
+        Fields
+    </section>
+    <section id="segmentFields" class="ui attached segment">
+        <table class="ui celled table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="tableFieldBody">
+                @foreach(var field in Model.GET_Fields)
+                {
+                    <tr>
+                        <td>@field.Name</td>
+                        <td>@field.Type</td>
+                        <td>@field.Description</td>
+                        <td class="ui compact">
+                            <button class="ui secondary button @(Model.GET_IsInUse ? "disabled" : "")" 
+                                    onclick="onDeleteField('@field.Name')">
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </section>
+    <section class="ui bottom attached segment">
+        @if(Model.GET_IsInUse)
+        {
+            <div class="ui warning message transition visible">
+                <p>This Life Event is being used somewhere, so its fields can no longer be modified.</p>
+                <p>Please remove all uses of this Life Event if you wish to modify its fields again.</p>
+            </div>
+        }
+        else
+        { 
+            <div class="four inline fields">
+                <div class="field">
+                    <label>Name:</label>
+                    <input id="inputName" type="text" />
+                </div>
+                <div class="field">
+                    <label>Type:</label>
+                    <div class="ui fluid search selection dropdown">
+                        <input id="inputType" type="hidden" name="gender">
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Type</div>
+                        <div class="menu">
+                            <div class="item">DateTime</div>
+                            <div class="item">Text</div>
+                            <div class="item">TimeSpan</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Description:</label>
+                    <input id="inputDescription" type="text" />
+                </div>
+                <div class="field">
+                    <button class="ui fluid primary button" onclick="onAddField()">
+                        Add
+                    </button>
+                </div>
+            </div>
+        }
+        <div id="boxFieldError" class="ui message transition hidden"></div>
+    </section>
+</section>
+
+@section Scripts {
+    <script type="module">
+        import { FarmAjax, FarmAjaxMessageType, drange, ComponentModal } from "/js/index.js"
+
+        $(".ui.dropdown").dropdown();
+
+        Validation.hookupForm(document.querySelector(".ui.form"));
+
+        function onAddField() {
+            const segmentField = document.createElement("segmentField");
+            segmentField.classList.add("loading");
+
+            const name = document.getElementById("inputName").value;
+            const type = document.getElementById("inputType").value;
+            const desc = document.getElementById("inputDescription").value;
+
+            FarmAjax.postWithMessageResponse(
+                "/LifeEvent/AjaxAddField",
+                {
+                    name:        name,
+                    type:        type,
+                    description: desc,
+                    lifeEventId: document.getElementById("inputEventId").value
+                },
+                response => {
+                    segmentField.classList.remove("loading");
+
+                    if (response.messageType !== FarmAjaxMessageType.Information)
+                        response.populateMessageBox(document.getElementById("boxFieldError"));
+                    else {
+                        const tbody = document.getElementById("tableFieldBody");
+
+                        const tr = document.createElement("tr");
+                        tbody.appendChild(tr);
+
+                        let td = document.createElement("td");
+                        tr.appendChild(td);
+                        td.innerText = name;
+
+                        td = document.createElement("td");
+                        tr.appendChild(td);
+                        td.innerText = type;
+
+                        td = document.createElement("td");
+                        tr.appendChild(td);
+                        td.innerText = desc;
+
+                        td = document.createElement("td");
+                        tr.appendChild(td);
+
+                        const button = document.createElement("button");
+                        button.classList.add("ui", "secondary", "button");
+                        td.appendChild(button);
+                        button.onclick = () => onDeleteField(name);
+                        button.innerText = "Delete";
+
+                        document.getElementById("inputName").value = "";
+                        document.getElementById("inputDescription").value = "";
+                    }
+                }
+            );
+        }
+        window.onAddField = onAddField;
+
+        function onDeleteField(name) {
+            ComponentModal.showAreYouSureModal(() => {
+                const segmentField = document.createElement("segmentField");
+                segmentField.classList.add("loading");
+
+                FarmAjax.postWithMessageResponse(
+                    "/LifeEvent/AjaxDeleteField",
+                    {
+                        name: name,
+                        lifeEventId: document.getElementById("inputEventId").value
+                    },
+                    response => {
+                        segmentField.classList.remove("loading");
+
+                        if (response.messageType !== FarmAjaxMessageType.Information)
+                            response.populateMessageBox(document.getElementById("boxFieldError"));
+                        else {
+                            const tbody = document.getElementById("tableFieldBody");
+
+                            let range = drange(tbody.querySelectorAll("tr"));
+                            range = range.filter(e => e.childNodes.item(1).innerText == name);
+
+                            if (range.empty) {
+                                alert("Could not find table row with name: " + name);
+                                return;
+                            }
+
+                            tbody.removeChild(range.front);
+                        }
+                    }
+                );
+            });
+        }
+        window.onDeleteField = onDeleteField;
+    </script>
+}

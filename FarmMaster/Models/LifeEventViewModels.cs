@@ -25,5 +25,35 @@ namespace FarmMaster.Models
     {
         [Required]
         public int Id { get; set; }
+
+        [Required]
+        public IEnumerable<LifeEventDynamicFieldInfo> GET_Fields { get; set; }
+        
+        [Required]
+        public bool GET_IsInUse { get; set; }
+    }
+
+    public class AjaxLifeEventAddFieldRequest : AjaxRequestModel
+    {
+        [Required]
+        public string Name { get; set; }
+
+        [Required]
+        public DynamicField.Type Type { get; set; }
+
+        [Required]
+        public string Description { get; set; }
+
+        [Required]
+        public int LifeEventId { get; set; }
+    }
+
+    public class AjaxLifeEventDeleteFieldRequest : AjaxRequestModel
+    {
+        [Required]
+        public string Name { get; set; }
+
+        [Required]
+        public int LifeEventId { get; set; }
     }
 }
