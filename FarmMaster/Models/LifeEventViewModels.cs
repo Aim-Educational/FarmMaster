@@ -46,6 +46,12 @@ namespace FarmMaster.Models
 
         [Required]
         public int LifeEventId { get; set; }
+        
+        [Required]
+        public string RedirectController { get; set; }
+
+        [Required]
+        public string RedirectAction { get; set; }
 
         [Required]
         public IEnumerable<LifeEventDynamicFieldInfo> GET_FieldInfo;

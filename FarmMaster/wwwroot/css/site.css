@@ -26,6 +26,14 @@ html * [class*="bottom one padded"] {
     padding-bottom: 1em;
 }
 
+.left.one.padded {
+    padding-left: 1em;
+}
+
+.left.zero.half.padded {
+    padding-left: 0.5em;
+}
+
 html * [class*="display none"] {
     display: none !important;
 }

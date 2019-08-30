@@ -3,16 +3,19 @@
     ViewData["Title"] = "EntryEditor";
     ViewData["Breadcrumb"] = new[]
     {
-        "TODO:THIS"
-    };
+"TODO:THIS"
+};
 }
 
 <h1>Life Event Entry Editor</h1>
+<partial name="_ViewModelWithMessagePartial" model="@Model" />
 
 <form id="formEntry" class="ui form" method="post" asp-action="@(Model.Type == LifeEventEntryEditorType.Create ? "CreateEntry" : "EditEntry")">
     <input type="hidden" asp-for="LifeEventId" />
+    <input type="hidden" asp-for="RedirectController" />
+    <input type="hidden" asp-for="RedirectAction" />
 
-    @foreach(var field in Model.GET_FieldInfo)
+    @foreach (var field in Model.GET_FieldInfo)
     {
         <partial name="_EntryInputPartial" model="new LifeEventEntryInputPartialViewModel{ Info = field, Values = Model.Values }" />
     }

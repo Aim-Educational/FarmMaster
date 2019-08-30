@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Threading.Tasks;
 using Business.Model;
@@ -50,6 +51,7 @@ namespace FarmMaster.Controllers
                              .For<LifeEvent>()
                              .Query()
                              .Include(e => e.Fields)
+                             .Include(e => e.Entries)
                              .FirstOrDefault(e => e.LifeEventId == id);
             if(@event == null)
             {
@@ -83,7 +85,7 @@ namespace FarmMaster.Controllers
         }
 
         [FarmAuthorise(PermsAND: new[] { EnumRolePermission.Names.EDIT_LIFE_EVENT_ENTRY })]
-        public IActionResult CreateEntry(int lifeEventId)
+        public IActionResult CreateEntry(int lifeEventId, string redirectController, string redirectAction)
         {
             var lifeEvent = this._lifeEvents
                                 .For<LifeEvent>()
@@ -95,10 +97,12 @@ namespace FarmMaster.Controllers
 
             return View("EntryEditor", new LifeEventEntryEditorViewModel
             {
-                GET_FieldInfo = lifeEvent.Fields,
-                LifeEventId = lifeEventId,
-                Type = LifeEventEntryEditorType.Create,
-                Values = lifeEvent.Fields.ToDictionary(f => f.Name, _ => "")
+                GET_FieldInfo       = lifeEvent.Fields,
+                LifeEventId         = lifeEventId,
+                Type                = LifeEventEntryEditorType.Create,
+                Values              = lifeEvent.Fields.ToDictionary(f => f.Name, _ => ""),
+                RedirectAction      = redirectAction,
+                RedirectController  = redirectController
             });
         }
 
@@ -138,6 +142,7 @@ namespace FarmMaster.Controllers
                              .For<LifeEvent>()
                              .Query()
                              .Include(e => e.Fields)
+                             .Include(e => e.Entries)
                              .FirstOrDefault(e => e.LifeEventId == model.Id); ;
             if(@event == null)
             {
@@ -206,9 +211,16 @@ namespace FarmMaster.Controllers
                 entries[kvp.Key] = data;
             }
 
-            this._lifeEvents.CreateEventEntry(@event, entries);
-
-            throw new Exception("tODO: ADD A RETURN ADDRESS");
+            var entry = this._lifeEvents.CreateEventEntry(@event, entries);
+            
+            return RedirectToActionPermanent(
+                model.RedirectAction, 
+                model.RedirectController, 
+                new
+                {
+                    lifeEventEntryId = entry.LifeEventEntryId
+                }
+            );
         }
 
         #region AJAX
