@@ -57,6 +57,9 @@ namespace FarmMaster.Models
         [Required]
         public IEnumerable<LifeEventDynamicFieldInfo> GET_FieldInfo;
 
+        [Required]
+        public IEnumerable<string> Breadcrumb { get; set; }
+
         /// <summary>
         /// Key is name of field, value an HTML string for the DynamicField.
         /// </summary>

@@ -85,7 +85,7 @@ namespace FarmMaster.Controllers
         }
 
         [FarmAuthorise(PermsAND: new[] { EnumRolePermission.Names.EDIT_LIFE_EVENT_ENTRY })]
-        public IActionResult CreateEntry(int lifeEventId, string redirectController, string redirectAction)
+        public IActionResult CreateEntry(int lifeEventId, string redirectController, string redirectAction, string breadcrumb)
         {
             var lifeEvent = this._lifeEvents
                                 .For<LifeEvent>()
@@ -102,7 +102,8 @@ namespace FarmMaster.Controllers
                 Type                = LifeEventEntryEditorType.Create,
                 Values              = lifeEvent.Fields.ToDictionary(f => f.Name, _ => ""),
                 RedirectAction      = redirectAction,
-                RedirectController  = redirectController
+                RedirectController  = redirectController,
+                Breadcrumb          = breadcrumb.Split('>')
             });
         }
 
@@ -118,12 +119,19 @@ namespace FarmMaster.Controllers
 
             return View("EntryEditor", new LifeEventEntryEditorViewModel
             {
-                GET_FieldInfo = lifeEvent.Fields,
-                LifeEventId = lifeEventId,
-                Type = LifeEventEntryEditorType.Test,
-                Values = lifeEvent.Fields.ToDictionary(f => f.Name, _ => ""),
-                RedirectAction = "TestEntry",
-                RedirectController = "LifeEvent"
+                GET_FieldInfo       = lifeEvent.Fields,
+                LifeEventId         = lifeEventId,
+                Type                = LifeEventEntryEditorType.Test,
+                Values              = lifeEvent.Fields.ToDictionary(f => f.Name, _ => ""),
+                RedirectAction      = "TestEntry",
+                RedirectController  = "LifeEvent",
+                Breadcrumb          = new[] 
+                {
+                    "Home:/Home/Index",
+                    "Life Events:/LifeEvent/Index",
+                    "Edit:/LifeEvent/Edit",
+                    "Test Editor:#"
+                }
             });
         }
 
