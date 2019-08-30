@@ -9,6 +9,7 @@ using FarmMaster.Models;
 using FarmMaster.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace FarmMaster.Controllers
 {
@@ -42,7 +43,14 @@ namespace FarmMaster.Controllers
         [FarmAuthorise(PermsAND: new[] { EnumRolePermission.Names.EDIT_LIFE_EVENTS })]
         public IActionResult Edit(string message, int id)
         {
-            var @event = this._lifeEvents.For<LifeEvent>().FromIdAllIncluded(id);
+            // The 'AllIncluded' variants include loading *every single entry and all their values*
+            // While that is correct behaviour for that function variant, it's a bit... undesirable.
+            // So we include excatly what we need, and no more.
+            var @event = this._lifeEvents
+                             .For<LifeEvent>()
+                             .Query()
+                             .Include(e => e.Fields)
+                             .FirstOrDefault(e => e.LifeEventId == id);
             if(@event == null)
             {
                 return RedirectToAction(nameof(Index), new
@@ -72,6 +80,26 @@ namespace FarmMaster.Controllers
             model.ParseMessageQueryString(message);
 
             return View(model);
+        }
+
+        [FarmAuthorise(PermsAND: new[] { EnumRolePermission.Names.EDIT_LIFE_EVENT_ENTRY })]
+        public IActionResult CreateEntry(int lifeEventId)
+        {
+            var lifeEvent = this._lifeEvents
+                                .For<LifeEvent>()
+                                .Query()
+                                .Include(e => e.Fields)
+                                .FirstOrDefault(e => e.LifeEventId == lifeEventId);
+            if (lifeEvent == null)
+                throw new ArgumentOutOfRangeException($"There is no LifeEvent with the ID #{lifeEventId}");
+
+            return View("EntryEditor", new LifeEventEntryEditorViewModel
+            {
+                GET_FieldInfo = lifeEvent.Fields,
+                LifeEventId = lifeEventId,
+                Type = LifeEventEntryEditorType.Create,
+                Values = lifeEvent.Fields.ToDictionary(f => f.Name, _ => "")
+            });
         }
 
         [HttpPost]
@@ -106,9 +134,11 @@ namespace FarmMaster.Controllers
         [FarmAuthorise(PermsAND: new[] { EnumRolePermission.Names.EDIT_LIFE_EVENTS })]
         public IActionResult Edit(LifeEventEditViewModel model)
         {
-            model.GET_Fields = this._lifeEvents.For<LifeEvent>().FromIdAllIncluded(model.Id)?.Fields;
-
-            var @event = this._lifeEvents.For<LifeEvent>().FromIdAllIncluded(model.Id);
+            var @event = this._lifeEvents
+                             .For<LifeEvent>()
+                             .Query()
+                             .Include(e => e.Fields)
+                             .FirstOrDefault(e => e.LifeEventId == model.Id); ;
             if(@event == null)
             {
                 return RedirectToAction(nameof(Index), new
@@ -118,6 +148,7 @@ namespace FarmMaster.Controllers
             }
 
             model.GET_IsInUse = @event.IsInUse;
+            model.GET_Fields = @event.Fields;
 
             if (!ModelState.IsValid)
             {
@@ -143,6 +174,47 @@ namespace FarmMaster.Controllers
             model.MessageType = ViewModelWithMessage.Type.Information;
             model.Message = "Success";
             return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [FarmAuthorise(PermsAND: new[] { EnumRolePermission.Names.EDIT_LIFE_EVENT_ENTRY })]
+        public IActionResult CreateEntry(LifeEventEntryEditorViewModel model)
+        {
+            // TODO: Change the code so we don't have to do 'AllIncluded', as this will *not* scale well
+            //       after a decent amount of use.
+            var @event = this._lifeEvents.For<LifeEvent>().FromIdAllIncluded(model.LifeEventId);
+            if(@event == null)
+                throw new ArgumentOutOfRangeException($"No LifeEvent with ID #{model.LifeEventId}");
+
+            model.GET_FieldInfo = @event.Fields;
+
+            if (!ModelState.IsValid)
+            {
+                model.ParseInvalidModelState(ModelState);
+                return View("EntryEditor", model);
+            }
+            
+            // Ensure we have all the right fields
+            var dbFieldNamesSorted = @event.Fields.Select(f => f.Name).OrderBy(_ => _);
+            var modelFieldNamesSorted = model.Values.Select(kvp => kvp.Key).OrderBy(_ => _);
+            if (!dbFieldNamesSorted.SequenceEqual(modelFieldNamesSorted))
+                throw new InvalidOperationException($"Field mis-match.\nGiven: {modelFieldNamesSorted}\nExpected: {dbFieldNamesSorted}");
+
+            // Create the entry
+            var entries = new Dictionary<string, DynamicField>();
+            var fieldFactory = new DynamicFieldFactory();
+            foreach (var kvp in model.Values)
+            {
+                var info = @event.Fields.First(f => f.Name == kvp.Key);
+                var data = fieldFactory.FromTypeAndHtmlString(info.Type, kvp.Value);
+                
+                entries[kvp.Key] = data;
+            }
+
+            this._lifeEvents.CreateEventEntry(@event, entries);
+
+            throw new Exception("tODO: ADD A RETURN ADDRESS");
         }
 
         #region AJAX

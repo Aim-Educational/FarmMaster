@@ -194,18 +194,18 @@ namespace Business.Model
 
         public override void FromHtmlString(string html)
         {
-            // "O" is full datetime with timezone info
-            this.DateTime = DateTimeOffset.ParseExact(html, "O", CultureInfo.InvariantCulture);
+            this.DateTime = DateTimeOffset.Parse(html);
         }
 
         public override string ToHtmlString()
         {
+            // "O" is full datetime with timezone info
             return this.DateTime.ToString("O", CultureInfo.InvariantCulture);
         }
 
         public override void FromJson(JObject json)
         {
-            this.FromHtmlString(json.GetValue("v").Value<string>());
+            this.DateTime = json.GetValue("v").CreateReader().ReadAsDateTimeOffset().Value;
         }
 
         protected override JObject ToJsonImpl()

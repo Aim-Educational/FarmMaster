@@ -17,7 +17,7 @@ namespace FarmMaster.Services
     {
         LifeEvent CreateEvent(string name, string description);
         LifeEventDynamicFieldInfo CreateEventField(LifeEvent @event, string name, string description, DynamicField.Type type);
-        LifeEventEntry CreateEventEntry(LifeEvent @event, string name, IDictionary<string, DynamicField> values);
+        LifeEventEntry CreateEventEntry(LifeEvent @event, IDictionary<string, DynamicField> values);
 
         CouldDelete RemoveEventFieldByName(LifeEvent @event, string fieldName);
     }
@@ -62,7 +62,7 @@ namespace FarmMaster.Services
             return field;
         }
 
-        public LifeEventEntry CreateEventEntry(LifeEvent @event, string name, IDictionary<string, DynamicField> values)
+        public LifeEventEntry CreateEventEntry(LifeEvent @event, IDictionary<string, DynamicField> values)
         {
             // Make sure we have what we need included.
             @event = this.For<LifeEvent>()

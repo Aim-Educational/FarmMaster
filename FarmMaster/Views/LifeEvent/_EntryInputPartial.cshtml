@@ -1,0 +1,54 @@
+﻿@model LifeEventEntryInputPartialViewModel
+@{
+    // It's not required to use these IDs, they're just there so that any
+    // JS has pre-determined names if certain value types need them.
+    var inputVisibleId = $"visibleInput{Model.Info.Name.Replace(' ', '_')}";
+    var inputHiddenId = $"hiddenInput{Model.Info.Name.Replace(' ', '_')}";
+}
+
+<div class="field">
+    <label>@Model.Info.Name</label>
+    @switch (Model.Info.Type)
+    {
+        case DynamicField.Type.Text:
+            <input type="text" asp-for="Values[Model.Info.Name]" />
+            break;
+
+        case DynamicField.Type.TimeSpan:
+            <input type="text" asp-for="Values[Model.Info.Name]" placeholder="#d #m #s" />
+            break;
+
+        case DynamicField.Type.DateTime:
+            <div class="ui calendar">
+                <div class="ui input left icon">
+                    <i class="calendar icon"></i>
+                    <input id="@inputVisibleId" type="text" placeholder="Date/Time" />
+                </div>
+            </div>
+            <input id="@inputHiddenId" type="hidden" asp-for="Values[Model.Info.Name]" />
+
+            <script type="module">
+                $(function()
+                {
+                    // VARS
+                    const inputVisible = document.getElementById("@inputVisibleId");
+                    const inputHidden = document.getElementById("@inputHiddenId");
+
+                    // LOADING
+                    const date = new Date(inputHidden.value);
+                    inputVisible.value = date.toUTCString();
+                    $(".ui.calendar").calendar();
+
+                    // SUBMIT
+                    window.onSubmitHooks.push(function ()
+                    {
+                        const date = new Date(inputVisible.value);
+                        inputHidden.value = date.toISOString();
+                    });
+                })
+            </script>
+            break;
+
+        default: throw new NotImplementedException(Model.Info.Type.ToString());
+    }
+</div>

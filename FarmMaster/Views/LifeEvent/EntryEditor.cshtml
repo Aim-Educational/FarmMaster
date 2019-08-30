@@ -1,0 +1,32 @@
+﻿@model LifeEventEntryEditorViewModel
+@{
+    ViewData["Title"] = "EntryEditor";
+    ViewData["Breadcrumb"] = new[]
+    {
+        "TODO:THIS"
+    };
+}
+
+<h1>Life Event Entry Editor</h1>
+
+<form id="formEntry" class="ui form" method="post" asp-action="@(Model.Type == LifeEventEntryEditorType.Create ? "CreateEntry" : "EditEntry")">
+    <input type="hidden" asp-for="LifeEventId" />
+
+    @foreach(var field in Model.GET_FieldInfo)
+    {
+        <partial name="_EntryInputPartial" model="new LifeEventEntryInputPartialViewModel{ Info = field, Values = Model.Values }" />
+    }
+
+    <button class="ui primary button" type="submit">YES</button>
+</form>
+
+@section Scripts {
+    <script type="module">
+        window.onSubmitHooks = []; // So _EntryInputPartial can hook into the onsubmit event easily.
+
+        document.getElementById("formEntry").onsubmit = function () {
+            for (const func of window.onSubmitHooks)
+                func();
+        };
+    </script>
+}
