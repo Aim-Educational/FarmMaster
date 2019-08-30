@@ -1,5 +1,6 @@
 ﻿using Business.Model;
 using FarmMaster.Misc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -127,7 +128,8 @@ namespace FarmMaster.Services
         public IQueryable<Role> QueryAllIncluded()
         {
             return this._context.Roles
-                                .Select(r => this.LoadPermissions(r));
+                                .Include(r => r.Permissions)
+                                 .ThenInclude(p => p.EnumRolePermission);
         }
 
         public int GetIdFor(Role entity)

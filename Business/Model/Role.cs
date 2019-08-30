@@ -13,6 +13,7 @@ namespace Business.Model
         public int RoleId { get; set; }
 
         [Required]
+        [Range(0, int.MaxValue)]
         public int HierarchyOrder { get; set; } // Lower = Higher up in the hierarchy.
 
         [Required]
