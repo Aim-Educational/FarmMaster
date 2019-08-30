@@ -194,12 +194,6 @@ namespace FarmMaster.Controllers
                 model.ParseInvalidModelState(ModelState);
                 return View("EntryEditor", model);
             }
-            
-            // Ensure we have all the right fields
-            var dbFieldNamesSorted = @event.Fields.Select(f => f.Name).OrderBy(_ => _);
-            var modelFieldNamesSorted = model.Values.Select(kvp => kvp.Key).OrderBy(_ => _);
-            if (!dbFieldNamesSorted.SequenceEqual(modelFieldNamesSorted))
-                throw new InvalidOperationException($"Field mis-match.\nGiven: {modelFieldNamesSorted}\nExpected: {dbFieldNamesSorted}");
 
             // Create the entry
             var entries = new Dictionary<string, DynamicField>();
