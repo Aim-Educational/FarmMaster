@@ -106,6 +106,27 @@ namespace FarmMaster.Controllers
             });
         }
 
+        // This function can't create entries, and might be useful for people who can edit life events, but not entries.
+        // So we're using either permission here.
+        [FarmAuthorise(PermsOR: new[] { EnumRolePermission.Names.EDIT_LIFE_EVENTS, EnumRolePermission.Names.EDIT_LIFE_EVENT_ENTRY })]
+        public IActionResult TestEntryEditor(int lifeEventId)
+        {
+            // Using AllIncluded, since in practice this will barely be used after initial setup week.
+            var lifeEvent = this._lifeEvents.For<LifeEvent>().FromIdAllIncluded(lifeEventId);
+            if(lifeEvent == null)
+                throw new ArgumentOutOfRangeException($"There is no LifeEvent with the ID #{lifeEventId}");
+
+            return View("EntryEditor", new LifeEventEntryEditorViewModel
+            {
+                GET_FieldInfo = lifeEvent.Fields,
+                LifeEventId = lifeEventId,
+                Type = LifeEventEntryEditorType.Test,
+                Values = lifeEvent.Fields.ToDictionary(f => f.Name, _ => ""),
+                RedirectAction = "TestEntry",
+                RedirectController = "LifeEvent"
+            });
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         [FarmAuthorise(PermsAND: new[] { EnumRolePermission.Names.EDIT_LIFE_EVENTS })]

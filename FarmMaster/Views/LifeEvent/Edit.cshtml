@@ -14,6 +14,10 @@
 <partial name="_ComponentModalAreYouSure" />
 <partial name="_ViewModelWithMessagePartial" model="@Model" />
 
+<button class="ui primary button" onclick="document.location = '/LifeEvent/TestEntryEditor?lifeEventId=@Model.Id'">
+    Test Editor
+</button>
+
 <form class="ui form" method="post" asp-action="Edit">
     <input id="inputEventId" type="hidden" asp-for="Id" />
 

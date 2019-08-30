@@ -10,7 +10,8 @@ namespace FarmMaster.Models
     public enum LifeEventEntryEditorType
     {
         Create,
-        Edit
+        Edit,
+        Test
     }
 
     public class LifeEventIndexViewModel : ViewModelWithMessage
