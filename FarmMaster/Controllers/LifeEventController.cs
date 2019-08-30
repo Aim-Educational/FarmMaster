@@ -129,7 +129,7 @@ namespace FarmMaster.Controllers
                 {
                     "Home:/Home/Index",
                     "Life Events:/LifeEvent/Index",
-                    "Edit:/LifeEvent/Edit",
+                   $"Edit:/LifeEvent/Edit?id={lifeEventId}",
                     "Test Editor:#"
                 }
             });
