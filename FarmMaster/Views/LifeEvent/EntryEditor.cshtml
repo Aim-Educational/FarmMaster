@@ -9,8 +9,11 @@
 
 <form id="formEntry" class="ui form" method="post" asp-action="@(Model.Type == LifeEventEntryEditorType.Create ? "CreateEntry" : "EditEntry")">
     <input type="hidden" asp-for="LifeEventId" />
+    <input type="hidden" asp-for="LifeEventEntryId" />
     <input type="hidden" asp-for="RedirectController" />
     <input type="hidden" asp-for="RedirectAction" />
+    <input type="hidden" asp-for="Breadcrumb" />
+    <input type="hidden" asp-for="Type"/>
 
     @foreach (var field in Model.GET_FieldInfo)
     {

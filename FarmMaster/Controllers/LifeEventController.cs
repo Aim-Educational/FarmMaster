@@ -135,6 +135,42 @@ namespace FarmMaster.Controllers
             });
         }
 
+        [FarmAuthorise(PermsAND: new[] { EnumRolePermission.Names.EDIT_LIFE_EVENT_ENTRY })]
+        public IActionResult EditEntry(int lifeEventId, int lifeEventEntryId, string breadcrumb)
+        {
+            var lifeEvent = this._lifeEvents
+                                .For<LifeEvent>()
+                                .Query()
+                                .Include(e => e.Fields)
+                                .Include(e => e.Entries)
+                                 .ThenInclude(e => e.Values)
+                                  .ThenInclude(v => v.LifeEventDynamicFieldInfo)
+                                .FirstOrDefault(e => e.LifeEventId == lifeEventId);
+            if (lifeEvent == null)
+                throw new ArgumentOutOfRangeException($"There is no LifeEvent with the ID #{lifeEventId}");
+
+            var entry = lifeEvent.Entries.First(e => e.LifeEventEntryId == lifeEventEntryId);
+
+            return View("EntryEditor", new LifeEventEntryEditorViewModel
+            {
+                GET_FieldInfo       = lifeEvent.Fields,
+                LifeEventId         = lifeEventId,
+                LifeEventEntryId    = lifeEventEntryId,
+                Type                = LifeEventEntryEditorType.Edit,
+                Values              = lifeEvent.Fields
+                                               .ToDictionary(
+                                                    f => f.Name, 
+                                                    f => entry.Values
+                                                              .First(v => v.LifeEventDynamicFieldInfo.Name == f.Name)
+                                                              .Value
+                                                              .ToHtmlString()
+                                               ),
+                RedirectAction      = "EditEntry",
+                RedirectController  = "LifeEvent",
+                Breadcrumb          = breadcrumb.Split('>')
+            });
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         [FarmAuthorise(PermsAND: new[] { EnumRolePermission.Names.EDIT_LIFE_EVENTS })]
@@ -218,7 +254,7 @@ namespace FarmMaster.Controllers
             // TODO: Change the code so we don't have to do 'AllIncluded', as this will *not* scale well
             //       after a decent amount of use.
             var @event = this._lifeEvents.For<LifeEvent>().FromIdAllIncluded(model.LifeEventId);
-            if(@event == null)
+            if (@event == null)
                 throw new ArgumentOutOfRangeException($"No LifeEvent with ID #{model.LifeEventId}");
 
             model.GET_FieldInfo = @event.Fields;
@@ -236,20 +272,54 @@ namespace FarmMaster.Controllers
             {
                 var info = @event.Fields.First(f => f.Name == kvp.Key);
                 var data = fieldFactory.FromTypeAndHtmlString(info.Type, kvp.Value);
-                
+
                 entries[kvp.Key] = data;
             }
 
             var entry = this._lifeEvents.CreateEventEntry(@event, entries);
-            
+
             return RedirectToActionPermanent(
-                model.RedirectAction, 
-                model.RedirectController, 
+                model.RedirectAction,
+                model.RedirectController,
                 new
                 {
                     lifeEventEntryId = entry.LifeEventEntryId
                 }
             );
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [FarmAuthorise(PermsAND: new[] { EnumRolePermission.Names.EDIT_LIFE_EVENT_ENTRY })]
+        public IActionResult EditEntry(LifeEventEntryEditorViewModel model)
+        {
+            // TODO: Change the code so we don't have to do 'AllIncluded', as this will *not* scale well
+            //       after a decent amount of use.
+            var @event = this._lifeEvents.For<LifeEvent>().FromIdAllIncluded(model.LifeEventId);
+            if (@event == null)
+                throw new ArgumentOutOfRangeException($"No LifeEvent with ID #{model.LifeEventId}");
+
+            model.GET_FieldInfo = @event.Fields;
+
+            if (!ModelState.IsValid)
+            {
+                model.ParseInvalidModelState(ModelState);
+                return View("EntryEditor", model);
+            }
+
+            // Update the entry
+            var entry = @event.Entries.FirstOrDefault(e => e.LifeEventEntryId == model.LifeEventEntryId);
+            if(entry == null)
+                throw new ArgumentOutOfRangeException($"No LifeEventEntry with ID #{model.LifeEventEntryId} belongs to Life Event '{@event.Name}'");
+            
+            var fieldFactory = new DynamicFieldFactory();
+            foreach (var kvp in model.Values)
+            {
+                var info = @event.Fields.First(f => f.Name == kvp.Key);
+                this._lifeEvents.UpdateEventEntryFieldValueByName(entry, kvp.Key, fieldFactory.FromTypeAndHtmlString(info.Type, kvp.Value));
+            }
+
+            return View("EntryEditor", model);
         }
 
         #region AJAX

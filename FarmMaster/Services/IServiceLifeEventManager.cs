@@ -20,6 +20,8 @@ namespace FarmMaster.Services
         LifeEventEntry CreateEventEntry(LifeEvent @event, IDictionary<string, DynamicField> values);
 
         CouldDelete RemoveEventFieldByName(LifeEvent @event, string fieldName);
+
+        void UpdateEventEntryFieldValueByName(LifeEventEntry entry, string fieldName, DynamicField value);
     }
     
     public class ServiceLifeEventManager : IServiceLifeEventManager
@@ -138,6 +140,27 @@ namespace FarmMaster.Services
             this._context.Remove(field);
             this._context.SaveChanges();
             return CouldDelete.Yes;
+        }
+
+        public void UpdateEventEntryFieldValueByName(LifeEventEntry entry, string fieldName, DynamicField value)
+        {
+            entry = this.For<LifeEventEntry>()
+                        .Query()
+                        .Include(e => e.LifeEvent)
+                        .Include(e => e.Values)
+                         .ThenInclude(v => v.LifeEventDynamicFieldInfo)
+                        .First(e => e.LifeEventEntryId == entry.LifeEventEntryId);
+
+            var dbValue = entry.Values.FirstOrDefault(v => v.LifeEventDynamicFieldInfo.Name == fieldName);
+            if(dbValue == null)
+                throw new Exception($"Could not find value or field called '{fieldName}' for Life Event '{entry.LifeEvent.Name}'");
+
+            if (dbValue.LifeEventDynamicFieldInfo.Type != value.FieldType)
+                throw new InvalidOperationException($"Field '{fieldName}' of type '{dbValue.LifeEventDynamicFieldInfo.Type}' cannot be set to value '{value.ToHtmlString()}' of type '{value.FieldType}'");
+
+            dbValue.Value = value;
+            this._context.Update(dbValue);
+            this._context.SaveChanges();
         }
 
         #region Impl IServiceEntityManager (If there's a god, please spare my soul)
