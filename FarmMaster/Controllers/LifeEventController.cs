@@ -35,6 +35,7 @@ namespace FarmMaster.Controllers
             return View(model);
         }
 
+        #region Event Pages (GET)
         [FarmAuthorise(PermsAND: new[] { EnumRolePermission.Names.EDIT_LIFE_EVENTS })]
         public IActionResult Create()
         {
@@ -73,17 +74,98 @@ namespace FarmMaster.Controllers
 
             var model = new LifeEventEditViewModel
             {
-                Name = @event.Name,
+                Name        = @event.Name,
                 Description = @event.Description,
-                Id = @event.LifeEventId,
-                GET_Fields = @event.Fields,
+                Id          = @event.LifeEventId,
+                GET_Fields  = @event.Fields,
                 GET_IsInUse = @event.IsInUse
             };
             model.ParseMessageQueryString(message);
 
             return View(model);
         }
+        #endregion
 
+        #region Event Pages (POST)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [FarmAuthorise(PermsAND: new[] { EnumRolePermission.Names.EDIT_LIFE_EVENTS })]
+        public IActionResult Create(LifeEventCreateViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                model.ParseInvalidModelState(ModelState);
+                return View(model);
+            }
+            
+            int? id;
+            try
+            { 
+                id = this._lifeEvents.CreateEvent(model.Name, model.Description).LifeEventId;
+            }
+            catch(InvalidOperationException ex)
+            {
+                model.Message       = ex.Message; 
+                model.MessageFormat = ViewModelWithMessage.Format.Default;
+                model.MessageType   = ViewModelWithMessage.Type.Error;
+                return View(model);
+            }
+
+            return (id == null) ? RedirectToAction("Index") : RedirectToAction("Edit", new { id = id.Value });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [FarmAuthorise(PermsAND: new[] { EnumRolePermission.Names.EDIT_LIFE_EVENTS })]
+        public IActionResult Edit(LifeEventEditViewModel model)
+        {
+            var @event = this._lifeEvents
+                             .For<LifeEvent>()
+                             .Query()
+                             .Include(e => e.Fields)
+                             .Include(e => e.Entries)
+                             .FirstOrDefault(e => e.LifeEventId == model.Id); ;
+            if(@event == null)
+            {
+                return RedirectToAction(nameof(Index), new
+                {
+                    message = ViewModelWithMessage.CreateErrorQueryString($"No Life Event with the ID #{model.Id} was found.")
+                });
+            }
+
+            // We don't want to store these in hidden inputs, as it's kind of important that
+            // these values can't be modified by a malicious user to trick the server into doing stuff it shouldn't.
+            model.GET_IsInUse = @event.IsInUse;
+            model.GET_Fields = @event.Fields;
+
+            if (!ModelState.IsValid)
+            {
+                model.ParseMessageQueryString(ViewModelWithMessage.CreateQueryString(ModelState));
+                return View(model);
+            }
+
+            if (@event.IsBuiltin)
+            {
+                return RedirectToAction(nameof(Index), new
+                {
+                    message = ViewModelWithMessage.CreateErrorQueryString(
+                        $"The '{@event.Name}' Life Event is a builtin event, and cannot be modified."
+                    )
+                });
+            }
+
+            @event.Name = model.Name;
+            @event.Description = model.Description;
+
+            this._lifeEvents.Update(@event);
+
+            model.MessageType = ViewModelWithMessage.Type.Information;
+            model.Message = "Success";
+            return View(model);
+        }
+        #endregion
+
+        #region Entry Editor (GET)
         [FarmAuthorise(PermsAND: new[] { EnumRolePermission.Names.EDIT_LIFE_EVENT_ENTRY })]
         public IActionResult CreateEntry(int lifeEventId, string redirectController, string redirectAction, string breadcrumb)
         {
@@ -114,7 +196,7 @@ namespace FarmMaster.Controllers
         {
             // Using AllIncluded, since in practice this will barely be used after initial setup week.
             var lifeEvent = this._lifeEvents.For<LifeEvent>().FromIdAllIncluded(lifeEventId);
-            if(lifeEvent == null)
+            if (lifeEvent == null)
                 throw new ArgumentOutOfRangeException($"There is no LifeEvent with the ID #{lifeEventId}");
 
             return View("EntryEditor", new LifeEventEntryEditorViewModel
@@ -125,7 +207,7 @@ namespace FarmMaster.Controllers
                 Values              = lifeEvent.Fields.ToDictionary(f => f.Name, _ => ""),
                 RedirectAction      = "TestEntry",
                 RedirectController  = "LifeEvent",
-                Breadcrumb          = new[] 
+                Breadcrumb = new[]
                 {
                     "Home:/Home/Index",
                     "Life Events:/LifeEvent/Index",
@@ -150,102 +232,29 @@ namespace FarmMaster.Controllers
                 throw new ArgumentOutOfRangeException($"There is no LifeEvent with the ID #{lifeEventId}");
 
             var entry = lifeEvent.Entries.First(e => e.LifeEventEntryId == lifeEventEntryId);
-
             return View("EntryEditor", new LifeEventEntryEditorViewModel
             {
                 GET_FieldInfo       = lifeEvent.Fields,
                 LifeEventId         = lifeEventId,
                 LifeEventEntryId    = lifeEventEntryId,
                 Type                = LifeEventEntryEditorType.Edit,
-                Values              = lifeEvent.Fields
-                                               .ToDictionary(
-                                                    f => f.Name, 
-                                                    f => entry.Values
-                                                              .First(v => v.LifeEventDynamicFieldInfo.Name == f.Name)
-                                                              .Value
-                                                              .ToHtmlString()
-                                               ),
                 RedirectAction      = "EditEntry",
                 RedirectController  = "LifeEvent",
-                Breadcrumb          = breadcrumb.Split('>')
+                Breadcrumb          = breadcrumb.Split('>'),
+                Values              = lifeEvent
+                                      .Fields
+                                      .ToDictionary(
+                                          f => f.Name,
+                                          f => entry.Values
+                                                    .First(v => v.LifeEventDynamicFieldInfo.Name == f.Name)
+                                                    .Value
+                                                    .ToHtmlString()
+                                      ),
             });
         }
+        #endregion
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        [FarmAuthorise(PermsAND: new[] { EnumRolePermission.Names.EDIT_LIFE_EVENTS })]
-        public IActionResult Create(LifeEventCreateViewModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                model.ParseInvalidModelState(ModelState);
-                return View(model);
-            }
-            
-            int? id;
-            try
-            { 
-                id = this._lifeEvents.CreateEvent(model.Name, model.Description).LifeEventId;
-            }
-            catch(InvalidOperationException ex)
-            {
-                model.Message = ex.Message; 
-                model.MessageFormat = ViewModelWithMessage.Format.Default;
-                model.MessageType = ViewModelWithMessage.Type.Error;
-                return View(model);
-            }
-
-            return (id == null) ? RedirectToAction("Index") : RedirectToAction("Edit", new { id = id.Value });
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        [FarmAuthorise(PermsAND: new[] { EnumRolePermission.Names.EDIT_LIFE_EVENTS })]
-        public IActionResult Edit(LifeEventEditViewModel model)
-        {
-            var @event = this._lifeEvents
-                             .For<LifeEvent>()
-                             .Query()
-                             .Include(e => e.Fields)
-                             .Include(e => e.Entries)
-                             .FirstOrDefault(e => e.LifeEventId == model.Id); ;
-            if(@event == null)
-            {
-                return RedirectToAction(nameof(Index), new
-                {
-                    message = ViewModelWithMessage.CreateErrorQueryString($"No Life Event with the ID #{model.Id} was found.")
-                });
-            }
-
-            model.GET_IsInUse = @event.IsInUse;
-            model.GET_Fields = @event.Fields;
-
-            if (!ModelState.IsValid)
-            {
-                model.ParseMessageQueryString(ViewModelWithMessage.CreateQueryString(ModelState));
-                return View(model);
-            }
-
-            if (@event.IsBuiltin)
-            {
-                return RedirectToAction(nameof(Index), new
-                {
-                    message = ViewModelWithMessage.CreateErrorQueryString(
-                        $"The '{@event.Name}' Life Event is a builtin event, and cannot be modified."
-                    )
-                });
-            }
-
-            @event.Name = model.Name;
-            @event.Description = model.Description;
-
-            this._lifeEvents.Update(@event);
-
-            model.MessageType = ViewModelWithMessage.Type.Information;
-            model.Message = "Success";
-            return View(model);
-        }
-
+        #region Entry Editor (POST)
         [HttpPost]
         [ValidateAntiForgeryToken]
         [FarmAuthorise(PermsAND: new[] { EnumRolePermission.Names.EDIT_LIFE_EVENT_ENTRY })]
@@ -321,6 +330,7 @@ namespace FarmMaster.Controllers
 
             return View("EntryEditor", model);
         }
+        #endregion
 
         #region AJAX
         [HttpPost]
