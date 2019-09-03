@@ -84,6 +84,41 @@ namespace FarmMaster.Controllers
 
             return View(model);
         }
+
+        [FarmAuthorise(PermsAND: new[] { EnumRolePermission.Names.EDIT_LIFE_EVENTS })]
+        public IActionResult Delete(int id)
+        {
+            var @event = this._lifeEvents.For<LifeEvent>().FromIdAllIncluded(id);
+            if (@event == null)
+            {
+                return RedirectToAction(nameof(Index), new
+                {
+                    message = ViewModelWithMessage.CreateErrorQueryString($"No Life Event with ID #{id} was found.")
+                });
+            }
+
+            if (@event.IsBuiltin)
+            {
+                return RedirectToAction(nameof(Index), new
+                {
+                    message = ViewModelWithMessage.CreateErrorQueryString($"Life Event '{@event.Name}' is builtin, so cannot be deleted.")
+                });
+            }
+
+            if (@event.IsInUse)
+            {
+                return RedirectToAction(nameof(Index), new
+                {
+                    message = ViewModelWithMessage.CreateErrorQueryString(
+                        $"Life Event '{@event.Name}' is in use, so cannot be deleted " +
+                        $"until all uses of it have also been deleted."
+                    )
+                });
+            }
+
+            this._lifeEvents.FullDelete(@event);
+            return RedirectToAction(nameof(Index));
+        }
         #endregion
 
         #region Event Pages (POST)

@@ -13,7 +13,8 @@ namespace FarmMaster.Services
     public interface IServiceLifeEventManager : IServiceEntityManager<LifeEvent>,
                                                 IServiceEntityManager<LifeEventDynamicFieldInfo>,
                                                 IServiceEntityManager<LifeEventDynamicFieldValue>,
-                                                IServiceEntityManager<LifeEventEntry>
+                                                IServiceEntityManager<LifeEventEntry>,
+                                                IServiceEntityManagerFullDeletion<LifeEvent>
     {
         LifeEvent CreateEvent(string name, string description);
         LifeEventDynamicFieldInfo CreateEventField(LifeEvent @event, string name, string description, DynamicField.Type type);
@@ -163,7 +164,7 @@ namespace FarmMaster.Services
             this._context.SaveChanges();
         }
 
-        #region Impl IServiceEntityManager (If there's a god, please spare my soul)
+        #region Impl IServiceEntityManager and IServiceEntityManagerFullDeletion (If there's a god, please spare my soul)
         public int GetIdFor(LifeEvent entity)
         {
             return entity.LifeEventId;
@@ -261,6 +262,15 @@ namespace FarmMaster.Services
             return this._context.LifeEventEntries
                                 .Include(e => e.LifeEvent)
                                 .Include(e => e.Values);
+        }
+
+        public void FullDelete(LifeEvent entity)
+        {
+            // Make sure we're using a tracked entity.
+            entity = this.For<LifeEvent>().FromId(entity.LifeEventId);
+
+            this._context.Remove(entity);
+            this._context.SaveChanges();
         }
         #endregion
     }
