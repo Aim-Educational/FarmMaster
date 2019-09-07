@@ -2,12 +2,18 @@
 @{
     ViewData["Title"] = "EntryEditor";
     ViewData["Breadcrumb"] = Model.Breadcrumb;
+
+    var formAction = (Model.Type != LifeEventEntryEditorType.Test)
+                     ? (Model.Type == LifeEventEntryEditorType.Create)
+                       ? "CreateEntry"
+                       : "EditEntry"
+                     : "";
 }
 
 <h1>Life Event Entry Editor</h1>
 <partial name="_ViewModelWithMessagePartial" model="@Model" />
 
-<form id="formEntry" class="ui form" method="post" asp-action="@(Model.Type == LifeEventEntryEditorType.Create ? "CreateEntry" : "EditEntry")">
+<form id="formEntry" class="ui form" method="post" asp-action="@formAction">
     <input type="hidden" asp-for="LifeEventId" />
     <input type="hidden" asp-for="LifeEventEntryId" />
     <input type="hidden" asp-for="RedirectController" />
