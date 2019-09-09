@@ -129,7 +129,7 @@ namespace FarmMaster.Controllers
                 contact,
                 this._users.UserFromCookieSession(HttpContext),
                 "The user is required to specify an email when creating a new contact.",
-                GlobalConstants.DefaultNumberName,
+                "Default",
                 model.Email
             );
 

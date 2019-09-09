@@ -28,7 +28,7 @@ namespace FarmMaster.Models
         public Contact.Type Type { get; set; }
 
         [Required]
-        [RegularExpression(GlobalConstants.RegexEmail, ErrorMessage = "Invalid Email Address.")]
+        [RegularExpression(FarmConstants.Regexes.Email, ErrorMessage = "Invalid Email Address.")]
         public string Email { get; set; }
     }
 
@@ -41,7 +41,7 @@ namespace FarmMaster.Models
         public string Name { get; set; }
 
         [Required(ErrorMessage = "A number is required.")]
-        [RegularExpression(GlobalConstants.RegexPhone, ErrorMessage = "Invalid Phone Number. Only '+', and digits are allowed.")]
+        [RegularExpression(FarmConstants.Regexes.Phone, ErrorMessage = "Invalid Phone Number. Only '+', and digits are allowed.")]
         public string Value { get; set; }
 
         [Required(ErrorMessage = "You must give a reason for adding this number.")]
@@ -57,7 +57,7 @@ namespace FarmMaster.Models
         public string Name { get; set; }
 
         [Required(ErrorMessage = "An email is required.")]
-        [RegularExpression(GlobalConstants.RegexEmail, ErrorMessage = "Invalid Email Address.")]
+        [RegularExpression(FarmConstants.Regexes.Email, ErrorMessage = "Invalid Email Address.")]
         public string Value { get; set; }
 
         [Required(ErrorMessage = "You must give a reason for adding this number.")]

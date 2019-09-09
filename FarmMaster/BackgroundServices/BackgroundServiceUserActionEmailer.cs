@@ -54,7 +54,7 @@ namespace FarmMaster.BackgroundServices
                 // Send the email.
                 await this._mail.SendToWithTemplateAsync(
                     allActions.First().ContactAffected.EmailAddresses.Select(e => e.Address),
-                    EnumEmailTemplateNames.ContactInfoAudit,
+                    FarmConstants.EmailTemplateNames.ContactInfoAudit,
                     "The latest audit log about your contact information.",
                     new EmailContactInfoAuditViewModel
                     {

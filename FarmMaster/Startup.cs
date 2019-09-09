@@ -104,8 +104,8 @@ namespace FarmMaster
 
             services.Configure<IServiceSmtpTemplateConfig>(o =>
             {
-                o.EmailTemplates.Add(EnumEmailTemplateNames.EmailVerify,      "/Views/EmailTemplates/EmailVerify.cshtml");
-                o.EmailTemplates.Add(EnumEmailTemplateNames.ContactInfoAudit, "/Views/EmailTemplates/ContactInfoAudit.cshtml");
+                o.EmailTemplates.Add(FarmConstants.EmailTemplateNames.EmailVerify,      "/Views/EmailTemplates/EmailVerify.cshtml");
+                o.EmailTemplates.Add(FarmConstants.EmailTemplateNames.ContactInfoAudit, "/Views/EmailTemplates/ContactInfoAudit.cshtml");
             });
 
             services.AddScoped<IServiceSmtpClient, ServiceSmtpClient>();

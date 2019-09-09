@@ -80,8 +80,8 @@ namespace FarmMaster.Services
             var privacy = new UserPrivacy
             {
                 HasVerifiedEmail = false,
-                PrivacyPolicyVersionAgreedTo = GlobalConstants.PrivacyPolicyVersion,
-                TermsOfServiceVersionAgreedTo = GlobalConstants.TermsOfServiceVersion
+                PrivacyPolicyVersionAgreedTo = FarmConstants.Versions.PrivacyPolicy,
+                TermsOfServiceVersionAgreedTo = FarmConstants.Versions.TermsOfService
             };
 
             var user = new User
@@ -131,7 +131,7 @@ namespace FarmMaster.Services
             user.UserLoginInfo.SessionTokenExpiry = DateTimeOffset.UtcNow + this._config.Value.SessionTokenLifespan;
 
             http.Response.Cookies.Append(
-                GlobalConstants.AuthCookieName,
+                FarmConstants.CookieNames.AuthCookie,
                 user.UserLoginInfo.SessionToken,
                 new CookieOptions
                 {
@@ -159,8 +159,8 @@ namespace FarmMaster.Services
         public User UserFromCookieSession(HttpContext http)
         {
             return this.UserFromCookieSession(
-                (http.Request.Cookies.ContainsKey(GlobalConstants.AuthCookieName))
-                ? http.Request.Cookies[GlobalConstants.AuthCookieName]
+                (http.Request.Cookies.ContainsKey(FarmConstants.CookieNames.AuthCookie))
+                ? http.Request.Cookies[FarmConstants.CookieNames.AuthCookie]
                 : null
             );
         }
@@ -201,7 +201,7 @@ namespace FarmMaster.Services
 
             this._smtp.SendToWithTemplateAsync(
                 user,
-                EnumEmailTemplateNames.EmailVerify, 
+                FarmConstants.EmailTemplateNames.EmailVerify, 
                 "Please verify your email.",
                 this._domains.Value.VerifyEmail + user.UserPrivacy.EmailVerificationToken
             ).Wait();

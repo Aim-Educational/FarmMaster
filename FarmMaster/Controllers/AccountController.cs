@@ -92,7 +92,7 @@ namespace FarmMaster.Controllers
                     user.Contact,
                     user,
                     "User signup requires a default phone number.",
-                    GlobalConstants.DefaultNumberName, 
+                    "Default",
                     model.TelephoneNumbers[0]
                 );
             }
