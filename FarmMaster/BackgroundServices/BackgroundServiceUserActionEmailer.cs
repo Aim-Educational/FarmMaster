@@ -70,7 +70,7 @@ namespace FarmMaster.BackgroundServices
                     }
                 );
 
-                // Then register them as being informed, also detach them so EF won't keep references to them.
+                // Then register them as being informed.
                 foreach (var action in allActions)
                     action.HasContactBeenInformed = true;
                 this._context.SaveChanges();

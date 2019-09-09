@@ -59,6 +59,8 @@ namespace FarmMaster.Controllers
                 this._animals.FromId(model.MumId ?? -1), // -1 = ID that shouldn't normally exist, forcing FromId to return null.
                 this._animals.FromId(model.DadId ?? -1)
             );
+
+            throw new NotImplementedException();
         }
     }
 }
