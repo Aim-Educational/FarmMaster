@@ -3,15 +3,17 @@ using System;
 using Business.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Business.Migrations
 {
     [DbContext(typeof(FarmMasterContext))]
-    partial class FarmMasterContextModelSnapshot : ModelSnapshot
+    [Migration("20190908080708_LifeEventEntryDateTimeCreatedON")]
+    partial class LifeEventEntryDateTimeCreatedON
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,42 +53,6 @@ namespace Business.Migrations
                     b.HasIndex("UserResponsibleId");
 
                     b.ToTable("ActionsAgainstContactInfo");
-                });
-
-            modelBuilder.Entity("Business.Model.Animal", b =>
-                {
-                    b.Property<int>("AnimalId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int?>("DadId");
-
-                    b.Property<int?>("MumId");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(75);
-
-                    b.Property<int>("OwnerId");
-
-                    b.Property<int>("Sex");
-
-                    b.Property<string>("Tag")
-                        .IsRequired()
-                        .HasMaxLength(20);
-
-                    b.Property<byte[]>("Timestamp")
-                        .IsConcurrencyToken()
-                        .ValueGeneratedOnAddOrUpdate();
-
-                    b.HasKey("AnimalId");
-
-                    b.HasIndex("DadId");
-
-                    b.HasIndex("MumId");
-
-                    b.HasIndex("OwnerId");
-
-                    b.ToTable("Animals");
                 });
 
             modelBuilder.Entity("Business.Model.AnimalCharacteristic", b =>
@@ -542,27 +508,6 @@ namespace Business.Migrations
                     b.ToTable("LifeEventEntries");
                 });
 
-            modelBuilder.Entity("Business.Model.MapBreedToAnimal", b =>
-                {
-                    b.Property<int>("MapBreedToAnimalId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("AnimalId");
-
-                    b.Property<int>("BreedId");
-
-                    b.HasKey("MapBreedToAnimalId");
-
-                    b.HasIndex("AnimalId");
-
-                    b.HasIndex("BreedId");
-
-                    b.HasIndex("AnimalId", "BreedId")
-                        .IsUnique();
-
-                    b.ToTable("MapBreedToAnimals");
-                });
-
             modelBuilder.Entity("Business.Model.MapContactRelationship", b =>
                 {
                     b.Property<int>("MapContactRelationshipId")
@@ -619,27 +564,6 @@ namespace Business.Migrations
                         .IsUnique();
 
                     b.ToTable("MapHoldingRegistrationToHoldings");
-                });
-
-            modelBuilder.Entity("Business.Model.MapLifeEventEntryToAnimal", b =>
-                {
-                    b.Property<int>("MapLifeEventEntryToAnimalId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("AnimalId");
-
-                    b.Property<int>("LifeEventEntryId");
-
-                    b.HasKey("MapLifeEventEntryToAnimalId");
-
-                    b.HasIndex("AnimalId");
-
-                    b.HasIndex("LifeEventEntryId");
-
-                    b.HasIndex("AnimalId", "LifeEventEntryId")
-                        .IsUnique();
-
-                    b.ToTable("MapLifeEventEntryToAnimals");
                 });
 
             modelBuilder.Entity("Business.Model.MapRolePermissionToRole", b =>
@@ -841,22 +765,6 @@ namespace Business.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Business.Model.Animal", b =>
-                {
-                    b.HasOne("Business.Model.Animal", "Dad")
-                        .WithMany("Children_DAD")
-                        .HasForeignKey("DadId");
-
-                    b.HasOne("Business.Model.Animal", "Mum")
-                        .WithMany("Children_MUM")
-                        .HasForeignKey("MumId");
-
-                    b.HasOne("Business.Model.Contact", "Owner")
-                        .WithMany()
-                        .HasForeignKey("OwnerId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("Business.Model.AnimalCharacteristic", b =>
                 {
                     b.HasOne("Business.Model.AnimalCharacteristicList", "List")
@@ -928,19 +836,6 @@ namespace Business.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Business.Model.MapBreedToAnimal", b =>
-                {
-                    b.HasOne("Business.Model.Animal", "Animal")
-                        .WithMany("Breeds")
-                        .HasForeignKey("AnimalId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Business.Model.Breed", "Breed")
-                        .WithMany()
-                        .HasForeignKey("BreedId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("Business.Model.MapContactRelationship", b =>
                 {
                     b.HasOne("Business.Model.Contact", "ContactOne")
@@ -964,19 +859,6 @@ namespace Business.Migrations
                     b.HasOne("Business.Model.EnumHoldingRegistration", "HoldingRegistration")
                         .WithMany()
                         .HasForeignKey("HoldingRegistrationId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Business.Model.MapLifeEventEntryToAnimal", b =>
-                {
-                    b.HasOne("Business.Model.Animal", "Animal")
-                        .WithMany("LifeEventEntries")
-                        .HasForeignKey("AnimalId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Business.Model.LifeEventEntry", "LifeEventEntry")
-                        .WithMany("AnimalMap")
-                        .HasForeignKey("LifeEventEntryId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

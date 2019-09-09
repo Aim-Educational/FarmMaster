@@ -73,13 +73,14 @@ namespace FarmMaster
             });
 
             // Data managers
-            services.AddScoped<IServiceUserManager, ServiceUserManager>();
-            services.AddScoped<IServiceContactManager, ServiceContactManager>();
-            services.AddScoped<IServiceRoleManager, ServiceRoleManager>();
-            services.AddScoped<IServiceHoldingManager, ServiceHoldingManager>();
-            services.AddScoped<IServiceSpeciesBreedManager, ServiceSpeciesBreedManager>();
-            services.AddScoped<IServiceCharacteristicManager, ServiceCharacteristicManager>();
-            services.AddScoped<IServiceLifeEventManager, ServiceLifeEventManager>();
+            services.AddScoped<IServiceUserManager,             ServiceUserManager>();
+            services.AddScoped<IServiceContactManager,          ServiceContactManager>();
+            services.AddScoped<IServiceRoleManager,             ServiceRoleManager>();
+            services.AddScoped<IServiceHoldingManager,          ServiceHoldingManager>();
+            services.AddScoped<IServiceSpeciesBreedManager,     ServiceSpeciesBreedManager>();
+            services.AddScoped<IServiceCharacteristicManager,   ServiceCharacteristicManager>();
+            services.AddScoped<IServiceLifeEventManager,        ServiceLifeEventManager>();
+            services.AddScoped<IServiceAnimalManager,           ServiceAnimalManager>();
 
             // Background services
             services.AddHostedService<FarmBackgroundServiceHost<BackgroundServiceUserActionEmailer>>();

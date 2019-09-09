@@ -7,6 +7,11 @@ namespace Business.Model
 {
     public class LifeEventDynamicFieldInfo
     {
+        public static class BuiltinNames
+        {
+            public const string BORN_DATE = "Date";
+        }
+
         [Required]
         public int LifeEventDynamicFieldInfoId { get; set; }
 

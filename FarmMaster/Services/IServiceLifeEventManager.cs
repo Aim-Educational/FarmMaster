@@ -23,6 +23,11 @@ namespace FarmMaster.Services
         CouldDelete RemoveEventFieldByName(LifeEvent @event, string fieldName);
 
         void UpdateEventEntryFieldValueByName(LifeEventEntry entry, string fieldName, DynamicField value);
+
+        // Certain life events are built-in, so get special 'easy'-to-use support.
+        LifeEventEntry CreateBornEventEntry(DateTimeOffset dateTimeBorn);
+        DateTimeOffset GetDateTimeBorn(LifeEventEntry bornEntry);
+        LifeEventEntry FindBornEventEntryOrNull(IEnumerable<LifeEventEntry> entries);
     }
     
     public class ServiceLifeEventManager : IServiceLifeEventManager
@@ -163,6 +168,53 @@ namespace FarmMaster.Services
             this._context.Update(dbValue);
             this._context.SaveChanges();
         }
+
+        #region Built in Life Events
+        public LifeEventEntry CreateBornEventEntry(DateTimeOffset dateTimeBorn)
+        {
+            return this.CreateEventEntry(
+                this._context.LifeEvents.First(e => e.Name == LifeEvent.BuiltinNames.BORN),
+                new Dictionary<string, DynamicField>
+                {
+                    {
+                        LifeEventDynamicFieldInfo.BuiltinNames.BORN_DATE,
+                        new DynamicFieldDateTime
+                        {
+                            DateTime = dateTimeBorn
+                        }
+                    }
+                }
+            );
+        }
+
+        public DateTimeOffset GetDateTimeBorn(LifeEventEntry bornEntry)
+        {
+            // Make sure we have all the data we want.
+            bornEntry = this.For<LifeEventEntry>()
+                            .Query()
+                            .Include(e => e.LifeEvent)
+                            .Include(e => e.Values)
+                             .ThenInclude(v => v.LifeEventDynamicFieldInfo)
+                            .First(e => e.LifeEventEntryId == bornEntry.LifeEventEntryId);
+            
+            if(bornEntry.LifeEvent.Name != LifeEvent.BuiltinNames.BORN)
+                throw new ArgumentException($"Entry is for event '{bornEntry.LifeEvent.Name}', not '{LifeEvent.BuiltinNames.BORN}'.");
+            if(!bornEntry.LifeEvent.IsBuiltin)
+                throw new InvalidOperationException($"While the event is the right name, it's not marked as builtin, so cannot assume that it is structured correctly.");
+
+            var value = bornEntry.Values.First(v => v.LifeEventDynamicFieldInfo.Name == LifeEventDynamicFieldInfo.BuiltinNames.BORN_DATE);
+            var castedField = value.Value as DynamicFieldDateTime;
+            if(castedField == null)
+                throw new InvalidCastException("Internal error: castedField should not be null. Did the structure of the event change?");
+
+            return castedField.DateTime;
+        }
+
+        public LifeEventEntry FindBornEventEntryOrNull(IEnumerable<LifeEventEntry> entries)
+        {
+            return entries.FirstOrDefault(e => e.LifeEvent.Name == LifeEvent.BuiltinNames.BORN);
+        }
+        #endregion
 
         #region Impl IServiceEntityManager and IServiceEntityManagerFullDeletion (If there's a god, please spare my soul)
         public int GetIdFor(LifeEvent entity)

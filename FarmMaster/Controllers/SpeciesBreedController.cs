@@ -344,6 +344,20 @@ namespace FarmMaster.Controllers
                     .Select(s => new ComponentSelectOption { Description = s.Name, Value = $"{s.SpeciesId}" })
             );
         }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [FarmAjaxReturnsMessageAndValue(EnumRolePermission.Names.VIEW_SPECIES_BREEDS)]
+        public IActionResult AjaxGetAllBreeds([FromBody] AjaxRequestModel model, User _)
+        {
+            return new AjaxValueResult(
+                this._speciesBreeds
+                    .For<Breed>()
+                    .Query()
+                    .OrderBy(s => s.Name)
+                    .Select(s => new ComponentSelectOption { Description = s.Name, Value = $"{s.BreedId}" })
+            );
+        }
         #endregion
 
         #region Helpers

@@ -1,0 +1,49 @@
+﻿@model AnimalCreateViewModel
+@{ 
+    ViewData["Title"] = "Create - Animal";
+}
+
+<partial name="_ViewModelWithMessagePartial" model="@Model" />
+
+<form class="ui form" method="post" asp-action="Create">
+    <div class="field">
+        <label>Name</label>
+        <input asp-for="Name" />
+        <span class="@GlobalConstants.FormErrorClasses" asp-validation-for="Name"></span>
+    </div>
+    <div class="field">
+        <label>Tag</label>
+        <input asp-for="Tag" />
+        <span class="@GlobalConstants.FormErrorClasses" asp-validation-for="Tag"></span>
+    </div>
+    <div class="field">
+        <label>Sex</label>
+        <select asp-for="Sex">
+            <option>@Animal.Gender.Male</option>
+            <option>@Animal.Gender.Female</option>
+            <option>@Animal.Gender.Other</option>
+        </select>
+        <span class="@GlobalConstants.FormErrorClasses" asp-validation-for="Sex"></span>
+    </div>
+    <div class="field">
+        <label>Owner</label>
+        <select id="selectOwner" asp-for="OwnerId">
+        </select>
+        <span class="@GlobalConstants.FormErrorClasses" asp-validation-for="OwnerId"></span>
+    </div>
+    <div class="field">
+        <label>Dad</label>
+        <select id="selectDad" asp-for="DadId">
+        </select>
+        <span class="@GlobalConstants.FormErrorClasses" asp-validation-for="DadId"></span>
+    </div>
+    <div class="field">
+        <label>Mum</label>
+        <select id="selectMum" asp-for="MumId">
+        </select>
+        <span class="@GlobalConstants.FormErrorClasses" asp-validation-for="MumId"></span>
+    </div>
+
+    <button class="ui primary button" type="submit">Create New Animal</button>
+    <div class="@GlobalConstants.FormErrorClasses" asp-validation-summary="All"></div>
+</form>
