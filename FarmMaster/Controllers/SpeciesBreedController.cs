@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FarmMaster.Controllers
 {
-    [FarmAuthorise(PermsAND: new[]{ EnumRolePermission.Names.VIEW_SPECIES_BREEDS })]
+    [FarmAuthorise(PermsAND: new[]{ BusinessConstants.Roles.VIEW_SPECIES_BREEDS })]
     public class SpeciesBreedController : Controller, IPagingController<Species>, IPagingController<Breed>
     {
         readonly IServiceUserManager _users;
@@ -56,7 +56,7 @@ namespace FarmMaster.Controllers
             return View();
         }
         
-        [FarmAuthorise(PermsAND: new[] { EnumRolePermission.Names.EDIT_SPECIES_BREEDS })]
+        [FarmAuthorise(PermsAND: new[] { BusinessConstants.Roles.EDIT_SPECIES_BREEDS })]
         public IActionResult EditSpecies(int id)
         {
             var species = this._speciesBreeds.For<Species>().FromId(id);
@@ -66,7 +66,7 @@ namespace FarmMaster.Controllers
             return View(new SpeciesEditViewModel{ Species = species });
         }
 
-        [FarmAuthorise(PermsAND: new[] { EnumRolePermission.Names.EDIT_SPECIES_BREEDS })]
+        [FarmAuthorise(PermsAND: new[] { BusinessConstants.Roles.EDIT_SPECIES_BREEDS })]
         public IActionResult DeleteSpecies(int id)
         {
             var species = this._speciesBreeds.For<Species>().FromIdAllIncluded(id);
@@ -93,7 +93,7 @@ namespace FarmMaster.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [FarmAuthorise(PermsAND: new[] { EnumRolePermission.Names.EDIT_SPECIES_BREEDS })]
+        [FarmAuthorise(PermsAND: new[] { BusinessConstants.Roles.EDIT_SPECIES_BREEDS })]
         public IActionResult CreateSpecies(SpeciesCreateViewModel model)
         {
             if(!ModelState.IsValid)
@@ -108,7 +108,7 @@ namespace FarmMaster.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [FarmAuthorise(PermsAND: new[] { EnumRolePermission.Names.EDIT_SPECIES_BREEDS })]
+        [FarmAuthorise(PermsAND: new[] { BusinessConstants.Roles.EDIT_SPECIES_BREEDS })]
         public IActionResult EditSpecies(SpeciesEditViewModel model)
         {
             if (!ModelState.IsValid)
@@ -131,7 +131,7 @@ namespace FarmMaster.Controllers
             return View();
         }
 
-        [FarmAuthorise(PermsAND: new[] { EnumRolePermission.Names.EDIT_SPECIES_BREEDS })]
+        [FarmAuthorise(PermsAND: new[] { BusinessConstants.Roles.EDIT_SPECIES_BREEDS })]
         public IActionResult EditBreed(int id)
         {
             var breed = this._speciesBreeds.For<Breed>().FromId(id);
@@ -141,7 +141,7 @@ namespace FarmMaster.Controllers
             return View(new BreedEditViewModel { Breed = breed });
         }
 
-        [FarmAuthorise(PermsAND: new[] { EnumRolePermission.Names.EDIT_SPECIES_BREEDS })]
+        [FarmAuthorise(PermsAND: new[] { BusinessConstants.Roles.EDIT_SPECIES_BREEDS })]
         public IActionResult DeleteBreed(int id)
         {
             var breed = this._speciesBreeds.For<Breed>().FromIdAllIncluded(id);
@@ -168,7 +168,7 @@ namespace FarmMaster.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [FarmAuthorise(PermsAND: new[] { EnumRolePermission.Names.EDIT_SPECIES_BREEDS })]
+        [FarmAuthorise(PermsAND: new[] { BusinessConstants.Roles.EDIT_SPECIES_BREEDS })]
         public IActionResult CreateBreed(BreedCreateViewModel model)
         {
             if (!ModelState.IsValid)
@@ -199,7 +199,7 @@ namespace FarmMaster.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [FarmAuthorise(PermsAND: new[] { EnumRolePermission.Names.EDIT_SPECIES_BREEDS })]
+        [FarmAuthorise(PermsAND: new[] { BusinessConstants.Roles.EDIT_SPECIES_BREEDS })]
         public IActionResult EditBreed(BreedEditViewModel model)
         {
             if (!ModelState.IsValid)
@@ -219,7 +219,7 @@ namespace FarmMaster.Controllers
         #region AJAX
         [HttpPost]
         [AllowAnonymous]
-        [FarmAjaxReturnsMessageAndValue(EnumRolePermission.Names.VIEW_SPECIES_BREEDS)]
+        [FarmAjaxReturnsMessageAndValue(BusinessConstants.Roles.VIEW_SPECIES_BREEDS)]
         public IActionResult AjaxGetTablePageCount([FromBody] AjaxPagingControllerRequestModel model, User _)
         {
             var itemCount = (model.EntityType != null && model.EntityType.ToUpper() == "SPECIES")
@@ -233,7 +233,7 @@ namespace FarmMaster.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        [FarmAjaxReturnsMessageAndValue(EnumRolePermission.Names.VIEW_SPECIES_BREEDS)]
+        [FarmAjaxReturnsMessageAndValue(BusinessConstants.Roles.VIEW_SPECIES_BREEDS)]
         public IActionResult AjaxRenderTablePage([FromBody] AjaxPagingControllerRenderRequestModel model, User _)
         {
             string result;
@@ -263,7 +263,7 @@ namespace FarmMaster.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        [FarmAjaxReturnsMessageAndValue(EnumRolePermission.Names.VIEW_SPECIES_BREEDS)]
+        [FarmAjaxReturnsMessageAndValue(BusinessConstants.Roles.VIEW_SPECIES_BREEDS)]
         public IActionResult AjaxGetCharacteristics([FromBody] AjaxCharacteristicsRequest model, User _)
         {
             IEnumerable<AjaxCharacteristicsResponseValue> result;
@@ -302,7 +302,7 @@ namespace FarmMaster.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        [FarmAjaxReturnsMessage(EnumRolePermission.Names.EDIT_SPECIES_BREEDS)]
+        [FarmAjaxReturnsMessage(BusinessConstants.Roles.EDIT_SPECIES_BREEDS)]
         public IActionResult AjaxAddCharacteristic([FromBody] AjaxCharacteristicsAddRequest model, User _)
         {
             var list = this.GetOrCreateListForEntity(model.EntityType, model.EntityId);
@@ -318,7 +318,7 @@ namespace FarmMaster.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        [FarmAjaxReturnsMessage(EnumRolePermission.Names.EDIT_SPECIES_BREEDS)]
+        [FarmAjaxReturnsMessage(BusinessConstants.Roles.EDIT_SPECIES_BREEDS)]
         public IActionResult AjaxDeleteCharacteristicByName([FromBody] AjaxCharacteristicsDeleteByNameRequest model)
         {
             var list = this.GetOrCreateListForEntity(model.EntityType, model.EntityId);
@@ -333,7 +333,7 @@ namespace FarmMaster.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        [FarmAjaxReturnsMessageAndValue(EnumRolePermission.Names.VIEW_SPECIES_BREEDS)]
+        [FarmAjaxReturnsMessageAndValue(BusinessConstants.Roles.VIEW_SPECIES_BREEDS)]
         public IActionResult AjaxGetAllSpecies([FromBody] AjaxRequestModel model, User _)
         {
             return new AjaxValueResult(
@@ -347,7 +347,7 @@ namespace FarmMaster.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        [FarmAjaxReturnsMessageAndValue(EnumRolePermission.Names.VIEW_SPECIES_BREEDS)]
+        [FarmAjaxReturnsMessageAndValue(BusinessConstants.Roles.VIEW_SPECIES_BREEDS)]
         public IActionResult AjaxGetAllBreeds([FromBody] AjaxRequestModel model, User _)
         {
             return new AjaxValueResult(

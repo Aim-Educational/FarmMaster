@@ -14,7 +14,7 @@ using Microsoft.Extensions.Options;
 
 namespace FarmMaster.Controllers
 {
-    [FarmAuthorise(PermsOR: new[]{ EnumRolePermission.Names.VIEW_CONTACTS })]
+    [FarmAuthorise(PermsOR: new[]{ BusinessConstants.Roles.VIEW_CONTACTS })]
     public class ContactController : Controller, IPagingController<Contact>
     {
         readonly FarmMasterContext _context;
@@ -58,7 +58,7 @@ namespace FarmMaster.Controllers
             return View();
         }
 
-        [FarmAuthorise(PermsAND: new[] { EnumRolePermission.Names.DELETE_CONTACTS })]
+        [FarmAuthorise(PermsAND: new[] { BusinessConstants.Roles.DELETE_CONTACTS })]
         public IActionResult Delete(int id)
         {
             var contactDb = this._contacts.FromIdAllIncluded(id);
@@ -82,7 +82,7 @@ namespace FarmMaster.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        [FarmAuthorise(PermsAND: new[]{ EnumRolePermission.Names.EDIT_CONTACTS })]
+        [FarmAuthorise(PermsAND: new[]{ BusinessConstants.Roles.EDIT_CONTACTS })]
         public IActionResult Edit(int id, [FromQuery] string reason)
         {
             var contactDb = this._contacts.FromIdAllIncluded(id);
@@ -115,7 +115,7 @@ namespace FarmMaster.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [FarmAuthorise(PermsAND: new[] { EnumRolePermission.Names.EDIT_CONTACTS })]
+        [FarmAuthorise(PermsAND: new[] { BusinessConstants.Roles.EDIT_CONTACTS })]
         public IActionResult Create(ContactCreateViewModel model)
         {
             if(!ModelState.IsValid)
@@ -138,7 +138,7 @@ namespace FarmMaster.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [FarmAuthorise(PermsAND: new[]{ EnumRolePermission.Names.EDIT_CONTACTS })]
+        [FarmAuthorise(PermsAND: new[]{ BusinessConstants.Roles.EDIT_CONTACTS })]
         public IActionResult Edit(ContactEditViewModel model)
         {
             if(!ModelState.IsValid)
@@ -165,7 +165,7 @@ namespace FarmMaster.Controllers
         #region AJAX
         [HttpPost]
         [AllowAnonymous]
-        [FarmAjaxReturnsMessage(EnumRolePermission.Names.EDIT_CONTACTS)]
+        [FarmAjaxReturnsMessage(BusinessConstants.Roles.EDIT_CONTACTS)]
         public IActionResult AjaxAddPhoneNumber([FromBody] ContactAjaxAddPhoneNumber model, User user)
         {
             var contact = this._context.Contacts.Include(c => c.PhoneNumbers).First(c => c.ContactId == model.Id);
@@ -184,7 +184,7 @@ namespace FarmMaster.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        [FarmAjaxReturnsMessage(EnumRolePermission.Names.EDIT_CONTACTS)]
+        [FarmAjaxReturnsMessage(BusinessConstants.Roles.EDIT_CONTACTS)]
         public IActionResult AjaxRemovePhoneNumberByName([FromBody] ContactAjaxRemoveByName model, User user)
         {
             var contact = this._context.Contacts.Include(c => c.PhoneNumbers).First(c => c.ContactId == model.Id);
@@ -200,7 +200,7 @@ namespace FarmMaster.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        [FarmAjaxReturnsMessage(EnumRolePermission.Names.EDIT_CONTACTS)]
+        [FarmAjaxReturnsMessage(BusinessConstants.Roles.EDIT_CONTACTS)]
         public IActionResult AjaxAddEmailAddress([FromBody] ContactAjaxAddEmailAddress model, User user)
         {
             var contact = this._context.Contacts.Include(c => c.EmailAddresses).First(c => c.ContactId == model.Id);
@@ -219,7 +219,7 @@ namespace FarmMaster.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        [FarmAjaxReturnsMessage(EnumRolePermission.Names.EDIT_CONTACTS)]
+        [FarmAjaxReturnsMessage(BusinessConstants.Roles.EDIT_CONTACTS)]
         public IActionResult AjaxRemoveEmailAddressByName([FromBody] ContactAjaxRemoveByName model, User myUser)
         {
             var contact = this._context.Contacts.Include(c => c.EmailAddresses).First(c => c.ContactId == model.Id);
@@ -237,7 +237,7 @@ namespace FarmMaster.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        [FarmAjaxReturnsMessage(EnumRolePermission.Names.EDIT_CONTACTS)]
+        [FarmAjaxReturnsMessage(BusinessConstants.Roles.EDIT_CONTACTS)]
         public IActionResult AjaxAddRelation([FromBody] ContactAjaxAddRelationship model, User myUser)
         {
             var contactOne = this._contacts.FromIdAllIncluded(model.Id);
@@ -255,7 +255,7 @@ namespace FarmMaster.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        [FarmAjaxReturnsMessage(EnumRolePermission.Names.EDIT_CONTACTS)]
+        [FarmAjaxReturnsMessage(BusinessConstants.Roles.EDIT_CONTACTS)]
         public IActionResult AjaxRemoveRelationById([FromBody] ContactAjaxRemoveByName model, User myUser)
         {
             var contact = this._context.Contacts.Include(c => c.EmailAddresses).First(c => c.ContactId == model.Id);
@@ -271,7 +271,7 @@ namespace FarmMaster.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        [FarmAjaxReturnsMessageAndValue(EnumRolePermission.Names.EDIT_CONTACTS)]
+        [FarmAjaxReturnsMessageAndValue(BusinessConstants.Roles.EDIT_CONTACTS)]
         public IActionResult AjaxGetNameAndValueAll([FromBody] AjaxRequestModel model, User _)
         {
             return new AjaxValueResult(
@@ -285,7 +285,7 @@ namespace FarmMaster.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        [FarmAjaxReturnsMessageAndValue(EnumRolePermission.Names.VIEW_CONTACTS)]
+        [FarmAjaxReturnsMessageAndValue(BusinessConstants.Roles.VIEW_CONTACTS)]
         public IActionResult AjaxGetTablePageCount([FromBody] AjaxPagingControllerRequestModel model, User _)
         {
             var pageCount = PagingHelper.CalculatePageCount(this._contacts.Query().Count(), model.ItemsPerPage);
@@ -295,7 +295,7 @@ namespace FarmMaster.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        [FarmAjaxReturnsMessageAndValue(EnumRolePermission.Names.VIEW_CONTACTS)]
+        [FarmAjaxReturnsMessageAndValue(BusinessConstants.Roles.VIEW_CONTACTS)]
         public IActionResult AjaxRenderTablePage([FromBody] AjaxPagingControllerRenderRequestModel model, User _)
         {
             return new AjaxValueResult(

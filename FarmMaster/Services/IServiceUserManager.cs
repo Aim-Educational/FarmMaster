@@ -114,8 +114,8 @@ namespace FarmMaster.Services
                 var role = this._roles.Create(
                     "Admin", 
                     "An administrator", 
-                    EnumRolePermission.Names.VIEW_ROLES, 
-                    EnumRolePermission.Names.EDIT_ROLES
+                    BusinessConstants.Roles.VIEW_ROLES, 
+                    BusinessConstants.Roles.EDIT_ROLES
                 );
 
                 user.Role = role;

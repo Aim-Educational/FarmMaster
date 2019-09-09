@@ -8,12 +8,7 @@ using System.Text;
 namespace Business.Model
 {
     public class LifeEvent
-    {
-        public static class BuiltinNames
-        {
-            public const string BORN = "Born";
-        }
-
+    { 
         [Required]
         public int LifeEventId { get; set; }
 

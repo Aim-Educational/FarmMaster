@@ -95,7 +95,7 @@ namespace FarmMaster.Services
             {
                 this._lifeEvents.UpdateEventEntryFieldValueByName(
                     entry, 
-                    LifeEventDynamicFieldInfo.BuiltinNames.BORN_DATE, 
+                    BusinessConstants.BuiltinLifeEventFields.BORN_DATE, 
                     new DynamicFieldDateTime { DateTime = dateTimeBorn }
                 );
             }

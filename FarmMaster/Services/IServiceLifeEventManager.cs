@@ -173,11 +173,11 @@ namespace FarmMaster.Services
         public LifeEventEntry CreateBornEventEntry(DateTimeOffset dateTimeBorn)
         {
             return this.CreateEventEntry(
-                this._context.LifeEvents.First(e => e.Name == LifeEvent.BuiltinNames.BORN),
+                this._context.LifeEvents.First(e => e.Name == BusinessConstants.BuiltinLifeEvents.BORN),
                 new Dictionary<string, DynamicField>
                 {
                     {
-                        LifeEventDynamicFieldInfo.BuiltinNames.BORN_DATE,
+                        BusinessConstants.BuiltinLifeEventFields.BORN_DATE,
                         new DynamicFieldDateTime
                         {
                             DateTime = dateTimeBorn
@@ -197,12 +197,12 @@ namespace FarmMaster.Services
                              .ThenInclude(v => v.LifeEventDynamicFieldInfo)
                             .First(e => e.LifeEventEntryId == bornEntry.LifeEventEntryId);
             
-            if(bornEntry.LifeEvent.Name != LifeEvent.BuiltinNames.BORN)
-                throw new ArgumentException($"Entry is for event '{bornEntry.LifeEvent.Name}', not '{LifeEvent.BuiltinNames.BORN}'.");
+            if(bornEntry.LifeEvent.Name != BusinessConstants.BuiltinLifeEvents.BORN)
+                throw new ArgumentException($"Entry is for event '{bornEntry.LifeEvent.Name}', not '{BusinessConstants.BuiltinLifeEvents.BORN}'.");
             if(!bornEntry.LifeEvent.IsBuiltin)
                 throw new InvalidOperationException($"While the event is the right name, it's not marked as builtin, so cannot assume that it is structured correctly.");
 
-            var value = bornEntry.Values.First(v => v.LifeEventDynamicFieldInfo.Name == LifeEventDynamicFieldInfo.BuiltinNames.BORN_DATE);
+            var value = bornEntry.Values.First(v => v.LifeEventDynamicFieldInfo.Name == BusinessConstants.BuiltinLifeEventFields.BORN_DATE);
             var castedField = value.Value as DynamicFieldDateTime;
             if(castedField == null)
                 throw new InvalidCastException("Internal error: castedField should not be null. Did the structure of the event change?");
@@ -212,7 +212,7 @@ namespace FarmMaster.Services
 
         public LifeEventEntry FindBornEventEntryOrNull(IEnumerable<LifeEventEntry> entries)
         {
-            return entries.FirstOrDefault(e => e.LifeEvent.Name == LifeEvent.BuiltinNames.BORN);
+            return entries.FirstOrDefault(e => e.LifeEvent.Name == BusinessConstants.BuiltinLifeEvents.BORN);
         }
         #endregion
 

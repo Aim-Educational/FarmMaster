@@ -168,21 +168,21 @@ namespace Business.Model
         {
             b.Entity<EnumRolePermission>()
              .HasData(
-                new EnumRolePermission { EnumRolePermissionId = 1,  InternalName = EnumRolePermission.Names.EDIT_CONTACTS,          Description = "Edit Contacts" },
-                new EnumRolePermission { EnumRolePermissionId = 2,  InternalName = EnumRolePermission.Names.VIEW_CONTACTS,          Description = "View Contacts" },
-                new EnumRolePermission { EnumRolePermissionId = 3,  InternalName = EnumRolePermission.Names.EDIT_ROLES,             Description = "Edit Roles" },
-                new EnumRolePermission { EnumRolePermissionId = 4,  InternalName = EnumRolePermission.Names.VIEW_ROLES,             Description = "View Roles" },
-                new EnumRolePermission { EnumRolePermissionId = 5,  InternalName = EnumRolePermission.Names.EDIT_USERS,             Description = "Edit Users" },
-                new EnumRolePermission { EnumRolePermissionId = 6,  InternalName = EnumRolePermission.Names.VIEW_USERS,             Description = "View Users" },
-                new EnumRolePermission { EnumRolePermissionId = 7,  InternalName = EnumRolePermission.Names.ASSIGN_ROLES,           Description = "Assign Roles" },
-                new EnumRolePermission { EnumRolePermissionId = 8,  InternalName = EnumRolePermission.Names.DELETE_CONTACTS,        Description = "Delete Contacts" },
-                new EnumRolePermission { EnumRolePermissionId = 9,  InternalName = EnumRolePermission.Names.VIEW_HOLDINGS,          Description = "View Holdings" },
-                new EnumRolePermission { EnumRolePermissionId = 10, InternalName = EnumRolePermission.Names.EDIT_HOLDINGS,          Description = "Edit Holdings" },
-                new EnumRolePermission { EnumRolePermissionId = 11, InternalName = EnumRolePermission.Names.VIEW_SPECIES_BREEDS,    Description = "View Species/Breeds" },
-                new EnumRolePermission { EnumRolePermissionId = 12, InternalName = EnumRolePermission.Names.EDIT_SPECIES_BREEDS,    Description = "Edit Species/Breeds" },
-                new EnumRolePermission { EnumRolePermissionId = 13, InternalName = EnumRolePermission.Names.VIEW_LIFE_EVENTS,       Description = "View Life Events" },
-                new EnumRolePermission { EnumRolePermissionId = 14, InternalName = EnumRolePermission.Names.EDIT_LIFE_EVENTS,       Description = "Edit Life Events" },
-                new EnumRolePermission { EnumRolePermissionId = 15, InternalName = EnumRolePermission.Names.EDIT_LIFE_EVENT_ENTRY,  Description = "Edit Life Event Entries" }
+                new EnumRolePermission { EnumRolePermissionId = 1,  InternalName = BusinessConstants.Roles.EDIT_CONTACTS,          Description = "Edit Contacts" },
+                new EnumRolePermission { EnumRolePermissionId = 2,  InternalName = BusinessConstants.Roles.VIEW_CONTACTS,          Description = "View Contacts" },
+                new EnumRolePermission { EnumRolePermissionId = 3,  InternalName = BusinessConstants.Roles.EDIT_ROLES,             Description = "Edit Roles" },
+                new EnumRolePermission { EnumRolePermissionId = 4,  InternalName = BusinessConstants.Roles.VIEW_ROLES,             Description = "View Roles" },
+                new EnumRolePermission { EnumRolePermissionId = 5,  InternalName = BusinessConstants.Roles.EDIT_USERS,             Description = "Edit Users" },
+                new EnumRolePermission { EnumRolePermissionId = 6,  InternalName = BusinessConstants.Roles.VIEW_USERS,             Description = "View Users" },
+                new EnumRolePermission { EnumRolePermissionId = 7,  InternalName = BusinessConstants.Roles.ASSIGN_ROLES,           Description = "Assign Roles" },
+                new EnumRolePermission { EnumRolePermissionId = 8,  InternalName = BusinessConstants.Roles.DELETE_CONTACTS,        Description = "Delete Contacts" },
+                new EnumRolePermission { EnumRolePermissionId = 9,  InternalName = BusinessConstants.Roles.VIEW_HOLDINGS,          Description = "View Holdings" },
+                new EnumRolePermission { EnumRolePermissionId = 10, InternalName = BusinessConstants.Roles.EDIT_HOLDINGS,          Description = "Edit Holdings" },
+                new EnumRolePermission { EnumRolePermissionId = 11, InternalName = BusinessConstants.Roles.VIEW_SPECIES_BREEDS,    Description = "View Species/Breeds" },
+                new EnumRolePermission { EnumRolePermissionId = 12, InternalName = BusinessConstants.Roles.EDIT_SPECIES_BREEDS,    Description = "Edit Species/Breeds" },
+                new EnumRolePermission { EnumRolePermissionId = 13, InternalName = BusinessConstants.Roles.VIEW_LIFE_EVENTS,       Description = "View Life Events" },
+                new EnumRolePermission { EnumRolePermissionId = 14, InternalName = BusinessConstants.Roles.EDIT_LIFE_EVENTS,       Description = "Edit Life Events" },
+                new EnumRolePermission { EnumRolePermissionId = 15, InternalName = BusinessConstants.Roles.EDIT_LIFE_EVENT_ENTRY,  Description = "Edit Life Event Entries" }
             );
         }
 
@@ -190,11 +190,11 @@ namespace Business.Model
         {
             b.Entity<EnumHoldingRegistration>()
              .HasData(
-                new EnumHoldingRegistration { EnumHoldingRegistrationId = 1, InternalName = EnumHoldingRegistration.Names.COW,              Description = "Cows" },
-                new EnumHoldingRegistration { EnumHoldingRegistrationId = 2, InternalName = EnumHoldingRegistration.Names.FISH,             Description = "Fish" },
-                new EnumHoldingRegistration { EnumHoldingRegistrationId = 3, InternalName = EnumHoldingRegistration.Names.PIG,              Description = "Pigs" },
-                new EnumHoldingRegistration { EnumHoldingRegistrationId = 4, InternalName = EnumHoldingRegistration.Names.POULTRY,          Description = "Poultry" },
-                new EnumHoldingRegistration { EnumHoldingRegistrationId = 5, InternalName = EnumHoldingRegistration.Names.SHEEP_AND_GOAT,   Description = "Sheep and Goats" }
+                new EnumHoldingRegistration { EnumHoldingRegistrationId = 1, InternalName = BusinessConstants.HoldingRegistrations.COW,              Description = "Cows" },
+                new EnumHoldingRegistration { EnumHoldingRegistrationId = 2, InternalName = BusinessConstants.HoldingRegistrations.FISH,             Description = "Fish" },
+                new EnumHoldingRegistration { EnumHoldingRegistrationId = 3, InternalName = BusinessConstants.HoldingRegistrations.PIG,              Description = "Pigs" },
+                new EnumHoldingRegistration { EnumHoldingRegistrationId = 4, InternalName = BusinessConstants.HoldingRegistrations.POULTRY,          Description = "Poultry" },
+                new EnumHoldingRegistration { EnumHoldingRegistrationId = 5, InternalName = BusinessConstants.HoldingRegistrations.SHEEP_AND_GOAT,   Description = "Sheep and Goats" }
             );
         }
 
@@ -210,7 +210,7 @@ namespace Business.Model
         {
             b.Entity<LifeEvent>()
              .HasData(
-                new LifeEvent{ LifeEventId = 1, Name = LifeEvent.BuiltinNames.BORN, Description = "The animal was born.", IsBuiltin = true }
+                new LifeEvent{ LifeEventId = 1, Name = BusinessConstants.BuiltinLifeEvents.BORN, Description = "The animal was born.", IsBuiltin = true }
             );
             
             b.Entity<LifeEventDynamicFieldInfo>()
@@ -220,7 +220,7 @@ namespace Business.Model
                 {
                     LifeEventDynamicFieldInfoId = 1,
                     LifeEventId                 = 1,
-                    Name                        = Business.Model.LifeEventDynamicFieldInfo.BuiltinNames.BORN_DATE,
+                    Name                        = BusinessConstants.BuiltinLifeEventFields.BORN_DATE,
                     Type                        = DynamicField.Type.DateTime,
                     Description                 = "When the animal was born." }
                 #endregion
