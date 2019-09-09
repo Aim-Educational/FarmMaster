@@ -10,4 +10,10 @@ namespace FarmMaster.Misc
         Yes,
         No
     }
+
+    public enum CouldDelete
+    {
+        Yes,
+        No
+    }
 }
