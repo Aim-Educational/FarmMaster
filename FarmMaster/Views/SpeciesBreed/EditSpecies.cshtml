@@ -17,13 +17,12 @@
 <section class="ui attached segment">
     <form class="ui form" method="post" asp-action="EditSpecies">
         <input type="hidden" asp-for="Species.SpeciesId" />
-        <input type="hidden" asp-for="Species.Timestamp"/>
-        <input type="hidden" asp-for="Species.CharacteristicListId"/>
+        <input type="hidden" asp-for="Species.Timestamp" />
+        <input type="hidden" asp-for="Species.CharacteristicListId" />
 
         <section class="field">
             <label>Name</label>
             <input asp-for="Species.Name" placeholder="Name" />
-            <span class="@GlobalConstants.FormErrorClasses" asp-validation-for="Species.Name"></span>
         </section>
         <section class="field">
             <div class="ui checkbox">
@@ -33,7 +32,7 @@
         </section>
 
         <partial name="_ViewModelWithMessagePartial" model="Model" />
-        <div id="divAllErrors" class="ui error message transition hidden"></div>
+        <div asp-validation-summary="All"></div>
 
         <button class="ui fluid primary button" type="submit">Edit Species</button>
     </form>
@@ -52,7 +51,10 @@
 </section>
 
 @section Scripts {
-    <script>
+    <script type="module">
+        import { Validation } from "/js/index.js";
+        Validation.hookupForm(document.querySelector(".ui.form"));
+
         $(".dropdown").dropdown();
         $(".accordion").accordion();
     </script>

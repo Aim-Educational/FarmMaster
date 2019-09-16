@@ -23,7 +23,6 @@
         <section class="field">
             <label>Name</label>
             <input asp-for="Breed.Name" placeholder="Name" />
-            <span class="@GlobalConstants.FormErrorClasses" asp-validation-for="Breed.Name"></span>
         </section>
 
         <section class="field">
@@ -36,7 +35,6 @@
 
                 </div>
             </div>
-            <span class="@GlobalConstants.FormErrorClasses" asp-validation-for="Breed.SpeciesId"></span>
         </section>
         <section class="field">
             <label>Breed Society</label>
@@ -48,18 +46,16 @@
 
                 </div>
             </div>
-            <span class="@GlobalConstants.FormErrorClasses" asp-validation-for="Breed.BreedSocietyId"></span>
         </section>
         <section class="field">
             <div class="ui checkbox">
                 <input type="checkbox" asp-for="Breed.IsRegisterable" />
                 <label>Breed can be registered?</label>
             </div>
-            <span class="@GlobalConstants.FormErrorClasses" asp-validation-for="Breed.IsRegisterable"></span>
         </section>
 
         <partial name="_ViewModelWithMessagePartial" model="Model" />
-        <div id="divAllErrors" class="ui error message transition hidden"></div>
+        <div asp-validation-summary="All"></div>
 
         <button class="ui fluid primary button" type="submit">Edit Breed</button>
     </form>
@@ -79,7 +75,7 @@
 
 @section Scripts {
     <script type="module">
-        import { ComponentSelect } from "/js/index.js"
+        import { ComponentSelect, Validation } from "/js/index.js"
 
         $(".ui.dropdown").dropdown();
         $(".ui.checkbox").checkbox();

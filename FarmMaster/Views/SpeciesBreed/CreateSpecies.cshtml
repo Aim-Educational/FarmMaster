@@ -17,7 +17,6 @@
         <section class="field">
             <label>Name</label>
             <input asp-for="Name" placeholder="Name" />
-            <span class="@GlobalConstants.FormErrorClasses" asp-validation-for="Name"></span>
         </section>
         <section class="field">
             <div class="ui checkbox">
@@ -27,14 +26,15 @@
         </section>
 
         <partial name="_ViewModelWithMessagePartial" model="Model" />
-        <div id="divAllErrors" class="ui error message transition hidden"></div>
+        <div asp-validation-summary="All"></div>
 
         <button class="ui primary button" type="submit">Create Species</button>
     </form>
 </section>
 
 @section Scripts {
-    <script>
+    <script type="module">
+        import { Validation } from "/js/index.js";
         $(".ui.checkbox").checkbox();
 
         Validation.hookupForm(document.querySelector(".ui.form"));
