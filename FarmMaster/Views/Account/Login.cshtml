@@ -43,7 +43,8 @@
 </form>
 
 @section Scripts {
-    <script>
+    <script type="module">
+        import { Validation } from "/js/index.js";
         Validation.hookupForm(document.querySelector(".ui.form"));
     </script>
 }

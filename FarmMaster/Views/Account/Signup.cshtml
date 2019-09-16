@@ -159,7 +159,9 @@
 </form>
 
 @section Scripts {
-    <script>
+    <script type="module">
+        import { Validation } from "/js/index.js";
+
         let sectionState = "login";
 
         $(".ui.checkbox").checkbox();

@@ -18,6 +18,7 @@ using FarmMaster.Misc;
 using FarmMaster.Middleware;
 using Microsoft.Extensions.Hosting;
 using FarmMaster.BackgroundServices;
+using JasterValidate;
 
 namespace FarmMaster
 {
@@ -49,6 +50,9 @@ namespace FarmMaster
 
             // Database
             services.AddDbContext<FarmMasterContext>(o => o.UseNpgsql(Configuration.GetConnectionString("General")));
+
+            // JasterValidate
+            services.AddJasterValidate();
 
             // Auth
             services
