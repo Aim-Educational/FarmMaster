@@ -21,22 +21,19 @@
     <section class="field">
         <label>Name</label>
         <input asp-for="Role.Name" placeholder="Name" />
-        <span class="@GlobalConstants.FormErrorClasses" asp-validation-for="Role.Name"></span>
     </section>
 
     <section class="field">
         <label>Description</label>
         <input asp-for="Role.Description" placeholder="Description" />
-        <span class="@GlobalConstants.FormErrorClasses" asp-validation-for="Role.Description"></span>
     </section>
 
     <section class="field">
         <label>Hierarchy Order</label>
         <input asp-for="Role.HierarchyOrder" placeholder="Hierarchy Order" />
-        <span class="@GlobalConstants.FormErrorClasses" asp-validation-for="Role.HierarchyOrder"></span>
     </section>
 
-    <div id="divAllErrors" class="ui error message"></div>
+    <div asp-validation-summary="All"></div>
 
     <h2 class="ui dividing header">Permissions</h2>
     @{int permsToSkip = 0;}
@@ -60,7 +57,8 @@
 </form>
 
 @section Scripts {
-    <script>
+    <script type="module">
+        import { Validation } from "/js/index.js";
         $(".ui.checkbox").checkbox();
 
         Validation.hookupForm(document.querySelector(".ui.form"));
