@@ -28,14 +28,13 @@
         <div class="field">
             <label>Name</label>
             <input asp-for="Name" autocomplete="off" />
-            <span class="@GlobalConstants.FormErrorClasses" asp-validation-for="Name"></span>
         </div>
         <div class="field">
             <label>Description</label>
             <input asp-for="Description" autocomplete="off" />
-            <span class="@GlobalConstants.FormErrorClasses" asp-validation-for="Description"></span>
         </div>
     </section>
+    <div asp-validation-summary="All"></div>
     <section class="ui bottom attached segment">
         <button class="ui primary fluid button" type="submit">
             Edit Life Event
@@ -120,7 +119,7 @@
 
 @section Scripts {
     <script type="module">
-        import { FarmAjax, FarmAjaxMessageType, drange, ComponentModal } from "/js/index.js"
+        import { FarmAjax, FarmAjaxMessageType, drange, ComponentModal, Validation } from "/js/index.js"
 
         $(".ui.dropdown").dropdown();
 

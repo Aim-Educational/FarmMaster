@@ -4,7 +4,7 @@
     ViewData["Breadcrumb"] = new[]
     {
         "Home:/Home/Index",
-        "Contacts:/LifeEvent/Index",
+        "Life Events:/LifeEvent/Index",
         "Create:/LifeEvent/Create"
     };
 }
@@ -21,17 +21,16 @@
         <div class="field">
             <label>Name</label>
             <input asp-for="Name" autocomplete="off" />
-            <span class="@GlobalConstants.FormErrorClasses" asp-validation-for="Name"></span>
         </div>
         <div class="field">
             <label>Description</label>
             <input asp-for="Description" autocomplete="off" />
-            <span class="@GlobalConstants.FormErrorClasses" asp-validation-for="Description"></span>
         </div>
         <div class="ui info message transition visible">
             Further configuration can be done once the Life Event is created.
         </div>
     </section>
+    <div asp-validation-summary="All"></div>
     <section class="ui bottom attached segment">
         <button class="ui primary fluid button" type="submit">
             Create Life Event
@@ -41,6 +40,7 @@
 
 @section Scripts {
     <script type="module">
+        import { Validation } from "/js/index.js";
         Validation.hookupForm(document.querySelector(".ui.form"));
     </script>
 }
