@@ -27,27 +27,22 @@
         <section class="field">
             <label>Name</label>
             <input asp-for="Holding.Name" />
-            <span class="@GlobalConstants.FormErrorClasses" asp-validation-for="Holding.Name"></span>
         </section>
         <section class="field">
             <label>Holding Number</label>
             <input asp-for="Holding.HoldingNumber" />
-            <span class="@GlobalConstants.FormErrorClasses" asp-validation-for="Holding.HoldingNumber"></span>
         </section>
         <section class="field">
             <label>Grid Reference</label>
             <input asp-for="Holding.GridReference" />
-            <span class="@GlobalConstants.FormErrorClasses" asp-validation-for="Holding.GridReference"></span>
         </section>
         <section class="field">
             <label>Address</label>
             <input asp-for="Holding.Address" />
-            <span class="@GlobalConstants.FormErrorClasses" asp-validation-for="Holding.Address"></span>
         </section>
         <section class="field">
             <label>Postcode</label>
             <input asp-for="Holding.Postcode" />
-            <span class="@GlobalConstants.FormErrorClasses" asp-validation-for="Holding.Postcode"></span>
         </section>
         <section class="field">
             <label>Owner</label>
@@ -67,8 +62,6 @@
             <button class="ui primary button" type="button" onclick="refreshOwner()">
                 REFRESH
             </button>
-            
-            <span id="errorOwner" class="@GlobalConstants.FormErrorClasses" asp-validation-for="Holding.OwnerContactId"></span>
         </section>
     </section>
     <section class="ui attached segment">
@@ -104,13 +97,13 @@
             @(Model.IsCreate ? "Create Holding" : "Edit Holding")
         </button>
         <br />
-        <div id="divAllErrors" class="ui error message"></div>
+        <div asp-validation-summary="All"></div>
     </section>
 </form>
 
 @section Scripts {
     <script type="module">
-        import { ComponentSelect } from "/js/index.js"
+        import { ComponentSelect, Validation } from "/js/index.js"
 
         $(".ui.checkbox").checkbox();
         $(".ui.dropdown").dropdown();
