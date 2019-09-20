@@ -118,6 +118,12 @@ namespace FarmMaster
             // MVC
             services
             .AddMvc()
+            .AddRazorOptions(o =>
+            {
+                o.ViewLocationFormats.Add("/Views/Shared/Layouts/{0}.cshtml");
+                o.ViewLocationFormats.Add("/Views/Shared/CommonPartials/{0}.cshtml");
+                o.ViewLocationFormats.Add("/Views/Shared/ComponentPartials/{0}.cshtml");
+            })
             .AddViewOptions(o =>
             {
                 o.HtmlHelperOptions.ClientValidationEnabled = false; // JQuery Validate Unobtrusive is garbage, so I'm using my own solution :/
