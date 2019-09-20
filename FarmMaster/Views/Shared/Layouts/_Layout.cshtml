@@ -1,6 +1,10 @@
 ﻿<!DOCTYPE html>
 <html>
-<partial name="_LayoutCommonHeadPartial" />
+<head>
+    <partial name="_LayoutCommonHeadPartial" />
+
+    @RenderSection("Styles", required: false)
+</head>
 <body>
     <partial name="_NavbarPartial" />
 
@@ -8,17 +12,17 @@
         <section class="ui grid">
             <div class="zero wide mobile one wide computer three wide large screen column"></div>
             <div class="sixteen wide mobile fourteen wide computer ten wide large screen centered column">
-                @if(ViewData.ContainsKey("Breadcrumb"))
+                @if(ViewData.ContainsKey("Breadcrumb") && !ViewData.ContainsKey("CustomBreadcrumb"))
                 {
                     <div class="ui breadcrumb">
                         @{ 
-                            var crumbLength = (ViewData["Breadcrumb"] as IEnumerable<string>).Count();
+                            var crumbs = ViewData["Breadcrumb"] as IDictionary<string, string>;
+                            var crumbLength = crumbs.Count();
                             var index = 0;
                         }
-                        @foreach(var crumb in ViewData["Breadcrumb"] as IEnumerable<string>)
+                        @foreach(var crumb in crumbs)
                         {
-                            var split = crumb.Split(":");
-                            <a class="section @(index == crumbLength - 1 ? "active" : "")" href="@split[1]">@split[0]</a>
+                            <a class="section @(index == crumbLength - 1 ? "active" : "")" href="@crumb.Value">@crumb.Key</a>
                             <div class="divider">/</div>
                             index++;
                         }

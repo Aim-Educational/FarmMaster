@@ -1,0 +1,60 @@
+﻿section.header.editor {
+    $textColour: rgba(162,159,224,1);
+    background: linear-gradient(to right, rgba(162,159,224,1) 0%, rgba(188,175,228,1) 35%, rgba(188,175,228,1) 54%, rgba(216,208,239,1) 100%);
+    display: flex;
+    flex-direction: column;
+    height: 80px;
+    margin-bottom: 0;
+    border-radius: 3px;
+
+    h1 {
+        padding-top: 0.2em;
+        padding-left: 0.4em;
+        margin-bottom: 0.075em;
+        color: darken($textColour, 35%);
+    }
+
+    div.breadcrumb {
+        display: inline-flex;
+        padding-left: 0.8em;
+        font-size: 16px;
+
+        a.section {
+            color: darken($textColour, 30%);
+            letter-spacing: 0.018em;
+
+            &.active {
+                color: darken($textColour, 25%);
+                font-weight: bold;
+            }
+        }
+
+        div.divider {
+            padding-left: 0.3em;
+            padding-right: 0.3em;
+            font-weight: bold;
+            color: darken(darkgray, 20%);
+        }
+    }
+}
+
+.editor.section {
+    section {
+        background: white;
+
+        div.header {
+            padding-top: 1em * 0.8;
+            padding-left: 0.8em;
+            padding-bottom: 1.5em;
+            font-weight: bold;
+            font-size: 20px;
+            letter-spacing: 0.03em;
+        }
+
+        div.section {
+            padding-left: 1em;
+            padding-bottom: 1em;
+            padding-right: 1em;
+        }
+    }
+}

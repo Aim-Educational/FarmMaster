@@ -1,0 +1,33 @@
+﻿@{ 
+    Layout = "_Layout";
+    ViewData["CustomBreadcrumb"] = true;
+}
+
+@section Styles {
+    @RenderSection("Styles", required: false)
+    <link rel="stylesheet" href="~/css/generic_editors.min.css" />
+}
+
+<section class="editor header">
+    <h1>@ViewData["Title"]</h1>
+    <div class="breadcrumb">
+        @if (ViewData.ContainsKey("Breadcrumb"))
+        {
+            var crumbs = ViewData["Breadcrumb"] as IDictionary<string, string>;
+            var crumbLength = crumbs.Count();
+            var index = 0;
+            @foreach (var crumb in crumbs)
+            {
+                <a class="section @(index == crumbLength - 1 ? "active" : "")" href="@crumb.Value">@crumb.Key</a>
+                <div class="divider">/</div>
+                index++;
+            }
+        }
+    </div>
+</section>
+
+@RenderBody()
+
+@section Scripts {
+    @RenderSection("Scripts", required: false)
+}

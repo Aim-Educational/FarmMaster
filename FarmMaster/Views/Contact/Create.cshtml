@@ -1,6 +1,7 @@
 ﻿@model ContactCreateViewModel
 @using Business.Model
 @{
+    Layout = "_GenericEditorLayout";
     ViewData["Title"] = "Create - Contact";
     ViewData["Breadcrumb"] = new[]
     {
@@ -8,44 +9,48 @@
         "Contacts:/Contact/Index",
         "Create:/Contact/Create"
     };
+    ViewData["Breadcrumb"] = new Dictionary<string, string>
+    {
+        { "Home", "/Home/Index" },
+        { "Contacts", "/Contact/Index" },
+        { "Create", "/Contact/Create" }
+    };
 }
 
-<h1>Create</h1>
-
-<form class="ui form" method="post" asp-action="Create">
-    <section class="ui top attached header">
-        Required Information
-    </section>
-    <section class="ui attached segment">
-        <section class="field">
-            <label>Full Name</label>
-            <input asp-for="FullName" />
-        </section>        
-        <section class="field">
-            <label>Email</label>
-            <input asp-for="Email" />
-        </section>        
-        <section class="ui grouped fields">
-            <label>What type of contact is this?</label>
-            <section class="field">
-                <div class="ui radio checkbox">
-                    <input type="radio" asp-for="Type" value="@Contact.Type.Entity" />
-                    <label>An Entity (Business, Organisation, etc.)</label>
-                </div>
-            </section>            
-            <section class="field">
-                <div class="ui radio checkbox">
-                    <input type="radio" asp-for="Type" value="@Contact.Type.Individual" />
-                    <label>An Individual Person</label>
-                </div>
-            </section>
-        </section>
-    </section>
-    <div asp-validation-summary="All"></div>
-    <section class="ui bottom attached segment">
-        <button class="ui primary fluid button" type="submit">
-            Create Contact
-        </button>
+<form class="ui editor form section" method="post" asp-action="Create">
+    <section>
+        <div class="header">
+            Required Information
+        </div>
+        <div class="section">
+            <div class="field">
+                <label>Full Name</label>
+                <input asp-for="FullName" />
+            </div>
+            <div class="field">
+                <label>Email</label>
+                <input asp-for="Email" />
+            </div>
+            <div class="ui grouped fields">
+                <label>What type of contact is this?</label>
+                <section class="field">
+                    <div class="ui radio checkbox">
+                        <input type="radio" asp-for="Type" value="@Contact.Type.Entity" />
+                        <label>An Entity (Business, Organisation, etc.)</label>
+                    </div>
+                </section>
+                <section class="field">
+                    <div class="ui radio checkbox">
+                        <input type="radio" asp-for="Type" value="@Contact.Type.Individual" />
+                        <label>An Individual Person</label>
+                    </div>
+                </section>
+            </div>
+            <button class="ui primary fluid submit button" type="submit">
+                Create Contact
+            </button>
+            <div asp-validation-summary="All"></div>
+        </div>
     </section>
 </form>
 
