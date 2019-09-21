@@ -269,6 +269,5 @@ namespace FarmMaster.Controllers
                 ).Result
             );
         }
-        #endregion
     }
 }
