@@ -37,57 +37,65 @@
 <partial name="_ViewModelWithMessagePartial" model="Model" />
 
 <section class="editor section">
-    <form class="ui form" method="post" asp-action="Edit">
-        <input type="hidden" asp-for="Contact.ContactId" />
-        <input type="hidden" asp-for="Contact.ContactType" />
-        <input type="hidden" asp-for="Contact.Timestamp" />
+    <section>
+        <form class="ui form" method="post" asp-action="Edit">
+            <input type="hidden" asp-for="Contact.ContactId" />
+            <input type="hidden" asp-for="Contact.ContactType" />
+            <input type="hidden" asp-for="Contact.Timestamp" />
 
-        <section>
-            <h4>
-                General Info
-            </h4>
-            <div class="content">
-                <div class="field">
-                    <label>Full Name</label>
-                    <input asp-for="Contact.FullName" />
+            <section>
+                <h4>
+                    General Info
+                </h4>
+                <div class="content">
+                    <div class="field">
+                        <label>Full Name</label>
+                        <input asp-for="Contact.FullName" />
+                    </div>
+                    <button type="submit" class="ui fluid primary button">
+                        Update Information
+                    </button>
+                    <div asp-validation-summary="All"></div>
                 </div>
-                <button type="submit" class="ui fluid primary button">
-                    Update Information
-                </button>
-                <div asp-validation-summary="All"></div>
+            </section>
+        </form>
+    </section>
+
+    @foreach(var info in new[] {
+         new { Header = "Phone Numbers", Section = "sectionPhoneNumbers" },
+         new { Header = "Email Addresses", Section = "sectionEmails" }
+    })
+    {
+        <section class="ui form">
+            <h4>
+                @info.Header
+            </h4>
+            <div id="@info.Section" class="content">
+                <table class="ui striped table">
+                    <thead>
+                        <tr>
+                            <th class="editor action"></th>
+                            <th>Name</th>
+                            <th>Number</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+                <div class="table action section three inline actions">
+                    <div class="inline field">
+                        <label>Name:</label>
+                        <input class="name" type="text" />
+                    </div>
+                    <div class="inline field">
+                        <label>Value:</label>
+                        <input class="value" type="text" />
+                    </div>
+                    <button class="ui primary submit button" type="button">Add</button>
+                </div>
+                <div class="ui error message transition hidden"></div>
             </div>
         </section>
-    </form>
-
-    <section class="ui form">
-        <h4>
-            Phone Numbers
-        </h4>
-        <div id="sectionPhoneNumbers" class="content">
-            <table class="ui striped table">
-                <thead>
-                    <tr>
-                        <th class="editor action"></th>
-                        <th>Name</th>
-                        <th>Number</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-            <div class="table action section three inline actions">
-                <div class="inline field">
-                    <label>Name:</label>
-                    <input class="name" type="text" />
-                </div>
-                <div class="inline field">
-                    <label>Value:</label>
-                    <input class="value" type="text" />
-                </div>
-                <button class="ui primary submit button" type="button">Add</button>
-            </div>
-            <div class="ui error message transition hidden"></div>
-        </div>
-    </section>
+    }
 </section>
 
 @section Scripts {
@@ -126,8 +134,10 @@
         }
 
         function ajaxAdd(url, refreshUrl, deleteUrl, elemSection) {
-            const name = elemSection.querySelector("input.name").value;
-            const value = elemSection.querySelector("input.value").value;
+            const inputName = elemSection.querySelector("input.name");
+            const inputValue = elemSection.querySelector("input.value");
+            const name = inputName.value;
+            const value = inputValue.value;
             FarmAjax.postWithMessageAndValueResponse(
                 url,
                 {
@@ -142,6 +152,8 @@
                         return;
                     }
 
+                    inputName.value = "";
+                    inputValue.value = "";
                     addRow(refreshUrl, deleteUrl, elemSection, { name: name, value: value, id: rv.value });
                 }
             );
@@ -204,8 +216,7 @@
         sectionPhoneNumbers
             .querySelector("button.submit.button")
             .addEventListener("click", _ => {
-                ajaxAdd(phoneAddUrl, phoneRefreshUrl, phoneDeleteUrl, sectionPhoneNumbers)
-                ajaxRefresh(phoneRefreshUrl, phoneDeleteUrl, sectionPhoneNumbers);
+                ajaxAdd(phoneAddUrl, phoneRefreshUrl, phoneDeleteUrl, sectionPhoneNumbers);
             });
     </script>
 }

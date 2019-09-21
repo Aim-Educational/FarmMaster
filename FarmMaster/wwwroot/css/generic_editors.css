@@ -26,9 +26,9 @@
       font-weight: bold;
       color: #767676; }
 
-.editor.section > section, .editor.section > form > section {
+.editor.section > section {
   background: white; }
-  .editor.section > section h4, .editor.section > form > section h4 {
+  .editor.section > section h4 {
     padding-top: 0.8em;
     padding-left: 0.8em;
     padding-bottom: 1.5em;
@@ -36,20 +36,20 @@
     font-weight: bold;
     font-size: 20px;
     letter-spacing: 0.03em; }
-  .editor.section > section div.content, .editor.section > form > section div.content {
+  .editor.section > section div.content {
     padding-left: 1em;
     padding-bottom: 1em;
     padding-right: 1em; }
-    .editor.section > section div.content div.table.action.section, .editor.section > form > section div.content div.table.action.section {
+    .editor.section > section div.content div.table.action.section {
       display: inline-flex;
       width: 100%; }
-      .editor.section > section div.content div.table.action.section.three.inline.actions div.inline.field, .editor.section > form > section div.content div.table.action.section.three.inline.actions div.inline.field {
+      .editor.section > section div.content div.table.action.section.three.inline.actions div.inline.field {
         width: 33%;
         margin: 0; }
-      .editor.section > section div.content div.table.action.section.three.inline.actions button, .editor.section > form > section div.content div.table.action.section.three.inline.actions button {
+      .editor.section > section div.content div.table.action.section.three.inline.actions button {
         width: 33%;
         margin: 0; }
-  .editor.section > section:nth-of-type(even), .editor.section > form > section:nth-of-type(even) {
+  .editor.section > section:nth-of-type(even) {
     background-color: #ebebeb; }
 
 th.editor.action {
