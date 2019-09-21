@@ -16,7 +16,6 @@ namespace FarmMaster.Controllers
     {
         #region Contact
         [HttpPost]
-        [AllowAnonymous]
         [FarmAjaxReturnsMessageAndValue(BusinessConstants.Roles.VIEW_CONTACTS)]
         public IActionResult Contact_ById_PhoneNumber_AsNameValueId_All(
             [FromBody] AjaxByIdRequest model,
@@ -36,7 +35,6 @@ namespace FarmMaster.Controllers
         }
 
         [HttpPost]
-        [AllowAnonymous]
         [FarmAjaxReturnsMessage(BusinessConstants.Roles.EDIT_CONTACTS)]
         public IActionResult Contact_ById_PhoneNumber_Delete_ById(
             [FromBody] AjaxByIdForIdWithReasonRequest model, 
@@ -54,7 +52,6 @@ namespace FarmMaster.Controllers
         }
 
         [HttpPost]
-        [AllowAnonymous]
         [FarmAjaxReturnsMessageAndValue(BusinessConstants.Roles.VIEW_CONTACTS)]
         public IActionResult Contact_ById_PhoneNumber_Add_ReturnsId(
             [FromBody] AjaxByIdWithNameValueReasonRequest model,
