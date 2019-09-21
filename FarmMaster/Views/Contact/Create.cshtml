@@ -2,7 +2,7 @@
 @using Business.Model
 @{
     Layout = "_GenericEditorLayout";
-    ViewData["Title"] = "Create - Contact";
+    ViewData["Title"] = "Create Contact";
     ViewData["Breadcrumb"] = new[]
     {
         "Home:/Home/Index",
@@ -19,10 +19,10 @@
 
 <form class="ui editor form section" method="post" asp-action="Create">
     <section>
-        <div class="header">
+        <h4>
             Required Information
-        </div>
-        <div class="section">
+        </h4>
+        <div class="content">
             <div class="field">
                 <label>Full Name</label>
                 <input asp-for="FullName" />

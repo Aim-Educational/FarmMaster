@@ -15,6 +15,11 @@
     <CodeAnalysisRuleSet />
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Scripts\cookies.ts" />
+    <None Remove="Scripts\farm_ajax.ts" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="BCrypt.Net-Next" Version="3.1.3" />
@@ -34,6 +39,12 @@
 
   <ItemGroup>
     <Folder Include="TagHelpers\" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\cookies.ts" />
+    <TypeScriptCompile Include="Scripts\farm_ajax.ts" />
   </ItemGroup>
 
 </Project>

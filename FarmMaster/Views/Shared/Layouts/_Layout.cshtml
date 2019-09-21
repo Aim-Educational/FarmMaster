@@ -12,15 +12,15 @@
         <section class="ui grid">
             <div class="zero wide mobile one wide computer three wide large screen column"></div>
             <div class="sixteen wide mobile fourteen wide computer ten wide large screen centered column">
-                @if(ViewData.ContainsKey("Breadcrumb") && !ViewData.ContainsKey("CustomBreadcrumb"))
+                @if (ViewData.ContainsKey("Breadcrumb") && !ViewData.ContainsKey("CustomBreadcrumb"))
                 {
                     <div class="ui breadcrumb">
-                        @{ 
+                        @{
                             var crumbs = ViewData["Breadcrumb"] as IDictionary<string, string>;
                             var crumbLength = crumbs.Count();
                             var index = 0;
                         }
-                        @foreach(var crumb in crumbs)
+                        @foreach (var crumb in crumbs)
                         {
                             <a class="section @(index == crumbLength - 1 ? "active" : "")" href="@crumb.Value">@crumb.Key</a>
                             <div class="divider">/</div>
@@ -44,6 +44,7 @@
         </div>
     </footer>
 
+    <partial name="_LayoutCommonJavascriptPartial" />
     @RenderSection("Scripts", required: false)
 </body>
 </html>

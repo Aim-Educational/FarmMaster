@@ -12,11 +12,12 @@ namespace FarmMaster.Services
     {
         Contact Create(Contact.Type type, string fullName, SaveChanges saveChanges = SaveChanges.Yes);
 
-        void AddTelephoneNumber(Contact contact, User responsible, string reason, string name, string number);
+        Telephone AddTelephoneNumber(Contact contact, User responsible, string reason, string name, string number);
         void AddEmailAddress(Contact contact, User responsible, string reason, string name, string value);
         void AddRelationship(Contact first, Contact second, User responsible, string reason, string description);
 
         bool RemoveTelephoneNumberByName(Contact contact, User responsible, string reason, string name);
+        bool RemoveTelephoneNumberById(Contact contact, User responsible, string reason, int id);
         bool RemoveEmailAddressByName(Contact contact, User responsible, string reason, string name);
         bool RemoveRelationshipById(Contact contact, User responsible, string reason, int id);
 
@@ -33,7 +34,7 @@ namespace FarmMaster.Services
             this._context = context;
         }
 
-        public void AddTelephoneNumber(Contact contact, User responsible, string reason, string name, string number)
+        public Telephone AddTelephoneNumber(Contact contact, User responsible, string reason, string name, string number)
         {
             var item = new Telephone
             {
@@ -52,6 +53,8 @@ namespace FarmMaster.Services
                 reason, 
                 $"{name}={number}"
             );
+
+            return item;
         }
 
         public bool RemoveTelephoneNumberByName(Contact contact, User responsible, string reason, string name)
@@ -60,7 +63,23 @@ namespace FarmMaster.Services
             if(number == null)
                 return false;
 
-            this._context.Telephones.Remove(number);
+            this.RemoveTelephoneImpl(contact, responsible, reason, number);
+            return true;
+        }
+
+        public bool RemoveTelephoneNumberById(Contact contact, User responsible, string reason, int id)
+        {
+            var number = contact.PhoneNumbers.FirstOrDefault(p => p.TelephoneId == id);
+            if(number == null)
+                return false;
+
+            this.RemoveTelephoneImpl(contact, responsible, reason, number);
+            return true;
+        }
+
+        private void RemoveTelephoneImpl(Contact contact, User responsible, string reason, Telephone phone)
+        {
+            this._context.Telephones.Remove(phone);
             this._context.SaveChanges();
 
             this.LogAction(
@@ -68,9 +87,8 @@ namespace FarmMaster.Services
                 responsible,
                 ActionAgainstContactInfo.Type.Delete_PhoneNumber,
                 reason,
-                $"{name}={number.Number}"
+                $"{phone.Name}={phone.Number}"
             );
-            return true;
         }
 
         public void LogAction(Contact affected, User responsible, ActionAgainstContactInfo.Type type, string reason, string additionalInfo = null)

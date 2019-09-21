@@ -1,18 +1,17 @@
 ﻿@model ContactEditViewModel
 @using Business.Model
 @{
-    ViewData["Title"] = "Edit - Contact";
-    ViewData["Breadcrumb"] = new[]
-    {
-        "Home:/Home/Index",
-        "Contacts:/Contact/Index",
-        "Edit:#"
+    Layout = "_GenericEditorLayout";
+    ViewData["Title"] = "Edit Contact";
+    ViewData["Breadcrumb"] = new Dictionary<string, string>
+{
+        { "Home", "/Home/Index" },
+        { "Contacts", "/Contact/Index" },
+        { "Edit", "#" }
     };
 
     var dbContext = Context.RequestServices.GetRequiredService<FarmMasterContext>();
 }
-
-<h1>Edit</h1>
 
 <partial name="_ComponentModalContactActionReason" />
 
@@ -37,27 +36,179 @@
 
 <partial name="_ViewModelWithMessagePartial" model="Model" />
 
-<form class="ui form" method="post" asp-action="Edit">
-    <input type="hidden" asp-for="Contact.ContactId" />
-    <input type="hidden" asp-for="Contact.ContactType" />
-    <input type="hidden" asp-for="Contact.Timestamp" />
+<section class="editor section">
+    <form class="ui form" method="post" asp-action="Edit">
+        <input type="hidden" asp-for="Contact.ContactId" />
+        <input type="hidden" asp-for="Contact.ContactType" />
+        <input type="hidden" asp-for="Contact.Timestamp" />
 
-    <h4 class="ui top attached header">
-        General Info
-    </h4>
-    <section class="ui attached segment">
-        <section class="field">
-            <label>Full Name</label>
-            <input asp-for="Contact.FullName" />
+        <section>
+            <h4>
+                General Info
+            </h4>
+            <div class="content">
+                <div class="field">
+                    <label>Full Name</label>
+                    <input asp-for="Contact.FullName" />
+                </div>
+                <button type="submit" class="ui fluid primary button">
+                    Update Information
+                </button>
+                <div asp-validation-summary="All"></div>
+            </div>
         </section>
+    </form>
+
+    <section class="ui form">
+        <h4>
+            Phone Numbers
+        </h4>
+        <div id="sectionPhoneNumbers" class="content">
+            <table class="ui striped table">
+                <thead>
+                    <tr>
+                        <th class="editor action"></th>
+                        <th>Name</th>
+                        <th>Number</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <div class="table action section three inline actions">
+                <div class="inline field">
+                    <label>Name:</label>
+                    <input class="name" type="text" />
+                </div>
+                <div class="inline field">
+                    <label>Value:</label>
+                    <input class="value" type="text" />
+                </div>
+                <button class="ui primary submit button" type="button">Add</button>
+            </div>
+            <div class="ui error message transition hidden"></div>
+        </div>
     </section>
-    <div asp-validation-summary="All"></div>
-    <section class="ui bottom attached segment">
-        <button type="submit" class="ui fluid primary button">
-            Update Information
-        </button>
-    </section>
-</form>
+</section>
+
+@section Scripts {
+    <script type="module">
+        import { Validation, FarmAjax, FarmAjaxMessageType } from "/js/index.js";
+        Validation.hookupForm(document.querySelector(".ui.form"));
+
+        const sectionPhoneNumbers = document.getElementById("sectionPhoneNumbers");
+
+        function addRow(refreshUrl, deleteUrl, elemSection, nameValueId) {
+            const tbody = elemSection.querySelector("table tbody");
+            const tr = tbody.appendChild(document.createElement("tr"));
+            tr.dataset.id = nameValueId.id;
+            {
+                let td = tr.appendChild(document.createElement("td"));
+                {
+                    const button = td.appendChild(document.createElement("button"));
+                    button.type = "button";
+                    button.classList.add("ui", "red", "icon", "button");
+                    button.onclick = () => {
+                        ajaxDelete(deleteUrl, elemSection, tr)
+                        ajaxRefresh(refreshUrl, deleteUrl, elemSection, nameValueId.id);
+                    };
+                    {
+                        const i = button.appendChild(document.createElement("i"));
+                        i.classList.add("close", "icon");
+                    }
+                }
+
+                td = tr.appendChild(document.createElement("td"));
+                td.innerText = nameValueId.name;
+
+                td = tr.appendChild(document.createElement("td"));
+                td.innerText = nameValueId.value;
+            }
+        }
+
+        function ajaxAdd(url, refreshUrl, deleteUrl, elemSection) {
+            const name = elemSection.querySelector("input.name").value;
+            const value = elemSection.querySelector("input.value").value;
+            FarmAjax.postWithMessageAndValueResponse(
+                url,
+                {
+                    name: name,
+                    value: value,
+                    id: @Model.Contact.ContactId,
+                    reason: "TEST"
+                },
+                rv => {
+                    if (rv.messageType !== FarmAjaxMessageType.Information) {
+                        rv.populateMessageBox(elemSection.querySelector("div.error.message"));
+                        return;
+                    }
+
+                    addRow(refreshUrl, deleteUrl, elemSection, { name: name, value: value, id: rv.value });
+                }
+            );
+        }
+
+        function ajaxDelete(url, elemSection, elemRow) {
+            FarmAjax.postWithMessageResponse(
+                url,
+                {
+                    byId: @Model.Contact.ContactId,
+                    forId: elemRow.dataset.id,
+                    reason: "TEST"
+                },
+                response => {
+                    if (response.messageType !== FarmAjaxMessageType.Information) {
+                        response.populateMessageBox(elemSection.querySelector("div.error.message"));
+                        return;
+                    }
+
+                    // For some reason, the "elemRow" we're given is missing it's parent's info, so we're doing this
+                    // stylishly.
+                    elemSection
+                        .querySelectorAll("table tbody tr")
+                        .forEach(row => {
+                            if (row.dataset.id !== elemRow.dataset.id)
+                                return;
+
+                            row.parentElement.removeChild(row);
+                        });
+                }
+            );
+        }
+
+        function ajaxRefresh(url, deleteUrl, elemSection, parityCheckId = null) {
+            FarmAjax.postWithMessageAndValueResponse(
+                url,
+                {
+                    id: @Model.Contact.ContactId
+                },
+                rv => {
+                    if (rv.messageType !== FarmAjaxMessageType.Information) {
+                        rv.populateMessageBox(elemSection.querySelector("div.error.message"));
+                        return;
+                    }
+
+                    const tbody = elemSection.querySelector("table tbody");
+                    tbody.innerHtml = "";
+                    tbody.innerText = "";
+
+                    for (const nameValueId of rv.value)
+                        addRow(url, deleteUrl, elemSection, nameValueId);
+                }
+            );
+        }
+
+        const phoneAddUrl = "/Ajax/Contact_ById_PhoneNumber_Add_ReturnsId";
+        const phoneDeleteUrl = "/Ajax/Contact_ById_PhoneNumber_Delete_ById";
+        const phoneRefreshUrl = "/Ajax/Contact_ById_PhoneNumber_AsNameValueId_All";
+        ajaxRefresh(phoneRefreshUrl, phoneDeleteUrl, sectionPhoneNumbers);
+        sectionPhoneNumbers
+            .querySelector("button.submit.button")
+            .addEventListener("click", _ => {
+                ajaxAdd(phoneAddUrl, phoneRefreshUrl, phoneDeleteUrl, sectionPhoneNumbers)
+                ajaxRefresh(phoneRefreshUrl, phoneDeleteUrl, sectionPhoneNumbers);
+            });
+    </script>
+}
 
 <partial name="_ComponentTable" model='@{
     new ComponentTableViewModel
@@ -116,10 +267,3 @@
         DataId = Model.Contact.ContactId
     }
 }' />
-
-@section Scripts {
-    <script type="module">
-        import { Validation } from "/js/index.js";
-        Validation.hookupForm(document.querySelector(".ui.form"));
-    </script>
-}

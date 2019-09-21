@@ -95,30 +95,4 @@ namespace FarmMaster.Models
     }
 
     public class EmptyViewModelWithMessage : ViewModelWithMessage { }
-
-    public class AjaxRequestModel
-    {
-        [Required]
-        public string SessionToken { get; set; }
-    }
-
-    public class AjaxResponseWithMessageModel : ViewModelWithMessage
-    {
-    }
-
-    public class AjaxResponseWithMessageAndValueModel<T> : AjaxResponseWithMessageModel
-    where T : class
-    {
-        public T Value { get; set; }
-    }
-
-    public class AjaxStructReturnValue<T> where T : struct
-    {
-        public T Value { get; set; }
-
-        public AjaxStructReturnValue(T value)
-        {
-            this.Value = value;
-        }
-    }
 }

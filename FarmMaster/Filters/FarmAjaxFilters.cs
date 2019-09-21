@@ -31,9 +31,6 @@ namespace FarmMaster.Filters
 
         public override void OnActionExecuted(ActionExecutedContext context)
         {
-            if (context.Canceled)
-                return;
-
             if (context.Exception == null)
             {
                 context.Result = new JsonResult(new AjaxResponseWithMessageModel
@@ -81,9 +78,6 @@ namespace FarmMaster.Filters
 
         public override void OnActionExecuted(ActionExecutedContext context)
         {
-            if (context.Canceled)
-                return;
-
             var result = context.Result as AjaxValueResult;
             if (result == null)
                 throw new InvalidOperationException($"The result *must* be of type AjaxValueResult, not {result.GetType()}.");

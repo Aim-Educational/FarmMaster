@@ -1,0 +1,60 @@
+﻿@import "_common_defs.scss";
+
+$shades_green:(
+    hsl(110, 11, 65), // 1
+    hsl(109, 14, 60), // 2
+    hsl(110, 17, 55), // 3
+    hsl(110, 20, 50), // 4
+    hsl(110, 25, 45), // 5
+    hsl(111, 25, 42), // 6
+    hsl(110, 24, 37), // 7
+    hsl(111, 25, 33), // 8
+    hsl(110, 24, 29), // 9
+    hsl(109, 25, 25), // 10
+    hsl(111, 25, 21), // 11
+    hsl(109, 26, 17), // 12
+    hsl(105, 25, 13), // 13
+    hsl(110, 27, 9),  // 14
+    hsl(100, 27, 4),  // 15
+);
+
+$shades_gray: ( 
+    hsl(0,   0, 87), // 1
+    hsl(0,   0, 70), // 2
+    hsl(120, 1, 66), // 3
+    hsl(120, 1, 62), // 4
+    hsl(120, 1, 54), // 5
+    hsl(120, 1, 44), // 6
+    hsl(120, 1, 39), // 7
+    hsl(0,   0, 29), // 8
+    hsl(0,   0, 18), // 9
+    hsl(0,   0, 10)  // 10
+);
+
+@mixin genShades($shades, $name) {
+    @each $shade in $shades {
+        $shadeIndex: index($shades, $shade);
+        $shadeIndexName: nth($numbers, $shadeIndex);
+
+        .#{$name}.shade.#{$shadeIndexName} {
+            color: $shade;
+        }
+
+        .background.#{$name}.shade.#{$shadeIndexName} {
+            background-color: $shade;
+        }
+
+        .border.#{$name}.shade.#{$shadeIndexName} {
+            border-color: $shade;
+        }
+
+        @each $side in $sides {
+            .border.#{$side}.#{$name}.shade.#{$shadeIndexName} {
+                border-#{$side}-color: $shade;
+            }
+        }
+    }
+}
+
+@include genShades($shades_green, "green");
+@include genShades($shades_gray,  "gray");

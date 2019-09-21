@@ -162,42 +162,6 @@ namespace FarmMaster.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        #region AJAX
-        [HttpPost]
-        [AllowAnonymous]
-        [FarmAjaxReturnsMessage(BusinessConstants.Roles.EDIT_CONTACTS)]
-        public IActionResult AjaxAddPhoneNumber([FromBody] ContactAjaxAddPhoneNumber model, User user)
-        {
-            var contact = this._context.Contacts.Include(c => c.PhoneNumbers).First(c => c.ContactId == model.Id);
-            if (contact == null)
-                throw new Exception($"The contact with id #{model.Id} does not exist.");
-
-            if (contact.PhoneNumbers.Any(n => n.Name == model.Name))
-                throw new Exception("There is already a phone number using that name.");
-            if (contact.PhoneNumbers.Any(n => n.Number == model.Value))
-                throw new Exception("That phone number is already in use.");
-
-            this._contacts.AddTelephoneNumber(contact, user, model.Reason, model.Name, model.Value);
-
-            return new EmptyResult();
-        }
-
-        [HttpPost]
-        [AllowAnonymous]
-        [FarmAjaxReturnsMessage(BusinessConstants.Roles.EDIT_CONTACTS)]
-        public IActionResult AjaxRemovePhoneNumberByName([FromBody] ContactAjaxRemoveByName model, User user)
-        {
-            var contact = this._context.Contacts.Include(c => c.PhoneNumbers).First(c => c.ContactId == model.Id);
-            if (contact == null)
-                throw new Exception($"The contact with id #{model.Id} does not exist.");
-
-            var couldDelete = this._contacts.RemoveTelephoneNumberByName(contact, user, model.Reason, model.Name);
-            if (!couldDelete)
-                throw new Exception($"No phone number called '{model.Name}' was found.");
-
-            return new EmptyResult();
-        }
-
         [HttpPost]
         [AllowAnonymous]
         [FarmAjaxReturnsMessage(BusinessConstants.Roles.EDIT_CONTACTS)]

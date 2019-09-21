@@ -39,22 +39,48 @@
 }
 
 .editor.section {
-    section {
+    & > section, & > form > section {
         background: white;
 
-        div.header {
-            padding-top: 1em * 0.8;
+        h4 {
+            padding-top: 0.8em;
             padding-left: 0.8em;
             padding-bottom: 1.5em;
+            margin-bottom: 0;
             font-weight: bold;
             font-size: 20px;
             letter-spacing: 0.03em;
         }
 
-        div.section {
+        div.content {
             padding-left: 1em;
             padding-bottom: 1em;
             padding-right: 1em;
+
+            div.table.action.section {
+                display: inline-flex;
+                width: 100%;
+
+                &.three.inline.actions {
+                    div.inline.field {
+                        width: 33%;
+                        margin: 0;
+                    }
+
+                    button {
+                        width: 33%;
+                        margin: 0;
+                    }
+                }
+            }
+        }
+
+        &:nth-of-type(even) {
+            background-color: hsl(0, 0%, 92%);
         }
     }
+}
+
+th.editor.action {
+    width: 0px; // Use only the needed amount of space that the button takes up.
 }
