@@ -219,17 +219,18 @@
             elemSection
                 .querySelector("button.submit.button")
                 .addEventListener("click", _ => {
-                    Modal.askForReason((reason) => {
-                        const inputValue = elemSection.querySelector("input.value");
-                        ajaxAdd(
-                            addUrl,
-                            reason,
-                            refreshUrl,
-                            deleteUrl,
-                            elemSection,
-                            (inputValue.selectedOptions) ? inputValue.selectedOptions[0].text : null
-                        );
-                    });
+                    Modal.askForReason()
+                         .then(reason => {
+                             const inputValue = elemSection.querySelector("input.value");
+                             ajaxAdd(
+                                 addUrl,
+                                 reason,
+                                 refreshUrl,
+                                 deleteUrl,
+                                 elemSection,
+                                 (inputValue.selectedOptions) ? inputValue.selectedOptions[0].text : null
+                             );
+                         });
                 });
         }
 

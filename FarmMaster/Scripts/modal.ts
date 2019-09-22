@@ -1,25 +1,32 @@
 ﻿export class Modal {
-    public static askForReason(then: (reason: string) => void): void {
+    public static askForReason(): Promise<string> | null {
         const modal = document.getElementById("modalReason");
         if (modal === null) {
             alert("Dev error: No element with ID of 'modalReason'");
-            return;
+            return null;
         }
 
         const inputReason = modal.querySelector("input.reason") as HTMLInputElement;
         if (inputReason === null) {
             alert("Dev error: Modal does not contain an <input> with class of 'reason'");
-            return;
+            return null;
         }
 
-        $(modal)
-            .modal({
-                onApprove: function () {
-                    then(inputReason.value);
-                    inputReason.value = "";
-                }
-            })
-            .modal("show");       
+        return new Promise((resolve, reject) => {
+            $(modal)
+                .modal({
+                    onApprove: function () {
+                        resolve(inputReason.value);
+                        inputReason.value = "";
+                    },
+
+                    onDeny: function () {
+                        reject("User canceled action.");
+                        inputReason.value = "";
+                    }
+                })
+                .modal("show");
+        });
     }
 }
 

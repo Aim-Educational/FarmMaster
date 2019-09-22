@@ -1,5 +1,5 @@
 export declare class Modal {
-    static askForReason(then: (reason: string) => void): void;
+    static askForReason(): Promise<string> | null;
 }
 export default Modal;
 //# sourceMappingURL=modal.d.ts.map
