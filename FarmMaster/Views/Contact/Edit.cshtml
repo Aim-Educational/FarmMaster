@@ -13,7 +13,7 @@
     var dbContext = Context.RequestServices.GetRequiredService<FarmMasterContext>();
 }
 
-<partial name="_ComponentModalContactActionReason" />
+<partial name="_ModalReason_ContactAction" />
 
 @if (Model.Contact.ContactType == Business.Model.Contact.Type.Individual)
 {
@@ -100,7 +100,7 @@
 
 @section Scripts {
     <script type="module">
-        import { Validation, FarmAjax, FarmAjaxMessageType } from "/js/index.js";
+        import { Validation, FarmAjax, FarmAjaxMessageType, Modal } from "/js/index.js";
         Validation.hookupForm(document.querySelector(".ui.form"));
 
         const sectionPhoneNumbers = document.getElementById("sectionPhoneNumbers");
@@ -134,7 +134,7 @@
             }
         }
 
-        function ajaxAdd(url, refreshUrl, deleteUrl, elemSection, valueNameOverride = null) {
+        function ajaxAdd(url, reason, refreshUrl, deleteUrl, elemSection, valueNameOverride = null) {
             const inputName = elemSection.querySelector("input.name");
             const inputValue = elemSection.querySelector("input.value");
             const name = inputName.value;
@@ -145,7 +145,7 @@
                     name: name,
                     value: value,
                     id: @Model.Contact.ContactId,
-                    reason: "TEST"
+                    reason: reason
                 },
                 rv => {
                     if (rv.messageType !== FarmAjaxMessageType.Information) {
@@ -219,15 +219,17 @@
             elemSection
                 .querySelector("button.submit.button")
                 .addEventListener("click", _ => {
-                    const inputValue = elemSection.querySelector("input.value");
-
-                    ajaxAdd(
-                        addUrl,
-                        refreshUrl,
-                        deleteUrl,
-                        elemSection,
-                        (inputValue.selectedOptions) ? inputValue.selectedOptions[0].text : null
-                    );
+                    Modal.askForReason((reason) => {
+                        const inputValue = elemSection.querySelector("input.value");
+                        ajaxAdd(
+                            addUrl,
+                            reason,
+                            refreshUrl,
+                            deleteUrl,
+                            elemSection,
+                            (inputValue.selectedOptions) ? inputValue.selectedOptions[0].text : null
+                        );
+                    });
                 });
         }
 
