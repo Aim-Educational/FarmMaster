@@ -134,7 +134,7 @@
             }
         }
 
-        function ajaxAdd(url, refreshUrl, deleteUrl, elemSection) {
+        function ajaxAdd(url, refreshUrl, deleteUrl, elemSection, valueNameOverride = null) {
             const inputName = elemSection.querySelector("input.name");
             const inputValue = elemSection.querySelector("input.value");
             const name = inputName.value;
@@ -155,6 +155,10 @@
 
                     inputName.value = "";
                     inputValue.value = "";
+
+                    if (valueNameOverride !== null)
+                        value = valueNameOverride;
+
                     addRow(refreshUrl, deleteUrl, elemSection, { name: name, value: value, id: rv.value });
                 }
             );
@@ -188,7 +192,7 @@
             );
         }
 
-        function ajaxRefresh(url, deleteUrl, elemSection, parityCheckId = null) {
+        function ajaxRefresh(url, deleteUrl, elemSection) {
             FarmAjax.postWithMessageAndValueResponse(
                 url,
                 {
@@ -215,7 +219,15 @@
             elemSection
                 .querySelector("button.submit.button")
                 .addEventListener("click", _ => {
-                    ajaxAdd(addUrl, refreshUrl, deleteUrl, elemSection);
+                    const inputValue = elemSection.querySelector("input.value");
+
+                    ajaxAdd(
+                        addUrl,
+                        refreshUrl,
+                        deleteUrl,
+                        elemSection,
+                        (inputValue.selectedOptions) ? inputValue.selectedOptions[0].text : null
+                    );
                 });
         }
 
@@ -234,25 +246,3 @@
         );
     </script>
 }
-
-<partial name="_ComponentTable" model='@{
-    new ComponentTableViewModel
-    {
-        Header = "Relationships",
-        Name = "Relation",
-        NameValues = Model.Contact.GetRelationships(dbContext).Select(r => new ComponentTableNameValue
-        {
-            AjaxName = r.MapContactRelationshipId,
-            Name = r.Description,
-            Value = r.GetContactNotMe(Model.Contact).ShortName
-        }),
-        NameInput = new ComponentTableTextInput(),
-        ValueInput = new ComponentTableSelectInput
-        {
-            SelectValues = dbContext.Contacts.Where(c => !c.IsAnonymous).ToDictionary(c => c.ShortName, c => Convert.ToString(c.ContactId))
-        },
-        AjaxAdd = "/Contact/AjaxAddRelation",
-        AjaxRemove = "/Contact/AjaxRemoveRelationById",
-        DataId = Model.Contact.ContactId
-    }
-}' />

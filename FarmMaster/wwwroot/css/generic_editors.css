@@ -52,5 +52,5 @@
   .editor.section > section:nth-of-type(even) {
     background-color: #ebebeb; }
 
-th.editor.action {
+.editor.section th.editor.action {
   width: 0px; }
