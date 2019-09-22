@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FarmMaster.Misc;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -74,10 +75,25 @@ namespace FarmMaster.Models
 
         [Required]
         [StringLength(75)]
-        public string Value { get; set; }
+        public virtual string Value { get; set; }
+    }
+
+    public class AjaxByIdWithNameValueAsEmailRequest : AjaxByIdWithNameValueRequest
+    {
+        [Required]
+        [StringLength(75)]
+        [RegularExpression(FarmConstants.Regexes.Email, ErrorMessage = "The field 'Value' is not a valid email address.")]
+        public override string Value { get => base.Value; set => base.Value = value; }
     }
 
     public class AjaxByIdWithNameValueReasonRequest : AjaxByIdWithNameValueRequest
+    {
+        [Required]
+        [StringLength(75)]
+        public string Reason { get; set; }
+    }
+
+    public class AjaxByIdWithNameValueAsEmailReasonRequest : AjaxByIdWithNameValueAsEmailRequest
     {
         [Required]
         [StringLength(75)]

@@ -165,43 +165,6 @@ namespace FarmMaster.Controllers
         [HttpPost]
         [AllowAnonymous]
         [FarmAjaxReturnsMessage(BusinessConstants.Roles.EDIT_CONTACTS)]
-        public IActionResult AjaxAddEmailAddress([FromBody] ContactAjaxAddEmailAddress model, User user)
-        {
-            var contact = this._context.Contacts.Include(c => c.EmailAddresses).First(c => c.ContactId == model.Id);
-            if (contact == null)
-                throw new Exception($"The contact with id #{model.Id} does not exist.");
-
-            if (contact.EmailAddresses.Any(n => n.Name == model.Name))
-                throw new Exception("There is already an email using that name.");
-            if (contact.EmailAddresses.Any(n => n.Address == model.Value))
-                throw new Exception("That email address is already in use.");
-
-            this._contacts.AddEmailAddress(contact, user, model.Reason, model.Name, model.Value);
-
-            return new EmptyResult();
-        }
-
-        [HttpPost]
-        [AllowAnonymous]
-        [FarmAjaxReturnsMessage(BusinessConstants.Roles.EDIT_CONTACTS)]
-        public IActionResult AjaxRemoveEmailAddressByName([FromBody] ContactAjaxRemoveByName model, User myUser)
-        {
-            var contact = this._context.Contacts.Include(c => c.EmailAddresses).First(c => c.ContactId == model.Id);
-            if (contact == null)
-                throw new Exception($"The contact with id #{model.Id} does not exist.");
-            if (contact.EmailAddresses.Count() == 1)
-                throw new Exception($"Contacts must have at least one email address. You cannot delete the last one.");
-
-            var couldDelete = this._contacts.RemoveEmailAddressByName(contact, myUser, model.Reason, model.Name);
-            if (!couldDelete)
-                throw new Exception($"No email address called '{model.Name}' was found.");
-
-            return new EmptyResult();
-        }
-
-        [HttpPost]
-        [AllowAnonymous]
-        [FarmAjaxReturnsMessage(BusinessConstants.Roles.EDIT_CONTACTS)]
         public IActionResult AjaxAddRelation([FromBody] ContactAjaxAddRelationship model, User myUser)
         {
             var contactOne = this._contacts.FromIdAllIncluded(model.Id);

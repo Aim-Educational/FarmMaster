@@ -19,6 +19,7 @@ namespace FarmMaster.Services
         bool RemoveTelephoneNumberByName(Contact contact, User responsible, string reason, string name);
         bool RemoveTelephoneNumberById(Contact contact, User responsible, string reason, int id);
         bool RemoveEmailAddressByName(Contact contact, User responsible, string reason, string name);
+        bool RemoveEmailAddressById(Contact contact, User responsible, string reason, int id);
         bool RemoveRelationshipById(Contact contact, User responsible, string reason, int id);
 
         void LogAction(Contact affected, User responsible, ActionAgainstContactInfo.Type type, string reason, string additionalInfo = null);
@@ -135,6 +136,22 @@ namespace FarmMaster.Services
             if (email == null)
                 return false;
 
+            this.RemoveEmailImpl(contact, responsible, reason, email);
+            return true;
+        }
+
+        public bool RemoveEmailAddressById(Contact contact, User responsible, string reason, int id)
+        {
+            var email = contact.EmailAddresses.FirstOrDefault(p => p.EmailId == id);
+            if (email == null)
+                return false;
+
+            this.RemoveEmailImpl(contact, responsible, reason, email);
+            return true;
+        }
+
+        private void RemoveEmailImpl(Contact contact, User responsible, string reason, Email email)
+        {
             this._context.Remove(email);
             this._context.SaveChanges();
 
@@ -143,9 +160,8 @@ namespace FarmMaster.Services
                 responsible,
                 ActionAgainstContactInfo.Type.Delete_EmailAddress,
                 reason,
-                $"{name}={email.Address}"
+                $"{email.Name}={email.Address}"
             );
-            return true;
         }
 
         public void MakeAnonymous(Contact contact)

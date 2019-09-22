@@ -104,6 +104,7 @@
         Validation.hookupForm(document.querySelector(".ui.form"));
 
         const sectionPhoneNumbers = document.getElementById("sectionPhoneNumbers");
+        const sectionEmails = document.getElementById("sectionEmails");
 
         function addRow(refreshUrl, deleteUrl, elemSection, nameValueId) {
             const tbody = elemSection.querySelector("table tbody");
@@ -209,53 +210,30 @@
             );
         }
 
-        const phoneAddUrl = "/Ajax/Contact_ById_PhoneNumber_Add_ReturnsId";
-        const phoneDeleteUrl = "/Ajax/Contact_ById_PhoneNumber_Delete_ById";
-        const phoneRefreshUrl = "/Ajax/Contact_ById_PhoneNumber_AsNameValueId_All";
-        ajaxRefresh(phoneRefreshUrl, phoneDeleteUrl, sectionPhoneNumbers);
-        sectionPhoneNumbers
-            .querySelector("button.submit.button")
-            .addEventListener("click", _ => {
-                ajaxAdd(phoneAddUrl, phoneRefreshUrl, phoneDeleteUrl, sectionPhoneNumbers);
-            });
+        function setupTable(elemSection, addUrl, deleteUrl, refreshUrl) {
+            ajaxRefresh(refreshUrl, deleteUrl, elemSection);
+            elemSection
+                .querySelector("button.submit.button")
+                .addEventListener("click", _ => {
+                    ajaxAdd(addUrl, refreshUrl, deleteUrl, elemSection);
+                });
+        }
+
+        setupTable(
+            sectionPhoneNumbers,
+            "/Ajax/Contact_ById_PhoneNumber_Add_ReturnsId",
+            "/Ajax/Contact_ById_PhoneNumber_Delete_ById",
+            "/Ajax/Contact_ById_PhoneNumber_AsNameValueId_All"
+        );
+
+        setupTable(
+            sectionEmails,
+            "/Ajax/Contact_ById_Email_Add_ReturnsId",
+            "/Ajax/Contact_ById_Email_Delete_ById",
+            "/Ajax/Contact_ById_Email_AsNameValueId_All"
+        );
     </script>
 }
-
-<partial name="_ComponentTable" model='@{
-    new ComponentTableViewModel
-    {
-        Header = "Phone Numbers",
-        Name = "Phone",
-        NameValues = Model.Contact.PhoneNumbers.Select(p => new ComponentTableNameValue
-        {
-            Name = p.Name,
-            Value = p.Number
-        }),
-        NameInput = new ComponentTableTextInput(),
-        ValueInput = new ComponentTableTextInput(),
-        AjaxAdd = "/Contact/AjaxAddPhoneNumber",
-        AjaxRemove = "/Contact/AjaxRemovePhoneNumberByName",
-        DataId = Model.Contact.ContactId
-    }
-}' />
-
-<partial name="_ComponentTable" model='@{
-    new ComponentTableViewModel
-    {
-        Header = "Email Addresses",
-        Name = "Email",
-        NameValues = Model.Contact.EmailAddresses.Select(e => new ComponentTableNameValue
-        {
-            Name = e.Name,
-            Value =  e.Address
-        }),
-        NameInput = new ComponentTableTextInput(),
-        ValueInput = new ComponentTableTextInput(),
-        AjaxAdd = "/Contact/AjaxAddEmailAddress",
-        AjaxRemove = "/Contact/AjaxRemoveEmailAddressByName",
-        DataId = Model.Contact.ContactId
-    }
-}' />
 
 <partial name="_ComponentTable" model='@{
     new ComponentTableViewModel
