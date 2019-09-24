@@ -39,6 +39,9 @@ html * [class*="display none"] {
 }
 
 /* Stuff to get the footer to stick to the bottom */
+main {
+    padding-bottom: 60px;
+}
 footer {
     position: fixed;
     bottom: 0;

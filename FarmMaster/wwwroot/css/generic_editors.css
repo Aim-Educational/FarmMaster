@@ -43,14 +43,22 @@
     .editor.section > section div.content div.table.action.section {
       display: inline-flex;
       width: 100%; }
-      .editor.section > section div.content div.table.action.section.three.inline.actions div.inline.field {
+      .editor.section > section div.content div.table.action.section.three.inline.actions div.field {
         width: 33%;
-        margin: 0; }
+        margin: 0;
+        margin-right: 30px; }
+        .editor.section > section div.content div.table.action.section.three.inline.actions div.field div.selection {
+          width: 100%; }
       .editor.section > section div.content div.table.action.section.three.inline.actions button {
+        align-self: end;
         width: 33%;
+        height: 43.13333px;
         margin: 0; }
   .editor.section > section:nth-of-type(even) {
     background-color: #ebebeb; }
+
+.editor.section thead tr.two.columns th:not(:first-child) {
+  width: 50%; }
 
 .editor.section th.editor.action {
   width: 0px; }

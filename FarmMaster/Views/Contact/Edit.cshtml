@@ -62,8 +62,9 @@
     </section>
 
     @foreach(var info in new[] {
-         new { Header = "Phone Numbers", Section = "sectionPhoneNumbers" },
-         new { Header = "Email Addresses", Section = "sectionEmails" }
+         new { Header = "Phone Numbers", Section = "sectionPhoneNumbers", ValueIsTextTrueSelectFalse = true },
+         new { Header = "Email Addresses", Section = "sectionEmails", ValueIsTextTrueSelectFalse = true },
+         new { Header = "Relationships", Section = "sectionRelations", ValueIsTextTrueSelectFalse = false }
     })
     {
         <section class="ui form">
@@ -73,7 +74,7 @@
             <div id="@info.Section" class="content">
                 <table class="ui striped table">
                     <thead>
-                        <tr>
+                        <tr class="two columns">
                             <th class="editor action"></th>
                             <th>Name</th>
                             <th>Number</th>
@@ -82,13 +83,26 @@
                     <tbody></tbody>
                 </table>
                 <div class="table action section three inline actions">
-                    <div class="inline field">
+                    <div class="field">
                         <label>Name:</label>
                         <input class="name" type="text" />
                     </div>
-                    <div class="inline field">
+                    <div class="field">
                         <label>Value:</label>
-                        <input class="value" type="text" />
+
+                        @if(info.ValueIsTextTrueSelectFalse)
+                        {
+                            <input class="value" type="text" />
+                        }
+                        else
+                        {
+                            <div class="ui search selection dropdown">
+                                <input class="value" type="hidden"/>
+                                <i class="dropdown icon"></i>
+                                <div class="text"></div>
+                                <div class="menu"></div>
+                            </div>
+                        }
                     </div>
                     <button class="ui primary submit button" type="button">Add</button>
                 </div>
@@ -100,11 +114,12 @@
 
 @section Scripts {
     <script type="module">
-        import { Validation, FarmAjax, FarmAjaxMessageType, Modal } from "/js/index.js";
+        import { Validation, FarmAjax, FarmAjaxMessageType, Modal, drange } from "/js/index.js";
         Validation.hookupForm(document.querySelector(".ui.form"));
 
         const sectionPhoneNumbers = document.getElementById("sectionPhoneNumbers");
         const sectionEmails = document.getElementById("sectionEmails");
+        const sectionRelations = document.getElementById("sectionRelations");
 
         function addRow(refreshUrl, deleteUrl, elemSection, nameValueId) {
             const tbody = elemSection.querySelector("table tbody");
@@ -134,7 +149,7 @@
             }
         }
 
-        function ajaxAdd(url, reason, refreshUrl, deleteUrl, elemSection, valueNameOverride = null) {
+        function ajaxAdd(url, reason, refreshUrl, deleteUrl, elemSection) {
             const inputName = elemSection.querySelector("input.name");
             const inputValue = elemSection.querySelector("input.value");
             const name = inputName.value;
@@ -155,9 +170,6 @@
 
                     inputName.value = "";
                     inputValue.value = "";
-
-                    if (valueNameOverride !== null)
-                        value = valueNameOverride;
 
                     addRow(refreshUrl, deleteUrl, elemSection, { name: name, value: value, id: rv.value });
                 }
@@ -214,7 +226,10 @@
             );
         }
 
-        function setupTable(elemSection, addUrl, deleteUrl, refreshUrl) {
+        function setupTable(elemSection, addUrl, deleteUrl, refreshUrl, ajaxAddOverride = null) {
+            if (ajaxAddOverride === null)
+                ajaxAddOverride = ajaxAdd;
+
             ajaxRefresh(refreshUrl, deleteUrl, elemSection);
             elemSection
                 .querySelector("button.submit.button")
@@ -222,13 +237,12 @@
                     Modal.askForReason()
                          .then(reason => {
                              const inputValue = elemSection.querySelector("input.value");
-                             ajaxAdd(
+                             ajaxAddOverride(
                                  addUrl,
                                  reason,
                                  refreshUrl,
                                  deleteUrl,
-                                 elemSection,
-                                 (inputValue.selectedOptions) ? inputValue.selectedOptions[0].text : null
+                                 elemSection
                              );
                          });
                 });
@@ -246,6 +260,79 @@
             "/Ajax/Contact_ById_Email_Add_ReturnsId",
             "/Ajax/Contact_ById_Email_Delete_ById",
             "/Ajax/Contact_ById_Email_AsNameValueId_All"
+        );
+
+        // sectionRelations has two main differences:
+        //      * It uses a dropdown instead of a textbox.
+        //          * This'd normally be fine, but we're having to use Semantic-UI's specific markup, which doesn't include a <select> tag.
+        //              * This makes it difficult to get the name of the contact selected, which is useful for updating the table dynamically.
+        //      * Because relationship names are *not* unique, we have to work with relationship IDs instead.
+        //          * This causes complications, as our reusable code above can't easily compensate for these issues.
+        //
+        // So with that in mind, instead of over complicating the reusable 'ajaxAdd' above, we'll just handle this one
+        // with some custom code. The other two 'ajaxXXX' funcs should work fine afterwards.
+
+        // First, populate the dropdown from values from the server.
+        FarmAjax.postWithMessageAndValueResponse(
+            "/Ajax/Contact_AsNameId_All",
+            null,
+            rv => {
+                if (rv.messageType !== FarmAjaxMessageType.Information) {
+                    rv.populateMessageBox(sectionRelations.querySelector("div.error.message"));
+                    return;
+                }
+
+                const menu = sectionRelations.querySelector("div.dropdown div.menu");
+                for (const nameId of rv.value) {
+                    const div = menu.appendChild(document.createElement("div"));
+                    div.classList.add("item");
+                    div.dataset.value = nameId.id;
+                    div.innerText = nameId.name;
+                }
+            }
+        );
+
+        // Then let Semantic-UI have its way, since we're using their styling for the dropdown.
+        $(sectionRelations.querySelector("div.dropdown")).dropdown();
+
+        // Finally, create a custom 'ajaxAdd' function for this table, and then setup the table.
+        function dropdownAjaxAdd(url, reason, refreshUrl, deleteUrl, elemSection) {
+            const inputName = elemSection.querySelector("input.name");
+            const inputValue = elemSection.querySelector("input.value");
+            const name = inputName.value;
+            let value = inputValue.value;
+            FarmAjax.postWithMessageAndValueResponse(
+                url,
+                {
+                    name: name,
+                    value: value,
+                    id: @Model.Contact.ContactId,
+                    reason: reason
+                },
+                rv => {
+                    if (rv.messageType !== FarmAjaxMessageType.Information) {
+                        rv.populateMessageBox(elemSection.querySelector("div.error.message"));
+                        return;
+                    }
+
+                    const menu = elemSection.querySelector("div.menu");
+                    const item = drange(menu.querySelectorAll("div.item")).filter(i => i.dataset.value === value).front;
+                    value = item.innerText;
+
+                    inputName.value = "";
+                    $(elemSection).dropdown("clear");
+
+                    addRow(refreshUrl, deleteUrl, elemSection, { name: name, value: value, id: rv.value });
+                }
+            );
+        }
+
+        setupTable(
+            sectionRelations,
+            "/Ajax/Contact_ById_Relationship_Add_ReturnsId",
+            "/Ajax/Contact_ById_Relationship_Delete_ById",
+            "/Ajax/Contact_ById_Relationship_AsNameValueId_All",
+            dropdownAjaxAdd
         );
     </script>
 }

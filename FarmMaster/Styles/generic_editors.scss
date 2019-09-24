@@ -62,13 +62,20 @@
                 width: 100%;
 
                 &.three.inline.actions {
-                    div.inline.field {
+                    div.field {
                         width: 33%;
                         margin: 0;
+                        margin-right: 30px;
+
+                        div.selection {
+                            width: 100%;
+                        }
                     }
 
                     button {
+                        align-self: end;
                         width: 33%;
+                        height: 43.13333px;
                         margin: 0;
                     }
                 }
@@ -77,6 +84,12 @@
 
         &:nth-of-type(even) {
             background-color: hsl(0, 0%, 92%);
+        }
+    }
+
+    thead tr.two.columns {
+        th:not(:first-child) {
+            width: 50%;
         }
     }
 

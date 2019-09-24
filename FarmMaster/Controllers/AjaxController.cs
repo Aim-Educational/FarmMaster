@@ -1,19 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Business.Model;
+﻿using Business.Model;
 using FarmMaster.Filters;
 using FarmMaster.Models;
 using FarmMaster.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Linq;
 
 namespace FarmMaster.Controllers
 {
     public class AjaxController : Controller
     {
+        #region Contact
+        [HttpPost]
+        [FarmAjaxReturnsMessageAndValue(BusinessConstants.Roles.VIEW_CONTACTS)]
+        public IActionResult Contact_AsNameId_All(
+            [FromBody] AjaxRequestModel _,
+            User __,
+            [FromServices] IServiceContactManager contacts
+        )
+        {
+            return new AjaxValueResult(
+                contacts.Query()
+                        .Where(c => !c.IsAnonymous)
+                        .Select(c => new { Name = c.ShortName, Id = c.ContactId })
+                        .ToList()
+            );
+        }
+        #endregion
         #region Contact.PhoneNumber
         [HttpPost]
         [FarmAjaxReturnsMessageAndValue(BusinessConstants.Roles.VIEW_CONTACTS)]
@@ -37,8 +52,8 @@ namespace FarmMaster.Controllers
         [HttpPost]
         [FarmAjaxReturnsMessage(BusinessConstants.Roles.EDIT_CONTACTS)]
         public IActionResult Contact_ById_PhoneNumber_Delete_ById(
-            [FromBody] AjaxByIdForIdWithReasonRequest model, 
-            User user, 
+            [FromBody] AjaxByIdForIdWithReasonRequest model,
+            User user,
             [FromServices] IServiceContactManager contacts
         )
         {
@@ -96,7 +111,7 @@ namespace FarmMaster.Controllers
         [HttpPost]
         [FarmAjaxReturnsMessage(BusinessConstants.Roles.EDIT_CONTACTS)]
         public IActionResult Contact_ById_Email_Add_ReturnsId(
-            [FromBody] AjaxByIdWithNameValueAsEmailReasonRequest model, 
+            [FromBody] AjaxByIdWithNameValueAsEmailReasonRequest model,
             User user,
             [FromServices] IServiceContactManager contacts)
         {
@@ -119,7 +134,7 @@ namespace FarmMaster.Controllers
         [AllowAnonymous]
         [FarmAjaxReturnsMessage(BusinessConstants.Roles.EDIT_CONTACTS)]
         public IActionResult Contact_ById_Email_Delete_ById(
-            [FromBody] AjaxByIdForIdWithReasonRequest model, 
+            [FromBody] AjaxByIdForIdWithReasonRequest model,
             User myUser,
             [FromServices] IServiceContactManager contacts)
         {
