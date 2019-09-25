@@ -132,8 +132,11 @@
                     button.type = "button";
                     button.classList.add("ui", "red", "icon", "button");
                     button.onclick = () => {
-                        ajaxDelete(deleteUrl, elemSection, tr)
-                        ajaxRefresh(refreshUrl, deleteUrl, elemSection, nameValueId.id);
+                        Modal.askForReason()
+                            .then(deleteReason => {
+                                ajaxDelete(deleteUrl, deleteReason, elemSection, tr);
+                                ajaxRefresh(refreshUrl, deleteUrl, elemSection);
+                            });
                     };
                     {
                         const i = button.appendChild(document.createElement("i"));
@@ -176,13 +179,13 @@
             );
         }
 
-        function ajaxDelete(url, elemSection, elemRow) {
+        function ajaxDelete(url, reason, elemSection, elemRow) {
             FarmAjax.postWithMessageResponse(
                 url,
                 {
                     byId: @Model.Contact.ContactId,
                     forId: elemRow.dataset.id,
-                    reason: "TEST"
+                    reason: reason
                 },
                 response => {
                     if (response.messageType !== FarmAjaxMessageType.Information) {
