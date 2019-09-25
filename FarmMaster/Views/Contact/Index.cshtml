@@ -1,21 +1,13 @@
 ﻿@model ContactIndexViewModel
 @{
-    ViewData["Title"] = "Index - Contacts";
-    ViewData["Breadcrumb"] = new[]
-    {
-        "Home:/Home/Index",
-        "Contacts:/Contact/Index"
-    };
+    Layout = "_GenericEditorLayout";
+    ViewData["Title"] = "Contacts";
     ViewData["Breadcrumb"] = new Dictionary<string, string>
     {
         { "Home", "/Home/Index" },
         { "Contacts", "/Contact/Index" }
     };
 }
-
-<h1>Index</h1>
-
-<partial name="_ViewModelWithMessagePartial" model="@Model" />
 
 <section id="modalReason" class="ui modal">
     <section class="content">
@@ -63,27 +55,35 @@
     </section>
 </section>
 
-<a class="ui primary button" asp-action="Create">
-    Create New Contact
-</a>
+<section class="editor section">
+    <section>
+        <partial name="_ViewModelWithMessagePartial" model="@Model" />
 
-<table id="tableIndex" class="ui celled table">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Type</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        <partial name="_IndexTableBodyPartial" model="Model.Contacts.Take(GlobalConstants.DefaultPageItemCount)" />
-    </tbody>
-    <tfoot>
+        <a class="ui primary button" asp-action="Create">
+            Create New Contact
+        </a>
 
-    </tfoot>
-</table>
+        <div class="content">
+            <table id="tableIndex" class="ui celled table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <partial name="_IndexTableBodyPartial" model="Model.Contacts.Take(GlobalConstants.DefaultPageItemCount)" />
+                </tbody>
+                <tfoot>
 
-<section id="boxError" class="ui error message transition hidden">
+                </tfoot>
+            </table>
+        </div>
+
+        <section id="boxError" class="ui error message transition hidden">
+        </section>
+    </section>
 </section>
 
 @section Scripts {
