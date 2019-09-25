@@ -162,39 +162,7 @@ namespace FarmMaster.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        [HttpPost]
-        [AllowAnonymous]
-        [FarmAjaxReturnsMessage(BusinessConstants.Roles.EDIT_CONTACTS)]
-        public IActionResult AjaxAddRelation([FromBody] ContactAjaxAddRelationship model, User myUser)
-        {
-            var contactOne = this._contacts.FromIdAllIncluded(model.Id);
-            if (contactOne == null)
-                throw new Exception($"The contact with id #{model.Id} does not exist.");
 
-            var contactTwo = this._contacts.FromIdAllIncluded(Convert.ToInt32(model.Value));
-            if (contactTwo == null)
-                throw new Exception($"The contact with id #{model.Value} does not exist.");
-
-            this._contacts.AddRelationship(contactOne, contactTwo, myUser, model.Reason, model.Name);
-
-            return new EmptyResult();
-        }
-
-        [HttpPost]
-        [AllowAnonymous]
-        [FarmAjaxReturnsMessage(BusinessConstants.Roles.EDIT_CONTACTS)]
-        public IActionResult AjaxRemoveRelationById([FromBody] ContactAjaxRemoveByName model, User myUser)
-        {
-            var contact = this._context.Contacts.Include(c => c.EmailAddresses).First(c => c.ContactId == model.Id);
-            if (contact == null)
-                throw new Exception($"The contact with id #{model.Id} does not exist.");
-
-            var couldDelete = this._contacts.RemoveRelationshipById(contact, myUser, model.Reason, Convert.ToInt32(model.Name));
-            if (!couldDelete)
-                throw new Exception($"No relationship with id #{model.Name} was found.");
-
-            return new EmptyResult();
-        }
 
         [HttpPost]
         [AllowAnonymous]

@@ -29,6 +29,7 @@ namespace FarmMaster.Controllers
             );
         }
         #endregion
+
         #region Contact.PhoneNumber
         [HttpPost]
         [FarmAjaxReturnsMessageAndValue(BusinessConstants.Roles.VIEW_CONTACTS)]
@@ -88,6 +89,7 @@ namespace FarmMaster.Controllers
             return new AjaxValueResult(phone.TelephoneId);
         }
         #endregion
+
         #region Contact.Email
         [HttpPost]
         [FarmAjaxReturnsMessageAndValue(BusinessConstants.Roles.VIEW_CONTACTS)]
@@ -109,7 +111,7 @@ namespace FarmMaster.Controllers
         }
 
         [HttpPost]
-        [FarmAjaxReturnsMessage(BusinessConstants.Roles.EDIT_CONTACTS)]
+        [FarmAjaxReturnsMessageAndValue(BusinessConstants.Roles.EDIT_CONTACTS)]
         public IActionResult Contact_ById_Email_Add_ReturnsId(
             [FromBody] AjaxByIdWithNameValueAsEmailReasonRequest model,
             User user,
@@ -126,8 +128,8 @@ namespace FarmMaster.Controllers
             if (contact.EmailAddresses.Any(n => n.Address == model.Value))
                 throw new Exception("That email address is already in use.");
 
-            contacts.AddEmailAddress(contact, user, model.Reason, model.Name, model.Value);
-            return new EmptyResult();
+            var email = contacts.AddEmailAddress(contact, user, model.Reason, model.Name, model.Value);
+            return new AjaxValueResult(email.EmailId);
         }
 
         [HttpPost]
@@ -147,6 +149,73 @@ namespace FarmMaster.Controllers
                 throw new Exception($"Contacts must have at least one email address. You cannot delete the last one.");
 
             var couldDelete = contacts.RemoveEmailAddressById(contact, myUser, model.Reason, model.ForId);
+            return new EmptyResult();
+        }
+        #endregion
+
+        #region Contact.Relationship
+        [HttpPost]
+        [FarmAjaxReturnsMessageAndValue(BusinessConstants.Roles.VIEW_CONTACTS)]
+        public IActionResult Contact_ById_Relationship_AsNameValueId_All(
+            [FromBody] AjaxByIdRequest model,
+            User _,
+            [FromServices] IServiceContactManager contacts,
+            [FromServices] FarmMasterContext db // ;(
+        ) 
+        {
+            return new AjaxValueResult( 
+                contacts.Query()
+                        .First(c => c.ContactId == model.Id)
+                        .GetRelationships(db)
+                        .Select(r => new 
+                        { 
+                            name = r.Description, 
+                            id = r.MapContactRelationshipId,
+                            value = (r.ContactOne.ContactId == model.Id)
+                                    ? r.ContactTwo.ShortName
+                                    : r.ContactOne.ShortName
+                        })
+            );
+        }
+
+        [HttpPost]
+        [FarmAjaxReturnsMessageAndValue(BusinessConstants.Roles.EDIT_CONTACTS)]
+        public IActionResult Contact_ById_Relationship_Add_ReturnsId(
+            [FromBody] AjaxByIdWithNameValueReasonRequest model, 
+            User user,
+            [FromServices] IServiceContactManager contacts
+        )
+        {
+            var contactOne = contacts.FromIdAllIncluded(model.Id ?? -1);
+            if (contactOne == null)
+                throw new Exception($"The contact with id #{model.Id} does not exist.");
+
+            var contactTwo = contacts.FromIdAllIncluded(Convert.ToInt32(model.Value));
+            if (contactTwo == null)
+                throw new Exception($"The contact with id #{model.Value} does not exist.");
+
+            var map = contacts.AddRelationship(contactOne, contactTwo, user, model.Reason, model.Name);
+            return new AjaxValueResult(map.MapContactRelationshipId);
+        }
+
+        [HttpPost]
+        [FarmAjaxReturnsMessage(BusinessConstants.Roles.EDIT_CONTACTS)]
+        public IActionResult Contact_ById_Relationship_Delete_ById(
+            [FromBody] AjaxByIdForIdWithReasonRequest model,
+            User user,
+            [FromServices] IServiceContactManager contacts
+        )
+        {
+            var contact = contacts.Query()
+                                  .Include(c => c.EmailAddresses)
+                                  .FirstOrDefault(c => c.ContactId == model.ById);
+            if (contact == null)
+                throw new Exception($"The contact with id #{model.ById} does not exist.");
+
+            var couldDelete = contacts.RemoveRelationshipById(contact, user, model.Reason, model.ForId);
+            if (!couldDelete)
+                throw new Exception($"No relationship with id #{model.ById} was found.");
+
             return new EmptyResult();
         }
         #endregion

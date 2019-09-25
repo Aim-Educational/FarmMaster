@@ -13,8 +13,8 @@ namespace FarmMaster.Services
         Contact Create(Contact.Type type, string fullName, SaveChanges saveChanges = SaveChanges.Yes);
 
         Telephone AddTelephoneNumber(Contact contact, User responsible, string reason, string name, string number);
-        void AddEmailAddress(Contact contact, User responsible, string reason, string name, string value);
-        void AddRelationship(Contact first, Contact second, User responsible, string reason, string description);
+        Email AddEmailAddress(Contact contact, User responsible, string reason, string name, string value);
+        MapContactRelationship AddRelationship(Contact first, Contact second, User responsible, string reason, string description);
 
         bool RemoveTelephoneNumberByName(Contact contact, User responsible, string reason, string name);
         bool RemoveTelephoneNumberById(Contact contact, User responsible, string reason, int id);
@@ -109,7 +109,7 @@ namespace FarmMaster.Services
             this._context.SaveChanges();
         }
 
-        public void AddEmailAddress(Contact contact, User responsible, string reason, string name, string address)
+        public Email AddEmailAddress(Contact contact, User responsible, string reason, string name, string address)
         {
             var item = new Email
             {
@@ -128,6 +128,8 @@ namespace FarmMaster.Services
                 reason,
                 $"{name}={address}"
             );
+
+            return item;
         }
 
         public bool RemoveEmailAddressByName(Contact contact, User responsible, string reason, string name)
@@ -181,7 +183,7 @@ namespace FarmMaster.Services
             this._context.SaveChanges();
         }
 
-        public void AddRelationship(Contact first, Contact second, User responsible, string reason, string description)
+        public MapContactRelationship AddRelationship(Contact first, Contact second, User responsible, string reason, string description)
         {
             var relation = new MapContactRelationship
             {
@@ -208,6 +210,8 @@ namespace FarmMaster.Services
                 reason,
                 $"{description}: {first.ShortName}"
             );
+
+            return relation;
         }
 
         public bool RemoveRelationshipById(Contact contact, User responsible, string reason, int id)
