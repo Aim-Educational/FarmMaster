@@ -1,52 +1,53 @@
 ﻿@model RoleIndexViewModel
 @{
-    ViewData["Title"] = "Index - Role";
-    ViewData["Breadcrumb"] = new[]
+    Layout = "_GenericEditorLayout";
+    ViewData["Title"] = "Roles";
+    ViewData["Breadcrumb"] = new Dictionary<string, string>
     {
-        "Home:/Home/Index",
-        "Roles:/Role/Index"
+        { "Home", "/Home/Index" },
+        { "Roles", "/Role/Index" }
     };
 }
 
-<h1>Index</h1>
+<section class="editor section">
+    <section>
+        <partial name="_ViewModelWithMessagePartial" model="@Model" />
 
-<partial name="_ViewModelWithMessagePartial" model="@Model" />
+        <div class="content">
+            <a class="ui primary button" asp-action="Create">Create New Role</a>
+            <a class="ui primary button" asp-action="Assign">Assign Roles to Users</a>
 
-<section class="row">
-    <section class="sixteen wide column">
-        <a class="ui primary button" asp-action="Create">Create New Role</a>
-        <a class="ui primary button" asp-action="Assign">Assign Roles to Users</a>
+            <table class="ui celled table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Permissions</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var role in Model.Roles)
+                    {
+                        <tr>
+                            <td>@role.Name</td>
+                            <td>@role.Description</td>
+                            <td>@(role.Permissions?.Count() ?? 0)</td>
+                            <td>
+                                <section class="ui two buttons">
+                                    <button class="ui inverted tiny secondary left button" onclick="window.location='/Role/Edit/@role.RoleId'">
+                                        Edit
+                                    </button>
+                                    <div class="or divider"></div>
+                                    <button class="ui inverted tiny secondary right button" onclick="window.location='/Role/Delete/@role.RoleId'">
+                                        Delete
+                                    </button>
+                                </section>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
     </section>
 </section>
-
-<table class="ui celled table">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Permissions</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach(var role in Model.Roles)
-        {
-            <tr>
-                <td>@role.Name</td>
-                <td>@role.Description</td>
-                <td>@(role.Permissions?.Count() ?? 0)</td>
-                <td>
-                    <section class="ui two buttons">
-                        <button class="ui inverted tiny secondary left button" onclick="window.location='/Role/Edit/@role.RoleId'">
-                            Edit
-                        </button>
-                        <div class="or divider"></div>
-                        <button class="ui inverted tiny secondary right button" onclick="window.location='/Role/Delete/@role.RoleId'">
-                            Delete
-                        </button>
-                    </section>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
