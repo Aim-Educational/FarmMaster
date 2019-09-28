@@ -13,7 +13,7 @@ import { drange } from "https://unpkg.com/dranges@latest/dist/dranges.min.js"
 
 export class SemanticUIHandler extends IValidationUIHandler {
     onElementFailedValidation(element, reasonsFailed) {
-        const reason = drange(reasonsFailed).reduce("", (s1, s2) => s1 + '\n' + s2);
+        const reason = drange(reasonsFailed).reduce("", (s1, s2) => (s1.length > 0) ? s1 + '\n' + s2 : s2);
         const errorBox = this.ensureErrorBoxExists(element);
 
         errorBox.classList.remove("hidden");
