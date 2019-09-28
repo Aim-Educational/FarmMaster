@@ -40,6 +40,8 @@
     padding-left: 1em;
     padding-bottom: 1em;
     padding-right: 1em; }
+    .editor.section > section div.content div.top.padded.items {
+      padding-top: 1em; }
     .editor.section > section div.content div.table.action.section {
       display: inline-flex;
       width: 100%; }

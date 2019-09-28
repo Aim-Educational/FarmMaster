@@ -60,9 +60,11 @@
         <partial name="_ViewModelWithMessagePartial" model="@Model" />
 
         <div class="content">
-            <a class="ui primary button" asp-action="Create">
-                Create New Contact
-            </a>
+            <div class="top padded items">
+                <a class="ui primary button" asp-action="Create">
+                    Create New Contact
+                </a>
+            </div>
 
             <table id="tableIndex" class="ui celled table">
                 <thead>
