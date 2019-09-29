@@ -52,21 +52,39 @@
                 Permissions
             </h4>
             <div class="content">
-                @{int permsToSkip = 0;}
-                @while (permsToSkip < Model.AllKnownPermissions.Count())
-                {
-                    <section class="six inline fields">
-                        @foreach (var perm in Model.AllKnownPermissions.Skip(permsToSkip).Take(CHECKBOXES_PER_ROW))
-                        {
-                            <section class="field">
-                                <div class="ui checkbox">
-                                    <input type="checkbox" asp-for="Permissions[perm.InternalName]" />
-                                    <label>@perm.Description</label>
+                @{ 
+                    var categories = Model.AllKnownPermissions
+                                          .Select(p => p.Description.Split(' ').First())
+                                          .Distinct()
+                                          .OrderBy(c => c);
+
+                    foreach(var category in categories)
+                    {
+                        var perms = Model.AllKnownPermissions
+                                         .Where(p => p.Description.StartsWith(category))
+                                         .OrderBy(p => p.Description);
+
+                        var permsToSkip = 0;
+                        <div class="sub content">
+                            <h5>@category</h5>
+                            @while(permsToSkip < perms.Count())
+                            {
+                                <div class="five inline fields">
+                                    @foreach(var perm in perms.Skip(permsToSkip).Take(5)) // 5 per row
+                                    {
+                                        var permDesc = perm.Description.Substring(category.Length + 1); // + 1 to skip the space.
+                                        <div class="field">
+                                            <div class="ui toggle checkbox">
+                                                <input type="checkbox" asp-for="Permissions[perm.InternalName]" />
+                                                <label>@permDesc</label>
+                                            </div>
+                                        </div>
+                                        permsToSkip += 1;
+                                    }
                                 </div>
-                            </section>
-                            permsToSkip++;
-                        }
-                    </section>
+                            }
+                        </div>
+                    }
                 }
 
                 <button class="ui primary fluid button" type="submit">

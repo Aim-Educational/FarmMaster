@@ -36,26 +36,33 @@
     font-weight: bold;
     font-size: 20px;
     letter-spacing: 0.03em; }
-  .editor.section > section div.content, .editor.section > form > section div.content {
+  .editor.section > section div.content, .editor.section > section div.content > div.sub.content, .editor.section > form > section div.content, .editor.section > form > section div.content > div.sub.content {
     padding-left: 1em;
     padding-bottom: 1em;
     padding-right: 1em; }
-    .editor.section > section div.content div.top.padded.items, .editor.section > form > section div.content div.top.padded.items {
+    .editor.section > section div.content div.top.padded.items, .editor.section > section div.content > div.sub.content div.top.padded.items, .editor.section > form > section div.content div.top.padded.items, .editor.section > form > section div.content > div.sub.content div.top.padded.items {
       padding-top: 1em; }
-    .editor.section > section div.content div.table.action.section, .editor.section > form > section div.content div.table.action.section {
+    .editor.section > section div.content div.table.action.section, .editor.section > section div.content > div.sub.content div.table.action.section, .editor.section > form > section div.content div.table.action.section, .editor.section > form > section div.content > div.sub.content div.table.action.section {
       display: inline-flex;
       width: 100%; }
-      .editor.section > section div.content div.table.action.section.inline.action.with.two.inputs div.field, .editor.section > form > section div.content div.table.action.section.inline.action.with.two.inputs div.field {
+      .editor.section > section div.content div.table.action.section.inline.action.with.two.inputs div.field, .editor.section > section div.content > div.sub.content div.table.action.section.inline.action.with.two.inputs div.field, .editor.section > form > section div.content div.table.action.section.inline.action.with.two.inputs div.field, .editor.section > form > section div.content > div.sub.content div.table.action.section.inline.action.with.two.inputs div.field {
         width: 33%;
         margin: 0;
         margin-right: 30px; }
-        .editor.section > section div.content div.table.action.section.inline.action.with.two.inputs div.field div.selection, .editor.section > form > section div.content div.table.action.section.inline.action.with.two.inputs div.field div.selection {
+        .editor.section > section div.content div.table.action.section.inline.action.with.two.inputs div.field div.selection, .editor.section > section div.content > div.sub.content div.table.action.section.inline.action.with.two.inputs div.field div.selection, .editor.section > form > section div.content div.table.action.section.inline.action.with.two.inputs div.field div.selection, .editor.section > form > section div.content > div.sub.content div.table.action.section.inline.action.with.two.inputs div.field div.selection {
           width: 100%; }
-      .editor.section > section div.content div.table.action.section.inline.action.with.two.inputs button, .editor.section > form > section div.content div.table.action.section.inline.action.with.two.inputs button {
+      .editor.section > section div.content div.table.action.section.inline.action.with.two.inputs button, .editor.section > section div.content > div.sub.content div.table.action.section.inline.action.with.two.inputs button, .editor.section > form > section div.content div.table.action.section.inline.action.with.two.inputs button, .editor.section > form > section div.content > div.sub.content div.table.action.section.inline.action.with.two.inputs button {
         align-self: end;
         width: 33%;
         height: 43.13333px;
         margin: 0; }
+    .editor.section > section div.content div.sub.content h5, .editor.section > section div.content > div.sub.content div.sub.content h5, .editor.section > form > section div.content div.sub.content h5, .editor.section > form > section div.content > div.sub.content div.sub.content h5 {
+      padding-top: 0.8em;
+      padding-bottom: 1.5em;
+      margin-bottom: 0;
+      font-weight: bold;
+      font-size: 16px;
+      letter-spacing: 0.03em; }
   .editor.section > section:nth-of-type(even), .editor.section > form > section:nth-of-type(even) {
     background-color: #ebebeb; }
 
