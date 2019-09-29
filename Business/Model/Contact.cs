@@ -58,5 +58,9 @@ namespace Business.Model
         public string ShortName => (this.LastName.Trim().Count() == 0)
                                    ? this.FirstName
                                    : $"{this.FirstName} {this.LastName}";
+
+        [NotMapped]
+        public string FirstNameWithAbbreviatedLastName =>
+            this.FirstName + " " + this.LastName[0];
     }
 }

@@ -64,7 +64,7 @@ namespace FarmMaster.BackgroundServices
                                            AdditionalInfo = a.AdditionalInfo,
                                            What = Convert.ToString(a.ActionType),
                                            When = a.DateTimeUtc.ToString("dd/MM/yyyy HH:mm:ss"),
-                                           Who = $"{a.UserResponsible.Contact.FirstName} {a.UserResponsible.Contact.LastName}",
+                                           Who = a.UserResponsible.Contact.FirstNameWithAbbreviatedLastName,
                                            Why = a.Reason
                                        })
                     }
