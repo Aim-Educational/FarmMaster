@@ -30,9 +30,13 @@ namespace FarmMaster.Controllers
         [FarmAuthorise(PermsAND: new[] { BusinessConstants.Roles.EDIT_ROLES })]
         public IActionResult Create([FromServices] FarmMasterContext db)
         {
-            return View(new RoleCreateViewModel
+            return View("CreateEdit", new RoleCreateViewModel
             {
-                AllKnownPermissions = db.EnumRolePermissions
+                // TODO: EnumRolePermissions could just be a singleton tbh.
+                //       Any changes to the what permissions there are can only be done via migrations,
+                //       so the website would need to be redeployed anyway.
+                AllKnownPermissions = db.EnumRolePermissions,
+                IsCreate = true
             });
         }
 
@@ -54,10 +58,13 @@ namespace FarmMaster.Controllers
             if(user.Role.RoleId == role.RoleId)
                 return this.RedirectToIndexWithMessage(ViewModelWithMessage.Type.Error, "You cannot modify your own role.");
 
-            return View(new RoleEditViewModel
+            return View("CreateEdit", new RoleCreateViewModel
             {
                 AllKnownPermissions = db.EnumRolePermissions,
-                Role = role,
+                IsCreate = false,
+                Description = role.Description,
+                HierarchyOrder = role.HierarchyOrder,
+                Name = role.Name,
                 Permissions = db.EnumRolePermissions
                                 .ToDictionary(p => p.InternalName,
                                               p => role.Permissions.Any(m => m.EnumRolePermission == p))
@@ -82,18 +89,16 @@ namespace FarmMaster.Controllers
                                     [FromServices] FarmMasterContext db, 
                                     [FromServices] IServiceUserManager users)
         {
+            model.AllKnownPermissions = db.EnumRolePermissions;
+
             if(!ModelState.IsValid)
-            {
-                model.AllKnownPermissions = db.EnumRolePermissions;
                 return View(model);
-            }
 
             var user = users.UserFromCookieSession(HttpContext);
             if(user.Role.HierarchyOrder > model.HierarchyOrder)
             {
                 model.MessageType = ViewModelWithMessage.Type.Error;
                 model.Message = "You cannot create a role that is higher up in the hierarchy than your own.";
-                model.AllKnownPermissions = db.EnumRolePermissions;
                 return View(model);
             }
 
@@ -108,7 +113,6 @@ namespace FarmMaster.Controllers
 
                 model.MessageType = ViewModelWithMessage.Type.Error;
                 model.Message = $"You cannot create a role that has a permission your own role doesn't have. Pemissions = {errorList}";
-                model.AllKnownPermissions = db.EnumRolePermissions;
                 return View(model);
             }
 
@@ -127,50 +131,58 @@ namespace FarmMaster.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [FarmAuthorise(PermsAND: new[] { BusinessConstants.Roles.EDIT_ROLES })]
-        public IActionResult Edit(RoleEditViewModel model, 
+        public IActionResult Edit(RoleCreateViewModel model, 
                                   [FromServices] IServiceRoleManager roles,
                                   [FromServices] FarmMasterContext db, 
                                   [FromServices] IServiceUserManager users)
         {
+            model.AllKnownPermissions = db.EnumRolePermissions;
+
             if (!ModelState.IsValid)
-            {
-                model.AllKnownPermissions = db.EnumRolePermissions;
                 return View(model);
-            }
+
+            // Get Role and User with error checking.
+            var role = roles.FromIdAllIncluded(model.Id);
+            if(role == null)
+                throw new Exception($"No role with ID #{model.Id} exists.");
             
             var user = users.UserFromCookieSession(HttpContext);
-            if(!user.Role.CanModify(model.Role))
+            
+            // Id is embedded in the page, so is open to modification by the user.
+            // Therefor, we need to duplicate some error check logic.
+            // TODO: Put into a function.
+            if (!user.Role.CanModify(role))
+                return this.RedirectToIndexWithMessage(ViewModelWithMessage.Type.Error, "You cannot modify a role that is higher in the hierarchy than your own.");
+            if (user.Role.RoleId == role.RoleId)
+                return this.RedirectToIndexWithMessage(ViewModelWithMessage.Type.Error, "You cannot modify your own role.");
+
+            role.Description = model.Description;
+            role.HierarchyOrder = model.HierarchyOrder;
+            role.Name = model.Name;
+            if (!user.Role.CanModify(role))
             {
                 model.MessageType = ViewModelWithMessage.Type.Error;
                 model.Message = "You cannot place a role higher up the hierarchy than your own.";
-                model.AllKnownPermissions = db.EnumRolePermissions;
-                return View(model);
-            }
-
-            if(user.Role.RoleId == model.Role.RoleId)
-            {
-                model.MessageType = ViewModelWithMessage.Type.Error;
-                model.Message = "You cannot modify your own role.";
-                model.AllKnownPermissions = db.EnumRolePermissions;
                 return View(model);
             }
             
-            db.Update(model.Role);
+            db.Update(role);
+
+            // Set/remove permission mappings.
             foreach(var kvp in model.Permissions)
             {
                 if(!roles.HasPermission(user.Role, kvp.Key) 
-                && roles.HasPermission(model.Role, kvp.Key) != kvp.Value)
+                &&  roles.HasPermission(role, kvp.Key) != kvp.Value)
                 {
                     model.MessageType = ViewModelWithMessage.Type.Error;
                     model.Message = $"You cannot modify permissions your role does not have. Permission = {kvp.Key}";
-                    model.AllKnownPermissions = db.EnumRolePermissions;
                     return View(model);
                 }
 
                 if(kvp.Value)
-                    roles.AddPermission(model.Role, kvp.Key, Misc.SaveChanges.No);
+                    roles.AddPermission(role, kvp.Key, SaveChanges.No);
                 else
-                    roles.RemovePermission(model.Role, kvp.Key, Misc.SaveChanges.No);
+                    roles.RemovePermission(role, kvp.Key, SaveChanges.No);
             }
 
             db.SaveChanges();

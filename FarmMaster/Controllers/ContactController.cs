@@ -162,8 +162,6 @@ namespace FarmMaster.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-
-
         [HttpPost]
         [AllowAnonymous]
         [FarmAjaxReturnsMessageAndValue(BusinessConstants.Roles.EDIT_CONTACTS)]

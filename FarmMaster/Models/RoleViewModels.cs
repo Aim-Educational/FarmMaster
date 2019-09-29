@@ -9,6 +9,11 @@ namespace FarmMaster.Models
 {
     public class RoleCreateViewModel : ViewModelWithMessage
     {
+        /// <summary>
+        /// Only for edit mode.
+        /// </summary>
+        public int Id { get; set; }
+
         [Required]
         public string Name { get; set; }
 
@@ -18,18 +23,10 @@ namespace FarmMaster.Models
         [Required]
         public int HierarchyOrder { get; set; }
 
+        public bool IsCreate { get; set; }
+
         public Dictionary<string, bool> Permissions { get; set; }
 
-        // MUST BE REFRESHED EVERY REQUEST.
-        public IEnumerable<EnumRolePermission> AllKnownPermissions { get; set; }
-    }
-
-    public class RoleEditViewModel : ViewModelWithMessage
-    {
-        public Role Role { get; set; }
-        public Dictionary<string, bool> Permissions { get; set; }
-
-        // MUST BE REFRESHED EVERY REQUEST.
         public IEnumerable<EnumRolePermission> AllKnownPermissions { get; set; }
     }
 

@@ -1,0 +1,88 @@
+﻿@model RoleCreateViewModel
+@{
+    Layout = "_GenericEditorLayout";
+    ViewData["Title"] = "Create a Role";
+    ViewData["Breadcrumb"] = new Dictionary<string, string>
+    {
+        { "Home", "/Home/Index" },
+        { "Roles", "/Role/Index" },
+        { (Model.IsCreate) ? "Create"       : "Edit", 
+          (Model.IsCreate) ? "/Role/Create" : "/Role/Edit" 
+        }
+    };
+
+    const int CHECKBOXES_PER_ROW = 6;
+}
+
+<section class="editor section">
+    <form class="ui form" asp-action="@(Model.IsCreate ? "Create" : "Edit")" method="post">
+        @if(!Model.IsCreate)
+        {
+            <input type="hidden" asp-for="Id" />
+        }
+        <input type="hidden" asp-for="IsCreate" />
+
+        <section>
+            <h4>
+                Information
+            </h4>
+
+            <div class="content">
+                <div class="field">
+                    <label>Name</label>
+                    <input asp-for="Name" placeholder="Name" />
+                </div>
+
+                <div class="field">
+                    <label>Description</label>
+                    <input asp-for="Description" placeholder="Description" />
+                </div>
+
+                <div class="field">
+                    <label>Hierarchy Order</label>
+                    <input asp-for="HierarchyOrder" placeholder="Hierarchy Order" />
+                </div>
+
+                <partial name="_ViewModelWithMessagePartial" model="Model" />
+                <div asp-validation-summary="All"></div>
+            </div>
+        </section>
+        <section>
+            <h4>
+                Permissions
+            </h4>
+            <div class="content">
+                @{int permsToSkip = 0;}
+                @while (permsToSkip < Model.AllKnownPermissions.Count())
+                {
+                    <section class="six inline fields">
+                        @foreach (var perm in Model.AllKnownPermissions.Skip(permsToSkip).Take(CHECKBOXES_PER_ROW))
+                        {
+                            <section class="field">
+                                <div class="ui checkbox">
+                                    <input type="checkbox" asp-for="Permissions[perm.InternalName]" />
+                                    <label>@perm.Description</label>
+                                </div>
+                            </section>
+                            permsToSkip++;
+                        }
+                    </section>
+                }
+
+                <button class="ui primary fluid button" type="submit">
+                    @(Model.IsCreate ? "Create Role" : "Edit Role")
+                </button>
+            </div>
+        </section>
+    </form>
+</section>
+
+@section Scripts {
+    <script type="module">
+        import { Validation } from "/js/index.js";
+
+        $(".ui.checkbox").checkbox();
+
+        Validation.hookupForm(document.querySelector(".ui.form"));
+    </script>
+}

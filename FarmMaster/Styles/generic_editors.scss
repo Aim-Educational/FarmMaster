@@ -39,7 +39,7 @@
 }
 
 .editor.section {
-    & > section {
+    & > section, & > form > section {
         background: white;
 
         h4 {
@@ -65,7 +65,7 @@
                 display: inline-flex;
                 width: 100%;
 
-                &.three.inline.actions {
+                &.inline.action.with.two.inputs {
                     div.field {
                         width: 33%;
                         margin: 0;
