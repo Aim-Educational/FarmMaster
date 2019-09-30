@@ -77,7 +77,7 @@ namespace FarmMaster.Controllers
             return View(new RoleAssignViewModel
             {
                 Users = db.Users.Include(u => u.Contact).Include(u => u.Role).Where(u => u != myUser),
-                Roles = db.Roles
+                Roles = db.Roles.Where(r => myUser.Role.CanModify(r))
             });
         }
 
@@ -223,19 +223,28 @@ namespace FarmMaster.Controllers
         {
             var toModifyUser = users.FromIdAllIncluded(data.userId);
             var role = roles.FromIdAllIncluded(data.roleId);
+            
+            // Null checks
             if (toModifyUser == null)
                 throw new Exception($"The user with id #{data.userId} does not exist.");
             if (role == null && data.roleId != int.MaxValue) // int.MaxValue is intentionally allowed to be null, so you can remove roles out right.
                 throw new Exception($"The role with the id #{data.roleId} does not exist.");
 
+            // Sanity checks
             if (db.Entry(toModifyUser).State == EntityState.Detached)
                 throw new Exception("Internal error. toModifyUser is not being tracked by EF");
-            if (!myUser.Role.CanModify(toModifyUser.Role))
-                throw new Exception("You cannot change the role of someone who's role is higher in the hierarchy than your own.");
-            if (!myUser.Role.CanModify(role))
-                throw new Exception($"You cannot assign the '{role.Name}' role as it is higher in the hierarchy than your own.");
+
+            // Abuse prevention checks
             if (myUser == toModifyUser)
                 throw new Exception("You cannot assign your own role, this is for security purposes, and to avoid accidental role lock outs.");
+            if (!myUser.Role.CanModify(toModifyUser.Role))
+                throw new Exception("You cannot change the role of someone who's role is higher in the hierarchy than your own.");
+            if (toModifyUser.Role.HierarchyOrder == myUser.Role.HierarchyOrder)
+                throw new Exception("You cannot change the role of someone who's role is in the same place in the hierarchy as your own. This is to prevent certain types of power abuse.");
+            if (role != null && role.HierarchyOrder == myUser.Role.HierarchyOrder)
+                throw new Exception("You cannot assign someone a role that is in the same place in the hierarchy as your own. This is to prevent certain types of abuse.");
+            if (!myUser.Role.CanModify(role))
+                throw new Exception($"You cannot assign the '{role.Name}' role as it is higher in the hierarchy than your own.");
 
             toModifyUser.Role = role;
             db.SaveChanges();
