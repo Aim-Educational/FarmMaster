@@ -1,49 +1,55 @@
 ﻿@model RoleAssignViewModel
 @{
+    Layout = "_GenericEditorLayout";
     ViewData["Title"] = "Assign Roles";
-    ViewData["Breadcrumb"] = new[]
+    ViewData["Breadcrumb"] = new Dictionary<string, string>
     {
-        "Home:/Home/Index",
-        "Roles:/Role/Index",
-        "Assign:/Role/Assign"
+        { "Home", "/Home/Index" },
+        { "Roles", "/Role/Index" },
+        { "Assign", "/Role/Assign" }
     };
 }
 
-<h1>Assign Roles</h1>
+<section class="editor section">
+    <section>
+        <div class="content">
+            <div class="top padded items"></div> <!--Padding-->
+            <table class="ui striped table">
+                <thead>
+                    <tr>
+                        <th>User</th>
+                        <th>Role</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var user in Model.Users.OrderBy(u => u.Contact.FullName))
+                    {
+                        <tr>
+                            <td>@user.Contact.FullName</td>
+                            <td>
+                                <div class="ui search selection dropdown">
+                                    <input type="hidden" autocomplete="off" data-user-id="@user.UserId" value="@(user.RoleId ?? int.MaxValue)" />
+                                    <i class="dropdown icon"></i>
+                                    <div class="default text">Role</div>
+                                    <div class="menu">
+                                        <div class="item" data-value="@int.MaxValue">[NO ROLE]</div>
+                                        @foreach (var role in Model.Roles.OrderBy(r => r.Name))
+                                        {
+                                            <div class="item" data-value="@role.RoleId">@role.Name</div>
+                                        }
+                                    </div>
+                                </div>
+                                <div class="ui message transition hidden">
 
-<table class="ui celled table">
-    <thead>
-        <tr>
-            <th>User</th>
-            <th>Role</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var user in Model.Users.OrderBy(u => u.Contact.FullName))
-        {
-            <tr>
-                <td>@user.Contact.FullName</td>
-                <td>
-                    <div class="ui search selection dropdown">
-                        <input type="hidden" autocomplete="off" data-user-id="@user.UserId" value="@(user.RoleId ?? int.MaxValue)" />
-                        <i class="dropdown icon"></i>
-                        <div class="default text">Role</div>
-                        <div class="menu">
-                            <div class="item" data-value="@int.MaxValue">[NO ROLE]</div>
-                            @foreach (var role in Model.Roles.OrderBy(r => r.Name))
-                            {
-                                <div class="item" data-value="@role.RoleId">@role.Name</div>
-                            }
-                        </div>
-                    </div>
-                    <div class="ui message transition hidden">
-
-                    </div>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </section>
+</section>
 
 @section Scripts {
     <script type="module">
