@@ -13,6 +13,10 @@ namespace Business.Model
         [Required]
         [StringLength(25)]
         public string HerdNumber { get; set; }
+        
+        [Required]
+        [StringLength(25)]
+        public string RareBreedNumber { get; set; }
 
         [Required]
         public int HoldingId { get; set; }

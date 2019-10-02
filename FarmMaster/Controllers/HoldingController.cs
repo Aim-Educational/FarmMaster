@@ -62,6 +62,7 @@ namespace FarmMaster.Controllers
 
             return View("CreateEdit", new HoldingCreateEditViewModel
             {
+                // Forgive my sins, o great Linux neckbeard.
                 AllRegistrations = this._context.EnumHoldingRegistrations,
                 Holding = holding,
                 SelectedRegistrations = this._context.EnumHoldingRegistrations
@@ -71,13 +72,22 @@ namespace FarmMaster.Controllers
                                                                     .Select(r2 => r2.HoldingRegistration)
                                                                     .Any(r2 => r2.InternalName == r.InternalName)
                                                       ),
-                SelectedRegistrationHerdNumbers = this._context.EnumHoldingRegistrations
-                                                               .ToDictionary(
-                                                                    r => r.InternalName,
-                                                                    r => holding.Registrations
-                                                                                .FirstOrDefault(r2 => r2.HoldingRegistration.InternalName == r.InternalName)?
-                                                                                .HerdNumber
-                                                               )
+                SelectedRegistrationHerdNumbers = this._context
+                                                      .EnumHoldingRegistrations
+                                                      .ToDictionary(
+                                                           r => r.InternalName,
+                                                           r => holding.Registrations
+                                                                       .FirstOrDefault(r2 => r2.HoldingRegistration.InternalName == r.InternalName)?
+                                                                       .HerdNumber
+                                                      ),
+                SelectedRegistrationsRareBreedNumbers = this._context
+                                                            .EnumHoldingRegistrations
+                                                            .ToDictionary(
+                                                                 r => r.InternalName,
+                                                                 r => holding.Registrations
+                                                                             .FirstOrDefault(r2 => r2.HoldingRegistration.InternalName == r.InternalName)?
+                                                                             .RareBreedNumber
+                                                            )
             });
         }
 
@@ -101,6 +111,7 @@ namespace FarmMaster.Controllers
         [FarmAuthorise(PermsOR: new[] { BusinessConstants.Roles.EDIT_HOLDINGS })]
         public IActionResult Create(HoldingCreateEditViewModel model)
         {
+            model.AllRegistrations = this._context.EnumHoldingRegistrations;
             model.IsCreate = true;
 
             foreach(var kvp in model.SelectedRegistrationHerdNumbers.Where(kvp => model.SelectedRegistrations[kvp.Key]))
@@ -112,7 +123,6 @@ namespace FarmMaster.Controllers
             if(!ModelState.IsValid)
             {
                 model.ParseMessageQueryString(ViewModelWithMessage.CreateQueryString(ModelState));
-                model.AllRegistrations = this._context.EnumHoldingRegistrations;
                 return View("CreateEdit", model);
             }
 
@@ -121,7 +131,6 @@ namespace FarmMaster.Controllers
             {
                 model.MessageType = ViewModelWithMessage.Type.Error;
                 model.Message = $"No contact with ID of #{model.Holding.OwnerContactId}";
-                model.AllRegistrations = this._context.EnumHoldingRegistrations;
                 return View("CreateEdit", model);
             }
 
@@ -135,7 +144,14 @@ namespace FarmMaster.Controllers
             );
 
             foreach(var reg in model.SelectedRegistrations.Where(kvp => kvp.Value).Select(kvp => kvp.Key))
-                this._holdings.AddRegistrationByName(holding, reg, model.SelectedRegistrationHerdNumbers[reg]);
+            {
+                this._holdings.AddRegistrationByName(
+                    holding,
+                    reg, 
+                    model.SelectedRegistrationHerdNumbers[reg],
+                    model.SelectedRegistrationsRareBreedNumbers[reg]
+                );
+            }
 
             return RedirectToAction(nameof(Index));
         }
@@ -145,6 +161,8 @@ namespace FarmMaster.Controllers
         [FarmAuthorise(PermsOR: new[] { BusinessConstants.Roles.EDIT_HOLDINGS })]
         public IActionResult Edit(HoldingCreateEditViewModel model)
         {
+            model.AllRegistrations = this._context.EnumHoldingRegistrations;
+
             foreach (var kvp in model.SelectedRegistrationHerdNumbers.Where(kvp => model.SelectedRegistrations[kvp.Key]))
             {
                 if (String.IsNullOrEmpty(kvp.Value))
@@ -154,7 +172,6 @@ namespace FarmMaster.Controllers
             if (!ModelState.IsValid)
             {
                 model.ParseMessageQueryString(ViewModelWithMessage.CreateQueryString(ModelState));
-                model.AllRegistrations = this._context.EnumHoldingRegistrations;
                 return View("CreateEdit", model);
             }
 
@@ -163,7 +180,6 @@ namespace FarmMaster.Controllers
             {
                 model.MessageType = ViewModelWithMessage.Type.Error;
                 model.Message = $"No contact with ID of #{model.Holding.OwnerContactId}";
-                model.AllRegistrations = this._context.EnumHoldingRegistrations;
                 return View("CreateEdit", model);
             }
 
@@ -181,8 +197,15 @@ namespace FarmMaster.Controllers
             {
                 if(!kvp.Value)
                     this._holdings.RemoveRegistrationByName(holdingDb, kvp.Key);
-                else
-                    this._holdings.AddRegistrationByName(holdingDb, kvp.Key, model.SelectedRegistrationHerdNumbers[kvp.Key]);
+                else 
+                {
+                    this._holdings.AddRegistrationByName(
+                        holdingDb, 
+                        kvp.Key, 
+                        model.SelectedRegistrationHerdNumbers[kvp.Key],
+                        model.SelectedRegistrationsRareBreedNumbers[kvp.Key]
+                    );
+                }
             }
 
             return RedirectToAction(nameof(Edit), new { id = model.Holding.HoldingId });

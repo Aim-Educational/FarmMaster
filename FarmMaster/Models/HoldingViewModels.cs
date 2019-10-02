@@ -17,6 +17,7 @@ namespace FarmMaster.Models
         public Holding Holding { get; set; }
         public IDictionary<string, bool> SelectedRegistrations { get; set; }
         public IDictionary<string, string> SelectedRegistrationHerdNumbers { get; set; }
+        public IDictionary<string, string> SelectedRegistrationsRareBreedNumbers { get; set; }
         public IEnumerable<EnumHoldingRegistration> AllRegistrations { get; set; }
     }
 }

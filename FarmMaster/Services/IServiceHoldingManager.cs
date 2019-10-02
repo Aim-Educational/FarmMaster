@@ -11,7 +11,7 @@ namespace FarmMaster.Services
     {
         Holding Create(string name, string holdingNumber, string gridReference, string address, string postCode, Contact owner);
         void RemoveByReference(Holding holding);
-        bool AddRegistrationByName(Holding holding, string regInternalName, string herdNumber);
+        bool AddRegistrationByName(Holding holding, string regInternalName, string herdNumber, string rareBreedNumber);
         bool RemoveRegistrationByName(Holding holding, string regInternalName);
     }
 
@@ -64,7 +64,7 @@ namespace FarmMaster.Services
             return holding;
         }
 
-        public bool AddRegistrationByName(Holding holding, string regInternalName, string herdNumber)
+        public bool AddRegistrationByName(Holding holding, string regInternalName, string herdNumber, string rareBreedNumber)
         {
             if(holding == null)
                 throw new ArgumentNullException("holding");
@@ -77,7 +77,8 @@ namespace FarmMaster.Services
             {
                 Holding = holding,
                 HoldingRegistration = reg,
-                HerdNumber = herdNumber
+                HerdNumber = herdNumber,
+                RareBreedNumber = rareBreedNumber
             };
 
             this._context.Add(map);
