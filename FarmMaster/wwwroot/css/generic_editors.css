@@ -74,15 +74,15 @@
         background-color: #dbdbdb; }
         .editor.section > section div.content.dark.striped:nth-of-type(even), .editor.section > section div.content > div.sub.content.dark.striped:nth-of-type(even), .editor.section > form > section div.content.dark.striped:nth-of-type(even), .editor.section > form > section div.content > div.sub.content.dark.striped:nth-of-type(even) {
           background-color: #cccccc; }
-      .editor.section > section div.content div.holding.registrations, .editor.section > section div.content > div.sub.content div.holding.registrations, .editor.section > form > section div.content div.holding.registrations, .editor.section > form > section div.content > div.sub.content div.holding.registrations {
+      .editor.section > section div.content div.holding.registration, .editor.section > section div.content > div.sub.content div.holding.registration, .editor.section > form > section div.content div.holding.registration, .editor.section > form > section div.content > div.sub.content div.holding.registration {
         display: inline-flex;
         width: 100%; }
-        .editor.section > section div.content div.holding.registrations div.field, .editor.section > section div.content > div.sub.content div.holding.registrations div.field, .editor.section > form > section div.content div.holding.registrations div.field, .editor.section > form > section div.content > div.sub.content div.holding.registrations div.field {
+        .editor.section > section div.content div.holding.registration div.field, .editor.section > section div.content > div.sub.content div.holding.registration div.field, .editor.section > form > section div.content div.holding.registration div.field, .editor.section > form > section div.content > div.sub.content div.holding.registration div.field {
           display: flex;
           align-self: center;
           width: 40%;
           margin: 1em 1em 0em 1em; }
-          .editor.section > section div.content div.holding.registrations div.field:nth-child(1), .editor.section > section div.content > div.sub.content div.holding.registrations div.field:nth-child(1), .editor.section > form > section div.content div.holding.registrations div.field:nth-child(1), .editor.section > form > section div.content > div.sub.content div.holding.registrations div.field:nth-child(1) {
+          .editor.section > section div.content div.holding.registration div.field:nth-child(1), .editor.section > section div.content > div.sub.content div.holding.registration div.field:nth-child(1), .editor.section > form > section div.content div.holding.registration div.field:nth-child(1), .editor.section > form > section div.content > div.sub.content div.holding.registration div.field:nth-child(1) {
             width: 20%; }
     .editor.section > section:nth-of-type(even), .editor.section > form > section:nth-of-type(even) {
       background-color: #ebebeb; }
