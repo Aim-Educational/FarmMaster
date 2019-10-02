@@ -49,6 +49,16 @@
                 .modal("show");
         });
     }
+
+    public static show(modalId: string): void {
+        const modal = document.getElementById(modalId);
+        if (modal === null) {
+            alert("Dev error: No element with ID of '" + modalId + "'");
+            return;
+        }
+
+        $(modal).modal("show");
+    }
 }
 
 export default Modal;
