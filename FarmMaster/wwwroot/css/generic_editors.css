@@ -41,6 +41,19 @@
       font-weight: bold;
       font-size: 20px;
       letter-spacing: 0.03em; }
+    .editor.section > section div.header.with.question, .editor.section > form > section div.header.with.question {
+      display: inline-flex; }
+      .editor.section > section div.header.with.question button, .editor.section > form > section div.header.with.question button {
+        margin-top: 0.8em;
+        margin-left: 0.4em;
+        width: 50px;
+        height: 25px;
+        font-size: 18px;
+        border-radius: 20px;
+        background-color: dodgerblue;
+        color: lightblue;
+        line-height: 1.35;
+        cursor: pointer; }
     .editor.section > section div.content, .editor.section > section div.content > div.sub.content, .editor.section > form > section div.content, .editor.section > form > section div.content > div.sub.content {
       display: flex;
       flex-direction: column;

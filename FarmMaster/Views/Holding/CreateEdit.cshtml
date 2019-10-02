@@ -12,6 +12,23 @@
 
 <partial name="_ViewModelWithMessagePartial" model="@Model" />
 
+<div id="modalRegHelp" class="ui modal">
+    <div class="content">
+        <div class="ui visible info message">
+            <h3>What are these things?</h3>
+            <p>Farms have to be registered to ...</p>
+            <p>Herd numbers are...</p>
+            <p>Rare breed numbers are...</p>
+            <p>You can usually find these by...</p>
+        </div>
+    </div>
+    <div class="actions">
+        <div class="ui primary cancel button">
+            Ok
+        </div>
+    </div>
+</div>
+
 <section class="editor section">
     <form class="ui form" asp-action="@(Model.IsCreate ? "Create" : "Edit")" asp-route-id="@(Model.IsCreate ? -1 : Model.Holding.HoldingId)">
         @if (!Model.IsCreate)
@@ -64,7 +81,10 @@
             </div>
         </section>
         <section>
-            <h4>Registered for</h4>
+            <div class="header with question">
+                <h4>Registered for</h4>
+                <button type="button" onclick="showRegistrationHelp()">?</button>
+            </div>
             <div class="content">
                 @foreach (var reg in Model.AllRegistrations)
                 {
@@ -102,7 +122,7 @@
 
 @section Scripts {
     <script type="module">
-        import { ComponentSelect, Validation } from "/js/index.js"
+        import { ComponentSelect, Validation, Modal } from "/js/index.js"
 
         $(".ui.checkbox").checkbox();
         $(".ui.dropdown").dropdown();
@@ -119,5 +139,10 @@
         }
         refreshOwner();
         window.refreshOwner = refreshOwner;
+
+        function showRegistrationHelp() {
+            Modal.show("modalRegHelp");
+        }
+        window.showRegistrationHelp = showRegistrationHelp;
     </script>
 }

@@ -57,6 +57,23 @@
             letter-spacing: 0.03em;
         }
 
+        div.header.with.question {
+            display: inline-flex;
+
+            button {
+                margin-top: 0.8em;
+                margin-left: 0.4em;
+                width: 50px;
+                height: 25px;
+                font-size: 18px;
+                border-radius: 20px;
+                background-color: dodgerblue;
+                color: lightblue;
+                line-height: 1.35;
+                cursor: pointer;
+            }
+        }
+
         div.content, div.content > div.sub.content {
             display: flex;
             flex-direction: column;
