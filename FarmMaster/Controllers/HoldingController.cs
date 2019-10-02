@@ -199,12 +199,25 @@ namespace FarmMaster.Controllers
                     this._holdings.RemoveRegistrationByName(holdingDb, kvp.Key);
                 else 
                 {
-                    this._holdings.AddRegistrationByName(
+                    var herdNumber = model.SelectedRegistrationHerdNumbers[kvp.Key] ?? "N/A";
+                    var rareBreedNumber = model.SelectedRegistrationsRareBreedNumbers[kvp.Key] ?? "N/A";
+
+                    var added = this._holdings.AddRegistrationByName(
                         holdingDb, 
-                        kvp.Key, 
-                        model.SelectedRegistrationHerdNumbers[kvp.Key],
-                        model.SelectedRegistrationsRareBreedNumbers[kvp.Key]
+                        kvp.Key,
+                        herdNumber,
+                        rareBreedNumber
                     );
+
+                    var alreadyExists = !added; // Naming has more clear intent.
+                    if(alreadyExists)
+                    {
+                        var reg = holdingDb.Registrations.First(r => r.HoldingRegistration.InternalName == kvp.Key);
+                        reg.HerdNumber = herdNumber;
+                        reg.RareBreedNumber = rareBreedNumber;
+
+                        this._holdings.Update(holdingDb);
+                    }
                 }
             }
 
