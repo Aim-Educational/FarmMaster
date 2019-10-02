@@ -26,48 +26,67 @@
       font-weight: bold;
       color: #767676; }
 
-.editor.section > section, .editor.section > form > section {
-  background: white; }
-  .editor.section > section h4, .editor.section > form > section h4 {
-    padding-top: 0.8em;
-    padding-left: 0.8em;
-    padding-bottom: 1.5em;
-    margin-bottom: 0;
-    font-weight: bold;
-    font-size: 20px;
-    letter-spacing: 0.03em; }
-  .editor.section > section div.content, .editor.section > section div.content > div.sub.content, .editor.section > form > section div.content, .editor.section > form > section div.content > div.sub.content {
-    padding-left: 1em;
-    padding-bottom: 1em;
-    padding-right: 1em; }
-    .editor.section > section div.content div.top.padded.items, .editor.section > section div.content > div.sub.content div.top.padded.items, .editor.section > form > section div.content div.top.padded.items, .editor.section > form > section div.content > div.sub.content div.top.padded.items {
-      padding-top: 1em; }
-    .editor.section > section div.content div.table.action.section, .editor.section > section div.content > div.sub.content div.table.action.section, .editor.section > form > section div.content div.table.action.section, .editor.section > form > section div.content > div.sub.content div.table.action.section {
-      display: inline-flex;
-      width: 100%; }
-      .editor.section > section div.content div.table.action.section.inline.action.with.two.inputs div.field, .editor.section > section div.content > div.sub.content div.table.action.section.inline.action.with.two.inputs div.field, .editor.section > form > section div.content div.table.action.section.inline.action.with.two.inputs div.field, .editor.section > form > section div.content > div.sub.content div.table.action.section.inline.action.with.two.inputs div.field {
-        width: 33%;
-        margin: 0;
-        margin-right: 30px; }
-        .editor.section > section div.content div.table.action.section.inline.action.with.two.inputs div.field div.selection, .editor.section > section div.content > div.sub.content div.table.action.section.inline.action.with.two.inputs div.field div.selection, .editor.section > form > section div.content div.table.action.section.inline.action.with.two.inputs div.field div.selection, .editor.section > form > section div.content > div.sub.content div.table.action.section.inline.action.with.two.inputs div.field div.selection {
-          width: 100%; }
-      .editor.section > section div.content div.table.action.section.inline.action.with.two.inputs button, .editor.section > section div.content > div.sub.content div.table.action.section.inline.action.with.two.inputs button, .editor.section > form > section div.content div.table.action.section.inline.action.with.two.inputs button, .editor.section > form > section div.content > div.sub.content div.table.action.section.inline.action.with.two.inputs button {
-        align-self: end;
-        width: 33%;
-        height: 43.13333px;
-        margin: 0; }
-    .editor.section > section div.content div.sub.content h5, .editor.section > section div.content > div.sub.content div.sub.content h5, .editor.section > form > section div.content div.sub.content h5, .editor.section > form > section div.content > div.sub.content div.sub.content h5 {
+.editor.section {
+  display: flex;
+  flex-direction: column; }
+  .editor.section > section, .editor.section > form > section {
+    display: flex;
+    flex-direction: column;
+    background: white; }
+    .editor.section > section h4, .editor.section > form > section h4 {
       padding-top: 0.8em;
+      padding-left: 0.8em;
       padding-bottom: 1.5em;
       margin-bottom: 0;
       font-weight: bold;
-      font-size: 16px;
+      font-size: 20px;
       letter-spacing: 0.03em; }
-  .editor.section > section:nth-of-type(even), .editor.section > form > section:nth-of-type(even) {
-    background-color: #ebebeb; }
-
-.editor.section thead tr.two.columns th:not(:first-child) {
-  width: 50%; }
-
-.editor.section th.editor.action {
-  width: 0px; }
+    .editor.section > section div.content, .editor.section > section div.content > div.sub.content, .editor.section > form > section div.content, .editor.section > form > section div.content > div.sub.content {
+      display: flex;
+      flex-direction: column;
+      padding-left: 1em;
+      padding-bottom: 1em;
+      padding-right: 1em; }
+      .editor.section > section div.content div.top.padded.items, .editor.section > section div.content > div.sub.content div.top.padded.items, .editor.section > form > section div.content div.top.padded.items, .editor.section > form > section div.content > div.sub.content div.top.padded.items {
+        padding-top: 1em; }
+      .editor.section > section div.content div.table.action.section, .editor.section > section div.content > div.sub.content div.table.action.section, .editor.section > form > section div.content div.table.action.section, .editor.section > form > section div.content > div.sub.content div.table.action.section {
+        display: inline-flex;
+        width: 100%; }
+        .editor.section > section div.content div.table.action.section.inline.action.with.two.inputs div.field, .editor.section > section div.content > div.sub.content div.table.action.section.inline.action.with.two.inputs div.field, .editor.section > form > section div.content div.table.action.section.inline.action.with.two.inputs div.field, .editor.section > form > section div.content > div.sub.content div.table.action.section.inline.action.with.two.inputs div.field {
+          width: 33%;
+          margin: 0;
+          margin-right: 30px; }
+          .editor.section > section div.content div.table.action.section.inline.action.with.two.inputs div.field div.selection, .editor.section > section div.content > div.sub.content div.table.action.section.inline.action.with.two.inputs div.field div.selection, .editor.section > form > section div.content div.table.action.section.inline.action.with.two.inputs div.field div.selection, .editor.section > form > section div.content > div.sub.content div.table.action.section.inline.action.with.two.inputs div.field div.selection {
+            width: 100%; }
+        .editor.section > section div.content div.table.action.section.inline.action.with.two.inputs button, .editor.section > section div.content > div.sub.content div.table.action.section.inline.action.with.two.inputs button, .editor.section > form > section div.content div.table.action.section.inline.action.with.two.inputs button, .editor.section > form > section div.content > div.sub.content div.table.action.section.inline.action.with.two.inputs button {
+          align-self: end;
+          width: 33%;
+          height: 43.13333px;
+          margin: 0; }
+      .editor.section > section div.content div.sub.content h5, .editor.section > section div.content > div.sub.content div.sub.content h5, .editor.section > form > section div.content div.sub.content h5, .editor.section > form > section div.content > div.sub.content div.sub.content h5 {
+        padding-top: 0.8em;
+        padding-bottom: 1.5em;
+        margin-bottom: 0;
+        font-weight: bold;
+        font-size: 16px;
+        letter-spacing: 0.03em; }
+      .editor.section > section div.content.dark.striped, .editor.section > section div.content > div.sub.content.dark.striped, .editor.section > form > section div.content.dark.striped, .editor.section > form > section div.content > div.sub.content.dark.striped {
+        background-color: #dbdbdb; }
+        .editor.section > section div.content.dark.striped:nth-of-type(even), .editor.section > section div.content > div.sub.content.dark.striped:nth-of-type(even), .editor.section > form > section div.content.dark.striped:nth-of-type(even), .editor.section > form > section div.content > div.sub.content.dark.striped:nth-of-type(even) {
+          background-color: #cccccc; }
+      .editor.section > section div.content div.holding.registrations, .editor.section > section div.content > div.sub.content div.holding.registrations, .editor.section > form > section div.content div.holding.registrations, .editor.section > form > section div.content > div.sub.content div.holding.registrations {
+        display: inline-flex;
+        width: 100%; }
+        .editor.section > section div.content div.holding.registrations div.field, .editor.section > section div.content > div.sub.content div.holding.registrations div.field, .editor.section > form > section div.content div.holding.registrations div.field, .editor.section > form > section div.content > div.sub.content div.holding.registrations div.field {
+          display: flex;
+          align-self: center;
+          width: 40%;
+          margin: 1em 1em 0em 1em; }
+          .editor.section > section div.content div.holding.registrations div.field:nth-child(1), .editor.section > section div.content > div.sub.content div.holding.registrations div.field:nth-child(1), .editor.section > form > section div.content div.holding.registrations div.field:nth-child(1), .editor.section > form > section div.content > div.sub.content div.holding.registrations div.field:nth-child(1) {
+            width: 20%; }
+    .editor.section > section:nth-of-type(even), .editor.section > form > section:nth-of-type(even) {
+      background-color: #ebebeb; }
+  .editor.section thead tr.two.columns th:not(:first-child) {
+    width: 50%; }
+  .editor.section th.editor.action {
+    width: 0px; }

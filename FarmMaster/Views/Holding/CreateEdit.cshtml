@@ -1,105 +1,104 @@
 ﻿@model HoldingCreateEditViewModel
 @{
+    Layout = "_GenericEditorLayout";
     ViewData["Title"] = Model.IsCreate ? "Create Holding" : "Edit Holding";
-    ViewData["Breadcrumb"] = new[]
+    ViewData["Breadcrumb"] = new Dictionary<string, string>
     {
-        "Home:/Home/Index",
-        "Holdings:/Holding/Index",
-        $"{(Model.IsCreate ? "Create" : "Edit")}:#"
+        { "Home", "/Home/Index"},
+        { "Holdings", "/Holding/Index"},
+        { $"{(Model.IsCreate ? "Create" : "Edit")}", "#" }
     };
 }
 
 <partial name="_ViewModelWithMessagePartial" model="@Model" />
 
-<form class="ui form" asp-action="@(Model.IsCreate ? "Create" : "Edit")" asp-route-id="@(Model.IsCreate ? -1 : Model.Holding.HoldingId)">
-    @if (!Model.IsCreate)
-    {
-        <input type="hidden" asp-for="Holding.Timestamp" />
-        <input type="hidden" asp-for="Holding.HoldingId" />
-    }
+<section class="editor section">
+    <form class="ui form" asp-action="@(Model.IsCreate ? "Create" : "Edit")" asp-route-id="@(Model.IsCreate ? -1 : Model.Holding.HoldingId)">
+        @if (!Model.IsCreate)
+        {
+            <input type="hidden" asp-for="Holding.Timestamp" />
+            <input type="hidden" asp-for="Holding.HoldingId" />
+        }
+        <section>
+            <h4>Information</h4>
+            <div class="content">
+                <div class="field">
+                    <label>Name</label>
+                    <input asp-for="Holding.Name" />
+                </div>
+                <div class="field">
+                    <label>Holding Number</label>
+                    <input asp-for="Holding.HoldingNumber" />
+                </div>
+                <div class="field">
+                    <label>Grid Reference</label>
+                    <input asp-for="Holding.GridReference" />
+                </div>
+                <div class="field">
+                    <label>Address</label>
+                    <input asp-for="Holding.Address" />
+                </div>
+                <div class="field">
+                    <label>Postcode</label>
+                    <input asp-for="Holding.Postcode" />
+                </div>
+                <div class="field">
+                    <label>Owner</label>
 
-    <section class="ui top attached segment">
-        <h1>
-            @(Model.IsCreate ? "Create" : "Edit") Holding
-        </h1>
-    </section>
-    <section class="ui attached segment">
-        <section class="field">
-            <label>Name</label>
-            <input asp-for="Holding.Name" />
-        </section>
-        <section class="field">
-            <label>Holding Number</label>
-            <input asp-for="Holding.HoldingNumber" />
-        </section>
-        <section class="field">
-            <label>Grid Reference</label>
-            <input asp-for="Holding.GridReference" />
-        </section>
-        <section class="field">
-            <label>Address</label>
-            <input asp-for="Holding.Address" />
-        </section>
-        <section class="field">
-            <label>Postcode</label>
-            <input asp-for="Holding.Postcode" />
-        </section>
-        <section class="field">
-            <label>Owner</label>
+                    <div class="ui search selection dropdown">
+                        <input id="selectOwner" type="hidden" asp-for="Holding.OwnerContactId" data-default-value="@(Model.Holding?.OwnerContactId ?? -1)" />
+                        <i class="dropdown icon"></i>
+                        <div class="text"></div>
+                        <div class="menu">
 
-            <div class="ui search selection dropdown">
-                <input id="selectOwner" type="hidden" asp-for="Holding.OwnerContactId" data-default-value="@(Model.Holding?.OwnerContactId ?? -1)" />
-                <i class="dropdown icon"></i>
-                <div class="text"></div>
-                <div class="menu">
+                        </div>
+                    </div>
 
+                    <a class="ui primary button" asp-action="Index" asp-controller="Contact" target="_blank">
+                        GOTO
+                    </a>
+                    <button class="ui primary button" type="button" onclick="refreshOwner()">
+                        REFRESH
+                    </button>
                 </div>
             </div>
-
-            <a class="ui primary button" asp-action="Index" asp-controller="Contact" target="_blank">
-                GOTO
-            </a>
-            <button class="ui primary button" type="button" onclick="refreshOwner()">
-                REFRESH
-            </button>
         </section>
-    </section>
-    <section class="ui attached segment">
-        <h3 class="ui dividing header">Registered for</h3>
-        <section class="ui basic segments">
-        @foreach (var reg in Model.AllRegistrations)
-        {
-            <section class="ui segment">
-                <section class="ui three column grid">
-                    <section class="ui divided row">
-                        <section class="ui column">
-                            <label>
-                                <strong>@reg.Description</strong>
-                            </label>
-                        </section>
-                        <section class="ui column">
-                            <div class="ui checkbox">
-                                <input type="checkbox" asp-for="SelectedRegistrations[reg.InternalName]" />
-                                <label>Registered?</label>
+        <section>
+            <h4>Registered for</h4>
+            <div class="content">
+                @foreach (var reg in Model.AllRegistrations)
+                {
+                    <div class="dark striped sub content">
+                        <div class="holding registrations">
+                            <div class="field">
+                                <div class="ui toggle checkbox">
+                                    <input type="checkbox" asp-for="SelectedRegistrations[reg.InternalName]" />
+                                    <label>@reg.Description</label>
+                                </div>
                             </div>
-                        </section>
-                        <section class="ui column">
-                            <input type="text" asp-for="SelectedRegistrationHerdNumbers[reg.InternalName]" placeholder="Herd Number" />
-                        </section>
-                    </section>
-                </section>
-            </section>
-        }
+                            <div class="field">
+                                <input type="text" asp-for="SelectedRegistrationHerdNumbers[reg.InternalName]" placeholder="Herd Number" />
+                            </div>
+                            <div class="field">
+                                <input type="text" placeholder="Rare Breed Number" />
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
         </section>
-    </section>
-    <section class="ui bottom attached segment">
-        <button type="submit" class="ui fluid primary button">
-            @(Model.IsCreate ? "Create Holding" : "Edit Holding")
-        </button>
-        <br />
-        <div asp-validation-summary="All"></div>
-    </section>
-</form>
+        <section>
+            <div class="content">
+                <div class="top padded items">
+                    <button type="submit" class="ui fluid primary button">
+                        @(Model.IsCreate ? "Create Holding" : "Edit Holding")
+                    </button>
+                </div>
+                <div asp-validation-summary="All"></div>
+            </div>
+        </section>
+    </form>
+</section>
 
 @section Scripts {
     <script type="module">

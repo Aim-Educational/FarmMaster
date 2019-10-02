@@ -39,7 +39,12 @@
 }
 
 .editor.section {
+    display: flex;
+    flex-direction: column;
+
     & > section, & > form > section {
+        display: flex;
+        flex-direction: column;
         background: white;
 
         h4 {
@@ -53,6 +58,8 @@
         }
 
         div.content, div.content > div.sub.content {
+            display: flex;
+            flex-direction: column;
             padding-left: 1em;
             padding-bottom: 1em;
             padding-right: 1em;
@@ -95,6 +102,33 @@
                     letter-spacing: 0.03em;
                 }
             }
+
+            &.dark.striped {
+                background-color: hsl(0, 0%, 86%);
+                &:nth-of-type(even) {
+                    background-color: hsl(0, 0%, 80%);
+                }
+            }
+
+            // SPECIFIC STYLING FOR CERTAIN EDITOR PAGES
+            div.holding {
+                &.registrations {
+                    display: inline-flex;
+                    width: 100%;
+
+                    div.field {
+                        display: flex;
+                        align-self: center;
+                        width: 40%;
+                        margin: 1em 1em 0em 1em;
+
+                        &:nth-child(1) {
+                            width: 20%;
+                        }
+                    }
+                }
+            }
+            // END SPECIFIC STYLING
         }
 
         &:nth-of-type(even) {
