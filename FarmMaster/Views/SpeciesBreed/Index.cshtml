@@ -1,24 +1,24 @@
 ﻿@model SpeciesBreedIndexViewModel
 @{
-    ViewData["Title"] = "Index - Species & Breeds";
-    ViewData["Breadcrumb"] = new[]
+    Layout = "_GenericEditorLayout";
+    ViewData["Title"] = "Species & Breeds";
+    ViewData["Breadcrumb"] = new Dictionary<string, string>
     {
-        "Home:/Home/Index",
-        "Species & Breeds:/SpeciesBreed/Index"
+        { "Home", "/Home/Index" },
+        { "Species & Breeds", "/SpeciesBreed/Index" }
     };
 }
 
 <partial name="_ViewModelWithMessagePartial" model="Model" />
 
 <section class="ui centered stackable grid">
-    <section class="two column row">
-        <section class="column">
-            <section class="ui center aligned attached header">
+    <div class="two column row">
+        <div class="column">
+            <div class="ui center aligned attached header">
                 <h2>Species</h2>
                 <a class="ui fluid primary button" asp-action="CreateSpecies">Create</a>
-            </section>
-            <section class="ui attached segment">
-                <table id="tableSpecies" class="ui celled table">
+                <br />
+                <table id="tableSpecies" class="ui striped table">
                     <thead>
                         <tr>
                             <th>Name</th>
@@ -29,15 +29,14 @@
                     <tfoot></tfoot>
                 </table>
                 <div id="boxErrorSpecies" class="ui error message transition hidden"></div>
-            </section>
-        </section>
-        <section class="column">
-            <section class="ui center aligned attached header">
+            </div>
+        </div>
+        <div class="column">
+            <div class="ui center aligned attached header">
                 <h2>Breeds</h2>
                 <a class="ui fluid primary button" asp-action="CreateBreed">Create</a>
-            </section>
-            <section class="ui attached segment">
-                <table id="tableBreeds" class="ui celled table">
+                <br />
+                <table id="tableBreeds" class="ui striped table">
                     <thead>
                         <tr>
                             <th>Name</th>
@@ -49,9 +48,9 @@
                     <tfoot></tfoot>
                 </table>
                 <div id="boxErrorBreeds" class="ui error message transition hidden"></div>
-            </section>
-        </section>
-    </section>
+            </div>
+        </div>
+    </div>
 </section>
 
 @section Scripts {
