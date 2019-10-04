@@ -260,46 +260,6 @@ namespace FarmMaster.Controllers
 
             return new AjaxValueResult(result);
         }
-        
-        /*
-        [HttpPost]
-        [AllowAnonymous]
-        [FarmAjaxReturnsMessageAndValue(BusinessConstants.Roles.VIEW_SPECIES_BREEDS)]
-        public IActionResult AjaxGetCharacteristics([FromBody] AjaxCharacteristicsRequest model, User _)
-        {
-            IEnumerable<AjaxCharacteristicsResponseValue> result;
-
-            if (model.Type == "Species")
-            {
-                var list = this.GetOrCreateListForEntity(model.Type, model.Id);
-                result = list.Characteristics
-                           .Select(c => new AjaxCharacteristicsResponseValue
-                           {
-                               Name = c.Name,
-                               Value = c.Data.ToHtmlString(),
-                               Type = (int)c.Data.FieldType,
-                               IsInherited = false
-                           });
-            }
-            else if (model.Type == "Breed") // For breeds, also show their species' characteristics as inherited.
-            {
-                var list = this.GetOrCreateListForEntity(model.Type, model.Id);
-                var speciesList = this._speciesBreeds.For<Breed>().FromIdAllIncluded(model.Id).Species.CharacteristicList;
-                var combined = list.Characteristics.Concat(speciesList.Characteristics);
-
-                result = combined.Select(c => new AjaxCharacteristicsResponseValue
-                {
-                    Name = c.Name,
-                    Value = c.Data.ToHtmlString(),
-                    Type = (int)c.Data.FieldType,
-                    IsInherited = speciesList.Characteristics.Any(sc => sc.AnimalCharacteristicId == c.AnimalCharacteristicId)
-                });
-            }
-            else
-                throw new NotImplementedException(model.Type);
-
-            return new AjaxValueResult(result);
-        }*/
 
         [HttpPost]
         [AllowAnonymous]
@@ -327,30 +287,6 @@ namespace FarmMaster.Controllers
                     .OrderBy(s => s.Name)
                     .Select(s => new ComponentSelectOption { Description = s.Name, Value = $"{s.BreedId}" })
             );
-        }
-        #endregion
-
-        #region Helpers
-        private AnimalCharacteristicList GetOrCreateListForEntity(string type, int id)
-        {
-            if (type == "Species")
-            {
-                var species = this._speciesBreeds.For<Species>().FromIdAllIncluded(id);
-                if (species == null)
-                    throw new NullReferenceException("species");
-
-                return species.CharacteristicList;
-            }
-            else if(type == "Breed")
-            {
-                var breed = this._speciesBreeds.For<Breed>().FromIdAllIncluded(id);
-                if (breed == null)
-                    throw new NullReferenceException("breed");
-
-                return breed.CharacteristicList;
-            }
-            else
-                throw new NotImplementedException(type);
         }
         #endregion
     }
