@@ -1,57 +1,60 @@
 ﻿@model BreedCreateViewModel
 @{
-    ViewData["Title"] = "Create - Breed";
-    ViewData["Breadcrumb"] = new[]
+    Layout = "_GenericEditorLayout";
+    ViewData["Title"] = "Create Breed";
+    ViewData["Breadcrumb"] = new Dictionary<string, string>
     {
-        "Home:/Home/Index",
-        "Species & Breeds:/SpeciesBreed/Index",
-        "Create Breed:/SpeciesBreed/CreateBreed"
+        { "Home", "/Home/Index" },
+        { "Species & Breeds", "/SpeciesBreed/Index"},
+        { "Create Breed", "/SpeciesBreed/CreateBreed" }
     };
 }
 
-<section class="ui center aligned top attached header">
-    <h2>Create a breed</h2>
-</section>
-<section class="ui attached segment">
-    <form class="ui form" method="post" asp-action="CreateBreed">
-        <section class="field">
-            <label>Name</label>
-            <input asp-for="Name" placeholder="Name" />
-        </section>
-        <section class="field">
-            <label>Species</label>
-            <div class="ui search selection dropdown">
-                <input id="inputSpecies" type="hidden" data-default-value="-1" asp-for="SpeciesId" />
-                <i class="dropdown icon"></i>
-                <div class="default text">Species</div>
-                <div class="menu">
-
+<section class="editor section">
+    <section>
+        <h4>Information</h4>
+        <div class="content">
+            <form class="ui form" method="post" asp-action="CreateBreed">
+                <div class="field">
+                    <label>Name</label>
+                    <input asp-for="Name" placeholder="Name" />
                 </div>
-            </div>
-        </section>
-        <section class="field">
-            <label>Breed Society</label>
-            <div class="ui search selection dropdown">
-                <input id="inputBreedSociety" type="hidden" data-default-value="-1" asp-for="BreedSocietyContactId" />
-                <i class="dropdown icon"></i>
-                <div class="default text">Contacts</div>
-                <div class="menu">
+                <div class="field">
+                    <label>Species</label>
+                    <div class="ui search selection dropdown">
+                        <input id="inputSpecies" type="hidden" data-default-value="-1" asp-for="SpeciesId" />
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Species</div>
+                        <div class="menu">
 
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </section>
-        <section class="field">
-            <div class="ui checkbox">
-                <input type="checkbox" asp-for="IsRegisterable" />
-                <label>Breed can be registered?</label>
-            </div>
-        </section>
+                <div class="field">
+                    <label>Breed Society</label>
+                    <div class="ui search selection dropdown">
+                        <input id="inputBreedSociety" type="hidden" data-default-value="-1" asp-for="BreedSocietyContactId" />
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Contacts</div>
+                        <div class="menu">
 
-        <partial name="_ViewModelWithMessagePartial" model="Model" />
-        <div asp-validation-summary="All"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui checkbox">
+                        <input type="checkbox" asp-for="IsRegisterable" />
+                        <label>Breed can be registered?</label>
+                    </div>
+                </div>
 
-        <button class="ui primary fluid button" type="submit">Create Breed</button>
-    </form>
+                <partial name="_ViewModelWithMessagePartial" model="Model" />
+                <div asp-validation-summary="All"></div>
+
+                <button class="ui primary fluid button" type="submit">Create Breed</button>
+            </form>
+        </div>
+    </section>
 </section>
 
 @section Scripts {
