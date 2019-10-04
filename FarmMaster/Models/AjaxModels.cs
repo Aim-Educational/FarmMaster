@@ -64,15 +64,16 @@ namespace FarmMaster.Models
         public string Reason { get; set; }
     }
 
-    public class AjaxByIdWithNameValueRequest : AjaxRequestModel
+    public class AjaxByIdWithNameRequest : AjaxByIdRequest
     {
-        [Required]
-        public int? Id { get; set; }
 
         [Required]
         [StringLength(75)]
         public string Name { get; set; }
+    }
 
+    public class AjaxByIdWithNameValueRequest : AjaxByIdWithNameRequest
+    {
         [Required]
         [StringLength(75)]
         public virtual string Value { get; set; }
@@ -99,7 +100,9 @@ namespace FarmMaster.Models
         [StringLength(75)]
         public string Reason { get; set; }
     }
+    #endregion
 
+    #region Common Response Objects
     /// <summary>
     /// Used as a return value.
     /// </summary>

@@ -9,7 +9,6 @@ namespace FarmMaster.Models
 {
     public class ComponentCharacteristicsViewModel
     {
-        public string IdBoxError { get; set; }
         public string AjaxListUrl { get; set; }
         public string AjaxAddUrl { get; set; }
         public string AjaxDeleteUrl { get; set; }
@@ -17,50 +16,27 @@ namespace FarmMaster.Models
         public int EntityId { get; set; }
     }
 
-    public class AjaxCharacteristicsRequest : AjaxRequestModel
-    {
-        [Required]
-        public string Type { get; set; }
-
-        [Required]
-        public int Id { get; set; }
-    }
-
     public class AjaxCharacteristicsResponseValue
     {
         public string Name { get; set; }
-        public int Type { get; set; }
+        public string Type { get; set; }
         public string Value { get; set; }
         public bool IsInherited { get; set; }
+        public int Id { get; set; }
     }
 
     public class AjaxCharacteristicsAddRequest : AjaxRequestModel
     {
         [Required]
-        public int EntityId { get; set; }
+        public int Id { get; set; }
 
         [Required]
-        public string EntityType { get; set; }
+        public string Name { get; set; }
 
         [Required]
-        public string CharaName { get; set; }
+        public DynamicField.Type Type { get; set; }
 
         [Required]
-        public DynamicField.Type CharaType { get; set; }
-
-        [Required]
-        public string CharaValue { get; set; }
-    }
-
-    public class AjaxCharacteristicsDeleteByNameRequest : AjaxRequestModel
-    {
-        [Required]
-        public int EntityId { get; set; }
-        
-        [Required]
-        public string EntityType { get; set; }
-
-        [Required]
-        public string CharaName { get; set; }
+        public string Value { get; set; }
     }
 }

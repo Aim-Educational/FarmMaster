@@ -1,53 +1,58 @@
 ﻿@model SpeciesEditViewModel
 @{
-    ViewData["Title"] = "Edit - Species";
-    ViewData["Breadcrumb"] = new[]
+    Layout = "_GenericEditorLayout";
+    ViewData["Title"] = "Edit Species";
+    ViewData["Breadcrumb"] = new Dictionary<string, string>
     {
-        "Home:/Home/Index",
-        "Species & Breeds:/SpeciesBreed/Index",
-        "Edit Species:#"
+        { "Home", "/Home/Index" },
+        { "Species & Breeds", "/SpeciesBreed/Index" },
+        { "Edit Species", "#" }
     };
 }
 
-<partial name="_ComponentModalAreYouSure" />
+<partial name="_ModalAreYouSure_NoUndo" />
 
-<section class="ui top attached header">
-    <h2>Edit Species</h2>
-</section>
-<section class="ui attached segment">
-    <form class="ui form" method="post" asp-action="EditSpecies">
-        <input type="hidden" asp-for="Species.SpeciesId" />
-        <input type="hidden" asp-for="Species.Timestamp" />
-        <input type="hidden" asp-for="Species.CharacteristicListId" />
+<section class="editor section">
+    <section>
+        <h4>Information</h4>
+        <div class="content">
+            <form class="ui form" method="post" asp-action="EditSpecies">
+                <input type="hidden" asp-for="Species.SpeciesId" />
+                <input type="hidden" asp-for="Species.Timestamp" />
+                <input type="hidden" asp-for="Species.CharacteristicListId" />
 
-        <section class="field">
-            <label>Name</label>
-            <input asp-for="Species.Name" placeholder="Name" />
-        </section>
-        <section class="field">
-            <div class="ui checkbox">
-                <input type="checkbox" asp-for="Species.IsPoultry" />
-                <label>Species is poultry?</label>
-            </div>
-        </section>
+                <section class="field">
+                    <label>Name</label>
+                    <input asp-for="Species.Name" placeholder="Name" />
+                </section>
+                <section class="field">
+                    <div class="ui checkbox">
+                        <input type="checkbox" asp-for="Species.IsPoultry" />
+                        <label>Species is poultry?</label>
+                    </div>
+                </section>
 
-        <partial name="_ViewModelWithMessagePartial" model="Model" />
-        <div asp-validation-summary="All"></div>
+                <partial name="_ViewModelWithMessagePartial" model="Model" />
+                <div asp-validation-summary="All"></div>
 
-        <button class="ui fluid primary button" type="submit">Edit Species</button>
-    </form>
-</section>
-<section class="ui attached segment">
-    <h2 class="ui dividing header">Characteristics</h2>
-    <partial name="_ComponentCharacteristics" model='new ComponentCharacteristicsViewModel
-    {
-        IdBoxError = "divAllErrors",
-        AjaxListUrl = "/SpeciesBreed/AjaxGetCharacteristics",
-        AjaxAddUrl = "/SpeciesBreed/AjaxAddCharacteristic",
-        AjaxDeleteUrl = "/SpeciesBreed/AjaxDeleteCharacteristicByName",
-        EntityType = nameof(Species),
-        EntityId = Model.Species.SpeciesId
-    }' />
+                <button class="ui fluid primary button" type="submit">Edit Species</button>
+            </form>
+        </div>
+    </section>
+    <section>
+        <h4>Characteristics</h4>
+        <div class="content">
+            <partial name="_ComponentCharacteristics" model='new ComponentCharacteristicsViewModel
+            {
+                AjaxListUrl = "/Ajax/Species_ById_Characteristic_AsNameValueTypeInheritedId_All",
+                AjaxAddUrl = "/Ajax/Species_ById_Characteristic_Add",
+                AjaxDeleteUrl = "/Ajax/Species_ById_Characteristic_Delete_ById",
+                EntityType = nameof(Species),
+                EntityId = Model.Species.SpeciesId
+            }' />
+        </div>
+        <div id="divAllErrors" class="ui error message transition hidden"></div>
+    </section>
 </section>
 
 @section Scripts {

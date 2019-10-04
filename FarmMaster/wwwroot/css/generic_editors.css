@@ -101,5 +101,7 @@
       background-color: #ebebeb; }
   .editor.section thead tr.two.columns th:not(:first-child) {
     width: 50%; }
+  .editor.section thead tr.three.columns th:not(:first-child) {
+    width: 33.33333%; }
   .editor.section th.editor.action {
     width: 0px; }

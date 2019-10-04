@@ -153,9 +153,17 @@
         }
     }
 
-    thead tr.two.columns {
-        th:not(:first-child) {
-            width: 50%;
+    thead {
+        tr.two.columns {
+            th:not(:first-child) {
+                width: 50%;
+            }
+        }
+
+        tr.three.columns {
+            th:not(:first-child) {
+                width: 33.33333%;
+            }
         }
     }
 

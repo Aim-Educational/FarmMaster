@@ -1,9 +1,11 @@
 ﻿<!--
-    REQUIRES "_ComponentModalAreYouSure" PARTIAL TO BE INCLUDED AS WELL.    
+    REQUIRES "_ModalAreYouSure_NoUndo" PARTIAL TO BE INCLUDED AS WELL.    
 -->
 
 @model ComponentCharacteristicsViewModel
 @{
+    // NOTE: This was mostly so our custom ids don't clash with any user made ones, while stil making it a bit easier to read.
+    //       If I went back in time I'd stop myself from creating such horror.
     // __cc__ = __ComponentCharacteristics__
     var idInputName             = "__cc__inputName";
     var idInputType             = "__cc__inputType";
@@ -13,12 +15,8 @@
     var idInputTimeSpanMinutes  = "__cc__inputTimeSpanMins";
     var idInputTimeSpanSeconds  = "__cc__inputTimeSpanSecs";
     var idInputTextText         = "__cc__inputTextText";
-    var funcRefresh             = "__cc__refresh";
-    var funcAddGeneric          = "__cc__addGeneric";
     var funcAddTimeSpan         = "__cc__addTimeSpan";
     var funcAddText             = "__cc__addText";
-    var funcDeleteByName        = "__cc__deleteByName";
-    var varSegment              = "__cc__segment";
     var classDivCreate          = "ui transition hidden";
 }
 
@@ -45,9 +43,9 @@
                     </div>
                 </div>
             </div>
-            <hr />
-            <section class="field">
-                <section id="divCreateTimespan" class="@classDivCreate">
+            <div class="ui divider"></div>
+            <div class="field">
+                <div id="divCreateTimespan" class="@classDivCreate">
                     <div class="three inline fields">
                         <div class="field">
                             <label>Days</label>
@@ -65,8 +63,8 @@
                     <div class="field">
                         <button class="ui fluid button" onclick="@funcAddTimeSpan ();">Add TimeSpan Characteristic</button>
                     </div>
-                </section>
-                <section id="divCreateText" class="@classDivCreate">
+                </div>
+                <div id="divCreateText" class="@classDivCreate">
                     <div class="field">
                         <label>Text</label>
                         <input id="@idInputTextText" type="text" />
@@ -74,131 +72,166 @@
                     <div class="field">
                         <button class="ui fluid button" onclick="@funcAddText ();">Add Text Characteristic</button>
                     </div>
-                </section>
-            </section>
+                </div>
+            </div>
             <div id="@idCharacteristicError" class="ui error message transition hidden"></div>
         </section>
     </div>
 </section>
 
-<table id="@idTable" class="ui table">
+<table id="@idTable" class="ui striped table">
     <thead>
-        <tr>
+        <tr class="three columns">
+            <th class="editor action"></th>
             <th>Name</th>
             <th>Type</th>
             <th>Value</th>
-            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
 
     </tbody>
 </table>
+<div id="idTableErrorBox" class="ui error message transition hidden"></div>
 
 <script type="module">
-    import { FarmAjax, ComponentCharacteristics, ComponentModal, ComponentSelect, FarmAjaxMessageType } from "/js/index.js"
+    import { FarmAjax, FarmAjaxMessageType, Modal, CharacteristicHelper } from "/js/index.js";
 
-    let @idTable     = document.getElementById("@idTable");
-    let @idInputType = document.getElementById("@idInputType");
-    let @idInputName = document.getElementById("@idInputName");
-    let @varSegment  = @(idTable).parentElement;
+    const menuTypeSelect = document.getElementById("@idInputType");
+    const allItems = menuTypeSelect.parentElement.querySelectorAll("div.item");
 
-    if (@varSegment !== null && !@(varSegment).classList.contains("segment"))
-        @varSegment = null;
+    menuTypeSelect.addEventListener("change", () => {
+        for (const item of allItems) {
+            const elem = document.getElementById(item.dataset.contentId);
+            if (item.innerText.toLowerCase() === menuTypeSelect.value.toLowerCase())
+                elem.classList.remove("hidden");
+            else
+                elem.classList.add("transition", "hidden");
+        }
+    });
 
-    function @funcRefresh () {
-        ComponentCharacteristics.getValuesAjax(
-            document.getElementById('@Model.IdBoxError'),
-            @varSegment,
-            @idTable,
-            @funcDeleteByName,
-            "@Model.AjaxListUrl",
-            "@Model.EntityType",
-            @Model.EntityId
-        );
-    }
-    window.@funcRefresh = @funcRefresh;
-
-    function @funcDeleteByName (value) {
-        ComponentModal.showAreYouSureModal(() =>
-            FarmAjax.postWithMessageResponse(
-                "@Model.AjaxDeleteUrl",
-                {
-                    entityId: @Model.EntityId,
-                    entityType: "@Model.EntityType",
-                    charaName: value.name
-                },
-                response => {
-                    if (response.messageType == FarmAjaxMessageType.Error) {
-                        //response.populateMessageBox(boxError);
-                        return;
-                    }
-
-                    @funcRefresh ();
-                }
-            )
-        );
-    }
-    window.@funcDeleteByName = @funcDeleteByName;
-
-    function @funcAddGeneric (url, boxError, entityId, entityType, charaName, charaType, charaValue) {
-        boxError.classList.add("transition", "hidden");
+    function addCharacteristic(ajaxValue) {
+        const inputName = document.getElementById("@idInputName");
         FarmAjax.postWithMessageResponse(
-            url,
+            "@Model.AjaxAddUrl",
             {
-                entityId: entityId,
-                entityType: entityType,
-                charaName: charaName,
-                charaType: charaType,
-                charaValue: charaValue
+                id: @Model.EntityId,
+                name: inputName.value,
+                type: document.getElementById("@idInputType").value,
+                value: ajaxValue
             },
-            response => {
-                if (response.messageType == FarmAjaxMessageType.Error) {
-                    response.populateMessageBox(boxError);
+            r => {
+                if (r.messageType !== FarmAjaxMessageType.Information) {
+                    r.populateMessageBox(document.getElementById("idTableErrorBox"));
+                    return;
+                }
+                refresh();
+            }
+        );
+
+        inputName.value = "";
+    }
+
+    function addText() {
+        const input = document.getElementById("@idInputTextText");
+        const value = input.value;
+        const ajaxValue = CharacteristicHelper.createTextForAjax(value);
+
+        input.value = "";
+        addCharacteristic(ajaxValue);
+    }
+    window.@(funcAddText) = addText;
+
+    function addTimeSpan() {
+        const inputs = [
+            document.getElementById("@idInputTimeSpanDays"),
+            document.getElementById("@idInputTimeSpanMinutes"),
+            document.getElementById("@idInputTimeSpanSeconds")
+        ];
+        const ajaxValue = CharacteristicHelper.createTimeSpanForAjax(
+            inputs[0].value,
+            inputs[1].value,
+            inputs[2].value
+        );
+
+        for (const input of inputs)
+            input.value = 0;
+
+        addCharacteristic(ajaxValue);
+    }
+    window.@(funcAddTimeSpan) = addTimeSpan;
+
+    function deleteById(id) {
+        Modal
+            .askAreYouSure()
+            .then(() => {
+                FarmAjax.postWithMessageResponse(
+                    "@Model.AjaxDeleteUrl",
+                    {
+                        byId: @Model.EntityId,
+                        forId: id
+                    },
+                    r => {
+                        if (r.messageType !== FarmAjaxMessageType.Information) {
+                            r.populateMessageBox(document.getElementById("idTableErrorBox"));
+                            return;
+                        }
+
+                        refresh();
+                    }
+                );
+            });
+    }
+
+    function refresh() {
+        const table = document.getElementById("@idTable");
+        const tbody = table.querySelector("tbody");
+        tbody.innerHTML = "";
+        tbody.innerText = "";
+
+        FarmAjax.postWithMessageAndValueResponse(
+            "@Model.AjaxListUrl",
+            {
+                id: @Model.EntityId
+            },
+            rv => {
+                if (rv.messageType !== FarmAjaxMessageType.Information) {
+                    rv.populateMessageBox(document.getElementById("idTableErrorBox"));
                     return;
                 }
 
-                @funcRefresh ();
+                for (const value of rv.value) {
+                    const tr = tbody.appendChild(document.createElement("tr"));
+                    {
+                        let td = tr.appendChild(document.createElement("td"));
+                        {
+                            const button = td.appendChild(document.createElement("button"));
+                            button.classList.add("ui", "red", "icon", "button");
+                            {
+                                const i = button.appendChild(document.createElement("i"));
+                                i.classList.add("close", "icon");
+                            }
+
+                            if (value.isInherited) {
+                                button.classList.add("disabled");
+                                button.onclick = () => alert("This value has been inherited, so cannot be modified here.");
+                            }
+                            else
+                                button.onclick = () => deleteById(value.id);
+                        }
+
+                        td = tr.appendChild(document.createElement("td"));
+                        td.innerText = (value.isInherited) ? "[Inherited] " + value.name : value.name;
+
+                        td = tr.appendChild(document.createElement("td"));
+                        td.innerText = value.type;
+
+                        td = tr.appendChild(document.createElement("td"));
+                        td.innerText = value.value;
+                    }
+                }
             }
         );
     }
-    window.@funcAddGeneric = @funcAddGeneric;
-
-    function @funcAddTimeSpan () {
-        let days = document.getElementById("@idInputTimeSpanDays").value || "0";
-        let mins = document.getElementById("@idInputTimeSpanMinutes").value || "0";
-        let secs = document.getElementById("@idInputTimeSpanSeconds").value || "0";
-        let value = days + "d " + mins + "m " + secs + "s";
-
-        @funcAddGeneric (
-            "@Model.AjaxAddUrl",
-            document.getElementById("@idCharacteristicError"),
-            @Model.EntityId,
-            "@Model.EntityType",
-            document.getElementById("@idInputName").value,
-            "TimeSpan",
-            value
-        );
-    }
-    window.@funcAddTimeSpan = @funcAddTimeSpan;
-
-    function @funcAddText () {
-        @funcAddGeneric (
-            "@Model.AjaxAddUrl",
-            document.getElementById("@idCharacteristicError"),
-            @Model.EntityId,
-            "@Model.EntityType",
-            document.getElementById("@idInputName").value,
-            "Text",
-            document.getElementById("@idInputTextText").value
-        );
-    }
-    window.@funcAddText = @funcAddText;
-
-    $(function ()
-    {
-        @funcRefresh ();
-
-        ComponentSelect.asContentSelector(document.getElementById("@idInputType"));
-    });
+    refresh();
 </script>

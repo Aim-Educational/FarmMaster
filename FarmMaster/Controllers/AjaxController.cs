@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace FarmMaster.Controllers
@@ -215,6 +216,86 @@ namespace FarmMaster.Controllers
             var couldDelete = contacts.RemoveRelationshipById(contact, user, model.Reason, model.ForId);
             if (!couldDelete)
                 throw new Exception($"No relationship with id #{model.ById} was found.");
+
+            return new EmptyResult();
+        }
+        #endregion
+
+        #region Species.Characteristic
+        [HttpPost]
+        [FarmAjaxReturnsMessageAndValue(BusinessConstants.Roles.VIEW_SPECIES_BREEDS)]
+        public IActionResult Species_ById_Characteristic_AsNameValueTypeInheritedId_All(
+            [FromBody] AjaxByIdRequest model, 
+            User _,
+            [FromServices] IServiceSpeciesBreedManager speciesBreeds
+        )
+        {            
+            var species = speciesBreeds.For<Species>().FromIdAllIncluded(model.Id ?? -1);
+            if(species == null)
+                throw new IndexOutOfRangeException($"No species with ID #{model.Id}");
+
+            var list = species.CharacteristicList;
+            if(list == null)
+            { 
+                species.CharacteristicList = new AnimalCharacteristicList();
+                list = species.CharacteristicList;
+            }
+
+            return new AjaxValueResult(
+                list.Characteristics
+                    .Select(c => new AjaxCharacteristicsResponseValue
+                    {
+                        Name = c.Name,
+                        Value = c.Data.ToHtmlString(),
+                        Type = Enum.GetName(typeof(DynamicField.Type), c.Data.FieldType),
+                        IsInherited = false,
+                        Id = c.AnimalCharacteristicId
+                    })
+            );
+        }
+
+        [HttpPost]
+        [FarmAjaxReturnsMessage(BusinessConstants.Roles.EDIT_SPECIES_BREEDS)]
+        public IActionResult Species_ById_Characteristic_Delete_ById(
+            [FromBody] AjaxByIdForIdRequest model,
+            User _,
+            [FromServices] IServiceSpeciesBreedManager speciesBreeds,
+            [FromServices] IServiceCharacteristicManager characteristics
+        )
+        {
+            var species = speciesBreeds.For<Species>().FromIdAllIncluded(model.ById ?? -1);
+            if (species == null)
+                throw new IndexOutOfRangeException($"No species with ID #{model.ById}");
+
+            var chara = species.CharacteristicList
+                               .Characteristics
+                               .FirstOrDefault(c => c.AnimalCharacteristicId == model.ForId);
+            if (chara == null)
+                throw new KeyNotFoundException(model.ForId.ToString());
+
+            characteristics.FullDelete(chara);
+            return new EmptyResult();
+        }
+
+        [HttpPost]
+        [FarmAjaxReturnsMessage(BusinessConstants.Roles.EDIT_SPECIES_BREEDS)]
+        public IActionResult Species_ById_Characteristic_Add(
+            [FromBody] AjaxCharacteristicsAddRequest model, 
+            User _,
+            [FromServices] IServiceSpeciesBreedManager speciesBreeds,
+            [FromServices] IServiceCharacteristicManager characteristics
+        )
+        {
+            var species = speciesBreeds.For<Species>().FromIdAllIncluded(model.Id);
+            if (species == null)
+                throw new IndexOutOfRangeException($"No species with ID #{model.Id}");
+
+            characteristics.CreateFromHtmlString(
+                species.CharacteristicList,
+                model.Name,
+                model.Type,
+                model.Value
+            );
 
             return new EmptyResult();
         }

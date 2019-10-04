@@ -260,7 +260,8 @@ namespace FarmMaster.Controllers
 
             return new AjaxValueResult(result);
         }
-
+        
+        /*
         [HttpPost]
         [AllowAnonymous]
         [FarmAjaxReturnsMessageAndValue(BusinessConstants.Roles.VIEW_SPECIES_BREEDS)]
@@ -298,38 +299,7 @@ namespace FarmMaster.Controllers
                 throw new NotImplementedException(model.Type);
 
             return new AjaxValueResult(result);
-        }
-
-        [HttpPost]
-        [AllowAnonymous]
-        [FarmAjaxReturnsMessage(BusinessConstants.Roles.EDIT_SPECIES_BREEDS)]
-        public IActionResult AjaxAddCharacteristic([FromBody] AjaxCharacteristicsAddRequest model, User _)
-        {
-            var list = this.GetOrCreateListForEntity(model.EntityType, model.EntityId);
-            var chara = this._characteristics.CreateFromHtmlString(
-                list,
-                model.CharaName,
-                model.CharaType,
-                model.CharaValue
-            );
-
-            return new EmptyResult();
-        }
-
-        [HttpPost]
-        [AllowAnonymous]
-        [FarmAjaxReturnsMessage(BusinessConstants.Roles.EDIT_SPECIES_BREEDS)]
-        public IActionResult AjaxDeleteCharacteristicByName([FromBody] AjaxCharacteristicsDeleteByNameRequest model)
-        {
-            var list = this.GetOrCreateListForEntity(model.EntityType, model.EntityId);
-            var chara = list.Characteristics.FirstOrDefault(c => c.Name == model.CharaName);
-            if (chara == null)
-                throw new KeyNotFoundException(model.CharaName);
-
-            this._characteristics.FullDelete(chara);
-
-            return new EmptyResult();
-        }
+        }*/
 
         [HttpPost]
         [AllowAnonymous]
