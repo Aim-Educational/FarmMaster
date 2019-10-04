@@ -1,6 +1,0 @@
-Holdings:
-	Animal Registrations (Details page):
-		DEFRA Number
-		Foreach species:
-			Textbox for Rare Breed Number
-			Textbox for Flock/Herd Number
