@@ -1,35 +1,38 @@
 ﻿@model SpeciesCreateViewModel
 @{
-    ViewData["Title"] = "Create - Species";
-    ViewData["Breadcrumb"] = new[]
+    Layout = "_GenericEditorLayout";
+    ViewData["Title"] = "Create Species";
+    ViewData["Breadcrumb"] = new Dictionary<string, string>
     {
-        "Home:/Home/Index",
-        "Species & Breeds:/SpeciesBreed/Index",
-        "Create Species:/SpeciesBreed/CreateSpecies"
+        { "Home", "/Home/Index" },
+        { "Species & Breeds", "/SpeciesBreed/Index" },
+        { "Create Species", "/SpeciesBreed/CreateSpecies" }
     };
 }
 
-<section class="ui center aligned top attached header">
-    <h2>Create a species</h2>
-</section>
-<section class="ui attached segment">
-    <form class="ui form" method="post" asp-action="CreateSpecies">
-        <section class="field">
-            <label>Name</label>
-            <input asp-for="Name" placeholder="Name" />
-        </section>
-        <section class="field">
-            <div class="ui checkbox">
-                <input type="checkbox" asp-for="IsPoultry" />
-                <label>Species is poultry?</label>
-            </div>
-        </section>
+<section class="editor section">
+    <section>
+        <h4>Information</h4>
+        <div class="content">
+            <form class="ui form" method="post" asp-action="CreateSpecies">
+                <section class="field">
+                    <label>Name</label>
+                    <input asp-for="Name" placeholder="Name" />
+                </section>
+                <section class="field">
+                    <div class="ui checkbox">
+                        <input type="checkbox" asp-for="IsPoultry" />
+                        <label>Species is poultry?</label>
+                    </div>
+                </section>
 
-        <partial name="_ViewModelWithMessagePartial" model="Model" />
-        <div asp-validation-summary="All"></div>
+                <partial name="_ViewModelWithMessagePartial" model="Model" />
+                <div asp-validation-summary="All"></div>
 
-        <button class="ui primary button" type="submit">Create Species</button>
-    </form>
+                <button class="ui fluid primary button" type="submit">Create Species</button>
+            </form>
+        </div>
+    </section>
 </section>
 
 @section Scripts {
