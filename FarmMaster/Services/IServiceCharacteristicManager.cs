@@ -9,6 +9,7 @@ namespace FarmMaster.Services
     public interface IServiceCharacteristicManager : IServiceEntityManager<AnimalCharacteristic>, IServiceEntityManagerFullDeletion<AnimalCharacteristic>
     {
         AnimalCharacteristic CreateFromHtmlString(AnimalCharacteristicList list, string name, DynamicField.Type type, string htmlString);
+        void FullDeleteById(AnimalCharacteristicList list, int id);
     }
 
     public class ServiceCharacteristicManager : IServiceCharacteristicManager
@@ -45,6 +46,15 @@ namespace FarmMaster.Services
         {
             this._context.Remove(entity);
             this._context.SaveChanges();
+        }
+
+        public void FullDeleteById(AnimalCharacteristicList list, int id)
+        {
+            var chara = list.Characteristics.FirstOrDefault(c => c.AnimalCharacteristicId == id);
+            if(chara == null)
+                throw new KeyNotFoundException($"Characteristic list does not contain characteristic with ID #{id}");
+
+            this.FullDelete(chara);
         }
 
         public int GetIdFor(AnimalCharacteristic entity)

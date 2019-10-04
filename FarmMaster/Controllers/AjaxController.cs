@@ -235,12 +235,6 @@ namespace FarmMaster.Controllers
                 throw new IndexOutOfRangeException($"No species with ID #{model.Id}");
 
             var list = species.CharacteristicList;
-            if(list == null)
-            { 
-                species.CharacteristicList = new AnimalCharacteristicList();
-                list = species.CharacteristicList;
-            }
-
             return new AjaxValueResult(
                 list.Characteristics
                     .Select(c => new AjaxCharacteristicsResponseValue
@@ -267,13 +261,7 @@ namespace FarmMaster.Controllers
             if (species == null)
                 throw new IndexOutOfRangeException($"No species with ID #{model.ById}");
 
-            var chara = species.CharacteristicList
-                               .Characteristics
-                               .FirstOrDefault(c => c.AnimalCharacteristicId == model.ForId);
-            if (chara == null)
-                throw new KeyNotFoundException(model.ForId.ToString());
-
-            characteristics.FullDelete(chara);
+            characteristics.FullDeleteById(species.CharacteristicList, model.ForId);
             return new EmptyResult();
         }
 
@@ -298,6 +286,75 @@ namespace FarmMaster.Controllers
             );
 
             return new EmptyResult();
+        }
+        #endregion
+
+        #region Breed.Characteristic
+        [HttpPost]
+        [FarmAjaxReturnsMessageAndValue(permsAND: BusinessConstants.Roles.VIEW_SPECIES_BREEDS)]
+        public IActionResult Breed_ById_Characteristic_AsNameTypeValueInheritedId_All(
+            [FromBody] AjaxByIdRequest model,
+            User _,
+            [FromServices] IServiceSpeciesBreedManager speciesBreeds
+        )
+        {
+            var breed       = this.GetBreedByIdEnforceExists(model.Id ?? -1, speciesBreeds);
+            var speciesList = breed.Species.CharacteristicList;
+            var combined    = breed.CharacteristicList.Characteristics.Concat(speciesList.Characteristics);
+
+            return new AjaxValueResult(
+                combined.Select(c => new AjaxCharacteristicsResponseValue
+                {
+                    Name = c.Name,
+                    Value = c.Data.ToHtmlString(),
+                    Type = Enum.GetName(typeof(DynamicField.Type), c.Data.FieldType),
+                    IsInherited = speciesList.Characteristics.Any(sc => sc.AnimalCharacteristicId == c.AnimalCharacteristicId),
+                    Id = c.AnimalCharacteristicId
+                })
+            );
+        }
+
+        [HttpPost]
+        [FarmAjaxReturnsMessage(permsAND: BusinessConstants.Roles.EDIT_SPECIES_BREEDS)]
+        public IActionResult Breed_ById_Characteristic_Delete_ById(
+            [FromBody] AjaxByIdForIdRequest model,
+            User _,
+            [FromServices] IServiceSpeciesBreedManager speciesBreeds,
+            [FromServices] IServiceCharacteristicManager characteristics
+        )
+        {
+            var breed = this.GetBreedByIdEnforceExists(model.ById ?? -1, speciesBreeds);
+            characteristics.FullDeleteById(breed.CharacteristicList, model.ForId);
+            return new EmptyResult();
+        }
+
+        [HttpPost]
+        [FarmAjaxReturnsMessage(BusinessConstants.Roles.EDIT_SPECIES_BREEDS)]
+        public IActionResult Breed_ById_Characteristic_Add(
+            [FromBody] AjaxCharacteristicsAddRequest model,
+            User _,
+            [FromServices] IServiceSpeciesBreedManager speciesBreeds,
+            [FromServices] IServiceCharacteristicManager characteristics
+        )
+        {
+            var breed = this.GetBreedByIdEnforceExists(model.Id, speciesBreeds);
+            characteristics.CreateFromHtmlString(
+                breed.CharacteristicList,
+                model.Name,
+                model.Type,
+                model.Value
+            );
+
+            return new EmptyResult();
+        }
+
+        private Breed GetBreedByIdEnforceExists(int id, IServiceSpeciesBreedManager speciesBreeds)
+        {
+            var breed = speciesBreeds.For<Breed>().FromIdAllIncluded(id);
+            if (breed == null)
+                throw new IndexOutOfRangeException($"No breed with ID #{id}");
+
+            return breed;
         }
         #endregion
     }

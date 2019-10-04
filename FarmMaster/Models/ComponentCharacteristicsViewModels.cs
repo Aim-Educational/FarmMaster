@@ -12,7 +12,6 @@ namespace FarmMaster.Models
         public string AjaxListUrl { get; set; }
         public string AjaxAddUrl { get; set; }
         public string AjaxDeleteUrl { get; set; }
-        public string EntityType { get; set; }
         public int EntityId { get; set; }
     }
 

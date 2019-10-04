@@ -112,6 +112,10 @@
 
     function addCharacteristic(ajaxValue) {
         const inputName = document.getElementById("@idInputName");
+        const errorBox = document.getElementById("@idCharacteristicError");
+
+        errorBox.classList.add("hidden");
+
         FarmAjax.postWithMessageResponse(
             "@Model.AjaxAddUrl",
             {
@@ -122,7 +126,7 @@
             },
             r => {
                 if (r.messageType !== FarmAjaxMessageType.Information) {
-                    r.populateMessageBox(document.getElementById("idTableErrorBox"));
+                    r.populateMessageBox(errorBox);
                     return;
                 }
                 refresh();

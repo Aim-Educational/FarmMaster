@@ -1,82 +1,86 @@
 ﻿@model BreedEditViewModel
 @{
-    ViewData["Title"] = "Edit - Breed";
-    ViewData["Breadcrumb"] = new[]
+    Layout = "_GenericEditorLayout";
+    ViewData["Title"] = "Edit Breed";
+    ViewData["Breadcrumb"] = new Dictionary<string, string>
     {
-        "Home:/Home/Index",
-        "Species & Breeds:/SpeciesBreed/Index",
-        "Edit Breed:#"
+        { "Home", "/Home/Index" },
+        { "Species & Breeds", "/SpeciesBreed/Index" },
+        { "Edit Breed", "#" }
     };
 }
 
-<partial name="_ComponentModalAreYouSure" />
+<partial name="_ModalAreYouSure_NoUndo" />
 
-<section class="ui top attached header">
-    <h2>Edit Breed</h2>
-</section>
-<section class="ui attached segment">
-    <form class="ui form" method="post" asp-action="EditBreed">
-        <input type="hidden" asp-for="Breed.BreedId" />
-        <input type="hidden" asp-for="Breed.Timestamp" />
-        <input type="hidden" asp-for="Breed.CharacteristicListId" />
+<section class="editor section">
+    <section>
+        <h4>Information</h4>
+        <div class="content">
+            <form class="ui form" method="post" asp-action="EditBreed">
+                <input type="hidden" asp-for="Breed.BreedId" />
+                <input type="hidden" asp-for="Breed.Timestamp" />
+                <input type="hidden" asp-for="Breed.CharacteristicListId" />
 
-        <section class="field">
-            <label>Name</label>
-            <input asp-for="Breed.Name" placeholder="Name" />
-        </section>
-
-        <section class="field">
-            <label>Species</label>
-            <div class="ui search selection dropdown">
-                <input id="inputSpecies" type="hidden" data-default-value="@Model.Breed.SpeciesId" asp-for="Breed.SpeciesId" />
-                <i class="dropdown icon"></i>
-                <div class="default text">Species</div>
-                <div class="menu">
-
+                <div class="field">
+                    <label>Name</label>
+                    <input asp-for="Breed.Name" placeholder="Name" />
                 </div>
-            </div>
-        </section>
-        <section class="field">
-            <label>Breed Society</label>
-            <div class="ui search selection dropdown">
-                <input id="inputBreedSociety" type="hidden" data-default-value="@Model.Breed.BreedSocietyId" asp-for="Breed.BreedSocietyId" />
-                <i class="dropdown icon"></i>
-                <div class="default text">Contacts</div>
-                <div class="menu">
 
+                <div class="field">
+                    <label>Species</label>
+                    <div class="ui search selection dropdown">
+                        <input id="inputSpecies" type="hidden" data-default-value="@Model.Breed.SpeciesId" asp-for="Breed.SpeciesId" />
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Species</div>
+                        <div class="menu">
+
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </section>
-        <section class="field">
-            <div class="ui checkbox">
-                <input type="checkbox" asp-for="Breed.IsRegisterable" />
-                <label>Breed can be registered?</label>
-            </div>
-        </section>
+                <div class="field">
+                    <label>Breed Society</label>
+                    <div class="ui search selection dropdown">
+                        <input id="inputBreedSociety" type="hidden" data-default-value="@Model.Breed.BreedSocietyId" asp-for="Breed.BreedSocietyId" />
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Contacts</div>
+                        <div class="menu">
 
-        <partial name="_ViewModelWithMessagePartial" model="Model" />
-        <div asp-validation-summary="All"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui checkbox">
+                        <input type="checkbox" asp-for="Breed.IsRegisterable" />
+                        <label>Breed can be registered?</label>
+                    </div>
+                </div>
 
-        <button class="ui fluid primary button" type="submit">Edit Breed</button>
-    </form>
-</section>
-<section class="ui attached segment">
-    <h2 class="ui dividing header">Characteristics</h2>
-    <partial name="_ComponentCharacteristics" model='new ComponentCharacteristicsViewModel
-    {
-        AjaxListUrl = "/SpeciesBreed/AjaxGetCharacteristics",
-        AjaxAddUrl = "/SpeciesBreed/AjaxAddCharacteristic",
-        AjaxDeleteUrl = "/SpeciesBreed/AjaxDeleteCharacteristicByName",
-        EntityType = nameof(Breed),
-        EntityId = Model.Breed.BreedId
-    }' />
+                <partial name="_ViewModelWithMessagePartial" model="Model" />
+                <div asp-validation-summary="All"></div>
+
+                <button class="ui fluid primary button" type="submit">Edit Breed</button>
+            </form>
+        </div>
+    </section>
+    <section>
+        <h4>Characteristics</h4>
+        <div class="content">
+            <partial name="_ComponentCharacteristics" model='new ComponentCharacteristicsViewModel
+            {
+                AjaxListUrl = "/Ajax/Breed_ById_Characteristic_AsNameTypeValueInheritedId_All",
+                AjaxAddUrl = "/Ajax/Breed_ById_Characteristic_Add",
+                AjaxDeleteUrl = "/Ajax/Breed_ById_Characteristic_Delete_ById",
+                EntityId = Model.Breed.BreedId
+            }' />
+        </div>
+    </section>
 </section>
 
 @section Scripts {
     <script type="module">
         import { ComponentSelect, Validation } from "/js/index.js"
 
-        $(".ui.dropdown").dropdown();
+        $(".ui.dropdown").dropdown().dropdown("clear");
         $(".ui.checkbox").checkbox();
         $(".accordion").accordion();
 
