@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 using System.Text;
 
 namespace Business.Model
@@ -31,14 +32,15 @@ namespace Business.Model
 
         [Timestamp]
         public byte[] Timestamp { get; set; }
+
+        public IEnumerable<MapBreedToAnimal> Mappings { get; set; }
         
         [NotMapped]
         public bool IsSafeToDelete
         {
             get
             {
-                // TODO: Once things can actually reference this (outside of species), add checks here.
-                return true;
+                return this.Mappings.Count() == 0;
             }
         }
     }
