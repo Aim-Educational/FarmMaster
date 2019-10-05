@@ -1,56 +1,64 @@
 ﻿@model LifeEventIndexViewModel
 @{
-    ViewData["Title"] = "Index - Life Events";
-    ViewData["Breadcrumb"] = new[]
+    Layout = "_GenericEditorLayout";
+    ViewData["Title"] = "Life Events";
+    ViewData["Breadcrumb"] = new Dictionary<string, string>
     {
-        "Home:/Home/Index",
-        "Life Events:/LifeEvent/Index"
+        { "Home", "/Home/Index" },
+        { "Life Events", "/LifeEvent/Index" }
     };
 }
 
-<h1>Index</h1>
+<partial name="_ModalAreYouSure_NoUndo" />
 
-<partial name="_ComponentModalAreYouSure" />
-<partial name="_ViewModelWithMessagePartial" model="@Model" />
+<section class="editor section">
+    <section>
+        <partial name="_ViewModelWithMessagePartial" model="@Model" />
+        <div class="content">
+            <div class="top padded items">
+                <a class="ui primary button" asp-action="Create">
+                    Create New Life Event
+                </a>
+            </div>
 
-<a class="ui primary button" asp-action="Create">
-    Create New Life Event
-</a>
-
-<table class="ui celled table">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var lifeEvent in Model.LifeEvents)
-        {
-            <tr>
-                <td>@lifeEvent.Name</td>
-                <td>@lifeEvent.Description</td>
-                <td class="ui two buttons">
-                    <button class="ui inverted tiny secondary left button" onclick="window.location='/LifeEvent/Edit/@lifeEvent.LifeEventId'">
-                        Edit
-                    </button>
-                    <div class="or divide hide mobile"></div>
-                    <button class="ui inverted tiny secondary right button" onclick="showDeleteModal(@lifeEvent.LifeEventId)">
-                        Delete
-                    </button>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+            <table class="ui striped table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var lifeEvent in Model.LifeEvents)
+                    {
+                        <tr>
+                            <td>@lifeEvent.Name</td>
+                            <td>@lifeEvent.Description</td>
+                            <td class="ui two buttons">
+                                <button class="ui inverted tiny secondary left button" onclick="window.location='/LifeEvent/Edit/@lifeEvent.LifeEventId'">
+                                    Edit
+                                </button>
+                                <div class="or divide hide mobile"></div>
+                                <button class="ui inverted tiny secondary right button" onclick="showDeleteModal(@lifeEvent.LifeEventId)">
+                                    Delete
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </section>
+</section>
 
 @section Scripts {
     <script type="module">
-        import { ComponentModal } from "/js/index.js";
+        import { Modal } from "/js/index.js";
 
         function showDeleteModal(id) {
-            ComponentModal.showAreYouSureModal(() => document.location = "/LifeEvent/Delete/" + id);
+            Modal.askAreYouSure()
+                 .then(() => document.location = "/LifeEvent/Delete/" + id);
         }
         window.showDeleteModal = showDeleteModal;
     </script>

@@ -1,42 +1,43 @@
 ﻿@model LifeEventCreateViewModel
 @{
-    ViewData["Title"] = "Create - LifeEvent";
-    ViewData["Breadcrumb"] = new[]
+    Layout = "_GenericEditorLayout";
+    ViewData["Title"] = "Create a life event";
+    ViewData["Breadcrumb"] = new Dictionary<string, string>
     {
-        "Home:/Home/Index",
-        "Life Events:/LifeEvent/Index",
-        "Create:/LifeEvent/Create"
+        { "Home", "/Home/Index" },
+        { "Life Events", "/LifeEvent/Index" },
+        { "Create", "/LifeEvent/Create" }
     };
 }
 
-<h1>Create</h1>
+<section class="editor section">
+    <section>
+        <partial name="_ViewModelWithMessagePartial" model="@Model" />
 
-<partial name="_ViewModelWithMessagePartial" model="@Model" />
+        <h4>General Information</h4>
+        <div class="content">
+            <form class="ui form" method="post" asp-action="Create">
+                <div class="field">
+                    <label>Name</label>
+                    <input asp-for="Name" autocomplete="off" />
+                </div>
+                <div class="field">
+                    <label>Description</label>
+                    <input asp-for="Description" autocomplete="off" />
+                </div>
+                <div class="ui info message transition visible">
+                    Further configuration can be done once the Life Event is created.
+                </div>
 
-<form class="ui form" method="post" asp-action="Create">
-    <section class="ui top attached header">
-        General Information
-    </section>
-    <section class="ui attached segment">
-        <div class="field">
-            <label>Name</label>
-            <input asp-for="Name" autocomplete="off" />
-        </div>
-        <div class="field">
-            <label>Description</label>
-            <input asp-for="Description" autocomplete="off" />
-        </div>
-        <div class="ui info message transition visible">
-            Further configuration can be done once the Life Event is created.
+                <button class="ui primary fluid button" type="submit">
+                    Create Life Event
+                </button>
+
+                <div asp-validation-summary="All"></div>
+            </form>
         </div>
     </section>
-    <div asp-validation-summary="All"></div>
-    <section class="ui bottom attached segment">
-        <button class="ui primary fluid button" type="submit">
-            Create Life Event
-        </button>
-    </section>
-</form>
+</section>
 
 @section Scripts {
     <script type="module">
