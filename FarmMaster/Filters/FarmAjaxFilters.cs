@@ -7,15 +7,16 @@ using FarmMaster.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Business.Model;
+using System.Diagnostics.CodeAnalysis;
 
 namespace FarmMaster.Filters
 {
     #region With Message
-    public class FarmAjaxReturnsMessage : TypeFilterAttribute
+    public class FarmAjaxReturnsMessageAttribute : TypeFilterAttribute
     {
-        public FarmAjaxReturnsMessage(params string[] permsAND) : base(typeof(FarmAjaxReturnsMessageFilter))
+        public FarmAjaxReturnsMessageAttribute(params string[] permsAND) : base(typeof(FarmAjaxReturnsMessageFilter))
         {
-            Arguments = new object[] { permsAND ?? new string[] { } };
+            Arguments = new object[] { permsAND ?? Array.Empty<string>() };
         }
     }
 
@@ -58,11 +59,11 @@ namespace FarmMaster.Filters
     #endregion
 
     #region With Message And Value
-    public class FarmAjaxReturnsMessageAndValue : TypeFilterAttribute
+    public class FarmAjaxReturnsMessageAndValueAttribute : TypeFilterAttribute
     {
-        public FarmAjaxReturnsMessageAndValue(params string[] permsAND) : base(typeof(FarmAjaxReturnsMessageAndValueFilter))
+        public FarmAjaxReturnsMessageAndValueAttribute(params string[] permsAND) : base(typeof(FarmAjaxReturnsMessageAndValueFilter))
         {
-            Arguments = new object[] { permsAND ?? new string[] { } };
+            Arguments = new object[] { permsAND ?? Array.Empty<string>() };
         }
     }
 
@@ -131,6 +132,7 @@ namespace FarmMaster.Filters
         public virtual void OnResultExecuted(ResultExecutedContext context){}
         public virtual void OnResultExecuting(ResultExecutingContext context){}
 
+        [SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "The entire point *is* to catch any exception.")]
         public virtual void OnActionExecuting(ActionExecutingContext context)
         {
             if(!context.ModelState.IsValid)

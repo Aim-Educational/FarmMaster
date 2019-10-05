@@ -53,6 +53,7 @@ namespace FarmMaster.Controllers
             return View(model);
         }
 
+        #region GET
         public IActionResult Create()
         {
             return View();
@@ -112,7 +113,9 @@ namespace FarmMaster.Controllers
 
             return View(new ContactEditViewModel{ Contact = contactDb });
         }
+        #endregion
 
+        #region POST
         [HttpPost]
         [ValidateAntiForgeryToken]
         [FarmAuthorise(PermsAND: new[] { BusinessConstants.Roles.EDIT_CONTACTS })]
@@ -161,7 +164,9 @@ namespace FarmMaster.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+        #endregion
 
+#pragma warning disable CA1801 // Unused parameter. 'model' *has* to be there otherwise the AJAX attributes throw an exception.
         [HttpPost]
         [AllowAnonymous]
         [FarmAjaxReturnsMessageAndValue(BusinessConstants.Roles.EDIT_CONTACTS)]
@@ -175,6 +180,7 @@ namespace FarmMaster.Controllers
                                  .ToList()
             );
         }
+#pragma warning restore CA1801
 
         [HttpPost]
         [AllowAnonymous]

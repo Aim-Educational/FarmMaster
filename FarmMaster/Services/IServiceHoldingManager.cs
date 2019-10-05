@@ -45,7 +45,7 @@ namespace FarmMaster.Services
         public Holding Create(string name, string holdingNumber, string gridReference, string address, string postCode, Contact owner)
         {
             if(owner == null)
-                throw new ArgumentNullException("owner");
+                throw new ArgumentNullException(nameof(owner));
 
             var holding = new Holding
             {
@@ -67,7 +67,7 @@ namespace FarmMaster.Services
         public bool AddRegistrationByName(Holding holding, string regInternalName, string herdNumber, string rareBreedNumber)
         {
             if(holding == null)
-                throw new ArgumentNullException("holding");
+                throw new ArgumentNullException(nameof(holding));
 
             var reg = this.GetRegistrationByName(regInternalName);
             if(holding.Registrations.Any(r => r.HoldingRegistrationId == reg.EnumHoldingRegistrationId))
@@ -90,7 +90,7 @@ namespace FarmMaster.Services
         public bool RemoveRegistrationByName(Holding holding, string regInternalName)
         {
             if (holding == null)
-                throw new ArgumentNullException("holding");
+                throw new ArgumentNullException(nameof(holding));
 
             var reg = this.GetRegistrationByName(regInternalName);
             var map = holding.Registrations.FirstOrDefault(m => m.HoldingRegistrationId == reg.EnumHoldingRegistrationId);
@@ -115,7 +115,7 @@ namespace FarmMaster.Services
         public void RemoveByReference(Holding holding)
         {
             if(holding == null)
-                throw new ArgumentNullException("holding");
+                throw new ArgumentNullException(nameof(holding));
 
             var holdingDb = this.FromIdAllIncluded(holding.HoldingId); // Ensure we have all data loaded.
             if(holdingDb == null)

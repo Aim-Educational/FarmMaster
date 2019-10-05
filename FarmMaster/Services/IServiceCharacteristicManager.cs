@@ -77,7 +77,7 @@ namespace FarmMaster.Services
         public void Update(AnimalCharacteristic entity)
         {
             if(entity == null)
-                throw new ArgumentNullException("entity");
+                throw new ArgumentNullException(nameof(entity));
 
             // Because of the slightly dodgy way we're handling the 'Data' field, it's safer to just always
             // assume it's been modified, instead of letting EF determine.

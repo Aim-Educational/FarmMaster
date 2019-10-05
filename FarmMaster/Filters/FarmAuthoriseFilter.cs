@@ -15,8 +15,8 @@ namespace FarmMaster.Filters
     {
         public FarmAuthoriseAttribute(string[] PermsAND = null, string[] PermsOR = null) : base(typeof(FarmAuthoriseFilter))
         {
-            PermsAND = PermsAND ?? new string[]{ };
-            PermsOR = PermsOR ?? new string[]{ };
+            PermsAND = PermsAND ?? Array.Empty<string>();
+            PermsOR = PermsOR ?? Array.Empty<string>();
             Arguments = new object[] { PermsAND, PermsOR };
         }
     }
@@ -46,16 +46,16 @@ namespace FarmMaster.Filters
             }
 
             var perms = user.Role?.Permissions
-                     ?? new MapRolePermissionToRole[]{ }.AsQueryable();
+                     ?? Array.Empty<MapRolePermissionToRole>().AsQueryable();
 
             if(user.Role?.IsGodRole ?? false)
                 return;
 
-            if(PermsAND.Count() > 0
+            if(PermsAND.Any()
             && !PermsAND.All(p => perms.Any(up => up.EnumRolePermission.InternalName == p)))
                 context.Result = new ForbidResult();
 
-            if(PermsOR.Count() > 0
+            if(PermsOR.Any()
             && !PermsOR.Any(p => perms.Any(up => up.EnumRolePermission.InternalName == p)))
                 context.Result = new ForbidResult();
         }

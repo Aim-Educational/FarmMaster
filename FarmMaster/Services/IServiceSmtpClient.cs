@@ -98,7 +98,7 @@ namespace FarmMaster.Services
         bool ContainsTemplate(string templateName);
     }
 
-    public class ServiceSmtpClient : IServiceSmtpClient
+    public class ServiceSmtpClient : IServiceSmtpClient, IDisposable
     {
         const string FROM_NAME = "FarmMaster System";
         
@@ -136,7 +136,7 @@ namespace FarmMaster.Services
 
         public async Task SendToAsync(IEnumerable<string> emails, MailMessage message)
         {
-            if(emails.Count() == 0)
+            if(emails.Any())
                 return;
 
             foreach (var email in emails)
@@ -153,7 +153,7 @@ namespace FarmMaster.Services
         public async Task SendToWithTemplateAsync(IEnumerable<string> emails, string templateName, string subject, object model)
         {
             if (this._templates.Value == null)
-                throw new InvalidOperationException($"Please configure the AimSmtpTemplateConfig type.");
+                throw new InvalidOperationException("Please configure the AimSmtpTemplateConfig type.");
 
             if (!this._templates.Value.EmailTemplates.ContainsKey(templateName))
                 throw new IndexOutOfRangeException($"No template called '{templateName}' was found.");
@@ -167,7 +167,8 @@ namespace FarmMaster.Services
                 Body = await this._viewRenderer.RenderToStringAsync(this._templates.Value.EmailTemplates[templateName], model)
             };
 
-            await this.SendToAsync(emails, message);
+            using(message)
+                await this.SendToAsync(emails, message);
         }
 
         public Task SendToWithTemplateAsync(User user, string templateName, string subject, object model)
@@ -184,6 +185,18 @@ namespace FarmMaster.Services
         public bool ContainsTemplate(string templateName)
         {
             return this._templates.Value?.EmailTemplates.ContainsKey(templateName) ?? false;
+        }
+
+        protected virtual void Dispose(bool disposeAll)
+        {
+            if(disposeAll && this._smtpInstance != null)
+                this._smtpInstance.Dispose();
+        }
+
+        public void Dispose()
+        {
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 }

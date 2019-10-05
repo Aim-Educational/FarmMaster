@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
 using Business.Model;
@@ -42,7 +43,6 @@ namespace FarmMaster.Controllers
 
         [FarmAuthorise(PermsAND: new[] { BusinessConstants.Roles.EDIT_ROLES })]
         public IActionResult Edit(int id, 
-                                  [FromQuery] string message, 
                                   [FromServices] FarmMasterContext db, 
                                   [FromServices] IServiceUserManager users)
         {
@@ -106,7 +106,7 @@ namespace FarmMaster.Controllers
                 !roles.HasPermission(user.Role, kvp.Key)
                 && kvp.Value
             );
-            if (roleErrors.Count() > 0)
+            if (roleErrors.Any())
             {
                 var errorList = roleErrors.Select(r => r.Key)
                                           .Aggregate((s1, s2) => $"{s1}, {s2}");
@@ -191,9 +191,9 @@ namespace FarmMaster.Controllers
 
         //[HttpPost]
         [FarmAuthorise(PermsAND: new[] { BusinessConstants.Roles.EDIT_ROLES })]
+        [SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "<Pending>")]
         public IActionResult Delete(int id, 
                                     [FromServices] IServiceRoleManager roles, 
-                                    [FromServices] FarmMasterContext db,
                                     [FromServices] IServiceUserManager users)
         {
             try

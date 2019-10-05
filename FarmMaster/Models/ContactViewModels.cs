@@ -25,7 +25,7 @@ namespace FarmMaster.Models
         public string FullName { get; set; }
 
         [Required]
-        public Contact.Type Type { get; set; }
+        public new Contact.Type Type { get; set; }
 
         [Required]
         [RegularExpression(FarmConstants.Regexes.Email, ErrorMessage = "Invalid Email Address.")]

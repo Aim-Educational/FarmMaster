@@ -35,6 +35,7 @@ namespace FarmMaster.Controllers
             return View(model);
         }
 
+        #region GET
         [FarmAuthorise(PermsOR: new[] { BusinessConstants.Roles.EDIT_HOLDINGS })]
         public IActionResult Create()
         {
@@ -105,7 +106,9 @@ namespace FarmMaster.Controllers
             this._holdings.RemoveByReference(holding);
             return RedirectToAction(nameof(Index));
         }
+        #endregion
 
+        #region POST
         [HttpPost]
         [ValidateAntiForgeryToken]
         [FarmAuthorise(PermsOR: new[] { BusinessConstants.Roles.EDIT_HOLDINGS })]
@@ -223,5 +226,6 @@ namespace FarmMaster.Controllers
 
             return RedirectToAction(nameof(Edit), new { id = model.Holding.HoldingId });
         }
+        #endregion
     }
 }

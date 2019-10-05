@@ -80,6 +80,6 @@ namespace FarmMaster.Models
 
         [Required]
         [MinLength(1)]
-        public string[] TelephoneNumbers { get; set; }
+        public IList<string> TelephoneNumbers { get; set; }
     }
 }

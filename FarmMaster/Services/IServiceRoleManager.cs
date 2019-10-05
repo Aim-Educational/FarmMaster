@@ -50,7 +50,7 @@ namespace FarmMaster.Services
         public Role Create(string name, string description, params string[] permInternalNames)
         {
             if(this._context.Roles.Any(r => r.Name == name))
-                throw new ArgumentException($"A role called {name} already exists.", "name");
+                throw new ArgumentException($"A role called {name} already exists.", nameof(name));
 
             var role = new Role
             {

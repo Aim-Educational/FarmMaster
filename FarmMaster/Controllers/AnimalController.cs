@@ -50,8 +50,8 @@ namespace FarmMaster.Controllers
             var owner = this._contacts.FromId(model.OwnerId);
             if(owner == null)
                 throw new Exception($"No owner with the ID #{model.OwnerId}");
-
-            var animal = this._animals.Create(
+            
+            this._animals.Create(
                 model.Name,
                 model.Tag,
                 model.Sex,
