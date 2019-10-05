@@ -131,7 +131,8 @@ namespace FarmMaster.Services
                                  .ThenInclude(s => s.CharacteristicList)
                                   .ThenInclude(c => c.Characteristics)
                                 .Include(s => s.CharacteristicList)
-                                 .ThenInclude(c => c.Characteristics);
+                                 .ThenInclude(c => c.Characteristics)
+                                .Include(s => s.Mappings);
         }
     }
 }
