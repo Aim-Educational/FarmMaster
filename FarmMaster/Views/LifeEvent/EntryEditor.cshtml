@@ -1,7 +1,11 @@
 ﻿@model LifeEventEntryEditorViewModel
 @{
+    var aOrAn = (new[]{ 'a', 'e', 'i', 'o', 'u' }.Any(c => c == Model.LifeEventName.ToLower().First()))
+                ? "an"
+                : "a";
+
     Layout = "_GenericEditorLayout";
-    ViewData["Title"] = "Life Event Entry Editor";
+    ViewData["Title"] = $"{Model.Type} {aOrAn} {Model.LifeEventName} Entry";
     ViewData["Breadcrumb"] = Model.Breadcrumb;
 
     var formAction = (Model.Type != LifeEventEntryEditorType.Test)

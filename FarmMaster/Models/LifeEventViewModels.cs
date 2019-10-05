@@ -49,6 +49,8 @@ namespace FarmMaster.Models
         public int LifeEventId { get; set; }
 
         public int LifeEventEntryId { get; set; } // Only used in Edit mode.
+
+        public string LifeEventName { get; set; }
         
         [Required]
         public string RedirectController { get; set; }

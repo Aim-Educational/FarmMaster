@@ -216,6 +216,7 @@ namespace FarmMaster.Controllers
             {
                 GET_FieldInfo       = lifeEvent.Fields,
                 LifeEventId         = lifeEventId,
+                LifeEventName       = lifeEvent.Name,
                 Type                = LifeEventEntryEditorType.Create,
                 Values              = lifeEvent.Fields.ToDictionary(f => f.Name, _ => ""),
                 RedirectAction      = redirectAction,
@@ -243,6 +244,7 @@ namespace FarmMaster.Controllers
             {
                 GET_FieldInfo       = lifeEvent.Fields,
                 LifeEventId         = lifeEventId,
+                LifeEventName       = lifeEvent.Name,
                 Type                = LifeEventEntryEditorType.Test,
                 Values              = lifeEvent.Fields.ToDictionary(f => f.Name, _ => ""),
                 RedirectAction      = "TestEntry",
@@ -276,6 +278,7 @@ namespace FarmMaster.Controllers
             {
                 GET_FieldInfo       = lifeEvent.Fields,
                 LifeEventId         = lifeEventId,
+                LifeEventName       = lifeEvent.Name,
                 LifeEventEntryId    = lifeEventEntryId,
                 Type                = LifeEventEntryEditorType.Edit,
                 RedirectAction      = "EditEntry",
