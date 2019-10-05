@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
+using FarmMaster.Filters;
 using FarmMaster.Misc;
 using FarmMaster.Models;
 using FarmMaster.Services;
@@ -11,6 +13,8 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace FarmMaster.Controllers
 {
@@ -25,9 +29,33 @@ namespace FarmMaster.Controllers
             this._contacts = userData;
         }
 
+        #region Profile GET
+        [FarmAuthorise()]
+        public IActionResult Profile()
+        {
+            return View();
+        }
+
+        [FarmAuthorise()]
+        public IActionResult DownloadMyData()
+        {
+            var user = this._users.UserFromCookieSession(HttpContext);
+            if(user == null)
+                return NotFound();
+
+            var json = this._users.UserGdprData(user);
+            var jsonBytes = Encoding.UTF8.GetBytes(json.ToString(Formatting.Indented));
+            return File(jsonBytes, "text/json");
+        }
+        #endregion
+
+        #region Profile POST
+        #endregion
+
+        #region Signup/in/out GET
         public IActionResult Login([FromQuery] bool? verifyEmail)
         {
-            return View(new AccountLoginViewModel{ VerifyEmail = verifyEmail.GetValueOrDefault(false) });
+            return View(new AccountLoginViewModel { VerifyEmail = verifyEmail.GetValueOrDefault(false) });
         }
 
         public IActionResult Signup()
@@ -38,34 +66,16 @@ namespace FarmMaster.Controllers
         public IActionResult Logout()
         {
             var user = this._users.UserFromCookieSession(HttpContext);
-            if(user == null)
+            if (user == null)
                 return RedirectToAction(nameof(Login));
 
             this._users.EndSession(user, HttpContext);
             HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme).Wait();
             return RedirectToAction(nameof(Login));
         }
+        #endregion
 
-        public IActionResult AccessDenied()
-        {
-            return View();
-        }
-
-        public IActionResult ResendEmailVerifyEmail()
-        {
-            var user = this._users.UserFromCookieSession(this.HttpContext);
-            if(user != null)
-                this._users.SendEmailVerifyEmail(user);
-
-            return RedirectToAction(nameof(Login), new { verifyEmail = true });
-        }
-
-        public IActionResult VerifyEmail([FromQuery] string token)
-        {
-            this._users.FinishEmailVerify(token);
-            return Redirect("/");
-        }
-
+        #region Signup/in/out POST
         [HttpPost]
         [ValidateAntiForgeryToken]
         [SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "<Pending>")]
@@ -125,5 +135,30 @@ namespace FarmMaster.Controllers
             HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity)).Wait();
             return Redirect("/");
         }
+        #endregion
+
+        #region Email callbacks and GET
+        public IActionResult ResendEmailVerifyEmail()
+        {
+            var user = this._users.UserFromCookieSession(this.HttpContext);
+            if (user != null)
+                this._users.SendEmailVerifyEmail(user);
+
+            return RedirectToAction(nameof(Login), new { verifyEmail = true });
+        }
+
+        public IActionResult VerifyEmail([FromQuery] string token)
+        {
+            this._users.FinishEmailVerify(token);
+            return Redirect("/");
+        }
+        #endregion
+
+        #region Other
+        public IActionResult AccessDenied()
+        {
+            return View();
+        }
+        #endregion
     }
 }

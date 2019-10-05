@@ -9,6 +9,8 @@ using Microsoft.CodeAnalysis.Options;
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json.Linq;
+using System.Diagnostics.Contracts;
 
 namespace FarmMaster.Services
 {
@@ -30,6 +32,8 @@ namespace FarmMaster.Services
         User UserFromLoginInfo(string username, string password);
         void SendEmailVerifyEmail(User user);
         void FinishEmailVerify(string token);
+
+        JObject UserGdprData(User user);
     }
 
     public class ServiceUserManager : IServiceUserManager
@@ -38,6 +42,8 @@ namespace FarmMaster.Services
         readonly IServiceSmtpClient _smtp;
         readonly IServiceRoleManager _roles;
         readonly IServiceContactManager _contacts;
+        readonly IServiceHoldingManager _holdings;
+        readonly IServiceSpeciesBreedManager _speciesBreeds;
         readonly IOptions<IServiceSmtpDomainConfig> _domains;
         readonly IOptions<IServiceUserManagerConfig> _config;
         User _user; // This service is scoped, so we cache the user each time we get a request to reduce server load.
@@ -47,7 +53,9 @@ namespace FarmMaster.Services
                                   IServiceRoleManager roles,
                                   IServiceContactManager contacts,
                                   IOptions<IServiceSmtpDomainConfig> domains,
-                                  IOptions<IServiceUserManagerConfig> config)
+                                  IOptions<IServiceUserManagerConfig> config,
+                                  IServiceHoldingManager holdings,
+                                  IServiceSpeciesBreedManager speciesBreeds)
         {
             this._context = context;
             this._smtp = smtp;
@@ -55,6 +63,8 @@ namespace FarmMaster.Services
             this._config = config;
             this._roles = roles;
             this._contacts = contacts;
+            this._holdings = holdings;
+            this._speciesBreeds = speciesBreeds;
         }
 
         public User Create(string username, string password, string fullName, string email, bool tosConsent, bool privacyConsent)
@@ -257,6 +267,91 @@ namespace FarmMaster.Services
         {
             this._context.Update(entity);
             this._context.SaveChanges();
+        }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Globalization", "CA1305:Specify IFormatProvider", Justification = "No")]
+        public JObject UserGdprData(User user)
+        {
+            Contract.Assert(user != null);
+
+            var json = new JObject();
+            json["user"] = JObject.FromObject(new 
+            {
+                user.UserId,
+                RoleName = user.Role.Name,
+
+                LoginInfo = new 
+                {
+                    user.UserLoginInfo.Username,
+                    user.UserLoginInfo.PassHash
+                },
+
+                Privacy = new 
+                {
+                    user.UserPrivacy.HasVerifiedEmail,
+                    user.UserPrivacy.PrivacyPolicyVersionAgreedTo,
+                    user.UserPrivacy.TermsOfServiceVersionAgreedTo
+                },
+
+                Contact = new 
+                {
+                    ContactType = Convert.ToString(user.Contact.ContactType),
+                    user.Contact.FullName,
+                    user.Contact.IsAnonymous,
+                    Emails = user.Contact.EmailAddresses.Select(e => new { e.Name, e.Address }),
+                    Phones = user.Contact.PhoneNumbers.Select(p => new { p.Name, p.Number }),
+                    Relationships = user.Contact.GetRelationships(this._context).Select(r => new 
+                    {
+                        r.Description,
+                        ContactOneAbbreviatedName = r.ContactOne.FirstNameWithAbbreviatedLastName,
+                        ContactTwoAbrreviatedName = r.ContactTwo.FirstNameWithAbbreviatedLastName,
+                        Note = "Both contacts have their full names stored, but to protect the contact that isn't you, the names are abbreviated"
+                    })
+                },
+
+                Holdings = this._holdings
+                               .QueryAllIncluded()
+                               .Where(h => h.OwnerContact == user.Contact)
+                               .Select(h => new 
+                {
+                    h.Address,
+                    h.GridReference,
+                    h.HoldingNumber,
+                    h.Name,
+                    h.Postcode,
+                    Registrations = h.Registrations.Select(r => new
+                    {
+                        r.HerdNumber,
+                        r.HoldingRegistration.Description,
+                        r.RareBreedNumber
+                    })
+                }),
+
+                ActionsAgainstContacts = this._context
+                                             .ActionsAgainstContactInfo
+                                             .Where(a => a.UserResponsible == user || a.ContactAffected == user.Contact)
+                                             .Include(a => a.ContactAffected)
+                                             .Include(a => a.UserResponsible)
+                                              .ThenInclude(u => u.Contact)
+                                             .Select(a => new 
+                {
+                    ActionType = Convert.ToString(a.ActionType),
+                    a.AdditionalInfo,
+                    AffectedAbbreviatedName = a.ContactAffected.FirstNameWithAbbreviatedLastName,
+                    a.DateTimeUtc,
+                    a.HasContactBeenInformed,
+                    a.Reason,
+                    ResponsibleAbbreviatedName = a.UserResponsible.Contact.FirstNameWithAbbreviatedLastName
+                }),
+
+                BreedsAssociatedWith = this._speciesBreeds
+                                           .For<Breed>()
+                                           .QueryAllIncluded()
+                                           .Where(b => b.BreedSociety == user.Contact)
+                                           .Select(b => b.Name)
+            });
+
+            return json;
         }
     }
 }

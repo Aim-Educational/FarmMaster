@@ -1,0 +1,48 @@
+﻿
+@{
+    Layout = "_GenericEditorLayout";
+    ViewData["Title"] = "Profile";
+    ViewData["Breadcrumb"] = new Dictionary<string, string>
+    {
+        { "Home", "/Home/Index" },
+        { "Profile", "#" }
+    };
+}
+
+<div id="modalDownload" class="ui modal">
+    <div class="content">
+        <div class="ui visible info message">
+            <h3>This process might take a while</h3>
+            <p>
+                The download will start automatically once your data is ready.
+            </p>
+        </div>
+    </div>
+    <div class="actions">
+        <div class="ui primary cancel button">
+            Ok
+        </div>
+    </div>
+</div>
+
+@*_GenericEditorLayout was *supposed* to be for editor pages, but it works so well for the general case as well*@
+<section class="editor section">
+    <section>
+        <h4>Account Management</h4>
+        <div class="content">
+            <div class="field">
+                <a id="btnDownload" class="ui primary button" asp-action="DownloadMyData" download="farm_master.json">
+                    Download My Data
+                </a>
+            </div>
+        </div>
+    </section>
+</section>
+
+@section Scripts  {
+    <script type="module">
+        import { Modal } from "/js/index.js";
+
+        document.getElementById("btnDownload").addEventListener("click", () => Modal.show("modalDownload"));
+    </script>
+}
