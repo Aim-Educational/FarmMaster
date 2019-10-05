@@ -86,6 +86,9 @@ namespace FarmMaster
             services.AddScoped<IServiceLifeEventManager,        ServiceLifeEventManager>();
             services.AddScoped<IServiceAnimalManager,           ServiceAnimalManager>();
 
+            // Other services
+            services.AddScoped<IServiceGdprAggregator, ServiceGdprAggregator>();
+
             // Background services
             services.AddHostedService<FarmBackgroundServiceHost<BackgroundServiceUserActionEmailer>>();
 

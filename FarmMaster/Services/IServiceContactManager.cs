@@ -1,6 +1,7 @@
 ﻿using Business.Model;
 using FarmMaster.Misc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace FarmMaster.Services
 {
-    public interface IServiceContactManager : IServiceEntityManager<Contact>
+    public interface IServiceContactManager : IServiceEntityManager<Contact>, IServiceGdprData
     {
         Contact Create(Contact.Type type, string fullName, SaveChanges saveChanges = SaveChanges.Yes);
 
@@ -281,6 +282,49 @@ namespace FarmMaster.Services
         {
             this._context.Update(entity);
             this._context.SaveChanges();
+        }
+
+        public void GetContactGdprData(Contact contact, JObject json)
+        {
+            json["Contact"] = JObject.FromObject(new 
+            {
+                ContactType = Convert.ToString(contact.ContactType),
+                contact.FullName,
+                contact.IsAnonymous,
+                Emails = contact.EmailAddresses.Select(e => new { e.Name, e.Address }),
+                Phones = contact.PhoneNumbers.Select(p => new { p.Name, p.Number }),
+                Relationships = contact.GetRelationships(this._context).Select(r => new
+                {
+                    r.Description,
+                    ContactOneAbbreviatedName = r.ContactOne.FirstNameWithAbbreviatedLastName,
+                    ContactTwoAbrreviatedName = r.ContactTwo.FirstNameWithAbbreviatedLastName,
+                    Note = "Both contacts have their full names stored, but to protect the contact that isn't you, the names are abbreviated"
+                })
+            });
+
+            json["ActionsAgainstContacts"] = JArray.FromObject( 
+                this._context
+                            .ActionsAgainstContactInfo
+                            .Where(a => a.UserResponsible.Contact == contact || a.ContactAffected == contact)
+                            .Include(a => a.ContactAffected)
+                            .Include(a => a.UserResponsible)
+                            .ThenInclude(u => u.Contact)
+                            .Select(a => new
+                            {
+                                ActionType = Convert.ToString(a.ActionType),
+                                a.AdditionalInfo,
+                                AffectedAbbreviatedName = a.ContactAffected.FirstNameWithAbbreviatedLastName,
+                                a.DateTimeUtc,
+                                a.HasContactBeenInformed,
+                                a.Reason,
+                                ResponsibleAbbreviatedName = a.UserResponsible.Contact.FirstNameWithAbbreviatedLastName
+                            })
+            );
+        }
+
+        public void GetUserGdprData(User user, JObject json)
+        {
+            this.GetContactGdprData(user.Contact, json);
         }
     }
 }

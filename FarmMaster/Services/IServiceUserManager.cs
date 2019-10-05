@@ -19,7 +19,7 @@ namespace FarmMaster.Services
         public TimeSpan SessionTokenLifespan { get; set; }
     }
 
-    public interface IServiceUserManager : IServiceEntityManager<User>
+    public interface IServiceUserManager : IServiceEntityManager<User>, IServiceGdprData
     {
         User Create(string username, string password, string fullName, string email,
                     bool tosConsent, bool privacyConsent);
@@ -32,8 +32,6 @@ namespace FarmMaster.Services
         User UserFromLoginInfo(string username, string password);
         void SendEmailVerifyEmail(User user);
         void FinishEmailVerify(string token);
-
-        JObject UserGdprData(User user);
     }
 
     public class ServiceUserManager : IServiceUserManager
@@ -269,89 +267,32 @@ namespace FarmMaster.Services
             this._context.SaveChanges();
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Globalization", "CA1305:Specify IFormatProvider", Justification = "No")]
-        public JObject UserGdprData(User user)
+        public void GetContactGdprData(Contact contact, JObject json)
+        {}
+
+        public void GetUserGdprData(User user, JObject json)
         {
+            Contract.Assert(json != null);
             Contract.Assert(user != null);
 
-            var json = new JObject();
-            json["user"] = JObject.FromObject(new 
+            json["User"] = JObject.FromObject(new
             {
                 user.UserId,
                 RoleName = user.Role.Name,
 
-                LoginInfo = new 
+                LoginInfo = new
                 {
                     user.UserLoginInfo.Username,
                     user.UserLoginInfo.PassHash
                 },
 
-                Privacy = new 
+                Privacy = new
                 {
                     user.UserPrivacy.HasVerifiedEmail,
                     user.UserPrivacy.PrivacyPolicyVersionAgreedTo,
                     user.UserPrivacy.TermsOfServiceVersionAgreedTo
                 },
-
-                Contact = new 
-                {
-                    ContactType = Convert.ToString(user.Contact.ContactType),
-                    user.Contact.FullName,
-                    user.Contact.IsAnonymous,
-                    Emails = user.Contact.EmailAddresses.Select(e => new { e.Name, e.Address }),
-                    Phones = user.Contact.PhoneNumbers.Select(p => new { p.Name, p.Number }),
-                    Relationships = user.Contact.GetRelationships(this._context).Select(r => new 
-                    {
-                        r.Description,
-                        ContactOneAbbreviatedName = r.ContactOne.FirstNameWithAbbreviatedLastName,
-                        ContactTwoAbrreviatedName = r.ContactTwo.FirstNameWithAbbreviatedLastName,
-                        Note = "Both contacts have their full names stored, but to protect the contact that isn't you, the names are abbreviated"
-                    })
-                },
-
-                Holdings = this._holdings
-                               .QueryAllIncluded()
-                               .Where(h => h.OwnerContact == user.Contact)
-                               .Select(h => new 
-                {
-                    h.Address,
-                    h.GridReference,
-                    h.HoldingNumber,
-                    h.Name,
-                    h.Postcode,
-                    Registrations = h.Registrations.Select(r => new
-                    {
-                        r.HerdNumber,
-                        r.HoldingRegistration.Description,
-                        r.RareBreedNumber
-                    })
-                }),
-
-                ActionsAgainstContacts = this._context
-                                             .ActionsAgainstContactInfo
-                                             .Where(a => a.UserResponsible == user || a.ContactAffected == user.Contact)
-                                             .Include(a => a.ContactAffected)
-                                             .Include(a => a.UserResponsible)
-                                              .ThenInclude(u => u.Contact)
-                                             .Select(a => new 
-                {
-                    ActionType = Convert.ToString(a.ActionType),
-                    a.AdditionalInfo,
-                    AffectedAbbreviatedName = a.ContactAffected.FirstNameWithAbbreviatedLastName,
-                    a.DateTimeUtc,
-                    a.HasContactBeenInformed,
-                    a.Reason,
-                    ResponsibleAbbreviatedName = a.UserResponsible.Contact.FirstNameWithAbbreviatedLastName
-                }),
-
-                BreedsAssociatedWith = this._speciesBreeds
-                                           .For<Breed>()
-                                           .QueryAllIncluded()
-                                           .Where(b => b.BreedSociety == user.Contact)
-                                           .Select(b => b.Name)
             });
-
-            return json;
         }
     }
 }

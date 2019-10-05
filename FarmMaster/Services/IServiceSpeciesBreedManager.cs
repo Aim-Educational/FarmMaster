@@ -4,13 +4,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using Business.Model;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json.Linq;
 
 namespace FarmMaster.Services
 {
     public interface IServiceSpeciesBreedManager : IServiceEntityManager<Species>, 
                                                    IServiceEntityManager<Breed>,
                                                    IServiceEntityManagerFullDeletion<Species>,
-                                                   IServiceEntityManagerFullDeletion<Breed>
+                                                   IServiceEntityManagerFullDeletion<Breed>,
+                                                   IServiceGdprData
     {
         Species CreateSpecies(string name, bool isPoultry);
         Breed CreateBreed(string name, Species species, Contact breedSociety, bool isRegisterable);
@@ -82,6 +84,21 @@ namespace FarmMaster.Services
         {
             this._context.Remove(entity);
             this._context.SaveChanges();
+        }
+
+        public void GetContactGdprData(Contact contact, JObject json)
+        {
+            json["BreedsAssociatedWith"] = JArray.FromObject(
+                this.For<Breed>()
+                    .QueryAllIncluded()
+                    .Where(b => b.BreedSociety == contact)
+                    .Select(b => b.Name)
+            );
+        }
+
+        public void GetUserGdprData(User user, JObject json)
+        {
+            this.GetContactGdprData(user.Contact, json);
         }
 
         public int GetIdFor(Species entity)

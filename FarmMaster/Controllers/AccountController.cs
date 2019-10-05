@@ -22,11 +22,13 @@ namespace FarmMaster.Controllers
     {
         readonly IServiceUserManager _users;
         readonly IServiceContactManager _contacts;
+        readonly IServiceGdprAggregator _gdpr;
 
-        public AccountController(IServiceUserManager users, IServiceContactManager userData)
+        public AccountController(IServiceUserManager users, IServiceContactManager userData, IServiceGdprAggregator gdpr)
         {
             this._users = users;
             this._contacts = userData;
+            this._gdpr = gdpr;
         }
 
         #region Profile GET
@@ -43,7 +45,7 @@ namespace FarmMaster.Controllers
             if(user == null)
                 return NotFound();
 
-            var json = this._users.UserGdprData(user);
+            var json = this._gdpr.GetAggregatedDataForUser(user);
             var jsonBytes = Encoding.UTF8.GetBytes(json.ToString(Formatting.Indented));
             return File(jsonBytes, "text/json");
         }

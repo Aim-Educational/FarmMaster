@@ -4,10 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Business.Model;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json.Linq;
 
 namespace FarmMaster.Services
 {
-    public interface IServiceHoldingManager : IServiceEntityManager<Holding>
+    public interface IServiceHoldingManager : IServiceEntityManager<Holding>, IServiceGdprData
     {
         Holding Create(string name, string holdingNumber, string gridReference, string address, string postCode, Contact owner);
         void RemoveByReference(Holding holding);
@@ -132,6 +133,33 @@ namespace FarmMaster.Services
         {
             this._context.Update(entity);
             this._context.SaveChanges();
+        }
+
+        public void GetContactGdprData(Contact contact, JObject json)
+        {
+            json["Holdings"] = JArray.FromObject(
+                this.QueryAllIncluded()
+                    .Where(h => h.OwnerContact == contact)
+                    .Select(h => new
+                    {
+                        h.Address,
+                        h.GridReference,
+                        h.HoldingNumber,
+                        h.Name,
+                        h.Postcode,
+                        Registrations = h.Registrations.Select(r => new
+                        {
+                            r.HerdNumber,
+                            r.HoldingRegistration.Description,
+                            r.RareBreedNumber
+                        })
+                    })
+            );
+        }
+
+        public void GetUserGdprData(User user, JObject json)
+        {
+            this.GetContactGdprData(user.Contact, json);
         }
     }
 }
