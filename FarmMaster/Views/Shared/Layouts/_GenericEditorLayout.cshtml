@@ -19,7 +19,11 @@
             @foreach (var crumb in crumbs)
             {
                 <a class="section @(index == crumbLength - 1 ? "active" : "")" href="@crumb.Value">@crumb.Key</a>
-                <div class="divider">/</div>
+
+                if(index < crumbLength - 1)
+                {
+                    <div class="divider">/</div>
+                }
                 index++;
             }
         }
