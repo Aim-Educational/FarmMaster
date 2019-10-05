@@ -366,42 +366,5 @@ namespace FarmMaster.Controllers
             return View("EntryEditor", model);
         }
         #endregion
-
-        #region AJAX
-        [HttpPost]
-        [AllowAnonymous]
-        [FarmAjaxReturnsMessage(BusinessConstants.Roles.EDIT_LIFE_EVENTS)]
-        public IActionResult AjaxAddField([FromBody] AjaxLifeEventAddFieldRequest model, User _)
-        {
-            var @event = this._lifeEvents.For<LifeEvent>().FromIdAllIncluded(model.LifeEventId);
-            if(@event == null)
-                throw new ArgumentOutOfRangeException($"No event with ID #{model.LifeEventId} was found.");
-
-            if (@event.IsInUse)
-                throw new InvalidOperationException($"Cannot modify the fields of event '{@event.Name}' as it is currently in use.");
-
-            this._lifeEvents.CreateEventField(@event, model.Name, model.Description, model.Type);
-            return new EmptyResult();
-        }
-
-        [HttpPost]
-        [AllowAnonymous]
-        [FarmAjaxReturnsMessage(BusinessConstants.Roles.EDIT_LIFE_EVENTS)]
-        public IActionResult AjaxDeleteField([FromBody] AjaxLifeEventDeleteFieldRequest model, User _)
-        {
-            var @event = this._lifeEvents.For<LifeEvent>().FromIdAllIncluded(model.LifeEventId);
-            if (@event == null)
-                throw new ArgumentOutOfRangeException($"No event with ID #{model.LifeEventId} was found.");
-
-            if(@event.IsInUse)
-                throw new InvalidOperationException($"Cannot modify the fields of event '{@event.Name}' as it is currently in use.");
-            
-            var result = this._lifeEvents.RemoveEventFieldByName(@event, model.Name);
-            if(result == CouldDelete.No)
-                throw new ArgumentOutOfRangeException($"Could not delete field '{model.Name}', does it even exist?");
-
-            return new EmptyResult();
-        }
-        #endregion
     }
 }

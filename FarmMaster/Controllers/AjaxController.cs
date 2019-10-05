@@ -1,5 +1,6 @@
 ﻿using Business.Model;
 using FarmMaster.Filters;
+using FarmMaster.Misc;
 using FarmMaster.Models;
 using FarmMaster.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -11,6 +12,9 @@ using System.Linq;
 
 namespace FarmMaster.Controllers
 {
+#pragma warning disable CA1062 // Validate arguments of public methods. Ignored since the only chance of this happening is if we forget to register a service, which is a 1 min fix for all functions.
+#pragma warning disable CA1822 // Mark members as static. Ignored since it's incompatible with ASP Core's routing stuff.
+#pragma warning disable CA1707 // Identifiers should not contain underscores. Ignored since it's an explicit design choice for AJAX callbacks.
     public class AjaxController : Controller
     {
         #region Contact
@@ -357,5 +361,51 @@ namespace FarmMaster.Controllers
             return breed;
         }
         #endregion
+
+        #region LifeEvent.Field
+        [HttpPost]
+        [FarmAjaxReturnsMessage(BusinessConstants.Roles.EDIT_LIFE_EVENTS)]
+        public IActionResult LifeEvent_ById_Field_Add(
+            [FromBody] AjaxByIdWithNameValueTypeAsTRequest<DynamicField.Type> model, // 'Value' is the event's description 
+            User _,
+            [FromServices] IServiceLifeEventManager lifeEvents
+        )
+        {
+            var @event = lifeEvents.For<LifeEvent>().FromIdAllIncluded(model.Id ?? -1);
+            if (@event == null)
+                throw new IndexOutOfRangeException($"No event with ID #{model.Id} was found.");
+
+            if (@event.IsInUse)
+                throw new InvalidOperationException($"Cannot modify the fields of event '{@event.Name}' as it is currently in use.");
+
+            lifeEvents.CreateEventField(@event, model.Name, model.Value, model.Type);
+            return new EmptyResult();
+        }
+
+        [HttpPost]
+        [FarmAjaxReturnsMessage(BusinessConstants.Roles.EDIT_LIFE_EVENTS)]
+        public IActionResult LifeEvent_ById_Field_Delete_ByName(
+            [FromBody] AjaxByIdWithNameRequest model, 
+            User _,
+            [FromServices] IServiceLifeEventManager lifeEvents
+        )
+        {
+            var @event = lifeEvents.For<LifeEvent>().FromIdAllIncluded(model.Id ?? -1);
+            if (@event == null)
+                throw new IndexOutOfRangeException($"No event with ID #{model.Id} was found.");
+
+            if (@event.IsInUse)
+                throw new InvalidOperationException($"Cannot modify the fields of event '{@event.Name}' as it is currently in use.");
+
+            var result = lifeEvents.RemoveEventFieldByName(@event, model.Name);
+            if (result == CouldDelete.No)
+                throw new IndexOutOfRangeException($"Could not delete field '{model.Name}', does it even exist?");
+
+            return new EmptyResult();
+        }
+        #endregion
     }
+#pragma warning restore CA1062 // Validate arguments of public methods
+#pragma warning restore CA1822 // Mark members as static
+#pragma warning restore CA1707 // Identifiers should not contain underscores
 }

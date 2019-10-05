@@ -1,218 +1,202 @@
 ﻿@model LifeEventEditViewModel
 @{
-    ViewData["Title"] = "Edit - Life Event";
-    ViewData["Breadcrumb"] = new[]
+    Layout = "_GenericEditorLayout";
+    ViewData["Title"] = "Edit Life Event";
+    ViewData["Breadcrumb"] = new Dictionary<string, string>
     {
-        "Home:/Home/Index",
-        "Life Events:/LifeEvent/Index",
-        "Edit:/LifeEvent/Edit"
+        { "Home", "/Home/Index" },
+        { "Life Events", "/LifeEvent/Index" },
+        { "Edit", "/LifeEvent/Edit" }
     };
 }
 
-<h1>Edit</h1>
+<partial name="_ModalAreYouSure_NoUndo" />
 
-<partial name="_ComponentModalAreYouSure" />
-<partial name="_ViewModelWithMessagePartial" model="@Model" />
-
-<button class="ui primary button" onclick="document.location = '/LifeEvent/TestEntryEditor?lifeEventId=@Model.Id'">
-    Test Editor
-</button>
-
-<form class="ui form" method="post" asp-action="Edit">
-    <input id="inputEventId" type="hidden" asp-for="Id" />
-
-    <section class="ui top attached header">
-        General Information
-    </section>
-    <section class="ui attached segment">
-        <div class="field">
-            <label>Name</label>
-            <input asp-for="Name" autocomplete="off" />
-        </div>
-        <div class="field">
-            <label>Description</label>
-            <input asp-for="Description" autocomplete="off" />
-        </div>
-    </section>
-    <div asp-validation-summary="All"></div>
-    <section class="ui bottom attached segment">
-        <button class="ui primary fluid button" type="submit">
-            Edit Life Event
-        </button>
-    </section>
-</form>
-
-<section class="ui form">
-    <section class="ui top attached header">
-        Fields
-    </section>
-    <section id="segmentFields" class="ui attached segment">
-        <table class="ui celled table">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Type</th>
-                    <th>Description</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody id="tableFieldBody">
-                @foreach(var field in Model.GET_Fields)
-                {
-                    <tr>
-                        <td>@field.Name</td>
-                        <td>@field.Type</td>
-                        <td>@field.Description</td>
-                        <td class="ui compact">
-                            <button class="ui secondary button @(Model.GET_IsInUse ? "disabled" : "")" 
-                                    onclick="onDeleteField('@field.Name')">
-                                Delete
-                            </button>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </section>
-    <section class="ui bottom attached segment">
-        @if(Model.GET_IsInUse)
-        {
-            <div class="ui warning message transition visible">
-                <p>This Life Event is being used somewhere, so its fields can no longer be modified.</p>
-                <p>Please remove all uses of this Life Event if you wish to modify its fields again.</p>
-            </div>
-        }
-        else
-        { 
-            <div class="four inline fields">
+<section class="editor section">
+    <partial name="_ViewModelWithMessagePartial" model="@Model" />
+    <section>
+        <h4>Information</h4>
+        <div class="content">
+            <form class="ui form" method="post" asp-action="Edit">
+                <input id="inputEventId" type="hidden" asp-for="Id" />
                 <div class="field">
-                    <label>Name:</label>
-                    <input id="inputName" type="text" />
+                    <label>Name</label>
+                    <input asp-for="Name" autocomplete="off" />
                 </div>
                 <div class="field">
-                    <label>Type:</label>
-                    <div class="ui fluid search selection dropdown">
-                        <input id="inputType" type="hidden" name="gender">
-                        <i class="dropdown icon"></i>
-                        <div class="default text">Type</div>
-                        <div class="menu">
-                            <div class="item">DateTime</div>
-                            <div class="item">Text</div>
-                            <div class="item">TimeSpan</div>
+                    <label>Description</label>
+                    <input asp-for="Description" autocomplete="off" />
+                </div>
+
+                <button class="ui primary fluid button" type="submit">
+                    Edit Life Event
+                </button>
+
+                <button class="ui secondary inverted button" onclick="document.location = '/LifeEvent/TestEntryEditor?lifeEventId=@Model.Id'">
+                    Test Editor
+                </button>
+
+                <div asp-validation-summary="All"></div>
+            </form>
+        </div>
+    </section>
+
+    <section>
+        <h4>Fields</h4>
+        <div class="content">
+            <section class="ui form">
+                <table class="ui striped table">
+                    <thead>
+                        <tr class="three columns">
+                            <th class="editor action"></th>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableFieldBody">
+                        @foreach (var field in Model.GET_Fields)
+                        {
+                            <tr>
+                                
+                                <td class="ui compact">
+                                    <button class="ui red icon button @(Model.GET_IsInUse ? "disabled" : "")"
+                                            onclick="onDeleteField('@field.Name')">
+                                        <i class="ui close icon"></i>
+                                    </button>
+                                </td>
+                                <td>@field.Name</td>
+                                <td>@field.Type</td>
+                                <td>@field.Description</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                @if (Model.GET_IsInUse)
+                {
+                    <div class="ui warning message transition visible">
+                        <p>This Life Event is being used somewhere, so its fields can no longer be modified.</p>
+                        <p>Please remove all uses of this Life Event if you wish to modify its fields again.</p>
+                    </div>
+                }
+                else
+                {
+                    <div class="life event field create">
+                        <div class="field">
+                            <label>Name:</label>
+                            <input id="inputName" type="text" />
+                        </div>
+                        <div class="field">
+                            <label>Type:</label>
+                            <div class="ui fluid search selection dropdown">
+                                <input id="inputType" type="hidden" name="gender">
+                                <i class="dropdown icon"></i>
+                                <div class="default text">Type</div>
+                                <div class="menu">
+                                    <div class="item">DateTime</div>
+                                    <div class="item">Text</div>
+                                    <div class="item">TimeSpan</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label>Description:</label>
+                            <input id="inputDescription" type="text" />
+                        </div>
+                        <div class="field">
+                            <button class="ui fluid primary button" onclick="onAddField()">
+                                Add
+                            </button>
                         </div>
                     </div>
-                </div>
-                <div class="field">
-                    <label>Description:</label>
-                    <input id="inputDescription" type="text" />
-                </div>
-                <div class="field">
-                    <button class="ui fluid primary button" onclick="onAddField()">
-                        Add
-                    </button>
-                </div>
-            </div>
-        }
-        <div id="boxFieldError" class="ui message transition hidden"></div>
+                }
+                <div id="boxFieldError" class="ui message transition hidden"></div>
+            </section>
+        </div>
     </section>
 </section>
 
 @section Scripts {
     <script type="module">
-        import { FarmAjax, FarmAjaxMessageType, drange, ComponentModal, Validation } from "/js/index.js"
+        import { FarmAjax, FarmAjaxMessageType, drange, Modal, Validation } from "/js/index.js"
 
         $(".ui.dropdown").dropdown();
 
         Validation.hookupForm(document.querySelector(".ui.form"));
 
         function onAddField() {
-            const segmentField = document.createElement("segmentField");
-            segmentField.classList.add("loading");
-
             const name = document.getElementById("inputName").value;
             const type = document.getElementById("inputType").value;
             const desc = document.getElementById("inputDescription").value;
 
             FarmAjax.postWithMessageResponse(
-                "/LifeEvent/AjaxAddField",
+                "/Ajax/LifeEvent_ById_Field_Add",
                 {
-                    name:        name,
-                    type:        type,
-                    description: desc,
-                    lifeEventId: document.getElementById("inputEventId").value
+                    name: name,
+                    type: type,
+                    value: desc,
+                    id: document.getElementById("inputEventId").value
                 },
                 response => {
-                    segmentField.classList.remove("loading");
-
-                    if (response.messageType !== FarmAjaxMessageType.Information)
+                    if (response.messageType !== FarmAjaxMessageType.Information) {
                         response.populateMessageBox(document.getElementById("boxFieldError"));
-                    else {
-                        const tbody = document.getElementById("tableFieldBody");
-
-                        const tr = document.createElement("tr");
-                        tbody.appendChild(tr);
-
-                        let td = document.createElement("td");
-                        tr.appendChild(td);
-                        td.innerText = name;
-
-                        td = document.createElement("td");
-                        tr.appendChild(td);
-                        td.innerText = type;
-
-                        td = document.createElement("td");
-                        tr.appendChild(td);
-                        td.innerText = desc;
-
-                        td = document.createElement("td");
-                        tr.appendChild(td);
-
-                        const button = document.createElement("button");
-                        button.classList.add("ui", "secondary", "button");
-                        td.appendChild(button);
-                        button.onclick = () => onDeleteField(name);
-                        button.innerText = "Delete";
-
-                        document.getElementById("inputName").value = "";
-                        document.getElementById("inputDescription").value = "";
+                        return;
                     }
+
+                    const tbody = document.getElementById("tableFieldBody");
+                    const tr = tbody.appendChild(document.createElement("tr"));
+
+                    // Delete button
+                    let td = tr.appendChild(document.createElement("td"));
+                    const button = td.appendChild(document.createElement("button"));
+                    button.classList.add("ui", "red", "icon", "button");
+                    button.onclick = () => onDeleteField(name);
+                    const i = button.appendChild(document.createElement("i"));
+                    i.classList.add("ui", "close", "icon");
+
+                    td = tr.appendChild(document.createElement("td"));
+                    td.innerText = name;
+
+                    td = tr.appendChild(document.createElement("td"));
+                    td.innerText = type;
+
+                    td = tr.appendChild(document.createElement("td"));
+                    td.innerText = desc;
+
+                    document.getElementById("inputName").value = "";
+                    document.getElementById("inputDescription").value = "";
                 }
             );
         }
         window.onAddField = onAddField;
 
         function onDeleteField(name) {
-            ComponentModal.showAreYouSureModal(() => {
-                const segmentField = document.createElement("segmentField");
-                segmentField.classList.add("loading");
-
-                FarmAjax.postWithMessageResponse(
-                    "/LifeEvent/AjaxDeleteField",
-                    {
-                        name: name,
-                        lifeEventId: document.getElementById("inputEventId").value
-                    },
-                    response => {
-                        segmentField.classList.remove("loading");
-
-                        if (response.messageType !== FarmAjaxMessageType.Information)
-                            response.populateMessageBox(document.getElementById("boxFieldError"));
-                        else {
-                            const tbody = document.getElementById("tableFieldBody");
-
-                            let range = drange(tbody.querySelectorAll("tr"));
-                            range = range.filter(e => e.childNodes.item(1).innerText == name);
-
-                            if (range.empty) {
-                                alert("Could not find table row with name: " + name);
+            Modal
+                .askAreYouSure()
+                .then(() => {
+                    FarmAjax.postWithMessageResponse(
+                        "/Ajax/LifeEvent_ById_Field_Delete_ByName",
+                        {
+                            id: document.getElementById("inputEventId").value,
+                            name: name
+                        },
+                        r => {
+                            if (r.messageType !== FarmAjaxMessageType.Information) {
+                                r.populateMessageBox(document.getElementById("boxFieldError"));
                                 return;
                             }
 
-                            tbody.removeChild(range.front);
+                            const tbody = document.getElementById("tableFieldBody");
+                            for (const tr of tbody.querySelectorAll("tr")) {
+                                const tdName = tr.querySelectorAll("td")[1];
+                                if (tdName.innerText === name) {
+                                    tbody.removeChild(tr);
+                                    return;
+                                }
+                            }
                         }
-                    }
-                );
-            });
+                    );
+                });
         }
         window.onDeleteField = onDeleteField;
     </script>

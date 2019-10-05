@@ -122,11 +122,11 @@
 
             &.dark.striped {
                 background-color: hsl(0, 0%, 86%);
+
                 &:nth-of-type(even) {
                     background-color: hsl(0, 0%, 80%);
                 }
             }
-
             // SPECIFIC STYLING FOR CERTAIN EDITOR PAGES
             div.holding {
                 &.registration {
@@ -141,6 +141,26 @@
 
                         &:nth-child(1) {
                             width: 20%;
+                        }
+                    }
+                }
+            }
+
+            div.life.event {
+                &.field.create {
+                    display: inline-flex;
+                    width: 100%;
+
+                    div.field {
+                        display: flex;
+                        flex-direction: column;
+                        align-self: center;
+                        width: 25%;
+                        margin: 1em 1em 0em 1em;
+
+                        &:nth-child(4n) {
+                            align-self: end;
+                            height: 43.13333px; // Same height as Semantic UI's textbox
                         }
                     }
                 }

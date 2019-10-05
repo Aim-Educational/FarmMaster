@@ -97,6 +97,18 @@
           margin: 1em 1em 0em 1em; }
           .editor.section > section div.content div.holding.registration div.field:nth-child(1), .editor.section > section div.content > div.sub.content div.holding.registration div.field:nth-child(1), .editor.section > form > section div.content div.holding.registration div.field:nth-child(1), .editor.section > form > section div.content > div.sub.content div.holding.registration div.field:nth-child(1) {
             width: 20%; }
+      .editor.section > section div.content div.life.event.field.create, .editor.section > section div.content > div.sub.content div.life.event.field.create, .editor.section > form > section div.content div.life.event.field.create, .editor.section > form > section div.content > div.sub.content div.life.event.field.create {
+        display: inline-flex;
+        width: 100%; }
+        .editor.section > section div.content div.life.event.field.create div.field, .editor.section > section div.content > div.sub.content div.life.event.field.create div.field, .editor.section > form > section div.content div.life.event.field.create div.field, .editor.section > form > section div.content > div.sub.content div.life.event.field.create div.field {
+          display: flex;
+          flex-direction: column;
+          align-self: center;
+          width: 25%;
+          margin: 1em 1em 0em 1em; }
+          .editor.section > section div.content div.life.event.field.create div.field:nth-child(4n), .editor.section > section div.content > div.sub.content div.life.event.field.create div.field:nth-child(4n), .editor.section > form > section div.content div.life.event.field.create div.field:nth-child(4n), .editor.section > form > section div.content > div.sub.content div.life.event.field.create div.field:nth-child(4n) {
+            align-self: end;
+            height: 43.13333px; }
     .editor.section > section:nth-of-type(even), .editor.section > form > section:nth-of-type(even) {
       background-color: #ebebeb; }
   .editor.section thead tr.two.columns th:not(:first-child) {

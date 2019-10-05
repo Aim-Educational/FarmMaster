@@ -100,6 +100,12 @@ namespace FarmMaster.Models
         [StringLength(75)]
         public string Reason { get; set; }
     }
+
+    public class AjaxByIdWithNameValueTypeAsTRequest<T> : AjaxByIdWithNameValueRequest
+    {
+        [Required]
+        public T Type { get; set; }
+    }
     #endregion
 
     #region Common Response Objects
