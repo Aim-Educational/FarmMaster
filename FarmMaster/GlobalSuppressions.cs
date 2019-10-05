@@ -202,3 +202,5 @@
 
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "<Pending>", Scope = "member", Target = "~M:FarmMaster.Services.ServiceSpeciesBreedManager.GetContactGdprData(Business.Model.Contact,Newtonsoft.Json.Linq.JObject)")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "<Pending>", Scope = "member", Target = "~M:FarmMaster.Services.ServiceSpeciesBreedManager.GetUserGdprData(Business.Model.User,Newtonsoft.Json.Linq.JObject)")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "<Pending>", Scope = "member", Target = "~M:FarmMaster.Services.ServiceAnimalManager.GetContactGdprData(Business.Model.Contact,Newtonsoft.Json.Linq.JObject)")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "<Pending>", Scope = "member", Target = "~M:FarmMaster.Services.ServiceAnimalManager.GetUserGdprData(Business.Model.User,Newtonsoft.Json.Linq.JObject)")]

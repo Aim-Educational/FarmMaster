@@ -1,12 +1,13 @@
 ﻿using Business.Model;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Diagnostics.Contracts;
 using System.Linq;
 
 namespace FarmMaster.Services
 {
-    public interface IServiceAnimalManager : IServiceEntityManager<Animal>
+    public interface IServiceAnimalManager : IServiceEntityManager<Animal>, IServiceGdprData
     {
         Animal Create(string name, string tag, Animal.Gender sex, Contact owner, Animal mum = null, Animal dad = null);
         void AddLifeEventEntry(Animal animal, LifeEventEntry entry);
@@ -146,6 +147,20 @@ namespace FarmMaster.Services
         public void Update(Animal entity)
         {
             this._context.Update(entity);
+        }
+
+        public void GetContactGdprData(Contact contact, JObject json)
+        {
+            json["AnimalsOwned"] = JArray.FromObject(
+                this.QueryAllIncluded()
+                    .Where(a => a.Owner == contact)
+                    .Select(a => $"[{a.Tag}] a.Name")
+            );
+        }
+
+        public void GetUserGdprData(User user, JObject json)
+        {
+            this.GetContactGdprData(user.Contact, json);
         }
     }
 }
