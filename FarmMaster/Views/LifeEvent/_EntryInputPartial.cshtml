@@ -28,6 +28,8 @@
             <input id="@inputHiddenId" type="hidden" asp-for="Values[Model.Info.Name]" />
 
             <script type="module">
+                import { CharacteristicHelper } from "/js/index.js";
+
                 $(function()
                 {
                     // VARS
@@ -42,8 +44,7 @@
                     // SUBMIT
                     window.onSubmitHooks.push(function ()
                     {
-                        const date = new Date(inputVisible.value);
-                        inputHidden.value = date.toISOString();
+                        inputHidden.value = CharacteristicHelper.createDateTimeForAjax(inputVisible.value);
                     });
                 })
             </script>

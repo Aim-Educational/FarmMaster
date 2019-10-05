@@ -220,7 +220,12 @@ namespace FarmMaster.Controllers
                 Values              = lifeEvent.Fields.ToDictionary(f => f.Name, _ => ""),
                 RedirectAction      = redirectAction,
                 RedirectController  = redirectController,
+                                      // Example: abc:123/345>def:123/567
                 Breadcrumb          = breadcrumb.Split('>')
+                                                .ToDictionary(
+                                                    s => s.Split(':')[0],
+                                                    s => s.Split(':')[1]
+                                                )
             });
         }
 
@@ -242,12 +247,12 @@ namespace FarmMaster.Controllers
                 Values              = lifeEvent.Fields.ToDictionary(f => f.Name, _ => ""),
                 RedirectAction      = "TestEntry",
                 RedirectController  = "LifeEvent",
-                Breadcrumb = new[]
+                Breadcrumb = new Dictionary<string, string>
                 {
-                    "Home:/Home/Index",
-                    "Life Events:/LifeEvent/Index",
-                   $"Edit:/LifeEvent/Edit?id={lifeEventId}",
-                    "Test Editor:#"
+                    { "Home",        "/Home/Index" },
+                    { "Life Events", "/LifeEvent/Index" },
+                    { "Edit",       $"/LifeEvent/Edit?id={lifeEventId}" },
+                    { "Test Editor", "#" }
                 }
             });
         }
@@ -275,7 +280,11 @@ namespace FarmMaster.Controllers
                 Type                = LifeEventEntryEditorType.Edit,
                 RedirectAction      = "EditEntry",
                 RedirectController  = "LifeEvent",
-                Breadcrumb          = breadcrumb.Split('>'),
+                Breadcrumb          = breadcrumb.Split('>')
+                                                .ToDictionary(
+                                                    s => s.Split(':')[0],
+                                                    s => s.Split(':')[1]
+                                                ),
                 Values              = lifeEvent
                                       .Fields
                                       .ToDictionary(

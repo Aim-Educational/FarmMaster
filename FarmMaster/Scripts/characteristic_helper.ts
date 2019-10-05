@@ -10,6 +10,10 @@
     ): string {
         return days + "d " + minutes + "m " + seconds + "s";
     }
+
+    public static createDateTimeForAjax(date: string): string {
+        return (new Date(date)).toISOString();
+    }
 }
 
 export default CharacteristicHelper;

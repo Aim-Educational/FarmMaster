@@ -1,6 +1,7 @@
 ﻿@model LifeEventEntryEditorViewModel
 @{
-    ViewData["Title"] = "EntryEditor";
+    Layout = "_GenericEditorLayout";
+    ViewData["Title"] = "Life Event Entry Editor";
     ViewData["Breadcrumb"] = Model.Breadcrumb;
 
     var formAction = (Model.Type != LifeEventEntryEditorType.Test)
@@ -10,24 +11,30 @@
                      : "";
 }
 
-<h1>Life Event Entry Editor</h1>
 <partial name="_ViewModelWithMessagePartial" model="@Model" />
 
-<form id="formEntry" class="ui form" method="post" asp-action="@formAction">
-    <input type="hidden" asp-for="LifeEventId" />
-    <input type="hidden" asp-for="LifeEventEntryId" />
-    <input type="hidden" asp-for="RedirectController" />
-    <input type="hidden" asp-for="RedirectAction" />
-    <input type="hidden" asp-for="Breadcrumb" />
-    <input type="hidden" asp-for="Type"/>
+<section class="editor section">
+    <section>
+        <h4>Fields</h4>
+        <div class="content">
+            <form id="formEntry" class="ui form" method="post" asp-action="@formAction">
+                <input type="hidden" asp-for="LifeEventId" />
+                <input type="hidden" asp-for="LifeEventEntryId" />
+                <input type="hidden" asp-for="RedirectController" />
+                <input type="hidden" asp-for="RedirectAction" />
+                <input type="hidden" asp-for="Breadcrumb" />
+                <input type="hidden" asp-for="Type" />
 
-    @foreach (var field in Model.GET_FieldInfo)
-    {
-        <partial name="_EntryInputPartial" model="new LifeEventEntryInputPartialViewModel{ Info = field, Values = Model.Values }" />
-    }
+                @foreach (var field in Model.GET_FieldInfo)
+                {
+                    <partial name="_EntryInputPartial" model="new LifeEventEntryInputPartialViewModel{ Info = field, Values = Model.Values }" />
+                }
 
-    <button class="ui primary button" type="submit">YES</button>
-</form>
+                <button class="ui primary fluid button" type="submit">YES</button>
+            </form>
+        </div>
+    </section>
+</section>
 
 @section Scripts {
     <script type="module">
