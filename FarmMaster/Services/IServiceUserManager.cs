@@ -40,8 +40,6 @@ namespace FarmMaster.Services
         readonly IServiceSmtpClient _smtp;
         readonly IServiceRoleManager _roles;
         readonly IServiceContactManager _contacts;
-        readonly IServiceHoldingManager _holdings;
-        readonly IServiceSpeciesBreedManager _speciesBreeds;
         readonly IOptions<IServiceSmtpDomainConfig> _domains;
         readonly IOptions<IServiceUserManagerConfig> _config;
         User _user; // This service is scoped, so we cache the user each time we get a request to reduce server load.
@@ -51,9 +49,7 @@ namespace FarmMaster.Services
                                   IServiceRoleManager roles,
                                   IServiceContactManager contacts,
                                   IOptions<IServiceSmtpDomainConfig> domains,
-                                  IOptions<IServiceUserManagerConfig> config,
-                                  IServiceHoldingManager holdings,
-                                  IServiceSpeciesBreedManager speciesBreeds)
+                                  IOptions<IServiceUserManagerConfig> config)
         {
             this._context = context;
             this._smtp = smtp;
@@ -61,8 +57,6 @@ namespace FarmMaster.Services
             this._config = config;
             this._roles = roles;
             this._contacts = contacts;
-            this._holdings = holdings;
-            this._speciesBreeds = speciesBreeds;
         }
 
         public User Create(string username, string password, string fullName, string email, bool tosConsent, bool privacyConsent)
