@@ -40,7 +40,7 @@ namespace Business.Model
         {
             get
             {
-                return this.Mappings.Count() == 0;
+                return this.Mappings?.Count() == 0;
             }
         }
     }
