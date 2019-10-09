@@ -177,7 +177,8 @@ namespace FarmMaster.Services
             
             var user = this.QueryAllIncluded().SingleOrDefault(u => u.UserLoginInfo.SessionToken == sessionToken);
             if(user == null
-            || user.UserLoginInfo.SessionTokenExpiry <= DateTimeOffset.UtcNow)
+            || user.UserLoginInfo.SessionTokenExpiry <= DateTimeOffset.UtcNow
+            || user.Contact.IsAnonymous) // If their contact is made anonymous, then their account is disabled.
                 return null;
 
             this._user = user;
@@ -190,9 +191,6 @@ namespace FarmMaster.Services
                 throw new InvalidOperationException($"The user '{username}' does not exist.");
 
             var info = this._context.UserLoginInfo.First(i => i.Username == username);
-            if(info == null)
-                throw new NullReferenceException("Unknown error. Somehow 'info' is null.");
-
             return BCrypt.Net.BCrypt.EnhancedVerify(password + info.Salt, info.PassHash);
         }
 
@@ -217,7 +215,11 @@ namespace FarmMaster.Services
             if(!this.UserPasswordMatches(username, password))
                 throw new Exception($"The password is incorrect.");
 
-            return this.QueryAllIncluded().Single(u => u.UserLoginInfo.Username == username);
+            var user = this.QueryAllIncluded().Single(u => u.UserLoginInfo.Username == username);
+            if(user.Contact.IsAnonymous)
+                throw new InvalidOperationException("Cannot login as this account has been anonymised.");
+
+            return user;
         }
 
         public void FinishEmailVerify(string token)
