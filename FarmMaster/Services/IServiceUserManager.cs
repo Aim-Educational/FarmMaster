@@ -296,6 +296,7 @@ namespace FarmMaster.Services
         public void AnonymiseUserData(User user)
         {
             Contract.Assert(user != null);
+            Contract.Requires(this._context.Entry(user).State != EntityState.Detached);
 
             user.RoleId = null;
 
@@ -309,6 +310,8 @@ namespace FarmMaster.Services
             user.UserPrivacy.HasVerifiedEmail = false;
             user.UserPrivacy.PrivacyPolicyVersionAgreedTo = 0;
             user.UserPrivacy.TermsOfServiceVersionAgreedTo = 0;
+
+            this._context.SaveChanges();
         }
     }
 }
