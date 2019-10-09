@@ -162,5 +162,11 @@ namespace FarmMaster.Services
         {
             this.GetContactGdprData(user.Contact, json);
         }
+
+        public void AnonymiseContactData(Contact contact)
+        {}
+
+        public void AnonymiseUserData(User user)
+        {}
     }
 }

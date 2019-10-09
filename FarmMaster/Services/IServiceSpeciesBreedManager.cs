@@ -151,5 +151,9 @@ namespace FarmMaster.Services
                                  .ThenInclude(c => c.Characteristics)
                                 .Include(s => s.Mappings);
         }
+
+        public void AnonymiseContactData(Contact contact){}
+
+        public void AnonymiseUserData(User user){}
     }
 }

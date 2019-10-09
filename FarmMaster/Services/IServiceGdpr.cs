@@ -13,6 +13,8 @@ namespace FarmMaster.Services
     {
         void GetContactGdprData(Contact contact, JObject json);
         void GetUserGdprData(User user, JObject json);
+        void AnonymiseContactData(Contact contact);
+        void AnonymiseUserData(User user);
     }
 
     public interface IServiceGdpr

@@ -288,5 +288,25 @@ namespace FarmMaster.Services
                 },
             });
         }
+
+        public void AnonymiseContactData(Contact contact){}
+
+        public void AnonymiseUserData(User user)
+        {
+            Contract.Assert(user != null);
+
+            user.RoleId = null;
+
+            // Login is disabled for anonymised accounts, so hard coding these things isn't a problem.
+            user.UserLoginInfo.PassHash = "00000000";
+            user.UserLoginInfo.Salt = "000000000";
+            user.UserLoginInfo.SessionTokenExpiry = DateTimeOffset.Now;
+            user.UserLoginInfo.Username = $"{user.UserId} ANON {Guid.NewGuid()}";
+            
+            user.UserPrivacy.EmailVerificationToken = null;
+            user.UserPrivacy.HasVerifiedEmail = false;
+            user.UserPrivacy.PrivacyPolicyVersionAgreedTo = 0;
+            user.UserPrivacy.TermsOfServiceVersionAgreedTo = 0;
+        }
     }
 }

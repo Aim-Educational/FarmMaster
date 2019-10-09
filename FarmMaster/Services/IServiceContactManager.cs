@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -325,6 +326,33 @@ namespace FarmMaster.Services
         public void GetUserGdprData(User user, JObject json)
         {
             this.GetContactGdprData(user.Contact, json);
+        }
+
+        public void AnonymiseContactData(Contact contact)
+        {
+            Contract.Assert(contact != null);
+            Contract.Requires(this._context.Entry(contact).State != EntityState.Detached);
+
+            contact.ContactType = Contact.Type.N_A;
+            contact.FullName = "Anonymous Account";
+            contact.IsAnonymous = true;
+            
+            foreach(var email in contact.EmailAddresses)
+                this._context.Remove(email);
+
+            foreach(var phone in contact.PhoneNumbers)
+                this._context.Remove(phone);
+
+            foreach(var relationship in contact.GetRelationships(this._context))
+                this._context.Remove(relationship);
+
+            this._context.SaveChanges();
+        }
+
+        public void AnonymiseUserData(User user)
+        {
+            Contract.Assert(user != null);
+            this.AnonymiseContactData(user.Contact);
         }
     }
 }
