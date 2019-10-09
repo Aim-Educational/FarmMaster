@@ -22,9 +22,9 @@ namespace FarmMaster.Controllers
     {
         readonly IServiceUserManager _users;
         readonly IServiceContactManager _contacts;
-        readonly IServiceGdprAggregator _gdpr;
+        readonly IServiceGdpr _gdpr;
 
-        public AccountController(IServiceUserManager users, IServiceContactManager userData, IServiceGdprAggregator gdpr)
+        public AccountController(IServiceUserManager users, IServiceContactManager userData, IServiceGdpr gdpr)
         {
             this._users = users;
             this._contacts = userData;

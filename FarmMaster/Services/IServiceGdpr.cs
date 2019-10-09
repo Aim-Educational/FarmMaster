@@ -15,12 +15,12 @@ namespace FarmMaster.Services
         void GetUserGdprData(User user, JObject json);
     }
 
-    public interface IServiceGdprAggregator
+    public interface IServiceGdpr
     {
         JObject GetAggregatedDataForUser(User user);
     }
 
-    public class ServiceGdprAggregator : IServiceGdprAggregator
+    public class ServiceGdprAggregator : IServiceGdpr
     {
         readonly IServiceProvider _services;
 
