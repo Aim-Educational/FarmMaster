@@ -210,10 +210,17 @@ namespace FarmMaster.Services
         public User UserFromLoginInfo(string username, string password)
         {
             if(!this.UserExists(username))
+            {
+                password = ""; // So passwords don't show up in the debugger.
                 throw new Exception($"The user '{username}' does not exist.");
+            }
 
             if(!this.UserPasswordMatches(username, password))
+            {
+                password = "";
                 throw new Exception($"The password is incorrect.");
+            }
+            password = "";
 
             var user = this.QueryAllIncluded().Single(u => u.UserLoginInfo.Username == username);
             if(user.Contact.IsAnonymous)
