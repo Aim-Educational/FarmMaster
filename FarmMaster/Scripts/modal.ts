@@ -50,14 +50,25 @@
         });
     }
 
-    public static show(modalId: string): void {
+    public static show(modalId: string): Promise<void> | null {
         const modal = document.getElementById(modalId);
         if (modal === null) {
             alert("Dev error: No element with ID of '" + modalId + "'");
-            return;
+            return null;
         }
 
-        $(modal).modal("show");
+        return new Promise((resolve, reject) => {
+            $(modal)
+                .modal({
+                    onApprove: function () {
+                        resolve();
+                    },
+                    onDeny: function () {
+                        reject();
+                    }
+                })
+                .modal("show");
+        });
     }
 }
 
