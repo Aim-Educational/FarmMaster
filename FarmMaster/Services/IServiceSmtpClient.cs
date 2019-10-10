@@ -41,6 +41,11 @@ namespace FarmMaster.Services
         /// end with an incomplete query value, .e.g "?token="
         /// </summary>
         public string VerifyEmail;
+
+        /// <summary>
+        /// Ditto
+        /// </summary>
+        public string AnonRequest { get; set; }
     }
 
     /// <summary>
@@ -136,7 +141,7 @@ namespace FarmMaster.Services
 
         public async Task SendToAsync(IEnumerable<string> emails, MailMessage message)
         {
-            if(emails.Any())
+            if(!emails.Any())
                 return;
 
             foreach (var email in emails)
