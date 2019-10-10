@@ -17,4 +17,10 @@ namespace FarmMaster.Misc
         Yes,
         No
     }
+
+    public enum IsUnique
+    {
+        Yes,
+        No
+    }
 }

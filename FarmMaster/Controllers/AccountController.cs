@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using Business.Model;
 using FarmMaster.Filters;
 using FarmMaster.Misc;
 using FarmMaster.Models;
@@ -152,6 +153,26 @@ namespace FarmMaster.Controllers
         public IActionResult VerifyEmail([FromQuery] string token)
         {
             this._users.FinishEmailVerify(token);
+            return Redirect("/");
+        }
+
+        public IActionResult AnonymiseRequest([FromQuery] string token)
+        {
+            var contact = this._contacts.GetContactFromTokenString(token);
+            if(contact == null)
+                return Redirect("/");
+
+            this._contacts.ExpireTokenByTokenString(contact, token);
+            
+            if(contact.ContactType != Contact.Type.User)
+                this._gdpr.AnonymiseContact(contact);
+            else
+            {
+                var user = this._users.QueryAllIncluded()
+                                      .First(u => u.ContactId == contact.ContactId);
+                this._gdpr.AnonymiseUser(user);
+            }
+
             return Redirect("/");
         }
         #endregion

@@ -13,19 +13,21 @@ namespace FarmMaster.Services
     public interface IServiceContactManager : IServiceEntityManager<Contact>, IServiceGdprData
     {
         Contact Create(Contact.Type type, string fullName, SaveChanges saveChanges = SaveChanges.Yes);
+        Contact GetContactFromTokenString(string tokenString);
 
         Telephone AddTelephoneNumber(Contact contact, User responsible, string reason, string name, string number);
         Email AddEmailAddress(Contact contact, User responsible, string reason, string name, string value);
         MapContactRelationship AddRelationship(Contact first, Contact second, User responsible, string reason, string description);
+        ContactToken GenerateToken(Contact contact, ContactToken.Type type, DateTimeOffset expires, IsUnique isUnique = IsUnique.Yes);
 
         bool RemoveTelephoneNumberByName(Contact contact, User responsible, string reason, string name);
         bool RemoveTelephoneNumberById(Contact contact, User responsible, string reason, int id);
         bool RemoveEmailAddressByName(Contact contact, User responsible, string reason, string name);
         bool RemoveEmailAddressById(Contact contact, User responsible, string reason, int id);
         bool RemoveRelationshipById(Contact contact, User responsible, string reason, int id);
+        CouldDelete ExpireTokenByTokenString(Contact contact, string token);
 
         void LogAction(Contact affected, User responsible, ActionAgainstContactInfo.Type type, string reason, string additionalInfo = null);
-        void MakeAnonymous(Contact contact);
     }
     
     public class ServiceContactManager : IServiceContactManager
@@ -166,23 +168,6 @@ namespace FarmMaster.Services
                 reason,
                 $"{email.Name}={email.Address}"
             );
-        }
-
-        public void MakeAnonymous(Contact contact)
-        {
-            contact = this.FromIdAllIncluded(contact.ContactId); // Ensure we have all their data loaded, so we don't miss any.
-            contact.IsAnonymous = true;
-
-            foreach(var phone in contact.PhoneNumbers)
-                this._context.Remove(phone);
-
-            foreach(var email in contact.EmailAddresses)
-                this._context.Remove(email);
-
-            foreach(var relationship in contact.GetRelationships(this._context).ToList()) // ToList, since it's possible removing the entries messes up the original iterator.
-                this._context.Remove(relationship);
-            
-            this._context.SaveChanges();
         }
 
         public MapContactRelationship AddRelationship(Contact first, Contact second, User responsible, string reason, string description)
@@ -353,6 +338,51 @@ namespace FarmMaster.Services
         {
             Contract.Assert(user != null);
             this.AnonymiseContactData(user.Contact);
+        }
+
+        public ContactToken GenerateToken(Contact contact, ContactToken.Type type, DateTimeOffset expires, IsUnique isUnique = IsUnique.Yes)
+        {
+            Contract.Assert(contact != null);
+
+            if(isUnique == IsUnique.Yes)
+            {
+                foreach(var existingToken in contact.Tokens.Where(t => t.UsageType == type))
+                    this._context.Remove(existingToken);
+            }
+
+            var token = new ContactToken 
+            {
+                Contact = contact,
+                Expiry = expires,
+                Token = Guid.NewGuid().ToString(),
+                UsageType = type
+            };
+            
+            this._context.Add(token);
+            this._context.SaveChanges();
+            return token;
+        }
+
+        public CouldDelete ExpireTokenByTokenString(Contact contact, string tokenString)
+        {
+            Contract.Assert(contact != null);
+            
+            var token = contact.Tokens.FirstOrDefault(t => t.Token == tokenString);
+            if(token == null)
+                return CouldDelete.No;
+
+            this._context.Remove(token);
+            this._context.SaveChanges();
+            return CouldDelete.Yes;
+        }
+
+        public Contact GetContactFromTokenString(string tokenString)
+        {
+            var token = this._context.ContactTokens.FirstOrDefault(t => t.Token == tokenString);
+            if(token == null)
+                return null;
+
+            return this.FromIdAllIncluded(token.ContactId);
         }
     }
 }

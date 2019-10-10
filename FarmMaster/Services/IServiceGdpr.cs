@@ -21,6 +21,7 @@ namespace FarmMaster.Services
     {
         JObject GetAggregatedDataForUser(User user);
         void AnonymiseUser(User user);
+        void AnonymiseContact(Contact contact);
     }
 
     public class ServiceGdprAggregator : IServiceGdpr
@@ -51,6 +52,14 @@ namespace FarmMaster.Services
 
             foreach(var service in ServiceGdprAggregator._gdprServiceCache)
                 service.AnonymiseUserData(user);
+        }
+
+        public void AnonymiseContact(Contact contact)
+        {
+            this.cacheServices();
+
+            foreach (var service in ServiceGdprAggregator._gdprServiceCache)
+                service.AnonymiseContactData(contact);
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]

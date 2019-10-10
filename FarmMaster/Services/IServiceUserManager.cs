@@ -240,6 +240,8 @@ namespace FarmMaster.Services
                                  .ThenInclude(c => c.EmailAddresses)
                                 .Include(u => u.Contact)
                                  .ThenInclude(c => c.PhoneNumbers)
+                                .Include(u => u.Contact)
+                                 .ThenInclude(c => c.Tokens)
                                 .Include(u => u.Role)
                                  .ThenInclude(r => r.Permissions)
                                  .ThenInclude(p => p.EnumRolePermission)

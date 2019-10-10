@@ -27,8 +27,9 @@ namespace FarmMaster.Misc
 
         public static class EmailTemplateNames
         {
-            public const string EmailVerify      = "verify_email";
-            public const string ContactInfoAudit = "user_info_audit_alert";
+            public const string EmailVerify             = "verify_email";
+            public const string ContactInfoAudit        = "user_info_audit_alert";
+            public const string AnonymisationRequest    = "anon_request";
         }
     }
 

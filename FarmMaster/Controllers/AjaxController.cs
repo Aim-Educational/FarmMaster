@@ -6,6 +6,7 @@ using FarmMaster.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,42 @@ namespace FarmMaster.Controllers
 #pragma warning disable CA1707 // Identifiers should not contain underscores. Ignored since it's an explicit design choice for AJAX callbacks.
     public class AjaxController : Controller
     {
+        #region Account
+        [HttpPost]
+        [FarmAjaxReturnsMessage]
+        public IActionResult Account_BySession_SendAnonymiseRequest_VerifyByPassword(
+            [FromBody] AccountAjaxWithPasswordRequest model,
+            User user,
+            [FromServices] IServiceContactManager contacts,
+            [FromServices] IServiceSmtpClient email,
+            [FromServices] IServiceUserManager users,
+            [FromServices] IOptions<IServiceSmtpDomainConfig> domains
+        )
+        {
+            if(!users.UserPasswordMatches(user.UserLoginInfo.Username, model.Password))
+                throw new Exception("Password is incorrect.");
+
+            var token = contacts.GenerateToken(
+                user.Contact,
+                ContactToken.Type.Anonymise,
+                DateTimeOffset.UtcNow + TimeSpan.FromDays(1),
+                IsUnique.Yes
+            );
+
+            email.SendToWithTemplateAsync(
+                user,
+                FarmConstants.EmailTemplateNames.AnonymisationRequest,
+                "Confirm request to anonymise a contact/user your email is associated with.",
+                (
+                    callback: domains.Value.AnonRequest + token.Token,
+                    contactName: user.Contact.FullName
+                )
+            ).Wait();
+
+            return new EmptyResult();
+        }
+        #endregion
+
         #region Contact
         [HttpPost]
         [FarmAjaxReturnsMessageAndValue(BusinessConstants.Roles.VIEW_CONTACTS)]

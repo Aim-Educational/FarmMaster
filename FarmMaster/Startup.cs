@@ -107,12 +107,14 @@ namespace FarmMaster
             {
                 var domain = Configuration.GetValue<string>("AIMDEPLOY:DOMAIN");
                 o.VerifyEmail = $"https://{domain}/Account/VerifyEmail?token=";
+                o.AnonRequest = $"https://{domain}/Account/AnonymiseRequest?token=";
             });
 
             services.Configure<IServiceSmtpTemplateConfig>(o =>
             {
-                o.EmailTemplates.Add(FarmConstants.EmailTemplateNames.EmailVerify,      "/Views/EmailTemplates/EmailVerify.cshtml");
-                o.EmailTemplates.Add(FarmConstants.EmailTemplateNames.ContactInfoAudit, "/Views/EmailTemplates/ContactInfoAudit.cshtml");
+                o.EmailTemplates.Add(FarmConstants.EmailTemplateNames.EmailVerify,          "/Views/EmailTemplates/EmailVerify.cshtml");
+                o.EmailTemplates.Add(FarmConstants.EmailTemplateNames.ContactInfoAudit,     "/Views/EmailTemplates/ContactInfoAudit.cshtml");
+                o.EmailTemplates.Add(FarmConstants.EmailTemplateNames.AnonymisationRequest, "/Views/EmailTemplates/AnonymisationRequest.cshtml");
             });
 
             services.AddScoped<IServiceSmtpClient, ServiceSmtpClient>();

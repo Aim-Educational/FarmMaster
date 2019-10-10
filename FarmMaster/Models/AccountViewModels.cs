@@ -82,4 +82,11 @@ namespace FarmMaster.Models
         [MinLength(1)]
         public IList<string> TelephoneNumbers { get; set; }
     }
+
+    public class AccountAjaxWithPasswordRequest : AjaxRequestModel
+    {
+        [Required]
+        [StringLength(75)]
+        public string Password { get; set; }
+    }
 }
