@@ -79,7 +79,7 @@ namespace FarmMaster.Controllers
                 );
             }
 
-            this._contacts.MakeAnonymous(contactDb);
+            this._contacts.AnonymiseContactData(contactDb);
             return RedirectToAction(nameof(Index));
         }
 

@@ -131,6 +131,15 @@ namespace Business.Model
             b.Entity<MapBreedToAnimal>()
              .HasIndex(m => m.BreedId);
 
+            b.Entity<ContactToken>()
+             .HasIndex(t => t.UsageType);
+            b.Entity<ContactToken>()
+             .Property(t => t.UsageType)
+             .HasConversion<string>();
+            b.Entity<ContactToken>()
+             .HasIndex(t => t.Token)
+             .IsUnique();
+
             this.SeedRolePermissions(b);
             this.SeedHoldingRegistrations(b);
             this.SeedLifeEvents(b);
@@ -161,6 +170,7 @@ namespace Business.Model
         public DbSet<MapLifeEventEntryToAnimal>         MapLifeEventEntryToAnimals       { get; set; }
         public DbSet<MapBreedToAnimal>                  MapBreedToAnimals                { get; set; }
         public DbSet<Animal>                            Animals                          { get; set; }
+        public DbSet<ContactToken>                      ContactTokens                    { get; set; }
         #endregion
 
         #region Data seeding
