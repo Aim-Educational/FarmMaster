@@ -14,6 +14,8 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -24,12 +26,22 @@ namespace FarmMaster.Controllers
         readonly IServiceUserManager _users;
         readonly IServiceContactManager _contacts;
         readonly IServiceGdpr _gdpr;
+        readonly IServiceSmtpClient _smtp;
+        readonly IOptions<IServiceSmtpDomainConfig> _domains;
 
-        public AccountController(IServiceUserManager users, IServiceContactManager userData, IServiceGdpr gdpr)
+        public AccountController(
+            IServiceUserManager users, 
+            IServiceContactManager userData, 
+            IServiceGdpr gdpr,
+            IServiceSmtpClient smtp,
+            IOptions<IServiceSmtpDomainConfig> domains
+        )
         {
             this._users = users;
             this._contacts = userData;
             this._gdpr = gdpr;
+            this._smtp = smtp;
+            this._domains = domains;
         }
 
         #region Profile GET
@@ -75,6 +87,11 @@ namespace FarmMaster.Controllers
             this._users.EndSession(user, HttpContext);
             HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme).Wait();
             return RedirectToAction(nameof(Login));
+        }
+
+        public IActionResult ForgotPassword()
+        {
+            return View();
         }
         #endregion
 
@@ -136,6 +153,56 @@ namespace FarmMaster.Controllers
             identity.AddClaim(new Claim(ClaimTypes.Name, user.UserLoginInfo.Username));
 
             HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity)).Wait();
+            return Redirect("/");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult ForgotPassword(AccountForgotPasswordViewModel model)
+        {
+            if(!ModelState.IsValid)
+            {
+                model.ParseInvalidModelState(ModelState);
+                return View(model);
+            }
+
+            var user = this._users.Query()
+                                  .Include(u => u.Contact)
+                                   .ThenInclude(c => c.EmailAddresses)
+                                  .Include(u => u.Contact)
+                                   .ThenInclude(c => c.Tokens)
+                                  .Include(u => u.UserLoginInfo)
+                                  .Where(u => u.UserLoginInfo.Username == model.Username)
+                                  .FirstOrDefault();
+            if(user == null)
+            {
+                model.ParseMessageQueryString(ViewModelWithMessage.CreateErrorQueryString($"No user called '{model.Username}' was found"));
+                return View(model);
+            }
+
+            if(!user.Contact.EmailAddresses.Any(e => e.Address == model.Email))
+            {
+                model.ParseMessageQueryString(ViewModelWithMessage.CreateErrorQueryString($"Email address '{model.Email}' does not belong to user '{model.Username}'"));
+                return View(model);
+            }
+
+            var token = this._contacts.GenerateToken(
+                user.Contact,
+                ContactToken.Type.ResetPassword,
+                DateTimeOffset.UtcNow + TimeSpan.FromHours(2),
+                IsUnique.Yes
+            );
+
+            this._smtp.SendToWithTemplateAsync(
+                new[] { model.Email },
+                FarmConstants.EmailTemplateNames.ResetPasswordRequest,
+                "Request to reset your password",
+                ( 
+                    callback: this._domains.Value.ResetPassword + token.Token,
+                    username: user.UserLoginInfo.Username
+                )
+            ).Wait();
+
             return Redirect("/");
         }
         #endregion

@@ -21,19 +21,23 @@
         </div>
     }
 
-    <section class="field">
+    <div class="field">
         <div class="ui left icon input">
             <i class="user icon"></i>
             <input asp-for="Username" placeholder="Username"/>
         </div>
-    </section>
+    </div>
 
-    <section class="field">
+    <div class="field">
         <div class="ui left icon input">
             <i class="lock icon"></i>
             <input asp-for="Password" placeholder="Password" />
         </div>
-    </section>
+        <!--Forgive this sin, but I can't excuse making a seperate SASS file just for this single element.-->
+        <span class="ui small muted text" style="display: flex; flex-direction: column; align-items: end; padding-right: 1em; padding-top: 0.2em; width: 100%;">
+            <a asp-action="ForgotPassword">Forgotten password?</a>
+        </span>
+    </div>
 
     <button class="ui large primary fluid button" type="submit">Login</button>
 

@@ -18,6 +18,8 @@ namespace Business.Model
             N_A,
             Anonymise, // For contacts: Anonymise the contact.
                        // For users: Anonymise the user *and* the contact.
+            ResetPassword, // For contacts: No action.
+                           // For users: Send them to a page to reset their password.
         }
 
         [Key]

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FarmMaster.Misc;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -81,6 +82,19 @@ namespace FarmMaster.Models
         [Required]
         [MinLength(1)]
         public IList<string> TelephoneNumbers { get; set; }
+    }
+
+    public class AccountForgotPasswordViewModel : ViewModelWithMessage
+    {
+        [Required]
+        [StringLength(75)]
+        public string Username { get; set; }
+
+        [Required]
+        [StringLength(255)]
+        [DataType(DataType.EmailAddress)]
+        [RegularExpression(FarmConstants.Regexes.Email)]
+        public string Email { get; set; }
     }
 
     public class AccountAjaxWithPasswordRequest : AjaxRequestModel
