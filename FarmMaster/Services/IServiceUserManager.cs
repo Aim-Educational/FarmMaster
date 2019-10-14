@@ -25,6 +25,7 @@ namespace FarmMaster.Services
                     bool tosConsent, bool privacyConsent);
         bool UserExists(string username);
         bool UserPasswordMatches(string username, string password);
+        void ChangePassword(User user, string password);
         void RenewSession(User user, HttpContext http);
         void EndSession(User user, HttpContext http);
         User UserFromCookieSession(HttpContext http);
@@ -320,6 +321,16 @@ namespace FarmMaster.Services
             user.UserPrivacy.PrivacyPolicyVersionAgreedTo = 0;
             user.UserPrivacy.TermsOfServiceVersionAgreedTo = 0;
 
+            this._context.SaveChanges();
+        }
+
+        public void ChangePassword(User user, string password)
+        {
+            user.UserLoginInfo.Salt = BCrypt.Net.BCrypt.GenerateSalt();
+            user.UserLoginInfo.PassHash = BCrypt.Net.BCrypt.EnhancedHashPassword(password + user.UserLoginInfo.Salt);
+            user.UserLoginInfo.SessionTokenExpiry = DateTimeOffset.UtcNow;
+
+            this._context.Update(user);
             this._context.SaveChanges();
         }
     }

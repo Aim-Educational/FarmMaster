@@ -97,6 +97,23 @@ namespace FarmMaster.Models
         public string Email { get; set; }
     }
 
+    public class AccountResetPasswordViewModel : ViewModelWithMessage
+    {
+        [Required]
+        [StringLength(75)]
+        public string Token { get; set; }
+
+        [Required]
+        [StringLength(75)]
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
+
+        [Required]
+        [StringLength(75)]
+        [DataType(DataType.Password)]
+        public string PasswordConfirm { get; set; }
+    }
+
     public class AccountAjaxWithPasswordRequest : AjaxRequestModel
     {
         [Required]

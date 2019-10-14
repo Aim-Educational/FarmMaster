@@ -93,6 +93,14 @@ namespace FarmMaster.Controllers
         {
             return View();
         }
+
+        public IActionResult ResetPassword(string token)
+        {
+            return View(new AccountResetPasswordViewModel
+            {
+                Token = token
+            });
+        }
         #endregion
 
         #region Signup/in/out POST
@@ -203,6 +211,41 @@ namespace FarmMaster.Controllers
                 )
             ).Wait();
 
+            return Redirect("/");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult ResetPassword(AccountResetPasswordViewModel model)
+        {
+            if(model.Password != model.PasswordConfirm)
+                ModelState.AddModelError(nameof(model.PasswordConfirm), "The passwords don't match.");
+
+            if (!ModelState.IsValid)
+            {
+                model.ParseInvalidModelState(ModelState);
+                return View(model);
+            }
+
+            var contact = this._contacts.GetContactFromTokenString(model.Token);
+            if(contact == null)
+            {
+                model.ParseMessageQueryString(ViewModelWithMessage.CreateErrorQueryString("Invalid or Expired token, please request a new password reset."));
+                return View(model);
+            }
+
+            var user = this._users.Query()
+                                  .Include(u => u.UserLoginInfo)
+                                  .FirstOrDefault(u => u.ContactId == contact.ContactId);
+            if(user == null)
+            {
+                model.Password = "";
+                model.PasswordConfirm = "";
+                throw new InvalidOperationException("Internal Error");
+            }
+
+            this._contacts.ExpireTokenByTokenString(contact, model.Token);
+            this._users.ChangePassword(user, model.Password);
             return Redirect("/");
         }
         #endregion
