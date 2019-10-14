@@ -76,5 +76,10 @@ namespace FarmMaster.BackgroundServices
                 this._context.SaveChanges();
             }
         }
+
+        public Task OnShutdown()
+        {
+            return Task.CompletedTask;
+        }
     }
 }

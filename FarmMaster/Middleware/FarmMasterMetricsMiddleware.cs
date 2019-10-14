@@ -1,0 +1,35 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using FarmMaster.Services;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
+
+namespace FarmMaster.Middleware
+{
+    public class FarmMasterMetricsMiddleware
+    {
+        private readonly RequestDelegate _next;
+
+        public FarmMasterMetricsMiddleware(RequestDelegate next)
+        {
+            _next = next;
+        }
+
+        public Task Invoke(HttpContext httpContext, IServiceMetricAggregator metrics)
+        {
+            metrics.BumpRequestCount();
+            return _next(httpContext);
+        }
+    }
+
+    // Extension method used to add the middleware to the HTTP request pipeline.
+    public static class FarmMasterMetricsMiddlewareExtensions
+    {
+        public static IApplicationBuilder UseFarmMasterMetricsMiddleware(this IApplicationBuilder builder)
+        {
+            return builder.UseMiddleware<FarmMasterMetricsMiddleware>();
+        }
+    }
+}

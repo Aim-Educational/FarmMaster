@@ -20,6 +20,7 @@ namespace FarmMaster.BackgroundServices
     public interface IFarmBackgroundService
     {
         Task OnTickAsync(CancellationToken stoppingToken);
+        Task OnShutdown();
         IFarmBackgroundServiceConfig Config { get; }
     }
 
@@ -28,14 +29,28 @@ namespace FarmMaster.BackgroundServices
     {
         readonly IServiceScopeFactory _serviceScope;
         readonly ILogger<FarmBackgroundServiceHost<T>> _logger;
+        readonly IApplicationLifetime _lifetime;
 
+        [SuppressMessage("Design", "CA1062:Validate arguments of public methods", Justification = "<Pending>")]
         public FarmBackgroundServiceHost(
             IServiceScopeFactory serviceScope,
-            ILogger<FarmBackgroundServiceHost<T>> logger
+            ILogger<FarmBackgroundServiceHost<T>> logger,
+            IApplicationLifetime lifetime
         )
         {
             this._serviceScope = serviceScope;
             this._logger = logger;
+            this._lifetime = lifetime;
+
+            // Graceful exit.
+            lifetime.ApplicationStopping.Register(() => 
+            {
+                using (var scope = this._serviceScope.CreateScope())
+                {
+                    var service = ActivatorUtilities.CreateInstance<T>(scope.ServiceProvider);
+                    service.OnShutdown().Wait();
+                }
+            });
         }
 
         [SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "<Pending>")]
@@ -60,7 +75,7 @@ namespace FarmMaster.BackgroundServices
                             return;
                     }
 
-                    await Task.Delay((int)service.Config.DelayPerTicks.TotalMilliseconds);
+                    await Task.Delay((int)service.Config.DelayPerTicks.TotalMilliseconds, stoppingToken);
                 }
             }
         }

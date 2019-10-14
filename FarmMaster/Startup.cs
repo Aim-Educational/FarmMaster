@@ -88,9 +88,11 @@ namespace FarmMaster
 
             // Other services
             services.AddScoped<IServiceGdpr, ServiceGdprAggregator>();
+            services.AddSingleton<IServiceMetricAggregator, ServiceMetricAggregator>();
 
             // Background services
             services.AddHostedService<FarmBackgroundServiceHost<BackgroundServiceUserActionEmailer>>();
+            services.AddHostedService<FarmBackgroundServiceHost<BackgroundServiceMetricPusher>>();
 
             // SMTP
             services.Configure<IServiceSmtpClientConfig>(o =>
@@ -165,6 +167,7 @@ namespace FarmMaster
 
             app.UseHttpsRedirection();
             app.UseStatusCodePages();
+            app.UseFarmMasterMetricsMiddleware();
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseAuthentication();
