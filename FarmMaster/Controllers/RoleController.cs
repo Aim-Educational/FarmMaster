@@ -76,7 +76,7 @@ namespace FarmMaster.Controllers
             var myUser = users.UserFromCookieSession(HttpContext);
             return View(new RoleAssignViewModel
             {
-                Users = db.Users.Include(u => u.Contact).Include(u => u.Role).Where(u => u != myUser),
+                Users = db.Users.Include(u => u.Contact).Include(u => u.Role).Where(u => u != myUser && !u.Contact.IsAnonymous),
                 Roles = db.Roles.Where(r => myUser.Role.CanModify(r))
             });
         }
