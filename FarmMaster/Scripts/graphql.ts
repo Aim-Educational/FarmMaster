@@ -20,7 +20,7 @@ export class GraphQL {
         .then(json => {
             if (json.errors && json.errors.length > 0)
                 throw json.errors;
-            return json;
+            return json.data;
         })
         .then(json => {
             console.log(json)
