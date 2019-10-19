@@ -31,7 +31,7 @@ namespace FarmMaster.GraphQL
                 "contacts",
                 resolve: _ =>
                 {
-                    var contacts = context.HttpContext.RequestServices.GetRequiredService<IServiceContactManager>();
+                    var contacts = context.GetRequiredService<IServiceContactManager>();
                     return contacts.Query().OrderBy(c => c.FullName);
                 }
             );
@@ -53,7 +53,7 @@ namespace FarmMaster.GraphQL
                 resolve: graphql =>
                 {
                     // Services
-                    var animals = context.HttpContext.RequestServices.GetRequiredService<IServiceAnimalManager>();
+                    var animals = context.GetRequiredService<IServiceAnimalManager>();
 
                     // Arguments
                     var gender = graphql.GetValueOrNull<Animal.Gender>("gender");
@@ -73,7 +73,7 @@ namespace FarmMaster.GraphQL
                 "species",
                 resolve: _ =>
                 {
-                    var speciesBreeds = context.HttpContext.RequestServices.GetRequiredService<IServiceSpeciesBreedManager>();
+                    var speciesBreeds = context.GetRequiredService<IServiceSpeciesBreedManager>();
                     return speciesBreeds.For<Species>().Query().OrderBy(s => s.Name);
                 }
             );
@@ -97,6 +97,11 @@ namespace FarmMaster.GraphQL
             return (graphql.HasArgument(name))
                 ? graphql.GetArgument<T>(name)
                 : new T?();
+        }
+
+        internal static T GetRequiredService<T>(this IHttpContextAccessor context) where T : class
+        {
+            return context.HttpContext.RequestServices.GetRequiredService<T>();
         }
     }
 }
