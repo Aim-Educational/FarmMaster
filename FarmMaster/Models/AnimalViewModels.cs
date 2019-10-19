@@ -25,7 +25,10 @@ namespace FarmMaster.Models
         public string Tag { get; set; }
 
         [Required]
-        public IEnumerable<int> BreedIds { get; set; } // Species can be calculated. Just make sure to do sanity checks.
+        public int? SpeciesId { get; set; }
+
+        [Required]
+        public IEnumerable<int> BreedIds { get; set; }
 
         [Required]
         public Animal.Gender Sex { get; set; }

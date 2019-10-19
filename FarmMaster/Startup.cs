@@ -135,8 +135,7 @@ namespace FarmMaster
             services.AddSingleton<IDocumentExecuter, DocumentExecuter>();
             services.AddSingleton<IDocumentWriter, DocumentWriter>();
             services.AddGraphQL();
-            services.AddSingleton<FarmQLSchema>();
-            services.AddSingleton<ContactGraphType>();
+            services.AddFarmQLSchema();
 
             // MVC
             services

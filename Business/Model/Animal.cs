@@ -35,6 +35,10 @@ namespace Business.Model
         public Contact Owner { get; set; }
 
         [Required]
+        public int SpeciesId { get; set; }
+        public Species Species { get; set; }
+
+        [Required]
         public int CharacteristicsId { get; set; }
         public AnimalCharacteristicList Characteristics { get; set; }
 

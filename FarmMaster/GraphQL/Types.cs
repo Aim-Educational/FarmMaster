@@ -24,4 +24,20 @@ namespace FarmMaster.GraphQL
                 .Description("The contact's abbreviated name");
         }
     }
+
+    public class AnimalGraphType : ObjectGraphType<Animal>
+    {
+        public AnimalGraphType()
+        {
+            Field(a => a.AnimalId, type: typeof(IdGraphType))
+                .Name("Id")
+                .Description("The animal's ID");
+            Field(a => a.Name)
+                .Description("The animal's name");
+            Field(a => a.Dad, type: typeof(AnimalGraphType))
+                .Description("The animal's dad, if it has one.");
+            Field(a => a.Mum, type: typeof(AnimalGraphType))
+                .Description("The animal's mum, if it has one.");
+        }
+    }
 }

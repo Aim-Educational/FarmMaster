@@ -69,8 +69,8 @@ namespace FarmMaster.Controllers
                                             .Include(b => b.Mappings);
             if(!breeds.Any())
                 ModelState.AddModelError("breeds", "No breed was selected");
-            if(breeds.Any() && !breeds.All(b => b.SpeciesId == breeds.First().SpeciesId))
-                ModelState.AddModelError("breeds", "Not all breeds belong to the same species.");
+            if(breeds.Any() && !breeds.All(b => b.SpeciesId == model.SpeciesId))
+                ModelState.AddModelError("breeds", "Not all breeds belong to the animal's species.");
 
             return (model.IsCreate) ? this.Create(model, breeds) : null;
         }
