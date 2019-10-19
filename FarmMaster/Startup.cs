@@ -19,6 +19,11 @@ using FarmMaster.Middleware;
 using Microsoft.Extensions.Hosting;
 using FarmMaster.BackgroundServices;
 using JasterValidate;
+using GraphiQl;
+using GraphQL;
+using FarmMaster.GraphQL;
+using GraphQL.Server;
+using GraphQL.Http;
 
 namespace FarmMaster
 {
@@ -89,6 +94,7 @@ namespace FarmMaster
             // Other services
             services.AddScoped<IServiceGdpr, ServiceGdprAggregator>();
             services.AddSingleton<IServiceMetricAggregator, ServiceMetricAggregator>();
+            services.AddHttpContextAccessor();
 
             // Background services
             services.AddHostedService<FarmBackgroundServiceHost<BackgroundServiceUserActionEmailer>>();
@@ -123,6 +129,14 @@ namespace FarmMaster
 
             services.AddScoped<IServiceSmtpClient, ServiceSmtpClient>();
             services.AddScoped<IViewRenderService, ViewRenderService>();
+
+            // GraphQL
+            services.AddSingleton<IDependencyResolver>(s => new FuncDependencyResolver(s.GetRequiredService));
+            services.AddSingleton<IDocumentExecuter, DocumentExecuter>();
+            services.AddSingleton<IDocumentWriter, DocumentWriter>();
+            services.AddGraphQL();
+            services.AddSingleton<FarmQLSchema>();
+            services.AddSingleton<ContactGraphType>();
 
             // MVC
             services
@@ -172,7 +186,8 @@ namespace FarmMaster
             app.UseCookiePolicy();
             app.UseAuthentication();
             app.UseFarmMasterUserMiddleware();
-
+            app.UseGraphQL<FarmQLSchema>("/graphql");
+            app.UseGraphiQl("/graphiql", "/graphql");
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
