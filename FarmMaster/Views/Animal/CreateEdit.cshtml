@@ -1,0 +1,93 @@
+﻿@model AnimalCreateEditViewModel
+@{ 
+    Layout = "_GenericEditorLayout";
+    ViewData["Title"] = "Create an Animal";
+    ViewData["Breadcrumb"] = new Dictionary<string, string>()
+    {
+        { "Home", "/" },
+        { "Animals", "/Animals/Index/" },
+        { "Create", "/Animals/Create/" }
+    };
+}
+
+<partial name="_ViewModelWithMessagePartial" model="@Model" />
+
+<section class="editor section">
+    <section>
+        <h4>Information</h4>
+        <div class="content">
+            <form class="ui form" method="post" asp-action="CreateEdit">
+                <input type="hidden" asp-for="IsCreate" />
+                <input type="hidden" asp-for="AnimalId" />
+                <div class="field">
+                    <label>Name</label>
+                    <input asp-for="Name" />
+                    <span class="@GlobalConstants.FormErrorClasses" asp-validation-for="Name"></span>
+                </div>
+                <div class="field">
+                    <label>Tag</label>
+                    <input asp-for="Tag" />
+                    <span class="@GlobalConstants.FormErrorClasses" asp-validation-for="Tag"></span>
+                </div>
+                <div class="field">
+                    <label>Gender</label>
+                    <div class="ui search selection dropdown">
+                        <input type="hidden" asp-for="Sex" value="male" />
+                        <i class="dropdown icon"></i>
+                        <div class="text"></div>
+                        <div class="menu">
+                            <div class="item">@Animal.Gender.Male</div>
+                            <div class="item">@Animal.Gender.Female</div>
+                            <div class="item">@Animal.Gender.Other</div>
+                        </div>
+                    </div>
+                    <span class="@GlobalConstants.FormErrorClasses" asp-validation-for="Sex"></span>
+                </div>
+                <div class="field">
+                    <label>Owner</label>
+                    <div class="ui search selection dropdown">
+                        <input id="selectOwner" type="hidden" asp-for="OwnerId" value="@Model.OwnerId" />
+                        <i class="dropdown icon"></i>
+                        <div class="text"></div>
+                        <div class="menu">
+                        </div>
+                    </div>
+                    <span class="@GlobalConstants.FormErrorClasses" asp-validation-for="OwnerId"></span>
+                </div>
+                <div class="field">
+                    <label>Dad</label>
+                    <div class="ui search selection dropdown">
+                        <input id="selectDad" type="hidden" asp-for="DadId" value="@(Model.DadId ?? -1)" />
+                        <i class="dropdown icon"></i>
+                        <div class="text"></div>
+                        <div class="menu">
+                        </div>
+                    </div>
+                    <span class="@GlobalConstants.FormErrorClasses" asp-validation-for="DadId"></span>
+                </div>
+                <div class="field">
+                    <label>Mum</label>
+                    <div class="ui search selection dropdown">
+                        <input id="selectMum" type="hidden" asp-for="MumId" value="@(Model.MumId ?? -1)" />
+                        <i class="dropdown icon"></i>
+                        <div class="text"></div>
+                        <div class="menu">
+                        </div>
+                    </div>
+                    <span class="@GlobalConstants.FormErrorClasses" asp-validation-for="MumId"></span>
+                </div>
+
+                <button class="ui primary fluid button" type="submit">
+                    @(Model.IsCreate ? "Create New Animal" : "Edit Animal")
+                </button>
+                <div class="@GlobalConstants.FormErrorClasses" asp-validation-summary="All"></div>
+            </form>
+        </div>
+    </section>
+</section>
+
+@section Scripts {
+    <script type="module">
+        $(".ui.dropdown").dropdown();
+    </script>
+}

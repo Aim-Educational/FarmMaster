@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
 using Business.Model;
@@ -7,6 +8,7 @@ using FarmMaster.Filters;
 using FarmMaster.Models;
 using FarmMaster.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace FarmMaster.Controllers
 {
@@ -27,19 +29,53 @@ namespace FarmMaster.Controllers
             this._speciesBreeds = speciesBreeds;
         }
 
+        #region GET
         public IActionResult Index()
         {
-            return View();
+            return View(new AnimalIndexViewModel
+            {
+                AnimalNames = this._animals.Query()
+                                           .Select(a => a.Name)
+            });
         }
 
-        public IActionResult Create()
+        public IActionResult CreateEdit(int? id)
         {
-            return View(new AnimalCreateViewModel());
+            var animal = this._animals.FromIdAllIncluded(id ?? -1);
+            return (animal == null)
+                   ? View(new AnimalCreateEditViewModel{ IsCreate = true })
+                   : View(new AnimalCreateEditViewModel
+                   {
+                       IsCreate = false,
+                       AnimalId = animal.AnimalId,
+                       DadId = animal.DadId,
+                       MumId = animal.MumId,
+                       Name = animal.Name,
+                       Sex = animal.Sex,
+                       OwnerId = animal.OwnerId,
+                       Tag = animal.Tag
+                   });
         }
+        #endregion
 
+        #region POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(AnimalCreateViewModel model)
+        public IActionResult CreateEdit(AnimalCreateEditViewModel model)
+        {
+            var breeds = this._speciesBreeds.For<Breed>()
+                                            .Query()
+                                            .Where(b => model.BreedIds.Any(id => id == b.BreedId))
+                                            .Include(b => b.Mappings);
+            if(!breeds.Any())
+                ModelState.AddModelError("breeds", "No breed was selected");
+            if(breeds.Any() && !breeds.All(b => b.SpeciesId == breeds.First().SpeciesId))
+                ModelState.AddModelError("breeds", "Not all breeds belong to the same species.");
+
+            return (model.IsCreate) ? this.Create(model, breeds) : null;
+        }
+
+        private IActionResult Create(AnimalCreateEditViewModel model, IEnumerable<Breed> breeds)
         {
             if (!ModelState.IsValid)
             {
@@ -48,10 +84,10 @@ namespace FarmMaster.Controllers
             }
 
             var owner = this._contacts.FromId(model.OwnerId);
-            if(owner == null)
+            if (owner == null)
                 throw new Exception($"No owner with the ID #{model.OwnerId}");
-            
-            this._animals.Create(
+
+            var animal = this._animals.Create(
                 model.Name,
                 model.Tag,
                 model.Sex,
@@ -60,7 +96,11 @@ namespace FarmMaster.Controllers
                 this._animals.FromId(model.DadId ?? -1)
             );
 
-            throw new NotImplementedException();
+            foreach(var breed in breeds)
+                this._animals.AddBreed(animal, breed);
+
+            return RedirectToActionPermanent("CreateEdit", new { id = animal.AnimalId });
         }
+        #endregion
     }
 }

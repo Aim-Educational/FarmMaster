@@ -1,3 +1,42 @@
-﻿<button class="ui primary button" onclick="document.location = '/Animal/Create'">
-    Create New Animal
-</button>
+﻿@model AnimalIndexViewModel
+@{ 
+    Layout = "_GenericEditorLayout";
+    ViewData["Title"] = "Animals";
+    ViewData["Breadcrumb"] = new Dictionary<string, string>()
+    {
+        { "Home", "/" },
+        { "Animals", "/Animals/Index/" }
+    };
+}
+
+<section class="editor section">
+    <section>
+        <div class="content">
+            <div class="top padded items">
+                <a class="ui primary button" asp-action="Create">Create New Animal</a>
+            </div>
+
+            <table class="ui striped table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var name in Model.AnimalNames)
+                    {
+                        <tr>
+                            <td>@name</td>
+                            <td>
+                                <a class="ui secondary button" asp-action="Edit" asp-route-id="Nah">
+                                    Edit
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </section>
+</section>
