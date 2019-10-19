@@ -18,10 +18,10 @@ namespace FarmMaster.GraphQL
         {
             Field(c => c.ContactId, type: typeof(IdGraphType))
                 .Name("Id")
-                .Description("The contact's ID");
+                .Description("The contact's ID.");
             Field(c => c.FirstNameWithAbbreviatedLastName)
                 .Name("Name")
-                .Description("The contact's abbreviated name");
+                .Description("The contact's abbreviated name.");
         }
     }
 
@@ -31,13 +31,25 @@ namespace FarmMaster.GraphQL
         {
             Field(a => a.AnimalId, type: typeof(IdGraphType))
                 .Name("Id")
-                .Description("The animal's ID");
+                .Description("The animal's ID.");
             Field(a => a.Name)
-                .Description("The animal's name");
+                .Description("The animal's name.");
             Field(a => a.Dad, type: typeof(AnimalGraphType))
                 .Description("The animal's dad, if it has one.");
             Field(a => a.Mum, type: typeof(AnimalGraphType))
                 .Description("The animal's mum, if it has one.");
+        }
+    }
+
+    public class SpeciesGraphType : ObjectGraphType<Species>
+    {
+        public SpeciesGraphType()
+        {
+            Field(s => s.SpeciesId, type: typeof(IdGraphType))
+                .Name("Id")
+                .Description("The species' ID.");
+            Field(s => s.Name)
+                .Description("The species' name.");
         }
     }
 }

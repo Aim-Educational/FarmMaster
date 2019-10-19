@@ -69,6 +69,14 @@ namespace FarmMaster.GraphQL
                     return query.OrderBy(a => a.Name);
                 }
             );
+            Field<ListGraphType<SpeciesGraphType>>(
+                "species",
+                resolve: _ =>
+                {
+                    var speciesBreeds = context.HttpContext.RequestServices.GetRequiredService<IServiceSpeciesBreedManager>();
+                    return speciesBreeds.For<Species>().Query().OrderBy(s => s.Name);
+                }
+            );
         }
     }
 
@@ -79,6 +87,7 @@ namespace FarmMaster.GraphQL
             services.AddSingleton<FarmQLSchema>();
             services.AddSingleton<ContactGraphType>();
             services.AddSingleton<AnimalGraphType>();
+            services.AddSingleton<SpeciesGraphType>();
             services.AddSingleton<EnumerationGraphType<Animal.Gender>>();
             return services;
         }
