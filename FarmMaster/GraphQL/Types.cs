@@ -17,6 +17,7 @@ namespace FarmMaster.GraphQL
         public ContactGraphType()
         {
             Field(c => c.ContactId, type: typeof(IdGraphType))
+                .Name("Id")
                 .Description("The contact's ID");
             Field(c => c.FirstNameWithAbbreviatedLastName)
                 .Name("Name")
