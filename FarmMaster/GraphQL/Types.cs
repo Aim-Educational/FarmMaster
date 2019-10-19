@@ -52,4 +52,16 @@ namespace FarmMaster.GraphQL
                 .Description("The species' name.");
         }
     }
+
+    public class BreedGraphType : ObjectGraphType<Breed>
+    {
+        public BreedGraphType()
+        {
+            Field(b => b.BreedId, type: typeof(IdGraphType))
+                .Name("Id")
+                .Description("The breed's ID.");
+            Field(b => b.Name)
+                .Description("The breed's name.");
+        }
+    }
 }

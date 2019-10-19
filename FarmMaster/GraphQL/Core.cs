@@ -77,6 +77,31 @@ namespace FarmMaster.GraphQL
                     return speciesBreeds.For<Species>().Query().OrderBy(s => s.Name);
                 }
             );
+            Field<ListGraphType<BreedGraphType>>(
+                "breeds",
+                arguments: new QueryArguments(
+                    new QueryArgument<IdGraphType> 
+                    {
+                        Name = "speciesId",
+                        Description = "Filter by species"
+                    }    
+                ),
+                resolve: graphql =>
+                {
+                    // Services
+                    var speciesBreeds = context.GetRequiredService<IServiceSpeciesBreedManager>();
+
+                    // Arguments
+                    var species = graphql.GetValueOrNull<int>("speciesId");
+
+                    // Query
+                    var query = speciesBreeds.For<Breed>().Query();
+                    if(species != null)
+                        query = query.Where(b => b.SpeciesId == species);
+
+                    return query.OrderBy(b => b.Name);
+                }
+            );
         }
     }
 
@@ -88,6 +113,7 @@ namespace FarmMaster.GraphQL
             services.AddSingleton<ContactGraphType>();
             services.AddSingleton<AnimalGraphType>();
             services.AddSingleton<SpeciesGraphType>();
+            services.AddSingleton<BreedGraphType>();
             services.AddSingleton<EnumerationGraphType<Animal.Gender>>();
             return services;
         }
