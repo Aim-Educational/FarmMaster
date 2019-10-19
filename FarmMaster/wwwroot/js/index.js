@@ -8,6 +8,7 @@ export * from "/js/farm_ajax.js"
 export * from "/js/cookies.js"
 export * from "/js/modal.js"
 export * from "/js/characteristic_helper.js";
+export * from "/js/graphql.js";
 
 import { IValidationUIHandler, Validation } from "https://unpkg.com/jaster-validate@latest/dist/jaster-validate.min.js"
 import { drange } from "https://unpkg.com/dranges@latest/dist/dranges.min.js"
