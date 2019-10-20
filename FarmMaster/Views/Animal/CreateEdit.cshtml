@@ -35,7 +35,7 @@
                 <div class="field">
                     <label>Gender</label>
                     <div class="ui search selection dropdown">
-                        <input type="hidden" asp-for="Sex" value="male" />
+                        <input type="hidden" asp-for="Sex" value="@($"{Model.Sex}".ToLower())" />
                         <i class="dropdown icon"></i>
                         <div class="text"></div>
                         <div class="menu">
@@ -60,7 +60,7 @@
                 <div class="field">
                     <label>Species</label>
                     <div class="ui search selection dropdown">
-                        <input id="selectSpecies" type="hidden" asp-for="SpeciesId" value="@(Model.SpeciesId ?? -1)" />
+                        <input id="selectSpecies" type="hidden" asp-for="SpeciesId" value="@(Model.SpeciesId ?? null)" />
                         <i class="dropdown icon"></i>
                         <div class="text"></div>
                         <div class="menu">
@@ -71,7 +71,7 @@
                 <div class="field">
                     <label>Dad</label>
                     <div class="ui disabled search selection dropdown">
-                        <input id="selectDad" type="hidden" asp-for="DadId" value="@(Model.DadId ?? -1)" />
+                        <input id="selectDad" type="hidden" asp-for="DadId" value="@(Model.DadId ?? null)" />
                         <i class="dropdown icon"></i>
                         <div class="text"></div>
                         <div class="menu">
@@ -82,7 +82,7 @@
                 <div class="field">
                     <label>Mum</label>
                     <div class="ui disabled search selection dropdown">
-                        <input id="selectMum" type="hidden" asp-for="MumId" value="@(Model.MumId ?? -1)" />
+                        <input id="selectMum" type="hidden" asp-for="MumId" value="@(Model.MumId ?? null)" />
                         <i class="dropdown icon"></i>
                         <div class="text"></div>
                         <div class="menu">
@@ -92,8 +92,13 @@
                 </div>
                 <div class="field">
                     <label>Breeds</label>
+                    @{ 
+                        var breedValueString = Model.BreedIds.Any()
+                                               ? Model.BreedIds.Select(id => $"{id}").Aggregate((s1, s2) => s1 + "," + s2)
+                                               : null;
+                    }
                     <div class="ui disabled multiple search selection dropdown">
-                        <input id="selectBreeds" type="hidden" asp-for="BreedIds" value="@Model.BreedIds" />
+                        <input id="selectBreeds" type="hidden" asp-for="BreedIds" value="@breedValueString" />
                         <i class="dropdown icon"></i>
                         <div class="text"></div>
                         <div class="menu">
@@ -119,25 +124,37 @@
             alert(JSON.stringify(errors));
         }
 
-        function addItemToDropdown(dropdown, name, value = null) {
+        function addItemToDropdown(dropdown, name, value = null, isActive = false, isMultipleSelectItem = false) {
             const menu = dropdown.querySelector(".menu");
             const div = menu.appendChild(document.createElement("div"));
             div.classList.add("item");
             div.dataset.value = (value === null) ? name : value;
             div.innerHTML = name;
+
+            if (isActive)
+                $(dropdown).dropdown("set selected", value);
         }
 
-        function populateFromIdName(dropdown, idNameList) {
+        function populateFromIdName(dropdown, idNameList, isMultipleSelect = false) {
             const menu = dropdown.querySelector(".menu");
+            const currentValue = dropdown.querySelector("input[type=hidden]").value;
+            const multipleValues = currentValue.split(',');
 
             for (const div of menu.querySelectorAll("div"))
                 menu.removeChild(div);
 
             if (dropdown.classList.contains("disabled"))
                 dropdown.classList.remove("disabled");
-
-            for (const idName of idNameList)
-                addItemToDropdown(dropdown, idName.name, idName.id);
+            for (const idName of idNameList) {
+                addItemToDropdown(
+                    dropdown,
+                    idName.name,
+                    idName.id,
+                    (isMultipleSelect)
+                        ? multipleValues.indexOf(idName.id) > -1
+                        : idName.id === currentValue,
+                    isMultipleSelect);
+            }
 
             $(dropdown).dropdown();
         }
@@ -158,19 +175,21 @@
             const dropdown = document.getElementById("selectMum").parentElement;
             populateFromIdName(dropdown, mums);
 
-            addItemToDropdown(dropdown, "Unknown", -1);
+            addItemToDropdown(dropdown, "Unknown", "", document.getElementById("selectMum").value === "");
+            $(dropdown).dropdown();
         }
 
         function handleDads(dads) {
             const dropdown = document.getElementById("selectDad").parentElement;
             populateFromIdName(dropdown, dads);
 
-            addItemToDropdown(dropdown, "Unknown", -1);
+            addItemToDropdown(dropdown, "Unknown", "", document.getElementById("selectDad").value === "");
+            $(dropdown).dropdown();
         }
 
         function handleBreeds(breeds) {
             const dropdown = document.getElementById("selectBreeds").parentElement;
-            populateFromIdName(dropdown, breeds);
+            populateFromIdName(dropdown, breeds, true);
         }
 
         GraphQL
@@ -214,6 +233,10 @@
                 })
                 .catch(errors => onError(errors));
         });
+        @if(!Model.IsCreate)
+        {
+            @:document.getElementById("selectSpecies").dispatchEvent(new Event("change"));
+        }
 
         $(".ui.dropdown").dropdown();
     </script>

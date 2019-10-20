@@ -11,7 +11,7 @@ namespace FarmMaster.Models
     {
         // This is just a temp index model until I bother with the full model.
         [Required]
-        public IEnumerable<string> AnimalNames { get; set; }
+        public IEnumerable<KeyValuePair<string, int>> AnimalNameIdPairs { get; set; }
     }
 
     public class AnimalCreateEditViewModel : ViewModelWithMessage

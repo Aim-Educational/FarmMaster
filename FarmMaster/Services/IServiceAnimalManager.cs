@@ -1,4 +1,5 @@
 ﻿using Business.Model;
+using FarmMaster.Misc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Linq;
 using System;
@@ -12,6 +13,7 @@ namespace FarmMaster.Services
         Animal Create(string name, string tag, Animal.Gender sex, Contact owner, Species species, Animal mum = null, Animal dad = null);
         void AddLifeEventEntry(Animal animal, LifeEventEntry entry);
         void AddBreed(Animal animal, Breed breed);
+        CouldDelete RemoveBreed(Animal animal, Breed breed);
         void SetBornEventEntry(Animal animal, DateTimeOffset dateTimeBorn);
         DateTimeOffset? GetBornEventEntry(Animal animal);
     }
@@ -68,6 +70,17 @@ namespace FarmMaster.Services
 
             this._context.Add(map);
             this._context.SaveChanges();
+        }
+
+        public CouldDelete RemoveBreed(Animal animal, Breed breed)
+        {
+            var map = animal.Breeds.FirstOrDefault(b => b.BreedId == breed.BreedId);
+            if(map == null)
+                return CouldDelete.No;
+
+            this._context.Remove(map);
+            this._context.SaveChanges();
+            return CouldDelete.Yes;
         }
 
         public void AddLifeEventEntry(Animal animal, LifeEventEntry entry)
@@ -151,6 +164,7 @@ namespace FarmMaster.Services
         public void Update(Animal entity)
         {
             this._context.Update(entity);
+            this._context.SaveChanges();
         }
 
         public void GetContactGdprData(Contact contact, JObject json)
