@@ -9,7 +9,7 @@ namespace FarmMaster.Services
 {
     public interface IServiceAnimalManager : IServiceEntityManager<Animal>, IServiceGdprData
     {
-        Animal Create(string name, string tag, Animal.Gender sex, Contact owner, Animal mum = null, Animal dad = null);
+        Animal Create(string name, string tag, Animal.Gender sex, Contact owner, Species species, Animal mum = null, Animal dad = null);
         void AddLifeEventEntry(Animal animal, LifeEventEntry entry);
         void AddBreed(Animal animal, Breed breed);
         void SetBornEventEntry(Animal animal, DateTimeOffset dateTimeBorn);
@@ -27,7 +27,7 @@ namespace FarmMaster.Services
             this._lifeEvents = lifeEvents;
         }
 
-        public Animal Create(string name, string tag, Animal.Gender sex, Contact owner, Animal mum = null, Animal dad = null)
+        public Animal Create(string name, string tag, Animal.Gender sex, Contact owner, Species species, Animal mum = null, Animal dad = null)
         {
             // Yes, I'm assuming their gender.
             if(mum != null && mum.Sex != Animal.Gender.Female)
@@ -44,7 +44,8 @@ namespace FarmMaster.Services
                 Owner = owner,
                 Mum = mum,
                 Dad = dad,
-                Characteristics = characteristicList
+                Characteristics = characteristicList,
+                Species = species
             };
 
             this._context.Add(characteristicList);
@@ -56,6 +57,9 @@ namespace FarmMaster.Services
 
         public void AddBreed(Animal animal, Breed breed)
         {
+            if(breed.SpeciesId != animal.SpeciesId)
+                throw new InvalidOperationException($"Cannot assign breed '{breed.Name}' to animal '{animal.Name}' as the breed does not belong to the animal's species.");
+
             var map = new MapBreedToAnimal
             {
                 Animal = animal,

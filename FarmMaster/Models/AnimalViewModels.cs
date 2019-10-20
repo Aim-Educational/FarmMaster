@@ -27,7 +27,6 @@ namespace FarmMaster.Models
         [Required]
         public int? SpeciesId { get; set; }
 
-        [Required]
         public IEnumerable<int> BreedIds { get; set; }
 
         [Required]

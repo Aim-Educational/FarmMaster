@@ -54,15 +54,19 @@ namespace FarmMaster.Controllers
                                             .Query()
                                             .Where(b => model.BreedIds.Any(id => id == b.BreedId))
                                             .Include(b => b.Mappings);
-            if(!breeds.Any())
-                ModelState.AddModelError("breeds", "No breed was selected");
-            if(breeds.Any() && !breeds.All(b => b.SpeciesId == model.SpeciesId))
+
+            var species = this._speciesBreeds.For<Species>().FromId(model.SpeciesId ?? -1);
+
+            if(species == null)
+                ModelState.AddModelError("species", "That species does not exist.");
+
+            if(breeds.Any() && species != null && !breeds.All(b => b.Species == species))
                 ModelState.AddModelError("breeds", "Not all breeds belong to the animal's species.");
 
-            return (model.IsCreate) ? this.Create(model, breeds) : null;
+            return (model.IsCreate) ? this.Create(model, species, breeds) : null;
         }
 
-        private IActionResult Create(AnimalCreateEditViewModel model, IEnumerable<Breed> breeds)
+        private IActionResult Create(AnimalCreateEditViewModel model, Species species, IEnumerable<Breed> breeds)
         {
             if (!ModelState.IsValid)
             {
@@ -79,6 +83,7 @@ namespace FarmMaster.Controllers
                 model.Tag,
                 model.Sex,
                 owner,
+                species,
                 this._animals.FromId(model.MumId ?? -1), // -1 = ID that shouldn't normally exist, forcing FromId to return null.
                 this._animals.FromId(model.DadId ?? -1)
             );
@@ -86,7 +91,7 @@ namespace FarmMaster.Controllers
             foreach(var breed in breeds)
                 this._animals.AddBreed(animal, breed);
 
-            return RedirectToActionPermanent("CreateEdit", new { id = animal.AnimalId });
+            return RedirectToActionPermanent("Edit", new { id = animal.AnimalId });
         }
         #endregion
     }
