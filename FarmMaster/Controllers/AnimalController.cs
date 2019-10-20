@@ -39,22 +39,9 @@ namespace FarmMaster.Controllers
             });
         }
 
-        public IActionResult CreateEdit(int? id)
+        public IActionResult Create()
         {
-            var animal = this._animals.FromIdAllIncluded(id ?? -1);
-            return (animal == null)
-                   ? View(new AnimalCreateEditViewModel{ IsCreate = true })
-                   : View(new AnimalCreateEditViewModel
-                   {
-                       IsCreate = false,
-                       AnimalId = animal.AnimalId,
-                       DadId = animal.DadId,
-                       MumId = animal.MumId,
-                       Name = animal.Name,
-                       Sex = animal.Sex,
-                       OwnerId = animal.OwnerId,
-                       Tag = animal.Tag
-                   });
+            return View("CreateEdit", new AnimalCreateEditViewModel{ IsCreate = true });
         }
         #endregion
 

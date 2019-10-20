@@ -55,8 +55,19 @@
                     <span class="@GlobalConstants.FormErrorClasses" asp-validation-for="OwnerId"></span>
                 </div>
                 <div class="field">
-                    <label>Dad</label>
+                    <label>Species</label>
                     <div class="ui search selection dropdown">
+                        <input id="selectSpecies" type="hidden" asp-for="SpeciesId" value="@(Model.SpeciesId ?? -1)" />
+                        <i class="dropdown icon"></i>
+                        <div class="text"></div>
+                        <div class="menu">
+                        </div>
+                    </div>
+                    <span class="@GlobalConstants.FormErrorClasses" asp-validation-for="SpeciesId"></span>
+                </div>
+                <div class="field">
+                    <label>Dad</label>
+                    <div class="ui disabled search selection dropdown">
                         <input id="selectDad" type="hidden" asp-for="DadId" value="@(Model.DadId ?? -1)" />
                         <i class="dropdown icon"></i>
                         <div class="text"></div>
@@ -67,7 +78,7 @@
                 </div>
                 <div class="field">
                     <label>Mum</label>
-                    <div class="ui search selection dropdown">
+                    <div class="ui disabled search selection dropdown">
                         <input id="selectMum" type="hidden" asp-for="MumId" value="@(Model.MumId ?? -1)" />
                         <i class="dropdown icon"></i>
                         <div class="text"></div>
@@ -91,33 +102,102 @@
         import { GraphQL } from "/js/index.js";
 
         function onError(errors) {
-
+            alert(JSON.stringify(errors));
         }
 
-        function handleContacts(contacts) {
-            const dropdown = document.getElementById("selectOwner").parentElement;
+        function addItemToDropdown(dropdown, name, value = null) {
+            const menu = dropdown.querySelector(".menu");
+            const div = menu.appendChild(document.createElement("div"));
+            div.classList.add("item");
+            div.dataset.value = (value === null) ? name : value;
+            div.innerHTML = name;
+        }
+
+        function populateFromIdName(dropdown, idNameList) {
             const menu = dropdown.querySelector(".menu");
 
-            for (const contact of contacts) {
-                const div = menu.appendChild(document.createElement("div"));
-                div.classList.add("item");
-                div.dataset.value = contact.id;
-                div.innerHTML = contact.name;
-            }
+            for (const div of menu.querySelectorAll("div"))
+                menu.removeChild(div);
+
+            if (dropdown.classList.contains("disabled"))
+                dropdown.classList.remove("disabled");
+
+            for (const idName of idNameList)
+                addItemToDropdown(dropdown, idName.name, idName.id);
+
             $(dropdown).dropdown();
         }
 
+        // These are seperate functions to make it easier to add additional logic in the future.
+        // I'm fully aware these could be condensed further.
+        function handleContacts(contacts) {
+            const dropdown = document.getElementById("selectOwner").parentElement;
+            populateFromIdName(dropdown, contacts);
+        }
+
+        function handleSpecies(species) {
+            const dropdown = document.getElementById("selectSpecies").parentElement;
+            populateFromIdName(dropdown, species);
+        }
+
+        function handleMums(mums) {
+            const dropdown = document.getElementById("selectMum").parentElement;
+            populateFromIdName(dropdown, mums);
+
+            addItemToDropdown(dropdown, "Unknown", -1);
+        }
+
+        function handleDads(dads) {
+            const dropdown = document.getElementById("selectDad").parentElement;
+            populateFromIdName(dropdown, dads);
+
+            addItemToDropdown(dropdown, "Unknown", -1);
+        }
+
+        function handleBreeds(breeds) {
+
+        }
+
         GraphQL
-            .query(`{
+            .query(`query InitialLoad{
                 contacts {
+                    id
+                    name
+                }
+                species {
                     id
                     name
                 }
             }`)
             .then(data => {
                 handleContacts(data.contacts);
+                handleSpecies(data.species);
             })
             .catch(errors => onError(errors));
+
+        document.getElementById("selectSpecies").addEventListener("change", () => {
+            const speciesId = document.getElementById("selectSpecies").value;
+            GraphQL
+                .query(`query GetSpeciesData($id:ID) {
+                  mums: animals(gender:FEMALE, speciesId:$id){
+                    id
+                    name
+                  }
+                  dads: animals(gender:MALE, speciesId:$id){
+                    id
+                    name
+                  }
+                  breeds(speciesId:$id){
+                    id
+                    name
+                  }
+                }`, { id: speciesId })
+                .then(data => {
+                    handleMums(data.mums);
+                    handleDads(data.dads);
+                })
+                .catch(errors => onError(errors));
+        });
 
         $(".ui.dropdown").dropdown();
     </script>
