@@ -19,7 +19,7 @@ namespace FarmMaster.Middleware
 
         public Task Invoke(HttpContext httpContext, IServiceMetricAggregator metrics)
         {
-            metrics.BumpRequestCount();
+            metrics.OnHttpRequest(httpContext);
             return _next(httpContext);
         }
     }

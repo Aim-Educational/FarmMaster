@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Business.Model;
+using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,34 +9,38 @@ namespace FarmMaster.Services
 {
     public interface IServiceMetricAggregator
     {
-        RequestMetrics RequestMetrics { get; }
+        IEnumerable<MetricRequest> RequestMetrics { get; }
 
-        void BumpRequestCount();
+        void OnHttpRequest(HttpContext context);
         void Reset();
     }
 
     public class ServiceMetricAggregator : IServiceMetricAggregator
     {
-        public RequestMetrics RequestMetrics { get; private set; }
+        private List<MetricRequest> _requestMetrics;
+        public IEnumerable<MetricRequest> RequestMetrics { get => _requestMetrics; }
 
         public ServiceMetricAggregator()
         {
-            this.RequestMetrics = new RequestMetrics();
+            this._requestMetrics = new List<MetricRequest>();
         }
 
-        public void BumpRequestCount()
+        public void OnHttpRequest(HttpContext context)
         {
-            this.RequestMetrics.Count++;
+            var request = new MetricRequest
+            {
+                DateTimeUtc     = DateTimeOffset.UtcNow,
+                TraceIdentifier = context.TraceIdentifier,
+                Path            = context.Request.Path.Value,
+                Ip              = context.Connection.RemoteIpAddress.ToString()
+            };
+
+            this._requestMetrics.Add(request);
         }
 
         public void Reset()
         {
-            this.RequestMetrics.Count = 0;
+            this._requestMetrics.Clear();
         }
-    }
-    
-    public class RequestMetrics
-    {
-        public uint Count { get; internal set; }
     }
 }

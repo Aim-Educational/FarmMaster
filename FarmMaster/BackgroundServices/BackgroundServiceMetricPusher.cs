@@ -16,7 +16,7 @@ namespace FarmMaster.BackgroundServices
 
         public IFarmBackgroundServiceConfig Config => new IFarmBackgroundServiceConfig 
         { 
-            DelayPerTicks = TimeSpan.FromHours(1),
+            DelayPerTicks = TimeSpan.FromMinutes(5),
             RestartOnException = true
         };
 
@@ -43,19 +43,13 @@ namespace FarmMaster.BackgroundServices
             await this.PushMetrics();
         }
 
-        private Task PushMetrics()
+        private async Task PushMetrics()
         {
-            if(this._metrics.RequestMetrics.Count > 0)
-            {
-                this._context.Add(new MetricRequest
-                {
-                    DateTimeUtc = DateTimeOffset.UtcNow,
-                    Count = this._metrics.RequestMetrics.Count,
-                });
-            }
+            foreach(var request in this._metrics.RequestMetrics)
+                await this._context.AddAsync(request);
 
             this._metrics.Reset();
-            return this._context.SaveChangesAsync();
+            await this._context.SaveChangesAsync();
         }
     }
 }

@@ -11,7 +11,16 @@ namespace Business.Model
         public int MetricRequestId { get; set; }
 
         [Required]
-        public uint Count { get; set; }
+        [StringLength(25)]
+        public string TraceIdentifier { get; set; }
+
+        [Required]
+        [StringLength(100)]
+        public string Path { get; set; }
+
+        [Required]
+        [StringLength(45)] // Max length of an IPv6 address
+        public string Ip { get; set; }
 
         [Required]
         public DateTimeOffset DateTimeUtc { get; set; }
