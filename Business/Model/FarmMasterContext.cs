@@ -172,6 +172,8 @@ namespace Business.Model
         public DbSet<Animal>                            Animals                          { get; set; }
         public DbSet<ContactToken>                      ContactTokens                    { get; set; }
         public DbSet<MetricRequest>                     MetricRequests                   { get; set; }
+        public DbSet<Image>                             Images                           { get; set; }
+        public DbSet<ImageData>                         ImageData                        { get; set; }
         #endregion
 
         #region Data seeding
