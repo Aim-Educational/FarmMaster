@@ -1,4 +1,5 @@
 ﻿using Business.Model;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -34,6 +35,9 @@ namespace FarmMaster.Models
 
         [Required]
         public int OwnerId { get; set; }
+
+        public IFormFile Image { get; set; }
+        public int? ImageId { get; set; } // Only for edit mode. Only used for showing their image.
 
         public int? AnimalId { get; set; } // Should only be null for creation.
 

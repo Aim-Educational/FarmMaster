@@ -42,6 +42,9 @@ namespace Business.Model
         public int CharacteristicsId { get; set; }
         public AnimalCharacteristicList Characteristics { get; set; }
 
+        public int? ImageId { get; set; }
+        public Image Image { get; set; }
+
         public int? MumId { get; set; }
         public Animal Mum { get; set; }
         

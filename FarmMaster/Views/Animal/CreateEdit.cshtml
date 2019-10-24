@@ -19,9 +19,28 @@
     <section>
         <h4>Information</h4>
         <div class="content">
-            <form class="ui form" method="post" asp-action="CreateEdit">
+            <form class="ui form" method="post" enctype="multipart/form-data" asp-action="CreateEdit">
                 <input type="hidden" asp-for="IsCreate" />
                 <input type="hidden" asp-for="AnimalId" />
+                <input type="hidden" asp-for="ImageId" />
+
+                <div class="field">
+                    @{
+                        var imageLink = (Model.ImageId == null) 
+                                        ? "/images/icons/default.png" 
+                                        : $"/Image/Get?imageId={Model.ImageId}&width=760&height=800";   
+                    }
+                    <label>Image</label>
+                    <a href="@imageLink" target="_blank">
+                        <img id="image"
+                             class="ui centered image"
+                             src="@imageLink"
+                             style="max-width: 100%; max-height: 400px; width: 380px; height: auto;"
+                             />
+                    </a>
+                    <input id="inputImage" asp-for="Image" />
+                </div>
+
                 <div class="field">
                     <label>Name</label>
                     <input asp-for="Name" autocomplete="off" />
@@ -117,6 +136,7 @@
 </section>
 
 @section Scripts {
+    <!--GraphQL related code-->
     <script type="module">
         import { GraphQL } from "/js/index.js";
 
@@ -239,5 +259,15 @@
         }
 
         $(".ui.dropdown").dropdown();
+    </script>
+
+    <!--Update image when user changes the selected image-->
+    <script type="module">
+        const input = document.getElementById("inputImage");
+        const image = document.getElementById("image");
+
+        input.addEventListener("change", function () {
+            image.src = URL.createObjectURL(input.files[0]);
+        });
     </script>
 }

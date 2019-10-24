@@ -60,16 +60,17 @@ namespace FarmMaster.Controllers
 
             return View("CreateEdit", new AnimalCreateEditViewModel
             { 
-                AnimalId = id,
-                BreedIds = animal.Breeds.Select(b => b.BreedId),
-                DadId = animal.DadId,
-                MumId = animal.MumId,
-                IsCreate = false,
-                Name = animal.Name,
-                OwnerId = animal.OwnerId,
-                Sex = animal.Sex,
-                SpeciesId = animal.SpeciesId,
-                Tag = animal.Tag
+                AnimalId    = id,
+                BreedIds    = animal.Breeds.Select(b => b.BreedId),
+                DadId       = animal.DadId,
+                MumId       = animal.MumId,
+                IsCreate    = false,
+                Name        = animal.Name,
+                OwnerId     = animal.OwnerId,
+                Sex         = animal.Sex,
+                SpeciesId   = animal.SpeciesId,
+                Tag         = animal.Tag,
+                ImageId     = animal.ImageId
             });
         }
         #endregion
@@ -130,6 +131,7 @@ namespace FarmMaster.Controllers
                 this._animals.FromId(model.MumId ?? -1), // -1 = ID that shouldn't normally exist, forcing FromId to return null.
                 this._animals.FromId(model.DadId ?? -1)
             );
+            this._animals.SetImageFromForm(animal, model.Image);
 
             foreach(var breed in breeds)
                 this._animals.AddBreed(animal, breed);
@@ -151,6 +153,7 @@ namespace FarmMaster.Controllers
             var animal = this._animals.Query()
                                       .Include(a => a.Breeds)
                                        .ThenInclude(m => m.Breed)
+                                      .Include(a => a.Image)
                                       .FirstOrDefault(a => a.AnimalId == (model.AnimalId ?? -1));
             if(animal == null)
                 throw new Exception($"No animal with the ID #{model.AnimalId}");
@@ -178,6 +181,7 @@ namespace FarmMaster.Controllers
                 this._animals.RemoveBreed(animal, breed.Breed);
 
             this._animals.Update(animal);
+            this._animals.SetImageFromForm(animal, model.Image);
             return RedirectToActionPermanent("Edit", new { id = animal.AnimalId });
         }
         #endregion

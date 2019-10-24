@@ -1,5 +1,6 @@
 ﻿using Business.Model;
 using FarmMaster.Misc;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Linq;
 using System;
@@ -13,6 +14,7 @@ namespace FarmMaster.Services
         Animal Create(string name, string tag, Animal.Gender sex, Contact owner, Species species, Animal mum = null, Animal dad = null);
         void AddLifeEventEntry(Animal animal, LifeEventEntry entry);
         void AddBreed(Animal animal, Breed breed);
+        void SetImageFromForm(Animal animal, IFormFile image);
         CouldDelete RemoveBreed(Animal animal, Breed breed);
         void SetBornEventEntry(Animal animal, DateTimeOffset dateTimeBorn);
         DateTimeOffset? GetBornEventEntry(Animal animal);
@@ -22,11 +24,16 @@ namespace FarmMaster.Services
     {
         readonly FarmMasterContext _context;
         readonly IServiceLifeEventManager _lifeEvents;
+        readonly IServiceImageManager _images;
 
-        public ServiceAnimalManager(FarmMasterContext context, IServiceLifeEventManager lifeEvents)
+        public ServiceAnimalManager(
+            FarmMasterContext context, 
+            IServiceLifeEventManager lifeEvents,
+            IServiceImageManager images)
         {
             this._context = context;
             this._lifeEvents = lifeEvents;
+            this._images = images;
         }
 
         public Animal Create(string name, string tag, Animal.Gender sex, Contact owner, Species species, Animal mum = null, Animal dad = null)
@@ -70,6 +77,23 @@ namespace FarmMaster.Services
 
             this._context.Add(map);
             this._context.SaveChanges();
+        }
+
+        public void SetImageFromForm(Animal animal, IFormFile formImage)
+        {
+            Contract.Requires(animal != null);
+            Contract.Requires(formImage != null);
+
+            // It's a bit of a weird behaviour to delete the old image instead of updating it.
+            // But it actually makes the logic a bit easier to manage, due to not having to duplicate
+            // certain logic such as validation checks (UploadFromForm does all that for me).
+            if(animal.ImageId != null)
+                this._context.Remove(animal.Image);
+
+            var image = this._images.UploadFromForm(formImage).Result;
+            animal.ImageId = image.ImageId;
+
+            this.Update(animal);
         }
 
         public CouldDelete RemoveBreed(Animal animal, Breed breed)
@@ -158,7 +182,8 @@ namespace FarmMaster.Services
                        .Include(a => a.Children_DAD)
                        .Include(a => a.LifeEventEntries)
                         .ThenInclude(e => e.LifeEventEntry)
-                       .Include(a => a.Owner);
+                       .Include(a => a.Owner)
+                       .Include(a => a.Image);
         }
 
         public void Update(Animal entity)
