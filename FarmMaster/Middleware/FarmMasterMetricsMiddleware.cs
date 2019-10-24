@@ -18,8 +18,10 @@ namespace FarmMaster.Middleware
         }
 
         public Task Invoke(HttpContext httpContext, IServiceMetricAggregator metrics)
-        {
-            metrics.OnHttpRequest(httpContext);
+        { 
+            // DNT = Do not track. 0 = fine. 1 = don't.
+            if(httpContext.Request.Headers["DNT"] == "1")
+                metrics.OnHttpRequest(httpContext);
             return _next(httpContext);
         }
     }
