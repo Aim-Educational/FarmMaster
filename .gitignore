@@ -265,3 +265,4 @@ __pycache__/
 aim.exe
 libcrypto-1_1-x64.dll
 libssl-1_1-x64.dll
+/FarmMaster/wwwroot/db_cache/

@@ -78,7 +78,7 @@ namespace FarmMaster.Services
 
         public string GetFileNameForImageAndSize(Image image, ushort width, ushort height)
         {
-            return $"{image.ImageId}_{image.ImageDataId}_from_{image.Width}_{image.Height}_to_{width}_{height}.jpg";
+            return $"db_cache/{image.ImageId}_{image.ImageDataId}_from_{image.Width}_{image.Height}_to_{width}_{height}.jpg";
         }
 
         public async Task<string> ResizeToPhysicalFile(Image image, ushort width, ushort height)
@@ -89,6 +89,8 @@ namespace FarmMaster.Services
             // Download image from the database, resize it, save it to a file.
             if(!fileInfo.Exists)
             {
+                Directory.CreateDirectory(Path.GetDirectoryName(fileInfo.PhysicalPath));
+
                 var data = await this._context.ImageData.AsNoTracking().FirstOrDefaultAsync(d => d.ImageDataId == image.ImageDataId);
                 if(data == null)
                     throw new InvalidOperationException("The image asked for apparently doesn't exist.");
