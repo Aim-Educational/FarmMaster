@@ -38,6 +38,17 @@ namespace FarmMaster.GraphQL
                 .Description("The animal's dad, if it has one.");
             Field(a => a.Mum, type: typeof(AnimalGraphType))
                 .Description("The animal's mum, if it has one.");
+            Field("breeds", a => a.Breeds.Select(b => b.Breed.Name))
+                .Name("Breeds")
+                .Description("The animal's breeds.");
+            Field(a => a.Owner, type: typeof(ContactGraphType))
+                .Description("The animal's owner.");
+            Field(a => a.Sex, type: typeof(EnumerationGraphType<Animal.Gender>))
+                .Description("The animal's gender.");
+            Field(a => a.Tag)
+                .Description("The animal's tag.");
+            Field(a => a.Species, type: typeof(SpeciesGraphType))
+                .Description("The animal's species.");
         }
     }
 

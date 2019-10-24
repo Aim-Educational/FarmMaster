@@ -3,6 +3,7 @@ using FarmMaster.Services;
 using GraphQL;
 using GraphQL.Types;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -66,7 +67,11 @@ namespace FarmMaster.GraphQL
                     if(species != null)
                         query = query.Where(a => a.SpeciesId == species);
 
-                    return query.OrderBy(a => a.Name);
+                    return query.Include(a => a.Breeds)
+                                 .ThenInclude(b => b.Breed)
+                                .Include(a => a.Owner)
+                                .Include(a => a.Species)
+                                .OrderBy(a => a.Name);
                 }
             );
             Field<ListGraphType<SpeciesGraphType>>(
