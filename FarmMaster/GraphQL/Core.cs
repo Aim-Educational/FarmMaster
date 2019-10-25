@@ -78,6 +78,7 @@ namespace FarmMaster.GraphQL
                 {
                     // Services
                     var animals = context.GetRequiredService<IServiceAnimalManager>();
+                    var db = context.GetRequiredService<FarmMasterContext>();
 
                     // Arguments
                     var gender = graphql.GetValueOrNull<Animal.Gender>("gender");
@@ -87,27 +88,18 @@ namespace FarmMaster.GraphQL
                     var breeds = graphql.GetArgument<List<int>>("breedIds");
                     var nameRegex = graphql.GetArgument<string>("nameRegex");
 
-                    // Query forming. Done this weird way to hopefully make EF decide to perform the entire query on the database,
-                    // instead of using any client-side evaluation.
-                    var query = animals.Query();
-                    if(gender != null)
-                        query = query.Where(a => a.Sex == gender);
-                    if(species != null)
-                        query = query.Where(a => a.SpeciesId == species);
-                    if(breeds != null)
-                        query = query.Where(a => a.Breeds.Any(b => breeds.Contains(b.BreedId)));
-                    if(nameRegex != null)
-                        query = query.Where(a => Regex.IsMatch(a.Name, nameRegex));
-                    if (skip != null)
-                        query = query.Skip(skip ?? 0);
-                    if (take != null)
-                        query = query.Take(take ?? 0);
-
-                    return query.Include(a => a.Breeds)
-                                 .ThenInclude(b => b.Breed)
-                                .Include(a => a.Owner)
-                                .Include(a => a.Species)
-                                .OrderBy(a => a.Name);
+                    return animals.Query()
+                                  .Include(a => a.Breeds)
+                                   .ThenInclude(b => b.Breed)
+                                  .Include(a => a.Owner)
+                                  .Include(a => a.Species)
+                                  .Where(a => gender == null   || a.Sex == gender)
+                                  .Where(a => species == null   || a.SpeciesId == species)
+                                  .Where(a => breeds == null    || a.Breeds.Any(b => breeds.Contains(b.BreedId)))
+                                  .Where(a => nameRegex == null || Regex.IsMatch(a.Name, nameRegex))
+                                  .Skip(skip ?? 0)
+                                  .Take(take ?? 0)
+                                  .OrderBy(a => a.Name);
                 }
             );
             Field<ListGraphType<SpeciesGraphType>>(
@@ -135,12 +127,10 @@ namespace FarmMaster.GraphQL
                     // Arguments
                     var species = graphql.GetValueOrNull<int>("speciesId");
 
-                    // Query
-                    var query = speciesBreeds.For<Breed>().Query();
-                    if(species != null)
-                        query = query.Where(b => b.SpeciesId == species);
-
-                    return query.OrderBy(b => b.Name);
+                    return speciesBreeds.For<Breed>()
+                                        .Query()
+                                        .Where(b => species == null || b.SpeciesId == species)
+                                        .OrderBy(b => b.Name);
                 }
             );
         }

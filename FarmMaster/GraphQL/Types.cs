@@ -38,7 +38,7 @@ namespace FarmMaster.GraphQL
                 .Description("The animal's dad, if it has one.");
             Field(a => a.Mum, type: typeof(AnimalGraphType))
                 .Description("The animal's mum, if it has one.");
-            Field("breeds", a => a.Breeds.Select(b => b.Breed.Name))
+            Field("breeds", a => a.Breeds.Select(b => b.Breed.Name) ?? null)
                 .Description("The animal's breeds.");
             Field(a => a.Owner, type: typeof(ContactGraphType))
                 .Description("The animal's owner.");
