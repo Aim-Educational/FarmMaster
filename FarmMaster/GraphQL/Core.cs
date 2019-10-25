@@ -98,7 +98,7 @@ namespace FarmMaster.GraphQL
                                   .Where(a => breeds == null    || a.Breeds.Any(b => breeds.Contains(b.BreedId)))
                                   .Where(a => nameRegex == null || Regex.IsMatch(a.Name, nameRegex))
                                   .Skip(skip ?? 0)
-                                  .Take(take ?? 0)
+                                  .Take(take ?? int.MaxValue)
                                   .OrderBy(a => a.Name);
                 }
             );
