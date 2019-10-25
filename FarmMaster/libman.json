@@ -9,6 +9,26 @@
     {
       "library": "js-cookie@2.2.1",
       "destination": "wwwroot/lib/js-cookie/"
+    },
+    {
+      "provider": "unpkg",
+      "library": "dranges@0.2.4",
+      "destination": "wwwroot/lib/dranges/",
+      "files": [
+        "dist/dranges.min.js"
+      ]
+    },
+    {
+      "provider": "unpkg",
+      "library": "jaster-validate@0.2.0",
+      "destination": "wwwroot/lib/jaster-validate/",
+      "files": [
+        "dist/jaster-validate.d.ts",
+        "dist/jaster-validate.d.ts.map",
+        "dist/jaster-validate.js",
+        "dist/jaster-validate.min.js",
+        "dist/jaster-validate.min.js.map"
+      ]
     }
   ]
 }

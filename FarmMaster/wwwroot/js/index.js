@@ -1,7 +1,5 @@
-﻿export * from "https://unpkg.com/dranges@latest/dist/dranges.min.js"
-export * from "https://unpkg.com/jaster-validate@latest/dist/jaster-validate.min.js"
-export * from "/js/component_table.js"
-export * from "/js/component_modal.js"
+﻿export * from "/lib/dranges/dist/dranges.min.js"
+export * from "/lib/jaster-validate/dist/jaster-validate.min.js"
 export * from "/js/component_select.js"
 export * from "/js/component_characteristics.js"
 export * from "/js/farm_ajax.js"
@@ -10,8 +8,8 @@ export * from "/js/modal.js"
 export * from "/js/characteristic_helper.js";
 export * from "/js/graphql.js";
 
-import { IValidationUIHandler, Validation } from "https://unpkg.com/jaster-validate@latest/dist/jaster-validate.min.js"
-import { drange } from "https://unpkg.com/dranges@latest/dist/dranges.min.js"
+import { IValidationUIHandler, Validation } from "/lib/jaster-validate/dist/jaster-validate.min.js"
+import { drange } from "/lib/dranges/dist/dranges.min.js"
 
 export class SemanticUIHandler extends IValidationUIHandler {
     onElementFailedValidation(element, reasonsFailed) {
