@@ -183,7 +183,9 @@ namespace FarmMaster.Services
                        .Include(a => a.LifeEventEntries)
                         .ThenInclude(e => e.LifeEventEntry)
                        .Include(a => a.Owner)
-                       .Include(a => a.Image);
+                       .Include(a => a.Image)
+                       .Include(a => a.Characteristics)
+                        .ThenInclude(c => c.Characteristics);
         }
 
         public void Update(Animal entity)

@@ -14,6 +14,7 @@
 }
 
 <partial name="_ViewModelWithMessagePartial" model="@Model" />
+<partial name="_ModalAreYouSure_NoUndo" />
 
 <section class="editor section">
     <section>
@@ -132,6 +133,27 @@
                 <div class="@GlobalConstants.FormErrorClasses" asp-validation-summary="All"></div>
             </form>
         </div>
+    </section>
+    <section>
+        <h4>Characteristics</h4>
+        @if(!Model.IsCreate)
+        {
+            <div class="content">
+                <partial name="_ComponentCharacteristics" model='new ComponentCharacteristicsViewModel
+                {
+                    AjaxListUrl = "/Ajax/Animal_ById_Characteristic_AsNameValueTypeInheritedId_All",
+                    AjaxAddUrl = "/Ajax/Animal_ById_Characteristic_Add",
+                    AjaxDeleteUrl = "/Ajax/Animal_ById_Characteristic_Delete_ById",
+                    EntityId = Model.AnimalId ?? -1
+                }' />
+            </div>
+        }
+        else
+        {
+            <div class="ui info message transition visible">
+                Characteristics can only be modified once the animal has been created.
+            </div>
+        }
     </section>
 </section>
 
@@ -259,6 +281,7 @@
         }
 
         $(".ui.dropdown").dropdown();
+        $(".accordion").accordion();
     </script>
 
     <!--Update image when user changes the selected image-->

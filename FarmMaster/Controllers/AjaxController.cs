@@ -19,6 +19,74 @@ namespace FarmMaster.Controllers
 #pragma warning disable CA1707 // Identifiers should not contain underscores. Ignored since it's an explicit design choice for AJAX callbacks.
     public class AjaxController : Controller
     {
+        #region Animal.Characteristic
+        [HttpPost]
+        [FarmAjaxReturnsMessageAndValue]
+        public IActionResult Animal_ById_Characteristic_AsNameValueTypeInheritedId_All(
+            [FromBody] AjaxByIdRequest model,
+            User _,
+            [FromServices] IServiceAnimalManager animals
+        )
+        {
+            var animal = animals.FromIdAllIncluded(model.Id ?? -1);
+            if (animal == null)
+                throw new IndexOutOfRangeException($"No animal with ID #{model.Id}");
+
+            var list = animal.Characteristics;
+            return new AjaxValueResult(
+                list.Characteristics
+                    .Select(c => new AjaxCharacteristicsResponseValue
+                    {
+                        Name = c.Name,
+                        Value = c.Data.ToHtmlString(),
+                        Type = Enum.GetName(typeof(DynamicField.Type), c.Data.FieldType),
+                        IsInherited = false,
+                        Id = c.AnimalCharacteristicId
+                    })
+            );
+        }
+
+        [HttpPost]
+        [FarmAjaxReturnsMessage]
+        public IActionResult Animal_ById_Characteristic_Delete_ById(
+            [FromBody] AjaxByIdForIdRequest model,
+            User _,
+            [FromServices] IServiceAnimalManager animals,
+            [FromServices] IServiceCharacteristicManager characteristics
+        )
+        {
+            var animal = animals.FromIdAllIncluded(model.ById ?? -1);
+            if (animal == null)
+                throw new IndexOutOfRangeException($"No animal with ID #{model.ById}");
+
+            characteristics.FullDeleteById(animal.Characteristics, model.ForId);
+            return new EmptyResult();
+        }
+
+        [HttpPost]
+        [FarmAjaxReturnsMessage]
+        public IActionResult Animal_ById_Characteristic_Add(
+            [FromBody] AjaxCharacteristicsAddRequest model,
+            User _,
+            [FromServices] IServiceAnimalManager animals,
+            [FromServices] IServiceCharacteristicManager characteristics
+        )
+        {
+            var animal = animals.FromIdAllIncluded(model.Id);
+            if (animal == null)
+                throw new IndexOutOfRangeException($"No animal with ID #{model.Id}");
+
+            characteristics.CreateFromHtmlString(
+                animal.Characteristics,
+                model.Name,
+                model.Type,
+                model.Value
+            );
+
+            return new EmptyResult();
+        }
+        #endregion
+
         #region Account
         [HttpPost]
         [FarmAjaxReturnsMessage]
