@@ -90,14 +90,6 @@ namespace FarmMaster.GraphQL
                                 .OrderBy(a => a.Name);
                 }
             );
-            Field<IntGraphType>(
-                "animals_count",
-                resolve: _ =>
-                {
-                    var animals = context.GetRequiredService<IServiceAnimalManager>();
-                    return animals.Query().Count();
-                }
-            );
             Field<ListGraphType<SpeciesGraphType>>(
                 "species",
                 resolve: _ =>
