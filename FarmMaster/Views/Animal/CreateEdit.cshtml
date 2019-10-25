@@ -5,7 +5,7 @@
     ViewData["Breadcrumb"] = new Dictionary<string, string>()
     {
         { "Home", "/" },
-        { "Animals", "/Animals/Index/" },
+        { "Animals", "/Animal/" },
         { 
             (Model.IsCreate) ? "Create" : "Edit", 
             (Model.IsCreate) ? "/Animals/Create/" : $"/Animals/Edit/{Model.AnimalId}" 
@@ -112,7 +112,7 @@
                 <div class="field">
                     <label>Breeds</label>
                     @{ 
-                        var breedValueString = Model.BreedIds.Any()
+                        var breedValueString = (Model.BreedIds?.Any() ?? false)
                                                ? Model.BreedIds.Select(id => $"{id}").Aggregate((s1, s2) => s1 + "," + s2)
                                                : null;
                     }

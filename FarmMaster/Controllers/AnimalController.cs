@@ -33,11 +33,7 @@ namespace FarmMaster.Controllers
         #region GET
         public IActionResult Index(string message)
         {
-            var model = new AnimalIndexViewModel
-            {
-                AnimalNameIdPairs = this._animals.Query()
-                                                 .Select(a => new KeyValuePair<string, int>(a.Name, a.AnimalId))
-            };
+            var model = new AnimalIndexViewModel();
             model.ParseMessageQueryString(message);
             return View(model);
         }
@@ -131,7 +127,9 @@ namespace FarmMaster.Controllers
                 this._animals.FromId(model.MumId ?? -1), // -1 = ID that shouldn't normally exist, forcing FromId to return null.
                 this._animals.FromId(model.DadId ?? -1)
             );
-            this._animals.SetImageFromForm(animal, model.Image);
+
+            if(model.Image != null)
+                this._animals.SetImageFromForm(animal, model.Image);
 
             foreach(var breed in breeds)
                 this._animals.AddBreed(animal, breed);
@@ -181,7 +179,9 @@ namespace FarmMaster.Controllers
                 this._animals.RemoveBreed(animal, breed.Breed);
 
             this._animals.Update(animal);
-            this._animals.SetImageFromForm(animal, model.Image);
+            if (model.Image != null)
+                this._animals.SetImageFromForm(animal, model.Image);
+
             return RedirectToActionPermanent("Edit", new { id = animal.AnimalId });
         }
         #endregion

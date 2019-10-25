@@ -5,7 +5,7 @@
     ViewData["Breadcrumb"] = new Dictionary<string, string>()
     {
         { "Home", "/" },
-        { "Animals", "/Animals/Index/" }
+        { "Animals", "/Animal/" }
     };
 }
 
@@ -18,27 +18,151 @@
                 <a class="ui primary button" asp-action="Create">Create New Animal</a>
             </div>
 
-            <table class="ui striped table">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach(var nameId in Model.AnimalNameIdPairs)
-                    {
-                        <tr>
-                            <td>@nameId.Key</td>
-                            <td>
-                                <a class="ui secondary button" asp-action="Edit" asp-route-id="@nameId.Value">
-                                    Edit
-                                </a>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
+            <div class="ui grid">
+                <div id="rowAnimals" class="three column stackable row">
+                </div>
+            </div>
         </div>
     </section>
 </section>
+
+@section Scripts {
+    <script type="module">
+        import { GraphQL } from "/js/index.js";
+
+        const ANIMALS_PER_FETCH = 15;
+        const IMAGE_WIDTH = 664;
+        const IMAGE_HEIGHT = 700;
+        let animalCount = 0;
+
+        // Param 'animal' is data from GraphQL, see fetchAnimals below.
+        function addAnimalCard(animal) {
+            const row = document.getElementById("rowAnimals");
+
+            const column = row.appendChild(document.createElement("div"));
+            column.classList.add("column");
+            {
+                const a = column.appendChild(document.createElement("a"));
+                a.href = "/Animal/Edit/" + animal.id;
+                {
+                    const divCard = a.appendChild(document.createElement("div"));
+                    divCard.classList.add("ui", "card");
+                    {
+                        // Image
+                        let div = divCard.appendChild(document.createElement("div"));
+                        div.classList.add("image");
+                        {
+                            const img = div.appendChild(document.createElement("img"));
+                            img.src = "/Image/Get?imageId=" + animal.imageId + "&width=" + IMAGE_WIDTH + "&height=" + IMAGE_HEIGHT;
+                        }
+
+                        const divContent = divCard.appendChild(document.createElement("div"));
+                        divContent.classList.add("content");
+                        {
+                            // Name; gender icon; can reproduce icon
+                            div = divContent.appendChild(document.createElement("div"));
+                            div.classList.add("header");
+                            {
+                                div.innerText = animal.name;
+
+                                let i = div.appendChild(document.createElement("i"));
+                                if (animal.sex === "MALE")
+                                    i.classList.add("right", "floated", "blue", "man", "icon");
+                                else if (animal.sex === "FEMALE")
+                                    i.classList.add("right", "floated", "pink", "woman", "icon");
+                                else
+                                    alert("NOT SUPPORTED YET: Unknown gender icon");
+
+                                i = div.appendChild(document.createElement("i"));
+                                i.classList.add("right", "floated", "red", "heart", "icon");
+                            }
+
+                            // Tag
+                            div = divContent.appendChild(document.createElement("div"));
+                            div.classList.add("meta");
+                            {
+                                div.innerText = "[" + animal.tag + "]";
+                            }
+
+                            // Gender (text version); Species; Simplified breed(s)
+                            div = divContent.appendChild(document.createElement("div"));
+                            div.classList.add("meta");
+                            {
+                                const genderText = animal.sex[0].toUpperCase() + animal.sex.substr(1).toLowerCase();
+                                const breedText =
+                                    (animal.breeds.length == 0)
+                                        ? "Unknown breed"
+                                        : (animal.breeds.length > 1)
+                                            ? "Cross breed"
+                                            : animal.breeds[0];
+
+                                div.innerText = genderText + " " + animal.species.name + " - " + breedText;
+                            }
+
+                            // Owner; mum; dad
+                            div = divContent.appendChild(document.createElement("div"));
+                            div.classList.add("description");
+                            {
+                                // owner
+                                let i = div.appendChild(document.createElement("i"));
+                                let span = div.appendChild(document.createElement("span"));
+                                i.classList.add("user", "icon");
+                                span.innerText = animal.owner.name;
+                                div.appendChild(document.createElement("br"));
+
+                                // dad
+                                i = div.appendChild(document.createElement("i"));
+                                span = div.appendChild(document.createElement("span"));
+                                i.classList.add("teal", "male", "icon");
+                                span.innerText = (animal.dad && animal.dad.name + " [" + animal.dad.tag + "]") || "Unknown";
+                                div.appendChild(document.createElement("br"));
+
+                                // mum
+                                i = div.appendChild(document.createElement("i"));
+                                span = div.appendChild(document.createElement("span"));
+                                i.classList.add("pink", "female", "icon");
+                                span.innerText = (animal.mum && animal.mum.name + " [" + animal.mum.tag + "]") || "Unknown";
+                                div.appendChild(document.createElement("br"));
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        function fetchAnimals(take, skip) {
+            GraphQL.query(`query FetchAnimals($take:Int!, $skip:Int!){
+                    animals(take:$take, skip:$skip){
+                        id
+                        name
+                        tag
+                        sex
+                        imageId
+                        species {
+                            name
+                        }
+                        breeds
+                        owner {
+                            name
+                        }
+                        dad {
+                            name
+                            tag
+                        }
+                        mum {
+                            name
+                            tag
+                        }
+                    }
+                }`, { take, skip })
+                .then(data => {
+                    animalCount += data.animals.length;
+                    for (const animal of data.animals)
+                        addAnimalCard(animal);
+                })
+                .catch(e => alert(JSON.stringify(e)));
+        }
+
+        fetchAnimals(ANIMALS_PER_FETCH, animalCount);
+    </script>
+}
