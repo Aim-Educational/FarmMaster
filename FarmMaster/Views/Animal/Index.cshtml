@@ -280,9 +280,7 @@
             input.addEventListener("change", () => onSearchInputChanged());
 
         fetchAnimals(ANIMALS_PER_FETCH, animalCount, true);
-        buttonLoadMore.addEventListener("click", function () {
-            fetchAnimals(ANIMALS_PER_FETCH, animalCount);
-        });
+        buttonLoadMore.addEventListener("click", () => onSearchInputChanged());
 
         // When the species selected changes, get the new breed options.
         document.getElementById("dropdownSpecies").querySelector("input").addEventListener("change", function () {
