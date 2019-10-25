@@ -93,7 +93,7 @@ namespace FarmMaster.GraphQL
                                    .ThenInclude(b => b.Breed)
                                   .Include(a => a.Owner)
                                   .Include(a => a.Species)
-                                  .Where(a => gender == null   || a.Sex == gender)
+                                  .Where(a => gender == null    || a.Sex == gender)
                                   .Where(a => species == null   || a.SpeciesId == species)
                                   .Where(a => breeds == null    || a.Breeds.Any(b => breeds.Contains(b.BreedId)))
                                   .Where(a => nameRegex == null || Regex.IsMatch(a.Name, nameRegex))
