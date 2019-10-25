@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace FarmMaster.GraphQL
@@ -56,6 +57,12 @@ namespace FarmMaster.GraphQL
                         Description = "Filter by breed(s). Animals must have *any* of the given breeds to be included in the result.",
                         DefaultValue = null
                     },
+                    new QueryArgument<StringGraphType>
+                    {
+                        Name = "nameRegex",
+                        Description = "Filter by name using the given regex.",
+                        DefaultValue = null
+                    },
                     new QueryArgument<IntGraphType>
                     {
                         Name = "skip",
@@ -78,8 +85,10 @@ namespace FarmMaster.GraphQL
                     var take = graphql.GetValueOrNull<int>("take");
                     var skip = graphql.GetValueOrNull<int>("skip");
                     var breeds = graphql.GetArgument<List<int>>("breedIds");
+                    var nameRegex = graphql.GetArgument<string>("nameRegex");
 
-                    // Query forming. Done this weird way to hopefully make EF be efficient with SQL.
+                    // Query forming. Done this weird way to hopefully make EF decide to perform the entire query on the database,
+                    // instead of using any client-side evaluation.
                     var query = animals.Query();
                     if(gender != null)
                         query = query.Where(a => a.Sex == gender);
@@ -87,6 +96,8 @@ namespace FarmMaster.GraphQL
                         query = query.Where(a => a.SpeciesId == species);
                     if(breeds != null)
                         query = query.Where(a => a.Breeds.Any(b => breeds.Contains(b.BreedId)));
+                    if(nameRegex != null)
+                        query = query.Where(a => Regex.IsMatch(a.Name, nameRegex));
                     if (skip != null)
                         query = query.Skip(skip ?? 0);
                     if (take != null)
