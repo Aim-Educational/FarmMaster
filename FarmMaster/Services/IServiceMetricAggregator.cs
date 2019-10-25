@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,7 +12,8 @@ namespace FarmMaster.Services
     {
         IEnumerable<MetricRequest> RequestMetrics { get; }
 
-        void OnHttpRequest(HttpContext context);
+        MetricRequest OnStartHttpRequest(HttpContext context, bool doNotTrack = false);
+        void OnEndHttpRequest(MetricRequest metric);
         void Reset();
     }
 
@@ -25,22 +27,33 @@ namespace FarmMaster.Services
             this._requestMetrics = new List<MetricRequest>();
         }
 
-        public void OnHttpRequest(HttpContext context)
+        public MetricRequest OnStartHttpRequest(HttpContext context, bool doNotTrack)
         {
+            Contract.Requires(context != null);
             var request = new MetricRequest
             {
-                DateTimeUtc     = DateTimeOffset.UtcNow,
-                TraceIdentifier = context.TraceIdentifier,
-                Path            = context.Request.Path.Value,
-                Ip              = context.Connection.RemoteIpAddress.ToString()
+                DateTimeUtc      = DateTimeOffset.UtcNow,
+                TraceIdentifier  = context.TraceIdentifier,
+                Path             = context.Request.Path.Value,
+                Ip               = (doNotTrack) ? "DNT" : context.Connection.RemoteIpAddress.ToString(),
+                BytesUsedAtStart = GC.GetTotalMemory(false)
             };
 
             this._requestMetrics.Add(request);
+            return request;
+        }
+
+        public void OnEndHttpRequest(MetricRequest metric)
+        {
+            Contract.Requires(metric != null);
+            metric.BytesUsedAtEnd = GC.GetTotalMemory(false);
         }
 
         public void Reset()
         {
+            var toKeep = this._requestMetrics.Where(m => m.BytesUsedAtEnd == 0).ToList();
             this._requestMetrics.Clear();
+            this._requestMetrics.AddRange(toKeep);
         }
     }
 }

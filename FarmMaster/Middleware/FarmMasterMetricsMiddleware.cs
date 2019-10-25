@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Business.Model;
 using FarmMaster.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
@@ -19,10 +20,19 @@ namespace FarmMaster.Middleware
 
         public Task Invoke(HttpContext httpContext, IServiceMetricAggregator metrics)
         { 
-            // DNT = Do not track. 0 = fine. 1 = don't.
-            if(httpContext.Request.Headers["DNT"] == "1")
-                metrics.OnHttpRequest(httpContext);
-            return _next(httpContext);
+            MetricRequest metric = null;
+            try
+            {
+                // DNT = Do not track. 0 = fine. 1 = don't.
+                // If DNT is true, anonymise the IP.
+                metric = metrics.OnStartHttpRequest(httpContext, httpContext.Request.Headers["DNT"] == "1");
+                return _next(httpContext);
+            }
+            finally
+            {
+                if(metric != null)
+                    metrics.OnEndHttpRequest(metric);
+            }
         }
     }
 

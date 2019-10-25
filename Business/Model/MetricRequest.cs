@@ -23,6 +23,12 @@ namespace Business.Model
         public string Ip { get; set; }
 
         [Required]
+        public long BytesUsedAtStart { get; set; }
+
+        [Required]
+        public long BytesUsedAtEnd { get; set; }
+
+        [Required]
         public DateTimeOffset DateTimeUtc { get; set; }
     }
 }
