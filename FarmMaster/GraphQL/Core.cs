@@ -50,6 +50,12 @@ namespace FarmMaster.GraphQL
                         Description = "Filter by species",
                         DefaultValue = null
                     },
+                    new QueryArgument<ListGraphType<IdGraphType>>
+                    {
+                        Name = "breedIds",
+                        Description = "Filter by breed(s). Animals must have *any* of the given breeds to be included in the result.",
+                        DefaultValue = null
+                    },
                     new QueryArgument<IntGraphType>
                     {
                         Name = "skip",
@@ -68,9 +74,10 @@ namespace FarmMaster.GraphQL
 
                     // Arguments
                     var gender = graphql.GetValueOrNull<Animal.Gender>("gender");
-                    var species = graphql.GetValueOrNull<int>("species");
+                    var species = graphql.GetValueOrNull<int>("speciesId");
                     var take = graphql.GetValueOrNull<int>("take");
                     var skip = graphql.GetValueOrNull<int>("skip");
+                    var breeds = graphql.GetArgument<List<int>>("breedIds");
 
                     // Query forming. Done this weird way to hopefully make EF be efficient with SQL.
                     var query = animals.Query();
@@ -78,6 +85,8 @@ namespace FarmMaster.GraphQL
                         query = query.Where(a => a.Sex == gender);
                     if(species != null)
                         query = query.Where(a => a.SpeciesId == species);
+                    if(breeds != null)
+                        query = query.Where(a => a.Breeds.Any(b => breeds.Contains(b.BreedId)));
                     if(take != null)
                         query = query.Take(take ?? 0);
                     if(skip != null)
