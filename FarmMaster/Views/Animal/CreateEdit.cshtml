@@ -188,6 +188,9 @@
             if (dropdown.classList.contains("disabled"))
                 dropdown.classList.remove("disabled");
             for (const idName of idNameList) {
+                if (idName.id == @Model.AnimalId)
+                    continue;
+
                 addItemToDropdown(
                     dropdown,
                     idName.name,
