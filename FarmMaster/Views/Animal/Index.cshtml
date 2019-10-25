@@ -285,7 +285,6 @@
         });
 
         // When the species selected changes, get the new breed options.
-        const breedOptionsCache = {}; // AA. Key is breedId. Value is array of { id, name }
         document.getElementById("dropdownSpecies").querySelector("input").addEventListener("change", function () {
             const dropdown = document.getElementById("dropdownBreeds");
             const menu = dropdown.querySelector(".menu");
