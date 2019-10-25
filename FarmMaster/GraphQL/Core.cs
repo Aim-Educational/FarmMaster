@@ -87,10 +87,10 @@ namespace FarmMaster.GraphQL
                         query = query.Where(a => a.SpeciesId == species);
                     if(breeds != null)
                         query = query.Where(a => a.Breeds.Any(b => breeds.Contains(b.BreedId)));
-                    if(take != null)
-                        query = query.Take(take ?? 0);
-                    if(skip != null)
+                    if (skip != null)
                         query = query.Skip(skip ?? 0);
+                    if (take != null)
+                        query = query.Take(take ?? 0);
 
                     return query.Include(a => a.Breeds)
                                  .ThenInclude(b => b.Breed)
