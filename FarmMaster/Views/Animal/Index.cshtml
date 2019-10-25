@@ -22,6 +22,12 @@
                 <div id="rowAnimals" class="three column stackable row">
                 </div>
             </div>
+
+            <div class="top padded items">
+                <button id="buttonLoadMore" class="ui inverted secondary fluid button">
+                    Load More
+                </button>
+            </div>
         </div>
     </section>
 </section>
@@ -34,6 +40,8 @@
         const IMAGE_WIDTH = 664;
         const IMAGE_HEIGHT = 700;
         let animalCount = 0;
+
+        const buttonLoadMore = document.getElementById("buttonLoadMore");
 
         // Param 'animal' is data from GraphQL, see fetchAnimals below.
         function addAnimalCard(animal) {
@@ -131,6 +139,7 @@
         }
 
         function fetchAnimals(take, skip) {
+            buttonLoadMore.classList.add("transition", "hidden");
             GraphQL.query(`query FetchAnimals($take:Int!, $skip:Int!){
                     animals(take:$take, skip:$skip){
                         id
@@ -156,6 +165,11 @@
                     }
                 }`, { take, skip })
                 .then(data => {
+                    if (data.animals.length >= take) {
+                        buttonLoadMore.classList.remove("hidden");
+                        buttonLoadMore.classList.add("visible");
+                    }
+
                     animalCount += data.animals.length;
                     for (const animal of data.animals)
                         addAnimalCard(animal);
@@ -164,5 +178,8 @@
         }
 
         fetchAnimals(ANIMALS_PER_FETCH, animalCount);
+        buttonLoadMore.addEventListener("click", function () {
+            fetchAnimals(ANIMALS_PER_FETCH, animalCount);
+        });
     </script>
 }
