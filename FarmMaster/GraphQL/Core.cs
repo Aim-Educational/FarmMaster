@@ -49,6 +49,16 @@ namespace FarmMaster.GraphQL
                         Name = "speciesId",
                         Description = "Filter by species",
                         DefaultValue = null
+                    },
+                    new QueryArgument<IntGraphType>
+                    {
+                        Name = "skip",
+                        Description = "The number of animals to skip over"
+                    },
+                    new QueryArgument<IntGraphType>
+                    {
+                        Name = "take",
+                        Description = "The number of animals to take"
                     }
                 ),
                 resolve: graphql =>
@@ -59,6 +69,8 @@ namespace FarmMaster.GraphQL
                     // Arguments
                     var gender = graphql.GetValueOrNull<Animal.Gender>("gender");
                     var species = graphql.GetValueOrNull<int>("species");
+                    var take = graphql.GetValueOrNull<int>("take");
+                    var skip = graphql.GetValueOrNull<int>("skip");
 
                     // Query forming. Done this weird way to hopefully make EF be efficient with SQL.
                     var query = animals.Query();
@@ -66,12 +78,24 @@ namespace FarmMaster.GraphQL
                         query = query.Where(a => a.Sex == gender);
                     if(species != null)
                         query = query.Where(a => a.SpeciesId == species);
+                    if(take != null)
+                        query = query.Take(take ?? 0);
+                    if(skip != null)
+                        query = query.Skip(skip ?? 0);
 
                     return query.Include(a => a.Breeds)
                                  .ThenInclude(b => b.Breed)
                                 .Include(a => a.Owner)
                                 .Include(a => a.Species)
                                 .OrderBy(a => a.Name);
+                }
+            );
+            Field<IntGraphType>(
+                "animals_count",
+                resolve: _ =>
+                {
+                    var animals = context.GetRequiredService<IServiceAnimalManager>();
+                    return animals.Query().Count();
                 }
             );
             Field<ListGraphType<SpeciesGraphType>>(
@@ -120,6 +144,7 @@ namespace FarmMaster.GraphQL
             services.AddSingleton<SpeciesGraphType>();
             services.AddSingleton<BreedGraphType>();
             services.AddSingleton<EnumerationGraphType<Animal.Gender>>();
+            services.AddSingleton<IntGraphType>();
             return services;
         }
 
