@@ -50,6 +50,37 @@ namespace FarmMaster.GraphQL
                 .Description("The animal's species.");
             Field("imageId", a => a.ImageId ?? -1)
                 .Description("The Id for the animal's image, used with the /Image/Get API.");
+            Field("lifeEventEntries", 
+                  a => a.LifeEventEntries.Select(m => m.LifeEventEntry), 
+                  type: typeof(ListGraphType<LifeEventEntryGraphType>))
+                .Description("The entries for all of the animal's life events.");
+        }
+    }
+
+    public class LifeEventGraphType : ObjectGraphType<LifeEvent>
+    {
+        public LifeEventGraphType()
+        {
+            Field(e => e.LifeEventId, type: typeof(IdGraphType))
+                .Name("Id")
+                .Description("The ID for the life event.");
+            Field(e => e.Name)
+                .Description("The life event's name.");
+        }
+    }
+
+    public class LifeEventEntryGraphType : ObjectGraphType<LifeEventEntry>
+    {
+        public LifeEventEntryGraphType()
+        {
+            Field(e => e.LifeEventEntryId, type: typeof(IdGraphType))
+                .Name("Id")
+                .Description("The ID for the entry.");
+            Field(e => e.DateTimeCreated)
+                .Name("DateTimeUtc")
+                .Description("The UTC time that the entry was created.");
+            Field(e => e.LifeEvent, type: typeof(LifeEventGraphType))
+                .Description("The life event this entry belongs to.");
         }
     }
 

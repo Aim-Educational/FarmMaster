@@ -93,6 +93,9 @@ namespace FarmMaster.GraphQL
                                    .ThenInclude(b => b.Breed)
                                   .Include(a => a.Owner)
                                   .Include(a => a.Species)
+                                  .Include(a => a.LifeEventEntries)
+                                   .ThenInclude(m => m.LifeEventEntry)
+                                    .ThenInclude(e => e.LifeEvent)
                                   .Where(a => gender == null    || a.Sex == gender)
                                   .Where(a => species == null   || a.SpeciesId == species)
                                   .Where(a => breeds == null    || a.Breeds.Any(b => breeds.Contains(b.BreedId)))
@@ -146,6 +149,9 @@ namespace FarmMaster.GraphQL
             services.AddSingleton<AnimalGraphType>();
             services.AddSingleton<SpeciesGraphType>();
             services.AddSingleton<BreedGraphType>();
+            services.AddSingleton<LifeEventGraphType>();
+            services.AddSingleton<LifeEventEntryGraphType>();
+            services.AddSingleton<ListGraphType<LifeEventEntryGraphType>>();
             services.AddSingleton<EnumerationGraphType<Animal.Gender>>();
             services.AddSingleton<IntGraphType>();
             return services;
