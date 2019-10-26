@@ -1,12 +1,12 @@
 ﻿export * from "/lib/dranges/dist/dranges.min.js"
 export * from "/lib/jaster-validate/dist/jaster-validate.min.js"
 export * from "/js/component_select.js"
-export * from "/js/component_characteristics.js"
 export * from "/js/farm_ajax.js"
 export * from "/js/cookies.js"
 export * from "/js/modal.js"
 export * from "/js/characteristic_helper.js";
 export * from "/js/graphql.js";
+export * from "/js/component_table.js";
 
 import { IValidationUIHandler, Validation } from "/lib/jaster-validate/dist/jaster-validate.min.js"
 import { drange } from "/lib/dranges/dist/dranges.min.js"
