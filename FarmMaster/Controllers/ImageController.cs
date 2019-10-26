@@ -27,6 +27,10 @@ namespace FarmMaster.Controllers
             if(imageId == null || width == null || height == null)
                 return new BadRequestResult();
 
+            // TODO: Put these magic numbers into a IConfig thing.
+            if(width > 1920 || height > 1080)
+                return new BadRequestResult();
+
             var image = await this._images.Query().FirstOrDefaultAsync(i => i.ImageId == imageId);
             if(image == null)
                 return new BadRequestResult();
