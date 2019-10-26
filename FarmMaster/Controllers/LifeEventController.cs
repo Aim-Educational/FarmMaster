@@ -202,7 +202,12 @@ namespace FarmMaster.Controllers
 
         #region Entry Editor (GET)
         [FarmAuthorise(PermsAND: new[] { BusinessConstants.Roles.EDIT_LIFE_EVENT_ENTRY })]
-        public IActionResult CreateEntry(int lifeEventId, string redirectController, string redirectAction, string breadcrumb)
+        public IActionResult CreateEntry(
+            int lifeEventId, 
+            string redirectController, 
+            string redirectAction, 
+            string breadcrumb, 
+            int redirectEntityId)
         {
             var lifeEvent = this._lifeEvents
                                 .For<LifeEvent>()
@@ -221,6 +226,7 @@ namespace FarmMaster.Controllers
                 Values              = lifeEvent.Fields.ToDictionary(f => f.Name, _ => ""),
                 RedirectAction      = redirectAction,
                 RedirectController  = redirectController,
+                RedirectEntityId    = redirectEntityId,
                                       // Example: abc:123/345>def:123/567
                 Breadcrumb          = breadcrumb.Split('>')
                                                 .ToDictionary(
@@ -260,7 +266,7 @@ namespace FarmMaster.Controllers
         }
 
         [FarmAuthorise(PermsAND: new[] { BusinessConstants.Roles.EDIT_LIFE_EVENT_ENTRY })]
-        public IActionResult EditEntry(int lifeEventId, int lifeEventEntryId, string breadcrumb)
+        public IActionResult EditEntry(int lifeEventId, int lifeEventEntryId, string breadcrumb, int redirectEntityId)
         {
             var lifeEvent = this._lifeEvents
                                 .For<LifeEvent>()
@@ -283,6 +289,7 @@ namespace FarmMaster.Controllers
                 Type                = LifeEventEntryEditorType.Edit,
                 RedirectAction      = "EditEntry",
                 RedirectController  = "LifeEvent",
+                RedirectEntityId    = redirectEntityId,
                 Breadcrumb          = breadcrumb.Split('>')
                                                 .ToDictionary(
                                                     s => s.Split(':')[0],
@@ -339,7 +346,8 @@ namespace FarmMaster.Controllers
                 model.RedirectController,
                 new
                 {
-                    lifeEventEntryId = entry.LifeEventEntryId
+                    lifeEventEntryId = entry.LifeEventEntryId,
+                    redirectEntityId = model.RedirectEntityId
                 }
             );
         }

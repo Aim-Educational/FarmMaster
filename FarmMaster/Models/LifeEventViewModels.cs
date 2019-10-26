@@ -48,6 +48,10 @@ namespace FarmMaster.Models
         [Required]
         public int LifeEventId { get; set; }
 
+        // Passed through by an external controller. Used so the redirect action can easily take the user back to a certain page.
+        [Required]
+        public int RedirectEntityId { get; set; } 
+
         public int LifeEventEntryId { get; set; } // Only used in Edit mode.
 
         public string LifeEventName { get; set; }

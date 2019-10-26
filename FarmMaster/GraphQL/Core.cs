@@ -57,6 +57,12 @@ namespace FarmMaster.GraphQL
                         Description = "Filter by breed(s). Animals must have *any* of the given breeds to be included in the result.",
                         DefaultValue = null
                     },
+                    new QueryArgument<IdGraphType>
+                    {
+                        Name = "id",
+                        Description = "Filter by a specific animal's Id.",
+                        DefaultValue = null
+                    },
                     new QueryArgument<StringGraphType>
                     {
                         Name = "nameRegex",
@@ -78,15 +84,16 @@ namespace FarmMaster.GraphQL
                 {
                     // Services
                     var animals = context.GetRequiredService<IServiceAnimalManager>();
-                    var db = context.GetRequiredService<FarmMasterContext>();
+                    var db      = context.GetRequiredService<FarmMasterContext>();
 
                     // Arguments
-                    var gender = graphql.GetValueOrNull<Animal.Gender>("gender");
-                    var species = graphql.GetValueOrNull<int>("speciesId");
-                    var take = graphql.GetValueOrNull<int>("take");
-                    var skip = graphql.GetValueOrNull<int>("skip");
-                    var breeds = graphql.GetArgument<List<int>>("breedIds");
-                    var nameRegex = graphql.GetArgument<string>("nameRegex");
+                    var gender      = graphql.GetValueOrNull<Animal.Gender>("gender");
+                    var species     = graphql.GetValueOrNull<int>("speciesId");
+                    var take        = graphql.GetValueOrNull<int>("take");
+                    var skip        = graphql.GetValueOrNull<int>("skip");
+                    var breeds      = graphql.GetArgument<List<int>>("breedIds");
+                    var nameRegex   = graphql.GetArgument<string>("nameRegex");
+                    var animalId    = graphql.GetValueOrNull<int>("id");
 
                     return animals.Query()
                                   .Include(a => a.Breeds)
@@ -100,10 +107,21 @@ namespace FarmMaster.GraphQL
                                   .Where(a => species == null   || a.SpeciesId == species)
                                   .Where(a => breeds == null    || a.Breeds.Any(b => breeds.Contains(b.BreedId)))
                                   .Where(a => nameRegex == null || Regex.IsMatch(a.Name, nameRegex))
+                                  .Where(a => animalId == null  || a.AnimalId == animalId)
                                   .OrderBy(a => a.AnimalId) // Weird edge case.
                                   .Skip(skip ?? 0)
                                   .Take(take ?? int.MaxValue)
                                   .OrderBy(a => a.Name);
+                }
+            );
+            Field<ListGraphType<LifeEventGraphType>>(
+                "lifeEvents",
+                resolve: _ =>
+                {
+                    var lifeEvents = context.GetRequiredService<IServiceLifeEventManager>();
+                    return lifeEvents.For<LifeEvent>()
+                                     .Query()
+                                     .OrderBy(e => e.Name);
                 }
             );
             Field<ListGraphType<SpeciesGraphType>>(

@@ -16,6 +16,7 @@ namespace FarmMaster.Services
         void AddBreed(Animal animal, Breed breed);
         void SetImageFromForm(Animal animal, IFormFile image);
         CouldDelete RemoveBreed(Animal animal, Breed breed);
+        CouldDelete RemoveLifeEventEntry(Animal animal, LifeEventEntry entry, AlsoDelete alsoDeleteEntry = AlsoDelete.No);
         void SetBornEventEntry(Animal animal, DateTimeOffset dateTimeBorn);
         DateTimeOffset? GetBornEventEntry(Animal animal);
     }
@@ -117,6 +118,21 @@ namespace FarmMaster.Services
 
             this._context.Add(map);
             this._context.SaveChanges();
+        }
+
+        public CouldDelete RemoveLifeEventEntry(Animal animal, LifeEventEntry entry, AlsoDelete alsoDeleteEntry = AlsoDelete.No)
+        {
+            var map = animal.LifeEventEntries
+                            .FirstOrDefault(e => e.LifeEventEntryId == entry.LifeEventEntryId);
+            if(map == null)
+                return CouldDelete.No;
+
+            this._context.Remove(map);
+            if(alsoDeleteEntry == AlsoDelete.Yes)
+                this._context.Remove(entry);
+
+            this._context.SaveChanges();
+            return CouldDelete.Yes;
         }
 
         public void SetBornEventEntry(Animal animal, DateTimeOffset dateTimeBorn)

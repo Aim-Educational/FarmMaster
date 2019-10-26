@@ -80,7 +80,8 @@ namespace FarmMaster.Services
 
             var entry = new LifeEventEntry
             {
-                LifeEvent = @event
+                LifeEvent = @event,
+                DateTimeCreated = DateTimeOffset.UtcNow
             };
 
             // Create the values, ensuring that the name and type exist/match

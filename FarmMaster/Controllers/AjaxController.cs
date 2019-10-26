@@ -87,6 +87,32 @@ namespace FarmMaster.Controllers
         }
         #endregion
 
+        #region Animal.LifeEventEntry
+        [HttpPost]
+        [FarmAjaxReturnsMessage(permsAND: new[] { BusinessConstants.Roles.EDIT_LIFE_EVENT_ENTRY })]
+        public IActionResult Animal_ById_LifeEventEntry_Delete_ById(
+            [FromBody] AjaxByIdForIdRequest model,
+            User _,
+            [FromServices] IServiceAnimalManager animals,
+            [FromServices] IServiceLifeEventManager lifeEvents
+        )
+        {
+            var animal = animals.FromIdAllIncluded(model.ById ?? -1);
+            if(animal == null)
+                throw new IndexOutOfRangeException($"No animal with ID #{model.ById}");
+
+            var entry = lifeEvents.For<LifeEventEntry>().FromId(model.ForId);
+            if(entry == null)
+                throw new IndexOutOfRangeException($"No life event entry with ID #{model.ForId}");
+
+            var couldDelete = animals.RemoveLifeEventEntry(animal, entry);
+            if(couldDelete == CouldDelete.No)
+                throw new InvalidOperationException("Unable to delete life event.");
+
+            return new EmptyResult();
+        }
+        #endregion
+
         #region Account
         [HttpPost]
         [FarmAjaxReturnsMessage]

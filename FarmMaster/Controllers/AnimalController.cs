@@ -18,16 +18,19 @@ namespace FarmMaster.Controllers
         readonly IServiceAnimalManager _animals;
         readonly IServiceContactManager _contacts;
         readonly IServiceSpeciesBreedManager _speciesBreeds;
+        readonly IServiceLifeEventManager _lifeEvents;
 
         public AnimalController(
             IServiceAnimalManager animals,
             IServiceContactManager contact,
-            IServiceSpeciesBreedManager speciesBreeds
+            IServiceSpeciesBreedManager speciesBreeds,
+            IServiceLifeEventManager lifeEvents
         )
         {
             this._animals = animals;
             this._contacts = contact;
             this._speciesBreeds = speciesBreeds;
+            this._lifeEvents = lifeEvents;
         }
 
         #region GET
@@ -183,6 +186,25 @@ namespace FarmMaster.Controllers
                 this._animals.SetImageFromForm(animal, model.Image);
 
             return RedirectToActionPermanent("Edit", new { id = animal.AnimalId });
+        }
+        #endregion
+
+        #region Callbacks
+        [FarmAuthorise]
+        public IActionResult OnCreateLifeEvent(int lifeEventEntryId, int redirectEntityId)
+        {
+            var animal = this._animals.FromId(redirectEntityId);
+            if(animal == null)
+                return Redirect("/");
+
+            var entry = this._lifeEvents
+                                .For<LifeEventEntry>()
+                                .FromId(lifeEventEntryId);
+            if(entry == null)
+                return RedirectToAction("Edit", new { id = redirectEntityId });
+
+            this._animals.AddLifeEventEntry(animal, entry);
+            return RedirectToAction("Edit", new { id = redirectEntityId });
         }
         #endregion
     }

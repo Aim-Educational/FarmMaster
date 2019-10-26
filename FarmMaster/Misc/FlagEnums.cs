@@ -23,4 +23,10 @@ namespace FarmMaster.Misc
         Yes,
         No
     }
+
+    public enum AlsoDelete
+    {
+        Yes,
+        No
+    }
 }

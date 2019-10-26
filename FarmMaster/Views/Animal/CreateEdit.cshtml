@@ -1,16 +1,21 @@
 ﻿@model AnimalCreateEditViewModel
 @{ 
-    Layout = "_GenericEditorLayout";
-    ViewData["Title"] = "Create an Animal";
-    ViewData["Breadcrumb"] = new Dictionary<string, string>()
+    var pageBreadcrumb = new Dictionary<string, string>()
     {
         { "Home", "/" },
         { "Animals", "/Animal/" },
         { 
             (Model.IsCreate) ? "Create" : "Edit", 
-            (Model.IsCreate) ? "/Animals/Create/" : $"/Animals/Edit/{Model.AnimalId}" 
+            (Model.IsCreate) ? "/Animal/Create/" : $"/Animal/Edit/{Model.AnimalId}" 
         }
-    };
+    }; // Stored in a variable so we can reuse it for some JS code.
+    var lifeEventBreadcrumb = pageBreadcrumb.Select(kvp => $"{kvp.Key}:{kvp.Value}")
+                                            .Aggregate((s1, s2) => $"{s1}>{s2}");
+    lifeEventBreadcrumb += $">{Model.Name}:/Animal/Edit/{Model.AnimalId}";
+
+    Layout = "_GenericEditorLayout";
+    ViewData["Title"] = "Create an Animal";
+    ViewData["Breadcrumb"] = pageBreadcrumb;
 }
 
 <partial name="_ViewModelWithMessagePartial" model="@Model" />
@@ -155,12 +160,59 @@
             </div>
         }
     </section>
+
+    <section>
+        <h4>Life Events</h4>
+        @if(!Model.IsCreate)
+        {
+            <div class="content">
+                <div class="ui fluid styled accordion">
+                    <div class="title">
+                        <i class="dropdown icon"></i>
+                        Add a life event
+                    </div>
+                    <div class="content ui form">
+                        <div class="field">
+                            <label>Type</label>
+                            <div class="ui search selection dropdown">
+                                <input id="selectLifeEvent" type="hidden" />
+                                <i class="dropdown icon"></i>
+                                <div class="text"></div>
+                                <div class="menu">
+                                </div>
+                            </div>
+                        </div>
+                        <button id="buttonCreateEvent" class="ui button">Goto Event Creation Editor</button>
+                    </div>
+                </div>
+                <div id="errorLifeEvents" class="ui error message transition hidden"></div>
+                <table id="tableLifeEvents" class="ui striped table">
+                    <thead>
+                        <tr class="three columns">
+                            <th class="editor action"></th>
+                            <th>Name</th>
+                            <th>Date</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        }
+        else
+        {
+            <div class="ui info message transition visible">
+                Life events can only be modified once the animal has been created.
+            </div>
+        }
+    </section>
 </section>
 
 @section Scripts {
-    <!--GraphQL related code-->
+    <!--GraphQL related code. Covers the entire 'Information' section, as well as populating the Life Event section.-->
     <script type="module">
-        import { GraphQL } from "/js/index.js";
+        import { GraphQL, FarmAjax, FarmAjaxMessageType, Modal } from "/js/index.js";
 
         function onError(errors) {
             alert(JSON.stringify(errors));
@@ -177,7 +229,7 @@
                 $(dropdown).dropdown("set selected", value);
         }
 
-        function populateFromIdName(dropdown, idNameList, isMultipleSelect = false) {
+        function populateFromIdName(dropdown, idNameList, isMultipleSelect = false, ignoreIfAnimalId = false) {
             const menu = dropdown.querySelector(".menu");
             const currentValue = dropdown.querySelector("input[type=hidden]").value;
             const multipleValues = currentValue.split(',');
@@ -188,7 +240,7 @@
             if (dropdown.classList.contains("disabled"))
                 dropdown.classList.remove("disabled");
             for (const idName of idNameList) {
-                if (idName.id == @Model.AnimalId)
+                if (idName.id == @Model.AnimalId && ignoreIfAnimalId)
                     continue;
 
                 addItemToDropdown(
@@ -218,7 +270,7 @@
 
         function handleMums(mums) {
             const dropdown = document.getElementById("selectMum").parentElement;
-            populateFromIdName(dropdown, mums);
+            populateFromIdName(dropdown, mums, false, true);
 
             addItemToDropdown(dropdown, "Unknown", "", document.getElementById("selectMum").value === "");
             $(dropdown).dropdown();
@@ -226,7 +278,7 @@
 
         function handleDads(dads) {
             const dropdown = document.getElementById("selectDad").parentElement;
-            populateFromIdName(dropdown, dads);
+            populateFromIdName(dropdown, dads, false, true);
 
             addItemToDropdown(dropdown, "Unknown", "", document.getElementById("selectDad").value === "");
             $(dropdown).dropdown();
@@ -237,8 +289,93 @@
             populateFromIdName(dropdown, breeds, true);
         }
 
+        function handleLifeEventTypes(lifeEvent) {
+            @if(Model.IsCreate)
+            {
+                @:return;
+            }
+
+            const dropdown = document.getElementById("selectLifeEvent").parentElement;
+            populateFromIdName(dropdown, lifeEvent);
+        }
+
+        function handleLifeEventEntries(entries) {
+            @if(Model.IsCreate)
+            {
+                @:return;
+            }
+
+            const table = document.getElementById("tableLifeEvents");
+            const tbody = table.querySelector("tbody");
+
+            for (const entry of entries) {
+                const tr = tbody.appendChild(document.createElement("tr"));
+                {
+                    let td = tr.appendChild(document.createElement("td"));
+                    {
+                        const button = td.appendChild(document.createElement("button"));
+                        button.classList.add("ui", "red", "icon", "button");
+                        {
+                            const i = button.appendChild(document.createElement("i"));
+                            i.classList.add("close", "icon");
+                        }
+                        button.addEventListener("click", () => {
+                            Modal.askAreYouSure()
+                                .then(() => {
+                                    FarmAjax.postWithMessageResponse(
+                                        "/Ajax/Animal_ById_LifeEventEntry_Delete_ById",
+                                        {
+                                            byId: @Model.AnimalId,
+                                            forId: entry.id
+                                        },
+                                        r => {
+                                            if (r.messageType !== FarmAjaxMessageType.Information) {
+                                                r.populateMessageBox(document.getElementById("errorLifeEvents"));
+                                                return;
+                                            }
+
+                                            tr.parentNode.removeChild(tr);
+                                        }
+                                    );
+                                });
+                        });
+                    }
+
+                    td = tr.appendChild(document.createElement("td"));
+                    {
+                        td.innerText = entry.lifeEvent.name;
+                    }
+
+                    td = tr.appendChild(document.createElement("td"));
+                    {
+                        td.innerText = new Date(entry.dateTimeUtc).toUTCString();
+                    }
+
+                    td = tr.appendChild(document.createElement("td"));
+                    {
+                        const button = td.appendChild(document.createElement("button"));
+                        {
+                            button.classList.add("ui", "fluid", "button");
+                            button.innerText = "Edit";
+                            button.addEventListener("click", () => {
+                                @{ 
+                                    var lifeEventEditBreadcrumb = lifeEventBreadcrumb + ">Edit Entry:#";
+                                }
+                                const url = "/LifeEvent/EditEntry"
+                                    + "?lifeEventId=" + entry.lifeEvent.id
+                                    + "&lifeEventEntryId=" + entry.id
+                                    + "&breadcrumb=@Html.Raw(lifeEventEditBreadcrumb)"
+                                    + "&redirectEntityId=@Model.AnimalId";
+                                window.open(url, "_blank");
+                            });
+                        }
+                    }
+                }
+            }
+        }
+
         GraphQL
-            .query(`query InitialLoad{
+            .query(`query InitialLoad($animalId: ID){
                 contacts {
                     id
                     name
@@ -247,10 +384,26 @@
                     id
                     name
                 }
-            }`)
+                lifeEvents {
+                    id
+                    name
+                }
+                animals(id:$animalId) {
+                    lifeEventEntries {
+                        id
+                        dateTimeUtc
+                        lifeEvent {
+                            id
+                            name
+                        }
+                    }
+                }
+            }`, { animalId: @Model.AnimalId })
             .then(data => {
                 handleContacts(data.contacts);
                 handleSpecies(data.species);
+                handleLifeEventTypes(data.lifeEvents);
+                handleLifeEventEntries(data.animals[0].lifeEventEntries);
             })
             .catch(errors => onError(errors));
 
@@ -285,6 +438,31 @@
 
         $(".ui.dropdown").dropdown();
         $(".accordion").accordion();
+    </script>
+
+    <!--Code for the life event section. Does not cover populating the Life Event stuff, as that's done during the
+        "InitialLoad" query in the script tag above.
+    -->
+    <script type="module">
+        @if(Model.IsCreate)
+        {
+            @:return;
+        }
+
+        document.getElementById("buttonCreateEvent").addEventListener("click", () => {
+            @{
+                var lifeEventCreateBreadcrumb = lifeEventBreadcrumb + ">Create Entry:#";
+            }
+            const lifeEventId = document.getElementById("selectLifeEvent").value;
+            const url =
+                "/LifeEvent/CreateEntry"
+                + "?lifeEventId=" + lifeEventId
+                + "&redirectController=Animal"
+                + "&redirectAction=OnCreateLifeEvent"
+                + "&redirectEntityId=" + @Model.AnimalId
+                + "&breadcrumb=@Html.Raw(lifeEventCreateBreadcrumb)";
+            window.open(url, "_self");
+        });
     </script>
 
     <!--Update image when user changes the selected image-->
