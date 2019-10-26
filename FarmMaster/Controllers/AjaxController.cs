@@ -89,7 +89,7 @@ namespace FarmMaster.Controllers
 
         #region Animal.LifeEventEntry
         [HttpPost]
-        [FarmAjaxReturnsMessage(permsAND: new[] { BusinessConstants.Roles.EDIT_LIFE_EVENT_ENTRY })]
+        [FarmAjaxReturnsMessage(permsAND: new[] { BusinessConstants.Permissions.EDIT_LIFE_EVENT_ENTRY })]
         public IActionResult Animal_ById_LifeEventEntry_Delete_ById(
             [FromBody] AjaxByIdForIdRequest model,
             User _,
@@ -151,7 +151,7 @@ namespace FarmMaster.Controllers
 
         #region Contact
         [HttpPost]
-        [FarmAjaxReturnsMessageAndValue(BusinessConstants.Roles.VIEW_CONTACTS)]
+        [FarmAjaxReturnsMessageAndValue(BusinessConstants.Permissions.VIEW_CONTACTS)]
         public IActionResult Contact_AsNameId_All(
             [FromBody] AjaxRequestModel _,
             User __,
@@ -169,7 +169,7 @@ namespace FarmMaster.Controllers
 
         #region Contact.PhoneNumber
         [HttpPost]
-        [FarmAjaxReturnsMessageAndValue(BusinessConstants.Roles.VIEW_CONTACTS)]
+        [FarmAjaxReturnsMessageAndValue(BusinessConstants.Permissions.VIEW_CONTACTS)]
         public IActionResult Contact_ById_PhoneNumber_AsNameValueId_All(
             [FromBody] AjaxByIdRequest model,
             User _,
@@ -188,7 +188,7 @@ namespace FarmMaster.Controllers
         }
 
         [HttpPost]
-        [FarmAjaxReturnsMessage(BusinessConstants.Roles.EDIT_CONTACTS)]
+        [FarmAjaxReturnsMessage(BusinessConstants.Permissions.EDIT_CONTACTS)]
         public IActionResult Contact_ById_PhoneNumber_Delete_ById(
             [FromBody] AjaxByIdForIdWithReasonRequest model,
             User user,
@@ -205,7 +205,7 @@ namespace FarmMaster.Controllers
         }
 
         [HttpPost]
-        [FarmAjaxReturnsMessageAndValue(BusinessConstants.Roles.EDIT_CONTACTS)]
+        [FarmAjaxReturnsMessageAndValue(BusinessConstants.Permissions.EDIT_CONTACTS)]
         public IActionResult Contact_ById_PhoneNumber_Add_ReturnsId(
             [FromBody] AjaxByIdWithNameValueReasonRequest model,
             User user,
@@ -229,7 +229,7 @@ namespace FarmMaster.Controllers
 
         #region Contact.Email
         [HttpPost]
-        [FarmAjaxReturnsMessageAndValue(BusinessConstants.Roles.VIEW_CONTACTS)]
+        [FarmAjaxReturnsMessageAndValue(BusinessConstants.Permissions.VIEW_CONTACTS)]
         public IActionResult Contact_ById_Email_AsNameValueId_All(
             [FromBody] AjaxByIdRequest model,
             User _,
@@ -248,7 +248,7 @@ namespace FarmMaster.Controllers
         }
 
         [HttpPost]
-        [FarmAjaxReturnsMessageAndValue(BusinessConstants.Roles.EDIT_CONTACTS)]
+        [FarmAjaxReturnsMessageAndValue(BusinessConstants.Permissions.EDIT_CONTACTS)]
         public IActionResult Contact_ById_Email_Add_ReturnsId(
             [FromBody] AjaxByIdWithNameValueAsEmailReasonRequest model,
             User user,
@@ -271,7 +271,7 @@ namespace FarmMaster.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        [FarmAjaxReturnsMessage(BusinessConstants.Roles.EDIT_CONTACTS)]
+        [FarmAjaxReturnsMessage(BusinessConstants.Permissions.EDIT_CONTACTS)]
         public IActionResult Contact_ById_Email_Delete_ById(
             [FromBody] AjaxByIdForIdWithReasonRequest model,
             User myUser,
@@ -292,7 +292,7 @@ namespace FarmMaster.Controllers
 
         #region Contact.Relationship
         [HttpPost]
-        [FarmAjaxReturnsMessageAndValue(BusinessConstants.Roles.VIEW_CONTACTS)]
+        [FarmAjaxReturnsMessageAndValue(BusinessConstants.Permissions.VIEW_CONTACTS)]
         public IActionResult Contact_ById_Relationship_AsNameValueId_All(
             [FromBody] AjaxByIdRequest model,
             User _,
@@ -316,7 +316,7 @@ namespace FarmMaster.Controllers
         }
 
         [HttpPost]
-        [FarmAjaxReturnsMessageAndValue(BusinessConstants.Roles.EDIT_CONTACTS)]
+        [FarmAjaxReturnsMessageAndValue(BusinessConstants.Permissions.EDIT_CONTACTS)]
         public IActionResult Contact_ById_Relationship_Add_ReturnsId(
             [FromBody] AjaxByIdWithNameValueReasonRequest model, 
             User user,
@@ -336,7 +336,7 @@ namespace FarmMaster.Controllers
         }
 
         [HttpPost]
-        [FarmAjaxReturnsMessage(BusinessConstants.Roles.EDIT_CONTACTS)]
+        [FarmAjaxReturnsMessage(BusinessConstants.Permissions.EDIT_CONTACTS)]
         public IActionResult Contact_ById_Relationship_Delete_ById(
             [FromBody] AjaxByIdForIdWithReasonRequest model,
             User user,
@@ -359,7 +359,7 @@ namespace FarmMaster.Controllers
 
         #region Species.Characteristic
         [HttpPost]
-        [FarmAjaxReturnsMessageAndValue(BusinessConstants.Roles.VIEW_SPECIES_BREEDS)]
+        [FarmAjaxReturnsMessageAndValue(BusinessConstants.Permissions.VIEW_SPECIES_BREEDS)]
         public IActionResult Species_ById_Characteristic_AsNameValueTypeInheritedId_All(
             [FromBody] AjaxByIdRequest model, 
             User _,
@@ -385,7 +385,7 @@ namespace FarmMaster.Controllers
         }
 
         [HttpPost]
-        [FarmAjaxReturnsMessage(BusinessConstants.Roles.EDIT_SPECIES_BREEDS)]
+        [FarmAjaxReturnsMessage(BusinessConstants.Permissions.EDIT_SPECIES_BREEDS)]
         public IActionResult Species_ById_Characteristic_Delete_ById(
             [FromBody] AjaxByIdForIdRequest model,
             User _,
@@ -402,7 +402,7 @@ namespace FarmMaster.Controllers
         }
 
         [HttpPost]
-        [FarmAjaxReturnsMessage(BusinessConstants.Roles.EDIT_SPECIES_BREEDS)]
+        [FarmAjaxReturnsMessage(BusinessConstants.Permissions.EDIT_SPECIES_BREEDS)]
         public IActionResult Species_ById_Characteristic_Add(
             [FromBody] AjaxCharacteristicsAddRequest model, 
             User _,
@@ -427,7 +427,7 @@ namespace FarmMaster.Controllers
 
         #region Breed.Characteristic
         [HttpPost]
-        [FarmAjaxReturnsMessageAndValue(permsAND: BusinessConstants.Roles.VIEW_SPECIES_BREEDS)]
+        [FarmAjaxReturnsMessageAndValue(permsAND: BusinessConstants.Permissions.VIEW_SPECIES_BREEDS)]
         public IActionResult Breed_ById_Characteristic_AsNameTypeValueInheritedId_All(
             [FromBody] AjaxByIdRequest model,
             User _,
@@ -451,7 +451,7 @@ namespace FarmMaster.Controllers
         }
 
         [HttpPost]
-        [FarmAjaxReturnsMessage(permsAND: BusinessConstants.Roles.EDIT_SPECIES_BREEDS)]
+        [FarmAjaxReturnsMessage(permsAND: BusinessConstants.Permissions.EDIT_SPECIES_BREEDS)]
         public IActionResult Breed_ById_Characteristic_Delete_ById(
             [FromBody] AjaxByIdForIdRequest model,
             User _,
@@ -465,7 +465,7 @@ namespace FarmMaster.Controllers
         }
 
         [HttpPost]
-        [FarmAjaxReturnsMessage(BusinessConstants.Roles.EDIT_SPECIES_BREEDS)]
+        [FarmAjaxReturnsMessage(BusinessConstants.Permissions.EDIT_SPECIES_BREEDS)]
         public IActionResult Breed_ById_Characteristic_Add(
             [FromBody] AjaxCharacteristicsAddRequest model,
             User _,
@@ -496,7 +496,7 @@ namespace FarmMaster.Controllers
 
         #region LifeEvent.Field
         [HttpPost]
-        [FarmAjaxReturnsMessage(BusinessConstants.Roles.EDIT_LIFE_EVENTS)]
+        [FarmAjaxReturnsMessage(BusinessConstants.Permissions.EDIT_LIFE_EVENTS)]
         public IActionResult LifeEvent_ById_Field_Add(
             [FromBody] AjaxByIdWithNameValueTypeAsTRequest<DynamicField.Type> model, // 'Value' is the event's description 
             User _,
@@ -515,7 +515,7 @@ namespace FarmMaster.Controllers
         }
 
         [HttpPost]
-        [FarmAjaxReturnsMessage(BusinessConstants.Roles.EDIT_LIFE_EVENTS)]
+        [FarmAjaxReturnsMessage(BusinessConstants.Permissions.EDIT_LIFE_EVENTS)]
         public IActionResult LifeEvent_ById_Field_Delete_ByName(
             [FromBody] AjaxByIdWithNameRequest model, 
             User _,

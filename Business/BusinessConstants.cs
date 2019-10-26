@@ -15,7 +15,7 @@ namespace Business.Model
             public const string POULTRY = "poultry";
         }
 
-        public static class Roles
+        public static class Permissions
         {
             public const string VIEW_CONTACTS = "view_contacts";
             public const string EDIT_CONTACTS = "edit_contacts";

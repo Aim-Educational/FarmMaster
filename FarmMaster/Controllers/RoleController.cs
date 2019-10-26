@@ -14,7 +14,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FarmMaster.Controllers
 {
-    [FarmAuthorise(PermsAND: new[] { BusinessConstants.Roles.VIEW_ROLES })]
+    [FarmAuthorise(PermsAND: new[] { BusinessConstants.Permissions.VIEW_ROLES })]
     public class RoleController : Controller
     {
         public IActionResult Index([FromQuery] string message, [FromServices] FarmMasterContext db)
@@ -28,7 +28,7 @@ namespace FarmMaster.Controllers
             return View(model);
         }
 
-        [FarmAuthorise(PermsAND: new[] { BusinessConstants.Roles.EDIT_ROLES })]
+        [FarmAuthorise(PermsAND: new[] { BusinessConstants.Permissions.EDIT_ROLES })]
         public IActionResult Create([FromServices] FarmMasterContext db)
         {
             return View("CreateEdit", new RoleCreateViewModel
@@ -41,7 +41,7 @@ namespace FarmMaster.Controllers
             });
         }
 
-        [FarmAuthorise(PermsAND: new[] { BusinessConstants.Roles.EDIT_ROLES })]
+        [FarmAuthorise(PermsAND: new[] { BusinessConstants.Permissions.EDIT_ROLES })]
         public IActionResult Edit(int id, 
                                   [FromServices] FarmMasterContext db, 
                                   [FromServices] IServiceUserManager users)
@@ -83,7 +83,7 @@ namespace FarmMaster.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [FarmAuthorise(PermsAND: new[] { BusinessConstants.Roles.EDIT_ROLES })]
+        [FarmAuthorise(PermsAND: new[] { BusinessConstants.Permissions.EDIT_ROLES })]
         public IActionResult Create(RoleCreateViewModel model, 
                                     [FromServices] IServiceRoleManager roles,
                                     [FromServices] FarmMasterContext db, 
@@ -130,7 +130,7 @@ namespace FarmMaster.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [FarmAuthorise(PermsAND: new[] { BusinessConstants.Roles.EDIT_ROLES })]
+        [FarmAuthorise(PermsAND: new[] { BusinessConstants.Permissions.EDIT_ROLES })]
         public IActionResult Edit(RoleCreateViewModel model, 
                                   [FromServices] IServiceRoleManager roles,
                                   [FromServices] FarmMasterContext db, 
@@ -190,7 +190,7 @@ namespace FarmMaster.Controllers
         }
 
         //[HttpPost]
-        [FarmAuthorise(PermsAND: new[] { BusinessConstants.Roles.EDIT_ROLES })]
+        [FarmAuthorise(PermsAND: new[] { BusinessConstants.Permissions.EDIT_ROLES })]
         [SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "<Pending>")]
         public IActionResult Delete(int id, 
                                     [FromServices] IServiceRoleManager roles, 
@@ -214,7 +214,7 @@ namespace FarmMaster.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        [FarmAjaxReturnsMessage(BusinessConstants.Roles.ASSIGN_ROLES)]
+        [FarmAjaxReturnsMessage(BusinessConstants.Permissions.ASSIGN_ROLES)]
         public IActionResult AjaxSetUserRole([FromBody]     AjaxSetUserRoleData data,
                                              [FromServices] FarmMasterContext db, 
                                              [FromServices] IServiceUserManager users, 

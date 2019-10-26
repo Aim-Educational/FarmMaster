@@ -14,7 +14,7 @@ using Microsoft.Extensions.Options;
 
 namespace FarmMaster.Controllers
 {
-    [FarmAuthorise(PermsOR: new[]{ BusinessConstants.Roles.VIEW_CONTACTS })]
+    [FarmAuthorise(PermsOR: new[]{ BusinessConstants.Permissions.VIEW_CONTACTS })]
     public class ContactController : Controller, IPagingController<Contact>
     {
         readonly FarmMasterContext _context;
@@ -59,7 +59,7 @@ namespace FarmMaster.Controllers
             return View();
         }
 
-        [FarmAuthorise(PermsAND: new[] { BusinessConstants.Roles.DELETE_CONTACTS })]
+        [FarmAuthorise(PermsAND: new[] { BusinessConstants.Permissions.DELETE_CONTACTS })]
         public IActionResult Delete(int id)
         {
             var contactDb = this._contacts.FromIdAllIncluded(id);
@@ -83,7 +83,7 @@ namespace FarmMaster.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        [FarmAuthorise(PermsAND: new[]{ BusinessConstants.Roles.EDIT_CONTACTS })]
+        [FarmAuthorise(PermsAND: new[]{ BusinessConstants.Permissions.EDIT_CONTACTS })]
         public IActionResult Edit(int id, [FromQuery] string reason)
         {
             var contactDb = this._contacts.FromIdAllIncluded(id);
@@ -118,7 +118,7 @@ namespace FarmMaster.Controllers
         #region POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [FarmAuthorise(PermsAND: new[] { BusinessConstants.Roles.EDIT_CONTACTS })]
+        [FarmAuthorise(PermsAND: new[] { BusinessConstants.Permissions.EDIT_CONTACTS })]
         public IActionResult Create(ContactCreateViewModel model)
         {
             if(!ModelState.IsValid)
@@ -141,7 +141,7 @@ namespace FarmMaster.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [FarmAuthorise(PermsAND: new[]{ BusinessConstants.Roles.EDIT_CONTACTS })]
+        [FarmAuthorise(PermsAND: new[]{ BusinessConstants.Permissions.EDIT_CONTACTS })]
         public IActionResult Edit(ContactEditViewModel model)
         {
             if(!ModelState.IsValid)
@@ -169,7 +169,7 @@ namespace FarmMaster.Controllers
 #pragma warning disable CA1801 // Unused parameter. 'model' *has* to be there otherwise the AJAX attributes throw an exception.
         [HttpPost]
         [AllowAnonymous]
-        [FarmAjaxReturnsMessageAndValue(BusinessConstants.Roles.EDIT_CONTACTS)]
+        [FarmAjaxReturnsMessageAndValue(BusinessConstants.Permissions.EDIT_CONTACTS)]
         public IActionResult AjaxGetNameAndValueAll([FromBody] AjaxRequestModel model, User _)
         {
             return new AjaxValueResult(
@@ -184,7 +184,7 @@ namespace FarmMaster.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        [FarmAjaxReturnsMessageAndValue(BusinessConstants.Roles.VIEW_CONTACTS)]
+        [FarmAjaxReturnsMessageAndValue(BusinessConstants.Permissions.VIEW_CONTACTS)]
         public IActionResult AjaxGetTablePageCount([FromBody] AjaxPagingControllerRequestModel model, User _)
         {
             var pageCount = PagingHelper.CalculatePageCount(this._contacts.Query().Count(), model.ItemsPerPage);
@@ -194,7 +194,7 @@ namespace FarmMaster.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        [FarmAjaxReturnsMessageAndValue(BusinessConstants.Roles.VIEW_CONTACTS)]
+        [FarmAjaxReturnsMessageAndValue(BusinessConstants.Permissions.VIEW_CONTACTS)]
         public IActionResult AjaxRenderTablePage([FromBody] AjaxPagingControllerRenderRequestModel model, User _)
         {
             return new AjaxValueResult(
