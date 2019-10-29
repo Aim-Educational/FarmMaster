@@ -32,17 +32,16 @@
 
                 <div class="field">
                     @{
-                        var imageLink = (Model.ImageId == null) 
-                                        ? "/images/icons/default.png" 
-                                        : $"/Image/Get?imageId={Model.ImageId}&width=760&height=800";   
+                        var imageLink = (Model.ImageId == null)
+                                        ? "/images/icons/default.png"
+                                        : $"/Image/Get?imageId={Model.ImageId}&width=760&height=800";
                     }
                     <label>Image</label>
                     <a href="@imageLink" target="_blank">
                         <img id="image"
                              class="ui centered image"
                              src="@imageLink"
-                             style="max-width: 100%; max-height: 400px; width: 380px; height: auto;"
-                             />
+                             style="max-width: 100%; max-height: 400px; width: 380px; height: auto;" />
                     </a>
                     <input id="inputImage" asp-for="Image" />
                 </div>
@@ -83,6 +82,17 @@
                     <span class="@GlobalConstants.FormErrorClasses" asp-validation-for="OwnerId"></span>
                 </div>
                 <div class="field">
+                    <label>Holding</label>
+                    <div class="ui search selection dropdown">
+                        <input id="selectHolding" type="hidden" asp-for="HoldingId" value="@Model.HoldingId" />
+                        <i class="dropdown icon"></i>
+                        <div class="text"></div>
+                        <div class="menu">
+                        </div>
+                    </div>
+                    <span class="@GlobalConstants.FormErrorClasses" asp-validation-for="HoldingId"></span>
+                </div>
+                <div class="field">
                     <label>Species</label>
                     <div class="ui search selection dropdown">
                         <input id="selectSpecies" type="hidden" asp-for="SpeciesId" value="@(Model.SpeciesId ?? null)" />
@@ -117,7 +127,7 @@
                 </div>
                 <div class="field">
                     <label>Breeds</label>
-                    @{ 
+                    @{
                         var breedValueString = (Model.BreedIds?.Any() ?? false)
                                                ? Model.BreedIds.Select(id => $"{id}").Aggregate((s1, s2) => s1 + "," + s2)
                                                : null;
@@ -284,6 +294,14 @@
             $(dropdown).dropdown();
         }
 
+        function handleHoldings(holdings) {
+            const dropdown = document.getElementById("selectHolding").parentElement;
+            populateFromIdName(dropdown, holdings);
+
+            addItemToDropdown(dropdown, "Unknown/Other", "", document.getElementById("selectHolding").value === "");
+            $(dropdown).dropdown();
+    }
+
         function handleBreeds(breeds) {
             const dropdown = document.getElementById("selectBreeds").parentElement;
             populateFromIdName(dropdown, breeds, true);
@@ -398,12 +416,17 @@
                         }
                     }
                 }
+                holdings {
+                    id
+                    name
+                }
             }`, { animalId: @Model.AnimalId })
             .then(data => {
                 handleContacts(data.contacts);
                 handleSpecies(data.species);
                 handleLifeEventTypes(data.lifeEvents);
                 handleLifeEventEntries(data.animals[0].lifeEventEntries);
+                handleHoldings(data.holdings);
             })
             .catch(errors => onError(errors));
 

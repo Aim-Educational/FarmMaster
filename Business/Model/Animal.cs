@@ -51,6 +51,9 @@ namespace Business.Model
         public int? DadId { get; set; }
         public Animal Dad { get; set; }
 
+        public int? HoldingId { get; set; }
+        public Holding Holding { get; set; }
+
         [Timestamp]
         public byte[] Timestamp { get; set; }
 

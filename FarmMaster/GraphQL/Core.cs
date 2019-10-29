@@ -37,6 +37,14 @@ namespace FarmMaster.GraphQL
                     return contacts.Query().OrderBy(c => c.FullName);
                 }
             );
+            Field<ListGraphType<HoldingGraphType>>(
+                "holdings",
+                resolve: _ =>
+                {
+                    var holdings = context.GetRequiredService<IServiceHoldingManager>();
+                    return holdings.Query().OrderBy(h => h.Name);
+                }
+            );
             Field<ListGraphType<AnimalGraphType>>(
                 "animals",
                 arguments: new QueryArguments(
@@ -167,6 +175,7 @@ namespace FarmMaster.GraphQL
             services.AddSingleton<AnimalGraphType>();
             services.AddSingleton<SpeciesGraphType>();
             services.AddSingleton<BreedGraphType>();
+            services.AddSingleton<HoldingGraphType>();
             services.AddSingleton<LifeEventGraphType>();
             services.AddSingleton<LifeEventEntryGraphType>();
             services.AddSingleton<ListGraphType<LifeEventEntryGraphType>>();

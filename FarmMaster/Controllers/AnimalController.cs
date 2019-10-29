@@ -19,18 +19,21 @@ namespace FarmMaster.Controllers
         readonly IServiceContactManager _contacts;
         readonly IServiceSpeciesBreedManager _speciesBreeds;
         readonly IServiceLifeEventManager _lifeEvents;
+        readonly IServiceHoldingManager _holdings;
 
         public AnimalController(
             IServiceAnimalManager animals,
             IServiceContactManager contact,
             IServiceSpeciesBreedManager speciesBreeds,
-            IServiceLifeEventManager lifeEvents
+            IServiceLifeEventManager lifeEvents,
+            IServiceHoldingManager holdings
         )
         {
-            this._animals = animals;
-            this._contacts = contact;
+            this._animals       = animals;
+            this._contacts      = contact;
             this._speciesBreeds = speciesBreeds;
-            this._lifeEvents = lifeEvents;
+            this._lifeEvents    = lifeEvents;
+            this._holdings      = holdings;
         }
 
         #region GET
@@ -69,7 +72,8 @@ namespace FarmMaster.Controllers
                 Sex         = animal.Sex,
                 SpeciesId   = animal.SpeciesId,
                 Tag         = animal.Tag,
-                ImageId     = animal.ImageId
+                ImageId     = animal.ImageId,
+                HoldingId   = animal.HoldingId
             });
         }
         #endregion
@@ -98,7 +102,8 @@ namespace FarmMaster.Controllers
                 { 
                     ModelState.GetValueOrDefault(nameof(model.BreedIds)),
                     ModelState.GetValueOrDefault(nameof(model.DadId)),
-                    ModelState.GetValueOrDefault(nameof(model.MumId))
+                    ModelState.GetValueOrDefault(nameof(model.MumId)),
+                    ModelState.GetValueOrDefault(nameof(model.HoldingId))
                 }
             )
             {
@@ -128,7 +133,8 @@ namespace FarmMaster.Controllers
                 owner,
                 species,
                 this._animals.FromId(model.MumId ?? -1), // -1 = ID that shouldn't normally exist, forcing FromId to return null.
-                this._animals.FromId(model.DadId ?? -1)
+                this._animals.FromId(model.DadId ?? -1),
+                this._holdings.FromId(model.HoldingId ?? -1)
             );
 
             if(model.Image != null)
@@ -159,13 +165,14 @@ namespace FarmMaster.Controllers
             if(animal == null)
                 throw new Exception($"No animal with the ID #{model.AnimalId}");
 
-            animal.Dad = this._animals.FromId(model.DadId ?? -1);
-            animal.Mum = this._animals.FromId(model.MumId ?? -1);
-            animal.Name = model.Name;
-            animal.Owner = owner;
-            animal.Sex = model.Sex;
-            animal.Species = species;
-            animal.Tag = model.Tag;
+            animal.DadId     = model.DadId;
+            animal.MumId     = model.MumId;
+            animal.HoldingId = model.HoldingId;
+            animal.Name      = model.Name;
+            animal.Owner     = owner;
+            animal.Sex       = model.Sex;
+            animal.Species   = species;
+            animal.Tag       = model.Tag;
 
             // First, check for new breeds.
             foreach(var breed in breeds)

@@ -11,7 +11,7 @@ namespace FarmMaster.Services
 {
     public interface IServiceAnimalManager : IServiceEntityManager<Animal>, IServiceGdprData
     {
-        Animal Create(string name, string tag, Animal.Gender sex, Contact owner, Species species, Animal mum = null, Animal dad = null);
+        Animal Create(string name, string tag, Animal.Gender sex, Contact owner, Species species, Animal mum = null, Animal dad = null, Holding holding = null);
         void AddLifeEventEntry(Animal animal, LifeEventEntry entry);
         void AddBreed(Animal animal, Breed breed);
         void SetImageFromForm(Animal animal, IFormFile image);
@@ -37,7 +37,7 @@ namespace FarmMaster.Services
             this._images = images;
         }
 
-        public Animal Create(string name, string tag, Animal.Gender sex, Contact owner, Species species, Animal mum = null, Animal dad = null)
+        public Animal Create(string name, string tag, Animal.Gender sex, Contact owner, Species species, Animal mum, Animal dad, Holding holding)
         {
             // Yes, I'm assuming their gender.
             if(mum != null && mum.Sex != Animal.Gender.Female)
@@ -55,7 +55,8 @@ namespace FarmMaster.Services
                 Mum = mum,
                 Dad = dad,
                 Characteristics = characteristicList,
-                Species = species
+                Species = species,
+                Holding = holding
             };
 
             this._context.Add(characteristicList);
@@ -201,7 +202,8 @@ namespace FarmMaster.Services
                        .Include(a => a.Owner)
                        .Include(a => a.Image)
                        .Include(a => a.Characteristics)
-                        .ThenInclude(c => c.Characteristics);
+                        .ThenInclude(c => c.Characteristics)
+                       .Include(a => a.Holding);
         }
 
         public void Update(Animal entity)

@@ -42,6 +42,8 @@ namespace FarmMaster.Models
 
         public int? DadId { get; set; }
 
+        public int? HoldingId { get; set; }
+
         public bool IsCreate { get; set; }
     }
 }

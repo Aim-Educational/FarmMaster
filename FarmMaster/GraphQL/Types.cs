@@ -25,6 +25,19 @@ namespace FarmMaster.GraphQL
         }
     }
 
+    public class HoldingGraphType : ObjectGraphType<Holding>
+    {
+        public HoldingGraphType()
+        {
+            Field(h => h.HoldingId, type: typeof(IdGraphType))
+                .Name("Id")
+                .Description("The holdings's ID.");
+            Field(h => h.Name)
+                .Name("Name")
+                .Description("The holding's abbreviated name.");
+        }
+    }
+
     public class AnimalGraphType : ObjectGraphType<Animal>
     {
         public AnimalGraphType()
