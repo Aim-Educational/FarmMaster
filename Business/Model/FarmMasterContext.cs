@@ -225,7 +225,13 @@ namespace Business.Model
         {
             b.Entity<LifeEvent>()
              .HasData(
-                new LifeEvent{ LifeEventId = 1, Name = BusinessConstants.BuiltinLifeEvents.BORN, Description = "The animal was born.", IsBuiltin = true }
+                new LifeEvent
+                { 
+                    LifeEventId = 1,
+                    Name        = BusinessConstants.BuiltinLifeEvents.BORN,
+                    Target      = LifeEvent.TargetType.Animal,
+                    Description = "The animal was born.", 
+                    Flags       = LifeEvent.TargetFlags.IsBuiltin }
             );
             
             b.Entity<LifeEventDynamicFieldInfo>()

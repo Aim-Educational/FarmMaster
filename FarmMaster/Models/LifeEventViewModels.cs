@@ -26,6 +26,9 @@ namespace FarmMaster.Models
 
         [Required]
         public string Description { get; set; }
+
+        [Required]
+        public LifeEvent.TargetType Target { get; set; }
     }
 
     public class LifeEventEditViewModel : LifeEventCreateViewModel
@@ -34,10 +37,14 @@ namespace FarmMaster.Models
         public int Id { get; set; }
 
         [Required]
+        public IDictionary<LifeEvent.TargetFlags, bool> Flags { get; set; }
+
         public IEnumerable<LifeEventDynamicFieldInfo> GET_Fields { get; set; }
         
-        [Required]
         public bool GET_IsInUse { get; set; }
+
+        [Required]
+        public LifeEvent.TargetType GET_Target { get; set; }
     }
 
     public class LifeEventEntryEditorViewModel : ViewModelWithMessage

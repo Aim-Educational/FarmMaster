@@ -78,7 +78,12 @@ namespace FarmMaster.Controllers
                 Description = @event.Description,
                 Id          = @event.LifeEventId,
                 GET_Fields  = @event.Fields,
-                GET_IsInUse = @event.IsInUse
+                GET_IsInUse = @event.IsInUse,
+                GET_Target  = @event.Target,
+                Flags       = new Dictionary<LifeEvent.TargetFlags, bool> 
+                {
+                    { LifeEvent.TargetFlags.EndOfSystem, @event.IsEndOfSystem }
+                }
             };
             model.ParseMessageQueryString(message);
 
@@ -136,7 +141,7 @@ namespace FarmMaster.Controllers
             int? id;
             try
             { 
-                id = this._lifeEvents.CreateEvent(model.Name, model.Description).LifeEventId;
+                id = this._lifeEvents.CreateEvent(model.Name, model.Description, model.Target).LifeEventId;
             }
             catch(InvalidOperationException ex)
             {
@@ -191,6 +196,23 @@ namespace FarmMaster.Controllers
 
             @event.Name = model.Name;
             @event.Description = model.Description;
+
+            // The reason I'm doing this is so I can whitelist which flags this function can modify.
+            // Otherwise there's an exploit where a user can set flags they shouldn't be messing with.
+            if(!@event.IsInUse)
+            {
+                foreach(var kvp in model.Flags)
+                {
+                    switch(kvp.Key)
+                    {
+                        case LifeEvent.TargetFlags.EndOfSystem:
+                            @event.IsEndOfSystem = kvp.Value;
+                            break;
+
+                        default: break;
+                    }
+                }
+            }
 
             this._lifeEvents.Update(@event);
 

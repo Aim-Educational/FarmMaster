@@ -34,13 +34,10 @@ namespace FarmMaster.Misc
         }
     }
 
-    // THESE WILL BE MOVED/REMOVED SOON
+    // THESE WILL BE MOVED/REMOVED SOON(TM)
     public static class GlobalConstants
     {
         public const int    DefaultPageItemCount        = 25;
-        public const string FormErrorClasses            = "ui basic red pointing prompt label transition hidden";
-        public const string IdModalContactActionReason  = "modalContactActionReason";
-        public const string IdModalAreYouSure           = "modalAreYouSure";
         public const string IdViewModelWithMessageBox   = "boxViewModelWithMessagePartial";
     }
 }

@@ -36,9 +36,9 @@ export class SemanticUIHandler extends IValidationUIHandler {
     onFormFailedValidation(form, reasonsFailedPerElement, submitEvent) { }
 
     ensureErrorBoxExists(element) {
-        let parent = element.parentElement;
+        let parent = element.parentNode;
         while ((parent !== null || parent !== undefined) && !parent.classList.contains("field"))
-            parent = parent.parentElement;
+            parent = parent.parentNode;
 
         if (parent === null || parent === undefined)
             alert("Dev error, could not find a parent with class 'field' ;(");

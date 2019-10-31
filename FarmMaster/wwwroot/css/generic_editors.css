@@ -87,6 +87,10 @@
         background-color: #dbdbdb; }
         .editor.section > section div.content.dark.striped:nth-of-type(even), .editor.section > section div.content > div.sub.content.dark.striped:nth-of-type(even), .editor.section > form > section div.content.dark.striped:nth-of-type(even), .editor.section > form > section div.content > div.sub.content.dark.striped:nth-of-type(even) {
           background-color: #cccccc; }
+      .editor.section > section div.content.light.striped, .editor.section > section div.content > div.sub.content.light.striped, .editor.section > form > section div.content.light.striped, .editor.section > form > section div.content > div.sub.content.light.striped {
+        background-color: #f0f0f0; }
+        .editor.section > section div.content.light.striped:nth-of-type(even), .editor.section > section div.content > div.sub.content.light.striped:nth-of-type(even), .editor.section > form > section div.content.light.striped:nth-of-type(even), .editor.section > form > section div.content > div.sub.content.light.striped:nth-of-type(even) {
+          background-color: #e8e8e8; }
       .editor.section > section div.content div.holding.registration, .editor.section > section div.content > div.sub.content div.holding.registration, .editor.section > form > section div.content div.holding.registration, .editor.section > form > section div.content > div.sub.content div.holding.registration {
         display: inline-flex;
         width: 100%; }
@@ -109,6 +113,20 @@
           .editor.section > section div.content div.life.event.field.create div.field:nth-child(4n), .editor.section > section div.content > div.sub.content div.life.event.field.create div.field:nth-child(4n), .editor.section > form > section div.content div.life.event.field.create div.field:nth-child(4n), .editor.section > form > section div.content > div.sub.content div.life.event.field.create div.field:nth-child(4n) {
             align-self: end;
             height: 43.13333px; }
+      .editor.section > section div.content div.life.event.flag, .editor.section > section div.content > div.sub.content div.life.event.flag, .editor.section > form > section div.content div.life.event.flag, .editor.section > form > section div.content > div.sub.content div.life.event.flag {
+        display: inline-flex;
+        width: 100%; }
+        .editor.section > section div.content div.life.event.flag div.toggler, .editor.section > section div.content > div.sub.content div.life.event.flag div.toggler, .editor.section > form > section div.content div.life.event.flag div.toggler, .editor.section > form > section div.content > div.sub.content div.life.event.flag div.toggler {
+          display: flex;
+          flex-direction: column;
+          align-self: center;
+          width: 25%;
+          margin: 1em 1em 0em 1em; }
+        .editor.section > section div.content div.life.event.flag div.message, .editor.section > section div.content > div.sub.content div.life.event.flag div.message, .editor.section > form > section div.content div.life.event.flag div.message, .editor.section > form > section div.content > div.sub.content div.life.event.flag div.message {
+          display: flex;
+          flex-direction: column;
+          align-self: center;
+          width: 75%; }
     .editor.section > section:nth-of-type(even), .editor.section > form > section:nth-of-type(even) {
       background-color: #ebebeb; }
   .editor.section thead tr.two.columns th:not(:first-child) {

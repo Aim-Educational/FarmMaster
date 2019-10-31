@@ -16,7 +16,7 @@ namespace FarmMaster.Services
                                                 IServiceEntityManager<LifeEventEntry>,
                                                 IServiceEntityManagerFullDeletion<LifeEvent>
     {
-        LifeEvent CreateEvent(string name, string description);
+        LifeEvent CreateEvent(string name, string description, LifeEvent.TargetType target);
         LifeEventDynamicFieldInfo CreateEventField(LifeEvent @event, string name, string description, DynamicField.Type type);
         LifeEventEntry CreateEventEntry(LifeEvent @event, IDictionary<string, DynamicField> values);
 
@@ -39,7 +39,7 @@ namespace FarmMaster.Services
             this._context = context;
         }
 
-        public LifeEvent CreateEvent(string name, string description)
+        public LifeEvent CreateEvent(string name, string description, LifeEvent.TargetType target)
         {
             if(this._context.LifeEvents.Any(e => e.Name.ToLower() == name.ToLower()))
                 throw new InvalidOperationException($"A Life Event called '{name}' already exists.");
@@ -47,7 +47,8 @@ namespace FarmMaster.Services
             var @event = new LifeEvent
             {
                 Description = description,
-                Name = name
+                Name = name,
+                Target = LifeEvent.TargetType.Animal
             };
 
             this._context.Add(@event);

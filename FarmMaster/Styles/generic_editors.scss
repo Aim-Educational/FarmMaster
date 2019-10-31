@@ -127,6 +127,14 @@
                     background-color: hsl(0, 0%, 80%);
                 }
             }
+
+            &.light.striped {
+                background-color: hsl(0, 0%, 94%);
+
+                &:nth-of-type(even) {
+                    background-color: hsl(0, 0%, 91%);
+                }
+            }
             // SPECIFIC STYLING FOR CERTAIN EDITOR PAGES
             div.holding {
                 &.registration {
@@ -162,6 +170,26 @@
                             align-self: end;
                             height: 43.13333px; // Same height as Semantic UI's textbox
                         }
+                    }
+                }
+
+                &.flag {
+                    display: inline-flex;
+                    width: 100%;
+
+                    div.toggler {
+                        display: flex;
+                        flex-direction: column;
+                        align-self: center;
+                        width: 25%;
+                        margin: 1em 1em 0em 1em;
+                    }
+
+                    div.message {
+                        display: flex;
+                        flex-direction: column;
+                        align-self: center;
+                        width: 75%;
                     }
                 }
             }

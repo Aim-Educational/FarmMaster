@@ -25,6 +25,17 @@
                     <label>Description</label>
                     <input asp-for="Description" autocomplete="off" />
                 </div>
+                <div class="field">
+                    <label>Target</label>
+                    <div class="ui search selection dropdown">
+                        <input type="hidden" asp-for="Target" value="@($"{Model.Target}".ToLower())" />
+                        <i class="dropdown icon"></i>
+                        <div class="text"></div>
+                        <div class="menu">
+                            <div class="item">@LifeEvent.TargetType.Animal</div>
+                        </div>
+                    </div>
+                </div>
                 <div class="ui info message transition visible">
                     Further configuration can be done once the Life Event is created.
                 </div>

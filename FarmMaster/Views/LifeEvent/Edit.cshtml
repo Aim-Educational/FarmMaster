@@ -14,10 +14,10 @@
 
 <section class="editor section">
     <partial name="_ViewModelWithMessagePartial" model="@Model" />
-    <section>
-        <h4>Information</h4>
-        <div class="content">
-            <form class="ui form" method="post" asp-action="Edit">
+    <form class="ui form" method="post" asp-action="Edit">
+        <section>
+            <h4>Information</h4>
+            <div class="content">
                 <input id="inputEventId" type="hidden" asp-for="Id" />
                 <div class="field">
                     <label>Name</label>
@@ -27,7 +27,34 @@
                     <label>Description</label>
                     <input asp-for="Description" autocomplete="off" />
                 </div>
+                <div class="field">
+                    <label>Type</label>
+                    <input asp-for="Target" disabled />
+                </div>
 
+                <div asp-validation-summary="All"></div>
+            </div>
+        </section>
+        <section>
+            <h4>Flags</h4>
+            <div class="content">
+                <div class="dark striped sub content">
+                    <div class="life event flag">
+                        <div class="toggler">
+                            <div class="ui toggle checkbox">
+                                <input type="checkbox" asp-for="Flags[LifeEvent.TargetFlags.EndOfSystem]" />
+                                <label>End of system</label>
+                            </div>
+                        </div>
+                        <div class="ui visible info message">
+                            If toggled, then any animal this life event is applied to will
+                            be marked "end of system". Use this for events such as selling or dying.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="top padded items" /> <!--Bleh, padding-->
+                
                 <button class="ui primary fluid button" type="submit">
                     Edit Life Event
                 </button>
@@ -35,11 +62,9 @@
                 <button class="ui secondary inverted button" type="button" onclick="document.location = '/LifeEvent/TestEntryEditor?lifeEventId=@Model.Id'">
                     Test Editor
                 </button>
-
-                <div asp-validation-summary="All"></div>
-            </form>
-        </div>
-    </section>
+            </div>
+        </section>
+    </form>
 
     <section>
         <h4>Fields</h4>
@@ -58,7 +83,7 @@
                         @foreach (var field in Model.GET_Fields)
                         {
                             <tr>
-                                
+
                                 <td class="ui compact">
                                     <button class="ui red icon button @(Model.GET_IsInUse ? "disabled" : "")"
                                             onclick="onDeleteField('@field.Name')">
@@ -121,6 +146,7 @@
         import { FarmAjax, FarmAjaxMessageType, drange, Modal, Validation } from "/js/index.js"
 
         $(".ui.dropdown").dropdown();
+        $(".ui.checkbox").checkbox();
 
         Validation.hookupForm(document.querySelector(".ui.form"));
 
