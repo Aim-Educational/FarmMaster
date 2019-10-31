@@ -28,7 +28,7 @@
                 <div class="field">
                     <label>Target</label>
                     <div class="ui search selection dropdown">
-                        <input type="hidden" asp-for="Target" value="@($"{Model.Target}".ToLower())" />
+                        <input type="hidden" asp-for="Target" />
                         <i class="dropdown icon"></i>
                         <div class="text"></div>
                         <div class="menu">
@@ -53,6 +53,7 @@
 @section Scripts {
     <script type="module">
         import { Validation } from "/js/index.js";
+        $(".ui.dropdown").dropdown();
         Validation.hookupForm(document.querySelector(".ui.form"));
     </script>
 }
