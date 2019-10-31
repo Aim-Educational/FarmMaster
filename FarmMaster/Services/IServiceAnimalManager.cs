@@ -111,6 +111,9 @@ namespace FarmMaster.Services
 
         public void AddLifeEventEntry(Animal animal, LifeEventEntry entry)
         {
+            if(entry.LifeEvent.Target != LifeEvent.TargetType.Animal)
+                throw new InvalidOperationException($"Cannot apply Life Event '{entry.LifeEvent.Name}' that targets '{entry.LifeEvent.Target}' on an Animal.");
+
             var map = new MapLifeEventEntryToAnimal
             {
                 Animal = animal,

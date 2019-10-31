@@ -32,7 +32,7 @@
   .editor.section > section, .editor.section > form > section {
     display: flex;
     flex-direction: column;
-    background: white; }
+    background: #fcfcfc; }
     .editor.section > section h4, .editor.section > form > section h4 {
       padding-top: 0.8em;
       padding-left: 0.8em;
