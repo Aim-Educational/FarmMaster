@@ -62,19 +62,19 @@ namespace FarmMaster.GraphQL
                     new QueryArgument<ListGraphType<IdGraphType>>
                     {
                         Name = "breedIds",
-                        Description = "Filter by breed(s). Animals must have *any* of the given breeds to be included in the result.",
+                        Description = "Filter by breed(s). Animals must have *any* of the given breeds to be included in the result",
                         DefaultValue = null
                     },
                     new QueryArgument<IdGraphType>
                     {
                         Name = "id",
-                        Description = "Filter by a specific animal's Id.",
+                        Description = "Filter by a specific animal's Id",
                         DefaultValue = null
                     },
                     new QueryArgument<StringGraphType>
                     {
                         Name = "nameRegex",
-                        Description = "Filter by name using the given regex.",
+                        Description = "Filter by name using the given regex",
                         DefaultValue = null
                     },
                     new QueryArgument<IntGraphType>
@@ -124,11 +124,21 @@ namespace FarmMaster.GraphQL
             );
             Field<ListGraphType<LifeEventGraphType>>(
                 "lifeEvents",
-                resolve: _ =>
+                arguments: new QueryArguments(
+                    new QueryArgument<EnumerationGraphType<LifeEvent.TargetType>>
+                    {
+                        Name = "target",
+                        Description = "Filter by target"
+                    }
+                ),
+                resolve: graphql =>
                 {
+                    var target = graphql.GetValueOrNull<LifeEvent.TargetType>("target");
+
                     var lifeEvents = context.GetRequiredService<IServiceLifeEventManager>();
                     return lifeEvents.For<LifeEvent>()
                                      .Query()
+                                     .Where(e => target == null || e.Target == target)
                                      .OrderBy(e => e.Name);
                 }
             );
@@ -180,6 +190,7 @@ namespace FarmMaster.GraphQL
             services.AddSingleton<LifeEventEntryGraphType>();
             services.AddSingleton<ListGraphType<LifeEventEntryGraphType>>();
             services.AddSingleton<EnumerationGraphType<Animal.Gender>>();
+            services.AddSingleton<EnumerationGraphType<LifeEvent.TargetType>>();
             services.AddSingleton<IntGraphType>();
             return services;
         }
