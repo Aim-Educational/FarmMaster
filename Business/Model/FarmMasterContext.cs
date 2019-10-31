@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace Business.Model
@@ -244,8 +246,17 @@ namespace Business.Model
 
     public class FarmMasterContextFactory : IDesignTimeDbContextFactory<FarmMasterContext>
     {
+        const string APPSETTINGS = "../FarmMaster/appsettings.development.json";
+
         public FarmMasterContext CreateDbContext(string[] args)
         {
+            if(File.Exists(APPSETTINGS))
+            {
+                var json = JObject.Parse(File.ReadAllText(APPSETTINGS));
+                return new FarmMasterContext(json["ConnectionStrings"].Value<string>("Migrate"));
+            }
+
+            Console.Write($"Could not find {Path.GetFullPath(APPSETTINGS)} so please enter connection string manually.");
             Console.Write("Please enter a connection string for migration: ");
             return new FarmMasterContext(Console.ReadLine());
         }
