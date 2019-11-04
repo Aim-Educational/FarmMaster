@@ -86,6 +86,11 @@ namespace FarmMaster.GraphQL
                     {
                         Name = "take",
                         Description = "The number of animals to take"
+                    },
+                    new QueryArgument<BooleanGraphType>
+                    {
+                        Name = "isEndOfSystem",
+                        Description = "Filter by whether an animal is marked 'end of system'."
                     }
                 ),
                 resolve: graphql =>
@@ -102,6 +107,7 @@ namespace FarmMaster.GraphQL
                     var breeds      = graphql.GetArgument<List<int>>("breedIds");
                     var nameRegex   = graphql.GetArgument<string>("nameRegex");
                     var animalId    = graphql.GetValueOrNull<int>("id");
+                    var endOfSystem = graphql.GetValueOrNull<bool>("isEndOfSystem");
 
                     return animals.Query()
                                   .Include(a => a.Breeds)
@@ -111,11 +117,12 @@ namespace FarmMaster.GraphQL
                                   .Include(a => a.LifeEventEntries)
                                    .ThenInclude(m => m.LifeEventEntry)
                                     .ThenInclude(e => e.LifeEvent)
-                                  .Where(a => gender == null    || a.Sex == gender)
-                                  .Where(a => species == null   || a.SpeciesId == species)
-                                  .Where(a => breeds == null    || a.Breeds.Any(b => breeds.Contains(b.BreedId)))
-                                  .Where(a => nameRegex == null || Regex.IsMatch(a.Name, nameRegex))
-                                  .Where(a => animalId == null  || a.AnimalId == animalId)
+                                  .Where(a => gender      == null || a.Sex == gender)
+                                  .Where(a => species     == null || a.SpeciesId == species)
+                                  .Where(a => breeds      == null || a.Breeds.Any(b => breeds.Contains(b.BreedId)))
+                                  .Where(a => nameRegex   == null || Regex.IsMatch(a.Name, nameRegex))
+                                  .Where(a => animalId    == null || a.AnimalId == animalId)
+                                  .Where(a => endOfSystem == null || a.LifeEventEntries.Any(m => m.LifeEventEntry.LifeEvent.IsEndOfSystem) == endOfSystem) // Because the normal "Animal.IsEndOfSystem" is client-side, which we want to avoid
                                   .OrderBy(a => a.AnimalId) // Weird edge case.
                                   .Skip(skip ?? 0)
                                   .Take(take ?? int.MaxValue)
