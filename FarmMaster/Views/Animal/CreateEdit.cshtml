@@ -14,7 +14,7 @@
     lifeEventBreadcrumb += $">{Model.Name}:/Animal/Edit/{Model.AnimalId}";
 
     Layout = "_GenericEditorLayout";
-    ViewData["Title"] = "Create an Animal";
+    ViewData["Title"] = $"{(Model.IsCreate ? "Create" : "Edit")} an animal";
     ViewData["Breadcrumb"] = pageBreadcrumb;
 }
 
@@ -191,7 +191,7 @@
                         <tr class="three columns">
                             <th class="editor action"></th>
                             <th>Name</th>
-                            <th>Date</th>
+                            <th>Date created</th>
                             <th></th>
                         </tr>
                     </thead>
