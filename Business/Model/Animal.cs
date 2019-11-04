@@ -73,5 +73,8 @@ namespace Business.Model
         // Use 'Children'
         [InverseProperty(nameof(Dad))]
         public IEnumerable<Animal> Children_DAD { get; set; }
+
+        [NotMapped]
+        public bool IsEndOfSystem => this.LifeEventEntries.Any(m => m.LifeEventEntry.LifeEvent.IsEndOfSystem);
     }
 }

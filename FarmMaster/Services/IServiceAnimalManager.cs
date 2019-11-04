@@ -202,6 +202,7 @@ namespace FarmMaster.Services
                        .Include(a => a.Children_DAD)
                        .Include(a => a.LifeEventEntries)
                         .ThenInclude(e => e.LifeEventEntry)
+                         .ThenInclude(e => e.LifeEvent)
                        .Include(a => a.Owner)
                        .Include(a => a.Image)
                        .Include(a => a.Characteristics)

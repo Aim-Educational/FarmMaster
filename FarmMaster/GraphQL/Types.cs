@@ -67,6 +67,8 @@ namespace FarmMaster.GraphQL
                   a => a.LifeEventEntries.Select(m => m.LifeEventEntry), 
                   type: typeof(ListGraphType<LifeEventEntryGraphType>))
                 .Description("The entries for all of the animal's life events.");
+            Field(a => a.IsEndOfSystem)
+                .Description("Whether or not the animal is marked as 'end of system'. a.k.a dead, sold, archived, etc.");
         }
     }
 

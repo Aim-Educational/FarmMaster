@@ -37,6 +37,7 @@ namespace Business.Model
         public static class BuiltinLifeEvents
         {
             public const string BORN = "Born";
+            public const string ARCHIVED = "Archived";
         }
 
         public static class BuiltinLifeEventFields

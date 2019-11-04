@@ -231,7 +231,17 @@ namespace Business.Model
                     Name        = BusinessConstants.BuiltinLifeEvents.BORN,
                     Target      = LifeEvent.TargetType.Animal,
                     Description = "The animal was born.", 
-                    Flags       = LifeEvent.TargetFlags.IsBuiltin }
+                    Flags       = LifeEvent.TargetFlags.IsBuiltin 
+                },
+
+                new LifeEvent
+                {
+                    LifeEventId = 1000,
+                    Name        = BusinessConstants.BuiltinLifeEvents.ARCHIVED,
+                    Target      = LifeEvent.TargetType.Animal,
+                    Description = "The animal was archived by a user.",
+                    Flags       = LifeEvent.TargetFlags.EndOfSystem | LifeEvent.TargetFlags.IsBuiltin
+                }
             );
             
             b.Entity<LifeEventDynamicFieldInfo>()
