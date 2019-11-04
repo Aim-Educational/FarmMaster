@@ -352,13 +352,16 @@ namespace FarmMaster.Controllers
 
             // Create the entry
             var entries = new Dictionary<string, DynamicField>();
-            var fieldFactory = new DynamicFieldFactory();
-            foreach (var kvp in model.Values)
+            if(model.Values != null) // Life events with no fields are valid.
             {
-                var info = @event.Fields.First(f => f.Name == kvp.Key);
-                var data = fieldFactory.FromTypeAndHtmlString(info.Type, kvp.Value);
+                var fieldFactory = new DynamicFieldFactory();
+                foreach (var kvp in model.Values)
+                {
+                    var info = @event.Fields.First(f => f.Name == kvp.Key);
+                    var data = fieldFactory.FromTypeAndHtmlString(info.Type, kvp.Value);
 
-                entries[kvp.Key] = data;
+                    entries[kvp.Key] = data;
+                }
             }
 
             var entry = this._lifeEvents.CreateEventEntry(@event, entries);

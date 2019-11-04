@@ -75,7 +75,6 @@ namespace FarmMaster.Models
         /// <summary>
         /// Key is name of field, value an HTML string for the DynamicField.
         /// </summary>
-        [Required]
         public IDictionary<string, string> Values { get; set; }
     }
 
