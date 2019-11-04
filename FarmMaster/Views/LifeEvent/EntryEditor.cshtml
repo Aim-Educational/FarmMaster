@@ -36,7 +36,9 @@
                     <partial name="_EntryInputPartial" model="new LifeEventEntryInputPartialViewModel{ Info = field, Values = Model.Values }" />
                 }
 
-                <button class="ui primary fluid button" type="submit">YES</button>
+                <button class="ui primary fluid button" type="submit">
+                    @Model.Type Entry
+                </button>
             </form>
         </div>
     </section>
