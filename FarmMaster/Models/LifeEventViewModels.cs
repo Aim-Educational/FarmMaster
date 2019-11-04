@@ -42,9 +42,6 @@ namespace FarmMaster.Models
         public IEnumerable<LifeEventDynamicFieldInfo> GET_Fields { get; set; }
         
         public bool GET_IsInUse { get; set; }
-
-        [Required]
-        public LifeEvent.TargetType GET_Target { get; set; }
     }
 
     public class LifeEventEntryEditorViewModel : ViewModelWithMessage

@@ -79,7 +79,7 @@ namespace FarmMaster.Controllers
                 Id          = @event.LifeEventId,
                 GET_Fields  = @event.Fields,
                 GET_IsInUse = @event.IsInUse,
-                GET_Target  = @event.Target,
+                Target      = @event.Target,
                 Flags       = new Dictionary<LifeEvent.TargetFlags, bool> 
                 {
                     { LifeEvent.TargetFlags.EndOfSystem, @event.IsEndOfSystem }
