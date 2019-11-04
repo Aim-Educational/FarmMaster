@@ -206,7 +206,9 @@ namespace FarmMaster.Controllers
 
             var entry = this._lifeEvents
                                 .For<LifeEventEntry>()
-                                .FromId(lifeEventEntryId);
+                                .Query()
+                                .Include(e => e.LifeEvent)
+                                .FirstOrDefault(e => e.LifeEventEntryId == lifeEventEntryId);
             if(entry == null)
                 return RedirectToAction("Edit", new { id = redirectEntityId });
 
