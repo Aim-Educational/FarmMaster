@@ -231,7 +231,7 @@ namespace Business.Model
                     Name        = BusinessConstants.BuiltinLifeEvents.BORN,
                     Target      = LifeEvent.TargetType.Animal,
                     Description = "The animal was born.", 
-                    Flags       = LifeEvent.TargetFlags.IsBuiltin 
+                    Flags       = LifeEvent.TargetFlags.IsBuiltin | LifeEvent.TargetFlags.IsUnique
                 },
 
                 new LifeEvent
@@ -240,7 +240,7 @@ namespace Business.Model
                     Name        = BusinessConstants.BuiltinLifeEvents.ARCHIVED,
                     Target      = LifeEvent.TargetType.Animal,
                     Description = "The animal was archived by a user.",
-                    Flags       = LifeEvent.TargetFlags.EndOfSystem | LifeEvent.TargetFlags.IsBuiltin
+                    Flags       = LifeEvent.TargetFlags.IsBuiltin | LifeEvent.TargetFlags.EndOfSystem | LifeEvent.TargetFlags.IsUnique
                 }
             );
             
