@@ -82,7 +82,8 @@ namespace FarmMaster.Controllers
                 Target      = @event.Target,
                 Flags       = new Dictionary<LifeEvent.TargetFlags, bool> 
                 {
-                    { LifeEvent.TargetFlags.EndOfSystem, @event.IsEndOfSystem }
+                    { LifeEvent.TargetFlags.EndOfSystem, @event.IsEndOfSystem },
+                    { LifeEvent.TargetFlags.IsUnique,    @event.IsUnique }
                 }
             };
             model.ParseMessageQueryString(message);
@@ -199,18 +200,19 @@ namespace FarmMaster.Controllers
 
             // The reason I'm doing this is so I can whitelist which flags this function can modify.
             // Otherwise there's an exploit where a user can set flags they shouldn't be messing with.
-            if(!@event.IsInUse)
+            foreach(var kvp in model.Flags)
             {
-                foreach(var kvp in model.Flags)
+                switch(kvp.Key)
                 {
-                    switch(kvp.Key)
-                    {
-                        case LifeEvent.TargetFlags.EndOfSystem:
-                            @event.IsEndOfSystem = kvp.Value;
-                            break;
+                    case LifeEvent.TargetFlags.EndOfSystem:
+                        @event.IsEndOfSystem = kvp.Value;
+                        break;
 
-                        default: break;
-                    }
+                    case LifeEvent.TargetFlags.IsUnique:
+                        @event.IsUnique = kvp.Value;
+                        break;
+
+                    default: break;
                 }
             }
 

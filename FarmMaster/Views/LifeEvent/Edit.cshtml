@@ -51,6 +51,18 @@
                             be marked "end of system". Use this for events such as selling or dying.
                         </div>
                     </div>
+                    <div class="life event flag">
+                        <div class="toggler">
+                            <div class="ui toggle checkbox">
+                                <input type="checkbox" asp-for="Flags[LifeEvent.TargetFlags.IsUnique]" />
+                                <label>Is Unique</label>
+                            </div>
+                        </div>
+                        <div class="ui visible info message">
+                            If toggled, then only a single entry of this life event
+                            may exist per animal.
+                        </div>
+                    </div>
                 </div>
 
                 <div class="top padded items" /> <!--Bleh, padding-->

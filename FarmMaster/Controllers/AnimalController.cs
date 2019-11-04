@@ -200,7 +200,12 @@ namespace FarmMaster.Controllers
         [FarmAuthorise]
         public IActionResult OnCreateLifeEvent(int lifeEventEntryId, int redirectEntityId)
         {
-            var animal = this._animals.FromId(redirectEntityId);
+            var animal = this._animals
+                             .Query() 
+                             .Include(a => a.LifeEventEntries)
+                              .ThenInclude(m => m.LifeEventEntry)
+                               .ThenInclude(e => e.LifeEvent)
+                             .FirstOrDefault(a => a.AnimalId == redirectEntityId);
             if(animal == null)
                 return Redirect("/");
 
@@ -211,6 +216,11 @@ namespace FarmMaster.Controllers
                                 .FirstOrDefault(e => e.LifeEventEntryId == lifeEventEntryId);
             if(entry == null)
                 return RedirectToAction("Edit", new { id = redirectEntityId });
+
+            if(   entry.LifeEvent.IsUnique 
+               && animal.LifeEventEntries.Any(e => e.LifeEventEntry.LifeEventId == entry.LifeEventId)
+            )
+                return RedirectToAction("Edit", new { id = redirectEntityId, message = ViewModelWithMessage.CreateErrorQueryString("That life event is unique, so multiple versions cannot be created.") });
 
             this._animals.AddLifeEventEntry(animal, entry);
             return RedirectToAction("Edit", new { id = redirectEntityId });

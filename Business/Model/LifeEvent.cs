@@ -39,9 +39,14 @@ namespace Business.Model
             EndOfSystem = 1 << 0,
 
             /// <summary>
-            /// The life even is builtin, so cannot be modified by a user.
+            /// The life event is built-in, so cannot be modified by a user.
             /// </summary>
-            IsBuiltin = 1 << 1
+            IsBuiltin = 1 << 1,
+
+            /// <summary>
+            /// The life event is unique, so only one entry can exist per target.
+            /// </summary>
+            IsUnique = 1 << 2
         }
 
         [Required]
@@ -79,10 +84,23 @@ namespace Business.Model
             get => (this.Flags & TargetFlags.EndOfSystem) > 0;
             set
             {
-                if(value)
+                if (value)
                     this.Flags |= TargetFlags.EndOfSystem;
                 else
                     this.Flags &= ~TargetFlags.EndOfSystem;
+            }
+        }
+
+        [NotMapped]
+        public bool IsUnique
+        {
+            get => (this.Flags & TargetFlags.IsUnique) > 0;
+            set
+            {
+                if (value)
+                    this.Flags |= TargetFlags.IsUnique;
+                else
+                    this.Flags &= ~TargetFlags.IsUnique;
             }
         }
     }
