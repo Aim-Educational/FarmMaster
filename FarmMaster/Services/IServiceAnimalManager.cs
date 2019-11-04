@@ -114,6 +114,17 @@ namespace FarmMaster.Services
             if(entry.LifeEvent.Target != LifeEvent.TargetType.Animal)
                 throw new InvalidOperationException($"Cannot apply Life Event '{entry.LifeEvent.Name}' that targets '{entry.LifeEvent.Target}' on an Animal.");
 
+            if(entry.LifeEvent.IsUnique
+               && animal.LifeEventEntries.Any(e => e.LifeEventEntry.LifeEventId == entry.LifeEventId)
+            )
+            {
+                // Due to how life event creation is structured, we need to handle this here, otherwise we'll have an orphaned
+                // object.
+                this._context.Remove(entry);
+                this._context.SaveChanges();
+                throw new InvalidOperationException($"Cannot create entry for life event '{entry.LifeEvent.Name}' as it is unique, and animal '{animal.Name}' already contains an entry for it.");
+            }
+
             var map = new MapLifeEventEntryToAnimal
             {
                 Animal = animal,

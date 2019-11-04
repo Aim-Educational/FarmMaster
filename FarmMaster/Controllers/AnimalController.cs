@@ -217,11 +217,6 @@ namespace FarmMaster.Controllers
             if(entry == null)
                 return RedirectToAction("Edit", new { id = redirectEntityId });
 
-            if(   entry.LifeEvent.IsUnique 
-               && animal.LifeEventEntries.Any(e => e.LifeEventEntry.LifeEventId == entry.LifeEventId)
-            )
-                return RedirectToAction("Edit", new { id = redirectEntityId, message = ViewModelWithMessage.CreateErrorQueryString("That life event is unique, so multiple versions cannot be created.") });
-
             this._animals.AddLifeEventEntry(animal, entry);
             return RedirectToAction("Edit", new { id = redirectEntityId });
         }
