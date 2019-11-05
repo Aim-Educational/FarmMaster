@@ -59,6 +59,13 @@
                     </div>
                 </div>
             </div>
+            <div class="field">
+                <label>Other</label>
+                <div class="ui slider checkbox">
+                    <input id="checkboxEndOfSystem" type="checkbox" />
+                    <label>Show 'end of system' animals</label>
+                </div>
+            </div>
         </div>
     </section>
     <section>
@@ -195,9 +202,10 @@
             otherVars.take = take;
             otherVars.skip = skip;
             otherVars.initialQuery = initialQuery;
-            GraphQL.query(`query FetchAnimals($take:Int!,        $skip:Int!,    $initialQuery: Boolean!,
+            GraphQL.query(`query FetchAnimals($take:Int!,        $skip:Int!,    $initialQuery: Boolean!, $endOfSystem:Boolean,
                                               $nameRegex:String, $speciesId:ID, $breedIds:[ID],          $gender:Gender){
-                    animals(take:$take, skip:$skip, nameRegex:$nameRegex, speciesId:$speciesId, breedIds:$breedIds, gender:$gender){
+                    animals(take:$take,         skip:$skip,     nameRegex:$nameRegex,      speciesId:$speciesId, 
+                            breedIds:$breedIds, gender:$gender, isEndOfSystem:$endOfSystem){
                         id
                         name
                         tag
@@ -259,10 +267,11 @@
         }
 
         function onSearchInputChanged() {
-            const nameRegex = document.getElementById("inputName").value;
-            const gender = document.getElementById("dropdownGender").querySelector("input").value;
-            const speciesId = document.getElementById("dropdownSpecies").querySelector("input").value;
-            const breedIds = document.getElementById("dropdownBreeds").querySelector("input").value.split(',');
+            const nameRegex   = document.getElementById("inputName").value;
+            const gender      = document.getElementById("dropdownGender").querySelector("input").value;
+            const speciesId   = document.getElementById("dropdownSpecies").querySelector("input").value;
+            const breedIds    = document.getElementById("dropdownBreeds").querySelector("input").value.split(',');
+            const endOfSystem = document.getElementById("checkboxEndOfSystem").checked;
 
             // Conditionally add the filter options.
             const vars = {};
@@ -270,6 +279,8 @@
             if (gender.length > 0)      vars.gender = gender;
             if (speciesId.length > 0)   vars.speciesId = speciesId;
             if (breedIds[0].length > 0) vars.breedIds = breedIds;
+
+            vars.endOfSystem = endOfSystem;
 
             resetCards();
             fetchAnimals(ANIMALS_PER_FETCH, animalCount, false, vars);
@@ -279,7 +290,7 @@
         for (const input of searchInputs)
             input.addEventListener("change", () => onSearchInputChanged());
 
-        fetchAnimals(ANIMALS_PER_FETCH, animalCount, true);
+        fetchAnimals(ANIMALS_PER_FETCH, animalCount, true, { endOfSystem: false });
         buttonLoadMore.addEventListener("click", () => onSearchInputChanged());
 
         // When the species selected changes, get the new breed options.
