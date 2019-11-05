@@ -28,7 +28,7 @@ namespace FarmMaster.Controllers
             return View(model);
         }
 
-        [FarmAuthorise(PermsAND: new[] { BusinessConstants.Permissions.EDIT_ROLES })]
+        [FarmAuthorise(PermsAND: new[] { BusinessConstants.Permissions.CREATE_ROLES })]
         public IActionResult Create([FromServices] FarmMasterContext db)
         {
             return View("CreateEdit", new RoleCreateViewModel
@@ -71,6 +71,7 @@ namespace FarmMaster.Controllers
             });
         }
 
+        [FarmAuthorise(PermsAND: new[] { BusinessConstants.Permissions.ASSIGN_ROLES })]
         public IActionResult Assign([FromServices] FarmMasterContext db, [FromServices] IServiceUserManager users)
         {
             var myUser = users.UserFromCookieSession(HttpContext);
@@ -83,7 +84,7 @@ namespace FarmMaster.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [FarmAuthorise(PermsAND: new[] { BusinessConstants.Permissions.EDIT_ROLES })]
+        [FarmAuthorise(PermsAND: new[] { BusinessConstants.Permissions.CREATE_ROLES })]
         public IActionResult Create(RoleCreateViewModel model, 
                                     [FromServices] IServiceRoleManager roles,
                                     [FromServices] FarmMasterContext db, 
@@ -190,7 +191,7 @@ namespace FarmMaster.Controllers
         }
 
         //[HttpPost]
-        [FarmAuthorise(PermsAND: new[] { BusinessConstants.Permissions.EDIT_ROLES })]
+        [FarmAuthorise(PermsAND: new[] { BusinessConstants.Permissions.DELETE_ROLES })]
         [SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "<Pending>")]
         public IActionResult Delete(int id, 
                                     [FromServices] IServiceRoleManager roles, 

@@ -36,7 +36,7 @@ namespace FarmMaster.Controllers
         }
 
         #region Event Pages (GET)
-        [FarmAuthorise(PermsAND: new[] { BusinessConstants.Permissions.EDIT_LIFE_EVENTS })]
+        [FarmAuthorise(PermsAND: new[] { BusinessConstants.Permissions.CREATE_LIFE_EVENTS })]
         public IActionResult Create()
         {
             return View();
@@ -91,7 +91,7 @@ namespace FarmMaster.Controllers
             return View(model);
         }
 
-        [FarmAuthorise(PermsAND: new[] { BusinessConstants.Permissions.EDIT_LIFE_EVENTS })]
+        [FarmAuthorise(PermsAND: new[] { BusinessConstants.Permissions.DELETE_LIFE_EVENTS })]
         public IActionResult Delete(int id)
         {
             var @event = this._lifeEvents.For<LifeEvent>().FromIdAllIncluded(id);
@@ -130,7 +130,7 @@ namespace FarmMaster.Controllers
         #region Event Pages (POST)
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [FarmAuthorise(PermsAND: new[] { BusinessConstants.Permissions.EDIT_LIFE_EVENTS })]
+        [FarmAuthorise(PermsAND: new[] { BusinessConstants.Permissions.CREATE_LIFE_EVENTS })]
         public IActionResult Create(LifeEventCreateViewModel model)
         {
             if (!ModelState.IsValid)
@@ -225,7 +225,7 @@ namespace FarmMaster.Controllers
         #endregion
 
         #region Entry Editor (GET)
-        [FarmAuthorise(PermsAND: new[] { BusinessConstants.Permissions.EDIT_LIFE_EVENT_ENTRY })]
+        [FarmAuthorise(PermsAND: new[] { BusinessConstants.Permissions.USE_LIFE_EVENT_ENTRY })]
         public IActionResult CreateEntry(
             int lifeEventId, 
             string redirectController, 
@@ -262,7 +262,7 @@ namespace FarmMaster.Controllers
 
         // This function can't create entries, and might be useful for people who can edit life events, but not entries.
         // So we're using either permission here.
-        [FarmAuthorise(PermsOR: new[] { BusinessConstants.Permissions.EDIT_LIFE_EVENTS, BusinessConstants.Permissions.EDIT_LIFE_EVENT_ENTRY })]
+        [FarmAuthorise(PermsOR: new[] { BusinessConstants.Permissions.EDIT_LIFE_EVENTS, BusinessConstants.Permissions.USE_LIFE_EVENT_ENTRY })]
         public IActionResult TestEntryEditor(int lifeEventId)
         {
             // Using AllIncluded, since in practice this will barely be used after initial setup week.
@@ -289,7 +289,7 @@ namespace FarmMaster.Controllers
             });
         }
 
-        [FarmAuthorise(PermsAND: new[] { BusinessConstants.Permissions.EDIT_LIFE_EVENT_ENTRY })]
+        [FarmAuthorise(PermsAND: new[] { BusinessConstants.Permissions.USE_LIFE_EVENT_ENTRY })]
         public IActionResult EditEntry(int lifeEventId, int lifeEventEntryId, string breadcrumb, int redirectEntityId)
         {
             var lifeEvent = this._lifeEvents
@@ -335,7 +335,7 @@ namespace FarmMaster.Controllers
         #region Entry Editor (POST)
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [FarmAuthorise(PermsAND: new[] { BusinessConstants.Permissions.EDIT_LIFE_EVENT_ENTRY })]
+        [FarmAuthorise(PermsAND: new[] { BusinessConstants.Permissions.USE_LIFE_EVENT_ENTRY })]
         public IActionResult CreateEntry(LifeEventEntryEditorViewModel model)
         {
             // TODO: Change the code so we don't have to do 'AllIncluded', as this will *not* scale well
@@ -381,7 +381,7 @@ namespace FarmMaster.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [FarmAuthorise(PermsAND: new[] { BusinessConstants.Permissions.EDIT_LIFE_EVENT_ENTRY })]
+        [FarmAuthorise(PermsAND: new[] { BusinessConstants.Permissions.USE_LIFE_EVENT_ENTRY })]
         public IActionResult EditEntry(LifeEventEntryEditorViewModel model)
         {
             // TODO: Change the code so we don't have to do 'AllIncluded', as this will *not* scale well

@@ -54,6 +54,7 @@ namespace FarmMaster.Controllers
         }
 
         #region GET
+        [FarmAuthorise(PermsAND: new[] { BusinessConstants.Permissions.CREATE_CONTACTS })]
         public IActionResult Create()
         {
             return View();
@@ -118,7 +119,7 @@ namespace FarmMaster.Controllers
         #region POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [FarmAuthorise(PermsAND: new[] { BusinessConstants.Permissions.EDIT_CONTACTS })]
+        [FarmAuthorise(PermsAND: new[] { BusinessConstants.Permissions.CREATE_CONTACTS })]
         public IActionResult Create(ContactCreateViewModel model)
         {
             if(!ModelState.IsValid)
@@ -169,7 +170,7 @@ namespace FarmMaster.Controllers
 #pragma warning disable CA1801 // Unused parameter. 'model' *has* to be there otherwise the AJAX attributes throw an exception.
         [HttpPost]
         [AllowAnonymous]
-        [FarmAjaxReturnsMessageAndValue(BusinessConstants.Permissions.EDIT_CONTACTS)]
+        [FarmAjaxReturnsMessageAndValue(BusinessConstants.Permissions.VIEW_CONTACTS)]
         public IActionResult AjaxGetNameAndValueAll([FromBody] AjaxRequestModel model, User _)
         {
             return new AjaxValueResult(

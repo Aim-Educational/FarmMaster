@@ -7,6 +7,8 @@ using Microsoft.EntityFrameworkCore.Design;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
+using Perms = Business.Model.BusinessConstants.Permissions;
+
 namespace Business.Model
 {
     public partial class FarmMasterContext : DbContext
@@ -183,21 +185,37 @@ namespace Business.Model
         {
             b.Entity<EnumRolePermission>()
              .HasData(
-                new EnumRolePermission { EnumRolePermissionId = 1,  InternalName = BusinessConstants.Permissions.EDIT_CONTACTS,          Description = "Edit Contacts" },
-                new EnumRolePermission { EnumRolePermissionId = 2,  InternalName = BusinessConstants.Permissions.VIEW_CONTACTS,          Description = "View Contacts" },
-                new EnumRolePermission { EnumRolePermissionId = 3,  InternalName = BusinessConstants.Permissions.EDIT_ROLES,             Description = "Edit Roles" },
-                new EnumRolePermission { EnumRolePermissionId = 4,  InternalName = BusinessConstants.Permissions.VIEW_ROLES,             Description = "View Roles" },
-                new EnumRolePermission { EnumRolePermissionId = 5,  InternalName = BusinessConstants.Permissions.EDIT_USERS,             Description = "Edit Users" },
-                new EnumRolePermission { EnumRolePermissionId = 6,  InternalName = BusinessConstants.Permissions.VIEW_USERS,             Description = "View Users" },
-                new EnumRolePermission { EnumRolePermissionId = 7,  InternalName = BusinessConstants.Permissions.ASSIGN_ROLES,           Description = "Assign Roles" },
-                new EnumRolePermission { EnumRolePermissionId = 8,  InternalName = BusinessConstants.Permissions.DELETE_CONTACTS,        Description = "Delete Contacts" },
-                new EnumRolePermission { EnumRolePermissionId = 9,  InternalName = BusinessConstants.Permissions.VIEW_HOLDINGS,          Description = "View Holdings" },
-                new EnumRolePermission { EnumRolePermissionId = 10, InternalName = BusinessConstants.Permissions.EDIT_HOLDINGS,          Description = "Edit Holdings" },
-                new EnumRolePermission { EnumRolePermissionId = 11, InternalName = BusinessConstants.Permissions.VIEW_SPECIES_BREEDS,    Description = "View Species/Breeds" },
-                new EnumRolePermission { EnumRolePermissionId = 12, InternalName = BusinessConstants.Permissions.EDIT_SPECIES_BREEDS,    Description = "Edit Species/Breeds" },
-                new EnumRolePermission { EnumRolePermissionId = 13, InternalName = BusinessConstants.Permissions.VIEW_LIFE_EVENTS,       Description = "View Life Events" },
-                new EnumRolePermission { EnumRolePermissionId = 14, InternalName = BusinessConstants.Permissions.EDIT_LIFE_EVENTS,       Description = "Edit Life Events" },
-                new EnumRolePermission { EnumRolePermissionId = 15, InternalName = BusinessConstants.Permissions.EDIT_LIFE_EVENT_ENTRY,  Description = "Edit Life Event Entries" }
+                new EnumRolePermission { EnumRolePermissionId = 1,  InternalName = Perms.ASSIGN_ROLES,          Description = "Assign Roles" },
+                new EnumRolePermission { EnumRolePermissionId = 2,  InternalName = Perms.CREATE_ROLES,          Description = "Create Roles" },
+                new EnumRolePermission { EnumRolePermissionId = 3,  InternalName = Perms.DELETE_ROLES,          Description = "Delete Roles" },
+                new EnumRolePermission { EnumRolePermissionId = 4,  InternalName = Perms.EDIT_ROLES,            Description = "Edit Roles" },
+                new EnumRolePermission { EnumRolePermissionId = 5,  InternalName = Perms.VIEW_ROLES,            Description = "View Roles" },
+
+                new EnumRolePermission { EnumRolePermissionId = 6,  InternalName = Perms.CREATE_CONTACTS,       Description = "Create Contacts" },
+                new EnumRolePermission { EnumRolePermissionId = 7,  InternalName = Perms.DELETE_CONTACTS,       Description = "Delete Contacts" },
+                new EnumRolePermission { EnumRolePermissionId = 8,  InternalName = Perms.EDIT_CONTACTS,         Description = "Edit Contacts" },
+                new EnumRolePermission { EnumRolePermissionId = 9,  InternalName = Perms.VIEW_CONTACTS,         Description = "View Contacts" },
+
+                new EnumRolePermission { EnumRolePermissionId = 10, InternalName = Perms.CREATE_HOLDINGS,       Description = "Create Holdings" },
+                new EnumRolePermission { EnumRolePermissionId = 11, InternalName = Perms.DELETE_HOLDINGS,       Description = "Delete Holdings" },
+                new EnumRolePermission { EnumRolePermissionId = 12, InternalName = Perms.EDIT_HOLDINGS,         Description = "Edit Holdings" },
+                new EnumRolePermission { EnumRolePermissionId = 13, InternalName = Perms.VIEW_HOLDINGS,         Description = "View Holdings" },
+
+                new EnumRolePermission { EnumRolePermissionId = 14, InternalName = Perms.CREATE_LIFE_EVENTS,    Description = "Create Life events" },
+                new EnumRolePermission { EnumRolePermissionId = 15, InternalName = Perms.DELETE_LIFE_EVENTS,    Description = "Delete Life events" },
+                new EnumRolePermission { EnumRolePermissionId = 16, InternalName = Perms.EDIT_LIFE_EVENTS,      Description = "Edit Life events" },
+                new EnumRolePermission { EnumRolePermissionId = 17, InternalName = Perms.VIEW_LIFE_EVENTS,      Description = "View Life events" },
+                new EnumRolePermission { EnumRolePermissionId = 18, InternalName = Perms.USE_LIFE_EVENT_ENTRY,  Description = "Use Life event entries" },
+
+                new EnumRolePermission { EnumRolePermissionId = 19, InternalName = Perms.CREATE_SPECIES_BREEDS, Description = "Create Species & Breeds" },
+                new EnumRolePermission { EnumRolePermissionId = 20, InternalName = Perms.DELETE_SPECIES_BREEDS, Description = "Delete Species & Breeds" },
+                new EnumRolePermission { EnumRolePermissionId = 21, InternalName = Perms.EDIT_SPECIES_BREEDS,   Description = "Edit Species & Breeds" },
+                new EnumRolePermission { EnumRolePermissionId = 22, InternalName = Perms.VIEW_SPECIES_BREEDS,   Description = "View Species & Breeds" },
+
+                new EnumRolePermission { EnumRolePermissionId = 23, InternalName = Perms.CREATE_ANIMALS,        Description = "Create Animals" },
+                new EnumRolePermission { EnumRolePermissionId = 24, InternalName = Perms.DELETE_ANIMALS,        Description = "Delete Animals" },
+                new EnumRolePermission { EnumRolePermissionId = 25, InternalName = Perms.EDIT_ANIMALS,          Description = "Edit Animals" },
+                new EnumRolePermission { EnumRolePermissionId = 26, InternalName = Perms.VIEW_ANIMALS,          Description = "View Animals" }
             );
         }
 

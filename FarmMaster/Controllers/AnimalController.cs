@@ -37,6 +37,7 @@ namespace FarmMaster.Controllers
         }
 
         #region GET
+        [FarmAuthorise(PermsAND: new[] { BusinessConstants.Permissions.VIEW_ANIMALS })]
         public IActionResult Index(string message)
         {
             var model = new AnimalIndexViewModel();
@@ -44,11 +45,13 @@ namespace FarmMaster.Controllers
             return View(model);
         }
 
+        [FarmAuthorise(PermsAND: new[] { BusinessConstants.Permissions.CREATE_ANIMALS })]
         public IActionResult Create()
         {
             return View("CreateEdit", new AnimalCreateEditViewModel{ IsCreate = true });
         }
 
+        [FarmAuthorise(PermsAND: new[] { BusinessConstants.Permissions.EDIT_ANIMALS })]
         public IActionResult Edit(int? id)
         {
             if(id == null)
@@ -81,6 +84,7 @@ namespace FarmMaster.Controllers
         #region POST
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [FarmAuthorise(PermsOR: new[] { BusinessConstants.Permissions.CREATE_ANIMALS, BusinessConstants.Permissions.EDIT_ANIMALS })]
         public IActionResult CreateEdit(AnimalCreateEditViewModel model)
         {
             var breeds = this._speciesBreeds.For<Breed>()
@@ -197,7 +201,7 @@ namespace FarmMaster.Controllers
         #endregion
 
         #region Callbacks
-        [FarmAuthorise]
+        [FarmAuthorise(PermsAND: new[] { BusinessConstants.Permissions.USE_LIFE_EVENT_ENTRY, BusinessConstants.Permissions.EDIT_ANIMALS })]
         public IActionResult OnCreateLifeEvent(int lifeEventEntryId, int redirectEntityId)
         {
             var animal = this._animals

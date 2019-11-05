@@ -21,7 +21,7 @@ namespace FarmMaster.Controllers
     {
         #region Animal.Characteristic
         [HttpPost]
-        [FarmAjaxReturnsMessageAndValue]
+        [FarmAjaxReturnsMessageAndValue(BusinessConstants.Permissions.VIEW_ANIMALS)]
         public IActionResult Animal_ById_Characteristic_AsNameValueTypeInheritedId_All(
             [FromBody] AjaxByIdRequest model,
             User _,
@@ -47,7 +47,7 @@ namespace FarmMaster.Controllers
         }
 
         [HttpPost]
-        [FarmAjaxReturnsMessage]
+        [FarmAjaxReturnsMessage(BusinessConstants.Permissions.EDIT_ANIMALS)]
         public IActionResult Animal_ById_Characteristic_Delete_ById(
             [FromBody] AjaxByIdForIdRequest model,
             User _,
@@ -64,7 +64,7 @@ namespace FarmMaster.Controllers
         }
 
         [HttpPost]
-        [FarmAjaxReturnsMessage]
+        [FarmAjaxReturnsMessage(BusinessConstants.Permissions.EDIT_ANIMALS)]
         public IActionResult Animal_ById_Characteristic_Add(
             [FromBody] AjaxCharacteristicsAddRequest model,
             User _,
@@ -89,7 +89,7 @@ namespace FarmMaster.Controllers
 
         #region Animal.LifeEventEntry
         [HttpPost]
-        [FarmAjaxReturnsMessage(permsAND: new[] { BusinessConstants.Permissions.EDIT_LIFE_EVENT_ENTRY })]
+        [FarmAjaxReturnsMessage(BusinessConstants.Permissions.USE_LIFE_EVENT_ENTRY)]
         public IActionResult Animal_ById_LifeEventEntry_Delete_ById(
             [FromBody] AjaxByIdForIdRequest model,
             User _,

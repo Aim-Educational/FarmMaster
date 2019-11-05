@@ -51,6 +51,7 @@ namespace FarmMaster.Controllers
         }
 
         #region Species
+        [FarmAuthorise(PermsAND: new[] { BusinessConstants.Permissions.CREATE_SPECIES_BREEDS })]
         public IActionResult CreateSpecies()
         {
             return View();
@@ -66,7 +67,7 @@ namespace FarmMaster.Controllers
             return View(new SpeciesEditViewModel{ Species = species });
         }
 
-        [FarmAuthorise(PermsAND: new[] { BusinessConstants.Permissions.EDIT_SPECIES_BREEDS })]
+        [FarmAuthorise(PermsAND: new[] { BusinessConstants.Permissions.DELETE_SPECIES_BREEDS })]
         public IActionResult DeleteSpecies(int id)
         {
             var species = this._speciesBreeds.For<Species>().FromIdAllIncluded(id);
@@ -93,7 +94,7 @@ namespace FarmMaster.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [FarmAuthorise(PermsAND: new[] { BusinessConstants.Permissions.EDIT_SPECIES_BREEDS })]
+        [FarmAuthorise(PermsAND: new[] { BusinessConstants.Permissions.CREATE_SPECIES_BREEDS })]
         public IActionResult CreateSpecies(SpeciesCreateViewModel model)
         {
             if(!ModelState.IsValid)
@@ -126,6 +127,7 @@ namespace FarmMaster.Controllers
         #endregion
 
         #region Breed
+        [FarmAuthorise(PermsAND: new[] { BusinessConstants.Permissions.CREATE_SPECIES_BREEDS })]
         public IActionResult CreateBreed()
         {
             return View();
@@ -141,7 +143,7 @@ namespace FarmMaster.Controllers
             return View(new BreedEditViewModel { Breed = breed });
         }
 
-        [FarmAuthorise(PermsAND: new[] { BusinessConstants.Permissions.EDIT_SPECIES_BREEDS })]
+        [FarmAuthorise(PermsAND: new[] { BusinessConstants.Permissions.DELETE_SPECIES_BREEDS })]
         public IActionResult DeleteBreed(int id)
         {
             var breed = this._speciesBreeds.For<Breed>().FromIdAllIncluded(id);
@@ -168,7 +170,7 @@ namespace FarmMaster.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [FarmAuthorise(PermsAND: new[] { BusinessConstants.Permissions.EDIT_SPECIES_BREEDS })]
+        [FarmAuthorise(PermsAND: new[] { BusinessConstants.Permissions.CREATE_SPECIES_BREEDS })]
         public IActionResult CreateBreed(BreedCreateViewModel model)
         {
             if (!ModelState.IsValid)

@@ -45,13 +45,13 @@ namespace FarmMaster.Controllers
         }
 
         #region Profile GET
-        [FarmAuthorise()]
+        [FarmAuthorise]
         public IActionResult Profile()
         {
             return View();
         }
 
-        [FarmAuthorise()]
+        [FarmAuthorise]
         public IActionResult DownloadMyData()
         {
             var user = this._users.UserFromCookieSession(HttpContext);

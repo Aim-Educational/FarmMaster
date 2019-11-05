@@ -36,7 +36,7 @@ namespace FarmMaster.Controllers
         }
 
         #region GET
-        [FarmAuthorise(PermsOR: new[] { BusinessConstants.Permissions.EDIT_HOLDINGS })]
+        [FarmAuthorise(PermsOR: new[] { BusinessConstants.Permissions.CREATE_HOLDINGS })]
         public IActionResult Create()
         {
             return View("CreateEdit", new HoldingCreateEditViewModel
@@ -92,7 +92,7 @@ namespace FarmMaster.Controllers
             });
         }
 
-        [FarmAuthorise(PermsOR: new[] { BusinessConstants.Permissions.EDIT_HOLDINGS })]
+        [FarmAuthorise(PermsOR: new[] { BusinessConstants.Permissions.DELETE_HOLDINGS })]
         public IActionResult Delete(int id)
         {
             var holding = this._holdings.FromId(id);
@@ -111,7 +111,7 @@ namespace FarmMaster.Controllers
         #region POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [FarmAuthorise(PermsOR: new[] { BusinessConstants.Permissions.EDIT_HOLDINGS })]
+        [FarmAuthorise(PermsOR: new[] { BusinessConstants.Permissions.CREATE_HOLDINGS })]
         public IActionResult Create(HoldingCreateEditViewModel model)
         {
             model.AllRegistrations = this._context.EnumHoldingRegistrations;

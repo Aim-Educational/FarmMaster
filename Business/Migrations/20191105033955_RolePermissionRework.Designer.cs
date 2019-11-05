@@ -3,15 +3,17 @@ using System;
 using Business.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Business.Migrations
 {
     [DbContext(typeof(FarmMasterContext))]
-    partial class FarmMasterContextModelSnapshot : ModelSnapshot
+    [Migration("20191105033955_RolePermissionRework")]
+    partial class RolePermissionRework
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -332,157 +334,157 @@ namespace Business.Migrations
                         new
                         {
                             EnumRolePermissionId = 1,
-                            Description = "Assign Roles",
+                            Description = "Assign roles",
                             InternalName = "assign_roles"
                         },
                         new
                         {
                             EnumRolePermissionId = 2,
-                            Description = "Create Roles",
+                            Description = "Create roles",
                             InternalName = "create_roles"
                         },
                         new
                         {
                             EnumRolePermissionId = 3,
-                            Description = "Delete Roles",
+                            Description = "Delete roles",
                             InternalName = "delete_roles"
                         },
                         new
                         {
                             EnumRolePermissionId = 4,
-                            Description = "Edit Roles",
+                            Description = "Edit roles",
                             InternalName = "edit_roles"
                         },
                         new
                         {
                             EnumRolePermissionId = 5,
-                            Description = "View Roles",
+                            Description = "View roles",
                             InternalName = "view_roles"
                         },
                         new
                         {
                             EnumRolePermissionId = 6,
-                            Description = "Create Contacts",
+                            Description = "Create contacts",
                             InternalName = "create_contacts"
                         },
                         new
                         {
                             EnumRolePermissionId = 7,
-                            Description = "Delete Contacts",
+                            Description = "Delete contacts",
                             InternalName = "delete_contacts"
                         },
                         new
                         {
                             EnumRolePermissionId = 8,
-                            Description = "Edit Contacts",
+                            Description = "Edit contacts",
                             InternalName = "edit_contacts"
                         },
                         new
                         {
                             EnumRolePermissionId = 9,
-                            Description = "View Contacts",
+                            Description = "View contacts",
                             InternalName = "view_contacts"
                         },
                         new
                         {
                             EnumRolePermissionId = 10,
-                            Description = "Create Holdings",
+                            Description = "Create holdings",
                             InternalName = "create_holdings"
                         },
                         new
                         {
                             EnumRolePermissionId = 11,
-                            Description = "Delete Holdings",
+                            Description = "Delete holdings",
                             InternalName = "delete_holdings"
                         },
                         new
                         {
                             EnumRolePermissionId = 12,
-                            Description = "Edit Holdings",
+                            Description = "Edit holdings",
                             InternalName = "edit_holdings"
                         },
                         new
                         {
                             EnumRolePermissionId = 13,
-                            Description = "View Holdings",
+                            Description = "View holdings",
                             InternalName = "view_holdings"
                         },
                         new
                         {
                             EnumRolePermissionId = 14,
-                            Description = "Create Life events",
+                            Description = "Create life events",
                             InternalName = "create_life_events"
                         },
                         new
                         {
                             EnumRolePermissionId = 15,
-                            Description = "Delete Life events",
+                            Description = "Delete life events",
                             InternalName = "delete_life_events"
                         },
                         new
                         {
                             EnumRolePermissionId = 16,
-                            Description = "Edit Life events",
+                            Description = "Edit life events",
                             InternalName = "edit_life_events"
                         },
                         new
                         {
                             EnumRolePermissionId = 17,
-                            Description = "View Life events",
+                            Description = "View life events",
                             InternalName = "view_life_events"
                         },
                         new
                         {
                             EnumRolePermissionId = 18,
-                            Description = "Use Life event entries",
+                            Description = "Use life event entries",
                             InternalName = "use_life_event_entry"
                         },
                         new
                         {
                             EnumRolePermissionId = 19,
-                            Description = "Create Species & Breeds",
+                            Description = "Create species & breeds",
                             InternalName = "create_species_breeds"
                         },
                         new
                         {
                             EnumRolePermissionId = 20,
-                            Description = "Delete Species & Breeds",
+                            Description = "Delete species & breeds",
                             InternalName = "delete_species_breeds"
                         },
                         new
                         {
                             EnumRolePermissionId = 21,
-                            Description = "Edit Species & Breeds",
+                            Description = "Edit species & breeds",
                             InternalName = "edit_species_breeds"
                         },
                         new
                         {
                             EnumRolePermissionId = 22,
-                            Description = "View Species & Breeds",
+                            Description = "View species & breeds",
                             InternalName = "view_species_breeds"
                         },
                         new
                         {
                             EnumRolePermissionId = 23,
-                            Description = "Create Animals",
+                            Description = "Create animals",
                             InternalName = "create_animals"
                         },
                         new
                         {
                             EnumRolePermissionId = 24,
-                            Description = "Delete Animals",
+                            Description = "Delete animals",
                             InternalName = "delete_animals"
                         },
                         new
                         {
                             EnumRolePermissionId = 25,
-                            Description = "Edit Animals",
+                            Description = "Edit animals",
                             InternalName = "edit_animals"
                         },
                         new
                         {
                             EnumRolePermissionId = 26,
-                            Description = "View Animals",
+                            Description = "View animals",
                             InternalName = "view_animals"
                         });
                 });
