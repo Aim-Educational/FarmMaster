@@ -52,10 +52,7 @@ namespace FarmMaster.Controllers
             }
 
             var group = this._groups.Create(model.Name, model.Description);
-
-            model.IsCreate = false;
-            model.GroupId = group.AnimalGroupId;
-            return View("CreateEdit", model);
+            return RedirectToActionPermanent("Edit", new { id = group.AnimalGroupId });
         }
         #endregion
     }
