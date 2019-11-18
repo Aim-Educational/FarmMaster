@@ -1,0 +1,50 @@
+﻿@model AnimalGroupIndexViewModel
+@{
+    Layout = "_GenericEditorLayout";
+    ViewData["Title"] = "Animal Groups";
+    ViewData["Breadcrumb"] = new Dictionary<string, string>()
+    {
+        { "Home", "/" },
+        { "Animal Groups", "/AnimalGroup/" }
+    };
+}
+
+<section class="editor section">
+    <section>
+        <div class="content">
+            <div class="top padded items">
+                <a class="ui primary button" asp-action="Create">Create New Animal Group</a>
+            </div>
+
+            <table class="ui striped table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var group in Model.Groups)
+                    {
+                        <tr>
+                            <td>@group.Name</td>
+                            <td>@group.Description</td>
+                            <td>
+                                <section class="ui two buttons">
+                                    <a class="ui inverted tiny secondary left button" href="/Role/Edit/@group.AnimalGroupId">
+                                        Edit
+                                    </a>
+                                    <div class="or divider"></div>
+                                    <a class="ui inverted tiny secondary right button" href="/Role/Delete/@group.AnimalGroupId">
+                                        Delete
+                                    </a>
+                                </section>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </section>
+</section>

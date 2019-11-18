@@ -48,6 +48,11 @@ namespace Business.Model
             public const string CREATE_ANIMALS          = "create_animals";
             public const string DELETE_ANIMALS          = "delete_animals";
 
+            public const string VIEW_ANIMAL_GROUPS      = "view_animal_groups";
+            public const string EDIT_ANIMAL_GROUPS      = "edit_animal_groups";
+            public const string CREATE_ANIMAL_GROUPS    = "create_animal_groups";
+            public const string DELETE_ANIMAL_GROUPS    = "delete_animal_groups";
+
             public const string USE_LIFE_EVENT_ENTRY    = "use_life_event_entry";
         }
 

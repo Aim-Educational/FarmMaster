@@ -144,6 +144,10 @@ namespace Business.Model
              .HasIndex(t => t.Token)
              .IsUnique();
 
+            b.Entity<MapAnimalToAnimalGroup>()
+             .HasIndex(nameof(MapAnimalToAnimalGroup.AnimalGroupId), nameof(MapAnimalToAnimalGroup.AnimalId))
+             .IsUnique();
+
             this.SeedRolePermissions(b);
             this.SeedHoldingRegistrations(b);
             this.SeedLifeEvents(b);
@@ -178,6 +182,8 @@ namespace Business.Model
         public DbSet<MetricRequest>                     MetricRequests                   { get; set; }
         public DbSet<Image>                             Images                           { get; set; }
         public DbSet<ImageData>                         ImageData                        { get; set; }
+        public DbSet<AnimalGroup>                       AnimalGroups                     { get; set; }
+        public DbSet<MapAnimalToAnimalGroup>            MapAnimalToAnimalGroups          { get; set; }
         #endregion
 
         #region Data seeding
@@ -215,7 +221,12 @@ namespace Business.Model
                 new EnumRolePermission { EnumRolePermissionId = 23, InternalName = Perms.CREATE_ANIMALS,        Description = "Create Animals" },
                 new EnumRolePermission { EnumRolePermissionId = 24, InternalName = Perms.DELETE_ANIMALS,        Description = "Delete Animals" },
                 new EnumRolePermission { EnumRolePermissionId = 25, InternalName = Perms.EDIT_ANIMALS,          Description = "Edit Animals" },
-                new EnumRolePermission { EnumRolePermissionId = 26, InternalName = Perms.VIEW_ANIMALS,          Description = "View Animals" }
+                new EnumRolePermission { EnumRolePermissionId = 26, InternalName = Perms.VIEW_ANIMALS,          Description = "View Animals" },
+
+                new EnumRolePermission { EnumRolePermissionId = 27, InternalName = Perms.CREATE_ANIMAL_GROUPS,  Description = "Create Animal Groups" },
+                new EnumRolePermission { EnumRolePermissionId = 28, InternalName = Perms.DELETE_ANIMAL_GROUPS,  Description = "Delete Animal Groups" },
+                new EnumRolePermission { EnumRolePermissionId = 29, InternalName = Perms.EDIT_ANIMAL_GROUPS,    Description = "Edit Animal Groups" },
+                new EnumRolePermission { EnumRolePermissionId = 30, InternalName = Perms.VIEW_ANIMAL_GROUPS,    Description = "View Animal Groups" }
             );
         }
 

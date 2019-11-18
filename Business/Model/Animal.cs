@@ -61,6 +61,8 @@ namespace Business.Model
 
         public IEnumerable<MapLifeEventEntryToAnimal> LifeEventEntries { get; set; }
 
+        public IEnumerable<MapAnimalToAnimalGroup> Groups { get; set; }
+
         [NotMapped] // Sometimes EF sets it to null, sometimes it sets it to an empty list when there's no elements, so we'll try to handle both.
         public IEnumerable<Animal> Children => (this.Children_DAD?.Count() ?? 0) == 0
                                                ? this.Children_MUM

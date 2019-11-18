@@ -1,0 +1,72 @@
+﻿@model AnimalGroupCreateEditViewModel
+@{
+    Layout                 = "_GenericEditorLayout";
+    ViewData["Title"]      = $"{(Model.IsCreate ? "Create" : "Edit")} an animal group";
+    ViewData["Breadcrumb"] = new Dictionary<string, string>
+    {
+        { "Home", "/" },
+        { "Animals", "/Animal/" },
+        {
+            (Model.IsCreate) ? "Create" : "Edit",
+            "#"
+        }
+    };
+}
+
+<partial name="_ViewModelWithMessagePartial" model="@Model" />
+<partial name="_ModalAreYouSure_NoUndo" />
+
+<section class="editor section">
+    <section>
+        <h4>Information</h4>
+        <div class="content">
+            <form class="ui form" method="post" asp-action="@(Model.IsCreate ? "Create" : "Edit")">
+                <input type="hidden" asp-for="IsCreate" />
+                <input type="hidden" asp-for="GroupId" />
+
+                <div class="field">
+                    <label>Name</label>
+                    <input asp-for="Name" />
+                </div>
+                <div class="field">
+                    <label>Description</label>
+                    <input asp-for="Description" />
+                </div>
+
+                <button class="ui primary fluid button" type="submit">
+                    @(Model.IsCreate ? "Create new Animal Group" : "Edit Animal Group")
+                </button>
+            </form>
+        </div>
+    </section>
+    @if(Model.IsCreate)
+    {
+        <section>
+            <div class="ui visible info message">
+                Further configuration can only be performed once the group has been created.
+            </div>
+        </section>
+    }
+    else
+    {
+        <section>
+            <h4>Animals in this group</h4>
+            <div class="content">
+                <div class="ui visible info message">
+                    Animals can be individually assigned to a group by going to their individual pages.
+                </div>
+
+                TODO
+            </div>
+        </section>
+
+        <section>
+
+        </section>
+    }
+</section>
+
+@section Scripts {
+    <script type="module">
+    </script>
+}

@@ -91,6 +91,7 @@ namespace FarmMaster
             services.AddScoped<IServiceLifeEventManager,        ServiceLifeEventManager>();
             services.AddScoped<IServiceAnimalManager,           ServiceAnimalManager>();
             services.AddScoped<IServiceImageManager,            ServiceImageManager>();
+            services.AddScoped<IServiceAnimalGroupManager,      ServiceAnimalGroupManager>();
 
             // Other services
             services.AddScoped<IServiceGdpr, ServiceGdprAggregator>();
