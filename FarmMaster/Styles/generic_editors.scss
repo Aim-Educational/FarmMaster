@@ -46,7 +46,6 @@
         display: flex;
         flex-direction: column;
         background: darken(white, 1%); // Natural white looks a bit weird here, so gray it ever so slightly.
-
         h4 {
             padding-top: 0.8em;
             padding-left: 0.8em;
@@ -190,6 +189,30 @@
                         flex-direction: column;
                         align-self: center;
                         width: 75%;
+                    }
+                }
+            }
+
+            div.animal {
+                &.group.info {
+                    padding-top: 1em;
+                    display: inline-flex;
+                    align-items: center;
+
+                    button.button {
+                        display: flex;
+                        width: auto;
+                        margin-right: 1em;
+                    }
+
+                    div.name {
+                        font-size: 1.5em;
+
+                        div.description {
+                            padding-top: 0.2em;
+                            font-size: 0.6em;
+                            color: rgba(0, 0, 0, 0.8);
+                        }
                     }
                 }
             }

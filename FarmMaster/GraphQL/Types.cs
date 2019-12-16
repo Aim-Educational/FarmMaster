@@ -69,6 +69,10 @@ namespace FarmMaster.GraphQL
                 .Description("The entries for all of the animal's life events.");
             Field(a => a.IsEndOfSystem)
                 .Description("Whether or not the animal is marked as 'end of system'. a.k.a dead, sold, archived, etc.");
+            Field("groups",
+                  a => a.Groups.Select(m => m.AnimalGroup),
+                  type: typeof(ListGraphType<AnimalGroupGraphType>))
+                .Description("All of the animal groups that this animal belongs to.");
         }
     }
 
@@ -120,6 +124,22 @@ namespace FarmMaster.GraphQL
                 .Description("The breed's ID.");
             Field(b => b.Name)
                 .Description("The breed's name.");
+        }
+    }
+
+    public class AnimalGroupGraphType : ObjectGraphType<AnimalGroup>
+    {
+        public AnimalGroupGraphType()
+        {
+            Field(g => g.AnimalGroupId, type: typeof(IdGraphType))
+                .Name("Id")
+                .Description("The group's ID.");
+            Field(g => g.Description)
+                .Name("Description")
+                .Description("The group's description.");
+            Field(g => g.Name)
+                .Name("Name")
+                .Description("The group's name.");
         }
     }
 }

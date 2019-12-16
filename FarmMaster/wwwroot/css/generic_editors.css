@@ -127,6 +127,20 @@
           flex-direction: column;
           align-self: center;
           width: 75%; }
+      .editor.section > section div.content div.animal.group.info, .editor.section > section div.content > div.sub.content div.animal.group.info, .editor.section > form > section div.content div.animal.group.info, .editor.section > form > section div.content > div.sub.content div.animal.group.info {
+        padding-top: 1em;
+        display: inline-flex;
+        align-items: center; }
+        .editor.section > section div.content div.animal.group.info button.button, .editor.section > section div.content > div.sub.content div.animal.group.info button.button, .editor.section > form > section div.content div.animal.group.info button.button, .editor.section > form > section div.content > div.sub.content div.animal.group.info button.button {
+          display: flex;
+          width: auto;
+          margin-right: 1em; }
+        .editor.section > section div.content div.animal.group.info div.name, .editor.section > section div.content > div.sub.content div.animal.group.info div.name, .editor.section > form > section div.content div.animal.group.info div.name, .editor.section > form > section div.content > div.sub.content div.animal.group.info div.name {
+          font-size: 1.5em; }
+          .editor.section > section div.content div.animal.group.info div.name div.description, .editor.section > section div.content > div.sub.content div.animal.group.info div.name div.description, .editor.section > form > section div.content div.animal.group.info div.name div.description, .editor.section > form > section div.content > div.sub.content div.animal.group.info div.name div.description {
+            padding-top: 0.2em;
+            font-size: 0.6em;
+            color: rgba(0, 0, 0, 0.8); }
     .editor.section > section:nth-of-type(even), .editor.section > form > section:nth-of-type(even) {
       background-color: #ebebeb; }
   .editor.section thead tr.two.columns th:not(:first-child) {

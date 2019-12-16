@@ -1,4 +1,5 @@
 ﻿using Business.Model;
+using FarmMaster.Misc;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
@@ -15,6 +16,8 @@ namespace FarmMaster.Services
     public interface IServiceAnimalGroupManager : IServiceEntityManager<AnimalGroup>, IServiceEntityManagerFullDeletion<AnimalGroup>
     {
         AnimalGroup Create(string name, string description);
+        MapAnimalToAnimalGroup AssignAnimal(AnimalGroup group, Animal animal);
+        CouldDelete RemoveFromGroup(AnimalGroup group, Animal animal);
     }
 
     public class ServiceAnimalGroupManager : IServiceAnimalGroupManager
@@ -24,6 +27,45 @@ namespace FarmMaster.Services
         public ServiceAnimalGroupManager(FarmMasterContext context)
         {
             this._context = context;
+        }
+
+        public MapAnimalToAnimalGroup AssignAnimal(AnimalGroup group, Animal animal)
+        {
+            Contract.Requires(group != null);
+            Contract.Requires(animal != null);
+
+            if(group.Animals.Any(m => m.AnimalId == animal.AnimalId))
+            {
+                throw new InvalidOperationException(
+                     $"Animal #{animal.AnimalId} '{animal.Name}' is "
+                    +$"already assigned to group #{group.AnimalGroupId} '{group.Name}'");
+            }
+
+            var map = new MapAnimalToAnimalGroup 
+            {
+                Animal      = animal,
+                AnimalGroup = group
+            };
+
+            this._context.Add(map);
+            this._context.SaveChanges();
+
+            return map;
+        }
+
+        public CouldDelete RemoveFromGroup(AnimalGroup group, Animal animal)
+        {
+            Contract.Requires(group != null);
+            Contract.Requires(animal != null);
+
+            var map = group.Animals.FirstOrDefault(m => m.AnimalId == animal.AnimalId);
+            if(map == null)
+                return CouldDelete.No;
+
+            this._context.Remove(map);
+            this._context.SaveChanges();
+
+            return CouldDelete.Yes;
         }
 
         public AnimalGroup Create(string name, string description)
@@ -42,6 +84,9 @@ namespace FarmMaster.Services
 
         public void FullDelete(AnimalGroup entity)
         {
+            foreach(var map in this._context.MapAnimalToAnimalGroups.Where(m => m.AnimalGroupId == entity.AnimalGroupId))
+                this._context.Remove(map);
+
             this._context.Remove(entity);
             this._context.SaveChanges();
         }

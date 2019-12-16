@@ -140,6 +140,41 @@
         </div>
     </section>
     <section>
+        <h4>Groups</h4>
+        @if (!Model.IsCreate)
+        {
+            <div id="contentGroup" class="content">
+                <div class="ui fluid styled accordion">
+                    <div class="title">
+                        <i class="dropdown icon"></i>
+                        Add to group
+                    </div>
+                    <div class="content ui form">
+                        <div class="field">
+                            <label>Group</label>
+                            <div class="ui search selection dropdown">
+                                <input id="selectGroup" type="hidden" />
+                                <i class="dropdown icon"></i>
+                                <div class="text"></div>
+                                <div class="menu">
+                                </div>
+                            </div>
+                        </div>
+                        <button id="buttonAddToGroup" class="ui button">Add to group</button>
+                    </div>
+                </div>
+                <div id="errorGroup" class="ui error message transition hidden"></div>
+                <div class="top padded items"></div>
+            </div>
+        }
+        else
+        {
+            <div class="ui info message transition visible">
+                Groups can only be modified once the animal has been created.
+            </div>
+        }
+    </section>
+    <section>
         <h4>Characteristics</h4>
         @if(!Model.IsCreate)
         {
@@ -210,7 +245,7 @@
 </section>
 
 @section Scripts {
-    <!--GraphQL related code. Covers the entire 'Information' section, as well as populating the Life Event section.-->
+    <!--GraphQL related code. Covers the entire 'Information' section, as well as populating the Life Event section and group dropdown.-->
     <script type="module">
         import { GraphQL, FarmAjax, FarmAjaxMessageType, Modal } from "/js/index.js";
 
@@ -240,7 +275,7 @@
             if (dropdown.classList.contains("disabled"))
                 dropdown.classList.remove("disabled");
             for (const idName of idNameList) {
-                if (idName.id == @Model.AnimalId && ignoreIfAnimalId)
+                if (ignoreIfAnimalId && idName.id == @Model.AnimalId)
                     continue;
 
                 addItemToDropdown(
@@ -255,6 +290,64 @@
 
             $(dropdown).dropdown();
         }
+
+        window.addGroupInfo = function (id, name, description) {
+            const contentGroup = document.getElementById("contentGroup");
+
+            const divSubContent = contentGroup.appendChild(document.createElement("div"));
+            {
+                divSubContent.classList.add("dark", "striped", "sub", "content");
+
+                const divInfo = divSubContent.appendChild(document.createElement("div"));
+                {
+                    divInfo.classList.add("animal", "group", "info");
+
+                    const button = divInfo.appendChild(document.createElement("button"));
+                    {
+                        button.classList.add("ui", "red", "icon", "button");
+
+                        const i = button.appendChild(document.createElement("i"));
+                        {
+                            i.classList.add("close", "icon");
+                        }
+
+                        button.onclick = () => Modal.askAreYouSure().then(() => {
+                            FarmAjax.postWithMessageResponse(
+                                "/Ajax/Animal_ById_RemoveFromGroup_ById",
+                                {
+                                    byId: @Model.AnimalId,
+                                    forId: id
+                                },
+                                r => {
+                                    if (r.messageType !== FarmAjaxMessageType.Information) {
+                                        r.populateMessageBox(document.getElementById("errorGroup"));
+                                        return;
+                                    }
+                                    contentGroup.removeChild(divSubContent);
+                                    addItemToDropdown(
+                                        document.getElementById("selectGroup").parentNode,
+                                        name + " - " + description,
+                                        id
+                                    );
+                                }
+                            );
+                        })
+                    }
+
+                    let div = divInfo.appendChild(document.createElement("div"));
+                    {
+                        div.classList.add("name");
+                        div.innerText = name;
+
+                        div = div.appendChild(document.createElement("div"));
+                        {
+                            div.classList.add("description");
+                            div.innerText = description;
+                        }
+                    }
+                }
+            }
+        };
 
         // These are seperate functions to make it easier to add additional logic in the future.
         // I'm fully aware these could be condensed further.
@@ -382,6 +475,22 @@
             }
         }
 
+        function handleGroups(groupsIn, groupsNotIn) {
+            @if(Model.IsCreate)
+            {
+                @:return;
+            }
+
+            for (const group of groupsNotIn)
+                group.name = group.name + " - " + group.description;
+
+            const dropdown = document.getElementById("selectGroup").parentElement;
+            populateFromIdName(dropdown, groupsNotIn);
+
+            for (const group of groupsIn)
+                window.addGroupInfo(group.id, group.name, group.description);
+        }
+
         GraphQL
             .query(`query InitialLoad($animalId: ID){
                 contacts {
@@ -410,6 +519,16 @@
                     id
                     name
                 }
+                groupsAssignedTo: animalGroups(hasAnimalId:$animalId) {
+                    id
+                    name
+                    description
+                }
+                groupsNotAssignedTo: animalGroups(hasNotAnimalId:$animalId) {
+                    id
+                    name
+                    description
+                }
             }`, { animalId: @Model.AnimalId })
             .then(data => {
                 handleContacts(data.contacts);
@@ -417,6 +536,7 @@
                 handleLifeEventTypes(data.lifeEvents);
                 handleLifeEventEntries(data.animals[0].lifeEventEntries);
                 handleHoldings(data.holdings);
+                handleGroups(data.groupsAssignedTo, data.groupsNotAssignedTo);
             })
             .catch(errors => onError(errors));
 
@@ -475,6 +595,48 @@
                 + "&redirectEntityId=" + @Model.AnimalId
                 + "&breadcrumb=@Html.Raw(lifeEventCreateBreadcrumb)";
             window.open(url, "_self");
+        });
+    </script>
+
+    <!--Code for the group section, except for populating the dropdown as that's done during InitialLoad-->
+    <script type="module">
+        import { GraphQL, FarmAjax, FarmAjaxMessageType, Modal } from "/js/index.js";
+
+        @if(Model.IsCreate)
+        {
+            @:return;
+        }
+
+        document.getElementById("buttonAddToGroup").addEventListener("click", () => {
+            FarmAjax.postWithMessageResponse(
+                "/Ajax/Animal_ById_AssignGroup_ById",
+                {
+                    byId: @Model.AnimalId,
+                    forId: document.getElementById("selectGroup").value
+                },
+                r => {
+                    if (r.messageType !== FarmAjaxMessageType.Information) {
+                        r.populateMessageBox(document.getElementById("errorGroup"));
+                        return;
+                    }
+
+                    GraphQL
+                        .query(`query GetAnimalGroups($id:ID) {
+                            animalGroups(hasAnimalId:$id) {
+                                id
+                                name
+                                description
+                            }
+                        }`)
+                        .then(data => {
+                            for (const subContent of document.querySelectorAll("#contentGroup div.sub.content"))
+                                subContent.parentNode.removeChild(subContent);
+
+                            for (const group of data.animalGroups)
+                                window.addGroupInfo(group.id, group.name, group.description);
+                        });
+                }
+            );
         });
     </script>
 

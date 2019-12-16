@@ -91,6 +91,11 @@ namespace FarmMaster.GraphQL
                     {
                         Name = "isEndOfSystem",
                         Description = "Filter by whether an animal is marked 'end of system'."
+                    },
+                    new QueryArgument<ListGraphType<IdGraphType>> 
+                    {
+                        Name = "groupIds",
+                        Description = "Filter by whether the animal is included in *any* of these animal groups."
                     }
                 ),
                 resolve: graphql =>
@@ -108,6 +113,7 @@ namespace FarmMaster.GraphQL
                     var nameRegex   = graphql.GetArgument<string>("nameRegex");
                     var animalId    = graphql.GetValueOrNull<int>("id");
                     var endOfSystem = graphql.GetValueOrNull<bool>("isEndOfSystem");
+                    var groups      = graphql.GetArgument<List<int>>("groupIds");
 
                     return animals.Query()
                                   .Include(a => a.Breeds)
@@ -117,12 +123,15 @@ namespace FarmMaster.GraphQL
                                   .Include(a => a.LifeEventEntries)
                                    .ThenInclude(m => m.LifeEventEntry)
                                     .ThenInclude(e => e.LifeEvent)
+                                  .Include(a => a.Groups)
+                                   .ThenInclude(m => m.AnimalGroup)
                                   .Where(a => gender      == null || a.Sex == gender)
                                   .Where(a => species     == null || a.SpeciesId == species)
                                   .Where(a => breeds      == null || a.Breeds.Any(b => breeds.Contains(b.BreedId)))
                                   .Where(a => nameRegex   == null || Regex.IsMatch(a.Name, nameRegex))
                                   .Where(a => animalId    == null || a.AnimalId == animalId)
                                   .Where(a => endOfSystem == null || a.LifeEventEntries.Any(m => m.LifeEventEntry.LifeEvent.IsEndOfSystem) == endOfSystem) // Because the normal "Animal.IsEndOfSystem" is client-side, which we want to avoid
+                                  .Where(a => groups      == null || a.Groups.Any(m => groups.Contains(m.AnimalGroupId)))
                                   .OrderBy(a => a.AnimalId) // Weird edge case.
                                   .Skip(skip ?? 0)
                                   .Take(take ?? int.MaxValue)
@@ -179,6 +188,35 @@ namespace FarmMaster.GraphQL
                                         .Where(b => species == null || b.SpeciesId == species)
                                         .OrderBy(b => b.Name);
                 }
+            ); 
+            Field<ListGraphType<AnimalGroupGraphType>>(
+                "animalGroups",
+                arguments: new QueryArguments(
+                new QueryArgument<IdGraphType>
+                {
+                    Name = "hasAnimalId",
+                    Description = "Whether the group has the specific animal assigned to it.",
+                    DefaultValue = null
+                },
+                new QueryArgument<IdGraphType>
+                {
+                    Name = "hasNotAnimalId",
+                    Description = "Whether the group does not have the specific animal assigned to it.",
+                    DefaultValue = null
+                }),
+                resolve: graphql =>
+                {
+                    // Arguments
+                    var hasAnimalId    = graphql.GetValueOrNull<int>("hasAnimalId");
+                    var hasNotAnimalId = graphql.GetValueOrNull<int>("hasNotAnimalId");
+
+                    var groups = context.GetRequiredService<IServiceAnimalGroupManager>();
+                    return groups.Query()
+                                 .Include(g => g.Animals)
+                                 .Where(g => hasAnimalId    == null || g.Animals.Any(m => m.AnimalId == hasAnimalId))
+                                 .Where(g => hasNotAnimalId == null || g.Animals.All(m => m.AnimalId != hasNotAnimalId))
+                                 .OrderBy(g => g.Name);
+                }
             );
         }
     }
@@ -195,6 +233,7 @@ namespace FarmMaster.GraphQL
             services.AddSingleton<HoldingGraphType>();
             services.AddSingleton<LifeEventGraphType>();
             services.AddSingleton<LifeEventEntryGraphType>();
+            services.AddSingleton<AnimalGroupGraphType>();
             services.AddSingleton<ListGraphType<LifeEventEntryGraphType>>();
             services.AddSingleton<EnumerationGraphType<Animal.Gender>>();
             services.AddSingleton<EnumerationGraphType<LifeEvent.TargetType>>();

@@ -27,5 +27,14 @@ namespace FarmMaster.Models
         [Required]
         [StringLength(150)]
         public string Description { get; set; }
+
+        // Edit
+        public IEnumerable<AnimalGroupAnimalInfoViewModel> Animals { get; set; } // Readonly
     } 
+
+    public class AnimalGroupAnimalInfoViewModel
+    {
+        public string Name { get; set; }
+        public int Id { get; set; }
+    }
 }

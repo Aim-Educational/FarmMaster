@@ -113,6 +113,58 @@ namespace FarmMaster.Controllers
         }
         #endregion
 
+        #region Animal.Group
+        [HttpPost]
+        [FarmAjaxReturnsMessage(BusinessConstants.Permissions.EDIT_ANIMALS)]
+        public IActionResult Animal_ById_AssignGroup_ById(
+            [FromBody] AjaxByIdForIdRequest model,
+            User _,
+            [FromServices] IServiceAnimalManager animals,
+            [FromServices] IServiceAnimalGroupManager groups
+        )
+        {
+            var animal = animals.FromIdAllIncluded(model.ById ?? -1);
+            if (animal == null)
+                throw new IndexOutOfRangeException($"No animal with ID #{model.ById}");
+
+            var group = groups.Query()
+                              .Include(g => g.Animals)
+                              .FirstOrDefault(g => g.AnimalGroupId == model.ForId);
+            if (group == null)
+                throw new IndexOutOfRangeException($"No group with ID #{model.ForId}");
+
+            groups.AssignAnimal(group, animal);
+
+            return new EmptyResult();
+        }
+
+        [HttpPost]
+        [FarmAjaxReturnsMessage(BusinessConstants.Permissions.EDIT_ANIMALS)]
+        public IActionResult Animal_ById_RemoveFromGroup_ById(
+            [FromBody] AjaxByIdForIdRequest model,
+            User _,
+            [FromServices] IServiceAnimalManager animals,
+            [FromServices] IServiceAnimalGroupManager groups
+        )
+        {
+            var animal = animals.FromIdAllIncluded(model.ById ?? -1);
+            if (animal == null)
+                throw new IndexOutOfRangeException($"No animal with ID #{model.ById}");
+
+            var group = groups.Query()
+                              .Include(g => g.Animals)
+                              .FirstOrDefault(g => g.AnimalGroupId == model.ForId);
+            if(group == null)
+                throw new IndexOutOfRangeException($"No group with ID #{model.ForId}");
+
+            var result = groups.RemoveFromGroup(group, animal);
+            if(result == CouldDelete.No)
+                throw new InvalidOperationException($"Animal does not belong to group '{group.Name}'");
+
+            return new EmptyResult();
+        }
+        #endregion
+
         #region Account
         [HttpPost]
         [FarmAjaxReturnsMessage]
