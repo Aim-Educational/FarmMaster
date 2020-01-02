@@ -231,7 +231,7 @@ namespace Business.Model
             };
 
             // Try to keep things in the same order please, future me...
-            var index = 0;
+            var index = 1;
             b.Entity<EnumRolePermission>()
              .HasData(roles.Select(tuple => new EnumRolePermission
                       { 
