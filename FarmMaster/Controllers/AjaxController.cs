@@ -13,10 +13,6 @@ using System.Linq;
 
 namespace FarmMaster.Controllers
 {
-#pragma warning disable CA1801 // Unused parameters. Usually there due to the AJAX attributes requiring them, even if they're not used.
-#pragma warning disable CA1062 // Validate arguments of public methods. Ignored since the only chance of this happening is if we forget to register a service, which is a 1 min fix for all functions.
-#pragma warning disable CA1822 // Mark members as static. Ignored since it's incompatible with ASP Core's routing stuff.
-#pragma warning disable CA1707 // Identifiers should not contain underscores. Ignored since it's an explicit design choice for AJAX callbacks.
     public class AjaxController : Controller
     {
         #region Animal.Characteristic
@@ -589,8 +585,4 @@ namespace FarmMaster.Controllers
         }
         #endregion
     }
-#pragma warning restore CA1801 // Unused parameters. Usually there due to the AJAX attributes requiring them, even if they're not used.
-#pragma warning restore CA1062 // Validate arguments of public methods
-#pragma warning restore CA1822 // Mark members as static
-#pragma warning restore CA1707 // Identifiers should not contain underscores
 }
