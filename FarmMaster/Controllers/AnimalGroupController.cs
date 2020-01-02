@@ -92,7 +92,10 @@ namespace FarmMaster.Controllers
                 return View("CreateEdit", model);
             }
 
-            var group = this._groups.Query().FirstOrDefault(g => g.AnimalGroupId == model.GroupId);
+            var group = this._groups.Query()
+                                    .Include(g => g.Animals)
+                                     .ThenInclude(m => m.Animal)
+                                    .FirstOrDefault(g => g.AnimalGroupId == model.GroupId);
             if (group == null)
                 throw new Exception();
 
