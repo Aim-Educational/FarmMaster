@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
@@ -189,45 +190,56 @@ namespace Business.Model
         #region Data seeding
         private void SeedRolePermissions(ModelBuilder b)
         {
+            var roles = new[]
+            {
+                (Perms.ASSIGN_ROLES,            "Assign Roles"),
+                (Perms.CREATE_ROLES,            "Create Roles"),
+                (Perms.DELETE_ROLES,            "Delete Roles"),
+                (Perms.EDIT_ROLES,              "Edit Roles"),
+                (Perms.VIEW_ROLES,              "View Roles"),
+
+                (Perms.CREATE_CONTACTS,         "Create Contacts"),
+                (Perms.DELETE_CONTACTS,         "Delete Contacts"),
+                (Perms.EDIT_CONTACTS,           "Edit Contacts"),
+                (Perms.VIEW_CONTACTS,           "View Contacts"),
+
+                (Perms.CREATE_HOLDINGS,         "Create Holdings"),
+                (Perms.DELETE_HOLDINGS,         "Delete Holdings"),
+                (Perms.EDIT_HOLDINGS,           "Edit Holdings"),
+                (Perms.VIEW_HOLDINGS,           "View Holdings"),
+
+                (Perms.CREATE_LIFE_EVENTS,      "Create Life Events"),
+                (Perms.DELETE_LIFE_EVENTS,      "Delete Life Events"),
+                (Perms.EDIT_LIFE_EVENTS,        "Edit Life Events"),
+                (Perms.VIEW_LIFE_EVENTS,        "View Life Events"),
+                (Perms.USE_LIFE_EVENT_ENTRY,    "Create Life Event Entries"),
+
+                (Perms.CREATE_SPECIES_BREEDS,   "Create Species & Breeds"),
+                (Perms.DELETE_SPECIES_BREEDS,   "Delete Species & Breeds"),
+                (Perms.EDIT_SPECIES_BREEDS,     "Edit Species & Breeds"),
+                (Perms.VIEW_SPECIES_BREEDS,     "View Species & Breeds"),
+
+                (Perms.CREATE_ANIMALS,          "Create Animals"),
+                (Perms.DELETE_ANIMALS,          "Delete Animals"),
+                (Perms.EDIT_ANIMALS,            "Edit Animals"),
+                (Perms.VIEW_ANIMALS,            "View Animals"),
+
+                (Perms.CREATE_ANIMAL_GROUPS,    "Create Animal Groups"),
+                (Perms.DELETE_ANIMAL_GROUPS,    "Delete Animal Groups"),
+                (Perms.EDIT_ANIMAL_GROUPS,      "Edit Animal Groups"),
+                (Perms.VIEW_ANIMAL_GROUPS,      "View Animal Groups")
+            };
+
+            // Try to keep things in the same order please, future me...
+            var index = 0;
             b.Entity<EnumRolePermission>()
-             .HasData(
-                new EnumRolePermission { EnumRolePermissionId = 1,  InternalName = Perms.ASSIGN_ROLES,          Description = "Assign Roles" },
-                new EnumRolePermission { EnumRolePermissionId = 2,  InternalName = Perms.CREATE_ROLES,          Description = "Create Roles" },
-                new EnumRolePermission { EnumRolePermissionId = 3,  InternalName = Perms.DELETE_ROLES,          Description = "Delete Roles" },
-                new EnumRolePermission { EnumRolePermissionId = 4,  InternalName = Perms.EDIT_ROLES,            Description = "Edit Roles" },
-                new EnumRolePermission { EnumRolePermissionId = 5,  InternalName = Perms.VIEW_ROLES,            Description = "View Roles" },
-
-                new EnumRolePermission { EnumRolePermissionId = 6,  InternalName = Perms.CREATE_CONTACTS,       Description = "Create Contacts" },
-                new EnumRolePermission { EnumRolePermissionId = 7,  InternalName = Perms.DELETE_CONTACTS,       Description = "Delete Contacts" },
-                new EnumRolePermission { EnumRolePermissionId = 8,  InternalName = Perms.EDIT_CONTACTS,         Description = "Edit Contacts" },
-                new EnumRolePermission { EnumRolePermissionId = 9,  InternalName = Perms.VIEW_CONTACTS,         Description = "View Contacts" },
-
-                new EnumRolePermission { EnumRolePermissionId = 10, InternalName = Perms.CREATE_HOLDINGS,       Description = "Create Holdings" },
-                new EnumRolePermission { EnumRolePermissionId = 11, InternalName = Perms.DELETE_HOLDINGS,       Description = "Delete Holdings" },
-                new EnumRolePermission { EnumRolePermissionId = 12, InternalName = Perms.EDIT_HOLDINGS,         Description = "Edit Holdings" },
-                new EnumRolePermission { EnumRolePermissionId = 13, InternalName = Perms.VIEW_HOLDINGS,         Description = "View Holdings" },
-
-                new EnumRolePermission { EnumRolePermissionId = 14, InternalName = Perms.CREATE_LIFE_EVENTS,    Description = "Create Life events" },
-                new EnumRolePermission { EnumRolePermissionId = 15, InternalName = Perms.DELETE_LIFE_EVENTS,    Description = "Delete Life events" },
-                new EnumRolePermission { EnumRolePermissionId = 16, InternalName = Perms.EDIT_LIFE_EVENTS,      Description = "Edit Life events" },
-                new EnumRolePermission { EnumRolePermissionId = 17, InternalName = Perms.VIEW_LIFE_EVENTS,      Description = "View Life events" },
-                new EnumRolePermission { EnumRolePermissionId = 18, InternalName = Perms.USE_LIFE_EVENT_ENTRY,  Description = "Use Life event entries" },
-
-                new EnumRolePermission { EnumRolePermissionId = 19, InternalName = Perms.CREATE_SPECIES_BREEDS, Description = "Create Species & Breeds" },
-                new EnumRolePermission { EnumRolePermissionId = 20, InternalName = Perms.DELETE_SPECIES_BREEDS, Description = "Delete Species & Breeds" },
-                new EnumRolePermission { EnumRolePermissionId = 21, InternalName = Perms.EDIT_SPECIES_BREEDS,   Description = "Edit Species & Breeds" },
-                new EnumRolePermission { EnumRolePermissionId = 22, InternalName = Perms.VIEW_SPECIES_BREEDS,   Description = "View Species & Breeds" },
-
-                new EnumRolePermission { EnumRolePermissionId = 23, InternalName = Perms.CREATE_ANIMALS,        Description = "Create Animals" },
-                new EnumRolePermission { EnumRolePermissionId = 24, InternalName = Perms.DELETE_ANIMALS,        Description = "Delete Animals" },
-                new EnumRolePermission { EnumRolePermissionId = 25, InternalName = Perms.EDIT_ANIMALS,          Description = "Edit Animals" },
-                new EnumRolePermission { EnumRolePermissionId = 26, InternalName = Perms.VIEW_ANIMALS,          Description = "View Animals" },
-
-                new EnumRolePermission { EnumRolePermissionId = 27, InternalName = Perms.CREATE_ANIMAL_GROUPS,  Description = "Create Animal Groups" },
-                new EnumRolePermission { EnumRolePermissionId = 28, InternalName = Perms.DELETE_ANIMAL_GROUPS,  Description = "Delete Animal Groups" },
-                new EnumRolePermission { EnumRolePermissionId = 29, InternalName = Perms.EDIT_ANIMAL_GROUPS,    Description = "Edit Animal Groups" },
-                new EnumRolePermission { EnumRolePermissionId = 30, InternalName = Perms.VIEW_ANIMAL_GROUPS,    Description = "View Animal Groups" }
-            );
+             .HasData(roles.Select(tuple => new EnumRolePermission
+                      { 
+                        EnumRolePermissionId = index++, 
+                        InternalName         = tuple.Item1, 
+                        Description          = tuple.Item2
+                      })
+             );
         }
 
         private void SeedHoldingRegistrations(ModelBuilder b)
