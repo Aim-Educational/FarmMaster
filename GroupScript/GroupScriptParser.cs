@@ -7,32 +7,33 @@ using System.Text.RegularExpressions;
 
 namespace GroupScript
 {
-    public enum GroupScriptTokenType
+    public enum GroupScriptTokenType : byte
     {
-        ERROR,
+        ERROR = 0,
 
-        Identifier,
-        Literal_Date,
+        // Values MUST be kept the same, even if you change the lexical order up.
+        Identifier          = 1,
+        Literal_Date        = 2,
 
-        Operator_BracketL,
-        Operator_BracketR,
-        Operator_Colon,
-        Operator_Semicolon,
+        Operator_BracketL   = 3,
+        Operator_BracketR   = 4,
+        Operator_Colon      = 5,
+        Operator_Semicolon  = 6,
 
-        Keyword_Name,
-        Keyword_Parameters,
-        Keyword_End,
-        Keyword_Routine,
-        Keyword_Species,
-        Keyword_Born,
-        Keyword_After,
-        Keyword_Before,
-        Keyword_Date,
-        Keyword_Param,
-        Keyword_And,
-        Keyword_Is,
+        Keyword_Name        = 7,
+        Keyword_Parameters  = 8,
+        Keyword_End         = 9,
+        Keyword_Routine     = 10,
+        Keyword_Species     = 11,
+        Keyword_Born        = 12,
+        Keyword_After       = 13,
+        Keyword_Before      = 14,
+        Keyword_Date        = 15,
+        Keyword_Param       = 16,
+        Keyword_And         = 17,
+        Keyword_Is          = 18,
 
-        EoF
+        EoF = 255
     }
 
     public class GroupScriptToken
