@@ -100,6 +100,13 @@ namespace FarmMaster.Controllers
             group.Description = model.Description;
             this._groups.Update(group);
 
+            model.Animals = group.Animals.Select(a => new AnimalGroupAnimalInfoViewModel
+            {
+                Id      = a.AnimalId,
+                Name    = a.Animal.Name,
+                ImageId = a.Animal.ImageId
+            });
+
             return View("CreateEdit", model);
         }
         #endregion
