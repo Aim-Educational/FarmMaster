@@ -190,6 +190,7 @@ namespace Business.Model
         #region Data seeding
         private void SeedRolePermissions(ModelBuilder b)
         {
+            // (InternalName, Description)
             var roles = new[]
             {
                 (Perms.ASSIGN_ROLES,            "Assign Roles"),
@@ -244,14 +245,25 @@ namespace Business.Model
 
         private void SeedHoldingRegistrations(ModelBuilder b)
         {
+            // (InternalName, Description)
+            var list = new[] 
+            {
+                (BusinessConstants.HoldingRegistrations.COW,            "Cows"),
+                (BusinessConstants.HoldingRegistrations.FISH,           "Fish"),
+                (BusinessConstants.HoldingRegistrations.PIG,            "Pigs"),
+                (BusinessConstants.HoldingRegistrations.POULTRY,        "Poultry"),
+                (BusinessConstants.HoldingRegistrations.SHEEP_AND_GOAT, "Sheep and Goats")
+            };
+
+            var index = 1;
             b.Entity<EnumHoldingRegistration>()
-             .HasData(
-                new EnumHoldingRegistration { EnumHoldingRegistrationId = 1, InternalName = BusinessConstants.HoldingRegistrations.COW,              Description = "Cows" },
-                new EnumHoldingRegistration { EnumHoldingRegistrationId = 2, InternalName = BusinessConstants.HoldingRegistrations.FISH,             Description = "Fish" },
-                new EnumHoldingRegistration { EnumHoldingRegistrationId = 3, InternalName = BusinessConstants.HoldingRegistrations.PIG,              Description = "Pigs" },
-                new EnumHoldingRegistration { EnumHoldingRegistrationId = 4, InternalName = BusinessConstants.HoldingRegistrations.POULTRY,          Description = "Poultry" },
-                new EnumHoldingRegistration { EnumHoldingRegistrationId = 5, InternalName = BusinessConstants.HoldingRegistrations.SHEEP_AND_GOAT,   Description = "Sheep and Goats" }
-            );
+             .HasData(list.Select(tuple => new EnumHoldingRegistration
+                      {
+                        EnumHoldingRegistrationId = index++,
+                        Description               = tuple.Item2,
+                        InternalName              = tuple.Item1
+                      })
+             );
         }
 
         private void SeedSpecies(ModelBuilder b)
