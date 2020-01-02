@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FarmMaster", "FarmMaster\Fa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Business", "Business\Business.csproj", "{0EE1822C-9E55-44C3-A762-77B7AA525A32}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroupScript", "GroupScript\GroupScript.csproj", "{D73FAA09-4352-46CD-A721-ED6146F99416}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroupScriptTests", "GroupScriptTests\GroupScriptTests.csproj", "{61392761-804C-4336-807B-E6C5847A9FB9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{0EE1822C-9E55-44C3-A762-77B7AA525A32}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0EE1822C-9E55-44C3-A762-77B7AA525A32}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0EE1822C-9E55-44C3-A762-77B7AA525A32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D73FAA09-4352-46CD-A721-ED6146F99416}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D73FAA09-4352-46CD-A721-ED6146F99416}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D73FAA09-4352-46CD-A721-ED6146F99416}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D73FAA09-4352-46CD-A721-ED6146F99416}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61392761-804C-4336-807B-E6C5847A9FB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61392761-804C-4336-807B-E6C5847A9FB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61392761-804C-4336-807B-E6C5847A9FB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61392761-804C-4336-807B-E6C5847A9FB9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
