@@ -41,6 +41,17 @@ namespace GroupScript
         public int Column { get; set; }
         public string Text { get; set; }
         public GroupScriptTokenType Type { get; set; }
+
+        public void EnforceTokenTypeIsAnyOf(params GroupScriptTokenType[] types)
+        {
+            if(!types.Any(t => t == this.Type))
+            {    
+                throw new Exception(
+                    $"Unexpected token of type '{this.Type}' at line {this.Line} column {this.Column}.\n" +
+                    $"Expected any of: {types}"
+                );
+            }
+        }
     }
 
     public class GroupScriptParser : IEnumerable<GroupScriptToken>
