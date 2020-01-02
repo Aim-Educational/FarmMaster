@@ -276,39 +276,58 @@ namespace Business.Model
 
         private void SeedLifeEvents(ModelBuilder b)
         {
-            b.Entity<LifeEvent>()
-             .HasData(
-                new LifeEvent
-                { 
-                    LifeEventId = 1,
-                    Name        = BusinessConstants.BuiltinLifeEvents.BORN,
-                    Target      = LifeEvent.TargetType.Animal,
-                    Description = "The animal was born.", 
-                    Flags       = LifeEvent.TargetFlags.IsBuiltin | LifeEvent.TargetFlags.IsUnique
-                },
+            const LifeEvent.TargetFlags builtinUnique    = LifeEvent.TargetFlags.IsBuiltin   | LifeEvent.TargetFlags.IsUnique;
+            const LifeEvent.TargetFlags builtinUniqueEoS = LifeEvent.TargetFlags.EndOfSystem | builtinUnique;
 
-                new LifeEvent
+            // I can't tell if this made things better or worse...
+            // (Name, Flags, Description, (Name, Type, Description)[])
+            var animalEvents = new[] 
+            {
+                (
+                    BusinessConstants.BuiltinLifeEvents.BORN, builtinUnique, "The animal was born.",
+                    new[]
+                    { 
+                        (BusinessConstants.BuiltinLifeEventFields.BORN_DATE, DynamicField.Type.DateTime, "When the animal was born") 
+                    }
+                ),
+
+                (
+                    BusinessConstants.BuiltinLifeEvents.ARCHIVED, builtinUniqueEoS, "The animal was archived by a user.",
+                    null
+                )
+            };
+
+            // The user can make their own events and fields, so we want
+            // our builtin stuff to use ridiculously high valued numbers
+            // so we don't overwrite the user's stuff.
+            var indexEvent = int.MaxValue / 2;
+            var indexField = int.MaxValue / 2;
+
+            foreach(var tuple in animalEvents)
+            {
+                b.Entity<LifeEvent>().HasData(new LifeEvent
                 {
-                    LifeEventId = 1000,
-                    Name        = BusinessConstants.BuiltinLifeEvents.ARCHIVED,
-                    Target      = LifeEvent.TargetType.Animal,
-                    Description = "The animal was archived by a user.",
-                    Flags       = LifeEvent.TargetFlags.IsBuiltin | LifeEvent.TargetFlags.EndOfSystem | LifeEvent.TargetFlags.IsUnique
+                    LifeEventId = indexEvent++,
+                    Name        = tuple.Item1,
+                    Flags       = tuple.Item2,
+                    Description = tuple.Item3
+                });
+
+                if(tuple.Item4 == null)
+                    continue;
+
+                foreach(var fieldTuple in tuple.Item4)
+                {
+                    b.Entity<LifeEventDynamicFieldInfo>().HasData(new LifeEventDynamicFieldInfo
+                    {
+                        LifeEventDynamicFieldInfoId = indexField++,
+                        LifeEventId                 = indexEvent - 1,
+                        Name                        = fieldTuple.Item1,
+                        Type                        = fieldTuple.Item2,
+                        Description                 = fieldTuple.Item3
+                    });
                 }
-            );
-            
-            b.Entity<LifeEventDynamicFieldInfo>()
-             .HasData(
-                #region BORN
-                new LifeEventDynamicFieldInfo
-                {
-                    LifeEventDynamicFieldInfoId = 1,
-                    LifeEventId                 = 1,
-                    Name                        = BusinessConstants.BuiltinLifeEventFields.BORN_DATE,
-                    Type                        = DynamicField.Type.DateTime,
-                    Description                 = "When the animal was born." }
-                #endregion
-            );
+            }
         }
         #endregion
     }
@@ -325,7 +344,7 @@ namespace Business.Model
                 return new FarmMasterContext(json["ConnectionStrings"].Value<string>("Migrate"));
             }
 
-            Console.Write($"Could not find {Path.GetFullPath(APPSETTINGS)} so please enter connection string manually.");
+            Console.WriteLine($"Could not find: '{Path.GetFullPath(APPSETTINGS)}'");
             Console.Write("Please enter a connection string for migration: ");
             return new FarmMasterContext(Console.ReadLine());
         }
