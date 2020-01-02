@@ -308,6 +308,7 @@ namespace Business.Model
                 b.Entity<LifeEvent>().HasData(new LifeEvent
                 {
                     LifeEventId = indexEvent++,
+                    Target      = LifeEvent.TargetType.Animal,
                     Name        = tuple.Item1,
                     Flags       = tuple.Item2,
                     Description = tuple.Item3
