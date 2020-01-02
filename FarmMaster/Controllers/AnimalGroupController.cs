@@ -57,8 +57,9 @@ namespace FarmMaster.Controllers
                 Name        = group.Name,
                 Animals     = group.Animals.Select(a => new AnimalGroupAnimalInfoViewModel
                 {
-                    Id = a.AnimalId,
-                    Name = a.Animal.Name
+                    Id       = a.AnimalId,
+                    Name     = a.Animal.Name,
+                    ImageId  = a.Animal.ImageId
                 })
             });
         }

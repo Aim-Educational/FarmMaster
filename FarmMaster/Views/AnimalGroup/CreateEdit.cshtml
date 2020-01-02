@@ -53,15 +53,28 @@
             <h4>Animals in this group</h4>
             <div class="content">
                 <div class="ui visible info message">
-                    Animals can be individually assigned to a group by going to their individual pages.
+                    Animals can be assigned to a group by going to their individual pages.
                 </div>
-
-                TODO
+                <div class="three animal card grid">
+                    @foreach (var animal in Model.Animals)
+                    {
+                        <div class="animal card">
+                            <a href="/Animal/Edit/@animal.Id" target="_blank">
+                                <div class="ui card">
+                                    <div class="image">
+                                        <img src="/Image/Get?imageId=@animal.ImageId&width=664&height=700" />
+                                    </div>
+                                    <div class="content">
+                                        <div class="header">
+                                            @animal.Name
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    }
+                </div>
             </div>
-        </section>
-
-        <section>
-
         </section>
     }
 </section>

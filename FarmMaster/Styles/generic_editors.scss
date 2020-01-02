@@ -134,6 +134,30 @@
                     background-color: hsl(0, 0%, 91%);
                 }
             }
+
+            div.animal.card {
+                &.three.grid {
+                    display: flex;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+
+                    div.animal.card {
+                        display: flex;
+                        width: 33.33333%;
+                        justify-content: center;
+                        padding-bottom: 1em;
+
+                        @media screen and (max-width: 1480px) {
+                            width: 50%;
+                        }
+
+                        @media screen and (max-width: 620px) {
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+
             // SPECIFIC STYLING FOR CERTAIN EDITOR PAGES
             div.holding {
                 &.registration {

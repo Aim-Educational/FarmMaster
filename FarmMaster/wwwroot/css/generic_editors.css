@@ -91,6 +91,21 @@
         background-color: #f0f0f0; }
         .editor.section > section div.content.light.striped:nth-of-type(even), .editor.section > section div.content > div.sub.content.light.striped:nth-of-type(even), .editor.section > form > section div.content.light.striped:nth-of-type(even), .editor.section > form > section div.content > div.sub.content.light.striped:nth-of-type(even) {
           background-color: #e8e8e8; }
+      .editor.section > section div.content div.animal.card.three.grid, .editor.section > section div.content > div.sub.content div.animal.card.three.grid, .editor.section > form > section div.content div.animal.card.three.grid, .editor.section > form > section div.content > div.sub.content div.animal.card.three.grid {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap; }
+        .editor.section > section div.content div.animal.card.three.grid div.animal.card, .editor.section > section div.content > div.sub.content div.animal.card.three.grid div.animal.card, .editor.section > form > section div.content div.animal.card.three.grid div.animal.card, .editor.section > form > section div.content > div.sub.content div.animal.card.three.grid div.animal.card {
+          display: flex;
+          width: 33.33333%;
+          justify-content: center;
+          padding-bottom: 1em; }
+          @media screen and (max-width: 1480px) {
+            .editor.section > section div.content div.animal.card.three.grid div.animal.card, .editor.section > section div.content > div.sub.content div.animal.card.three.grid div.animal.card, .editor.section > form > section div.content div.animal.card.three.grid div.animal.card, .editor.section > form > section div.content > div.sub.content div.animal.card.three.grid div.animal.card {
+              width: 50%; } }
+          @media screen and (max-width: 620px) {
+            .editor.section > section div.content div.animal.card.three.grid div.animal.card, .editor.section > section div.content > div.sub.content div.animal.card.three.grid div.animal.card, .editor.section > form > section div.content div.animal.card.three.grid div.animal.card, .editor.section > form > section div.content > div.sub.content div.animal.card.three.grid div.animal.card {
+              width: 100%; } }
       .editor.section > section div.content div.holding.registration, .editor.section > section div.content > div.sub.content div.holding.registration, .editor.section > form > section div.content div.holding.registration, .editor.section > form > section div.content > div.sub.content div.holding.registration {
         display: inline-flex;
         width: 100%; }
