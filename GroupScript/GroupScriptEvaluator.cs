@@ -55,10 +55,17 @@ namespace GroupScript
         
         public string Name { get; private set; }
 
-        public GroupScriptEvaluator(Stream byteStream)
+        private void CommonCtor(Stream byteStream)
         {
             this._paramInfo = new List<ParamDeclaration>();
-            this.FromBytecode(new BinaryReader(byteStream));
+
+            using (var reader = new BinaryReader(byteStream, System.Text.Encoding.ASCII, true))
+                this.FromBytecode(reader);
+        }
+
+        public GroupScriptEvaluator(Stream byteStream)
+        {
+            this.CommonCtor(byteStream);
         }
 
         public GroupScriptEvaluator(string code)
@@ -71,8 +78,7 @@ namespace GroupScript
                 compiler.Compile(ast, stream);
                 stream.Position = 0;
 
-                this._paramInfo = new List<ParamDeclaration>();
-                this.FromBytecode(new BinaryReader(stream));
+                this.CommonCtor(stream);
             }
         }
 
