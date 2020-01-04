@@ -14,7 +14,7 @@ namespace GroupScript
             BEFORE
         }
 
-        class ParamDeclaration
+        public class ParamDeclaration // Could technically use GroupScriptParamDeclarationNode instead, but their data might eventually differ... maybe.
         {
             public string Name { get; set; }
             public GroupScriptParamType Type { get; set; }
@@ -50,6 +50,8 @@ namespace GroupScript
 
         private BlockAction             _mainAction;
         private IList<ParamDeclaration> _paramInfo;
+
+        public IEnumerable<ParamDeclaration> ParameterDeclarations => this._paramInfo;
         
         public string Name { get; private set; }
 
