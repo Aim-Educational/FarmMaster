@@ -30,7 +30,8 @@ namespace GroupScript
     {
         ParameterReference = 0,
         Date = 1,
-        Int32 = 2
+        Int32 = 2,
+        Species = 3 // Implemented as an Int32, typed differently for introspection purposes.
     }
 
     /**
@@ -141,16 +142,19 @@ namespace GroupScript
             this._output.WriteBigEndian((ushort)this._ast.Parameters.Count);
             foreach(var param in this._ast.Parameters)
             {
-                GroupScriptParamType paramType;
+                GroupScriptParamType type;
+
+                // Note, this switch goes over the TOKEN TYPE, not the eventual DATA TYPE.
                 switch(param.DataType)
                 {
                     case GroupScriptTokenType.Keyword_Species:
-                        paramType = GroupScriptParamType.Int32; // This is correct, don't worry.
+                        type = GroupScriptParamType.Species;
                         break;
 
-                    default: throw new Exception($"Don't know how to handle parameter data type {param.DataType}");
+                    default: throw new NotImplementedException($"No handler for TOKEN type as a parameter: {param.DataType}");
                 }
-                this._output.Write((byte)paramType);
+
+                this._output.Write((byte)type);
                 this._output.WriteUShortString(param.Name);
             }
         }
@@ -200,7 +204,7 @@ namespace GroupScript
                     break;
 
                 case GroupScriptTokenType.Keyword_Species:
-                    this._output.Write((byte)GroupScriptParamType.Int32);
+                    this._output.Write((byte)GroupScriptParamType.Species);
                     this._output.WriteBigEndian(Convert.ToInt32(param.Value));
                     break;
 

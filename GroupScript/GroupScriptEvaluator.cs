@@ -146,7 +146,7 @@ namespace GroupScript
         #region Helpers
         int GetParamInt32(ParamValue value, IDictionary<string, object> paramValues)
         {
-            if (value.Type == GroupScriptParamType.Int32)
+            if (value.Type == GroupScriptParamType.Int32 || value.Type == GroupScriptParamType.Species)
                 return (int)value.Value;
             else if (value.Type == GroupScriptParamType.ParameterReference)
                 return (int)paramValues[(string)value.Value];
@@ -216,6 +216,7 @@ namespace GroupScript
                     value = code.ReadUShortString();
                     break;
 
+                case GroupScriptParamType.Species:
                 case GroupScriptParamType.Int32:
                     value = code.ReadBigEndianInt32();
                     break;
@@ -272,7 +273,7 @@ namespace GroupScript
                     {
                         AnimalFilter = this.FilterFuncSPECIES_IS,
                         Opcode = opcode,
-                        Params = new[] { this.ReadParamValueFromBytecode(code, opcode, GroupScriptParamType.Int32) }
+                        Params = new[] { this.ReadParamValueFromBytecode(code, opcode, GroupScriptParamType.Species) }
                     };
 
                 default: throw new NotImplementedException($"No handler for opcode: {opcode}");
