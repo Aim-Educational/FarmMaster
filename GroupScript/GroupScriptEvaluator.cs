@@ -82,6 +82,12 @@ namespace GroupScript
             }
         }
 
+        public GroupScriptEvaluator(byte[] bytes)
+        {
+            using(var stream = new MemoryStream(bytes))
+                this.CommonCtor(stream);
+        }
+
         public bool MatchesFilter(Animal animal, IDictionary<string, object> paramValues)
         {
             foreach(var paramInfo in this._paramInfo)
