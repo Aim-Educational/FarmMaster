@@ -1,8 +1,10 @@
 ﻿using Business.Model;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Text;
 
 namespace GroupScript 
 {
@@ -97,6 +99,25 @@ namespace GroupScript
             }
 
             return this._mainAction.AnimalFilter(this._mainAction, animal, paramValues);
+        }
+
+        public string DecompileToString()
+        {
+            var output = new StringBuilder(256);
+
+            output.Append($"NAME {this.Name}\n\n");
+
+            var indent = new string(' ', 4);
+            output.Append("PARAMS\n");
+            foreach(var param in this.ParameterDeclarations)
+                this.DecompileParamDeclaration(param, output, indent);
+            output.Append("END\n\n");
+
+            output.Append("ROUTINE\n");
+            this.DecompileAction(this._mainAction, output, indent);
+            output.Append("END");
+
+            return output.ToString();
         }
 
         #region Filter funcs
@@ -292,6 +313,79 @@ namespace GroupScript
 
                 default: throw new NotImplementedException($"No handler for opcode: {opcode}");
             }
+        }
+        #endregion
+
+        #region Decompile
+        void DecompileParamDeclaration(ParamDeclaration declaration, StringBuilder output, string indent)
+        {
+            output.Append(indent);
+            output.Append($"{declaration.Type.ToString().ToUpper()} {declaration.Name}\n");
+        }
+
+        void DecompileAction(ScriptAction action, StringBuilder output, string indent)
+        {
+            if(action is BlockAction blockAction)
+            {
+                var subActionIndent = indent + new string(' ', 4);
+
+                output.Append(indent);
+                output.Append(blockAction.Opcode.ToString() + "\n");
+
+                output.Append(indent);
+                output.Append("{\n");
+
+                foreach(var subAction in blockAction.Actions)
+                    this.DecompileAction(subAction, output, subActionIndent);
+
+                output.Append(indent);
+                output.Append("}\n");
+            }
+            else if(action is SingleAction singleAction)
+            {
+                output.Append(indent);
+                output.Append(singleAction.Opcode.ToString().Split('_').Aggregate((s1, s2) => s1 + " " + s2));
+                
+                foreach(var param in singleAction.Params)
+                {
+                    output.Append(" ");
+
+                    switch(param.Type)
+                    {
+                        case GroupScriptParamType.ParameterReference:
+                            output.Append("PARAM");
+                            break;
+
+                        default:
+                            output.Append(param.Type.ToString().ToUpper()); 
+                            break;
+                    }
+
+                    output.Append(":");
+
+                    switch(param.Type)
+                    {
+                        case GroupScriptParamType.Int32:
+                        case GroupScriptParamType.Species:
+                            output.Append(Convert.ToString((int)param.Value));
+                            break;
+
+                        case GroupScriptParamType.Date:
+                            output.Append(((DateTimeOffset)param.Value).ToString("dd/MM/yyyy", CultureInfo.InvariantCulture));
+                            break;
+
+                        case GroupScriptParamType.ParameterReference:
+                            output.Append((string)param.Value);
+                            break;
+
+                        default: throw new Exception($"ParamType not handled: {param.Type}");
+                    }
+                }
+
+                output.Append(";\n");
+            }
+            else
+                throw new Exception("Bug");
         }
         #endregion
     }
