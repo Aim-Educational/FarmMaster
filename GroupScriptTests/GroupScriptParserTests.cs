@@ -88,7 +88,9 @@ namespace GroupScript.Tests
                 Assert.IsTrue(
                     gotToken.Line == expectedToken.Line
                  && gotToken.Text == expectedToken.Text
-                 && gotToken.Type == expectedToken.Type
+                 && gotToken.Type == expectedToken.Type,
+                    $"Got(L:{gotToken.Line} C:{gotToken.Column} Ty:{gotToken.Type} Te:{gotToken.Text}) vs " +
+                    $"Expected(L:{expectedToken.Line} C:{expectedToken.Column} Ty:{expectedToken.Type} Te:{expectedToken.Text})"
                 );
             }
         }
