@@ -21,7 +21,9 @@ namespace GroupScript
         AND = 1,
         BORN_AFTER = 2,
         BORN_BEFORE = 3,
-        SPECIES_IS = 4
+        SPECIES_IS = 4,
+
+        INVALID_OPCODE // Keep last
     }
 
     public enum GroupScriptParamType : byte
@@ -62,7 +64,7 @@ namespace GroupScript
      *  This will either be a reference to one of the script's parameters (DATA_TYPE of 0), or
      *  an inline literal value (any other DATA_TYPE). It depends what the user put into the script.
      *  
-     *  [byte(TokenType)             DATA_TYPE]
+     *  [byte(ParamType)             DATA_TYPE]
      *  [{IF PARAM REFERENCE} string PARAM_NAME]
      *  [{OTHERWISE} Depends on the param value's DATA_TYPE]
      * 
@@ -106,13 +108,10 @@ namespace GroupScript
                 throw new Exception("The stream must support writing.");
 
             this.ResetState(ast, outputStream);
-            using(this._output)
-            {
-                this.WriteHeader();
-                this.WriteParameters();
-                this.WriteAction(this._ast.RoutineHeadNode);
-                this.FinishHeader();
-            }
+            this.WriteHeader();
+            this.WriteParameters();
+            this.WriteAction(this._ast.RoutineHeadNode);
+            this.FinishHeader();
         }
 
         private void WriteHeader()
@@ -211,8 +210,9 @@ namespace GroupScript
         }
     }
 
-    internal static class BinaryWriterExtention
+    internal static class BinaryWriterReaderExtention
     {
+        #region Write
         public static void WriteUShortString(this BinaryWriter output, string value)
         {
             if(value.Length > ushort.MaxValue)
@@ -276,5 +276,50 @@ namespace GroupScript
         {
             output.WriteBigEndian((ulong)date.Ticks);
         }
+        #endregion
+
+        #region Read
+        public static string ReadUShortString(this BinaryReader input)
+        {
+            var length = input.ReadBigEndianUInt16();
+            return Encoding.ASCII.GetString(input.ReadBytes(length));
+        }
+
+        public static ushort ReadBigEndianUInt16(this BinaryReader input)
+        {
+            var value = BitConverter.ToUInt16(input.ReadBytes(2));
+            if (!BitConverter.IsLittleEndian)
+                return value;
+
+            return BinaryPrimitives.ReverseEndianness(value);
+        }
+
+        public static uint ReadBigEndianUInt32(this BinaryReader input)
+        {
+            var value = BitConverter.ToUInt32(input.ReadBytes(4));
+            if (!BitConverter.IsLittleEndian)
+                return value;
+
+            return BinaryPrimitives.ReverseEndianness(value);
+        }
+
+        public static int ReadBigEndianInt32(this BinaryReader input)
+        {
+            var value = BitConverter.ToInt32(input.ReadBytes(4));
+            if (!BitConverter.IsLittleEndian)
+                return value;
+
+            return BinaryPrimitives.ReverseEndianness(value);
+        }
+
+        public static ulong ReadBigEndianUInt64(this BinaryReader input)
+        {
+            var value = BitConverter.ToUInt64(input.ReadBytes(8));
+            if (!BitConverter.IsLittleEndian)
+                return value;
+
+            return BinaryPrimitives.ReverseEndianness(value);
+        }
+        #endregion
     }
 }
