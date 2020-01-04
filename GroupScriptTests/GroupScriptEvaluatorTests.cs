@@ -61,10 +61,14 @@ namespace GroupScript.Tests
 
             Assert.AreEqual("Born2019BySpecies", evaluator.Name);
 
-            var animalShouldMatch = animals[0];
-            Assert.IsTrue(evaluator.MatchesFilter(animalShouldMatch, new Dictionary<string, object>
+            var animal = animals[0];
+            Assert.IsTrue(evaluator.MatchesFilter(animal, new Dictionary<string, object>
             {
                 { "species", 1 }
+            }));
+            Assert.IsFalse(evaluator.MatchesFilter(animal, new Dictionary<string, object>
+            {
+                { "species", 2 }
             }));
         }
     }
