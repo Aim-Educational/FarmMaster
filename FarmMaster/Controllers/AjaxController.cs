@@ -161,6 +161,42 @@ namespace FarmMaster.Controllers
         }
         #endregion
 
+        #region AnimalGroup.Script
+        [HttpPost]
+        [FarmAjaxReturnsMessageAndValue(BusinessConstants.Permissions.EDIT_ANIMAL_GROUPS)]
+        public IActionResult AnimalGroup_ById_Script_ExecuteSingleUse_AsNameId(
+            [FromBody] AjaxByIdWithLargeValueRequest model,
+            User _,
+            [FromServices] IServiceAnimalManager animals,
+            [FromServices] IServiceAnimalGroupManager groups,
+            [FromServices] IServiceAnimalGroupScriptManager scripts
+        )
+        {
+            var group = groups.Query()
+                              .FirstOrDefault(g => g.AnimalGroupId == model.Id);
+            if(group == null)
+                throw new IndexOutOfRangeException($"No group with ID #{model.Id}");
+
+            var animalList = animals.Query()
+                                    .Include(a => a.LifeEventEntries)
+                                     .ThenInclude(m => m.LifeEventEntry)
+                                      .ThenInclude(l => l.LifeEvent)
+                                    .Include(a => a.LifeEventEntries)
+                                     .ThenInclude(m => m.LifeEventEntry)
+                                      .ThenInclude(l => l.Values)
+                                       .ThenInclude(v => v.LifeEventDynamicFieldInfo)
+                                    .Where(a => !a.Groups.Any(g => g.AnimalGroupId == group.AnimalGroupId))
+                                    .ToList();
+            var query = scripts.ExecuteSingleUseScript(animalList.AsQueryable(), model.Value);
+
+            return new AjaxValueResult(query.Select(a => new 
+            {
+                name = a.Name,
+                id = a.AnimalId
+            }));
+        }
+        #endregion
+
         #region Account
         [HttpPost]
         [FarmAjaxReturnsMessage]

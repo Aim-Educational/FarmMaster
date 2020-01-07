@@ -48,6 +48,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Business\Business.csproj" />
+    <ProjectReference Include="..\GroupScript\GroupScript.csproj" />
   </ItemGroup>
 
 

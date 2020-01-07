@@ -94,7 +94,7 @@ namespace GroupScript
         {
             foreach(var paramInfo in this._paramInfo)
             {
-                if(!paramValues.ContainsKey(paramInfo.Name))
+                if(paramValues == null || !paramValues.ContainsKey(paramInfo.Name))
                     throw new InvalidOperationException($"Parameter '{paramInfo.Name}' of type {paramInfo.Type} was not provided.");
             }
 
