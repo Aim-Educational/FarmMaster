@@ -167,7 +167,6 @@ namespace FarmMaster.Controllers
         public IActionResult AnimalGroup_ById_Script_ExecuteSingleUse_AsNameId(
             [FromBody] AjaxByIdWithLargeValueRequest model,
             User _,
-            [FromServices] IServiceAnimalManager animals,
             [FromServices] IServiceAnimalGroupManager groups,
             [FromServices] IServiceAnimalGroupScriptManager scripts
         )
