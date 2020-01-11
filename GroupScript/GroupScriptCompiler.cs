@@ -3,327 +3,112 @@ using System.Buffers.Binary;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace GroupScript
 {
-    public enum GroupScriptVersion : ushort
+    public static class GroupScriptCompiler
     {
-        v1 = 1,
+        private const string COMMAND_DELIM = "~";
 
-        Latest = v1
-    }
-
-    public enum GroupScriptOpcode : byte
-    {
-        Nonce = 0, // Just like me!
-
-        AND = 1,
-        BORN_AFTER = 2,
-        BORN_BEFORE = 3,
-        SPECIES_IS = 4,
-
-        INVALID_OPCODE // Keep last
-    }
-
-    public enum GroupScriptParamType : byte
-    {
-        ParameterReference = 0,
-        Date = 1,
-        Int32 = 2,
-        Species = 3 // Implemented as an Int32, typed differently for introspection purposes.
-    }
-
-    /**
-     * All arrays (including strings) are prefixed
-     * by a ushort for length.
-     * 
-     * Unless specified otherwise, the length describes elements,
-     * not bytes.
-     * 
-     * The notation "byte(Opcode)" denotes that a byte is used to
-     * represent an enum value for the "Opcode" enum.
-     * 
-     * All numbers are stored in big endian.
-     * 
-     * Format (Version 1):
-     *  [ushort      VERSION]
-     *  [uint(bytes) LENGTH_EXCLUDING_HEADER]
-     *  [string      NAME]
-     *  [ParamInfo[] PARAMETERS]
-     *  [Action      MAIN_ACTION]
-     * 
-     * ParamInfo:
-     *  [byte(ParamType) DATA_TYPE]
-     *  [string          NAME]
-     * 
-     * Action:
-     *  [byte(Opcode) OPCODE]
-     *  [Depends on the action]
-     * 
-     * ParamValue:
-     *  This will either be a reference to one of the script's parameters (DATA_TYPE of 0), or
-     *  an inline literal value (any other DATA_TYPE). It depends what the user put into the script.
-     *  
-     *  [byte(ParamType)             DATA_TYPE]
-     *  [{IF PARAM REFERENCE} string PARAM_NAME]
-     *  [{OTHERWISE} Depends on the param value's DATA_TYPE]
-     * 
-     * ParamValue(int):
-     *  Certain parameter types (like SPECIES) are implicitly an int, the extra typing
-     *  is just for the interface generation (whenever I get to that ;^) )
-     *
-     *  [int VALUE]
-     * 
-     * ParamValue(Date):
-     *  TODO
-     * 
-     * Action(AND):
-     *  [Action[] ACTIONS]
-     *  
-     * Action(BORN AFTER) and Action(BORN BEFORE):
-     *  [ParamValue(Date) DATE]
-     *  
-     * Action(SPECIES IS):
-     *  [ParamValue(int) SPECIES_ID]
-     * **/
-    public class GroupScriptCompiler
-    {
-        private long                _lengthBytesIndex;
-        private BinaryWriter        _output;
-        private GroupScriptNodeTree _ast;
-
-        private void ResetState(GroupScriptNodeTree ast, Stream outputStream)
+        public static string CompileToStoredProcedureCode(GroupScriptNodeTree ast, IDictionary<string, object> parameters)
         {
-            this._lengthBytesIndex = 0;
-            this._output           = new BinaryWriter(outputStream);
-            this._ast              = ast;
+            GroupScriptCompiler.EnforceAllParametersAreValid(ast.Parameters, parameters);
+            
+            var output = new StringBuilder(128);
+
+            if(ast.RoutineHeadNode != null)
+                GroupScriptCompiler.CompileNode(ast.RoutineHeadNode, output, parameters);
+
+            return output.ToString();
         }
 
-        public void Compile(GroupScriptNodeTree ast, Stream outputStream)
+        private static void CompileNode(GroupScriptRoutineActionNode action, StringBuilder output, IDictionary<string, object> parameters)
         {
-            if(!outputStream.CanSeek)
-                throw new Exception("The stream must support seeking.");
-
-            if(!outputStream.CanWrite)
-                throw new Exception("The stream must support writing.");
-
-            this.ResetState(ast, outputStream);
-            this.WriteHeader();
-            this.WriteParameters();
-            this.WriteAction(this._ast.RoutineHeadNode);
-            this.FinishHeader();
-        }
-
-        private void WriteHeader()
-        {
-            this._output.WriteBigEndian((ushort)GroupScriptVersion.Latest);
-
-            this._lengthBytesIndex = this._output.BaseStream.Position;
-            this._output.Write((int)0); // Placeholder
-
-            this._output.WriteUShortString(this._ast.ScriptName);
-        }
-
-        private void FinishHeader()
-        {
-            var finalIndex = this._output.BaseStream.Position;
-            var count      = (finalIndex - this._lengthBytesIndex);
-
-            if(count < 0)
-                throw new Exception("???");
-
-            this._output.BaseStream.Position = this._lengthBytesIndex;
-            this._output.WriteBigEndian((uint)count);
-        }
-
-        private void WriteParameters()
-        {
-            this._output.WriteBigEndian((ushort)this._ast.Parameters.Count);
-            foreach(var param in this._ast.Parameters)
+            // Pfft, "performance"?
+            if(action is GroupScriptAndActionNode andAction)
             {
-                GroupScriptParamType type;
+                output.Append("AND");
+                output.Append(COMMAND_DELIM);
 
-                // Note, this switch goes over the TOKEN TYPE, not the eventual DATA TYPE.
+                foreach(var subAction in andAction.Actions)
+                    GroupScriptCompiler.CompileNode(subAction, output, parameters);
+
+                output.Append("END");
+                output.Append(COMMAND_DELIM);
+            }
+            else if(action is GroupScriptBornAfterActionNode bornAfterNode)
+            {
+                output.Append("BORN_AFTER ");
+                output.Append(GroupScriptCompiler.GetDate(bornAfterNode.Date, parameters).ToString("o"));
+                output.Append(COMMAND_DELIM);
+            }
+            else if(action is GroupScriptBornBeforeActionNode bornBeforeNode)
+            {
+                output.Append("BORN_BEFORE ");
+                output.Append(GroupScriptCompiler.GetDate(bornBeforeNode.Date, parameters).ToString("o"));
+                output.Append(COMMAND_DELIM);
+            }
+            else if(action is GroupScriptSpeciesIsActionNode speciesIsNode)
+            {
+                output.Append("SPECIES_IS ");
+                output.Append(GroupScriptCompiler.GetInt(speciesIsNode.SpeciesId, parameters));
+                output.Append(COMMAND_DELIM);
+            }
+            else
+                throw new NotImplementedException($"Action node {action.GetType()} doesn't have a handler yet.");
+        }
+
+        private static int GetInt(GroupScriptParameterValueNode param, IDictionary<string, object> parameters)
+        {
+            if (param.DataType == GroupScriptTokenType.Keyword_Species)
+                return Convert.ToInt32(param.Value);
+            else if (param.DataType == GroupScriptTokenType.Keyword_Param)
+                return (int)parameters[param.Value];
+            else
+                throw new NotSupportedException($"Expected a SPECIES, INT, or PARAM value, not a {param.DataType}.");
+        }
+
+        private static DateTimeOffset GetDate(GroupScriptParameterValueNode param, IDictionary<string, object> parameters)
+        {
+            if(param.DataType == GroupScriptTokenType.Keyword_Date)
+                return DateTimeOffset.ParseExact(param.Value, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+            else if(param.DataType == GroupScriptTokenType.Keyword_Param)
+                return (DateTimeOffset)parameters[param.Value];
+            else
+                throw new NotSupportedException($"Expected a DATE or PARAM value, not a {param.DataType}.");
+        }
+
+        private static void EnforceAllParametersAreValid(
+            IList<GroupScriptParameterDeclarationNode> ExpectedParameters,
+            IDictionary<string, object>                GotParameters
+        )
+        {
+            foreach(var param in ExpectedParameters)
+            {
+                if(!GotParameters.ContainsKey(param.Name))
+                    throw new KeyNotFoundException($"No value for parameter '{param.Name}' was passed.");
+
+                var paramValueType = GotParameters[param.Name]?.GetType();
+                if(paramValueType == null)
+                    throw new NullReferenceException($"Value for parameter '{param.Name}' is null.");
+
                 switch(param.DataType)
                 {
                     case GroupScriptTokenType.Keyword_Species:
-                        type = GroupScriptParamType.Species;
+                        if (paramValueType != typeof(int))
+                            throw new Exception($"For SPECIES parameter '{param.Name}' expected value of type int not {paramValueType}");
                         break;
 
-                    default: throw new NotImplementedException($"No handler for TOKEN type as a parameter: {param.DataType}");
+                    case GroupScriptTokenType.Keyword_Date:
+                        if (paramValueType != typeof(DateTimeOffset))
+                            throw new Exception($"For DATE parameter '{param.Name}' expected value of type DateTimeOffset not {paramValueType}");
+                        break;
+
+                    default: throw new NotSupportedException($"{param.DataType}");
                 }
-
-                this._output.Write((byte)type);
-                this._output.WriteUShortString(param.Name);
             }
         }
-
-        private void WriteAction(GroupScriptRoutineActionNode action)
-        {
-            // pfft, who needs performance where we're going
-            if(action is GroupScriptAndActionNode andAction)
-            {
-                this._output.Write((byte)GroupScriptOpcode.AND);
-                this._output.WriteBigEndian((ushort)andAction.Actions.Count);
-
-                foreach(var subAction in andAction.Actions)
-                    this.WriteAction(subAction);
-            }
-            else if(action is GroupScriptBornAfterActionNode bornAfter)
-            {
-                this._output.Write((byte)GroupScriptOpcode.BORN_AFTER);
-                this.WriteParamValue(bornAfter.Date);
-            }
-            else if(action is GroupScriptBornBeforeActionNode bornBefore)
-            {
-                this._output.Write((byte)GroupScriptOpcode.BORN_BEFORE);
-                this.WriteParamValue(bornBefore.Date);
-            }
-            else if(action is GroupScriptSpeciesIsActionNode speciesIs)
-            {
-                this._output.Write((byte)GroupScriptOpcode.SPECIES_IS);
-                this.WriteParamValue(speciesIs.SpeciesId);
-            }
-            else
-                throw new NotImplementedException($"Don't know how to handle {action.GetType()}");
-        }
-
-        private void WriteParamValue(GroupScriptParameterValueNode param)
-        {
-            switch(param.DataType)
-            {
-                case GroupScriptTokenType.Keyword_Param:
-                    this._output.Write((byte)GroupScriptParamType.ParameterReference);
-                    this._output.WriteUShortString(param.Value);
-                    break;
-
-                case GroupScriptTokenType.Keyword_Date:
-                    this._output.Write((byte)GroupScriptParamType.Date);
-                    this._output.WriteDate(param.Value);
-                    break;
-
-                case GroupScriptTokenType.Keyword_Species:
-                    this._output.Write((byte)GroupScriptParamType.Species);
-                    this._output.WriteBigEndian(Convert.ToInt32(param.Value));
-                    break;
-
-                default:
-                    throw new Exception($"Internal error: Don't know how to handle param type {param.DataType}");
-            }
-        }
-    }
-
-    internal static class BinaryWriterReaderExtention
-    {
-        #region Write
-        public static void WriteUShortString(this BinaryWriter output, string value)
-        {
-            if(value.Length > ushort.MaxValue)
-                throw new Exception("String is longer than a ushort.");
-
-            output.WriteBigEndian((ushort)value.Length);
-            output.Write(Encoding.ASCII.GetBytes(value));
-        }
-
-        // Don't ask... Just... don't...
-        public static void WriteBigEndian(this BinaryWriter output, ushort value)
-        {
-            if (!BitConverter.IsLittleEndian)
-            {
-                output.Write(value);
-                return;
-            }
-
-            output.Write(BinaryPrimitives.ReverseEndianness(value));
-        }
-
-        public static void WriteBigEndian(this BinaryWriter output, int value)
-        {
-            if (!BitConverter.IsLittleEndian)
-            {
-                output.Write(value);
-                return;
-            }
-
-            output.Write(BinaryPrimitives.ReverseEndianness(value));
-        }
-
-        public static void WriteBigEndian(this BinaryWriter output, uint value)
-        {
-            if (!BitConverter.IsLittleEndian)
-            {
-                output.Write(value);
-                return;
-            }
-
-            output.Write(BinaryPrimitives.ReverseEndianness(value));
-        }
-
-        public static void WriteBigEndian(this BinaryWriter output, ulong value)
-        {
-            if (!BitConverter.IsLittleEndian)
-            {
-                output.Write(value);
-                return;
-            }
-
-            output.Write(BinaryPrimitives.ReverseEndianness(value));
-        }
-
-        public static void WriteDate(this BinaryWriter output, string dateString)
-        {
-            output.WriteDate(DateTimeOffset.ParseExact(dateString, "d/M/yyyy", CultureInfo.InvariantCulture));
-        }
-
-        public static void WriteDate(this BinaryWriter output, DateTimeOffset date)
-        {
-            output.WriteBigEndian((ulong)date.Ticks);
-        }
-        #endregion
-
-        #region Read
-        public static string ReadUShortString(this BinaryReader input)
-        {
-            var length = input.ReadBigEndianUInt16();
-            return Encoding.ASCII.GetString(input.ReadBytes(length));
-        }
-
-        public static ushort ReadBigEndianUInt16(this BinaryReader input)
-        {
-            var value = BitConverter.ToUInt16(input.ReadBytes(2));
-            if (!BitConverter.IsLittleEndian)
-                return value;
-
-            return BinaryPrimitives.ReverseEndianness(value);
-        }
-
-        public static uint ReadBigEndianUInt32(this BinaryReader input)
-        {
-            var value = BitConverter.ToUInt32(input.ReadBytes(4));
-            if (!BitConverter.IsLittleEndian)
-                return value;
-
-            return BinaryPrimitives.ReverseEndianness(value);
-        }
-
-        public static int ReadBigEndianInt32(this BinaryReader input)
-        {
-            var value = BitConverter.ToInt32(input.ReadBytes(4));
-            if (!BitConverter.IsLittleEndian)
-                return value;
-
-            return BinaryPrimitives.ReverseEndianness(value);
-        }
-
-        public static ulong ReadBigEndianUInt64(this BinaryReader input)
-        {
-            var value = BitConverter.ToUInt64(input.ReadBytes(8));
-            if (!BitConverter.IsLittleEndian)
-                return value;
-
-            return BinaryPrimitives.ReverseEndianness(value);
-        }
-        #endregion
     }
 }

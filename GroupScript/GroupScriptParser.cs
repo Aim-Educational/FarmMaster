@@ -49,7 +49,7 @@ namespace GroupScript
             {    
                 throw new Exception(
                     $"Unexpected token of type '{this.Type}' at line {this.Line} column {this.Column}.\n" +
-                    $"Expected any of: {types}"
+                    $"Expected any of: {types.Select(t => Convert.ToString(t))}"
                 );
             }
         }

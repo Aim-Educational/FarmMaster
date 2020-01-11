@@ -22,8 +22,8 @@ namespace Business.Model
         /// <summary>
         /// Don't say I didn't warn you.
         /// </summary>
-        [MaxLength(MAX_BYTECODE_LENGTH)]
-        public byte[] Bytecode { get; set; }
+        [StringLength(MAX_BYTECODE_LENGTH)]
+        public string Code { get; set; }
 
         [Timestamp]
         public byte[] Timestamp { get; set; }

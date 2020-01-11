@@ -25,20 +25,13 @@ namespace FarmMaster.Services
 
         public AnimalGroupScript CompileAndCreate(string code)
         {
-            var parser   = new GroupScriptParser(code);
-            var compiler = new GroupScriptCompiler();
-            var ast      = new GroupScriptNodeTree(parser);
-            byte[] bytes;
-            using(var stream = new MemoryStream())
-            {
-                compiler.Compile(ast, stream);
-                bytes = stream.ToArray();
-            }
+            var parser = new GroupScriptParser(code);
+            var ast    = new GroupScriptNodeTree(parser);
 
             var script = new AnimalGroupScript()
             {
-                Bytecode = bytes,
-                Name     = ast.ScriptName
+                Code = code,
+                Name = ast.ScriptName
             };
 
             this._context.Add(script);
@@ -49,8 +42,7 @@ namespace FarmMaster.Services
 
         public IQueryable<Animal> ExecuteSingleUseScript(IQueryable<Animal> query, string code)
         {
-            var evaluator = new GroupScriptEvaluator(code);
-            return query.Where(a => evaluator.MatchesFilter(a, null));
+            throw new NotImplementedException("TODO");
         }
 
         public int GetIdFor(AnimalGroupScript entity)

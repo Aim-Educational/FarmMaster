@@ -50,7 +50,8 @@ namespace GroupScript
             {
                 tokens.Current.EnforceTokenTypeIsAnyOf(
                     GroupScriptTokenType.Keyword_End,
-                    GroupScriptTokenType.Keyword_Species
+                    GroupScriptTokenType.Keyword_Species,
+                    GroupScriptTokenType.Keyword_Date
                 );
 
                 if(tokens.Current.Type == GroupScriptTokenType.Keyword_End)
