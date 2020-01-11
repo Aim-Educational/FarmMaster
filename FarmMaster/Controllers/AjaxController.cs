@@ -177,22 +177,11 @@ namespace FarmMaster.Controllers
             if(group == null)
                 throw new IndexOutOfRangeException($"No group with ID #{model.Id}");
 
-            var animalList = animals.Query()
-                                    .Include(a => a.LifeEventEntries)
-                                     .ThenInclude(m => m.LifeEventEntry)
-                                      .ThenInclude(l => l.LifeEvent)
-                                    .Include(a => a.LifeEventEntries)
-                                     .ThenInclude(m => m.LifeEventEntry)
-                                      .ThenInclude(l => l.Values)
-                                       .ThenInclude(v => v.LifeEventDynamicFieldInfo)
-                                    .Where(a => !a.Groups.Any(g => g.AnimalGroupId == group.AnimalGroupId))
-                                    .ToList();
-            var query = scripts.ExecuteSingleUseScript(animalList.AsQueryable(), model.Value);
-
+            var query = scripts.ExecuteSingleUseScript(model.Value);
             return new AjaxValueResult(query.Select(a => new 
             {
                 name = a.Name,
-                id = a.AnimalId
+                id   = a.AnimalId
             }));
         }
         #endregion

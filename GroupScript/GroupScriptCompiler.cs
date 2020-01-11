@@ -85,6 +85,14 @@ namespace GroupScript
             IDictionary<string, object>                GotParameters
         )
         {
+            if(GotParameters == null)
+            {
+                if(ExpectedParameters.Count > 0)
+                    throw new Exception($"Expected {ExpectedParameters.Count} parameters, but was given null instead.");
+
+                return;
+            }
+
             foreach(var param in ExpectedParameters)
             {
                 if(!GotParameters.ContainsKey(param.Name))

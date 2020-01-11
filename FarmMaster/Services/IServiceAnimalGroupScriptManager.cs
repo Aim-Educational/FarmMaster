@@ -1,5 +1,6 @@
 ﻿using Business.Model;
 using GroupScript;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,7 +12,7 @@ namespace FarmMaster.Services
     public interface IServiceAnimalGroupScriptManager : IServiceEntityManager<AnimalGroupScript>
     {
         AnimalGroupScript CompileAndCreate(string code);
-        IQueryable<Animal> ExecuteSingleUseScript(IQueryable<Animal> query, string code);
+        IQueryable<Animal> ExecuteSingleUseScript(string code, IDictionary<string, object> parameters = null);
     }
 
     public class ServiceAnimalGroupScriptManager : IServiceAnimalGroupScriptManager
@@ -40,9 +41,13 @@ namespace FarmMaster.Services
             return script;
         }
 
-        public IQueryable<Animal> ExecuteSingleUseScript(IQueryable<Animal> query, string code)
+        public IQueryable<Animal> ExecuteSingleUseScript(string code, IDictionary<string, object> parameters = null)
         {
-            throw new NotImplementedException("TODO");
+            var parser      = new GroupScriptParser(code);
+            var ast         = new GroupScriptNodeTree(parser);
+            var serverCode  = GroupScriptCompiler.CompileToStoredProcedureCode(ast, parameters);
+
+            return this._context.Animals.FromSql($"SELECT * FROM SP_AnimalGroupScriptFilter({serverCode})");
         }
 
         public int GetIdFor(AnimalGroupScript entity)
