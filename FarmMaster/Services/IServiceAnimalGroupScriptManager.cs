@@ -47,6 +47,7 @@ namespace FarmMaster.Services
             var ast         = new GroupScriptNodeTree(parser);
             var serverCode  = GroupScriptCompiler.CompileToStoredProcedureCode(ast, parameters);
 
+            // This is a bit yuck, but something like this was *always* going to be messy in some way.
             return this._context.Animals.FromSql($"SELECT * FROM SP_AnimalGroupScriptFilter({serverCode})");
         }
 

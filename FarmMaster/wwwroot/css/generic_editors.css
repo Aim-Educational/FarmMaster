@@ -164,3 +164,28 @@
     width: 33.33333%; }
   .editor.section th.editor.action {
     width: 0px; }
+
+section.tabbed {
+  display: flex;
+  flex-direction: column; }
+  section.tabbed div.tabs {
+    display: flex;
+    flex-direction: row; }
+    section.tabbed div.tabs div.tab {
+      display: flex;
+      flex-direction: column;
+      width: 25%;
+      padding: 0.5em 0.5em 0.5em 0.5em;
+      background-color: #e0e0e0; }
+      section.tabbed div.tabs div.tab.active {
+        background-color: #cccccc; }
+  section.tabbed div.tab.container {
+    display: flex;
+    flex-direction: column;
+    padding: 1em 1em 1em 1em;
+    background-color: #f2f2f2; }
+    section.tabbed div.tab.container.hidden {
+      display: none; }
+
+textarea.code {
+  font-family: Consolas; }

@@ -48,8 +48,8 @@ namespace GroupScript
             if(!types.Any(t => t == this.Type))
             {    
                 throw new Exception(
-                    $"Unexpected token of type '{this.Type}' at line {this.Line} column {this.Column}.\n" +
-                    $"Expected any of: {types.Select(t => Convert.ToString(t))}"
+                    $"Unexpected token of type '{this.Type}' value '{this.Text}' at line {this.Line} column {this.Column}.\n" +
+                    $"Expected any of: {{{types.Select(t => Convert.ToString(t)).Aggregate((s1, s2) => $"{s1}, {s2}")}}}"
                 );
             }
         }

@@ -1,0 +1,118 @@
+﻿@model int
+@*AnimalGroup Id*@
+
+<section class="tabbed">
+    <div class="tabs">
+        <div class="tab active">
+            <!--Id "buttonCode" is more likely to clash than "_gs_buttonCode", "_gs_" being "_groupScript_"-->
+            <button id="_gs_buttonCode" class="ui button">Code</button>
+        </div>
+        <div class="tab">
+            <button id="_gs_buttonResults" class="ui button">Results</button>
+        </div>
+        <div class="tab">
+            A
+        </div>
+        <div class="tab">
+            A
+        </div>
+    </div>
+    <div id="tabGroupScriptCode" class="tab container">
+        <textarea id="codeGroupScript" class="code" rows="10"></textarea>
+        <div id="errorGroupScript" class="ui error message transition hidden"></div>
+        <div class="top padded items"></div>
+        <button id="buttonExecuteGroupScript" class="ui primary button">Execute</button>
+    </div>
+    <div id="tabGroupScriptResults" class="tab container hidden">
+        <div class="animal card three grid">
+
+        </div>
+    </div>
+</section>
+
+<!--Tab controls-->
+<script type="module">
+    function swapToContainer(containerId) {
+        const container = document.getElementById(containerId);
+        for (const otherContainer of container.parentNode.querySelectorAll("div.tab.container"))
+            otherContainer.classList.add("hidden");
+
+        container.classList.remove("hidden");
+
+        const button = document.getElementById(container.dataset.button);
+        for (const otherButton of button.parentNode.parentNode.querySelectorAll("div.tab.active"))
+            otherButton.classList.remove("active");
+
+        button.parentNode.classList.add("active");
+    }
+    window._gs_swapToContainer = swapToContainer;
+
+    function setupTabButton(buttonId, containerId) {
+        const button = document.getElementById(buttonId);
+        const container = document.getElementById(containerId);
+        container.dataset.button = buttonId;
+
+        button.addEventListener("click", () => {
+            swapToContainer(containerId);
+        });
+    }
+
+    setupTabButton("_gs_buttonCode", "tabGroupScriptCode");
+    setupTabButton("_gs_buttonResults", "tabGroupScriptResults");
+</script>
+
+<!--Execution-->
+<script type="module">
+    import { FarmAjax, FarmAjaxMessageType } from "/js/index.js";
+
+    document.getElementById("buttonExecuteGroupScript").onclick = () => {
+        document.getElementById("errorGroupScript").classList.remove("visible");
+
+        FarmAjax.postWithMessageAndValueResponse(
+            "/Ajax/AnimalGroup_ById_Script_ExecuteSingleUse_AsNameIdImageId",
+            {
+                id: @Model,
+                value: document.getElementById("codeGroupScript").value
+            },
+            rv => {
+                if (rv.messageType !== FarmAjaxMessageType.Information) {
+                    rv.populateMessageBox(document.getElementById("errorGroupScript"));
+                    return;
+                }
+
+                const animalGrid = document.getElementById("tabGroupScriptResults").querySelector("div.animal.card.three.grid");
+                for (const idNameImageId of rv.value) {
+                    const animalCard = animalGrid.appendChild(document.createElement("div"));
+                    animalCard.classList.add("animal", "card");
+                    {
+                        const a = animalCard.appendChild(document.createElement("a"));
+                        a.href = "/Animal/Edit/" + idNameImageId.id;
+                        a.target = "_blank";
+                        {
+                            const uiCard = a.appendChild(document.createElement("div"));
+                            uiCard.classList.add("ui", "card");
+                            {
+                                const image = uiCard.appendChild(document.createElement("div"));
+                                image.classList.add("image");
+                                {
+                                    const img = image.appendChild(document.createElement("img"));
+                                    img.src = "/Image/Get?imageId=" + idNameImageId.imageId + "&width=664&height=700";
+                                }
+
+                                const content = uiCard.appendChild(document.createElement("div"));
+                                content.classList.add("content");
+                                {
+                                    const header = content.appendChild(document.createElement("div"));
+                                    header.classList.add("header");
+                                    header.innerText = idNameImageId.name;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                _gs_swapToContainer("tabGroupScriptResults");
+            }
+        );
+    }
+</script>

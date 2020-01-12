@@ -266,3 +266,40 @@
         width: 0px; // Use only the needed amount of space that the button takes up.
     }
 }
+
+section.tabbed {
+    display: flex;
+    flex-direction: column;
+
+    div.tabs {
+        display: flex;
+        flex-direction: row;
+
+        div.tab {
+            display: flex;
+            flex-direction: column;
+            width: 25%;
+            padding: 0.5em 0.5em 0.5em 0.5em;
+            background-color: hsl(0, 0, 88%);
+
+            &.active {
+                background-color: hsl(0, 0, 80%);
+            }
+        }
+    }
+
+    div.tab.container {
+        display: flex;
+        flex-direction: column;
+        padding: 1em 1em 1em 1em;
+        background-color: hsl(0, 0, 95%);
+
+        &.hidden {
+            display: none;
+        }
+    }
+}
+
+textarea.code {
+    font-family: Consolas;
+}

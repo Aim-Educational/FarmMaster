@@ -79,38 +79,8 @@
         <section>
             <h4>Assignment script</h4>
             <div class="content">
-                <div class="ui visible error message">
-                    Does not do anything yet, just here so I can show Andy :p
-                </div>
-                <textarea id="scriptCode"></textarea>
-                <button id="buttonRunScript" >Run</button>
-                <div id="errorScript" class="ui error message"></div>
-                <ul id="resultList"></ul>
+                <partial name="_AnimalGroupScriptExecution" model="@Model.GroupId" />
             </div>
         </section>
     }
 </section>
-
-@section Scripts {
-    <script type="module">
-        import { FarmAjax, FarmAjaxMessageType } from "/js/index.js";
-
-        document.getElementById("buttonRunScript").onclick = () => {
-            FarmAjax.postWithMessageAndValueResponse(
-                "/Ajax/AnimalGroup_ById_Script_ExecuteSingleUse_AsNameId",
-                {
-                    id: @Model.GroupId,
-                    value: document.getElementById("scriptCode").value
-                },
-                rv => {
-                    if (rv.messageType !== FarmAjaxMessageType.Information) {
-                        rv.populateMessageBox(document.getElementById("errorScript"));
-                        return;
-                    }
-
-                    alert(JSON.stringify(rv.value));
-                }
-            );
-        }
-    </script>
-}

@@ -164,7 +164,7 @@ namespace FarmMaster.Controllers
         #region AnimalGroup.Script
         [HttpPost]
         [FarmAjaxReturnsMessageAndValue(BusinessConstants.Permissions.EDIT_ANIMAL_GROUPS)]
-        public IActionResult AnimalGroup_ById_Script_ExecuteSingleUse_AsNameId(
+        public IActionResult AnimalGroup_ById_Script_ExecuteSingleUse_AsNameIdImageId(
             [FromBody] AjaxByIdWithLargeValueRequest model,
             User _,
             [FromServices] IServiceAnimalGroupManager groups,
@@ -179,8 +179,9 @@ namespace FarmMaster.Controllers
             var query = scripts.ExecuteSingleUseScript(model.Value);
             return new AjaxValueResult(query.Select(a => new 
             {
-                name = a.Name,
-                id   = a.AnimalId
+                name    = a.Name,
+                id      = a.AnimalId,
+                imageId = a.ImageId
             }));
         }
         #endregion
