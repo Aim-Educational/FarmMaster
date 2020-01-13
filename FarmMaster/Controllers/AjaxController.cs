@@ -171,20 +171,51 @@ namespace FarmMaster.Controllers
             [FromServices] IServiceAnimalGroupScriptManager scripts
         )
         {
-            var group = groups.Query()
-                              .FirstOrDefault(g => g.AnimalGroupId == model.Id);
-            if(group == null)
-                throw new IndexOutOfRangeException($"No group with ID #{model.Id}");
-
-            var query = scripts.ExecuteSingleUseScript(model.Value)
-                               .Include(a => a.Groups)
-                               .Where(a => !a.Groups.Any(g => g.AnimalGroupId == model.Id));
-            return new AjaxValueResult(query.Select(a => new 
+            var query = this.ExecuteSingleGetQuery(groups, scripts, model.Id ?? -1, model.Value, out AnimalGroup _);
+            return new AjaxValueResult(query.Select(a => new
             {
-                name    = a.Name,
-                id      = a.AnimalId,
+                name = a.Name,
+                id = a.AnimalId,
                 imageId = a.ImageId
             }));
+        }
+
+        [HttpPost]
+        [FarmAjaxReturnsMessage(BusinessConstants.Permissions.EDIT_ANIMAL_GROUPS)]
+        public IActionResult AnimalGroup_ById_Script_ExecuteSingleUse_AddAll(
+            [FromBody] AjaxByIdWithLargeValueRequest model,
+            User _,
+            [FromServices] IServiceAnimalGroupManager groups,
+            [FromServices] IServiceAnimalGroupScriptManager scripts
+        )
+        {
+            var query = this.ExecuteSingleGetQuery(groups, scripts, model.Id ?? -1, model.Value, out AnimalGroup group);
+            foreach(var animal in query)
+                groups.AssignAnimal(group, animal); // TODO: Either add a bulk overload of this function, or add a SaveChanges parameter
+                                                    //       'cus right now this is really inefficient for large groups of animals.
+
+            return new EmptyResult();
+        }
+
+        private IQueryable<Animal> ExecuteSingleGetQuery(
+            IServiceAnimalGroupManager groups,
+            IServiceAnimalGroupScriptManager scripts,
+            int animalGroupId, 
+            string code,
+            out AnimalGroup group
+        )
+        {
+            group = groups.Query()
+                          .Include(g => g.Animals)
+                          .FirstOrDefault(g => g.AnimalGroupId == animalGroupId);
+            if (group == null)
+                throw new IndexOutOfRangeException($"No group with ID #{animalGroupId}");
+
+            var query = scripts.ExecuteSingleUseScript(code)
+                               .Include(a => a.Groups)
+                               .Where(a => !a.Groups.Any(g => g.AnimalGroupId == animalGroupId));
+
+            return query;
         }
         #endregion
 
