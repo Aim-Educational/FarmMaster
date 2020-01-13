@@ -81,6 +81,7 @@
                 }
 
                 const animalGrid = document.getElementById("tabGroupScriptResults").querySelector("div.animal.card.three.grid");
+                animalGrid.innerHTML = "";
                 for (const idNameImageId of rv.value) {
                     const animalCard = animalGrid.appendChild(document.createElement("div"));
                     animalCard.classList.add("animal", "card");
