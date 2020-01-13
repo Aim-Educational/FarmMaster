@@ -176,7 +176,9 @@ namespace FarmMaster.Controllers
             if(group == null)
                 throw new IndexOutOfRangeException($"No group with ID #{model.Id}");
 
-            var query = scripts.ExecuteSingleUseScript(model.Value);
+            var query = scripts.ExecuteSingleUseScript(model.Value)
+                               .Include(a => a.Groups)
+                               .Where(a => !a.Groups.Any(g => g.AnimalGroupId == model.Id));
             return new AjaxValueResult(query.Select(a => new 
             {
                 name    = a.Name,
