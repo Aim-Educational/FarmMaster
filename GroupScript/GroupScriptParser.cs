@@ -77,9 +77,6 @@ namespace GroupScript
 
     internal class ParserImpl : IEnumerator<GroupScriptToken>
     {
-        #region Enums
-        #endregion
-
         private int _line;
         private int _column;
         private int _index;
