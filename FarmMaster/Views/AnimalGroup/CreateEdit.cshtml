@@ -55,7 +55,7 @@
                 <div class="ui visible info message">
                     Animals can be assigned to a group by going to their individual pages.
                 </div>
-                <div class="three animal card grid">
+                <div id="gridAnimals" class="three animal card grid">
                     @foreach (var animal in Model.Animals)
                     {
                         <div class="animal card">
@@ -79,7 +79,11 @@
         <section>
             <h4>Assignment script</h4>
             <div class="content">
-                <partial name="_AnimalGroupScriptExecution" model="@Model.GroupId" />
+                <partial name="_AnimalGroupScriptExecution" model="@(new AnimalGroupScriptExecutionViewModel
+                {
+                    AnimalGridId = "gridAnimals",
+                    GroupId      = Model.GroupId
+                })"/>
             </div>
         </section>
     }
