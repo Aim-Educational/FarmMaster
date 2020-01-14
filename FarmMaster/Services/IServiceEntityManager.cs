@@ -39,7 +39,7 @@ namespace FarmMaster.Services
         // For managers that manage multiple entity types, there's a specific issue of not being able to choose,
         // which entity to use the functions for easily, so this identity function is just an easy way to access,
         // the functions for a specific entity type.
-        public static IServiceEntityManager<T> For<T>(this IServiceEntityManager<T> data) where T: class
+        public static IServiceEntityManager<T> For<T>(this IServiceEntityManager<T> data) where T : class
         {
             return data;
         }
