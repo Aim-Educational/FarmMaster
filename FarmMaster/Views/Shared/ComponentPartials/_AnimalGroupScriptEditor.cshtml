@@ -2,7 +2,7 @@
 
 <!--Common functions between modes-->
 <script type="module">
-    // Tabbing function.
+    // Tabbing function. Used to swap tabs programatically.
     function swapToContainer(containerId) {
         const container = document.getElementById(containerId);
         for (const otherContainer of container.parentNode.querySelectorAll("div.tab.container"))
@@ -18,7 +18,7 @@
     }
     window._gs_swapToContainer = swapToContainer;
 
-    // Tabbing function.
+    // Tabbing function. Used to pair a tab button to a container.
     function setupTabButton(buttonId, containerId) {
         const button = document.getElementById(buttonId);
         const container = document.getElementById(containerId);
@@ -30,7 +30,7 @@
     }
     window._gs_setupTabButton = setupTabButton;
 
-    // Results function.
+    // Results function. Adds an animal card to the given animal grid (.animal.card.three.grid)
     function addAnimalCard(animalGrid, idNameImageId) {
         const animalCard = animalGrid.appendChild(document.createElement("div"));
         animalCard.classList.add("animal", "card");
@@ -81,12 +81,13 @@
 <script type="module">
     import { GraphQL } from "/js/index.js";
 
+    // Enum of the different data types a parameter can be.
     window._gs_ParamType = {
         SPECIES: 0
     };
 
-    window._gs_cache = {};
-    window._gs_paramAggregators = [];
+    window._gs_cache = {};              // Cache data, so we don't have to perform multiple requests.
+    window._gs_paramAggregators = [];   // Functions that aggregate all the parameter data for a request.
 
     // aka. The value string from the script selects.
     window._gs_parseParamValueString = function (valueString) {
