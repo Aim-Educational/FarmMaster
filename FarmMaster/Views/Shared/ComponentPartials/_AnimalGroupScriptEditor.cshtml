@@ -2,6 +2,7 @@
 
 <!--Common between modes-->
 <script type="module">
+    // Tabbing function.
     function swapToContainer(containerId) {
         const container = document.getElementById(containerId);
         for (const otherContainer of container.parentNode.querySelectorAll("div.tab.container"))
@@ -17,7 +18,7 @@
     }
     window._gs_swapToContainer = swapToContainer;
 
-    
+    // Tabbing function.
     function setupTabButton(buttonId, containerId) {
         const button = document.getElementById(buttonId);
         const container = document.getElementById(containerId);
@@ -29,6 +30,7 @@
     }
     window._gs_setupTabeButton = setupTabButton;
 
+    // Results function.
     function addAnimalCard(animalGrid, idNameImageId) {
         const animalCard = animalGrid.appendChild(document.createElement("div"));
         animalCard.classList.add("animal", "card");
@@ -163,6 +165,60 @@
                     const newAnimalGrid = document.getElementById("@singleUseModel.AnimalGridId");
                     while (animalGrid.childNodes.length > 0)
                         newAnimalGrid.appendChild(animalGrid.childNodes.item(0));
+                }
+            );
+        });
+    </script>
+}
+else if(Model is AnimalGroupScriptEditorCreateEditViewModel createEditModel)
+{
+    <section class="tabbed">
+        <div class="tabs">
+            <div class="tab active">
+                <button id="buttonGroupScriptCode" class="ui button">Code</button>
+            </div>
+            <div class="tab">
+            </div>
+            <div class="tab">
+            </div>
+            <div class="tab">
+            </div>
+        </div>
+        <div id="tabGroupScriptCode" class="tab container">
+            <div class="ui warning message">
+                NOTE: A more user-friendly interface will come a bit later on.
+            </div>
+            <textarea id="codeGroupScript" class="code" rows="10"></textarea>
+            <div id="errorGroupScript" class="ui error message transition hidden"></div>
+
+            <div class="top padded items"></div>
+            <button id="buttonGroupScriptCreate" class="ui primary button">Create</button>
+        </div>
+    </section>
+
+    <!--Tab controls-->
+    <script type="module">
+        _gs_setupTabButton("buttonGroupScriptCode", "tabGroupScriptCode");
+    </script>
+
+    <!--Create/Edit-->
+    <script type="module">
+        import { FarmAjax, FarmAjaxMessageType } from "/js/index.js";
+
+        function getCode() {
+            return document.getElementById("codeGroupScript").value;
+        }
+
+        const buttonCreate = document.getElementById("buttonGroupScriptCreate");
+        buttonCreate.addEventListener("click", () => {
+            FarmAjax.postWithMessageAndValueResponse(
+                "/Ajax/AnimalGroup_Script_CreateAndCompile_AsId",
+                {
+                    id: -1, // Dummy, unused, and too lazy to make yet another AJAX class.
+                    value: getCode()
+                },
+                rv => { // Returned ID isn't used yet.
+                    rv.populateMessageBox(document.getElementById("errorGroupScript"));
                 }
             );
         });

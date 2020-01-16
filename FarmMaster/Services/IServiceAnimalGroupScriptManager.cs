@@ -29,6 +29,9 @@ namespace FarmMaster.Services
             var parser = new GroupScriptParser(code);
             var ast    = new GroupScriptNodeTree(parser);
 
+            if(this._context.AnimalGroupScripts.Any(s => s.Name == ast.ScriptName))
+                throw new InvalidOperationException($"A script called '{ast.ScriptName}' already exists.");
+
             var script = new AnimalGroupScript()
             {
                 Code = code,

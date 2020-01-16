@@ -54,6 +54,7 @@ namespace Business.Model
             public const string DELETE_ANIMAL_GROUPS    = "delete_animal_groups";
 
             public const string USE_LIFE_EVENT_ENTRY    = "use_life_event_entry";
+            public const string USE_GROUP_SCRIPTS       = "use_group_script";
         }
 
         public static class BuiltinLifeEvents

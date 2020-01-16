@@ -14,4 +14,9 @@ namespace FarmMaster.Models
         public int GroupId { get; set; }
         public string AnimalGridId { get; set; }
     }
+
+    public class AnimalGroupScriptEditorCreateEditViewModel : AnimalGroupScriptEditorViewModel
+    {
+
+    }
 }

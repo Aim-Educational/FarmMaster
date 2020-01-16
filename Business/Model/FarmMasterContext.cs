@@ -233,7 +233,9 @@ namespace Business.Model
                 (Perms.CREATE_ANIMAL_GROUPS,    "Create Animal Groups"),
                 (Perms.DELETE_ANIMAL_GROUPS,    "Delete Animal Groups"),
                 (Perms.EDIT_ANIMAL_GROUPS,      "Edit Animal Groups"),
-                (Perms.VIEW_ANIMAL_GROUPS,      "View Animal Groups")
+                (Perms.VIEW_ANIMAL_GROUPS,      "View Animal Groups"),
+
+                (Perms.USE_GROUP_SCRIPTS,       "Use (create/edit) Group Scripts")
             };
 
             // Try to keep things in the same order please, future me...
