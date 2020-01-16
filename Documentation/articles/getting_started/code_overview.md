@@ -33,11 +33,11 @@ that would look better if they deviate from the styling a little bit. Treat this
 ```csharp
 // Good
 if(true)
-    someSingleLineStatement(param1, param2)
+    SomeSingleLineStatement(param1, param2)
 
 // Bad
 if(true)
-    someMultiLineStatement(
+    SomeMultiLineStatement(
         param1,
         param2
     );
@@ -45,7 +45,7 @@ if(true)
 // Good
 if(true)
 {
-    someMultiLineStatement(
+    SomeMultiLineStatement(
         param1,
         param2
     );
