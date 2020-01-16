@@ -144,9 +144,9 @@ FarmMaster's CI is pretty simplistic.
 
 First of all, read up on what [CI/CD](https://docs.gitlab.com/ee/ci/) is if you're unaware of it. FarmMaster's CI file may [prove interesting](https://github.com/Aim-Educational/FarmMaster/blob/master/.gitlab-ci.yml) as a learning resource as well.
 
-As stated in the CI file, there are only two jobs currently: `test`, and `publish_and_package`.
+As stated in the CI file, there are currently two jobs: `test`, and `publish_and_package`.
 
-The `test` job is ran on every commit, and simply runs any unittests FarmMaster has (which definitely need to be improved...).
+The `test` job is ran on every commit, and simply runs any unittests FarmMaster has (which definitely needs to be improved...).
 
 The `publish_and_package` job is only ran everytime a git tag is created (e.g. `git tag v0.2.0-alpha`). This job will download the latest version
 of [AimCLI](https://github.com/Aim-Educational/AimCLITool) (which also makes use of CI/CD), perform the `dotnet publish` command which creates a production
@@ -159,4 +159,58 @@ After that, someone who has access to the server FarmMaster is hosted on (eventu
 to SSH into the server to trigger `AimCLI` to deploy the latest distribution.
 
 While this may all sound like over-kill, this actually streamlines the process to the point of little friction (and once I bother to
-automate the final half of the process, there will be no friction!)
+automate the final half of the process, there will be no friction - barring bugs!)
+
+## Project Files
+
+Different parts of FarmMaster are split into seperate projects (.csproj), yet are all under the same solution to allow ease-of-use.
+
+### Business
+
+This project contains the EF Core models, DbContext, and EF Core migrations. In other words - the core business objects of FarmMaster.
+
+It has little to non-existant business logic however, as that's handled in the `FarmMaster` project (arguably in error, but whatever at this point).
+
+One file of note is the [BusinessConstants](xref:Business.Model.BusinessConstants) file, which contains a bunch of constant data such as the internal
+names of permissions and life events. You'll likely be visting it a lot if you're messing with the aforementioned parts of FarmMaster.
+
+### GroupScript & GroupScriptTests
+
+This contains the parser, AST, and compiler for GroupScript.
+
+I couldn't really find a way to fit it into FarmMaster directly, so thought it'd be more suitable to make it its own project.
+
+There is also another project called `GroupScriptTests` that contains all of the unittests for the project.
+
+### FarmMaster
+
+The main project, this is where the majority of FarmMaster is implemented (using ASP Core, MVC, Razor, GraphQL, etc.).
+
+I'll go over the purpose of *every* folder for this project:
+
+* wwwroot - This is where any files that should be accessible to the web (or internal parts of FarmMaster) need to be placed.
+
+* BackgroundServices - This is where any background tasks for FarmMaster live, such as the service that pushes request metrics to the database.
+
+* Controllers - A standard folder in ASP's MVC scheme. This is where all of the controllers are stored.
+
+* Filters - This is where any custom filters (things like `[FarmAuthorise]`) live.
+
+* GraphQL - This is where everything to do with GraphQL lives.
+
+* Middleware - This is where any custom middleware, such as the authentication middleware, are contained.
+
+* Misc - Anything that needs to exist, but doesn't have any concrete folder to live in gets placed here.
+
+* Models - This is where any ViewModels (either for MVC, razor views, or AJAX requests) are placed. Each file tends to contain multiple classes, grouped under the same area of code/data (one file for Animal view models, another for User view models, etc.)
+
+* Scripts - Any custom, reusuable Javascript libraries FarmMaster creates are actually written in Typescript first, and this is where the Typescript files live.
+
+* Services - This is where any custom services (another ASP concept) live. It is mostly filled up of `IServiceXXXManager` services, which are
+services that implement the repository pattern as a way of accessing/modifying the database.
+
+* Styles - This is where all SASS files live. Files that are meant to be imported by other files should be prefixed with an underscore.
+
+* Views - This is where all of the views (M **V** C) are stored. Partial views are prefixed with an underscore. Each controller has their own sub-folder.
+
+That should be enough to get you started. As you get used to the codebase the organisation should hopefully make more sense.
