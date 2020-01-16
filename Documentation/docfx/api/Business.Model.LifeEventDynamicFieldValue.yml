@@ -1,0 +1,730 @@
+### YamlMime:ManagedReference
+items:
+- uid: Business.Model.LifeEventDynamicFieldValue
+  commentId: T:Business.Model.LifeEventDynamicFieldValue
+  id: LifeEventDynamicFieldValue
+  parent: Business.Model
+  children:
+  - Business.Model.LifeEventDynamicFieldValue.LifeEventDynamicFieldInfo
+  - Business.Model.LifeEventDynamicFieldValue.LifeEventDynamicFieldInfoId
+  - Business.Model.LifeEventDynamicFieldValue.LifeEventDynamicFieldValueId
+  - Business.Model.LifeEventDynamicFieldValue.LifeEventEntry
+  - Business.Model.LifeEventDynamicFieldValue.LifeEventEntryId
+  - Business.Model.LifeEventDynamicFieldValue.Timestamp
+  - Business.Model.LifeEventDynamicFieldValue.Value
+  langs:
+  - csharp
+  - vb
+  name: LifeEventDynamicFieldValue
+  nameWithType: LifeEventDynamicFieldValue
+  fullName: Business.Model.LifeEventDynamicFieldValue
+  type: Class
+  source:
+    remote:
+      path: Business/Model/LifeEventDynamicFieldValue.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: LifeEventDynamicFieldValue
+    path: ../Business/Model/LifeEventDynamicFieldValue.cs
+    startLine: 7
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: public class LifeEventDynamicFieldValue
+    content.vb: Public Class LifeEventDynamicFieldValue
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Business.Model.LifeEventDynamicFieldValue.LifeEventDynamicFieldValueId
+  commentId: P:Business.Model.LifeEventDynamicFieldValue.LifeEventDynamicFieldValueId
+  id: LifeEventDynamicFieldValueId
+  parent: Business.Model.LifeEventDynamicFieldValue
+  langs:
+  - csharp
+  - vb
+  name: LifeEventDynamicFieldValueId
+  nameWithType: LifeEventDynamicFieldValue.LifeEventDynamicFieldValueId
+  fullName: Business.Model.LifeEventDynamicFieldValue.LifeEventDynamicFieldValueId
+  type: Property
+  source:
+    remote:
+      path: Business/Model/LifeEventDynamicFieldValue.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: LifeEventDynamicFieldValueId
+    path: ../Business/Model/LifeEventDynamicFieldValue.cs
+    startLine: 9
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: >-
+      [Required]
+
+      public int LifeEventDynamicFieldValueId { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: >-
+      <Required>
+
+      Public Property LifeEventDynamicFieldValueId As Integer
+  overload: Business.Model.LifeEventDynamicFieldValue.LifeEventDynamicFieldValueId*
+  attributes:
+  - type: System.ComponentModel.DataAnnotations.RequiredAttribute
+    ctor: System.ComponentModel.DataAnnotations.RequiredAttribute.#ctor
+    arguments: []
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Business.Model.LifeEventDynamicFieldValue.Value
+  commentId: P:Business.Model.LifeEventDynamicFieldValue.Value
+  id: Value
+  parent: Business.Model.LifeEventDynamicFieldValue
+  langs:
+  - csharp
+  - vb
+  name: Value
+  nameWithType: LifeEventDynamicFieldValue.Value
+  fullName: Business.Model.LifeEventDynamicFieldValue.Value
+  type: Property
+  source:
+    remote:
+      path: Business/Model/LifeEventDynamicFieldValue.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: Value
+    path: ../Business/Model/LifeEventDynamicFieldValue.cs
+    startLine: 12
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: >-
+      [Required]
+
+      public DynamicField Value { get; set; }
+    parameters: []
+    return:
+      type: Business.Model.DynamicField
+    content.vb: >-
+      <Required>
+
+      Public Property Value As DynamicField
+  overload: Business.Model.LifeEventDynamicFieldValue.Value*
+  attributes:
+  - type: System.ComponentModel.DataAnnotations.RequiredAttribute
+    ctor: System.ComponentModel.DataAnnotations.RequiredAttribute.#ctor
+    arguments: []
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Business.Model.LifeEventDynamicFieldValue.LifeEventDynamicFieldInfoId
+  commentId: P:Business.Model.LifeEventDynamicFieldValue.LifeEventDynamicFieldInfoId
+  id: LifeEventDynamicFieldInfoId
+  parent: Business.Model.LifeEventDynamicFieldValue
+  langs:
+  - csharp
+  - vb
+  name: LifeEventDynamicFieldInfoId
+  nameWithType: LifeEventDynamicFieldValue.LifeEventDynamicFieldInfoId
+  fullName: Business.Model.LifeEventDynamicFieldValue.LifeEventDynamicFieldInfoId
+  type: Property
+  source:
+    remote:
+      path: Business/Model/LifeEventDynamicFieldValue.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: LifeEventDynamicFieldInfoId
+    path: ../Business/Model/LifeEventDynamicFieldValue.cs
+    startLine: 15
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: >-
+      [Required]
+
+      public int LifeEventDynamicFieldInfoId { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: >-
+      <Required>
+
+      Public Property LifeEventDynamicFieldInfoId As Integer
+  overload: Business.Model.LifeEventDynamicFieldValue.LifeEventDynamicFieldInfoId*
+  attributes:
+  - type: System.ComponentModel.DataAnnotations.RequiredAttribute
+    ctor: System.ComponentModel.DataAnnotations.RequiredAttribute.#ctor
+    arguments: []
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Business.Model.LifeEventDynamicFieldValue.LifeEventDynamicFieldInfo
+  commentId: P:Business.Model.LifeEventDynamicFieldValue.LifeEventDynamicFieldInfo
+  id: LifeEventDynamicFieldInfo
+  parent: Business.Model.LifeEventDynamicFieldValue
+  langs:
+  - csharp
+  - vb
+  name: LifeEventDynamicFieldInfo
+  nameWithType: LifeEventDynamicFieldValue.LifeEventDynamicFieldInfo
+  fullName: Business.Model.LifeEventDynamicFieldValue.LifeEventDynamicFieldInfo
+  type: Property
+  source:
+    remote:
+      path: Business/Model/LifeEventDynamicFieldValue.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: LifeEventDynamicFieldInfo
+    path: ../Business/Model/LifeEventDynamicFieldValue.cs
+    startLine: 17
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: public LifeEventDynamicFieldInfo LifeEventDynamicFieldInfo { get; set; }
+    parameters: []
+    return:
+      type: Business.Model.LifeEventDynamicFieldInfo
+    content.vb: Public Property LifeEventDynamicFieldInfo As LifeEventDynamicFieldInfo
+  overload: Business.Model.LifeEventDynamicFieldValue.LifeEventDynamicFieldInfo*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Business.Model.LifeEventDynamicFieldValue.LifeEventEntryId
+  commentId: P:Business.Model.LifeEventDynamicFieldValue.LifeEventEntryId
+  id: LifeEventEntryId
+  parent: Business.Model.LifeEventDynamicFieldValue
+  langs:
+  - csharp
+  - vb
+  name: LifeEventEntryId
+  nameWithType: LifeEventDynamicFieldValue.LifeEventEntryId
+  fullName: Business.Model.LifeEventDynamicFieldValue.LifeEventEntryId
+  type: Property
+  source:
+    remote:
+      path: Business/Model/LifeEventDynamicFieldValue.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: LifeEventEntryId
+    path: ../Business/Model/LifeEventDynamicFieldValue.cs
+    startLine: 19
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: >-
+      [Required]
+
+      public int LifeEventEntryId { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: >-
+      <Required>
+
+      Public Property LifeEventEntryId As Integer
+  overload: Business.Model.LifeEventDynamicFieldValue.LifeEventEntryId*
+  attributes:
+  - type: System.ComponentModel.DataAnnotations.RequiredAttribute
+    ctor: System.ComponentModel.DataAnnotations.RequiredAttribute.#ctor
+    arguments: []
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Business.Model.LifeEventDynamicFieldValue.LifeEventEntry
+  commentId: P:Business.Model.LifeEventDynamicFieldValue.LifeEventEntry
+  id: LifeEventEntry
+  parent: Business.Model.LifeEventDynamicFieldValue
+  langs:
+  - csharp
+  - vb
+  name: LifeEventEntry
+  nameWithType: LifeEventDynamicFieldValue.LifeEventEntry
+  fullName: Business.Model.LifeEventDynamicFieldValue.LifeEventEntry
+  type: Property
+  source:
+    remote:
+      path: Business/Model/LifeEventDynamicFieldValue.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: LifeEventEntry
+    path: ../Business/Model/LifeEventDynamicFieldValue.cs
+    startLine: 21
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: public LifeEventEntry LifeEventEntry { get; set; }
+    parameters: []
+    return:
+      type: Business.Model.LifeEventEntry
+    content.vb: Public Property LifeEventEntry As LifeEventEntry
+  overload: Business.Model.LifeEventDynamicFieldValue.LifeEventEntry*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Business.Model.LifeEventDynamicFieldValue.Timestamp
+  commentId: P:Business.Model.LifeEventDynamicFieldValue.Timestamp
+  id: Timestamp
+  parent: Business.Model.LifeEventDynamicFieldValue
+  langs:
+  - csharp
+  - vb
+  name: Timestamp
+  nameWithType: LifeEventDynamicFieldValue.Timestamp
+  fullName: Business.Model.LifeEventDynamicFieldValue.Timestamp
+  type: Property
+  source:
+    remote:
+      path: Business/Model/LifeEventDynamicFieldValue.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: Timestamp
+    path: ../Business/Model/LifeEventDynamicFieldValue.cs
+    startLine: 23
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: >-
+      [Timestamp]
+
+      public byte[] Timestamp { get; set; }
+    parameters: []
+    return:
+      type: System.Byte[]
+    content.vb: >-
+      <Timestamp>
+
+      Public Property Timestamp As Byte()
+  overload: Business.Model.LifeEventDynamicFieldValue.Timestamp*
+  attributes:
+  - type: System.ComponentModel.DataAnnotations.TimestampAttribute
+    ctor: System.ComponentModel.DataAnnotations.TimestampAttribute.#ctor
+    arguments: []
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+references:
+- uid: Business.Model
+  commentId: N:Business.Model
+  name: Business.Model
+  nameWithType: Business.Model
+  fullName: Business.Model
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Business.Model.LifeEventDynamicFieldValue.LifeEventDynamicFieldValueId*
+  commentId: Overload:Business.Model.LifeEventDynamicFieldValue.LifeEventDynamicFieldValueId
+  name: LifeEventDynamicFieldValueId
+  nameWithType: LifeEventDynamicFieldValue.LifeEventDynamicFieldValueId
+  fullName: Business.Model.LifeEventDynamicFieldValue.LifeEventDynamicFieldValueId
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: Business.Model.LifeEventDynamicFieldValue.Value*
+  commentId: Overload:Business.Model.LifeEventDynamicFieldValue.Value
+  name: Value
+  nameWithType: LifeEventDynamicFieldValue.Value
+  fullName: Business.Model.LifeEventDynamicFieldValue.Value
+- uid: Business.Model.DynamicField
+  commentId: T:Business.Model.DynamicField
+  parent: Business.Model
+  name: DynamicField
+  nameWithType: DynamicField
+  fullName: Business.Model.DynamicField
+- uid: Business.Model.LifeEventDynamicFieldValue.LifeEventDynamicFieldInfoId*
+  commentId: Overload:Business.Model.LifeEventDynamicFieldValue.LifeEventDynamicFieldInfoId
+  name: LifeEventDynamicFieldInfoId
+  nameWithType: LifeEventDynamicFieldValue.LifeEventDynamicFieldInfoId
+  fullName: Business.Model.LifeEventDynamicFieldValue.LifeEventDynamicFieldInfoId
+- uid: Business.Model.LifeEventDynamicFieldValue.LifeEventDynamicFieldInfo*
+  commentId: Overload:Business.Model.LifeEventDynamicFieldValue.LifeEventDynamicFieldInfo
+  name: LifeEventDynamicFieldInfo
+  nameWithType: LifeEventDynamicFieldValue.LifeEventDynamicFieldInfo
+  fullName: Business.Model.LifeEventDynamicFieldValue.LifeEventDynamicFieldInfo
+- uid: Business.Model.LifeEventDynamicFieldInfo
+  commentId: T:Business.Model.LifeEventDynamicFieldInfo
+  parent: Business.Model
+  name: LifeEventDynamicFieldInfo
+  nameWithType: LifeEventDynamicFieldInfo
+  fullName: Business.Model.LifeEventDynamicFieldInfo
+- uid: Business.Model.LifeEventDynamicFieldValue.LifeEventEntryId*
+  commentId: Overload:Business.Model.LifeEventDynamicFieldValue.LifeEventEntryId
+  name: LifeEventEntryId
+  nameWithType: LifeEventDynamicFieldValue.LifeEventEntryId
+  fullName: Business.Model.LifeEventDynamicFieldValue.LifeEventEntryId
+- uid: Business.Model.LifeEventDynamicFieldValue.LifeEventEntry*
+  commentId: Overload:Business.Model.LifeEventDynamicFieldValue.LifeEventEntry
+  name: LifeEventEntry
+  nameWithType: LifeEventDynamicFieldValue.LifeEventEntry
+  fullName: Business.Model.LifeEventDynamicFieldValue.LifeEventEntry
+- uid: Business.Model.LifeEventEntry
+  commentId: T:Business.Model.LifeEventEntry
+  parent: Business.Model
+  name: LifeEventEntry
+  nameWithType: LifeEventEntry
+  fullName: Business.Model.LifeEventEntry
+- uid: Business.Model.LifeEventDynamicFieldValue.Timestamp*
+  commentId: Overload:Business.Model.LifeEventDynamicFieldValue.Timestamp
+  name: Timestamp
+  nameWithType: LifeEventDynamicFieldValue.Timestamp
+  fullName: Business.Model.LifeEventDynamicFieldValue.Timestamp
+- uid: System.Byte[]
+  isExternal: true
+  name: Byte[]
+  nameWithType: Byte[]
+  fullName: System.Byte[]
+  nameWithType.vb: Byte()
+  fullName.vb: System.Byte()
+  name.vb: Byte()
+  spec.csharp:
+  - uid: System.Byte
+    name: Byte
+    nameWithType: Byte
+    fullName: System.Byte
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.Byte
+    name: Byte
+    nameWithType: Byte
+    fullName: System.Byte
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()

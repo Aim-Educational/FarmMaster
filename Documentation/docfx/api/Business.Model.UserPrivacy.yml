@@ -1,0 +1,667 @@
+### YamlMime:ManagedReference
+items:
+- uid: Business.Model.UserPrivacy
+  commentId: T:Business.Model.UserPrivacy
+  id: UserPrivacy
+  parent: Business.Model
+  children:
+  - Business.Model.UserPrivacy.EmailVerificationToken
+  - Business.Model.UserPrivacy.HasVerifiedEmail
+  - Business.Model.UserPrivacy.PrivacyPolicyVersionAgreedTo
+  - Business.Model.UserPrivacy.TermsOfServiceVersionAgreedTo
+  - Business.Model.UserPrivacy.User
+  - Business.Model.UserPrivacy.UserPrivacyId
+  langs:
+  - csharp
+  - vb
+  name: UserPrivacy
+  nameWithType: UserPrivacy
+  fullName: Business.Model.UserPrivacy
+  type: Class
+  source:
+    remote:
+      path: Business/Model/UserPrivacy.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: UserPrivacy
+    path: ../Business/Model/UserPrivacy.cs
+    startLine: 8
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: public class UserPrivacy
+    content.vb: Public Class UserPrivacy
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Business.Model.UserPrivacy.UserPrivacyId
+  commentId: P:Business.Model.UserPrivacy.UserPrivacyId
+  id: UserPrivacyId
+  parent: Business.Model.UserPrivacy
+  langs:
+  - csharp
+  - vb
+  name: UserPrivacyId
+  nameWithType: UserPrivacy.UserPrivacyId
+  fullName: Business.Model.UserPrivacy.UserPrivacyId
+  type: Property
+  source:
+    remote:
+      path: Business/Model/UserPrivacy.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: UserPrivacyId
+    path: ../Business/Model/UserPrivacy.cs
+    startLine: 10
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: >-
+      [Key]
+
+      public int UserPrivacyId { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: >-
+      <Key>
+
+      Public Property UserPrivacyId As Integer
+  overload: Business.Model.UserPrivacy.UserPrivacyId*
+  attributes:
+  - type: System.ComponentModel.DataAnnotations.KeyAttribute
+    ctor: System.ComponentModel.DataAnnotations.KeyAttribute.#ctor
+    arguments: []
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Business.Model.UserPrivacy.HasVerifiedEmail
+  commentId: P:Business.Model.UserPrivacy.HasVerifiedEmail
+  id: HasVerifiedEmail
+  parent: Business.Model.UserPrivacy
+  langs:
+  - csharp
+  - vb
+  name: HasVerifiedEmail
+  nameWithType: UserPrivacy.HasVerifiedEmail
+  fullName: Business.Model.UserPrivacy.HasVerifiedEmail
+  type: Property
+  source:
+    remote:
+      path: Business/Model/UserPrivacy.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: HasVerifiedEmail
+    path: ../Business/Model/UserPrivacy.cs
+    startLine: 13
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: >-
+      [Required]
+
+      public bool HasVerifiedEmail { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: >-
+      <Required>
+
+      Public Property HasVerifiedEmail As Boolean
+  overload: Business.Model.UserPrivacy.HasVerifiedEmail*
+  attributes:
+  - type: System.ComponentModel.DataAnnotations.RequiredAttribute
+    ctor: System.ComponentModel.DataAnnotations.RequiredAttribute.#ctor
+    arguments: []
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Business.Model.UserPrivacy.TermsOfServiceVersionAgreedTo
+  commentId: P:Business.Model.UserPrivacy.TermsOfServiceVersionAgreedTo
+  id: TermsOfServiceVersionAgreedTo
+  parent: Business.Model.UserPrivacy
+  langs:
+  - csharp
+  - vb
+  name: TermsOfServiceVersionAgreedTo
+  nameWithType: UserPrivacy.TermsOfServiceVersionAgreedTo
+  fullName: Business.Model.UserPrivacy.TermsOfServiceVersionAgreedTo
+  type: Property
+  source:
+    remote:
+      path: Business/Model/UserPrivacy.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: TermsOfServiceVersionAgreedTo
+    path: ../Business/Model/UserPrivacy.cs
+    startLine: 16
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: >-
+      [Required]
+
+      public int TermsOfServiceVersionAgreedTo { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: >-
+      <Required>
+
+      Public Property TermsOfServiceVersionAgreedTo As Integer
+  overload: Business.Model.UserPrivacy.TermsOfServiceVersionAgreedTo*
+  attributes:
+  - type: System.ComponentModel.DataAnnotations.RequiredAttribute
+    ctor: System.ComponentModel.DataAnnotations.RequiredAttribute.#ctor
+    arguments: []
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Business.Model.UserPrivacy.PrivacyPolicyVersionAgreedTo
+  commentId: P:Business.Model.UserPrivacy.PrivacyPolicyVersionAgreedTo
+  id: PrivacyPolicyVersionAgreedTo
+  parent: Business.Model.UserPrivacy
+  langs:
+  - csharp
+  - vb
+  name: PrivacyPolicyVersionAgreedTo
+  nameWithType: UserPrivacy.PrivacyPolicyVersionAgreedTo
+  fullName: Business.Model.UserPrivacy.PrivacyPolicyVersionAgreedTo
+  type: Property
+  source:
+    remote:
+      path: Business/Model/UserPrivacy.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: PrivacyPolicyVersionAgreedTo
+    path: ../Business/Model/UserPrivacy.cs
+    startLine: 19
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: >-
+      [Required]
+
+      public int PrivacyPolicyVersionAgreedTo { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: >-
+      <Required>
+
+      Public Property PrivacyPolicyVersionAgreedTo As Integer
+  overload: Business.Model.UserPrivacy.PrivacyPolicyVersionAgreedTo*
+  attributes:
+  - type: System.ComponentModel.DataAnnotations.RequiredAttribute
+    ctor: System.ComponentModel.DataAnnotations.RequiredAttribute.#ctor
+    arguments: []
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Business.Model.UserPrivacy.EmailVerificationToken
+  commentId: P:Business.Model.UserPrivacy.EmailVerificationToken
+  id: EmailVerificationToken
+  parent: Business.Model.UserPrivacy
+  langs:
+  - csharp
+  - vb
+  name: EmailVerificationToken
+  nameWithType: UserPrivacy.EmailVerificationToken
+  fullName: Business.Model.UserPrivacy.EmailVerificationToken
+  type: Property
+  source:
+    remote:
+      path: Business/Model/UserPrivacy.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: EmailVerificationToken
+    path: ../Business/Model/UserPrivacy.cs
+    startLine: 22
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: public string EmailVerificationToken { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property EmailVerificationToken As String
+  overload: Business.Model.UserPrivacy.EmailVerificationToken*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Business.Model.UserPrivacy.User
+  commentId: P:Business.Model.UserPrivacy.User
+  id: User
+  parent: Business.Model.UserPrivacy
+  langs:
+  - csharp
+  - vb
+  name: User
+  nameWithType: UserPrivacy.User
+  fullName: Business.Model.UserPrivacy.User
+  type: Property
+  source:
+    remote:
+      path: Business/Model/UserPrivacy.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: User
+    path: ../Business/Model/UserPrivacy.cs
+    startLine: 24
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: >-
+      [InverseProperty("UserPrivacy")]
+
+      public User User { get; set; }
+    parameters: []
+    return:
+      type: Business.Model.User
+    content.vb: >-
+      <InverseProperty("UserPrivacy")>
+
+      Public Property User As User
+  overload: Business.Model.UserPrivacy.User*
+  attributes:
+  - type: System.ComponentModel.DataAnnotations.Schema.InversePropertyAttribute
+    ctor: System.ComponentModel.DataAnnotations.Schema.InversePropertyAttribute.#ctor(System.String)
+    arguments:
+    - type: System.String
+      value: UserPrivacy
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+references:
+- uid: Business.Model
+  commentId: N:Business.Model
+  name: Business.Model
+  nameWithType: Business.Model
+  fullName: Business.Model
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Business.Model.UserPrivacy.UserPrivacyId*
+  commentId: Overload:Business.Model.UserPrivacy.UserPrivacyId
+  name: UserPrivacyId
+  nameWithType: UserPrivacy.UserPrivacyId
+  fullName: Business.Model.UserPrivacy.UserPrivacyId
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: Business.Model.UserPrivacy.HasVerifiedEmail*
+  commentId: Overload:Business.Model.UserPrivacy.HasVerifiedEmail
+  name: HasVerifiedEmail
+  nameWithType: UserPrivacy.HasVerifiedEmail
+  fullName: Business.Model.UserPrivacy.HasVerifiedEmail
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: Business.Model.UserPrivacy.TermsOfServiceVersionAgreedTo*
+  commentId: Overload:Business.Model.UserPrivacy.TermsOfServiceVersionAgreedTo
+  name: TermsOfServiceVersionAgreedTo
+  nameWithType: UserPrivacy.TermsOfServiceVersionAgreedTo
+  fullName: Business.Model.UserPrivacy.TermsOfServiceVersionAgreedTo
+- uid: Business.Model.UserPrivacy.PrivacyPolicyVersionAgreedTo*
+  commentId: Overload:Business.Model.UserPrivacy.PrivacyPolicyVersionAgreedTo
+  name: PrivacyPolicyVersionAgreedTo
+  nameWithType: UserPrivacy.PrivacyPolicyVersionAgreedTo
+  fullName: Business.Model.UserPrivacy.PrivacyPolicyVersionAgreedTo
+- uid: Business.Model.UserPrivacy.EmailVerificationToken*
+  commentId: Overload:Business.Model.UserPrivacy.EmailVerificationToken
+  name: EmailVerificationToken
+  nameWithType: UserPrivacy.EmailVerificationToken
+  fullName: Business.Model.UserPrivacy.EmailVerificationToken
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: Business.Model.UserPrivacy.User*
+  commentId: Overload:Business.Model.UserPrivacy.User
+  name: User
+  nameWithType: UserPrivacy.User
+  fullName: Business.Model.UserPrivacy.User
+- uid: Business.Model.User
+  commentId: T:Business.Model.User
+  parent: Business.Model
+  name: User
+  nameWithType: User
+  fullName: Business.Model.User

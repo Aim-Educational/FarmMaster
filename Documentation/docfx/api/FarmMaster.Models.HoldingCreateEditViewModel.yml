@@ -1,0 +1,1252 @@
+### YamlMime:ManagedReference
+items:
+- uid: FarmMaster.Models.HoldingCreateEditViewModel
+  commentId: T:FarmMaster.Models.HoldingCreateEditViewModel
+  id: HoldingCreateEditViewModel
+  parent: FarmMaster.Models
+  children:
+  - FarmMaster.Models.HoldingCreateEditViewModel.AllRegistrations
+  - FarmMaster.Models.HoldingCreateEditViewModel.Holding
+  - FarmMaster.Models.HoldingCreateEditViewModel.IsCreate
+  - FarmMaster.Models.HoldingCreateEditViewModel.SelectedRegistrationHerdNumbers
+  - FarmMaster.Models.HoldingCreateEditViewModel.SelectedRegistrations
+  - FarmMaster.Models.HoldingCreateEditViewModel.SelectedRegistrationsRareBreedNumbers
+  langs:
+  - csharp
+  - vb
+  name: HoldingCreateEditViewModel
+  nameWithType: HoldingCreateEditViewModel
+  fullName: FarmMaster.Models.HoldingCreateEditViewModel
+  type: Class
+  source:
+    remote:
+      path: FarmMaster/Models/HoldingViewModels.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: HoldingCreateEditViewModel
+    path: Models/HoldingViewModels.cs
+    startLine: 13
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Models
+  syntax:
+    content: 'public class HoldingCreateEditViewModel : ViewModelWithMessage'
+    content.vb: >-
+      Public Class HoldingCreateEditViewModel
+
+          Inherits ViewModelWithMessage
+  inheritance:
+  - System.Object
+  - FarmMaster.Models.ViewModelWithMessage
+  inheritedMembers:
+  - FarmMaster.Models.ViewModelWithMessage.MessageType
+  - FarmMaster.Models.ViewModelWithMessage.MessageFormat
+  - FarmMaster.Models.ViewModelWithMessage.Message
+  - FarmMaster.Models.ViewModelWithMessage.HasMessage
+  - FarmMaster.Models.ViewModelWithMessage.ParseMessageQueryString(System.String)
+  - FarmMaster.Models.ViewModelWithMessage.ParseInvalidModelState(Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary)
+  - FarmMaster.Models.ViewModelWithMessage.CreateMessageQueryString(FarmMaster.Models.ViewModelWithMessage.Type,System.String,FarmMaster.Models.ViewModelWithMessage.Format)
+  - FarmMaster.Models.ViewModelWithMessage.CreateQueryString(Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary)
+  - FarmMaster.Models.ViewModelWithMessage.CreateErrorQueryString(System.String,FarmMaster.Models.ViewModelWithMessage.Format)
+  - FarmMaster.Models.ViewModelWithMessage.CreateWarningQueryString(System.String,FarmMaster.Models.ViewModelWithMessage.Format)
+  - FarmMaster.Models.ViewModelWithMessage.CreateInfoQueryString(System.String,FarmMaster.Models.ViewModelWithMessage.Format)
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: FarmMaster.Models.HoldingCreateEditViewModel.IsCreate
+  commentId: P:FarmMaster.Models.HoldingCreateEditViewModel.IsCreate
+  id: IsCreate
+  parent: FarmMaster.Models.HoldingCreateEditViewModel
+  langs:
+  - csharp
+  - vb
+  name: IsCreate
+  nameWithType: HoldingCreateEditViewModel.IsCreate
+  fullName: FarmMaster.Models.HoldingCreateEditViewModel.IsCreate
+  type: Property
+  source:
+    remote:
+      path: FarmMaster/Models/HoldingViewModels.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: IsCreate
+    path: Models/HoldingViewModels.cs
+    startLine: 15
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Models
+  syntax:
+    content: public bool IsCreate { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property IsCreate As Boolean
+  overload: FarmMaster.Models.HoldingCreateEditViewModel.IsCreate*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Models.HoldingCreateEditViewModel.Holding
+  commentId: P:FarmMaster.Models.HoldingCreateEditViewModel.Holding
+  id: Holding
+  parent: FarmMaster.Models.HoldingCreateEditViewModel
+  langs:
+  - csharp
+  - vb
+  name: Holding
+  nameWithType: HoldingCreateEditViewModel.Holding
+  fullName: FarmMaster.Models.HoldingCreateEditViewModel.Holding
+  type: Property
+  source:
+    remote:
+      path: FarmMaster/Models/HoldingViewModels.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: Holding
+    path: Models/HoldingViewModels.cs
+    startLine: 16
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Models
+  syntax:
+    content: public Holding Holding { get; set; }
+    parameters: []
+    return:
+      type: Business.Model.Holding
+    content.vb: Public Property Holding As Holding
+  overload: FarmMaster.Models.HoldingCreateEditViewModel.Holding*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Models.HoldingCreateEditViewModel.SelectedRegistrations
+  commentId: P:FarmMaster.Models.HoldingCreateEditViewModel.SelectedRegistrations
+  id: SelectedRegistrations
+  parent: FarmMaster.Models.HoldingCreateEditViewModel
+  langs:
+  - csharp
+  - vb
+  name: SelectedRegistrations
+  nameWithType: HoldingCreateEditViewModel.SelectedRegistrations
+  fullName: FarmMaster.Models.HoldingCreateEditViewModel.SelectedRegistrations
+  type: Property
+  source:
+    remote:
+      path: FarmMaster/Models/HoldingViewModels.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: SelectedRegistrations
+    path: Models/HoldingViewModels.cs
+    startLine: 17
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Models
+  syntax:
+    content: public IDictionary<string, bool> SelectedRegistrations { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IDictionary{System.String,System.Boolean}
+    content.vb: Public Property SelectedRegistrations As IDictionary(Of String, Boolean)
+  overload: FarmMaster.Models.HoldingCreateEditViewModel.SelectedRegistrations*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Models.HoldingCreateEditViewModel.SelectedRegistrationHerdNumbers
+  commentId: P:FarmMaster.Models.HoldingCreateEditViewModel.SelectedRegistrationHerdNumbers
+  id: SelectedRegistrationHerdNumbers
+  parent: FarmMaster.Models.HoldingCreateEditViewModel
+  langs:
+  - csharp
+  - vb
+  name: SelectedRegistrationHerdNumbers
+  nameWithType: HoldingCreateEditViewModel.SelectedRegistrationHerdNumbers
+  fullName: FarmMaster.Models.HoldingCreateEditViewModel.SelectedRegistrationHerdNumbers
+  type: Property
+  source:
+    remote:
+      path: FarmMaster/Models/HoldingViewModels.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: SelectedRegistrationHerdNumbers
+    path: Models/HoldingViewModels.cs
+    startLine: 18
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Models
+  syntax:
+    content: public IDictionary<string, string> SelectedRegistrationHerdNumbers { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IDictionary{System.String,System.String}
+    content.vb: Public Property SelectedRegistrationHerdNumbers As IDictionary(Of String, String)
+  overload: FarmMaster.Models.HoldingCreateEditViewModel.SelectedRegistrationHerdNumbers*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Models.HoldingCreateEditViewModel.SelectedRegistrationsRareBreedNumbers
+  commentId: P:FarmMaster.Models.HoldingCreateEditViewModel.SelectedRegistrationsRareBreedNumbers
+  id: SelectedRegistrationsRareBreedNumbers
+  parent: FarmMaster.Models.HoldingCreateEditViewModel
+  langs:
+  - csharp
+  - vb
+  name: SelectedRegistrationsRareBreedNumbers
+  nameWithType: HoldingCreateEditViewModel.SelectedRegistrationsRareBreedNumbers
+  fullName: FarmMaster.Models.HoldingCreateEditViewModel.SelectedRegistrationsRareBreedNumbers
+  type: Property
+  source:
+    remote:
+      path: FarmMaster/Models/HoldingViewModels.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: SelectedRegistrationsRareBreedNumbers
+    path: Models/HoldingViewModels.cs
+    startLine: 19
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Models
+  syntax:
+    content: public IDictionary<string, string> SelectedRegistrationsRareBreedNumbers { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IDictionary{System.String,System.String}
+    content.vb: Public Property SelectedRegistrationsRareBreedNumbers As IDictionary(Of String, String)
+  overload: FarmMaster.Models.HoldingCreateEditViewModel.SelectedRegistrationsRareBreedNumbers*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Models.HoldingCreateEditViewModel.AllRegistrations
+  commentId: P:FarmMaster.Models.HoldingCreateEditViewModel.AllRegistrations
+  id: AllRegistrations
+  parent: FarmMaster.Models.HoldingCreateEditViewModel
+  langs:
+  - csharp
+  - vb
+  name: AllRegistrations
+  nameWithType: HoldingCreateEditViewModel.AllRegistrations
+  fullName: FarmMaster.Models.HoldingCreateEditViewModel.AllRegistrations
+  type: Property
+  source:
+    remote:
+      path: FarmMaster/Models/HoldingViewModels.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: AllRegistrations
+    path: Models/HoldingViewModels.cs
+    startLine: 20
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Models
+  syntax:
+    content: public IEnumerable<EnumHoldingRegistration> AllRegistrations { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IEnumerable{Business.Model.EnumHoldingRegistration}
+    content.vb: Public Property AllRegistrations As IEnumerable(Of EnumHoldingRegistration)
+  overload: FarmMaster.Models.HoldingCreateEditViewModel.AllRegistrations*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+references:
+- uid: FarmMaster.Models
+  commentId: N:FarmMaster.Models
+  name: FarmMaster.Models
+  nameWithType: FarmMaster.Models
+  fullName: FarmMaster.Models
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: FarmMaster.Models.ViewModelWithMessage
+  commentId: T:FarmMaster.Models.ViewModelWithMessage
+  parent: FarmMaster.Models
+  name: ViewModelWithMessage
+  nameWithType: ViewModelWithMessage
+  fullName: FarmMaster.Models.ViewModelWithMessage
+- uid: FarmMaster.Models.ViewModelWithMessage.MessageType
+  commentId: F:FarmMaster.Models.ViewModelWithMessage.MessageType
+  parent: FarmMaster.Models.ViewModelWithMessage
+  name: MessageType
+  nameWithType: ViewModelWithMessage.MessageType
+  fullName: FarmMaster.Models.ViewModelWithMessage.MessageType
+- uid: FarmMaster.Models.ViewModelWithMessage.MessageFormat
+  commentId: F:FarmMaster.Models.ViewModelWithMessage.MessageFormat
+  parent: FarmMaster.Models.ViewModelWithMessage
+  name: MessageFormat
+  nameWithType: ViewModelWithMessage.MessageFormat
+  fullName: FarmMaster.Models.ViewModelWithMessage.MessageFormat
+- uid: FarmMaster.Models.ViewModelWithMessage.Message
+  commentId: F:FarmMaster.Models.ViewModelWithMessage.Message
+  parent: FarmMaster.Models.ViewModelWithMessage
+  name: Message
+  nameWithType: ViewModelWithMessage.Message
+  fullName: FarmMaster.Models.ViewModelWithMessage.Message
+- uid: FarmMaster.Models.ViewModelWithMessage.HasMessage
+  commentId: P:FarmMaster.Models.ViewModelWithMessage.HasMessage
+  parent: FarmMaster.Models.ViewModelWithMessage
+  name: HasMessage
+  nameWithType: ViewModelWithMessage.HasMessage
+  fullName: FarmMaster.Models.ViewModelWithMessage.HasMessage
+- uid: FarmMaster.Models.ViewModelWithMessage.ParseMessageQueryString(System.String)
+  commentId: M:FarmMaster.Models.ViewModelWithMessage.ParseMessageQueryString(System.String)
+  parent: FarmMaster.Models.ViewModelWithMessage
+  isExternal: true
+  name: ParseMessageQueryString(String)
+  nameWithType: ViewModelWithMessage.ParseMessageQueryString(String)
+  fullName: FarmMaster.Models.ViewModelWithMessage.ParseMessageQueryString(System.String)
+  spec.csharp:
+  - uid: FarmMaster.Models.ViewModelWithMessage.ParseMessageQueryString(System.String)
+    name: ParseMessageQueryString
+    nameWithType: ViewModelWithMessage.ParseMessageQueryString
+    fullName: FarmMaster.Models.ViewModelWithMessage.ParseMessageQueryString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Models.ViewModelWithMessage.ParseMessageQueryString(System.String)
+    name: ParseMessageQueryString
+    nameWithType: ViewModelWithMessage.ParseMessageQueryString
+    fullName: FarmMaster.Models.ViewModelWithMessage.ParseMessageQueryString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Models.ViewModelWithMessage.ParseInvalidModelState(Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary)
+  commentId: M:FarmMaster.Models.ViewModelWithMessage.ParseInvalidModelState(Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary)
+  parent: FarmMaster.Models.ViewModelWithMessage
+  isExternal: true
+  name: ParseInvalidModelState(ModelStateDictionary)
+  nameWithType: ViewModelWithMessage.ParseInvalidModelState(ModelStateDictionary)
+  fullName: FarmMaster.Models.ViewModelWithMessage.ParseInvalidModelState(Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary)
+  spec.csharp:
+  - uid: FarmMaster.Models.ViewModelWithMessage.ParseInvalidModelState(Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary)
+    name: ParseInvalidModelState
+    nameWithType: ViewModelWithMessage.ParseInvalidModelState
+    fullName: FarmMaster.Models.ViewModelWithMessage.ParseInvalidModelState
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary
+    name: ModelStateDictionary
+    nameWithType: ModelStateDictionary
+    fullName: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Models.ViewModelWithMessage.ParseInvalidModelState(Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary)
+    name: ParseInvalidModelState
+    nameWithType: ViewModelWithMessage.ParseInvalidModelState
+    fullName: FarmMaster.Models.ViewModelWithMessage.ParseInvalidModelState
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary
+    name: ModelStateDictionary
+    nameWithType: ModelStateDictionary
+    fullName: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Models.ViewModelWithMessage.CreateMessageQueryString(FarmMaster.Models.ViewModelWithMessage.Type,System.String,FarmMaster.Models.ViewModelWithMessage.Format)
+  commentId: M:FarmMaster.Models.ViewModelWithMessage.CreateMessageQueryString(FarmMaster.Models.ViewModelWithMessage.Type,System.String,FarmMaster.Models.ViewModelWithMessage.Format)
+  parent: FarmMaster.Models.ViewModelWithMessage
+  isExternal: true
+  name: CreateMessageQueryString(ViewModelWithMessage.Type, String, ViewModelWithMessage.Format)
+  nameWithType: ViewModelWithMessage.CreateMessageQueryString(ViewModelWithMessage.Type, String, ViewModelWithMessage.Format)
+  fullName: FarmMaster.Models.ViewModelWithMessage.CreateMessageQueryString(FarmMaster.Models.ViewModelWithMessage.Type, System.String, FarmMaster.Models.ViewModelWithMessage.Format)
+  spec.csharp:
+  - uid: FarmMaster.Models.ViewModelWithMessage.CreateMessageQueryString(FarmMaster.Models.ViewModelWithMessage.Type,System.String,FarmMaster.Models.ViewModelWithMessage.Format)
+    name: CreateMessageQueryString
+    nameWithType: ViewModelWithMessage.CreateMessageQueryString
+    fullName: FarmMaster.Models.ViewModelWithMessage.CreateMessageQueryString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: FarmMaster.Models.ViewModelWithMessage.Type
+    name: ViewModelWithMessage.Type
+    nameWithType: ViewModelWithMessage.Type
+    fullName: FarmMaster.Models.ViewModelWithMessage.Type
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: FarmMaster.Models.ViewModelWithMessage.Format
+    name: ViewModelWithMessage.Format
+    nameWithType: ViewModelWithMessage.Format
+    fullName: FarmMaster.Models.ViewModelWithMessage.Format
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Models.ViewModelWithMessage.CreateMessageQueryString(FarmMaster.Models.ViewModelWithMessage.Type,System.String,FarmMaster.Models.ViewModelWithMessage.Format)
+    name: CreateMessageQueryString
+    nameWithType: ViewModelWithMessage.CreateMessageQueryString
+    fullName: FarmMaster.Models.ViewModelWithMessage.CreateMessageQueryString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: FarmMaster.Models.ViewModelWithMessage.Type
+    name: ViewModelWithMessage.Type
+    nameWithType: ViewModelWithMessage.Type
+    fullName: FarmMaster.Models.ViewModelWithMessage.Type
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: FarmMaster.Models.ViewModelWithMessage.Format
+    name: ViewModelWithMessage.Format
+    nameWithType: ViewModelWithMessage.Format
+    fullName: FarmMaster.Models.ViewModelWithMessage.Format
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Models.ViewModelWithMessage.CreateQueryString(Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary)
+  commentId: M:FarmMaster.Models.ViewModelWithMessage.CreateQueryString(Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary)
+  parent: FarmMaster.Models.ViewModelWithMessage
+  isExternal: true
+  name: CreateQueryString(ModelStateDictionary)
+  nameWithType: ViewModelWithMessage.CreateQueryString(ModelStateDictionary)
+  fullName: FarmMaster.Models.ViewModelWithMessage.CreateQueryString(Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary)
+  spec.csharp:
+  - uid: FarmMaster.Models.ViewModelWithMessage.CreateQueryString(Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary)
+    name: CreateQueryString
+    nameWithType: ViewModelWithMessage.CreateQueryString
+    fullName: FarmMaster.Models.ViewModelWithMessage.CreateQueryString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary
+    name: ModelStateDictionary
+    nameWithType: ModelStateDictionary
+    fullName: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Models.ViewModelWithMessage.CreateQueryString(Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary)
+    name: CreateQueryString
+    nameWithType: ViewModelWithMessage.CreateQueryString
+    fullName: FarmMaster.Models.ViewModelWithMessage.CreateQueryString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary
+    name: ModelStateDictionary
+    nameWithType: ModelStateDictionary
+    fullName: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Models.ViewModelWithMessage.CreateErrorQueryString(System.String,FarmMaster.Models.ViewModelWithMessage.Format)
+  commentId: M:FarmMaster.Models.ViewModelWithMessage.CreateErrorQueryString(System.String,FarmMaster.Models.ViewModelWithMessage.Format)
+  parent: FarmMaster.Models.ViewModelWithMessage
+  isExternal: true
+  name: CreateErrorQueryString(String, ViewModelWithMessage.Format)
+  nameWithType: ViewModelWithMessage.CreateErrorQueryString(String, ViewModelWithMessage.Format)
+  fullName: FarmMaster.Models.ViewModelWithMessage.CreateErrorQueryString(System.String, FarmMaster.Models.ViewModelWithMessage.Format)
+  spec.csharp:
+  - uid: FarmMaster.Models.ViewModelWithMessage.CreateErrorQueryString(System.String,FarmMaster.Models.ViewModelWithMessage.Format)
+    name: CreateErrorQueryString
+    nameWithType: ViewModelWithMessage.CreateErrorQueryString
+    fullName: FarmMaster.Models.ViewModelWithMessage.CreateErrorQueryString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: FarmMaster.Models.ViewModelWithMessage.Format
+    name: ViewModelWithMessage.Format
+    nameWithType: ViewModelWithMessage.Format
+    fullName: FarmMaster.Models.ViewModelWithMessage.Format
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Models.ViewModelWithMessage.CreateErrorQueryString(System.String,FarmMaster.Models.ViewModelWithMessage.Format)
+    name: CreateErrorQueryString
+    nameWithType: ViewModelWithMessage.CreateErrorQueryString
+    fullName: FarmMaster.Models.ViewModelWithMessage.CreateErrorQueryString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: FarmMaster.Models.ViewModelWithMessage.Format
+    name: ViewModelWithMessage.Format
+    nameWithType: ViewModelWithMessage.Format
+    fullName: FarmMaster.Models.ViewModelWithMessage.Format
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Models.ViewModelWithMessage.CreateWarningQueryString(System.String,FarmMaster.Models.ViewModelWithMessage.Format)
+  commentId: M:FarmMaster.Models.ViewModelWithMessage.CreateWarningQueryString(System.String,FarmMaster.Models.ViewModelWithMessage.Format)
+  parent: FarmMaster.Models.ViewModelWithMessage
+  isExternal: true
+  name: CreateWarningQueryString(String, ViewModelWithMessage.Format)
+  nameWithType: ViewModelWithMessage.CreateWarningQueryString(String, ViewModelWithMessage.Format)
+  fullName: FarmMaster.Models.ViewModelWithMessage.CreateWarningQueryString(System.String, FarmMaster.Models.ViewModelWithMessage.Format)
+  spec.csharp:
+  - uid: FarmMaster.Models.ViewModelWithMessage.CreateWarningQueryString(System.String,FarmMaster.Models.ViewModelWithMessage.Format)
+    name: CreateWarningQueryString
+    nameWithType: ViewModelWithMessage.CreateWarningQueryString
+    fullName: FarmMaster.Models.ViewModelWithMessage.CreateWarningQueryString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: FarmMaster.Models.ViewModelWithMessage.Format
+    name: ViewModelWithMessage.Format
+    nameWithType: ViewModelWithMessage.Format
+    fullName: FarmMaster.Models.ViewModelWithMessage.Format
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Models.ViewModelWithMessage.CreateWarningQueryString(System.String,FarmMaster.Models.ViewModelWithMessage.Format)
+    name: CreateWarningQueryString
+    nameWithType: ViewModelWithMessage.CreateWarningQueryString
+    fullName: FarmMaster.Models.ViewModelWithMessage.CreateWarningQueryString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: FarmMaster.Models.ViewModelWithMessage.Format
+    name: ViewModelWithMessage.Format
+    nameWithType: ViewModelWithMessage.Format
+    fullName: FarmMaster.Models.ViewModelWithMessage.Format
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Models.ViewModelWithMessage.CreateInfoQueryString(System.String,FarmMaster.Models.ViewModelWithMessage.Format)
+  commentId: M:FarmMaster.Models.ViewModelWithMessage.CreateInfoQueryString(System.String,FarmMaster.Models.ViewModelWithMessage.Format)
+  parent: FarmMaster.Models.ViewModelWithMessage
+  isExternal: true
+  name: CreateInfoQueryString(String, ViewModelWithMessage.Format)
+  nameWithType: ViewModelWithMessage.CreateInfoQueryString(String, ViewModelWithMessage.Format)
+  fullName: FarmMaster.Models.ViewModelWithMessage.CreateInfoQueryString(System.String, FarmMaster.Models.ViewModelWithMessage.Format)
+  spec.csharp:
+  - uid: FarmMaster.Models.ViewModelWithMessage.CreateInfoQueryString(System.String,FarmMaster.Models.ViewModelWithMessage.Format)
+    name: CreateInfoQueryString
+    nameWithType: ViewModelWithMessage.CreateInfoQueryString
+    fullName: FarmMaster.Models.ViewModelWithMessage.CreateInfoQueryString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: FarmMaster.Models.ViewModelWithMessage.Format
+    name: ViewModelWithMessage.Format
+    nameWithType: ViewModelWithMessage.Format
+    fullName: FarmMaster.Models.ViewModelWithMessage.Format
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Models.ViewModelWithMessage.CreateInfoQueryString(System.String,FarmMaster.Models.ViewModelWithMessage.Format)
+    name: CreateInfoQueryString
+    nameWithType: ViewModelWithMessage.CreateInfoQueryString
+    fullName: FarmMaster.Models.ViewModelWithMessage.CreateInfoQueryString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: FarmMaster.Models.ViewModelWithMessage.Format
+    name: ViewModelWithMessage.Format
+    nameWithType: ViewModelWithMessage.Format
+    fullName: FarmMaster.Models.ViewModelWithMessage.Format
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: FarmMaster.Models.HoldingCreateEditViewModel.IsCreate*
+  commentId: Overload:FarmMaster.Models.HoldingCreateEditViewModel.IsCreate
+  name: IsCreate
+  nameWithType: HoldingCreateEditViewModel.IsCreate
+  fullName: FarmMaster.Models.HoldingCreateEditViewModel.IsCreate
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: FarmMaster.Models.HoldingCreateEditViewModel.Holding*
+  commentId: Overload:FarmMaster.Models.HoldingCreateEditViewModel.Holding
+  name: Holding
+  nameWithType: HoldingCreateEditViewModel.Holding
+  fullName: FarmMaster.Models.HoldingCreateEditViewModel.Holding
+- uid: Business.Model.Holding
+  commentId: T:Business.Model.Holding
+  parent: Business.Model
+  name: Holding
+  nameWithType: Holding
+  fullName: Business.Model.Holding
+- uid: Business.Model
+  commentId: N:Business.Model
+  name: Business.Model
+  nameWithType: Business.Model
+  fullName: Business.Model
+- uid: FarmMaster.Models.HoldingCreateEditViewModel.SelectedRegistrations*
+  commentId: Overload:FarmMaster.Models.HoldingCreateEditViewModel.SelectedRegistrations
+  name: SelectedRegistrations
+  nameWithType: HoldingCreateEditViewModel.SelectedRegistrations
+  fullName: FarmMaster.Models.HoldingCreateEditViewModel.SelectedRegistrations
+- uid: System.Collections.Generic.IDictionary{System.String,System.Boolean}
+  commentId: T:System.Collections.Generic.IDictionary{System.String,System.Boolean}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IDictionary`2
+  name: IDictionary<String, Boolean>
+  nameWithType: IDictionary<String, Boolean>
+  fullName: System.Collections.Generic.IDictionary<System.String, System.Boolean>
+  nameWithType.vb: IDictionary(Of String, Boolean)
+  fullName.vb: System.Collections.Generic.IDictionary(Of System.String, System.Boolean)
+  name.vb: IDictionary(Of String, Boolean)
+  spec.csharp:
+  - uid: System.Collections.Generic.IDictionary`2
+    name: IDictionary
+    nameWithType: IDictionary
+    fullName: System.Collections.Generic.IDictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IDictionary`2
+    name: IDictionary
+    nameWithType: IDictionary
+    fullName: System.Collections.Generic.IDictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IDictionary`2
+  commentId: T:System.Collections.Generic.IDictionary`2
+  isExternal: true
+  name: IDictionary<TKey, TValue>
+  nameWithType: IDictionary<TKey, TValue>
+  fullName: System.Collections.Generic.IDictionary<TKey, TValue>
+  nameWithType.vb: IDictionary(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.IDictionary(Of TKey, TValue)
+  name.vb: IDictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.IDictionary`2
+    name: IDictionary
+    nameWithType: IDictionary
+    fullName: System.Collections.Generic.IDictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IDictionary`2
+    name: IDictionary
+    nameWithType: IDictionary
+    fullName: System.Collections.Generic.IDictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TKey
+    nameWithType: TKey
+    fullName: TKey
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TValue
+    nameWithType: TValue
+    fullName: TValue
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+- uid: FarmMaster.Models.HoldingCreateEditViewModel.SelectedRegistrationHerdNumbers*
+  commentId: Overload:FarmMaster.Models.HoldingCreateEditViewModel.SelectedRegistrationHerdNumbers
+  name: SelectedRegistrationHerdNumbers
+  nameWithType: HoldingCreateEditViewModel.SelectedRegistrationHerdNumbers
+  fullName: FarmMaster.Models.HoldingCreateEditViewModel.SelectedRegistrationHerdNumbers
+- uid: System.Collections.Generic.IDictionary{System.String,System.String}
+  commentId: T:System.Collections.Generic.IDictionary{System.String,System.String}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IDictionary`2
+  name: IDictionary<String, String>
+  nameWithType: IDictionary<String, String>
+  fullName: System.Collections.Generic.IDictionary<System.String, System.String>
+  nameWithType.vb: IDictionary(Of String, String)
+  fullName.vb: System.Collections.Generic.IDictionary(Of System.String, System.String)
+  name.vb: IDictionary(Of String, String)
+  spec.csharp:
+  - uid: System.Collections.Generic.IDictionary`2
+    name: IDictionary
+    nameWithType: IDictionary
+    fullName: System.Collections.Generic.IDictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IDictionary`2
+    name: IDictionary
+    nameWithType: IDictionary
+    fullName: System.Collections.Generic.IDictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Models.HoldingCreateEditViewModel.SelectedRegistrationsRareBreedNumbers*
+  commentId: Overload:FarmMaster.Models.HoldingCreateEditViewModel.SelectedRegistrationsRareBreedNumbers
+  name: SelectedRegistrationsRareBreedNumbers
+  nameWithType: HoldingCreateEditViewModel.SelectedRegistrationsRareBreedNumbers
+  fullName: FarmMaster.Models.HoldingCreateEditViewModel.SelectedRegistrationsRareBreedNumbers
+- uid: FarmMaster.Models.HoldingCreateEditViewModel.AllRegistrations*
+  commentId: Overload:FarmMaster.Models.HoldingCreateEditViewModel.AllRegistrations
+  name: AllRegistrations
+  nameWithType: HoldingCreateEditViewModel.AllRegistrations
+  fullName: FarmMaster.Models.HoldingCreateEditViewModel.AllRegistrations
+- uid: System.Collections.Generic.IEnumerable{Business.Model.EnumHoldingRegistration}
+  commentId: T:System.Collections.Generic.IEnumerable{Business.Model.EnumHoldingRegistration}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  name: IEnumerable<EnumHoldingRegistration>
+  nameWithType: IEnumerable<EnumHoldingRegistration>
+  fullName: System.Collections.Generic.IEnumerable<Business.Model.EnumHoldingRegistration>
+  nameWithType.vb: IEnumerable(Of EnumHoldingRegistration)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of Business.Model.EnumHoldingRegistration)
+  name.vb: IEnumerable(Of EnumHoldingRegistration)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Business.Model.EnumHoldingRegistration
+    name: EnumHoldingRegistration
+    nameWithType: EnumHoldingRegistration
+    fullName: Business.Model.EnumHoldingRegistration
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Business.Model.EnumHoldingRegistration
+    name: EnumHoldingRegistration
+    nameWithType: EnumHoldingRegistration
+    fullName: Business.Model.EnumHoldingRegistration
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )

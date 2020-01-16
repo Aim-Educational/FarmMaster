@@ -1,0 +1,214 @@
+### YamlMime:ManagedReference
+items:
+- uid: FarmMaster.Services.IServiceGdprData
+  commentId: T:FarmMaster.Services.IServiceGdprData
+  id: IServiceGdprData
+  parent: FarmMaster.Services
+  children:
+  - FarmMaster.Services.IServiceGdprData.AnonymiseContactData(Business.Model.Contact)
+  - FarmMaster.Services.IServiceGdprData.AnonymiseUserData(Business.Model.User)
+  - FarmMaster.Services.IServiceGdprData.GetContactGdprData(Business.Model.Contact,Newtonsoft.Json.Linq.JObject)
+  - FarmMaster.Services.IServiceGdprData.GetUserGdprData(Business.Model.User,Newtonsoft.Json.Linq.JObject)
+  langs:
+  - csharp
+  - vb
+  name: IServiceGdprData
+  nameWithType: IServiceGdprData
+  fullName: FarmMaster.Services.IServiceGdprData
+  type: Interface
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceGdpr.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: IServiceGdprData
+    path: Services/IServiceGdpr.cs
+    startLine: 11
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: public interface IServiceGdprData
+    content.vb: Public Interface IServiceGdprData
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: FarmMaster.Services.IServiceGdprData.GetContactGdprData(Business.Model.Contact,Newtonsoft.Json.Linq.JObject)
+  commentId: M:FarmMaster.Services.IServiceGdprData.GetContactGdprData(Business.Model.Contact,Newtonsoft.Json.Linq.JObject)
+  id: GetContactGdprData(Business.Model.Contact,Newtonsoft.Json.Linq.JObject)
+  parent: FarmMaster.Services.IServiceGdprData
+  langs:
+  - csharp
+  - vb
+  name: GetContactGdprData(Contact, JObject)
+  nameWithType: IServiceGdprData.GetContactGdprData(Contact, JObject)
+  fullName: FarmMaster.Services.IServiceGdprData.GetContactGdprData(Business.Model.Contact, Newtonsoft.Json.Linq.JObject)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceGdpr.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: GetContactGdprData
+    path: Services/IServiceGdpr.cs
+    startLine: 13
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: void GetContactGdprData(Contact contact, JObject json)
+    parameters:
+    - id: contact
+      type: Business.Model.Contact
+    - id: json
+      type: Newtonsoft.Json.Linq.JObject
+    content.vb: Sub GetContactGdprData(contact As Contact, json As JObject)
+  overload: FarmMaster.Services.IServiceGdprData.GetContactGdprData*
+- uid: FarmMaster.Services.IServiceGdprData.GetUserGdprData(Business.Model.User,Newtonsoft.Json.Linq.JObject)
+  commentId: M:FarmMaster.Services.IServiceGdprData.GetUserGdprData(Business.Model.User,Newtonsoft.Json.Linq.JObject)
+  id: GetUserGdprData(Business.Model.User,Newtonsoft.Json.Linq.JObject)
+  parent: FarmMaster.Services.IServiceGdprData
+  langs:
+  - csharp
+  - vb
+  name: GetUserGdprData(User, JObject)
+  nameWithType: IServiceGdprData.GetUserGdprData(User, JObject)
+  fullName: FarmMaster.Services.IServiceGdprData.GetUserGdprData(Business.Model.User, Newtonsoft.Json.Linq.JObject)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceGdpr.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: GetUserGdprData
+    path: Services/IServiceGdpr.cs
+    startLine: 14
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: void GetUserGdprData(User user, JObject json)
+    parameters:
+    - id: user
+      type: Business.Model.User
+    - id: json
+      type: Newtonsoft.Json.Linq.JObject
+    content.vb: Sub GetUserGdprData(user As User, json As JObject)
+  overload: FarmMaster.Services.IServiceGdprData.GetUserGdprData*
+- uid: FarmMaster.Services.IServiceGdprData.AnonymiseContactData(Business.Model.Contact)
+  commentId: M:FarmMaster.Services.IServiceGdprData.AnonymiseContactData(Business.Model.Contact)
+  id: AnonymiseContactData(Business.Model.Contact)
+  parent: FarmMaster.Services.IServiceGdprData
+  langs:
+  - csharp
+  - vb
+  name: AnonymiseContactData(Contact)
+  nameWithType: IServiceGdprData.AnonymiseContactData(Contact)
+  fullName: FarmMaster.Services.IServiceGdprData.AnonymiseContactData(Business.Model.Contact)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceGdpr.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: AnonymiseContactData
+    path: Services/IServiceGdpr.cs
+    startLine: 15
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: void AnonymiseContactData(Contact contact)
+    parameters:
+    - id: contact
+      type: Business.Model.Contact
+    content.vb: Sub AnonymiseContactData(contact As Contact)
+  overload: FarmMaster.Services.IServiceGdprData.AnonymiseContactData*
+- uid: FarmMaster.Services.IServiceGdprData.AnonymiseUserData(Business.Model.User)
+  commentId: M:FarmMaster.Services.IServiceGdprData.AnonymiseUserData(Business.Model.User)
+  id: AnonymiseUserData(Business.Model.User)
+  parent: FarmMaster.Services.IServiceGdprData
+  langs:
+  - csharp
+  - vb
+  name: AnonymiseUserData(User)
+  nameWithType: IServiceGdprData.AnonymiseUserData(User)
+  fullName: FarmMaster.Services.IServiceGdprData.AnonymiseUserData(Business.Model.User)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceGdpr.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: AnonymiseUserData
+    path: Services/IServiceGdpr.cs
+    startLine: 16
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: void AnonymiseUserData(User user)
+    parameters:
+    - id: user
+      type: Business.Model.User
+    content.vb: Sub AnonymiseUserData(user As User)
+  overload: FarmMaster.Services.IServiceGdprData.AnonymiseUserData*
+references:
+- uid: FarmMaster.Services
+  commentId: N:FarmMaster.Services
+  name: FarmMaster.Services
+  nameWithType: FarmMaster.Services
+  fullName: FarmMaster.Services
+- uid: FarmMaster.Services.IServiceGdprData.GetContactGdprData*
+  commentId: Overload:FarmMaster.Services.IServiceGdprData.GetContactGdprData
+  name: GetContactGdprData
+  nameWithType: IServiceGdprData.GetContactGdprData
+  fullName: FarmMaster.Services.IServiceGdprData.GetContactGdprData
+- uid: Business.Model.Contact
+  commentId: T:Business.Model.Contact
+  parent: Business.Model
+  name: Contact
+  nameWithType: Contact
+  fullName: Business.Model.Contact
+- uid: Newtonsoft.Json.Linq.JObject
+  commentId: T:Newtonsoft.Json.Linq.JObject
+  parent: Newtonsoft.Json.Linq
+  isExternal: true
+  name: JObject
+  nameWithType: JObject
+  fullName: Newtonsoft.Json.Linq.JObject
+- uid: Business.Model
+  commentId: N:Business.Model
+  name: Business.Model
+  nameWithType: Business.Model
+  fullName: Business.Model
+- uid: Newtonsoft.Json.Linq
+  commentId: N:Newtonsoft.Json.Linq
+  isExternal: true
+  name: Newtonsoft.Json.Linq
+  nameWithType: Newtonsoft.Json.Linq
+  fullName: Newtonsoft.Json.Linq
+- uid: FarmMaster.Services.IServiceGdprData.GetUserGdprData*
+  commentId: Overload:FarmMaster.Services.IServiceGdprData.GetUserGdprData
+  name: GetUserGdprData
+  nameWithType: IServiceGdprData.GetUserGdprData
+  fullName: FarmMaster.Services.IServiceGdprData.GetUserGdprData
+- uid: Business.Model.User
+  commentId: T:Business.Model.User
+  parent: Business.Model
+  name: User
+  nameWithType: User
+  fullName: Business.Model.User
+- uid: FarmMaster.Services.IServiceGdprData.AnonymiseContactData*
+  commentId: Overload:FarmMaster.Services.IServiceGdprData.AnonymiseContactData
+  name: AnonymiseContactData
+  nameWithType: IServiceGdprData.AnonymiseContactData
+  fullName: FarmMaster.Services.IServiceGdprData.AnonymiseContactData
+- uid: FarmMaster.Services.IServiceGdprData.AnonymiseUserData*
+  commentId: Overload:FarmMaster.Services.IServiceGdprData.AnonymiseUserData
+  name: AnonymiseUserData
+  nameWithType: IServiceGdprData.AnonymiseUserData
+  fullName: FarmMaster.Services.IServiceGdprData.AnonymiseUserData

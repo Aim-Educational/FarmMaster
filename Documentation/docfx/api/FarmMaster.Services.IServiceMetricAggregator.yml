@@ -1,0 +1,309 @@
+### YamlMime:ManagedReference
+items:
+- uid: FarmMaster.Services.IServiceMetricAggregator
+  commentId: T:FarmMaster.Services.IServiceMetricAggregator
+  id: IServiceMetricAggregator
+  parent: FarmMaster.Services
+  children:
+  - FarmMaster.Services.IServiceMetricAggregator.OnEndHttpRequest(Business.Model.MetricRequest)
+  - FarmMaster.Services.IServiceMetricAggregator.OnStartHttpRequest(Microsoft.AspNetCore.Http.HttpContext,System.Boolean)
+  - FarmMaster.Services.IServiceMetricAggregator.RequestMetrics
+  - FarmMaster.Services.IServiceMetricAggregator.Reset
+  langs:
+  - csharp
+  - vb
+  name: IServiceMetricAggregator
+  nameWithType: IServiceMetricAggregator
+  fullName: FarmMaster.Services.IServiceMetricAggregator
+  type: Interface
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceMetricAggregator.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: IServiceMetricAggregator
+    path: Services/IServiceMetricAggregator.cs
+    startLine: 10
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: public interface IServiceMetricAggregator
+    content.vb: Public Interface IServiceMetricAggregator
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: FarmMaster.Services.IServiceMetricAggregator.RequestMetrics
+  commentId: P:FarmMaster.Services.IServiceMetricAggregator.RequestMetrics
+  id: RequestMetrics
+  parent: FarmMaster.Services.IServiceMetricAggregator
+  langs:
+  - csharp
+  - vb
+  name: RequestMetrics
+  nameWithType: IServiceMetricAggregator.RequestMetrics
+  fullName: FarmMaster.Services.IServiceMetricAggregator.RequestMetrics
+  type: Property
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceMetricAggregator.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: RequestMetrics
+    path: Services/IServiceMetricAggregator.cs
+    startLine: 12
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: IEnumerable<MetricRequest> RequestMetrics { get; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IEnumerable{Business.Model.MetricRequest}
+    content.vb: ReadOnly Property RequestMetrics As IEnumerable(Of MetricRequest)
+  overload: FarmMaster.Services.IServiceMetricAggregator.RequestMetrics*
+  modifiers.csharp:
+  - get
+  modifiers.vb:
+  - ReadOnly
+- uid: FarmMaster.Services.IServiceMetricAggregator.OnStartHttpRequest(Microsoft.AspNetCore.Http.HttpContext,System.Boolean)
+  commentId: M:FarmMaster.Services.IServiceMetricAggregator.OnStartHttpRequest(Microsoft.AspNetCore.Http.HttpContext,System.Boolean)
+  id: OnStartHttpRequest(Microsoft.AspNetCore.Http.HttpContext,System.Boolean)
+  parent: FarmMaster.Services.IServiceMetricAggregator
+  langs:
+  - csharp
+  - vb
+  name: OnStartHttpRequest(HttpContext, Boolean)
+  nameWithType: IServiceMetricAggregator.OnStartHttpRequest(HttpContext, Boolean)
+  fullName: FarmMaster.Services.IServiceMetricAggregator.OnStartHttpRequest(Microsoft.AspNetCore.Http.HttpContext, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceMetricAggregator.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: OnStartHttpRequest
+    path: Services/IServiceMetricAggregator.cs
+    startLine: 14
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: MetricRequest OnStartHttpRequest(HttpContext context, bool doNotTrack = false)
+    parameters:
+    - id: context
+      type: Microsoft.AspNetCore.Http.HttpContext
+    - id: doNotTrack
+      type: System.Boolean
+    return:
+      type: Business.Model.MetricRequest
+    content.vb: Function OnStartHttpRequest(context As HttpContext, doNotTrack As Boolean = False) As MetricRequest
+  overload: FarmMaster.Services.IServiceMetricAggregator.OnStartHttpRequest*
+- uid: FarmMaster.Services.IServiceMetricAggregator.OnEndHttpRequest(Business.Model.MetricRequest)
+  commentId: M:FarmMaster.Services.IServiceMetricAggregator.OnEndHttpRequest(Business.Model.MetricRequest)
+  id: OnEndHttpRequest(Business.Model.MetricRequest)
+  parent: FarmMaster.Services.IServiceMetricAggregator
+  langs:
+  - csharp
+  - vb
+  name: OnEndHttpRequest(MetricRequest)
+  nameWithType: IServiceMetricAggregator.OnEndHttpRequest(MetricRequest)
+  fullName: FarmMaster.Services.IServiceMetricAggregator.OnEndHttpRequest(Business.Model.MetricRequest)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceMetricAggregator.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: OnEndHttpRequest
+    path: Services/IServiceMetricAggregator.cs
+    startLine: 15
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: void OnEndHttpRequest(MetricRequest metric)
+    parameters:
+    - id: metric
+      type: Business.Model.MetricRequest
+    content.vb: Sub OnEndHttpRequest(metric As MetricRequest)
+  overload: FarmMaster.Services.IServiceMetricAggregator.OnEndHttpRequest*
+- uid: FarmMaster.Services.IServiceMetricAggregator.Reset
+  commentId: M:FarmMaster.Services.IServiceMetricAggregator.Reset
+  id: Reset
+  parent: FarmMaster.Services.IServiceMetricAggregator
+  langs:
+  - csharp
+  - vb
+  name: Reset()
+  nameWithType: IServiceMetricAggregator.Reset()
+  fullName: FarmMaster.Services.IServiceMetricAggregator.Reset()
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceMetricAggregator.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: Reset
+    path: Services/IServiceMetricAggregator.cs
+    startLine: 16
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: void Reset()
+    content.vb: Sub Reset
+  overload: FarmMaster.Services.IServiceMetricAggregator.Reset*
+references:
+- uid: FarmMaster.Services
+  commentId: N:FarmMaster.Services
+  name: FarmMaster.Services
+  nameWithType: FarmMaster.Services
+  fullName: FarmMaster.Services
+- uid: FarmMaster.Services.IServiceMetricAggregator.RequestMetrics*
+  commentId: Overload:FarmMaster.Services.IServiceMetricAggregator.RequestMetrics
+  name: RequestMetrics
+  nameWithType: IServiceMetricAggregator.RequestMetrics
+  fullName: FarmMaster.Services.IServiceMetricAggregator.RequestMetrics
+- uid: System.Collections.Generic.IEnumerable{Business.Model.MetricRequest}
+  commentId: T:System.Collections.Generic.IEnumerable{Business.Model.MetricRequest}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  name: IEnumerable<MetricRequest>
+  nameWithType: IEnumerable<MetricRequest>
+  fullName: System.Collections.Generic.IEnumerable<Business.Model.MetricRequest>
+  nameWithType.vb: IEnumerable(Of MetricRequest)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of Business.Model.MetricRequest)
+  name.vb: IEnumerable(Of MetricRequest)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Business.Model.MetricRequest
+    name: MetricRequest
+    nameWithType: MetricRequest
+    fullName: Business.Model.MetricRequest
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Business.Model.MetricRequest
+    name: MetricRequest
+    nameWithType: MetricRequest
+    fullName: Business.Model.MetricRequest
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+- uid: FarmMaster.Services.IServiceMetricAggregator.OnStartHttpRequest*
+  commentId: Overload:FarmMaster.Services.IServiceMetricAggregator.OnStartHttpRequest
+  name: OnStartHttpRequest
+  nameWithType: IServiceMetricAggregator.OnStartHttpRequest
+  fullName: FarmMaster.Services.IServiceMetricAggregator.OnStartHttpRequest
+- uid: Microsoft.AspNetCore.Http.HttpContext
+  commentId: T:Microsoft.AspNetCore.Http.HttpContext
+  parent: Microsoft.AspNetCore.Http
+  isExternal: true
+  name: HttpContext
+  nameWithType: HttpContext
+  fullName: Microsoft.AspNetCore.Http.HttpContext
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: Business.Model.MetricRequest
+  commentId: T:Business.Model.MetricRequest
+  parent: Business.Model
+  name: MetricRequest
+  nameWithType: MetricRequest
+  fullName: Business.Model.MetricRequest
+- uid: Microsoft.AspNetCore.Http
+  commentId: N:Microsoft.AspNetCore.Http
+  isExternal: true
+  name: Microsoft.AspNetCore.Http
+  nameWithType: Microsoft.AspNetCore.Http
+  fullName: Microsoft.AspNetCore.Http
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Business.Model
+  commentId: N:Business.Model
+  name: Business.Model
+  nameWithType: Business.Model
+  fullName: Business.Model
+- uid: FarmMaster.Services.IServiceMetricAggregator.OnEndHttpRequest*
+  commentId: Overload:FarmMaster.Services.IServiceMetricAggregator.OnEndHttpRequest
+  name: OnEndHttpRequest
+  nameWithType: IServiceMetricAggregator.OnEndHttpRequest
+  fullName: FarmMaster.Services.IServiceMetricAggregator.OnEndHttpRequest
+- uid: FarmMaster.Services.IServiceMetricAggregator.Reset*
+  commentId: Overload:FarmMaster.Services.IServiceMetricAggregator.Reset
+  name: Reset
+  nameWithType: IServiceMetricAggregator.Reset
+  fullName: FarmMaster.Services.IServiceMetricAggregator.Reset

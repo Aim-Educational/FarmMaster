@@ -1,0 +1,520 @@
+### YamlMime:ManagedReference
+items:
+- uid: Business.Model.BusinessConstants.HoldingRegistrations
+  commentId: T:Business.Model.BusinessConstants.HoldingRegistrations
+  id: BusinessConstants.HoldingRegistrations
+  parent: Business.Model
+  children:
+  - Business.Model.BusinessConstants.HoldingRegistrations.COW
+  - Business.Model.BusinessConstants.HoldingRegistrations.FISH
+  - Business.Model.BusinessConstants.HoldingRegistrations.PIG
+  - Business.Model.BusinessConstants.HoldingRegistrations.POULTRY
+  - Business.Model.BusinessConstants.HoldingRegistrations.SHEEP_AND_GOAT
+  langs:
+  - csharp
+  - vb
+  name: BusinessConstants.HoldingRegistrations
+  nameWithType: BusinessConstants.HoldingRegistrations
+  fullName: Business.Model.BusinessConstants.HoldingRegistrations
+  type: Class
+  source:
+    remote:
+      path: Business/BusinessConstants.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: HoldingRegistrations
+    path: ../Business/BusinessConstants.cs
+    startLine: 8
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: public static class HoldingRegistrations
+    content.vb: Public Module HoldingRegistrations
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - static
+  - class
+  modifiers.vb:
+  - Public
+  - Module
+- uid: Business.Model.BusinessConstants.HoldingRegistrations.COW
+  commentId: F:Business.Model.BusinessConstants.HoldingRegistrations.COW
+  id: COW
+  parent: Business.Model.BusinessConstants.HoldingRegistrations
+  langs:
+  - csharp
+  - vb
+  name: COW
+  nameWithType: BusinessConstants.HoldingRegistrations.COW
+  fullName: Business.Model.BusinessConstants.HoldingRegistrations.COW
+  type: Field
+  source:
+    remote:
+      path: Business/BusinessConstants.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: COW
+    path: ../Business/BusinessConstants.cs
+    startLine: 10
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: public const string COW = "cow"
+    return:
+      type: System.String
+    content.vb: Public Const COW As String = "cow"
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: Business.Model.BusinessConstants.HoldingRegistrations.PIG
+  commentId: F:Business.Model.BusinessConstants.HoldingRegistrations.PIG
+  id: PIG
+  parent: Business.Model.BusinessConstants.HoldingRegistrations
+  langs:
+  - csharp
+  - vb
+  name: PIG
+  nameWithType: BusinessConstants.HoldingRegistrations.PIG
+  fullName: Business.Model.BusinessConstants.HoldingRegistrations.PIG
+  type: Field
+  source:
+    remote:
+      path: Business/BusinessConstants.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: PIG
+    path: ../Business/BusinessConstants.cs
+    startLine: 11
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: public const string PIG = "pig"
+    return:
+      type: System.String
+    content.vb: Public Const PIG As String = "pig"
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: Business.Model.BusinessConstants.HoldingRegistrations.SHEEP_AND_GOAT
+  commentId: F:Business.Model.BusinessConstants.HoldingRegistrations.SHEEP_AND_GOAT
+  id: SHEEP_AND_GOAT
+  parent: Business.Model.BusinessConstants.HoldingRegistrations
+  langs:
+  - csharp
+  - vb
+  name: SHEEP_AND_GOAT
+  nameWithType: BusinessConstants.HoldingRegistrations.SHEEP_AND_GOAT
+  fullName: Business.Model.BusinessConstants.HoldingRegistrations.SHEEP_AND_GOAT
+  type: Field
+  source:
+    remote:
+      path: Business/BusinessConstants.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: SHEEP_AND_GOAT
+    path: ../Business/BusinessConstants.cs
+    startLine: 12
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: public const string SHEEP_AND_GOAT = "sheep_goats"
+    return:
+      type: System.String
+    content.vb: Public Const SHEEP_AND_GOAT As String = "sheep_goats"
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: Business.Model.BusinessConstants.HoldingRegistrations.FISH
+  commentId: F:Business.Model.BusinessConstants.HoldingRegistrations.FISH
+  id: FISH
+  parent: Business.Model.BusinessConstants.HoldingRegistrations
+  langs:
+  - csharp
+  - vb
+  name: FISH
+  nameWithType: BusinessConstants.HoldingRegistrations.FISH
+  fullName: Business.Model.BusinessConstants.HoldingRegistrations.FISH
+  type: Field
+  source:
+    remote:
+      path: Business/BusinessConstants.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: FISH
+    path: ../Business/BusinessConstants.cs
+    startLine: 13
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: public const string FISH = "fish"
+    return:
+      type: System.String
+    content.vb: Public Const FISH As String = "fish"
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: Business.Model.BusinessConstants.HoldingRegistrations.POULTRY
+  commentId: F:Business.Model.BusinessConstants.HoldingRegistrations.POULTRY
+  id: POULTRY
+  parent: Business.Model.BusinessConstants.HoldingRegistrations
+  langs:
+  - csharp
+  - vb
+  name: POULTRY
+  nameWithType: BusinessConstants.HoldingRegistrations.POULTRY
+  fullName: Business.Model.BusinessConstants.HoldingRegistrations.POULTRY
+  type: Field
+  source:
+    remote:
+      path: Business/BusinessConstants.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: POULTRY
+    path: ../Business/BusinessConstants.cs
+    startLine: 14
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: public const string POULTRY = "poultry"
+    return:
+      type: System.String
+    content.vb: Public Const POULTRY As String = "poultry"
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+references:
+- uid: Business.Model
+  commentId: N:Business.Model
+  name: Business.Model
+  nameWithType: Business.Model
+  fullName: Business.Model
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String

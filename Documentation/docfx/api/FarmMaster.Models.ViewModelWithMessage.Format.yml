@@ -1,0 +1,112 @@
+### YamlMime:ManagedReference
+items:
+- uid: FarmMaster.Models.ViewModelWithMessage.Format
+  commentId: T:FarmMaster.Models.ViewModelWithMessage.Format
+  id: ViewModelWithMessage.Format
+  parent: FarmMaster.Models
+  children:
+  - FarmMaster.Models.ViewModelWithMessage.Format.Default
+  - FarmMaster.Models.ViewModelWithMessage.Format.UnorderedList
+  langs:
+  - csharp
+  - vb
+  name: ViewModelWithMessage.Format
+  nameWithType: ViewModelWithMessage.Format
+  fullName: FarmMaster.Models.ViewModelWithMessage.Format
+  type: Enum
+  source:
+    remote:
+      path: FarmMaster/Models/Common.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: Format
+    path: Models/Common.cs
+    startLine: 21
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Models
+  syntax:
+    content: public enum Format
+    content.vb: Public Enum Format
+  modifiers.csharp:
+  - public
+  - enum
+  modifiers.vb:
+  - Public
+  - Enum
+- uid: FarmMaster.Models.ViewModelWithMessage.Format.Default
+  commentId: F:FarmMaster.Models.ViewModelWithMessage.Format.Default
+  id: Default
+  parent: FarmMaster.Models.ViewModelWithMessage.Format
+  langs:
+  - csharp
+  - vb
+  name: Default
+  nameWithType: ViewModelWithMessage.Format.Default
+  fullName: FarmMaster.Models.ViewModelWithMessage.Format.Default
+  type: Field
+  source:
+    remote:
+      path: FarmMaster/Models/Common.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: Default
+    path: Models/Common.cs
+    startLine: 23
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Models
+  syntax:
+    content: Default = 0
+    return:
+      type: FarmMaster.Models.ViewModelWithMessage.Format
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: FarmMaster.Models.ViewModelWithMessage.Format.UnorderedList
+  commentId: F:FarmMaster.Models.ViewModelWithMessage.Format.UnorderedList
+  id: UnorderedList
+  parent: FarmMaster.Models.ViewModelWithMessage.Format
+  langs:
+  - csharp
+  - vb
+  name: UnorderedList
+  nameWithType: ViewModelWithMessage.Format.UnorderedList
+  fullName: FarmMaster.Models.ViewModelWithMessage.Format.UnorderedList
+  type: Field
+  source:
+    remote:
+      path: FarmMaster/Models/Common.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: UnorderedList
+    path: Models/Common.cs
+    startLine: 24
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Models
+  syntax:
+    content: UnorderedList = 1
+    return:
+      type: FarmMaster.Models.ViewModelWithMessage.Format
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+references:
+- uid: FarmMaster.Models
+  commentId: N:FarmMaster.Models
+  name: FarmMaster.Models
+  nameWithType: FarmMaster.Models
+  fullName: FarmMaster.Models
+- uid: FarmMaster.Models.ViewModelWithMessage.Format
+  commentId: T:FarmMaster.Models.ViewModelWithMessage.Format
+  parent: FarmMaster.Models
+  name: ViewModelWithMessage.Format
+  nameWithType: ViewModelWithMessage.Format
+  fullName: FarmMaster.Models.ViewModelWithMessage.Format

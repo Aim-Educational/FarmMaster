@@ -4,12 +4,12 @@
       "src": [
         {
           "files": [
-            "**.csproj"
+            "**/**.csproj"
           ],
-          "src": "D:\\Coding\\Aim\\FarmMaster\\FarmMaster"
+          "src": "../"
         }
       ],
-      "dest": "api",
+      "dest": "../Documentation/docfx/api",
       "disableGitFeatures": false,
       "disableDefaultFilter": false
     }
@@ -18,24 +18,10 @@
     "content": [
       {
         "files": [
-          "api/**.yml",
-          "api/index.md"
-        ]
-      },
-      {
-        "files": [
-          "articles/**.md",
-          "articles/**/toc.yml",
-          "toc.yml",
-          "*.md"
-        ]
-      }
-    ],
-    "resource": [
-      {
-        "files": [
-          "images/**"
-        ]
+          "Documentation/docfx/api/**.yml",
+          "Documentation/docfx/api/index.md"
+        ],
+        "src": "../"
       }
     ],
     "overwrite": [
@@ -45,11 +31,12 @@
         ],
         "exclude": [
           "obj/**",
-          "_site/**"
-        ]
+          "Documentation/docfx/_site/**"
+        ],
+        "src": "../"
       }
     ],
-    "dest": "_site",
+    "dest": "../Documentation/docfx/_site",
     "globalMetadataFiles": [],
     "fileMetadataFiles": [],
     "template": [

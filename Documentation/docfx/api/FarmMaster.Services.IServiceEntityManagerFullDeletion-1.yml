@@ -1,0 +1,97 @@
+### YamlMime:ManagedReference
+items:
+- uid: FarmMaster.Services.IServiceEntityManagerFullDeletion`1
+  commentId: T:FarmMaster.Services.IServiceEntityManagerFullDeletion`1
+  id: IServiceEntityManagerFullDeletion`1
+  parent: FarmMaster.Services
+  children:
+  - FarmMaster.Services.IServiceEntityManagerFullDeletion`1.FullDelete(`0)
+  langs:
+  - csharp
+  - vb
+  name: IServiceEntityManagerFullDeletion<T>
+  nameWithType: IServiceEntityManagerFullDeletion<T>
+  fullName: FarmMaster.Services.IServiceEntityManagerFullDeletion<T>
+  type: Interface
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceEntityManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: IServiceEntityManagerFullDeletion
+    path: Services/IServiceEntityManager.cs
+    startLine: 15
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: >-
+      public interface IServiceEntityManagerFullDeletion<T>
+
+          where T : class
+    typeParameters:
+    - id: T
+    content.vb: Public Interface IServiceEntityManagerFullDeletion(Of T As Class)
+  nameWithType.vb: IServiceEntityManagerFullDeletion(Of T)
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+  fullName.vb: FarmMaster.Services.IServiceEntityManagerFullDeletion(Of T)
+  name.vb: IServiceEntityManagerFullDeletion(Of T)
+- uid: FarmMaster.Services.IServiceEntityManagerFullDeletion`1.FullDelete(`0)
+  commentId: M:FarmMaster.Services.IServiceEntityManagerFullDeletion`1.FullDelete(`0)
+  id: FullDelete(`0)
+  parent: FarmMaster.Services.IServiceEntityManagerFullDeletion`1
+  langs:
+  - csharp
+  - vb
+  name: FullDelete(T)
+  nameWithType: IServiceEntityManagerFullDeletion<T>.FullDelete(T)
+  fullName: FarmMaster.Services.IServiceEntityManagerFullDeletion<T>.FullDelete(T)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceEntityManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: FullDelete
+    path: Services/IServiceEntityManager.cs
+    startLine: 17
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: void FullDelete(T entity)
+    parameters:
+    - id: entity
+      type: '{T}'
+    content.vb: Sub FullDelete(entity As T)
+  overload: FarmMaster.Services.IServiceEntityManagerFullDeletion`1.FullDelete*
+  nameWithType.vb: IServiceEntityManagerFullDeletion(Of T).FullDelete(T)
+  fullName.vb: FarmMaster.Services.IServiceEntityManagerFullDeletion(Of T).FullDelete(T)
+references:
+- uid: FarmMaster.Services
+  commentId: N:FarmMaster.Services
+  name: FarmMaster.Services
+  nameWithType: FarmMaster.Services
+  fullName: FarmMaster.Services
+- uid: FarmMaster.Services.IServiceEntityManagerFullDeletion`1.FullDelete*
+  commentId: Overload:FarmMaster.Services.IServiceEntityManagerFullDeletion`1.FullDelete
+  name: FullDelete
+  nameWithType: IServiceEntityManagerFullDeletion<T>.FullDelete
+  fullName: FarmMaster.Services.IServiceEntityManagerFullDeletion<T>.FullDelete
+  nameWithType.vb: IServiceEntityManagerFullDeletion(Of T).FullDelete
+  fullName.vb: FarmMaster.Services.IServiceEntityManagerFullDeletion(Of T).FullDelete
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: T
+  name: T
+  nameWithType: T
+  fullName: T

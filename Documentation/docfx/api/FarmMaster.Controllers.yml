@@ -1,0 +1,157 @@
+### YamlMime:ManagedReference
+items:
+- uid: FarmMaster.Controllers
+  commentId: N:FarmMaster.Controllers
+  id: FarmMaster.Controllers
+  children:
+  - FarmMaster.Controllers.AccountController
+  - FarmMaster.Controllers.AjaxController
+  - FarmMaster.Controllers.AjaxPagingControllerRenderRequestModel
+  - FarmMaster.Controllers.AjaxPagingControllerRequestModel
+  - FarmMaster.Controllers.AjaxSetUserRoleData
+  - FarmMaster.Controllers.AnimalController
+  - FarmMaster.Controllers.AnimalGroupController
+  - FarmMaster.Controllers.ContactController
+  - FarmMaster.Controllers.GroupScriptController
+  - FarmMaster.Controllers.HoldingController
+  - FarmMaster.Controllers.HomeController
+  - FarmMaster.Controllers.ImageController
+  - FarmMaster.Controllers.IPagingController`1
+  - FarmMaster.Controllers.LifeEventController
+  - FarmMaster.Controllers.PagingHelper
+  - FarmMaster.Controllers.RoleController
+  - FarmMaster.Controllers.SpeciesBreedController
+  langs:
+  - csharp
+  - vb
+  name: FarmMaster.Controllers
+  nameWithType: FarmMaster.Controllers
+  fullName: FarmMaster.Controllers
+  type: Namespace
+  assemblies:
+  - FarmMaster
+references:
+- uid: FarmMaster.Controllers.AccountController
+  commentId: T:FarmMaster.Controllers.AccountController
+  name: AccountController
+  nameWithType: AccountController
+  fullName: FarmMaster.Controllers.AccountController
+- uid: FarmMaster.Controllers.AjaxController
+  commentId: T:FarmMaster.Controllers.AjaxController
+  name: AjaxController
+  nameWithType: AjaxController
+  fullName: FarmMaster.Controllers.AjaxController
+- uid: FarmMaster.Controllers.AnimalController
+  commentId: T:FarmMaster.Controllers.AnimalController
+  name: AnimalController
+  nameWithType: AnimalController
+  fullName: FarmMaster.Controllers.AnimalController
+- uid: FarmMaster.Controllers.AnimalGroupController
+  commentId: T:FarmMaster.Controllers.AnimalGroupController
+  name: AnimalGroupController
+  nameWithType: AnimalGroupController
+  fullName: FarmMaster.Controllers.AnimalGroupController
+- uid: FarmMaster.Controllers.ContactController
+  commentId: T:FarmMaster.Controllers.ContactController
+  name: ContactController
+  nameWithType: ContactController
+  fullName: FarmMaster.Controllers.ContactController
+- uid: FarmMaster.Controllers.GroupScriptController
+  commentId: T:FarmMaster.Controllers.GroupScriptController
+  name: GroupScriptController
+  nameWithType: GroupScriptController
+  fullName: FarmMaster.Controllers.GroupScriptController
+- uid: FarmMaster.Controllers.HoldingController
+  commentId: T:FarmMaster.Controllers.HoldingController
+  name: HoldingController
+  nameWithType: HoldingController
+  fullName: FarmMaster.Controllers.HoldingController
+- uid: FarmMaster.Controllers.HomeController
+  commentId: T:FarmMaster.Controllers.HomeController
+  name: HomeController
+  nameWithType: HomeController
+  fullName: FarmMaster.Controllers.HomeController
+- uid: FarmMaster.Controllers.ImageController
+  commentId: T:FarmMaster.Controllers.ImageController
+  name: ImageController
+  nameWithType: ImageController
+  fullName: FarmMaster.Controllers.ImageController
+- uid: FarmMaster.Controllers.IPagingController`1
+  commentId: T:FarmMaster.Controllers.IPagingController`1
+  name: IPagingController<T>
+  nameWithType: IPagingController<T>
+  fullName: FarmMaster.Controllers.IPagingController<T>
+  nameWithType.vb: IPagingController(Of T)
+  fullName.vb: FarmMaster.Controllers.IPagingController(Of T)
+  name.vb: IPagingController(Of T)
+  spec.csharp:
+  - uid: FarmMaster.Controllers.IPagingController`1
+    name: IPagingController
+    nameWithType: IPagingController
+    fullName: FarmMaster.Controllers.IPagingController
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: FarmMaster.Controllers.IPagingController`1
+    name: IPagingController
+    nameWithType: IPagingController
+    fullName: FarmMaster.Controllers.IPagingController
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Controllers.PagingHelper
+  commentId: T:FarmMaster.Controllers.PagingHelper
+  name: PagingHelper
+  nameWithType: PagingHelper
+  fullName: FarmMaster.Controllers.PagingHelper
+- uid: FarmMaster.Controllers.AjaxPagingControllerRequestModel
+  commentId: T:FarmMaster.Controllers.AjaxPagingControllerRequestModel
+  parent: FarmMaster.Controllers
+  name: AjaxPagingControllerRequestModel
+  nameWithType: AjaxPagingControllerRequestModel
+  fullName: FarmMaster.Controllers.AjaxPagingControllerRequestModel
+- uid: FarmMaster.Controllers.AjaxPagingControllerRenderRequestModel
+  commentId: T:FarmMaster.Controllers.AjaxPagingControllerRenderRequestModel
+  parent: FarmMaster.Controllers
+  name: AjaxPagingControllerRenderRequestModel
+  nameWithType: AjaxPagingControllerRenderRequestModel
+  fullName: FarmMaster.Controllers.AjaxPagingControllerRenderRequestModel
+- uid: FarmMaster.Controllers.LifeEventController
+  commentId: T:FarmMaster.Controllers.LifeEventController
+  name: LifeEventController
+  nameWithType: LifeEventController
+  fullName: FarmMaster.Controllers.LifeEventController
+- uid: FarmMaster.Controllers.RoleController
+  commentId: T:FarmMaster.Controllers.RoleController
+  name: RoleController
+  nameWithType: RoleController
+  fullName: FarmMaster.Controllers.RoleController
+- uid: FarmMaster.Controllers.AjaxSetUserRoleData
+  commentId: T:FarmMaster.Controllers.AjaxSetUserRoleData
+  parent: FarmMaster.Controllers
+  name: AjaxSetUserRoleData
+  nameWithType: AjaxSetUserRoleData
+  fullName: FarmMaster.Controllers.AjaxSetUserRoleData
+- uid: FarmMaster.Controllers.SpeciesBreedController
+  commentId: T:FarmMaster.Controllers.SpeciesBreedController
+  name: SpeciesBreedController
+  nameWithType: SpeciesBreedController
+  fullName: FarmMaster.Controllers.SpeciesBreedController
+- uid: FarmMaster.Controllers
+  commentId: N:FarmMaster.Controllers
+  name: FarmMaster.Controllers
+  nameWithType: FarmMaster.Controllers
+  fullName: FarmMaster.Controllers

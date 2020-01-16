@@ -1,0 +1,688 @@
+### YamlMime:ManagedReference
+items:
+- uid: Business.Model.DynamicField
+  commentId: T:Business.Model.DynamicField
+  id: DynamicField
+  parent: Business.Model
+  children:
+  - Business.Model.DynamicField.#ctor(Business.Model.DynamicField.Type)
+  - Business.Model.DynamicField.FieldType
+  - Business.Model.DynamicField.FromHtmlString(System.String)
+  - Business.Model.DynamicField.FromJson(Newtonsoft.Json.Linq.JObject)
+  - Business.Model.DynamicField.ToHtmlString
+  - Business.Model.DynamicField.ToJson
+  - Business.Model.DynamicField.ToJsonImpl
+  - Business.Model.DynamicField.TYPE_KEY
+  langs:
+  - csharp
+  - vb
+  name: DynamicField
+  nameWithType: DynamicField
+  fullName: Business.Model.DynamicField
+  type: Class
+  source:
+    remote:
+      path: Business/Model/DynamicField.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: DynamicField
+    path: ../Business/Model/DynamicField.cs
+    startLine: 20
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: public abstract class DynamicField
+    content.vb: Public MustInherit Class DynamicField
+  inheritance:
+  - System.Object
+  derivedClasses:
+  - Business.Model.DynamicFieldDateTime
+  - Business.Model.DynamicFieldText
+  - Business.Model.DynamicFieldTimeSpan
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - abstract
+  - class
+  modifiers.vb:
+  - Public
+  - MustInherit
+  - Class
+- uid: Business.Model.DynamicField.TYPE_KEY
+  commentId: F:Business.Model.DynamicField.TYPE_KEY
+  id: TYPE_KEY
+  parent: Business.Model.DynamicField
+  langs:
+  - csharp
+  - vb
+  name: TYPE_KEY
+  nameWithType: DynamicField.TYPE_KEY
+  fullName: Business.Model.DynamicField.TYPE_KEY
+  type: Field
+  source:
+    remote:
+      path: Business/Model/DynamicField.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: TYPE_KEY
+    path: ../Business/Model/DynamicField.cs
+    startLine: 30
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: public const string TYPE_KEY = "__TYPE"
+    return:
+      type: System.String
+    content.vb: Public Const TYPE_KEY As String = "__TYPE"
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: Business.Model.DynamicField.FieldType
+  commentId: P:Business.Model.DynamicField.FieldType
+  id: FieldType
+  parent: Business.Model.DynamicField
+  langs:
+  - csharp
+  - vb
+  name: FieldType
+  nameWithType: DynamicField.FieldType
+  fullName: Business.Model.DynamicField.FieldType
+  type: Property
+  source:
+    remote:
+      path: Business/Model/DynamicField.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: FieldType
+    path: ../Business/Model/DynamicField.cs
+    startLine: 31
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: public DynamicField.Type FieldType { get; }
+    parameters: []
+    return:
+      type: Business.Model.DynamicField.Type
+    content.vb: Public ReadOnly Property FieldType As DynamicField.Type
+  overload: Business.Model.DynamicField.FieldType*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Business.Model.DynamicField.#ctor(Business.Model.DynamicField.Type)
+  commentId: M:Business.Model.DynamicField.#ctor(Business.Model.DynamicField.Type)
+  id: '#ctor(Business.Model.DynamicField.Type)'
+  parent: Business.Model.DynamicField
+  langs:
+  - csharp
+  - vb
+  name: DynamicField(DynamicField.Type)
+  nameWithType: DynamicField.DynamicField(DynamicField.Type)
+  fullName: Business.Model.DynamicField.DynamicField(Business.Model.DynamicField.Type)
+  type: Constructor
+  source:
+    remote:
+      path: Business/Model/DynamicField.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: .ctor
+    path: ../Business/Model/DynamicField.cs
+    startLine: 33
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: public DynamicField(DynamicField.Type type)
+    parameters:
+    - id: type
+      type: Business.Model.DynamicField.Type
+    content.vb: Public Sub New(type As DynamicField.Type)
+  overload: Business.Model.DynamicField.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Business.Model.DynamicField.ToJsonImpl
+  commentId: M:Business.Model.DynamicField.ToJsonImpl
+  id: ToJsonImpl
+  parent: Business.Model.DynamicField
+  langs:
+  - csharp
+  - vb
+  name: ToJsonImpl()
+  nameWithType: DynamicField.ToJsonImpl()
+  fullName: Business.Model.DynamicField.ToJsonImpl()
+  type: Method
+  source:
+    remote:
+      path: Business/Model/DynamicField.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: ToJsonImpl
+    path: ../Business/Model/DynamicField.cs
+    startLine: 38
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: protected abstract JObject ToJsonImpl()
+    return:
+      type: Newtonsoft.Json.Linq.JObject
+    content.vb: Protected MustOverride Function ToJsonImpl As JObject
+  overload: Business.Model.DynamicField.ToJsonImpl*
+  modifiers.csharp:
+  - protected
+  - abstract
+  modifiers.vb:
+  - Protected
+  - MustOverride
+- uid: Business.Model.DynamicField.FromJson(Newtonsoft.Json.Linq.JObject)
+  commentId: M:Business.Model.DynamicField.FromJson(Newtonsoft.Json.Linq.JObject)
+  id: FromJson(Newtonsoft.Json.Linq.JObject)
+  parent: Business.Model.DynamicField
+  langs:
+  - csharp
+  - vb
+  name: FromJson(JObject)
+  nameWithType: DynamicField.FromJson(JObject)
+  fullName: Business.Model.DynamicField.FromJson(Newtonsoft.Json.Linq.JObject)
+  type: Method
+  source:
+    remote:
+      path: Business/Model/DynamicField.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: FromJson
+    path: ../Business/Model/DynamicField.cs
+    startLine: 39
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: public abstract void FromJson(JObject json)
+    parameters:
+    - id: json
+      type: Newtonsoft.Json.Linq.JObject
+    content.vb: Public MustOverride Sub FromJson(json As JObject)
+  overload: Business.Model.DynamicField.FromJson*
+  modifiers.csharp:
+  - public
+  - abstract
+  modifiers.vb:
+  - Public
+  - MustOverride
+- uid: Business.Model.DynamicField.ToHtmlString
+  commentId: M:Business.Model.DynamicField.ToHtmlString
+  id: ToHtmlString
+  parent: Business.Model.DynamicField
+  langs:
+  - csharp
+  - vb
+  name: ToHtmlString()
+  nameWithType: DynamicField.ToHtmlString()
+  fullName: Business.Model.DynamicField.ToHtmlString()
+  type: Method
+  source:
+    remote:
+      path: Business/Model/DynamicField.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: ToHtmlString
+    path: ../Business/Model/DynamicField.cs
+    startLine: 40
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: public abstract string ToHtmlString()
+    return:
+      type: System.String
+    content.vb: Public MustOverride Function ToHtmlString As String
+  overload: Business.Model.DynamicField.ToHtmlString*
+  modifiers.csharp:
+  - public
+  - abstract
+  modifiers.vb:
+  - Public
+  - MustOverride
+- uid: Business.Model.DynamicField.FromHtmlString(System.String)
+  commentId: M:Business.Model.DynamicField.FromHtmlString(System.String)
+  id: FromHtmlString(System.String)
+  parent: Business.Model.DynamicField
+  langs:
+  - csharp
+  - vb
+  name: FromHtmlString(String)
+  nameWithType: DynamicField.FromHtmlString(String)
+  fullName: Business.Model.DynamicField.FromHtmlString(System.String)
+  type: Method
+  source:
+    remote:
+      path: Business/Model/DynamicField.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: FromHtmlString
+    path: ../Business/Model/DynamicField.cs
+    startLine: 41
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: public abstract void FromHtmlString(string html)
+    parameters:
+    - id: html
+      type: System.String
+    content.vb: Public MustOverride Sub FromHtmlString(html As String)
+  overload: Business.Model.DynamicField.FromHtmlString*
+  modifiers.csharp:
+  - public
+  - abstract
+  modifiers.vb:
+  - Public
+  - MustOverride
+- uid: Business.Model.DynamicField.ToJson
+  commentId: M:Business.Model.DynamicField.ToJson
+  id: ToJson
+  parent: Business.Model.DynamicField
+  langs:
+  - csharp
+  - vb
+  name: ToJson()
+  nameWithType: DynamicField.ToJson()
+  fullName: Business.Model.DynamicField.ToJson()
+  type: Method
+  source:
+    remote:
+      path: Business/Model/DynamicField.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: ToJson
+    path: ../Business/Model/DynamicField.cs
+    startLine: 43
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: public JObject ToJson()
+    return:
+      type: Newtonsoft.Json.Linq.JObject
+    content.vb: Public Function ToJson As JObject
+  overload: Business.Model.DynamicField.ToJson*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: Business.Model
+  commentId: N:Business.Model
+  name: Business.Model
+  nameWithType: Business.Model
+  fullName: Business.Model
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: Business.Model.DynamicField.FieldType*
+  commentId: Overload:Business.Model.DynamicField.FieldType
+  name: FieldType
+  nameWithType: DynamicField.FieldType
+  fullName: Business.Model.DynamicField.FieldType
+- uid: Business.Model.DynamicField.Type
+  commentId: T:Business.Model.DynamicField.Type
+  parent: Business.Model
+  name: DynamicField.Type
+  nameWithType: DynamicField.Type
+  fullName: Business.Model.DynamicField.Type
+- uid: Business.Model.DynamicField.#ctor*
+  commentId: Overload:Business.Model.DynamicField.#ctor
+  name: DynamicField
+  nameWithType: DynamicField.DynamicField
+  fullName: Business.Model.DynamicField.DynamicField
+- uid: Business.Model.DynamicField.ToJsonImpl*
+  commentId: Overload:Business.Model.DynamicField.ToJsonImpl
+  name: ToJsonImpl
+  nameWithType: DynamicField.ToJsonImpl
+  fullName: Business.Model.DynamicField.ToJsonImpl
+- uid: Newtonsoft.Json.Linq.JObject
+  commentId: T:Newtonsoft.Json.Linq.JObject
+  parent: Newtonsoft.Json.Linq
+  isExternal: true
+  name: JObject
+  nameWithType: JObject
+  fullName: Newtonsoft.Json.Linq.JObject
+- uid: Newtonsoft.Json.Linq
+  commentId: N:Newtonsoft.Json.Linq
+  isExternal: true
+  name: Newtonsoft.Json.Linq
+  nameWithType: Newtonsoft.Json.Linq
+  fullName: Newtonsoft.Json.Linq
+- uid: Business.Model.DynamicField.FromJson*
+  commentId: Overload:Business.Model.DynamicField.FromJson
+  name: FromJson
+  nameWithType: DynamicField.FromJson
+  fullName: Business.Model.DynamicField.FromJson
+- uid: Business.Model.DynamicField.ToHtmlString*
+  commentId: Overload:Business.Model.DynamicField.ToHtmlString
+  name: ToHtmlString
+  nameWithType: DynamicField.ToHtmlString
+  fullName: Business.Model.DynamicField.ToHtmlString
+- uid: Business.Model.DynamicField.FromHtmlString*
+  commentId: Overload:Business.Model.DynamicField.FromHtmlString
+  name: FromHtmlString
+  nameWithType: DynamicField.FromHtmlString
+  fullName: Business.Model.DynamicField.FromHtmlString
+- uid: Business.Model.DynamicField.ToJson*
+  commentId: Overload:Business.Model.DynamicField.ToJson
+  name: ToJson
+  nameWithType: DynamicField.ToJson
+  fullName: Business.Model.DynamicField.ToJson

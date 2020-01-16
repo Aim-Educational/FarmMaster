@@ -1,0 +1,568 @@
+### YamlMime:ManagedReference
+items:
+- uid: FarmMaster.Models.AjaxCharacteristicsResponseValue
+  commentId: T:FarmMaster.Models.AjaxCharacteristicsResponseValue
+  id: AjaxCharacteristicsResponseValue
+  parent: FarmMaster.Models
+  children:
+  - FarmMaster.Models.AjaxCharacteristicsResponseValue.Id
+  - FarmMaster.Models.AjaxCharacteristicsResponseValue.IsInherited
+  - FarmMaster.Models.AjaxCharacteristicsResponseValue.Name
+  - FarmMaster.Models.AjaxCharacteristicsResponseValue.Type
+  - FarmMaster.Models.AjaxCharacteristicsResponseValue.Value
+  langs:
+  - csharp
+  - vb
+  name: AjaxCharacteristicsResponseValue
+  nameWithType: AjaxCharacteristicsResponseValue
+  fullName: FarmMaster.Models.AjaxCharacteristicsResponseValue
+  type: Class
+  source:
+    remote:
+      path: FarmMaster/Models/ComponentCharacteristicsViewModels.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: AjaxCharacteristicsResponseValue
+    path: Models/ComponentCharacteristicsViewModels.cs
+    startLine: 17
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Models
+  syntax:
+    content: public class AjaxCharacteristicsResponseValue
+    content.vb: Public Class AjaxCharacteristicsResponseValue
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: FarmMaster.Models.AjaxCharacteristicsResponseValue.Name
+  commentId: P:FarmMaster.Models.AjaxCharacteristicsResponseValue.Name
+  id: Name
+  parent: FarmMaster.Models.AjaxCharacteristicsResponseValue
+  langs:
+  - csharp
+  - vb
+  name: Name
+  nameWithType: AjaxCharacteristicsResponseValue.Name
+  fullName: FarmMaster.Models.AjaxCharacteristicsResponseValue.Name
+  type: Property
+  source:
+    remote:
+      path: FarmMaster/Models/ComponentCharacteristicsViewModels.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: Name
+    path: Models/ComponentCharacteristicsViewModels.cs
+    startLine: 19
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Models
+  syntax:
+    content: public string Name { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Name As String
+  overload: FarmMaster.Models.AjaxCharacteristicsResponseValue.Name*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Models.AjaxCharacteristicsResponseValue.Type
+  commentId: P:FarmMaster.Models.AjaxCharacteristicsResponseValue.Type
+  id: Type
+  parent: FarmMaster.Models.AjaxCharacteristicsResponseValue
+  langs:
+  - csharp
+  - vb
+  name: Type
+  nameWithType: AjaxCharacteristicsResponseValue.Type
+  fullName: FarmMaster.Models.AjaxCharacteristicsResponseValue.Type
+  type: Property
+  source:
+    remote:
+      path: FarmMaster/Models/ComponentCharacteristicsViewModels.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: Type
+    path: Models/ComponentCharacteristicsViewModels.cs
+    startLine: 20
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Models
+  syntax:
+    content: public string Type { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Type As String
+  overload: FarmMaster.Models.AjaxCharacteristicsResponseValue.Type*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Models.AjaxCharacteristicsResponseValue.Value
+  commentId: P:FarmMaster.Models.AjaxCharacteristicsResponseValue.Value
+  id: Value
+  parent: FarmMaster.Models.AjaxCharacteristicsResponseValue
+  langs:
+  - csharp
+  - vb
+  name: Value
+  nameWithType: AjaxCharacteristicsResponseValue.Value
+  fullName: FarmMaster.Models.AjaxCharacteristicsResponseValue.Value
+  type: Property
+  source:
+    remote:
+      path: FarmMaster/Models/ComponentCharacteristicsViewModels.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: Value
+    path: Models/ComponentCharacteristicsViewModels.cs
+    startLine: 21
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Models
+  syntax:
+    content: public string Value { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property Value As String
+  overload: FarmMaster.Models.AjaxCharacteristicsResponseValue.Value*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Models.AjaxCharacteristicsResponseValue.IsInherited
+  commentId: P:FarmMaster.Models.AjaxCharacteristicsResponseValue.IsInherited
+  id: IsInherited
+  parent: FarmMaster.Models.AjaxCharacteristicsResponseValue
+  langs:
+  - csharp
+  - vb
+  name: IsInherited
+  nameWithType: AjaxCharacteristicsResponseValue.IsInherited
+  fullName: FarmMaster.Models.AjaxCharacteristicsResponseValue.IsInherited
+  type: Property
+  source:
+    remote:
+      path: FarmMaster/Models/ComponentCharacteristicsViewModels.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: IsInherited
+    path: Models/ComponentCharacteristicsViewModels.cs
+    startLine: 22
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Models
+  syntax:
+    content: public bool IsInherited { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property IsInherited As Boolean
+  overload: FarmMaster.Models.AjaxCharacteristicsResponseValue.IsInherited*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Models.AjaxCharacteristicsResponseValue.Id
+  commentId: P:FarmMaster.Models.AjaxCharacteristicsResponseValue.Id
+  id: Id
+  parent: FarmMaster.Models.AjaxCharacteristicsResponseValue
+  langs:
+  - csharp
+  - vb
+  name: Id
+  nameWithType: AjaxCharacteristicsResponseValue.Id
+  fullName: FarmMaster.Models.AjaxCharacteristicsResponseValue.Id
+  type: Property
+  source:
+    remote:
+      path: FarmMaster/Models/ComponentCharacteristicsViewModels.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: Id
+    path: Models/ComponentCharacteristicsViewModels.cs
+    startLine: 23
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Models
+  syntax:
+    content: public int Id { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property Id As Integer
+  overload: FarmMaster.Models.AjaxCharacteristicsResponseValue.Id*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+references:
+- uid: FarmMaster.Models
+  commentId: N:FarmMaster.Models
+  name: FarmMaster.Models
+  nameWithType: FarmMaster.Models
+  fullName: FarmMaster.Models
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: FarmMaster.Models.AjaxCharacteristicsResponseValue.Name*
+  commentId: Overload:FarmMaster.Models.AjaxCharacteristicsResponseValue.Name
+  name: Name
+  nameWithType: AjaxCharacteristicsResponseValue.Name
+  fullName: FarmMaster.Models.AjaxCharacteristicsResponseValue.Name
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: FarmMaster.Models.AjaxCharacteristicsResponseValue.Type*
+  commentId: Overload:FarmMaster.Models.AjaxCharacteristicsResponseValue.Type
+  name: Type
+  nameWithType: AjaxCharacteristicsResponseValue.Type
+  fullName: FarmMaster.Models.AjaxCharacteristicsResponseValue.Type
+- uid: FarmMaster.Models.AjaxCharacteristicsResponseValue.Value*
+  commentId: Overload:FarmMaster.Models.AjaxCharacteristicsResponseValue.Value
+  name: Value
+  nameWithType: AjaxCharacteristicsResponseValue.Value
+  fullName: FarmMaster.Models.AjaxCharacteristicsResponseValue.Value
+- uid: FarmMaster.Models.AjaxCharacteristicsResponseValue.IsInherited*
+  commentId: Overload:FarmMaster.Models.AjaxCharacteristicsResponseValue.IsInherited
+  name: IsInherited
+  nameWithType: AjaxCharacteristicsResponseValue.IsInherited
+  fullName: FarmMaster.Models.AjaxCharacteristicsResponseValue.IsInherited
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: FarmMaster.Models.AjaxCharacteristicsResponseValue.Id*
+  commentId: Overload:FarmMaster.Models.AjaxCharacteristicsResponseValue.Id
+  name: Id
+  nameWithType: AjaxCharacteristicsResponseValue.Id
+  fullName: FarmMaster.Models.AjaxCharacteristicsResponseValue.Id
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32

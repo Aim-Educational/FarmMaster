@@ -1,0 +1,1548 @@
+### YamlMime:ManagedReference
+items:
+- uid: FarmMaster.Models.AnimalCreateEditViewModel
+  commentId: T:FarmMaster.Models.AnimalCreateEditViewModel
+  id: AnimalCreateEditViewModel
+  parent: FarmMaster.Models
+  children:
+  - FarmMaster.Models.AnimalCreateEditViewModel.AnimalId
+  - FarmMaster.Models.AnimalCreateEditViewModel.BreedIds
+  - FarmMaster.Models.AnimalCreateEditViewModel.DadId
+  - FarmMaster.Models.AnimalCreateEditViewModel.HoldingId
+  - FarmMaster.Models.AnimalCreateEditViewModel.Image
+  - FarmMaster.Models.AnimalCreateEditViewModel.ImageId
+  - FarmMaster.Models.AnimalCreateEditViewModel.IsCreate
+  - FarmMaster.Models.AnimalCreateEditViewModel.MumId
+  - FarmMaster.Models.AnimalCreateEditViewModel.Name
+  - FarmMaster.Models.AnimalCreateEditViewModel.OwnerId
+  - FarmMaster.Models.AnimalCreateEditViewModel.Sex
+  - FarmMaster.Models.AnimalCreateEditViewModel.SpeciesId
+  - FarmMaster.Models.AnimalCreateEditViewModel.Tag
+  langs:
+  - csharp
+  - vb
+  name: AnimalCreateEditViewModel
+  nameWithType: AnimalCreateEditViewModel
+  fullName: FarmMaster.Models.AnimalCreateEditViewModel
+  type: Class
+  source:
+    remote:
+      path: FarmMaster/Models/AnimalViewModels.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: AnimalCreateEditViewModel
+    path: Models/AnimalViewModels.cs
+    startLine: 14
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Models
+  syntax:
+    content: 'public class AnimalCreateEditViewModel : ViewModelWithMessage'
+    content.vb: >-
+      Public Class AnimalCreateEditViewModel
+
+          Inherits ViewModelWithMessage
+  inheritance:
+  - System.Object
+  - FarmMaster.Models.ViewModelWithMessage
+  inheritedMembers:
+  - FarmMaster.Models.ViewModelWithMessage.MessageType
+  - FarmMaster.Models.ViewModelWithMessage.MessageFormat
+  - FarmMaster.Models.ViewModelWithMessage.Message
+  - FarmMaster.Models.ViewModelWithMessage.HasMessage
+  - FarmMaster.Models.ViewModelWithMessage.ParseMessageQueryString(System.String)
+  - FarmMaster.Models.ViewModelWithMessage.ParseInvalidModelState(Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary)
+  - FarmMaster.Models.ViewModelWithMessage.CreateMessageQueryString(FarmMaster.Models.ViewModelWithMessage.Type,System.String,FarmMaster.Models.ViewModelWithMessage.Format)
+  - FarmMaster.Models.ViewModelWithMessage.CreateQueryString(Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary)
+  - FarmMaster.Models.ViewModelWithMessage.CreateErrorQueryString(System.String,FarmMaster.Models.ViewModelWithMessage.Format)
+  - FarmMaster.Models.ViewModelWithMessage.CreateWarningQueryString(System.String,FarmMaster.Models.ViewModelWithMessage.Format)
+  - FarmMaster.Models.ViewModelWithMessage.CreateInfoQueryString(System.String,FarmMaster.Models.ViewModelWithMessage.Format)
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: FarmMaster.Models.AnimalCreateEditViewModel.Name
+  commentId: P:FarmMaster.Models.AnimalCreateEditViewModel.Name
+  id: Name
+  parent: FarmMaster.Models.AnimalCreateEditViewModel
+  langs:
+  - csharp
+  - vb
+  name: Name
+  nameWithType: AnimalCreateEditViewModel.Name
+  fullName: FarmMaster.Models.AnimalCreateEditViewModel.Name
+  type: Property
+  source:
+    remote:
+      path: FarmMaster/Models/AnimalViewModels.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: Name
+    path: Models/AnimalViewModels.cs
+    startLine: 16
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Models
+  syntax:
+    content: >-
+      [Required]
+
+      [StringLength(75)]
+
+      public string Name { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <Required>
+
+      <StringLength(75)>
+
+      Public Property Name As String
+  overload: FarmMaster.Models.AnimalCreateEditViewModel.Name*
+  attributes:
+  - type: System.ComponentModel.DataAnnotations.RequiredAttribute
+    ctor: System.ComponentModel.DataAnnotations.RequiredAttribute.#ctor
+    arguments: []
+  - type: System.ComponentModel.DataAnnotations.StringLengthAttribute
+    ctor: System.ComponentModel.DataAnnotations.StringLengthAttribute.#ctor(System.Int32)
+    arguments:
+    - type: System.Int32
+      value: 75
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Models.AnimalCreateEditViewModel.Tag
+  commentId: P:FarmMaster.Models.AnimalCreateEditViewModel.Tag
+  id: Tag
+  parent: FarmMaster.Models.AnimalCreateEditViewModel
+  langs:
+  - csharp
+  - vb
+  name: Tag
+  nameWithType: AnimalCreateEditViewModel.Tag
+  fullName: FarmMaster.Models.AnimalCreateEditViewModel.Tag
+  type: Property
+  source:
+    remote:
+      path: FarmMaster/Models/AnimalViewModels.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: Tag
+    path: Models/AnimalViewModels.cs
+    startLine: 20
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Models
+  syntax:
+    content: >-
+      [Required]
+
+      [StringLength(20)]
+
+      public string Tag { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <Required>
+
+      <StringLength(20)>
+
+      Public Property Tag As String
+  overload: FarmMaster.Models.AnimalCreateEditViewModel.Tag*
+  attributes:
+  - type: System.ComponentModel.DataAnnotations.RequiredAttribute
+    ctor: System.ComponentModel.DataAnnotations.RequiredAttribute.#ctor
+    arguments: []
+  - type: System.ComponentModel.DataAnnotations.StringLengthAttribute
+    ctor: System.ComponentModel.DataAnnotations.StringLengthAttribute.#ctor(System.Int32)
+    arguments:
+    - type: System.Int32
+      value: 20
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Models.AnimalCreateEditViewModel.SpeciesId
+  commentId: P:FarmMaster.Models.AnimalCreateEditViewModel.SpeciesId
+  id: SpeciesId
+  parent: FarmMaster.Models.AnimalCreateEditViewModel
+  langs:
+  - csharp
+  - vb
+  name: SpeciesId
+  nameWithType: AnimalCreateEditViewModel.SpeciesId
+  fullName: FarmMaster.Models.AnimalCreateEditViewModel.SpeciesId
+  type: Property
+  source:
+    remote:
+      path: FarmMaster/Models/AnimalViewModels.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: SpeciesId
+    path: Models/AnimalViewModels.cs
+    startLine: 24
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Models
+  syntax:
+    content: >-
+      [Required]
+
+      public int? SpeciesId { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Int32}
+    content.vb: >-
+      <Required>
+
+      Public Property SpeciesId As Integer?
+  overload: FarmMaster.Models.AnimalCreateEditViewModel.SpeciesId*
+  attributes:
+  - type: System.ComponentModel.DataAnnotations.RequiredAttribute
+    ctor: System.ComponentModel.DataAnnotations.RequiredAttribute.#ctor
+    arguments: []
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Models.AnimalCreateEditViewModel.BreedIds
+  commentId: P:FarmMaster.Models.AnimalCreateEditViewModel.BreedIds
+  id: BreedIds
+  parent: FarmMaster.Models.AnimalCreateEditViewModel
+  langs:
+  - csharp
+  - vb
+  name: BreedIds
+  nameWithType: AnimalCreateEditViewModel.BreedIds
+  fullName: FarmMaster.Models.AnimalCreateEditViewModel.BreedIds
+  type: Property
+  source:
+    remote:
+      path: FarmMaster/Models/AnimalViewModels.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: BreedIds
+    path: Models/AnimalViewModels.cs
+    startLine: 27
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Models
+  syntax:
+    content: public IEnumerable<int> BreedIds { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IEnumerable{System.Int32}
+    content.vb: Public Property BreedIds As IEnumerable(Of Integer)
+  overload: FarmMaster.Models.AnimalCreateEditViewModel.BreedIds*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Models.AnimalCreateEditViewModel.Sex
+  commentId: P:FarmMaster.Models.AnimalCreateEditViewModel.Sex
+  id: Sex
+  parent: FarmMaster.Models.AnimalCreateEditViewModel
+  langs:
+  - csharp
+  - vb
+  name: Sex
+  nameWithType: AnimalCreateEditViewModel.Sex
+  fullName: FarmMaster.Models.AnimalCreateEditViewModel.Sex
+  type: Property
+  source:
+    remote:
+      path: FarmMaster/Models/AnimalViewModels.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: Sex
+    path: Models/AnimalViewModels.cs
+    startLine: 29
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Models
+  syntax:
+    content: >-
+      [Required]
+
+      public Animal.Gender Sex { get; set; }
+    parameters: []
+    return:
+      type: Business.Model.Animal.Gender
+    content.vb: >-
+      <Required>
+
+      Public Property Sex As Animal.Gender
+  overload: FarmMaster.Models.AnimalCreateEditViewModel.Sex*
+  attributes:
+  - type: System.ComponentModel.DataAnnotations.RequiredAttribute
+    ctor: System.ComponentModel.DataAnnotations.RequiredAttribute.#ctor
+    arguments: []
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Models.AnimalCreateEditViewModel.OwnerId
+  commentId: P:FarmMaster.Models.AnimalCreateEditViewModel.OwnerId
+  id: OwnerId
+  parent: FarmMaster.Models.AnimalCreateEditViewModel
+  langs:
+  - csharp
+  - vb
+  name: OwnerId
+  nameWithType: AnimalCreateEditViewModel.OwnerId
+  fullName: FarmMaster.Models.AnimalCreateEditViewModel.OwnerId
+  type: Property
+  source:
+    remote:
+      path: FarmMaster/Models/AnimalViewModels.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: OwnerId
+    path: Models/AnimalViewModels.cs
+    startLine: 32
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Models
+  syntax:
+    content: >-
+      [Required]
+
+      public int OwnerId { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: >-
+      <Required>
+
+      Public Property OwnerId As Integer
+  overload: FarmMaster.Models.AnimalCreateEditViewModel.OwnerId*
+  attributes:
+  - type: System.ComponentModel.DataAnnotations.RequiredAttribute
+    ctor: System.ComponentModel.DataAnnotations.RequiredAttribute.#ctor
+    arguments: []
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Models.AnimalCreateEditViewModel.Image
+  commentId: P:FarmMaster.Models.AnimalCreateEditViewModel.Image
+  id: Image
+  parent: FarmMaster.Models.AnimalCreateEditViewModel
+  langs:
+  - csharp
+  - vb
+  name: Image
+  nameWithType: AnimalCreateEditViewModel.Image
+  fullName: FarmMaster.Models.AnimalCreateEditViewModel.Image
+  type: Property
+  source:
+    remote:
+      path: FarmMaster/Models/AnimalViewModels.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: Image
+    path: Models/AnimalViewModels.cs
+    startLine: 35
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Models
+  syntax:
+    content: public IFormFile Image { get; set; }
+    parameters: []
+    return:
+      type: Microsoft.AspNetCore.Http.IFormFile
+    content.vb: Public Property Image As IFormFile
+  overload: FarmMaster.Models.AnimalCreateEditViewModel.Image*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Models.AnimalCreateEditViewModel.ImageId
+  commentId: P:FarmMaster.Models.AnimalCreateEditViewModel.ImageId
+  id: ImageId
+  parent: FarmMaster.Models.AnimalCreateEditViewModel
+  langs:
+  - csharp
+  - vb
+  name: ImageId
+  nameWithType: AnimalCreateEditViewModel.ImageId
+  fullName: FarmMaster.Models.AnimalCreateEditViewModel.ImageId
+  type: Property
+  source:
+    remote:
+      path: FarmMaster/Models/AnimalViewModels.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: ImageId
+    path: Models/AnimalViewModels.cs
+    startLine: 36
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Models
+  syntax:
+    content: public int? ImageId { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Int32}
+    content.vb: Public Property ImageId As Integer?
+  overload: FarmMaster.Models.AnimalCreateEditViewModel.ImageId*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Models.AnimalCreateEditViewModel.AnimalId
+  commentId: P:FarmMaster.Models.AnimalCreateEditViewModel.AnimalId
+  id: AnimalId
+  parent: FarmMaster.Models.AnimalCreateEditViewModel
+  langs:
+  - csharp
+  - vb
+  name: AnimalId
+  nameWithType: AnimalCreateEditViewModel.AnimalId
+  fullName: FarmMaster.Models.AnimalCreateEditViewModel.AnimalId
+  type: Property
+  source:
+    remote:
+      path: FarmMaster/Models/AnimalViewModels.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: AnimalId
+    path: Models/AnimalViewModels.cs
+    startLine: 38
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Models
+  syntax:
+    content: public int? AnimalId { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Int32}
+    content.vb: Public Property AnimalId As Integer?
+  overload: FarmMaster.Models.AnimalCreateEditViewModel.AnimalId*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Models.AnimalCreateEditViewModel.MumId
+  commentId: P:FarmMaster.Models.AnimalCreateEditViewModel.MumId
+  id: MumId
+  parent: FarmMaster.Models.AnimalCreateEditViewModel
+  langs:
+  - csharp
+  - vb
+  name: MumId
+  nameWithType: AnimalCreateEditViewModel.MumId
+  fullName: FarmMaster.Models.AnimalCreateEditViewModel.MumId
+  type: Property
+  source:
+    remote:
+      path: FarmMaster/Models/AnimalViewModels.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: MumId
+    path: Models/AnimalViewModels.cs
+    startLine: 40
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Models
+  syntax:
+    content: public int? MumId { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Int32}
+    content.vb: Public Property MumId As Integer?
+  overload: FarmMaster.Models.AnimalCreateEditViewModel.MumId*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Models.AnimalCreateEditViewModel.DadId
+  commentId: P:FarmMaster.Models.AnimalCreateEditViewModel.DadId
+  id: DadId
+  parent: FarmMaster.Models.AnimalCreateEditViewModel
+  langs:
+  - csharp
+  - vb
+  name: DadId
+  nameWithType: AnimalCreateEditViewModel.DadId
+  fullName: FarmMaster.Models.AnimalCreateEditViewModel.DadId
+  type: Property
+  source:
+    remote:
+      path: FarmMaster/Models/AnimalViewModels.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: DadId
+    path: Models/AnimalViewModels.cs
+    startLine: 42
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Models
+  syntax:
+    content: public int? DadId { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Int32}
+    content.vb: Public Property DadId As Integer?
+  overload: FarmMaster.Models.AnimalCreateEditViewModel.DadId*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Models.AnimalCreateEditViewModel.HoldingId
+  commentId: P:FarmMaster.Models.AnimalCreateEditViewModel.HoldingId
+  id: HoldingId
+  parent: FarmMaster.Models.AnimalCreateEditViewModel
+  langs:
+  - csharp
+  - vb
+  name: HoldingId
+  nameWithType: AnimalCreateEditViewModel.HoldingId
+  fullName: FarmMaster.Models.AnimalCreateEditViewModel.HoldingId
+  type: Property
+  source:
+    remote:
+      path: FarmMaster/Models/AnimalViewModels.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: HoldingId
+    path: Models/AnimalViewModels.cs
+    startLine: 44
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Models
+  syntax:
+    content: public int? HoldingId { get; set; }
+    parameters: []
+    return:
+      type: System.Nullable{System.Int32}
+    content.vb: Public Property HoldingId As Integer?
+  overload: FarmMaster.Models.AnimalCreateEditViewModel.HoldingId*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Models.AnimalCreateEditViewModel.IsCreate
+  commentId: P:FarmMaster.Models.AnimalCreateEditViewModel.IsCreate
+  id: IsCreate
+  parent: FarmMaster.Models.AnimalCreateEditViewModel
+  langs:
+  - csharp
+  - vb
+  name: IsCreate
+  nameWithType: AnimalCreateEditViewModel.IsCreate
+  fullName: FarmMaster.Models.AnimalCreateEditViewModel.IsCreate
+  type: Property
+  source:
+    remote:
+      path: FarmMaster/Models/AnimalViewModels.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: IsCreate
+    path: Models/AnimalViewModels.cs
+    startLine: 46
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Models
+  syntax:
+    content: public bool IsCreate { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property IsCreate As Boolean
+  overload: FarmMaster.Models.AnimalCreateEditViewModel.IsCreate*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+references:
+- uid: FarmMaster.Models
+  commentId: N:FarmMaster.Models
+  name: FarmMaster.Models
+  nameWithType: FarmMaster.Models
+  fullName: FarmMaster.Models
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: FarmMaster.Models.ViewModelWithMessage
+  commentId: T:FarmMaster.Models.ViewModelWithMessage
+  parent: FarmMaster.Models
+  name: ViewModelWithMessage
+  nameWithType: ViewModelWithMessage
+  fullName: FarmMaster.Models.ViewModelWithMessage
+- uid: FarmMaster.Models.ViewModelWithMessage.MessageType
+  commentId: F:FarmMaster.Models.ViewModelWithMessage.MessageType
+  parent: FarmMaster.Models.ViewModelWithMessage
+  name: MessageType
+  nameWithType: ViewModelWithMessage.MessageType
+  fullName: FarmMaster.Models.ViewModelWithMessage.MessageType
+- uid: FarmMaster.Models.ViewModelWithMessage.MessageFormat
+  commentId: F:FarmMaster.Models.ViewModelWithMessage.MessageFormat
+  parent: FarmMaster.Models.ViewModelWithMessage
+  name: MessageFormat
+  nameWithType: ViewModelWithMessage.MessageFormat
+  fullName: FarmMaster.Models.ViewModelWithMessage.MessageFormat
+- uid: FarmMaster.Models.ViewModelWithMessage.Message
+  commentId: F:FarmMaster.Models.ViewModelWithMessage.Message
+  parent: FarmMaster.Models.ViewModelWithMessage
+  name: Message
+  nameWithType: ViewModelWithMessage.Message
+  fullName: FarmMaster.Models.ViewModelWithMessage.Message
+- uid: FarmMaster.Models.ViewModelWithMessage.HasMessage
+  commentId: P:FarmMaster.Models.ViewModelWithMessage.HasMessage
+  parent: FarmMaster.Models.ViewModelWithMessage
+  name: HasMessage
+  nameWithType: ViewModelWithMessage.HasMessage
+  fullName: FarmMaster.Models.ViewModelWithMessage.HasMessage
+- uid: FarmMaster.Models.ViewModelWithMessage.ParseMessageQueryString(System.String)
+  commentId: M:FarmMaster.Models.ViewModelWithMessage.ParseMessageQueryString(System.String)
+  parent: FarmMaster.Models.ViewModelWithMessage
+  isExternal: true
+  name: ParseMessageQueryString(String)
+  nameWithType: ViewModelWithMessage.ParseMessageQueryString(String)
+  fullName: FarmMaster.Models.ViewModelWithMessage.ParseMessageQueryString(System.String)
+  spec.csharp:
+  - uid: FarmMaster.Models.ViewModelWithMessage.ParseMessageQueryString(System.String)
+    name: ParseMessageQueryString
+    nameWithType: ViewModelWithMessage.ParseMessageQueryString
+    fullName: FarmMaster.Models.ViewModelWithMessage.ParseMessageQueryString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Models.ViewModelWithMessage.ParseMessageQueryString(System.String)
+    name: ParseMessageQueryString
+    nameWithType: ViewModelWithMessage.ParseMessageQueryString
+    fullName: FarmMaster.Models.ViewModelWithMessage.ParseMessageQueryString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Models.ViewModelWithMessage.ParseInvalidModelState(Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary)
+  commentId: M:FarmMaster.Models.ViewModelWithMessage.ParseInvalidModelState(Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary)
+  parent: FarmMaster.Models.ViewModelWithMessage
+  isExternal: true
+  name: ParseInvalidModelState(ModelStateDictionary)
+  nameWithType: ViewModelWithMessage.ParseInvalidModelState(ModelStateDictionary)
+  fullName: FarmMaster.Models.ViewModelWithMessage.ParseInvalidModelState(Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary)
+  spec.csharp:
+  - uid: FarmMaster.Models.ViewModelWithMessage.ParseInvalidModelState(Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary)
+    name: ParseInvalidModelState
+    nameWithType: ViewModelWithMessage.ParseInvalidModelState
+    fullName: FarmMaster.Models.ViewModelWithMessage.ParseInvalidModelState
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary
+    name: ModelStateDictionary
+    nameWithType: ModelStateDictionary
+    fullName: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Models.ViewModelWithMessage.ParseInvalidModelState(Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary)
+    name: ParseInvalidModelState
+    nameWithType: ViewModelWithMessage.ParseInvalidModelState
+    fullName: FarmMaster.Models.ViewModelWithMessage.ParseInvalidModelState
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary
+    name: ModelStateDictionary
+    nameWithType: ModelStateDictionary
+    fullName: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Models.ViewModelWithMessage.CreateMessageQueryString(FarmMaster.Models.ViewModelWithMessage.Type,System.String,FarmMaster.Models.ViewModelWithMessage.Format)
+  commentId: M:FarmMaster.Models.ViewModelWithMessage.CreateMessageQueryString(FarmMaster.Models.ViewModelWithMessage.Type,System.String,FarmMaster.Models.ViewModelWithMessage.Format)
+  parent: FarmMaster.Models.ViewModelWithMessage
+  isExternal: true
+  name: CreateMessageQueryString(ViewModelWithMessage.Type, String, ViewModelWithMessage.Format)
+  nameWithType: ViewModelWithMessage.CreateMessageQueryString(ViewModelWithMessage.Type, String, ViewModelWithMessage.Format)
+  fullName: FarmMaster.Models.ViewModelWithMessage.CreateMessageQueryString(FarmMaster.Models.ViewModelWithMessage.Type, System.String, FarmMaster.Models.ViewModelWithMessage.Format)
+  spec.csharp:
+  - uid: FarmMaster.Models.ViewModelWithMessage.CreateMessageQueryString(FarmMaster.Models.ViewModelWithMessage.Type,System.String,FarmMaster.Models.ViewModelWithMessage.Format)
+    name: CreateMessageQueryString
+    nameWithType: ViewModelWithMessage.CreateMessageQueryString
+    fullName: FarmMaster.Models.ViewModelWithMessage.CreateMessageQueryString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: FarmMaster.Models.ViewModelWithMessage.Type
+    name: ViewModelWithMessage.Type
+    nameWithType: ViewModelWithMessage.Type
+    fullName: FarmMaster.Models.ViewModelWithMessage.Type
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: FarmMaster.Models.ViewModelWithMessage.Format
+    name: ViewModelWithMessage.Format
+    nameWithType: ViewModelWithMessage.Format
+    fullName: FarmMaster.Models.ViewModelWithMessage.Format
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Models.ViewModelWithMessage.CreateMessageQueryString(FarmMaster.Models.ViewModelWithMessage.Type,System.String,FarmMaster.Models.ViewModelWithMessage.Format)
+    name: CreateMessageQueryString
+    nameWithType: ViewModelWithMessage.CreateMessageQueryString
+    fullName: FarmMaster.Models.ViewModelWithMessage.CreateMessageQueryString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: FarmMaster.Models.ViewModelWithMessage.Type
+    name: ViewModelWithMessage.Type
+    nameWithType: ViewModelWithMessage.Type
+    fullName: FarmMaster.Models.ViewModelWithMessage.Type
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: FarmMaster.Models.ViewModelWithMessage.Format
+    name: ViewModelWithMessage.Format
+    nameWithType: ViewModelWithMessage.Format
+    fullName: FarmMaster.Models.ViewModelWithMessage.Format
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Models.ViewModelWithMessage.CreateQueryString(Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary)
+  commentId: M:FarmMaster.Models.ViewModelWithMessage.CreateQueryString(Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary)
+  parent: FarmMaster.Models.ViewModelWithMessage
+  isExternal: true
+  name: CreateQueryString(ModelStateDictionary)
+  nameWithType: ViewModelWithMessage.CreateQueryString(ModelStateDictionary)
+  fullName: FarmMaster.Models.ViewModelWithMessage.CreateQueryString(Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary)
+  spec.csharp:
+  - uid: FarmMaster.Models.ViewModelWithMessage.CreateQueryString(Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary)
+    name: CreateQueryString
+    nameWithType: ViewModelWithMessage.CreateQueryString
+    fullName: FarmMaster.Models.ViewModelWithMessage.CreateQueryString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary
+    name: ModelStateDictionary
+    nameWithType: ModelStateDictionary
+    fullName: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Models.ViewModelWithMessage.CreateQueryString(Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary)
+    name: CreateQueryString
+    nameWithType: ViewModelWithMessage.CreateQueryString
+    fullName: FarmMaster.Models.ViewModelWithMessage.CreateQueryString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary
+    name: ModelStateDictionary
+    nameWithType: ModelStateDictionary
+    fullName: Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Models.ViewModelWithMessage.CreateErrorQueryString(System.String,FarmMaster.Models.ViewModelWithMessage.Format)
+  commentId: M:FarmMaster.Models.ViewModelWithMessage.CreateErrorQueryString(System.String,FarmMaster.Models.ViewModelWithMessage.Format)
+  parent: FarmMaster.Models.ViewModelWithMessage
+  isExternal: true
+  name: CreateErrorQueryString(String, ViewModelWithMessage.Format)
+  nameWithType: ViewModelWithMessage.CreateErrorQueryString(String, ViewModelWithMessage.Format)
+  fullName: FarmMaster.Models.ViewModelWithMessage.CreateErrorQueryString(System.String, FarmMaster.Models.ViewModelWithMessage.Format)
+  spec.csharp:
+  - uid: FarmMaster.Models.ViewModelWithMessage.CreateErrorQueryString(System.String,FarmMaster.Models.ViewModelWithMessage.Format)
+    name: CreateErrorQueryString
+    nameWithType: ViewModelWithMessage.CreateErrorQueryString
+    fullName: FarmMaster.Models.ViewModelWithMessage.CreateErrorQueryString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: FarmMaster.Models.ViewModelWithMessage.Format
+    name: ViewModelWithMessage.Format
+    nameWithType: ViewModelWithMessage.Format
+    fullName: FarmMaster.Models.ViewModelWithMessage.Format
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Models.ViewModelWithMessage.CreateErrorQueryString(System.String,FarmMaster.Models.ViewModelWithMessage.Format)
+    name: CreateErrorQueryString
+    nameWithType: ViewModelWithMessage.CreateErrorQueryString
+    fullName: FarmMaster.Models.ViewModelWithMessage.CreateErrorQueryString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: FarmMaster.Models.ViewModelWithMessage.Format
+    name: ViewModelWithMessage.Format
+    nameWithType: ViewModelWithMessage.Format
+    fullName: FarmMaster.Models.ViewModelWithMessage.Format
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Models.ViewModelWithMessage.CreateWarningQueryString(System.String,FarmMaster.Models.ViewModelWithMessage.Format)
+  commentId: M:FarmMaster.Models.ViewModelWithMessage.CreateWarningQueryString(System.String,FarmMaster.Models.ViewModelWithMessage.Format)
+  parent: FarmMaster.Models.ViewModelWithMessage
+  isExternal: true
+  name: CreateWarningQueryString(String, ViewModelWithMessage.Format)
+  nameWithType: ViewModelWithMessage.CreateWarningQueryString(String, ViewModelWithMessage.Format)
+  fullName: FarmMaster.Models.ViewModelWithMessage.CreateWarningQueryString(System.String, FarmMaster.Models.ViewModelWithMessage.Format)
+  spec.csharp:
+  - uid: FarmMaster.Models.ViewModelWithMessage.CreateWarningQueryString(System.String,FarmMaster.Models.ViewModelWithMessage.Format)
+    name: CreateWarningQueryString
+    nameWithType: ViewModelWithMessage.CreateWarningQueryString
+    fullName: FarmMaster.Models.ViewModelWithMessage.CreateWarningQueryString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: FarmMaster.Models.ViewModelWithMessage.Format
+    name: ViewModelWithMessage.Format
+    nameWithType: ViewModelWithMessage.Format
+    fullName: FarmMaster.Models.ViewModelWithMessage.Format
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Models.ViewModelWithMessage.CreateWarningQueryString(System.String,FarmMaster.Models.ViewModelWithMessage.Format)
+    name: CreateWarningQueryString
+    nameWithType: ViewModelWithMessage.CreateWarningQueryString
+    fullName: FarmMaster.Models.ViewModelWithMessage.CreateWarningQueryString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: FarmMaster.Models.ViewModelWithMessage.Format
+    name: ViewModelWithMessage.Format
+    nameWithType: ViewModelWithMessage.Format
+    fullName: FarmMaster.Models.ViewModelWithMessage.Format
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Models.ViewModelWithMessage.CreateInfoQueryString(System.String,FarmMaster.Models.ViewModelWithMessage.Format)
+  commentId: M:FarmMaster.Models.ViewModelWithMessage.CreateInfoQueryString(System.String,FarmMaster.Models.ViewModelWithMessage.Format)
+  parent: FarmMaster.Models.ViewModelWithMessage
+  isExternal: true
+  name: CreateInfoQueryString(String, ViewModelWithMessage.Format)
+  nameWithType: ViewModelWithMessage.CreateInfoQueryString(String, ViewModelWithMessage.Format)
+  fullName: FarmMaster.Models.ViewModelWithMessage.CreateInfoQueryString(System.String, FarmMaster.Models.ViewModelWithMessage.Format)
+  spec.csharp:
+  - uid: FarmMaster.Models.ViewModelWithMessage.CreateInfoQueryString(System.String,FarmMaster.Models.ViewModelWithMessage.Format)
+    name: CreateInfoQueryString
+    nameWithType: ViewModelWithMessage.CreateInfoQueryString
+    fullName: FarmMaster.Models.ViewModelWithMessage.CreateInfoQueryString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: FarmMaster.Models.ViewModelWithMessage.Format
+    name: ViewModelWithMessage.Format
+    nameWithType: ViewModelWithMessage.Format
+    fullName: FarmMaster.Models.ViewModelWithMessage.Format
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Models.ViewModelWithMessage.CreateInfoQueryString(System.String,FarmMaster.Models.ViewModelWithMessage.Format)
+    name: CreateInfoQueryString
+    nameWithType: ViewModelWithMessage.CreateInfoQueryString
+    fullName: FarmMaster.Models.ViewModelWithMessage.CreateInfoQueryString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: FarmMaster.Models.ViewModelWithMessage.Format
+    name: ViewModelWithMessage.Format
+    nameWithType: ViewModelWithMessage.Format
+    fullName: FarmMaster.Models.ViewModelWithMessage.Format
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: FarmMaster.Models.AnimalCreateEditViewModel.Name*
+  commentId: Overload:FarmMaster.Models.AnimalCreateEditViewModel.Name
+  name: Name
+  nameWithType: AnimalCreateEditViewModel.Name
+  fullName: FarmMaster.Models.AnimalCreateEditViewModel.Name
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: FarmMaster.Models.AnimalCreateEditViewModel.Tag*
+  commentId: Overload:FarmMaster.Models.AnimalCreateEditViewModel.Tag
+  name: Tag
+  nameWithType: AnimalCreateEditViewModel.Tag
+  fullName: FarmMaster.Models.AnimalCreateEditViewModel.Tag
+- uid: FarmMaster.Models.AnimalCreateEditViewModel.SpeciesId*
+  commentId: Overload:FarmMaster.Models.AnimalCreateEditViewModel.SpeciesId
+  name: SpeciesId
+  nameWithType: AnimalCreateEditViewModel.SpeciesId
+  fullName: FarmMaster.Models.AnimalCreateEditViewModel.SpeciesId
+- uid: System.Nullable{System.Int32}
+  commentId: T:System.Nullable{System.Int32}
+  parent: System
+  definition: System.Nullable`1
+  name: Nullable<Int32>
+  nameWithType: Nullable<Int32>
+  fullName: System.Nullable<System.Int32>
+  nameWithType.vb: Nullable(Of Int32)
+  fullName.vb: System.Nullable(Of System.Int32)
+  name.vb: Nullable(Of Int32)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Models.AnimalCreateEditViewModel.BreedIds*
+  commentId: Overload:FarmMaster.Models.AnimalCreateEditViewModel.BreedIds
+  name: BreedIds
+  nameWithType: AnimalCreateEditViewModel.BreedIds
+  fullName: FarmMaster.Models.AnimalCreateEditViewModel.BreedIds
+- uid: System.Collections.Generic.IEnumerable{System.Int32}
+  commentId: T:System.Collections.Generic.IEnumerable{System.Int32}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  name: IEnumerable<Int32>
+  nameWithType: IEnumerable<Int32>
+  fullName: System.Collections.Generic.IEnumerable<System.Int32>
+  nameWithType.vb: IEnumerable(Of Int32)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of System.Int32)
+  name.vb: IEnumerable(Of Int32)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+- uid: FarmMaster.Models.AnimalCreateEditViewModel.Sex*
+  commentId: Overload:FarmMaster.Models.AnimalCreateEditViewModel.Sex
+  name: Sex
+  nameWithType: AnimalCreateEditViewModel.Sex
+  fullName: FarmMaster.Models.AnimalCreateEditViewModel.Sex
+- uid: Business.Model.Animal.Gender
+  commentId: T:Business.Model.Animal.Gender
+  parent: Business.Model
+  name: Animal.Gender
+  nameWithType: Animal.Gender
+  fullName: Business.Model.Animal.Gender
+- uid: Business.Model
+  commentId: N:Business.Model
+  name: Business.Model
+  nameWithType: Business.Model
+  fullName: Business.Model
+- uid: FarmMaster.Models.AnimalCreateEditViewModel.OwnerId*
+  commentId: Overload:FarmMaster.Models.AnimalCreateEditViewModel.OwnerId
+  name: OwnerId
+  nameWithType: AnimalCreateEditViewModel.OwnerId
+  fullName: FarmMaster.Models.AnimalCreateEditViewModel.OwnerId
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: FarmMaster.Models.AnimalCreateEditViewModel.Image*
+  commentId: Overload:FarmMaster.Models.AnimalCreateEditViewModel.Image
+  name: Image
+  nameWithType: AnimalCreateEditViewModel.Image
+  fullName: FarmMaster.Models.AnimalCreateEditViewModel.Image
+- uid: Microsoft.AspNetCore.Http.IFormFile
+  commentId: T:Microsoft.AspNetCore.Http.IFormFile
+  parent: Microsoft.AspNetCore.Http
+  isExternal: true
+  name: IFormFile
+  nameWithType: IFormFile
+  fullName: Microsoft.AspNetCore.Http.IFormFile
+- uid: Microsoft.AspNetCore.Http
+  commentId: N:Microsoft.AspNetCore.Http
+  isExternal: true
+  name: Microsoft.AspNetCore.Http
+  nameWithType: Microsoft.AspNetCore.Http
+  fullName: Microsoft.AspNetCore.Http
+- uid: FarmMaster.Models.AnimalCreateEditViewModel.ImageId*
+  commentId: Overload:FarmMaster.Models.AnimalCreateEditViewModel.ImageId
+  name: ImageId
+  nameWithType: AnimalCreateEditViewModel.ImageId
+  fullName: FarmMaster.Models.AnimalCreateEditViewModel.ImageId
+- uid: FarmMaster.Models.AnimalCreateEditViewModel.AnimalId*
+  commentId: Overload:FarmMaster.Models.AnimalCreateEditViewModel.AnimalId
+  name: AnimalId
+  nameWithType: AnimalCreateEditViewModel.AnimalId
+  fullName: FarmMaster.Models.AnimalCreateEditViewModel.AnimalId
+- uid: FarmMaster.Models.AnimalCreateEditViewModel.MumId*
+  commentId: Overload:FarmMaster.Models.AnimalCreateEditViewModel.MumId
+  name: MumId
+  nameWithType: AnimalCreateEditViewModel.MumId
+  fullName: FarmMaster.Models.AnimalCreateEditViewModel.MumId
+- uid: FarmMaster.Models.AnimalCreateEditViewModel.DadId*
+  commentId: Overload:FarmMaster.Models.AnimalCreateEditViewModel.DadId
+  name: DadId
+  nameWithType: AnimalCreateEditViewModel.DadId
+  fullName: FarmMaster.Models.AnimalCreateEditViewModel.DadId
+- uid: FarmMaster.Models.AnimalCreateEditViewModel.HoldingId*
+  commentId: Overload:FarmMaster.Models.AnimalCreateEditViewModel.HoldingId
+  name: HoldingId
+  nameWithType: AnimalCreateEditViewModel.HoldingId
+  fullName: FarmMaster.Models.AnimalCreateEditViewModel.HoldingId
+- uid: FarmMaster.Models.AnimalCreateEditViewModel.IsCreate*
+  commentId: Overload:FarmMaster.Models.AnimalCreateEditViewModel.IsCreate
+  name: IsCreate
+  nameWithType: AnimalCreateEditViewModel.IsCreate
+  fullName: FarmMaster.Models.AnimalCreateEditViewModel.IsCreate
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean

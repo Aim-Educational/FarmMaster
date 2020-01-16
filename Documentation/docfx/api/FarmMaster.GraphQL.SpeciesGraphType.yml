@@ -1,0 +1,5284 @@
+### YamlMime:ManagedReference
+items:
+- uid: FarmMaster.GraphQL.SpeciesGraphType
+  commentId: T:FarmMaster.GraphQL.SpeciesGraphType
+  id: SpeciesGraphType
+  parent: FarmMaster.GraphQL
+  children:
+  - FarmMaster.GraphQL.SpeciesGraphType.#ctor
+  langs:
+  - csharp
+  - vb
+  name: SpeciesGraphType
+  nameWithType: SpeciesGraphType
+  fullName: FarmMaster.GraphQL.SpeciesGraphType
+  type: Class
+  source:
+    remote:
+      path: FarmMaster/GraphQL/Types.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: SpeciesGraphType
+    path: GraphQL/Types.cs
+    startLine: 106
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.GraphQL
+  syntax:
+    content: 'public class SpeciesGraphType : ObjectGraphType<Species>, IObjectGraphType, IComplexGraphType, IGraphType, IProvideMetadata, INamedType, IImplementInterfaces'
+    content.vb: >-
+      Public Class SpeciesGraphType
+
+          Inherits ObjectGraphType(Of Species)
+
+          Implements IObjectGraphType, IComplexGraphType, IGraphType, IProvideMetadata, INamedType, IImplementInterfaces
+  inheritance:
+  - System.Object
+  - GraphQL.Types.GraphType
+  - GraphQL.Types.ComplexGraphType{Business.Model.Species}
+  - GraphQL.Types.ObjectGraphType{Business.Model.Species}
+  implements:
+  - GraphQL.Types.IObjectGraphType
+  - GraphQL.Types.IComplexGraphType
+  - GraphQL.Types.IGraphType
+  - GraphQL.Types.IProvideMetadata
+  - GraphQL.Types.INamedType
+  - GraphQL.Types.IImplementInterfaces
+  inheritedMembers:
+  - GraphQL.Types.ObjectGraphType{Business.Model.Species}.AddResolvedInterface(GraphQL.Types.IInterfaceGraphType)
+  - GraphQL.Types.ObjectGraphType{Business.Model.Species}.Interface``1
+  - GraphQL.Types.ObjectGraphType{Business.Model.Species}.Interface(System.Type)
+  - GraphQL.Types.ObjectGraphType{Business.Model.Species}.IsTypeOf
+  - GraphQL.Types.ObjectGraphType{Business.Model.Species}.ResolvedInterfaces
+  - GraphQL.Types.ObjectGraphType{Business.Model.Species}.Interfaces
+  - GraphQL.Types.ComplexGraphType{Business.Model.Species}.HasField(System.String)
+  - GraphQL.Types.ComplexGraphType{Business.Model.Species}.GetField(System.String)
+  - GraphQL.Types.ComplexGraphType{Business.Model.Species}.AddField(GraphQL.Types.FieldType)
+  - GraphQL.Types.ComplexGraphType{Business.Model.Species}.Field(System.Type,System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{Business.Model.Species},System.Object},System.String)
+  - GraphQL.Types.ComplexGraphType{Business.Model.Species}.Field``1(System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{Business.Model.Species},System.Object},System.String)
+  - GraphQL.Types.ComplexGraphType{Business.Model.Species}.FieldDelegate``1(System.String,System.String,GraphQL.Types.QueryArguments,System.Delegate,System.String)
+  - GraphQL.Types.ComplexGraphType{Business.Model.Species}.FieldAsync(System.Type,System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{Business.Model.Species},System.Threading.Tasks.Task{System.Object}},System.String)
+  - GraphQL.Types.ComplexGraphType{Business.Model.Species}.FieldAsync``1(System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{Business.Model.Species},System.Threading.Tasks.Task{System.Object}},System.String)
+  - GraphQL.Types.ComplexGraphType{Business.Model.Species}.FieldAsync``2(System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{Business.Model.Species},System.Threading.Tasks.Task{{TReturnType}}},System.String)
+  - GraphQL.Types.ComplexGraphType{Business.Model.Species}.FieldSubscribe``1(System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{Business.Model.Species},System.Object},System.Func{GraphQL.Subscription.ResolveEventStreamContext,System.IObservable{System.Object}},System.String)
+  - GraphQL.Types.ComplexGraphType{Business.Model.Species}.FieldSubscribeAsync``1(System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{Business.Model.Species},System.Object},System.Func{GraphQL.Subscription.ResolveEventStreamContext,System.Threading.Tasks.Task{System.IObservable{System.Object}}},System.String)
+  - GraphQL.Types.ComplexGraphType{Business.Model.Species}.Field``2(System.String)
+  - GraphQL.Types.ComplexGraphType{Business.Model.Species}.Field``1
+  - GraphQL.Types.ComplexGraphType{Business.Model.Species}.Field``1(System.String,System.Linq.Expressions.Expression{System.Func{Business.Model.Species,{TProperty}}},System.Boolean,System.Type)
+  - GraphQL.Types.ComplexGraphType{Business.Model.Species}.Field``1(System.Linq.Expressions.Expression{System.Func{Business.Model.Species,{TProperty}}},System.Boolean,System.Type)
+  - GraphQL.Types.ComplexGraphType{Business.Model.Species}.Connection``1
+  - GraphQL.Types.ComplexGraphType{Business.Model.Species}.Fields
+  - GraphQL.Types.GraphType.GetMetadata``1(System.String,{TType})
+  - GraphQL.Types.GraphType.HasMetadata(System.String)
+  - GraphQL.Types.GraphType.CollectTypes(GraphQL.Types.TypeCollectionContext)
+  - GraphQL.Types.GraphType.Equals(GraphQL.Types.IGraphType)
+  - GraphQL.Types.GraphType.Equals(System.Object)
+  - GraphQL.Types.GraphType.GetHashCode
+  - GraphQL.Types.GraphType.Name
+  - GraphQL.Types.GraphType.Description
+  - GraphQL.Types.GraphType.DeprecationReason
+  - GraphQL.Types.GraphType.Metadata
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: FarmMaster.GraphQL.SpeciesGraphType.#ctor
+  commentId: M:FarmMaster.GraphQL.SpeciesGraphType.#ctor
+  id: '#ctor'
+  parent: FarmMaster.GraphQL.SpeciesGraphType
+  langs:
+  - csharp
+  - vb
+  name: SpeciesGraphType()
+  nameWithType: SpeciesGraphType.SpeciesGraphType()
+  fullName: FarmMaster.GraphQL.SpeciesGraphType.SpeciesGraphType()
+  type: Constructor
+  source:
+    remote:
+      path: FarmMaster/GraphQL/Types.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: .ctor
+    path: GraphQL/Types.cs
+    startLine: 108
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.GraphQL
+  syntax:
+    content: public SpeciesGraphType()
+    content.vb: Public Sub New
+  overload: FarmMaster.GraphQL.SpeciesGraphType.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: FarmMaster.GraphQL
+  commentId: N:FarmMaster.GraphQL
+  name: FarmMaster.GraphQL
+  nameWithType: FarmMaster.GraphQL
+  fullName: FarmMaster.GraphQL
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: GraphQL.Types.GraphType
+  commentId: T:GraphQL.Types.GraphType
+  parent: GraphQL.Types
+  isExternal: true
+  name: GraphType
+  nameWithType: GraphType
+  fullName: GraphQL.Types.GraphType
+- uid: GraphQL.Types.ComplexGraphType{Business.Model.Species}
+  commentId: T:GraphQL.Types.ComplexGraphType{Business.Model.Species}
+  parent: GraphQL.Types
+  definition: GraphQL.Types.ComplexGraphType`1
+  name: ComplexGraphType<Species>
+  nameWithType: ComplexGraphType<Species>
+  fullName: GraphQL.Types.ComplexGraphType<Business.Model.Species>
+  nameWithType.vb: ComplexGraphType(Of Species)
+  fullName.vb: GraphQL.Types.ComplexGraphType(Of Business.Model.Species)
+  name.vb: ComplexGraphType(Of Species)
+  spec.csharp:
+  - uid: GraphQL.Types.ComplexGraphType`1
+    name: ComplexGraphType
+    nameWithType: ComplexGraphType
+    fullName: GraphQL.Types.ComplexGraphType
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Business.Model.Species
+    name: Species
+    nameWithType: Species
+    fullName: Business.Model.Species
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: GraphQL.Types.ComplexGraphType`1
+    name: ComplexGraphType
+    nameWithType: ComplexGraphType
+    fullName: GraphQL.Types.ComplexGraphType
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Business.Model.Species
+    name: Species
+    nameWithType: Species
+    fullName: Business.Model.Species
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GraphQL.Types.ObjectGraphType{Business.Model.Species}
+  commentId: T:GraphQL.Types.ObjectGraphType{Business.Model.Species}
+  parent: GraphQL.Types
+  definition: GraphQL.Types.ObjectGraphType`1
+  name: ObjectGraphType<Species>
+  nameWithType: ObjectGraphType<Species>
+  fullName: GraphQL.Types.ObjectGraphType<Business.Model.Species>
+  nameWithType.vb: ObjectGraphType(Of Species)
+  fullName.vb: GraphQL.Types.ObjectGraphType(Of Business.Model.Species)
+  name.vb: ObjectGraphType(Of Species)
+  spec.csharp:
+  - uid: GraphQL.Types.ObjectGraphType`1
+    name: ObjectGraphType
+    nameWithType: ObjectGraphType
+    fullName: GraphQL.Types.ObjectGraphType
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Business.Model.Species
+    name: Species
+    nameWithType: Species
+    fullName: Business.Model.Species
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: GraphQL.Types.ObjectGraphType`1
+    name: ObjectGraphType
+    nameWithType: ObjectGraphType
+    fullName: GraphQL.Types.ObjectGraphType
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Business.Model.Species
+    name: Species
+    nameWithType: Species
+    fullName: Business.Model.Species
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GraphQL.Types.IObjectGraphType
+  commentId: T:GraphQL.Types.IObjectGraphType
+  parent: GraphQL.Types
+  isExternal: true
+  name: IObjectGraphType
+  nameWithType: IObjectGraphType
+  fullName: GraphQL.Types.IObjectGraphType
+- uid: GraphQL.Types.IComplexGraphType
+  commentId: T:GraphQL.Types.IComplexGraphType
+  parent: GraphQL.Types
+  isExternal: true
+  name: IComplexGraphType
+  nameWithType: IComplexGraphType
+  fullName: GraphQL.Types.IComplexGraphType
+- uid: GraphQL.Types.IGraphType
+  commentId: T:GraphQL.Types.IGraphType
+  parent: GraphQL.Types
+  isExternal: true
+  name: IGraphType
+  nameWithType: IGraphType
+  fullName: GraphQL.Types.IGraphType
+- uid: GraphQL.Types.IProvideMetadata
+  commentId: T:GraphQL.Types.IProvideMetadata
+  parent: GraphQL.Types
+  isExternal: true
+  name: IProvideMetadata
+  nameWithType: IProvideMetadata
+  fullName: GraphQL.Types.IProvideMetadata
+- uid: GraphQL.Types.INamedType
+  commentId: T:GraphQL.Types.INamedType
+  parent: GraphQL.Types
+  isExternal: true
+  name: INamedType
+  nameWithType: INamedType
+  fullName: GraphQL.Types.INamedType
+- uid: GraphQL.Types.IImplementInterfaces
+  commentId: T:GraphQL.Types.IImplementInterfaces
+  parent: GraphQL.Types
+  isExternal: true
+  name: IImplementInterfaces
+  nameWithType: IImplementInterfaces
+  fullName: GraphQL.Types.IImplementInterfaces
+- uid: GraphQL.Types.ObjectGraphType{Business.Model.Species}.AddResolvedInterface(GraphQL.Types.IInterfaceGraphType)
+  commentId: M:GraphQL.Types.ObjectGraphType{Business.Model.Species}.AddResolvedInterface(GraphQL.Types.IInterfaceGraphType)
+  parent: GraphQL.Types.ObjectGraphType{Business.Model.Species}
+  definition: GraphQL.Types.ObjectGraphType`1.AddResolvedInterface(GraphQL.Types.IInterfaceGraphType)
+  name: AddResolvedInterface(IInterfaceGraphType)
+  nameWithType: ObjectGraphType<Species>.AddResolvedInterface(IInterfaceGraphType)
+  fullName: GraphQL.Types.ObjectGraphType<Business.Model.Species>.AddResolvedInterface(GraphQL.Types.IInterfaceGraphType)
+  nameWithType.vb: ObjectGraphType(Of Species).AddResolvedInterface(IInterfaceGraphType)
+  fullName.vb: GraphQL.Types.ObjectGraphType(Of Business.Model.Species).AddResolvedInterface(GraphQL.Types.IInterfaceGraphType)
+  spec.csharp:
+  - uid: GraphQL.Types.ObjectGraphType`1.AddResolvedInterface(GraphQL.Types.IInterfaceGraphType)
+    name: AddResolvedInterface
+    nameWithType: ObjectGraphType<Species>.AddResolvedInterface
+    fullName: GraphQL.Types.ObjectGraphType<Business.Model.Species>.AddResolvedInterface
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: GraphQL.Types.IInterfaceGraphType
+    name: IInterfaceGraphType
+    nameWithType: IInterfaceGraphType
+    fullName: GraphQL.Types.IInterfaceGraphType
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GraphQL.Types.ObjectGraphType`1.AddResolvedInterface(GraphQL.Types.IInterfaceGraphType)
+    name: AddResolvedInterface
+    nameWithType: ObjectGraphType(Of Species).AddResolvedInterface
+    fullName: GraphQL.Types.ObjectGraphType(Of Business.Model.Species).AddResolvedInterface
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: GraphQL.Types.IInterfaceGraphType
+    name: IInterfaceGraphType
+    nameWithType: IInterfaceGraphType
+    fullName: GraphQL.Types.IInterfaceGraphType
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GraphQL.Types.ObjectGraphType{Business.Model.Species}.Interface``1
+  commentId: M:GraphQL.Types.ObjectGraphType{Business.Model.Species}.Interface``1
+  parent: GraphQL.Types.ObjectGraphType{Business.Model.Species}
+  definition: GraphQL.Types.ObjectGraphType`1.Interface``1
+  name: Interface<TInterface>()
+  nameWithType: ObjectGraphType<Species>.Interface<TInterface>()
+  fullName: GraphQL.Types.ObjectGraphType<Business.Model.Species>.Interface<TInterface>()
+  nameWithType.vb: ObjectGraphType(Of Species).Interface(Of TInterface)()
+  fullName.vb: GraphQL.Types.ObjectGraphType(Of Business.Model.Species).Interface(Of TInterface)()
+  name.vb: Interface(Of TInterface)()
+  spec.csharp:
+  - uid: GraphQL.Types.ObjectGraphType`1.Interface``1
+    name: Interface<TInterface>
+    nameWithType: ObjectGraphType<Species>.Interface<TInterface>
+    fullName: GraphQL.Types.ObjectGraphType<Business.Model.Species>.Interface<TInterface>
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GraphQL.Types.ObjectGraphType`1.Interface``1
+    name: Interface(Of TInterface)
+    nameWithType: ObjectGraphType(Of Species).Interface(Of TInterface)
+    fullName: GraphQL.Types.ObjectGraphType(Of Business.Model.Species).Interface(Of TInterface)
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GraphQL.Types.ObjectGraphType{Business.Model.Species}.Interface(System.Type)
+  commentId: M:GraphQL.Types.ObjectGraphType{Business.Model.Species}.Interface(System.Type)
+  parent: GraphQL.Types.ObjectGraphType{Business.Model.Species}
+  definition: GraphQL.Types.ObjectGraphType`1.Interface(System.Type)
+  name: Interface(Type)
+  nameWithType: ObjectGraphType<Species>.Interface(Type)
+  fullName: GraphQL.Types.ObjectGraphType<Business.Model.Species>.Interface(System.Type)
+  nameWithType.vb: ObjectGraphType(Of Species).Interface(Type)
+  fullName.vb: GraphQL.Types.ObjectGraphType(Of Business.Model.Species).Interface(System.Type)
+  spec.csharp:
+  - uid: GraphQL.Types.ObjectGraphType`1.Interface(System.Type)
+    name: Interface
+    nameWithType: ObjectGraphType<Species>.Interface
+    fullName: GraphQL.Types.ObjectGraphType<Business.Model.Species>.Interface
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GraphQL.Types.ObjectGraphType`1.Interface(System.Type)
+    name: Interface
+    nameWithType: ObjectGraphType(Of Species).Interface
+    fullName: GraphQL.Types.ObjectGraphType(Of Business.Model.Species).Interface
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GraphQL.Types.ObjectGraphType{Business.Model.Species}.IsTypeOf
+  commentId: P:GraphQL.Types.ObjectGraphType{Business.Model.Species}.IsTypeOf
+  parent: GraphQL.Types.ObjectGraphType{Business.Model.Species}
+  definition: GraphQL.Types.ObjectGraphType`1.IsTypeOf
+  name: IsTypeOf
+  nameWithType: ObjectGraphType<Species>.IsTypeOf
+  fullName: GraphQL.Types.ObjectGraphType<Business.Model.Species>.IsTypeOf
+  nameWithType.vb: ObjectGraphType(Of Species).IsTypeOf
+  fullName.vb: GraphQL.Types.ObjectGraphType(Of Business.Model.Species).IsTypeOf
+- uid: GraphQL.Types.ObjectGraphType{Business.Model.Species}.ResolvedInterfaces
+  commentId: P:GraphQL.Types.ObjectGraphType{Business.Model.Species}.ResolvedInterfaces
+  parent: GraphQL.Types.ObjectGraphType{Business.Model.Species}
+  definition: GraphQL.Types.ObjectGraphType`1.ResolvedInterfaces
+  name: ResolvedInterfaces
+  nameWithType: ObjectGraphType<Species>.ResolvedInterfaces
+  fullName: GraphQL.Types.ObjectGraphType<Business.Model.Species>.ResolvedInterfaces
+  nameWithType.vb: ObjectGraphType(Of Species).ResolvedInterfaces
+  fullName.vb: GraphQL.Types.ObjectGraphType(Of Business.Model.Species).ResolvedInterfaces
+- uid: GraphQL.Types.ObjectGraphType{Business.Model.Species}.Interfaces
+  commentId: P:GraphQL.Types.ObjectGraphType{Business.Model.Species}.Interfaces
+  parent: GraphQL.Types.ObjectGraphType{Business.Model.Species}
+  definition: GraphQL.Types.ObjectGraphType`1.Interfaces
+  name: Interfaces
+  nameWithType: ObjectGraphType<Species>.Interfaces
+  fullName: GraphQL.Types.ObjectGraphType<Business.Model.Species>.Interfaces
+  nameWithType.vb: ObjectGraphType(Of Species).Interfaces
+  fullName.vb: GraphQL.Types.ObjectGraphType(Of Business.Model.Species).Interfaces
+- uid: GraphQL.Types.ComplexGraphType{Business.Model.Species}.HasField(System.String)
+  commentId: M:GraphQL.Types.ComplexGraphType{Business.Model.Species}.HasField(System.String)
+  parent: GraphQL.Types.ComplexGraphType{Business.Model.Species}
+  definition: GraphQL.Types.ComplexGraphType`1.HasField(System.String)
+  name: HasField(String)
+  nameWithType: ComplexGraphType<Species>.HasField(String)
+  fullName: GraphQL.Types.ComplexGraphType<Business.Model.Species>.HasField(System.String)
+  nameWithType.vb: ComplexGraphType(Of Species).HasField(String)
+  fullName.vb: GraphQL.Types.ComplexGraphType(Of Business.Model.Species).HasField(System.String)
+  spec.csharp:
+  - uid: GraphQL.Types.ComplexGraphType`1.HasField(System.String)
+    name: HasField
+    nameWithType: ComplexGraphType<Species>.HasField
+    fullName: GraphQL.Types.ComplexGraphType<Business.Model.Species>.HasField
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GraphQL.Types.ComplexGraphType`1.HasField(System.String)
+    name: HasField
+    nameWithType: ComplexGraphType(Of Species).HasField
+    fullName: GraphQL.Types.ComplexGraphType(Of Business.Model.Species).HasField
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GraphQL.Types.ComplexGraphType{Business.Model.Species}.GetField(System.String)
+  commentId: M:GraphQL.Types.ComplexGraphType{Business.Model.Species}.GetField(System.String)
+  parent: GraphQL.Types.ComplexGraphType{Business.Model.Species}
+  definition: GraphQL.Types.ComplexGraphType`1.GetField(System.String)
+  name: GetField(String)
+  nameWithType: ComplexGraphType<Species>.GetField(String)
+  fullName: GraphQL.Types.ComplexGraphType<Business.Model.Species>.GetField(System.String)
+  nameWithType.vb: ComplexGraphType(Of Species).GetField(String)
+  fullName.vb: GraphQL.Types.ComplexGraphType(Of Business.Model.Species).GetField(System.String)
+  spec.csharp:
+  - uid: GraphQL.Types.ComplexGraphType`1.GetField(System.String)
+    name: GetField
+    nameWithType: ComplexGraphType<Species>.GetField
+    fullName: GraphQL.Types.ComplexGraphType<Business.Model.Species>.GetField
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GraphQL.Types.ComplexGraphType`1.GetField(System.String)
+    name: GetField
+    nameWithType: ComplexGraphType(Of Species).GetField
+    fullName: GraphQL.Types.ComplexGraphType(Of Business.Model.Species).GetField
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GraphQL.Types.ComplexGraphType{Business.Model.Species}.AddField(GraphQL.Types.FieldType)
+  commentId: M:GraphQL.Types.ComplexGraphType{Business.Model.Species}.AddField(GraphQL.Types.FieldType)
+  parent: GraphQL.Types.ComplexGraphType{Business.Model.Species}
+  definition: GraphQL.Types.ComplexGraphType`1.AddField(GraphQL.Types.FieldType)
+  name: AddField(FieldType)
+  nameWithType: ComplexGraphType<Species>.AddField(FieldType)
+  fullName: GraphQL.Types.ComplexGraphType<Business.Model.Species>.AddField(GraphQL.Types.FieldType)
+  nameWithType.vb: ComplexGraphType(Of Species).AddField(FieldType)
+  fullName.vb: GraphQL.Types.ComplexGraphType(Of Business.Model.Species).AddField(GraphQL.Types.FieldType)
+  spec.csharp:
+  - uid: GraphQL.Types.ComplexGraphType`1.AddField(GraphQL.Types.FieldType)
+    name: AddField
+    nameWithType: ComplexGraphType<Species>.AddField
+    fullName: GraphQL.Types.ComplexGraphType<Business.Model.Species>.AddField
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: GraphQL.Types.FieldType
+    name: FieldType
+    nameWithType: FieldType
+    fullName: GraphQL.Types.FieldType
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GraphQL.Types.ComplexGraphType`1.AddField(GraphQL.Types.FieldType)
+    name: AddField
+    nameWithType: ComplexGraphType(Of Species).AddField
+    fullName: GraphQL.Types.ComplexGraphType(Of Business.Model.Species).AddField
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: GraphQL.Types.FieldType
+    name: FieldType
+    nameWithType: FieldType
+    fullName: GraphQL.Types.FieldType
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GraphQL.Types.ComplexGraphType{Business.Model.Species}.Field(System.Type,System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{Business.Model.Species},System.Object},System.String)
+  commentId: M:GraphQL.Types.ComplexGraphType{Business.Model.Species}.Field(System.Type,System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{Business.Model.Species},System.Object},System.String)
+  parent: GraphQL.Types.ComplexGraphType{Business.Model.Species}
+  definition: GraphQL.Types.ComplexGraphType`1.Field(System.Type,System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{`0},System.Object},System.String)
+  name: Field(Type, String, String, QueryArguments, Func<ResolveFieldContext<Species>, Object>, String)
+  nameWithType: ComplexGraphType<Species>.Field(Type, String, String, QueryArguments, Func<ResolveFieldContext<Species>, Object>, String)
+  fullName: GraphQL.Types.ComplexGraphType<Business.Model.Species>.Field(System.Type, System.String, System.String, GraphQL.Types.QueryArguments, System.Func<GraphQL.Types.ResolveFieldContext<Business.Model.Species>, System.Object>, System.String)
+  nameWithType.vb: ComplexGraphType(Of Species).Field(Type, String, String, QueryArguments, Func(Of ResolveFieldContext(Of Species), Object), String)
+  fullName.vb: GraphQL.Types.ComplexGraphType(Of Business.Model.Species).Field(System.Type, System.String, System.String, GraphQL.Types.QueryArguments, System.Func(Of GraphQL.Types.ResolveFieldContext(Of Business.Model.Species), System.Object), System.String)
+  name.vb: Field(Type, String, String, QueryArguments, Func(Of ResolveFieldContext(Of Species), Object), String)
+  spec.csharp:
+  - uid: GraphQL.Types.ComplexGraphType`1.Field(System.Type,System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{`0},System.Object},System.String)
+    name: Field
+    nameWithType: ComplexGraphType<Species>.Field
+    fullName: GraphQL.Types.ComplexGraphType<Business.Model.Species>.Field
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: GraphQL.Types.QueryArguments
+    name: QueryArguments
+    nameWithType: QueryArguments
+    fullName: GraphQL.Types.QueryArguments
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: GraphQL.Types.ResolveFieldContext`1
+    name: ResolveFieldContext
+    nameWithType: ResolveFieldContext
+    fullName: GraphQL.Types.ResolveFieldContext
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Business.Model.Species
+    name: Species
+    nameWithType: Species
+    fullName: Business.Model.Species
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GraphQL.Types.ComplexGraphType`1.Field(System.Type,System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{`0},System.Object},System.String)
+    name: Field
+    nameWithType: ComplexGraphType(Of Species).Field
+    fullName: GraphQL.Types.ComplexGraphType(Of Business.Model.Species).Field
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: GraphQL.Types.QueryArguments
+    name: QueryArguments
+    nameWithType: QueryArguments
+    fullName: GraphQL.Types.QueryArguments
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: GraphQL.Types.ResolveFieldContext`1
+    name: ResolveFieldContext
+    nameWithType: ResolveFieldContext
+    fullName: GraphQL.Types.ResolveFieldContext
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Business.Model.Species
+    name: Species
+    nameWithType: Species
+    fullName: Business.Model.Species
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GraphQL.Types.ComplexGraphType{Business.Model.Species}.Field``1(System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{Business.Model.Species},System.Object},System.String)
+  commentId: M:GraphQL.Types.ComplexGraphType{Business.Model.Species}.Field``1(System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{Business.Model.Species},System.Object},System.String)
+  parent: GraphQL.Types.ComplexGraphType{Business.Model.Species}
+  definition: GraphQL.Types.ComplexGraphType`1.Field``1(System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{`0},System.Object},System.String)
+  name: Field<TGraphType>(String, String, QueryArguments, Func<ResolveFieldContext<Species>, Object>, String)
+  nameWithType: ComplexGraphType<Species>.Field<TGraphType>(String, String, QueryArguments, Func<ResolveFieldContext<Species>, Object>, String)
+  fullName: GraphQL.Types.ComplexGraphType<Business.Model.Species>.Field<TGraphType>(System.String, System.String, GraphQL.Types.QueryArguments, System.Func<GraphQL.Types.ResolveFieldContext<Business.Model.Species>, System.Object>, System.String)
+  nameWithType.vb: ComplexGraphType(Of Species).Field(Of TGraphType)(String, String, QueryArguments, Func(Of ResolveFieldContext(Of Species), Object), String)
+  fullName.vb: GraphQL.Types.ComplexGraphType(Of Business.Model.Species).Field(Of TGraphType)(System.String, System.String, GraphQL.Types.QueryArguments, System.Func(Of GraphQL.Types.ResolveFieldContext(Of Business.Model.Species), System.Object), System.String)
+  name.vb: Field(Of TGraphType)(String, String, QueryArguments, Func(Of ResolveFieldContext(Of Species), Object), String)
+  spec.csharp:
+  - uid: GraphQL.Types.ComplexGraphType`1.Field``1(System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{`0},System.Object},System.String)
+    name: Field<TGraphType>
+    nameWithType: ComplexGraphType<Species>.Field<TGraphType>
+    fullName: GraphQL.Types.ComplexGraphType<Business.Model.Species>.Field<TGraphType>
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: GraphQL.Types.QueryArguments
+    name: QueryArguments
+    nameWithType: QueryArguments
+    fullName: GraphQL.Types.QueryArguments
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: GraphQL.Types.ResolveFieldContext`1
+    name: ResolveFieldContext
+    nameWithType: ResolveFieldContext
+    fullName: GraphQL.Types.ResolveFieldContext
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Business.Model.Species
+    name: Species
+    nameWithType: Species
+    fullName: Business.Model.Species
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GraphQL.Types.ComplexGraphType`1.Field``1(System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{`0},System.Object},System.String)
+    name: Field(Of TGraphType)
+    nameWithType: ComplexGraphType(Of Species).Field(Of TGraphType)
+    fullName: GraphQL.Types.ComplexGraphType(Of Business.Model.Species).Field(Of TGraphType)
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: GraphQL.Types.QueryArguments
+    name: QueryArguments
+    nameWithType: QueryArguments
+    fullName: GraphQL.Types.QueryArguments
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: GraphQL.Types.ResolveFieldContext`1
+    name: ResolveFieldContext
+    nameWithType: ResolveFieldContext
+    fullName: GraphQL.Types.ResolveFieldContext
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Business.Model.Species
+    name: Species
+    nameWithType: Species
+    fullName: Business.Model.Species
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GraphQL.Types.ComplexGraphType{Business.Model.Species}.FieldDelegate``1(System.String,System.String,GraphQL.Types.QueryArguments,System.Delegate,System.String)
+  commentId: M:GraphQL.Types.ComplexGraphType{Business.Model.Species}.FieldDelegate``1(System.String,System.String,GraphQL.Types.QueryArguments,System.Delegate,System.String)
+  parent: GraphQL.Types.ComplexGraphType{Business.Model.Species}
+  definition: GraphQL.Types.ComplexGraphType`1.FieldDelegate``1(System.String,System.String,GraphQL.Types.QueryArguments,System.Delegate,System.String)
+  name: FieldDelegate<TGraphType>(String, String, QueryArguments, Delegate, String)
+  nameWithType: ComplexGraphType<Species>.FieldDelegate<TGraphType>(String, String, QueryArguments, Delegate, String)
+  fullName: GraphQL.Types.ComplexGraphType<Business.Model.Species>.FieldDelegate<TGraphType>(System.String, System.String, GraphQL.Types.QueryArguments, System.Delegate, System.String)
+  nameWithType.vb: ComplexGraphType(Of Species).FieldDelegate(Of TGraphType)(String, String, QueryArguments, Delegate, String)
+  fullName.vb: GraphQL.Types.ComplexGraphType(Of Business.Model.Species).FieldDelegate(Of TGraphType)(System.String, System.String, GraphQL.Types.QueryArguments, System.Delegate, System.String)
+  name.vb: FieldDelegate(Of TGraphType)(String, String, QueryArguments, Delegate, String)
+  spec.csharp:
+  - uid: GraphQL.Types.ComplexGraphType`1.FieldDelegate``1(System.String,System.String,GraphQL.Types.QueryArguments,System.Delegate,System.String)
+    name: FieldDelegate<TGraphType>
+    nameWithType: ComplexGraphType<Species>.FieldDelegate<TGraphType>
+    fullName: GraphQL.Types.ComplexGraphType<Business.Model.Species>.FieldDelegate<TGraphType>
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: GraphQL.Types.QueryArguments
+    name: QueryArguments
+    nameWithType: QueryArguments
+    fullName: GraphQL.Types.QueryArguments
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Delegate
+    name: Delegate
+    nameWithType: Delegate
+    fullName: System.Delegate
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GraphQL.Types.ComplexGraphType`1.FieldDelegate``1(System.String,System.String,GraphQL.Types.QueryArguments,System.Delegate,System.String)
+    name: FieldDelegate(Of TGraphType)
+    nameWithType: ComplexGraphType(Of Species).FieldDelegate(Of TGraphType)
+    fullName: GraphQL.Types.ComplexGraphType(Of Business.Model.Species).FieldDelegate(Of TGraphType)
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: GraphQL.Types.QueryArguments
+    name: QueryArguments
+    nameWithType: QueryArguments
+    fullName: GraphQL.Types.QueryArguments
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Delegate
+    name: Delegate
+    nameWithType: Delegate
+    fullName: System.Delegate
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GraphQL.Types.ComplexGraphType{Business.Model.Species}.FieldAsync(System.Type,System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{Business.Model.Species},System.Threading.Tasks.Task{System.Object}},System.String)
+  commentId: M:GraphQL.Types.ComplexGraphType{Business.Model.Species}.FieldAsync(System.Type,System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{Business.Model.Species},System.Threading.Tasks.Task{System.Object}},System.String)
+  parent: GraphQL.Types.ComplexGraphType{Business.Model.Species}
+  definition: GraphQL.Types.ComplexGraphType`1.FieldAsync(System.Type,System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{`0},System.Threading.Tasks.Task{System.Object}},System.String)
+  name: FieldAsync(Type, String, String, QueryArguments, Func<ResolveFieldContext<Species>, Task<Object>>, String)
+  nameWithType: ComplexGraphType<Species>.FieldAsync(Type, String, String, QueryArguments, Func<ResolveFieldContext<Species>, Task<Object>>, String)
+  fullName: GraphQL.Types.ComplexGraphType<Business.Model.Species>.FieldAsync(System.Type, System.String, System.String, GraphQL.Types.QueryArguments, System.Func<GraphQL.Types.ResolveFieldContext<Business.Model.Species>, System.Threading.Tasks.Task<System.Object>>, System.String)
+  nameWithType.vb: ComplexGraphType(Of Species).FieldAsync(Type, String, String, QueryArguments, Func(Of ResolveFieldContext(Of Species), Task(Of Object)), String)
+  fullName.vb: GraphQL.Types.ComplexGraphType(Of Business.Model.Species).FieldAsync(System.Type, System.String, System.String, GraphQL.Types.QueryArguments, System.Func(Of GraphQL.Types.ResolveFieldContext(Of Business.Model.Species), System.Threading.Tasks.Task(Of System.Object)), System.String)
+  name.vb: FieldAsync(Type, String, String, QueryArguments, Func(Of ResolveFieldContext(Of Species), Task(Of Object)), String)
+  spec.csharp:
+  - uid: GraphQL.Types.ComplexGraphType`1.FieldAsync(System.Type,System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{`0},System.Threading.Tasks.Task{System.Object}},System.String)
+    name: FieldAsync
+    nameWithType: ComplexGraphType<Species>.FieldAsync
+    fullName: GraphQL.Types.ComplexGraphType<Business.Model.Species>.FieldAsync
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: GraphQL.Types.QueryArguments
+    name: QueryArguments
+    nameWithType: QueryArguments
+    fullName: GraphQL.Types.QueryArguments
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: GraphQL.Types.ResolveFieldContext`1
+    name: ResolveFieldContext
+    nameWithType: ResolveFieldContext
+    fullName: GraphQL.Types.ResolveFieldContext
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Business.Model.Species
+    name: Species
+    nameWithType: Species
+    fullName: Business.Model.Species
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    nameWithType: Task
+    fullName: System.Threading.Tasks.Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GraphQL.Types.ComplexGraphType`1.FieldAsync(System.Type,System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{`0},System.Threading.Tasks.Task{System.Object}},System.String)
+    name: FieldAsync
+    nameWithType: ComplexGraphType(Of Species).FieldAsync
+    fullName: GraphQL.Types.ComplexGraphType(Of Business.Model.Species).FieldAsync
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: GraphQL.Types.QueryArguments
+    name: QueryArguments
+    nameWithType: QueryArguments
+    fullName: GraphQL.Types.QueryArguments
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: GraphQL.Types.ResolveFieldContext`1
+    name: ResolveFieldContext
+    nameWithType: ResolveFieldContext
+    fullName: GraphQL.Types.ResolveFieldContext
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Business.Model.Species
+    name: Species
+    nameWithType: Species
+    fullName: Business.Model.Species
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    nameWithType: Task
+    fullName: System.Threading.Tasks.Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GraphQL.Types.ComplexGraphType{Business.Model.Species}.FieldAsync``1(System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{Business.Model.Species},System.Threading.Tasks.Task{System.Object}},System.String)
+  commentId: M:GraphQL.Types.ComplexGraphType{Business.Model.Species}.FieldAsync``1(System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{Business.Model.Species},System.Threading.Tasks.Task{System.Object}},System.String)
+  parent: GraphQL.Types.ComplexGraphType{Business.Model.Species}
+  definition: GraphQL.Types.ComplexGraphType`1.FieldAsync``1(System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{`0},System.Threading.Tasks.Task{System.Object}},System.String)
+  name: FieldAsync<TGraphType>(String, String, QueryArguments, Func<ResolveFieldContext<Species>, Task<Object>>, String)
+  nameWithType: ComplexGraphType<Species>.FieldAsync<TGraphType>(String, String, QueryArguments, Func<ResolveFieldContext<Species>, Task<Object>>, String)
+  fullName: GraphQL.Types.ComplexGraphType<Business.Model.Species>.FieldAsync<TGraphType>(System.String, System.String, GraphQL.Types.QueryArguments, System.Func<GraphQL.Types.ResolveFieldContext<Business.Model.Species>, System.Threading.Tasks.Task<System.Object>>, System.String)
+  nameWithType.vb: ComplexGraphType(Of Species).FieldAsync(Of TGraphType)(String, String, QueryArguments, Func(Of ResolveFieldContext(Of Species), Task(Of Object)), String)
+  fullName.vb: GraphQL.Types.ComplexGraphType(Of Business.Model.Species).FieldAsync(Of TGraphType)(System.String, System.String, GraphQL.Types.QueryArguments, System.Func(Of GraphQL.Types.ResolveFieldContext(Of Business.Model.Species), System.Threading.Tasks.Task(Of System.Object)), System.String)
+  name.vb: FieldAsync(Of TGraphType)(String, String, QueryArguments, Func(Of ResolveFieldContext(Of Species), Task(Of Object)), String)
+  spec.csharp:
+  - uid: GraphQL.Types.ComplexGraphType`1.FieldAsync``1(System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{`0},System.Threading.Tasks.Task{System.Object}},System.String)
+    name: FieldAsync<TGraphType>
+    nameWithType: ComplexGraphType<Species>.FieldAsync<TGraphType>
+    fullName: GraphQL.Types.ComplexGraphType<Business.Model.Species>.FieldAsync<TGraphType>
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: GraphQL.Types.QueryArguments
+    name: QueryArguments
+    nameWithType: QueryArguments
+    fullName: GraphQL.Types.QueryArguments
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: GraphQL.Types.ResolveFieldContext`1
+    name: ResolveFieldContext
+    nameWithType: ResolveFieldContext
+    fullName: GraphQL.Types.ResolveFieldContext
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Business.Model.Species
+    name: Species
+    nameWithType: Species
+    fullName: Business.Model.Species
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    nameWithType: Task
+    fullName: System.Threading.Tasks.Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GraphQL.Types.ComplexGraphType`1.FieldAsync``1(System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{`0},System.Threading.Tasks.Task{System.Object}},System.String)
+    name: FieldAsync(Of TGraphType)
+    nameWithType: ComplexGraphType(Of Species).FieldAsync(Of TGraphType)
+    fullName: GraphQL.Types.ComplexGraphType(Of Business.Model.Species).FieldAsync(Of TGraphType)
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: GraphQL.Types.QueryArguments
+    name: QueryArguments
+    nameWithType: QueryArguments
+    fullName: GraphQL.Types.QueryArguments
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: GraphQL.Types.ResolveFieldContext`1
+    name: ResolveFieldContext
+    nameWithType: ResolveFieldContext
+    fullName: GraphQL.Types.ResolveFieldContext
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Business.Model.Species
+    name: Species
+    nameWithType: Species
+    fullName: Business.Model.Species
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    nameWithType: Task
+    fullName: System.Threading.Tasks.Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GraphQL.Types.ComplexGraphType{Business.Model.Species}.FieldAsync``2(System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{Business.Model.Species},System.Threading.Tasks.Task{{TReturnType}}},System.String)
+  commentId: M:GraphQL.Types.ComplexGraphType{Business.Model.Species}.FieldAsync``2(System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{Business.Model.Species},System.Threading.Tasks.Task{``1}},System.String)
+  parent: GraphQL.Types.ComplexGraphType{Business.Model.Species}
+  definition: GraphQL.Types.ComplexGraphType`1.FieldAsync``2(System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{`0},System.Threading.Tasks.Task{``1}},System.String)
+  name: FieldAsync<TGraphType, TReturnType>(String, String, QueryArguments, Func<ResolveFieldContext<Species>, Task<TReturnType>>, String)
+  nameWithType: ComplexGraphType<Species>.FieldAsync<TGraphType, TReturnType>(String, String, QueryArguments, Func<ResolveFieldContext<Species>, Task<TReturnType>>, String)
+  fullName: GraphQL.Types.ComplexGraphType<Business.Model.Species>.FieldAsync<TGraphType, TReturnType>(System.String, System.String, GraphQL.Types.QueryArguments, System.Func<GraphQL.Types.ResolveFieldContext<Business.Model.Species>, System.Threading.Tasks.Task<TReturnType>>, System.String)
+  nameWithType.vb: ComplexGraphType(Of Species).FieldAsync(Of TGraphType, TReturnType)(String, String, QueryArguments, Func(Of ResolveFieldContext(Of Species), Task(Of TReturnType)), String)
+  fullName.vb: GraphQL.Types.ComplexGraphType(Of Business.Model.Species).FieldAsync(Of TGraphType, TReturnType)(System.String, System.String, GraphQL.Types.QueryArguments, System.Func(Of GraphQL.Types.ResolveFieldContext(Of Business.Model.Species), System.Threading.Tasks.Task(Of TReturnType)), System.String)
+  name.vb: FieldAsync(Of TGraphType, TReturnType)(String, String, QueryArguments, Func(Of ResolveFieldContext(Of Species), Task(Of TReturnType)), String)
+  spec.csharp:
+  - uid: GraphQL.Types.ComplexGraphType`1.FieldAsync``2(System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{`0},System.Threading.Tasks.Task{``1}},System.String)
+    name: FieldAsync<TGraphType, TReturnType>
+    nameWithType: ComplexGraphType<Species>.FieldAsync<TGraphType, TReturnType>
+    fullName: GraphQL.Types.ComplexGraphType<Business.Model.Species>.FieldAsync<TGraphType, TReturnType>
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: GraphQL.Types.QueryArguments
+    name: QueryArguments
+    nameWithType: QueryArguments
+    fullName: GraphQL.Types.QueryArguments
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: GraphQL.Types.ResolveFieldContext`1
+    name: ResolveFieldContext
+    nameWithType: ResolveFieldContext
+    fullName: GraphQL.Types.ResolveFieldContext
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Business.Model.Species
+    name: Species
+    nameWithType: Species
+    fullName: Business.Model.Species
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    nameWithType: Task
+    fullName: System.Threading.Tasks.Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TReturnType
+    nameWithType: TReturnType
+    fullName: TReturnType
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GraphQL.Types.ComplexGraphType`1.FieldAsync``2(System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{`0},System.Threading.Tasks.Task{``1}},System.String)
+    name: FieldAsync(Of TGraphType, TReturnType)
+    nameWithType: ComplexGraphType(Of Species).FieldAsync(Of TGraphType, TReturnType)
+    fullName: GraphQL.Types.ComplexGraphType(Of Business.Model.Species).FieldAsync(Of TGraphType, TReturnType)
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: GraphQL.Types.QueryArguments
+    name: QueryArguments
+    nameWithType: QueryArguments
+    fullName: GraphQL.Types.QueryArguments
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: GraphQL.Types.ResolveFieldContext`1
+    name: ResolveFieldContext
+    nameWithType: ResolveFieldContext
+    fullName: GraphQL.Types.ResolveFieldContext
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Business.Model.Species
+    name: Species
+    nameWithType: Species
+    fullName: Business.Model.Species
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    nameWithType: Task
+    fullName: System.Threading.Tasks.Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TReturnType
+    nameWithType: TReturnType
+    fullName: TReturnType
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GraphQL.Types.ComplexGraphType{Business.Model.Species}.FieldSubscribe``1(System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{Business.Model.Species},System.Object},System.Func{GraphQL.Subscription.ResolveEventStreamContext,System.IObservable{System.Object}},System.String)
+  commentId: M:GraphQL.Types.ComplexGraphType{Business.Model.Species}.FieldSubscribe``1(System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{Business.Model.Species},System.Object},System.Func{GraphQL.Subscription.ResolveEventStreamContext,System.IObservable{System.Object}},System.String)
+  parent: GraphQL.Types.ComplexGraphType{Business.Model.Species}
+  definition: GraphQL.Types.ComplexGraphType`1.FieldSubscribe``1(System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{`0},System.Object},System.Func{GraphQL.Subscription.ResolveEventStreamContext,System.IObservable{System.Object}},System.String)
+  name: FieldSubscribe<TGraphType>(String, String, QueryArguments, Func<ResolveFieldContext<Species>, Object>, Func<ResolveEventStreamContext, IObservable<Object>>, String)
+  nameWithType: ComplexGraphType<Species>.FieldSubscribe<TGraphType>(String, String, QueryArguments, Func<ResolveFieldContext<Species>, Object>, Func<ResolveEventStreamContext, IObservable<Object>>, String)
+  fullName: GraphQL.Types.ComplexGraphType<Business.Model.Species>.FieldSubscribe<TGraphType>(System.String, System.String, GraphQL.Types.QueryArguments, System.Func<GraphQL.Types.ResolveFieldContext<Business.Model.Species>, System.Object>, System.Func<GraphQL.Subscription.ResolveEventStreamContext, System.IObservable<System.Object>>, System.String)
+  nameWithType.vb: ComplexGraphType(Of Species).FieldSubscribe(Of TGraphType)(String, String, QueryArguments, Func(Of ResolveFieldContext(Of Species), Object), Func(Of ResolveEventStreamContext, IObservable(Of Object)), String)
+  fullName.vb: GraphQL.Types.ComplexGraphType(Of Business.Model.Species).FieldSubscribe(Of TGraphType)(System.String, System.String, GraphQL.Types.QueryArguments, System.Func(Of GraphQL.Types.ResolveFieldContext(Of Business.Model.Species), System.Object), System.Func(Of GraphQL.Subscription.ResolveEventStreamContext, System.IObservable(Of System.Object)), System.String)
+  name.vb: FieldSubscribe(Of TGraphType)(String, String, QueryArguments, Func(Of ResolveFieldContext(Of Species), Object), Func(Of ResolveEventStreamContext, IObservable(Of Object)), String)
+  spec.csharp:
+  - uid: GraphQL.Types.ComplexGraphType`1.FieldSubscribe``1(System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{`0},System.Object},System.Func{GraphQL.Subscription.ResolveEventStreamContext,System.IObservable{System.Object}},System.String)
+    name: FieldSubscribe<TGraphType>
+    nameWithType: ComplexGraphType<Species>.FieldSubscribe<TGraphType>
+    fullName: GraphQL.Types.ComplexGraphType<Business.Model.Species>.FieldSubscribe<TGraphType>
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: GraphQL.Types.QueryArguments
+    name: QueryArguments
+    nameWithType: QueryArguments
+    fullName: GraphQL.Types.QueryArguments
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: GraphQL.Types.ResolveFieldContext`1
+    name: ResolveFieldContext
+    nameWithType: ResolveFieldContext
+    fullName: GraphQL.Types.ResolveFieldContext
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Business.Model.Species
+    name: Species
+    nameWithType: Species
+    fullName: Business.Model.Species
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: GraphQL.Subscription.ResolveEventStreamContext
+    name: ResolveEventStreamContext
+    nameWithType: ResolveEventStreamContext
+    fullName: GraphQL.Subscription.ResolveEventStreamContext
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.IObservable`1
+    name: IObservable
+    nameWithType: IObservable
+    fullName: System.IObservable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GraphQL.Types.ComplexGraphType`1.FieldSubscribe``1(System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{`0},System.Object},System.Func{GraphQL.Subscription.ResolveEventStreamContext,System.IObservable{System.Object}},System.String)
+    name: FieldSubscribe(Of TGraphType)
+    nameWithType: ComplexGraphType(Of Species).FieldSubscribe(Of TGraphType)
+    fullName: GraphQL.Types.ComplexGraphType(Of Business.Model.Species).FieldSubscribe(Of TGraphType)
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: GraphQL.Types.QueryArguments
+    name: QueryArguments
+    nameWithType: QueryArguments
+    fullName: GraphQL.Types.QueryArguments
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: GraphQL.Types.ResolveFieldContext`1
+    name: ResolveFieldContext
+    nameWithType: ResolveFieldContext
+    fullName: GraphQL.Types.ResolveFieldContext
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Business.Model.Species
+    name: Species
+    nameWithType: Species
+    fullName: Business.Model.Species
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: GraphQL.Subscription.ResolveEventStreamContext
+    name: ResolveEventStreamContext
+    nameWithType: ResolveEventStreamContext
+    fullName: GraphQL.Subscription.ResolveEventStreamContext
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.IObservable`1
+    name: IObservable
+    nameWithType: IObservable
+    fullName: System.IObservable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GraphQL.Types.ComplexGraphType{Business.Model.Species}.FieldSubscribeAsync``1(System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{Business.Model.Species},System.Object},System.Func{GraphQL.Subscription.ResolveEventStreamContext,System.Threading.Tasks.Task{System.IObservable{System.Object}}},System.String)
+  commentId: M:GraphQL.Types.ComplexGraphType{Business.Model.Species}.FieldSubscribeAsync``1(System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{Business.Model.Species},System.Object},System.Func{GraphQL.Subscription.ResolveEventStreamContext,System.Threading.Tasks.Task{System.IObservable{System.Object}}},System.String)
+  parent: GraphQL.Types.ComplexGraphType{Business.Model.Species}
+  definition: GraphQL.Types.ComplexGraphType`1.FieldSubscribeAsync``1(System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{`0},System.Object},System.Func{GraphQL.Subscription.ResolveEventStreamContext,System.Threading.Tasks.Task{System.IObservable{System.Object}}},System.String)
+  name: FieldSubscribeAsync<TGraphType>(String, String, QueryArguments, Func<ResolveFieldContext<Species>, Object>, Func<ResolveEventStreamContext, Task<IObservable<Object>>>, String)
+  nameWithType: ComplexGraphType<Species>.FieldSubscribeAsync<TGraphType>(String, String, QueryArguments, Func<ResolveFieldContext<Species>, Object>, Func<ResolveEventStreamContext, Task<IObservable<Object>>>, String)
+  fullName: GraphQL.Types.ComplexGraphType<Business.Model.Species>.FieldSubscribeAsync<TGraphType>(System.String, System.String, GraphQL.Types.QueryArguments, System.Func<GraphQL.Types.ResolveFieldContext<Business.Model.Species>, System.Object>, System.Func<GraphQL.Subscription.ResolveEventStreamContext, System.Threading.Tasks.Task<System.IObservable<System.Object>>>, System.String)
+  nameWithType.vb: ComplexGraphType(Of Species).FieldSubscribeAsync(Of TGraphType)(String, String, QueryArguments, Func(Of ResolveFieldContext(Of Species), Object), Func(Of ResolveEventStreamContext, Task(Of IObservable(Of Object))), String)
+  fullName.vb: GraphQL.Types.ComplexGraphType(Of Business.Model.Species).FieldSubscribeAsync(Of TGraphType)(System.String, System.String, GraphQL.Types.QueryArguments, System.Func(Of GraphQL.Types.ResolveFieldContext(Of Business.Model.Species), System.Object), System.Func(Of GraphQL.Subscription.ResolveEventStreamContext, System.Threading.Tasks.Task(Of System.IObservable(Of System.Object))), System.String)
+  name.vb: FieldSubscribeAsync(Of TGraphType)(String, String, QueryArguments, Func(Of ResolveFieldContext(Of Species), Object), Func(Of ResolveEventStreamContext, Task(Of IObservable(Of Object))), String)
+  spec.csharp:
+  - uid: GraphQL.Types.ComplexGraphType`1.FieldSubscribeAsync``1(System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{`0},System.Object},System.Func{GraphQL.Subscription.ResolveEventStreamContext,System.Threading.Tasks.Task{System.IObservable{System.Object}}},System.String)
+    name: FieldSubscribeAsync<TGraphType>
+    nameWithType: ComplexGraphType<Species>.FieldSubscribeAsync<TGraphType>
+    fullName: GraphQL.Types.ComplexGraphType<Business.Model.Species>.FieldSubscribeAsync<TGraphType>
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: GraphQL.Types.QueryArguments
+    name: QueryArguments
+    nameWithType: QueryArguments
+    fullName: GraphQL.Types.QueryArguments
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: GraphQL.Types.ResolveFieldContext`1
+    name: ResolveFieldContext
+    nameWithType: ResolveFieldContext
+    fullName: GraphQL.Types.ResolveFieldContext
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Business.Model.Species
+    name: Species
+    nameWithType: Species
+    fullName: Business.Model.Species
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: GraphQL.Subscription.ResolveEventStreamContext
+    name: ResolveEventStreamContext
+    nameWithType: ResolveEventStreamContext
+    fullName: GraphQL.Subscription.ResolveEventStreamContext
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    nameWithType: Task
+    fullName: System.Threading.Tasks.Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.IObservable`1
+    name: IObservable
+    nameWithType: IObservable
+    fullName: System.IObservable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GraphQL.Types.ComplexGraphType`1.FieldSubscribeAsync``1(System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{`0},System.Object},System.Func{GraphQL.Subscription.ResolveEventStreamContext,System.Threading.Tasks.Task{System.IObservable{System.Object}}},System.String)
+    name: FieldSubscribeAsync(Of TGraphType)
+    nameWithType: ComplexGraphType(Of Species).FieldSubscribeAsync(Of TGraphType)
+    fullName: GraphQL.Types.ComplexGraphType(Of Business.Model.Species).FieldSubscribeAsync(Of TGraphType)
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: GraphQL.Types.QueryArguments
+    name: QueryArguments
+    nameWithType: QueryArguments
+    fullName: GraphQL.Types.QueryArguments
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: GraphQL.Types.ResolveFieldContext`1
+    name: ResolveFieldContext
+    nameWithType: ResolveFieldContext
+    fullName: GraphQL.Types.ResolveFieldContext
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Business.Model.Species
+    name: Species
+    nameWithType: Species
+    fullName: Business.Model.Species
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: GraphQL.Subscription.ResolveEventStreamContext
+    name: ResolveEventStreamContext
+    nameWithType: ResolveEventStreamContext
+    fullName: GraphQL.Subscription.ResolveEventStreamContext
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    nameWithType: Task
+    fullName: System.Threading.Tasks.Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.IObservable`1
+    name: IObservable
+    nameWithType: IObservable
+    fullName: System.IObservable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GraphQL.Types.ComplexGraphType{Business.Model.Species}.Field``2(System.String)
+  commentId: M:GraphQL.Types.ComplexGraphType{Business.Model.Species}.Field``2(System.String)
+  parent: GraphQL.Types.ComplexGraphType{Business.Model.Species}
+  definition: GraphQL.Types.ComplexGraphType`1.Field``2(System.String)
+  name: Field<TGraphType, TReturnType>(String)
+  nameWithType: ComplexGraphType<Species>.Field<TGraphType, TReturnType>(String)
+  fullName: GraphQL.Types.ComplexGraphType<Business.Model.Species>.Field<TGraphType, TReturnType>(System.String)
+  nameWithType.vb: ComplexGraphType(Of Species).Field(Of TGraphType, TReturnType)(String)
+  fullName.vb: GraphQL.Types.ComplexGraphType(Of Business.Model.Species).Field(Of TGraphType, TReturnType)(System.String)
+  name.vb: Field(Of TGraphType, TReturnType)(String)
+  spec.csharp:
+  - uid: GraphQL.Types.ComplexGraphType`1.Field``2(System.String)
+    name: Field<TGraphType, TReturnType>
+    nameWithType: ComplexGraphType<Species>.Field<TGraphType, TReturnType>
+    fullName: GraphQL.Types.ComplexGraphType<Business.Model.Species>.Field<TGraphType, TReturnType>
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GraphQL.Types.ComplexGraphType`1.Field``2(System.String)
+    name: Field(Of TGraphType, TReturnType)
+    nameWithType: ComplexGraphType(Of Species).Field(Of TGraphType, TReturnType)
+    fullName: GraphQL.Types.ComplexGraphType(Of Business.Model.Species).Field(Of TGraphType, TReturnType)
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GraphQL.Types.ComplexGraphType{Business.Model.Species}.Field``1
+  commentId: M:GraphQL.Types.ComplexGraphType{Business.Model.Species}.Field``1
+  parent: GraphQL.Types.ComplexGraphType{Business.Model.Species}
+  definition: GraphQL.Types.ComplexGraphType`1.Field``1
+  name: Field<TGraphType>()
+  nameWithType: ComplexGraphType<Species>.Field<TGraphType>()
+  fullName: GraphQL.Types.ComplexGraphType<Business.Model.Species>.Field<TGraphType>()
+  nameWithType.vb: ComplexGraphType(Of Species).Field(Of TGraphType)()
+  fullName.vb: GraphQL.Types.ComplexGraphType(Of Business.Model.Species).Field(Of TGraphType)()
+  name.vb: Field(Of TGraphType)()
+  spec.csharp:
+  - uid: GraphQL.Types.ComplexGraphType`1.Field``1
+    name: Field<TGraphType>
+    nameWithType: ComplexGraphType<Species>.Field<TGraphType>
+    fullName: GraphQL.Types.ComplexGraphType<Business.Model.Species>.Field<TGraphType>
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GraphQL.Types.ComplexGraphType`1.Field``1
+    name: Field(Of TGraphType)
+    nameWithType: ComplexGraphType(Of Species).Field(Of TGraphType)
+    fullName: GraphQL.Types.ComplexGraphType(Of Business.Model.Species).Field(Of TGraphType)
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GraphQL.Types.ComplexGraphType{Business.Model.Species}.Field``1(System.String,System.Linq.Expressions.Expression{System.Func{Business.Model.Species,{TProperty}}},System.Boolean,System.Type)
+  commentId: M:GraphQL.Types.ComplexGraphType{Business.Model.Species}.Field``1(System.String,System.Linq.Expressions.Expression{System.Func{Business.Model.Species,``0}},System.Boolean,System.Type)
+  parent: GraphQL.Types.ComplexGraphType{Business.Model.Species}
+  definition: GraphQL.Types.ComplexGraphType`1.Field``1(System.String,System.Linq.Expressions.Expression{System.Func{`0,``0}},System.Boolean,System.Type)
+  name: Field<TProperty>(String, Expression<Func<Species, TProperty>>, Boolean, Type)
+  nameWithType: ComplexGraphType<Species>.Field<TProperty>(String, Expression<Func<Species, TProperty>>, Boolean, Type)
+  fullName: GraphQL.Types.ComplexGraphType<Business.Model.Species>.Field<TProperty>(System.String, System.Linq.Expressions.Expression<System.Func<Business.Model.Species, TProperty>>, System.Boolean, System.Type)
+  nameWithType.vb: ComplexGraphType(Of Species).Field(Of TProperty)(String, Expression(Of Func(Of Species, TProperty)), Boolean, Type)
+  fullName.vb: GraphQL.Types.ComplexGraphType(Of Business.Model.Species).Field(Of TProperty)(System.String, System.Linq.Expressions.Expression(Of System.Func(Of Business.Model.Species, TProperty)), System.Boolean, System.Type)
+  name.vb: Field(Of TProperty)(String, Expression(Of Func(Of Species, TProperty)), Boolean, Type)
+  spec.csharp:
+  - uid: GraphQL.Types.ComplexGraphType`1.Field``1(System.String,System.Linq.Expressions.Expression{System.Func{`0,``0}},System.Boolean,System.Type)
+    name: Field<TProperty>
+    nameWithType: ComplexGraphType<Species>.Field<TProperty>
+    fullName: GraphQL.Types.ComplexGraphType<Business.Model.Species>.Field<TProperty>
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Business.Model.Species
+    name: Species
+    nameWithType: Species
+    fullName: Business.Model.Species
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TProperty
+    nameWithType: TProperty
+    fullName: TProperty
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GraphQL.Types.ComplexGraphType`1.Field``1(System.String,System.Linq.Expressions.Expression{System.Func{`0,``0}},System.Boolean,System.Type)
+    name: Field(Of TProperty)
+    nameWithType: ComplexGraphType(Of Species).Field(Of TProperty)
+    fullName: GraphQL.Types.ComplexGraphType(Of Business.Model.Species).Field(Of TProperty)
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Business.Model.Species
+    name: Species
+    nameWithType: Species
+    fullName: Business.Model.Species
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TProperty
+    nameWithType: TProperty
+    fullName: TProperty
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GraphQL.Types.ComplexGraphType{Business.Model.Species}.Field``1(System.Linq.Expressions.Expression{System.Func{Business.Model.Species,{TProperty}}},System.Boolean,System.Type)
+  commentId: M:GraphQL.Types.ComplexGraphType{Business.Model.Species}.Field``1(System.Linq.Expressions.Expression{System.Func{Business.Model.Species,``0}},System.Boolean,System.Type)
+  parent: GraphQL.Types.ComplexGraphType{Business.Model.Species}
+  definition: GraphQL.Types.ComplexGraphType`1.Field``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},System.Boolean,System.Type)
+  name: Field<TProperty>(Expression<Func<Species, TProperty>>, Boolean, Type)
+  nameWithType: ComplexGraphType<Species>.Field<TProperty>(Expression<Func<Species, TProperty>>, Boolean, Type)
+  fullName: GraphQL.Types.ComplexGraphType<Business.Model.Species>.Field<TProperty>(System.Linq.Expressions.Expression<System.Func<Business.Model.Species, TProperty>>, System.Boolean, System.Type)
+  nameWithType.vb: ComplexGraphType(Of Species).Field(Of TProperty)(Expression(Of Func(Of Species, TProperty)), Boolean, Type)
+  fullName.vb: GraphQL.Types.ComplexGraphType(Of Business.Model.Species).Field(Of TProperty)(System.Linq.Expressions.Expression(Of System.Func(Of Business.Model.Species, TProperty)), System.Boolean, System.Type)
+  name.vb: Field(Of TProperty)(Expression(Of Func(Of Species, TProperty)), Boolean, Type)
+  spec.csharp:
+  - uid: GraphQL.Types.ComplexGraphType`1.Field``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},System.Boolean,System.Type)
+    name: Field<TProperty>
+    nameWithType: ComplexGraphType<Species>.Field<TProperty>
+    fullName: GraphQL.Types.ComplexGraphType<Business.Model.Species>.Field<TProperty>
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Business.Model.Species
+    name: Species
+    nameWithType: Species
+    fullName: Business.Model.Species
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TProperty
+    nameWithType: TProperty
+    fullName: TProperty
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GraphQL.Types.ComplexGraphType`1.Field``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},System.Boolean,System.Type)
+    name: Field(Of TProperty)
+    nameWithType: ComplexGraphType(Of Species).Field(Of TProperty)
+    fullName: GraphQL.Types.ComplexGraphType(Of Business.Model.Species).Field(Of TProperty)
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Business.Model.Species
+    name: Species
+    nameWithType: Species
+    fullName: Business.Model.Species
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TProperty
+    nameWithType: TProperty
+    fullName: TProperty
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GraphQL.Types.ComplexGraphType{Business.Model.Species}.Connection``1
+  commentId: M:GraphQL.Types.ComplexGraphType{Business.Model.Species}.Connection``1
+  parent: GraphQL.Types.ComplexGraphType{Business.Model.Species}
+  definition: GraphQL.Types.ComplexGraphType`1.Connection``1
+  name: Connection<TNodeType>()
+  nameWithType: ComplexGraphType<Species>.Connection<TNodeType>()
+  fullName: GraphQL.Types.ComplexGraphType<Business.Model.Species>.Connection<TNodeType>()
+  nameWithType.vb: ComplexGraphType(Of Species).Connection(Of TNodeType)()
+  fullName.vb: GraphQL.Types.ComplexGraphType(Of Business.Model.Species).Connection(Of TNodeType)()
+  name.vb: Connection(Of TNodeType)()
+  spec.csharp:
+  - uid: GraphQL.Types.ComplexGraphType`1.Connection``1
+    name: Connection<TNodeType>
+    nameWithType: ComplexGraphType<Species>.Connection<TNodeType>
+    fullName: GraphQL.Types.ComplexGraphType<Business.Model.Species>.Connection<TNodeType>
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GraphQL.Types.ComplexGraphType`1.Connection``1
+    name: Connection(Of TNodeType)
+    nameWithType: ComplexGraphType(Of Species).Connection(Of TNodeType)
+    fullName: GraphQL.Types.ComplexGraphType(Of Business.Model.Species).Connection(Of TNodeType)
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GraphQL.Types.ComplexGraphType{Business.Model.Species}.Fields
+  commentId: P:GraphQL.Types.ComplexGraphType{Business.Model.Species}.Fields
+  parent: GraphQL.Types.ComplexGraphType{Business.Model.Species}
+  definition: GraphQL.Types.ComplexGraphType`1.Fields
+  name: Fields
+  nameWithType: ComplexGraphType<Species>.Fields
+  fullName: GraphQL.Types.ComplexGraphType<Business.Model.Species>.Fields
+  nameWithType.vb: ComplexGraphType(Of Species).Fields
+  fullName.vb: GraphQL.Types.ComplexGraphType(Of Business.Model.Species).Fields
+- uid: GraphQL.Types.GraphType.GetMetadata``1(System.String,{TType})
+  commentId: M:GraphQL.Types.GraphType.GetMetadata``1(System.String,``0)
+  parent: GraphQL.Types.GraphType
+  definition: GraphQL.Types.GraphType.GetMetadata``1(System.String,``0)
+  name: GetMetadata<TType>(String, TType)
+  nameWithType: GraphType.GetMetadata<TType>(String, TType)
+  fullName: GraphQL.Types.GraphType.GetMetadata<TType>(System.String, TType)
+  nameWithType.vb: GraphType.GetMetadata(Of TType)(String, TType)
+  fullName.vb: GraphQL.Types.GraphType.GetMetadata(Of TType)(System.String, TType)
+  name.vb: GetMetadata(Of TType)(String, TType)
+  spec.csharp:
+  - uid: GraphQL.Types.GraphType.GetMetadata``1(System.String,``0)
+    name: GetMetadata<TType>
+    nameWithType: GraphType.GetMetadata<TType>
+    fullName: GraphQL.Types.GraphType.GetMetadata<TType>
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TType
+    nameWithType: TType
+    fullName: TType
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GraphQL.Types.GraphType.GetMetadata``1(System.String,``0)
+    name: GetMetadata(Of TType)
+    nameWithType: GraphType.GetMetadata(Of TType)
+    fullName: GraphQL.Types.GraphType.GetMetadata(Of TType)
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TType
+    nameWithType: TType
+    fullName: TType
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GraphQL.Types.GraphType.HasMetadata(System.String)
+  commentId: M:GraphQL.Types.GraphType.HasMetadata(System.String)
+  parent: GraphQL.Types.GraphType
+  isExternal: true
+  name: HasMetadata(String)
+  nameWithType: GraphType.HasMetadata(String)
+  fullName: GraphQL.Types.GraphType.HasMetadata(System.String)
+  spec.csharp:
+  - uid: GraphQL.Types.GraphType.HasMetadata(System.String)
+    name: HasMetadata
+    nameWithType: GraphType.HasMetadata
+    fullName: GraphQL.Types.GraphType.HasMetadata
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GraphQL.Types.GraphType.HasMetadata(System.String)
+    name: HasMetadata
+    nameWithType: GraphType.HasMetadata
+    fullName: GraphQL.Types.GraphType.HasMetadata
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GraphQL.Types.GraphType.CollectTypes(GraphQL.Types.TypeCollectionContext)
+  commentId: M:GraphQL.Types.GraphType.CollectTypes(GraphQL.Types.TypeCollectionContext)
+  parent: GraphQL.Types.GraphType
+  isExternal: true
+  name: CollectTypes(TypeCollectionContext)
+  nameWithType: GraphType.CollectTypes(TypeCollectionContext)
+  fullName: GraphQL.Types.GraphType.CollectTypes(GraphQL.Types.TypeCollectionContext)
+  spec.csharp:
+  - uid: GraphQL.Types.GraphType.CollectTypes(GraphQL.Types.TypeCollectionContext)
+    name: CollectTypes
+    nameWithType: GraphType.CollectTypes
+    fullName: GraphQL.Types.GraphType.CollectTypes
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: GraphQL.Types.TypeCollectionContext
+    name: TypeCollectionContext
+    nameWithType: TypeCollectionContext
+    fullName: GraphQL.Types.TypeCollectionContext
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GraphQL.Types.GraphType.CollectTypes(GraphQL.Types.TypeCollectionContext)
+    name: CollectTypes
+    nameWithType: GraphType.CollectTypes
+    fullName: GraphQL.Types.GraphType.CollectTypes
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: GraphQL.Types.TypeCollectionContext
+    name: TypeCollectionContext
+    nameWithType: TypeCollectionContext
+    fullName: GraphQL.Types.TypeCollectionContext
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GraphQL.Types.GraphType.Equals(GraphQL.Types.IGraphType)
+  commentId: M:GraphQL.Types.GraphType.Equals(GraphQL.Types.IGraphType)
+  parent: GraphQL.Types.GraphType
+  isExternal: true
+  name: Equals(IGraphType)
+  nameWithType: GraphType.Equals(IGraphType)
+  fullName: GraphQL.Types.GraphType.Equals(GraphQL.Types.IGraphType)
+  spec.csharp:
+  - uid: GraphQL.Types.GraphType.Equals(GraphQL.Types.IGraphType)
+    name: Equals
+    nameWithType: GraphType.Equals
+    fullName: GraphQL.Types.GraphType.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: GraphQL.Types.IGraphType
+    name: IGraphType
+    nameWithType: IGraphType
+    fullName: GraphQL.Types.IGraphType
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GraphQL.Types.GraphType.Equals(GraphQL.Types.IGraphType)
+    name: Equals
+    nameWithType: GraphType.Equals
+    fullName: GraphQL.Types.GraphType.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: GraphQL.Types.IGraphType
+    name: IGraphType
+    nameWithType: IGraphType
+    fullName: GraphQL.Types.IGraphType
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GraphQL.Types.GraphType.Equals(System.Object)
+  commentId: M:GraphQL.Types.GraphType.Equals(System.Object)
+  parent: GraphQL.Types.GraphType
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: GraphType.Equals(Object)
+  fullName: GraphQL.Types.GraphType.Equals(System.Object)
+  spec.csharp:
+  - uid: GraphQL.Types.GraphType.Equals(System.Object)
+    name: Equals
+    nameWithType: GraphType.Equals
+    fullName: GraphQL.Types.GraphType.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GraphQL.Types.GraphType.Equals(System.Object)
+    name: Equals
+    nameWithType: GraphType.Equals
+    fullName: GraphQL.Types.GraphType.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GraphQL.Types.GraphType.GetHashCode
+  commentId: M:GraphQL.Types.GraphType.GetHashCode
+  parent: GraphQL.Types.GraphType
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: GraphType.GetHashCode()
+  fullName: GraphQL.Types.GraphType.GetHashCode()
+  spec.csharp:
+  - uid: GraphQL.Types.GraphType.GetHashCode
+    name: GetHashCode
+    nameWithType: GraphType.GetHashCode
+    fullName: GraphQL.Types.GraphType.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GraphQL.Types.GraphType.GetHashCode
+    name: GetHashCode
+    nameWithType: GraphType.GetHashCode
+    fullName: GraphQL.Types.GraphType.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GraphQL.Types.GraphType.Name
+  commentId: P:GraphQL.Types.GraphType.Name
+  parent: GraphQL.Types.GraphType
+  isExternal: true
+  name: Name
+  nameWithType: GraphType.Name
+  fullName: GraphQL.Types.GraphType.Name
+- uid: GraphQL.Types.GraphType.Description
+  commentId: P:GraphQL.Types.GraphType.Description
+  parent: GraphQL.Types.GraphType
+  isExternal: true
+  name: Description
+  nameWithType: GraphType.Description
+  fullName: GraphQL.Types.GraphType.Description
+- uid: GraphQL.Types.GraphType.DeprecationReason
+  commentId: P:GraphQL.Types.GraphType.DeprecationReason
+  parent: GraphQL.Types.GraphType
+  isExternal: true
+  name: DeprecationReason
+  nameWithType: GraphType.DeprecationReason
+  fullName: GraphQL.Types.GraphType.DeprecationReason
+- uid: GraphQL.Types.GraphType.Metadata
+  commentId: P:GraphQL.Types.GraphType.Metadata
+  parent: GraphQL.Types.GraphType
+  isExternal: true
+  name: Metadata
+  nameWithType: GraphType.Metadata
+  fullName: GraphQL.Types.GraphType.Metadata
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: GraphQL.Types
+  commentId: N:GraphQL.Types
+  isExternal: true
+  name: GraphQL.Types
+  nameWithType: GraphQL.Types
+  fullName: GraphQL.Types
+- uid: GraphQL.Types.ComplexGraphType`1
+  commentId: T:GraphQL.Types.ComplexGraphType`1
+  isExternal: true
+  name: ComplexGraphType<TSourceType>
+  nameWithType: ComplexGraphType<TSourceType>
+  fullName: GraphQL.Types.ComplexGraphType<TSourceType>
+  nameWithType.vb: ComplexGraphType(Of TSourceType)
+  fullName.vb: GraphQL.Types.ComplexGraphType(Of TSourceType)
+  name.vb: ComplexGraphType(Of TSourceType)
+  spec.csharp:
+  - uid: GraphQL.Types.ComplexGraphType`1
+    name: ComplexGraphType
+    nameWithType: ComplexGraphType
+    fullName: GraphQL.Types.ComplexGraphType
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TSourceType
+    nameWithType: TSourceType
+    fullName: TSourceType
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: GraphQL.Types.ComplexGraphType`1
+    name: ComplexGraphType
+    nameWithType: ComplexGraphType
+    fullName: GraphQL.Types.ComplexGraphType
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TSourceType
+    nameWithType: TSourceType
+    fullName: TSourceType
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GraphQL.Types.ObjectGraphType`1
+  commentId: T:GraphQL.Types.ObjectGraphType`1
+  isExternal: true
+  name: ObjectGraphType<TSourceType>
+  nameWithType: ObjectGraphType<TSourceType>
+  fullName: GraphQL.Types.ObjectGraphType<TSourceType>
+  nameWithType.vb: ObjectGraphType(Of TSourceType)
+  fullName.vb: GraphQL.Types.ObjectGraphType(Of TSourceType)
+  name.vb: ObjectGraphType(Of TSourceType)
+  spec.csharp:
+  - uid: GraphQL.Types.ObjectGraphType`1
+    name: ObjectGraphType
+    nameWithType: ObjectGraphType
+    fullName: GraphQL.Types.ObjectGraphType
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TSourceType
+    nameWithType: TSourceType
+    fullName: TSourceType
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: GraphQL.Types.ObjectGraphType`1
+    name: ObjectGraphType
+    nameWithType: ObjectGraphType
+    fullName: GraphQL.Types.ObjectGraphType
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TSourceType
+    nameWithType: TSourceType
+    fullName: TSourceType
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GraphQL.Types.ObjectGraphType`1.AddResolvedInterface(GraphQL.Types.IInterfaceGraphType)
+  commentId: M:GraphQL.Types.ObjectGraphType`1.AddResolvedInterface(GraphQL.Types.IInterfaceGraphType)
+  isExternal: true
+  name: AddResolvedInterface(IInterfaceGraphType)
+  nameWithType: ObjectGraphType<TSourceType>.AddResolvedInterface(IInterfaceGraphType)
+  fullName: GraphQL.Types.ObjectGraphType<TSourceType>.AddResolvedInterface(GraphQL.Types.IInterfaceGraphType)
+  nameWithType.vb: ObjectGraphType(Of TSourceType).AddResolvedInterface(IInterfaceGraphType)
+  fullName.vb: GraphQL.Types.ObjectGraphType(Of TSourceType).AddResolvedInterface(GraphQL.Types.IInterfaceGraphType)
+  spec.csharp:
+  - uid: GraphQL.Types.ObjectGraphType`1.AddResolvedInterface(GraphQL.Types.IInterfaceGraphType)
+    name: AddResolvedInterface
+    nameWithType: ObjectGraphType<TSourceType>.AddResolvedInterface
+    fullName: GraphQL.Types.ObjectGraphType<TSourceType>.AddResolvedInterface
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: GraphQL.Types.IInterfaceGraphType
+    name: IInterfaceGraphType
+    nameWithType: IInterfaceGraphType
+    fullName: GraphQL.Types.IInterfaceGraphType
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GraphQL.Types.ObjectGraphType`1.AddResolvedInterface(GraphQL.Types.IInterfaceGraphType)
+    name: AddResolvedInterface
+    nameWithType: ObjectGraphType(Of TSourceType).AddResolvedInterface
+    fullName: GraphQL.Types.ObjectGraphType(Of TSourceType).AddResolvedInterface
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: GraphQL.Types.IInterfaceGraphType
+    name: IInterfaceGraphType
+    nameWithType: IInterfaceGraphType
+    fullName: GraphQL.Types.IInterfaceGraphType
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GraphQL.Types.ObjectGraphType`1.Interface``1
+  commentId: M:GraphQL.Types.ObjectGraphType`1.Interface``1
+  isExternal: true
+  name: Interface<TInterface>()
+  nameWithType: ObjectGraphType<TSourceType>.Interface<TInterface>()
+  fullName: GraphQL.Types.ObjectGraphType<TSourceType>.Interface<TInterface>()
+  nameWithType.vb: ObjectGraphType(Of TSourceType).Interface(Of TInterface)()
+  fullName.vb: GraphQL.Types.ObjectGraphType(Of TSourceType).Interface(Of TInterface)()
+  name.vb: Interface(Of TInterface)()
+  spec.csharp:
+  - uid: GraphQL.Types.ObjectGraphType`1.Interface``1
+    name: Interface<TInterface>
+    nameWithType: ObjectGraphType<TSourceType>.Interface<TInterface>
+    fullName: GraphQL.Types.ObjectGraphType<TSourceType>.Interface<TInterface>
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GraphQL.Types.ObjectGraphType`1.Interface``1
+    name: Interface(Of TInterface)
+    nameWithType: ObjectGraphType(Of TSourceType).Interface(Of TInterface)
+    fullName: GraphQL.Types.ObjectGraphType(Of TSourceType).Interface(Of TInterface)
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GraphQL.Types.ObjectGraphType`1.Interface(System.Type)
+  commentId: M:GraphQL.Types.ObjectGraphType`1.Interface(System.Type)
+  isExternal: true
+  name: Interface(Type)
+  nameWithType: ObjectGraphType<TSourceType>.Interface(Type)
+  fullName: GraphQL.Types.ObjectGraphType<TSourceType>.Interface(System.Type)
+  nameWithType.vb: ObjectGraphType(Of TSourceType).Interface(Type)
+  fullName.vb: GraphQL.Types.ObjectGraphType(Of TSourceType).Interface(System.Type)
+  spec.csharp:
+  - uid: GraphQL.Types.ObjectGraphType`1.Interface(System.Type)
+    name: Interface
+    nameWithType: ObjectGraphType<TSourceType>.Interface
+    fullName: GraphQL.Types.ObjectGraphType<TSourceType>.Interface
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GraphQL.Types.ObjectGraphType`1.Interface(System.Type)
+    name: Interface
+    nameWithType: ObjectGraphType(Of TSourceType).Interface
+    fullName: GraphQL.Types.ObjectGraphType(Of TSourceType).Interface
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GraphQL.Types.ObjectGraphType`1.IsTypeOf
+  commentId: P:GraphQL.Types.ObjectGraphType`1.IsTypeOf
+  isExternal: true
+  name: IsTypeOf
+  nameWithType: ObjectGraphType<TSourceType>.IsTypeOf
+  fullName: GraphQL.Types.ObjectGraphType<TSourceType>.IsTypeOf
+  nameWithType.vb: ObjectGraphType(Of TSourceType).IsTypeOf
+  fullName.vb: GraphQL.Types.ObjectGraphType(Of TSourceType).IsTypeOf
+- uid: GraphQL.Types.ObjectGraphType`1.ResolvedInterfaces
+  commentId: P:GraphQL.Types.ObjectGraphType`1.ResolvedInterfaces
+  isExternal: true
+  name: ResolvedInterfaces
+  nameWithType: ObjectGraphType<TSourceType>.ResolvedInterfaces
+  fullName: GraphQL.Types.ObjectGraphType<TSourceType>.ResolvedInterfaces
+  nameWithType.vb: ObjectGraphType(Of TSourceType).ResolvedInterfaces
+  fullName.vb: GraphQL.Types.ObjectGraphType(Of TSourceType).ResolvedInterfaces
+- uid: GraphQL.Types.ObjectGraphType`1.Interfaces
+  commentId: P:GraphQL.Types.ObjectGraphType`1.Interfaces
+  isExternal: true
+  name: Interfaces
+  nameWithType: ObjectGraphType<TSourceType>.Interfaces
+  fullName: GraphQL.Types.ObjectGraphType<TSourceType>.Interfaces
+  nameWithType.vb: ObjectGraphType(Of TSourceType).Interfaces
+  fullName.vb: GraphQL.Types.ObjectGraphType(Of TSourceType).Interfaces
+- uid: GraphQL.Types.ComplexGraphType`1.HasField(System.String)
+  commentId: M:GraphQL.Types.ComplexGraphType`1.HasField(System.String)
+  isExternal: true
+  name: HasField(String)
+  nameWithType: ComplexGraphType<TSourceType>.HasField(String)
+  fullName: GraphQL.Types.ComplexGraphType<TSourceType>.HasField(System.String)
+  nameWithType.vb: ComplexGraphType(Of TSourceType).HasField(String)
+  fullName.vb: GraphQL.Types.ComplexGraphType(Of TSourceType).HasField(System.String)
+  spec.csharp:
+  - uid: GraphQL.Types.ComplexGraphType`1.HasField(System.String)
+    name: HasField
+    nameWithType: ComplexGraphType<TSourceType>.HasField
+    fullName: GraphQL.Types.ComplexGraphType<TSourceType>.HasField
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GraphQL.Types.ComplexGraphType`1.HasField(System.String)
+    name: HasField
+    nameWithType: ComplexGraphType(Of TSourceType).HasField
+    fullName: GraphQL.Types.ComplexGraphType(Of TSourceType).HasField
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GraphQL.Types.ComplexGraphType`1.GetField(System.String)
+  commentId: M:GraphQL.Types.ComplexGraphType`1.GetField(System.String)
+  isExternal: true
+  name: GetField(String)
+  nameWithType: ComplexGraphType<TSourceType>.GetField(String)
+  fullName: GraphQL.Types.ComplexGraphType<TSourceType>.GetField(System.String)
+  nameWithType.vb: ComplexGraphType(Of TSourceType).GetField(String)
+  fullName.vb: GraphQL.Types.ComplexGraphType(Of TSourceType).GetField(System.String)
+  spec.csharp:
+  - uid: GraphQL.Types.ComplexGraphType`1.GetField(System.String)
+    name: GetField
+    nameWithType: ComplexGraphType<TSourceType>.GetField
+    fullName: GraphQL.Types.ComplexGraphType<TSourceType>.GetField
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GraphQL.Types.ComplexGraphType`1.GetField(System.String)
+    name: GetField
+    nameWithType: ComplexGraphType(Of TSourceType).GetField
+    fullName: GraphQL.Types.ComplexGraphType(Of TSourceType).GetField
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GraphQL.Types.ComplexGraphType`1.AddField(GraphQL.Types.FieldType)
+  commentId: M:GraphQL.Types.ComplexGraphType`1.AddField(GraphQL.Types.FieldType)
+  isExternal: true
+  name: AddField(FieldType)
+  nameWithType: ComplexGraphType<TSourceType>.AddField(FieldType)
+  fullName: GraphQL.Types.ComplexGraphType<TSourceType>.AddField(GraphQL.Types.FieldType)
+  nameWithType.vb: ComplexGraphType(Of TSourceType).AddField(FieldType)
+  fullName.vb: GraphQL.Types.ComplexGraphType(Of TSourceType).AddField(GraphQL.Types.FieldType)
+  spec.csharp:
+  - uid: GraphQL.Types.ComplexGraphType`1.AddField(GraphQL.Types.FieldType)
+    name: AddField
+    nameWithType: ComplexGraphType<TSourceType>.AddField
+    fullName: GraphQL.Types.ComplexGraphType<TSourceType>.AddField
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: GraphQL.Types.FieldType
+    name: FieldType
+    nameWithType: FieldType
+    fullName: GraphQL.Types.FieldType
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GraphQL.Types.ComplexGraphType`1.AddField(GraphQL.Types.FieldType)
+    name: AddField
+    nameWithType: ComplexGraphType(Of TSourceType).AddField
+    fullName: GraphQL.Types.ComplexGraphType(Of TSourceType).AddField
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: GraphQL.Types.FieldType
+    name: FieldType
+    nameWithType: FieldType
+    fullName: GraphQL.Types.FieldType
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GraphQL.Types.ComplexGraphType`1.Field(System.Type,System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{`0},System.Object},System.String)
+  commentId: M:GraphQL.Types.ComplexGraphType`1.Field(System.Type,System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{`0},System.Object},System.String)
+  isExternal: true
+  name: Field(Type, String, String, QueryArguments, Func<ResolveFieldContext<TSourceType>, Object>, String)
+  nameWithType: ComplexGraphType<TSourceType>.Field(Type, String, String, QueryArguments, Func<ResolveFieldContext<TSourceType>, Object>, String)
+  fullName: GraphQL.Types.ComplexGraphType<TSourceType>.Field(System.Type, System.String, System.String, GraphQL.Types.QueryArguments, System.Func<GraphQL.Types.ResolveFieldContext<TSourceType>, System.Object>, System.String)
+  nameWithType.vb: ComplexGraphType(Of TSourceType).Field(Type, String, String, QueryArguments, Func(Of ResolveFieldContext(Of TSourceType), Object), String)
+  fullName.vb: GraphQL.Types.ComplexGraphType(Of TSourceType).Field(System.Type, System.String, System.String, GraphQL.Types.QueryArguments, System.Func(Of GraphQL.Types.ResolveFieldContext(Of TSourceType), System.Object), System.String)
+  name.vb: Field(Type, String, String, QueryArguments, Func(Of ResolveFieldContext(Of TSourceType), Object), String)
+  spec.csharp:
+  - uid: GraphQL.Types.ComplexGraphType`1.Field(System.Type,System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{`0},System.Object},System.String)
+    name: Field
+    nameWithType: ComplexGraphType<TSourceType>.Field
+    fullName: GraphQL.Types.ComplexGraphType<TSourceType>.Field
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: GraphQL.Types.QueryArguments
+    name: QueryArguments
+    nameWithType: QueryArguments
+    fullName: GraphQL.Types.QueryArguments
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: GraphQL.Types.ResolveFieldContext`1
+    name: ResolveFieldContext
+    nameWithType: ResolveFieldContext
+    fullName: GraphQL.Types.ResolveFieldContext
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TSourceType
+    nameWithType: TSourceType
+    fullName: TSourceType
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GraphQL.Types.ComplexGraphType`1.Field(System.Type,System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{`0},System.Object},System.String)
+    name: Field
+    nameWithType: ComplexGraphType(Of TSourceType).Field
+    fullName: GraphQL.Types.ComplexGraphType(Of TSourceType).Field
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: GraphQL.Types.QueryArguments
+    name: QueryArguments
+    nameWithType: QueryArguments
+    fullName: GraphQL.Types.QueryArguments
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: GraphQL.Types.ResolveFieldContext`1
+    name: ResolveFieldContext
+    nameWithType: ResolveFieldContext
+    fullName: GraphQL.Types.ResolveFieldContext
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TSourceType
+    nameWithType: TSourceType
+    fullName: TSourceType
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GraphQL.Types.ComplexGraphType`1.Field``1(System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{`0},System.Object},System.String)
+  commentId: M:GraphQL.Types.ComplexGraphType`1.Field``1(System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{`0},System.Object},System.String)
+  isExternal: true
+  name: Field<TGraphType>(String, String, QueryArguments, Func<ResolveFieldContext<TSourceType>, Object>, String)
+  nameWithType: ComplexGraphType<TSourceType>.Field<TGraphType>(String, String, QueryArguments, Func<ResolveFieldContext<TSourceType>, Object>, String)
+  fullName: GraphQL.Types.ComplexGraphType<TSourceType>.Field<TGraphType>(System.String, System.String, GraphQL.Types.QueryArguments, System.Func<GraphQL.Types.ResolveFieldContext<TSourceType>, System.Object>, System.String)
+  nameWithType.vb: ComplexGraphType(Of TSourceType).Field(Of TGraphType)(String, String, QueryArguments, Func(Of ResolveFieldContext(Of TSourceType), Object), String)
+  fullName.vb: GraphQL.Types.ComplexGraphType(Of TSourceType).Field(Of TGraphType)(System.String, System.String, GraphQL.Types.QueryArguments, System.Func(Of GraphQL.Types.ResolveFieldContext(Of TSourceType), System.Object), System.String)
+  name.vb: Field(Of TGraphType)(String, String, QueryArguments, Func(Of ResolveFieldContext(Of TSourceType), Object), String)
+  spec.csharp:
+  - uid: GraphQL.Types.ComplexGraphType`1.Field``1(System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{`0},System.Object},System.String)
+    name: Field<TGraphType>
+    nameWithType: ComplexGraphType<TSourceType>.Field<TGraphType>
+    fullName: GraphQL.Types.ComplexGraphType<TSourceType>.Field<TGraphType>
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: GraphQL.Types.QueryArguments
+    name: QueryArguments
+    nameWithType: QueryArguments
+    fullName: GraphQL.Types.QueryArguments
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: GraphQL.Types.ResolveFieldContext`1
+    name: ResolveFieldContext
+    nameWithType: ResolveFieldContext
+    fullName: GraphQL.Types.ResolveFieldContext
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TSourceType
+    nameWithType: TSourceType
+    fullName: TSourceType
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GraphQL.Types.ComplexGraphType`1.Field``1(System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{`0},System.Object},System.String)
+    name: Field(Of TGraphType)
+    nameWithType: ComplexGraphType(Of TSourceType).Field(Of TGraphType)
+    fullName: GraphQL.Types.ComplexGraphType(Of TSourceType).Field(Of TGraphType)
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: GraphQL.Types.QueryArguments
+    name: QueryArguments
+    nameWithType: QueryArguments
+    fullName: GraphQL.Types.QueryArguments
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: GraphQL.Types.ResolveFieldContext`1
+    name: ResolveFieldContext
+    nameWithType: ResolveFieldContext
+    fullName: GraphQL.Types.ResolveFieldContext
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TSourceType
+    nameWithType: TSourceType
+    fullName: TSourceType
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GraphQL.Types.ComplexGraphType`1.FieldDelegate``1(System.String,System.String,GraphQL.Types.QueryArguments,System.Delegate,System.String)
+  commentId: M:GraphQL.Types.ComplexGraphType`1.FieldDelegate``1(System.String,System.String,GraphQL.Types.QueryArguments,System.Delegate,System.String)
+  isExternal: true
+  name: FieldDelegate<TGraphType>(String, String, QueryArguments, Delegate, String)
+  nameWithType: ComplexGraphType<TSourceType>.FieldDelegate<TGraphType>(String, String, QueryArguments, Delegate, String)
+  fullName: GraphQL.Types.ComplexGraphType<TSourceType>.FieldDelegate<TGraphType>(System.String, System.String, GraphQL.Types.QueryArguments, System.Delegate, System.String)
+  nameWithType.vb: ComplexGraphType(Of TSourceType).FieldDelegate(Of TGraphType)(String, String, QueryArguments, Delegate, String)
+  fullName.vb: GraphQL.Types.ComplexGraphType(Of TSourceType).FieldDelegate(Of TGraphType)(System.String, System.String, GraphQL.Types.QueryArguments, System.Delegate, System.String)
+  name.vb: FieldDelegate(Of TGraphType)(String, String, QueryArguments, Delegate, String)
+  spec.csharp:
+  - uid: GraphQL.Types.ComplexGraphType`1.FieldDelegate``1(System.String,System.String,GraphQL.Types.QueryArguments,System.Delegate,System.String)
+    name: FieldDelegate<TGraphType>
+    nameWithType: ComplexGraphType<TSourceType>.FieldDelegate<TGraphType>
+    fullName: GraphQL.Types.ComplexGraphType<TSourceType>.FieldDelegate<TGraphType>
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: GraphQL.Types.QueryArguments
+    name: QueryArguments
+    nameWithType: QueryArguments
+    fullName: GraphQL.Types.QueryArguments
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Delegate
+    name: Delegate
+    nameWithType: Delegate
+    fullName: System.Delegate
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GraphQL.Types.ComplexGraphType`1.FieldDelegate``1(System.String,System.String,GraphQL.Types.QueryArguments,System.Delegate,System.String)
+    name: FieldDelegate(Of TGraphType)
+    nameWithType: ComplexGraphType(Of TSourceType).FieldDelegate(Of TGraphType)
+    fullName: GraphQL.Types.ComplexGraphType(Of TSourceType).FieldDelegate(Of TGraphType)
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: GraphQL.Types.QueryArguments
+    name: QueryArguments
+    nameWithType: QueryArguments
+    fullName: GraphQL.Types.QueryArguments
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Delegate
+    name: Delegate
+    nameWithType: Delegate
+    fullName: System.Delegate
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GraphQL.Types.ComplexGraphType`1.FieldAsync(System.Type,System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{`0},System.Threading.Tasks.Task{System.Object}},System.String)
+  commentId: M:GraphQL.Types.ComplexGraphType`1.FieldAsync(System.Type,System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{`0},System.Threading.Tasks.Task{System.Object}},System.String)
+  isExternal: true
+  name: FieldAsync(Type, String, String, QueryArguments, Func<ResolveFieldContext<TSourceType>, Task<Object>>, String)
+  nameWithType: ComplexGraphType<TSourceType>.FieldAsync(Type, String, String, QueryArguments, Func<ResolveFieldContext<TSourceType>, Task<Object>>, String)
+  fullName: GraphQL.Types.ComplexGraphType<TSourceType>.FieldAsync(System.Type, System.String, System.String, GraphQL.Types.QueryArguments, System.Func<GraphQL.Types.ResolveFieldContext<TSourceType>, System.Threading.Tasks.Task<System.Object>>, System.String)
+  nameWithType.vb: ComplexGraphType(Of TSourceType).FieldAsync(Type, String, String, QueryArguments, Func(Of ResolveFieldContext(Of TSourceType), Task(Of Object)), String)
+  fullName.vb: GraphQL.Types.ComplexGraphType(Of TSourceType).FieldAsync(System.Type, System.String, System.String, GraphQL.Types.QueryArguments, System.Func(Of GraphQL.Types.ResolveFieldContext(Of TSourceType), System.Threading.Tasks.Task(Of System.Object)), System.String)
+  name.vb: FieldAsync(Type, String, String, QueryArguments, Func(Of ResolveFieldContext(Of TSourceType), Task(Of Object)), String)
+  spec.csharp:
+  - uid: GraphQL.Types.ComplexGraphType`1.FieldAsync(System.Type,System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{`0},System.Threading.Tasks.Task{System.Object}},System.String)
+    name: FieldAsync
+    nameWithType: ComplexGraphType<TSourceType>.FieldAsync
+    fullName: GraphQL.Types.ComplexGraphType<TSourceType>.FieldAsync
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: GraphQL.Types.QueryArguments
+    name: QueryArguments
+    nameWithType: QueryArguments
+    fullName: GraphQL.Types.QueryArguments
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: GraphQL.Types.ResolveFieldContext`1
+    name: ResolveFieldContext
+    nameWithType: ResolveFieldContext
+    fullName: GraphQL.Types.ResolveFieldContext
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TSourceType
+    nameWithType: TSourceType
+    fullName: TSourceType
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    nameWithType: Task
+    fullName: System.Threading.Tasks.Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GraphQL.Types.ComplexGraphType`1.FieldAsync(System.Type,System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{`0},System.Threading.Tasks.Task{System.Object}},System.String)
+    name: FieldAsync
+    nameWithType: ComplexGraphType(Of TSourceType).FieldAsync
+    fullName: GraphQL.Types.ComplexGraphType(Of TSourceType).FieldAsync
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: GraphQL.Types.QueryArguments
+    name: QueryArguments
+    nameWithType: QueryArguments
+    fullName: GraphQL.Types.QueryArguments
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: GraphQL.Types.ResolveFieldContext`1
+    name: ResolveFieldContext
+    nameWithType: ResolveFieldContext
+    fullName: GraphQL.Types.ResolveFieldContext
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TSourceType
+    nameWithType: TSourceType
+    fullName: TSourceType
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    nameWithType: Task
+    fullName: System.Threading.Tasks.Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GraphQL.Types.ComplexGraphType`1.FieldAsync``1(System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{`0},System.Threading.Tasks.Task{System.Object}},System.String)
+  commentId: M:GraphQL.Types.ComplexGraphType`1.FieldAsync``1(System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{`0},System.Threading.Tasks.Task{System.Object}},System.String)
+  isExternal: true
+  name: FieldAsync<TGraphType>(String, String, QueryArguments, Func<ResolveFieldContext<TSourceType>, Task<Object>>, String)
+  nameWithType: ComplexGraphType<TSourceType>.FieldAsync<TGraphType>(String, String, QueryArguments, Func<ResolveFieldContext<TSourceType>, Task<Object>>, String)
+  fullName: GraphQL.Types.ComplexGraphType<TSourceType>.FieldAsync<TGraphType>(System.String, System.String, GraphQL.Types.QueryArguments, System.Func<GraphQL.Types.ResolveFieldContext<TSourceType>, System.Threading.Tasks.Task<System.Object>>, System.String)
+  nameWithType.vb: ComplexGraphType(Of TSourceType).FieldAsync(Of TGraphType)(String, String, QueryArguments, Func(Of ResolveFieldContext(Of TSourceType), Task(Of Object)), String)
+  fullName.vb: GraphQL.Types.ComplexGraphType(Of TSourceType).FieldAsync(Of TGraphType)(System.String, System.String, GraphQL.Types.QueryArguments, System.Func(Of GraphQL.Types.ResolveFieldContext(Of TSourceType), System.Threading.Tasks.Task(Of System.Object)), System.String)
+  name.vb: FieldAsync(Of TGraphType)(String, String, QueryArguments, Func(Of ResolveFieldContext(Of TSourceType), Task(Of Object)), String)
+  spec.csharp:
+  - uid: GraphQL.Types.ComplexGraphType`1.FieldAsync``1(System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{`0},System.Threading.Tasks.Task{System.Object}},System.String)
+    name: FieldAsync<TGraphType>
+    nameWithType: ComplexGraphType<TSourceType>.FieldAsync<TGraphType>
+    fullName: GraphQL.Types.ComplexGraphType<TSourceType>.FieldAsync<TGraphType>
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: GraphQL.Types.QueryArguments
+    name: QueryArguments
+    nameWithType: QueryArguments
+    fullName: GraphQL.Types.QueryArguments
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: GraphQL.Types.ResolveFieldContext`1
+    name: ResolveFieldContext
+    nameWithType: ResolveFieldContext
+    fullName: GraphQL.Types.ResolveFieldContext
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TSourceType
+    nameWithType: TSourceType
+    fullName: TSourceType
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    nameWithType: Task
+    fullName: System.Threading.Tasks.Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GraphQL.Types.ComplexGraphType`1.FieldAsync``1(System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{`0},System.Threading.Tasks.Task{System.Object}},System.String)
+    name: FieldAsync(Of TGraphType)
+    nameWithType: ComplexGraphType(Of TSourceType).FieldAsync(Of TGraphType)
+    fullName: GraphQL.Types.ComplexGraphType(Of TSourceType).FieldAsync(Of TGraphType)
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: GraphQL.Types.QueryArguments
+    name: QueryArguments
+    nameWithType: QueryArguments
+    fullName: GraphQL.Types.QueryArguments
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: GraphQL.Types.ResolveFieldContext`1
+    name: ResolveFieldContext
+    nameWithType: ResolveFieldContext
+    fullName: GraphQL.Types.ResolveFieldContext
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TSourceType
+    nameWithType: TSourceType
+    fullName: TSourceType
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    nameWithType: Task
+    fullName: System.Threading.Tasks.Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GraphQL.Types.ComplexGraphType`1.FieldAsync``2(System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{`0},System.Threading.Tasks.Task{``1}},System.String)
+  commentId: M:GraphQL.Types.ComplexGraphType`1.FieldAsync``2(System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{`0},System.Threading.Tasks.Task{``1}},System.String)
+  isExternal: true
+  name: FieldAsync<TGraphType, TReturnType>(String, String, QueryArguments, Func<ResolveFieldContext<TSourceType>, Task<TReturnType>>, String)
+  nameWithType: ComplexGraphType<TSourceType>.FieldAsync<TGraphType, TReturnType>(String, String, QueryArguments, Func<ResolveFieldContext<TSourceType>, Task<TReturnType>>, String)
+  fullName: GraphQL.Types.ComplexGraphType<TSourceType>.FieldAsync<TGraphType, TReturnType>(System.String, System.String, GraphQL.Types.QueryArguments, System.Func<GraphQL.Types.ResolveFieldContext<TSourceType>, System.Threading.Tasks.Task<TReturnType>>, System.String)
+  nameWithType.vb: ComplexGraphType(Of TSourceType).FieldAsync(Of TGraphType, TReturnType)(String, String, QueryArguments, Func(Of ResolveFieldContext(Of TSourceType), Task(Of TReturnType)), String)
+  fullName.vb: GraphQL.Types.ComplexGraphType(Of TSourceType).FieldAsync(Of TGraphType, TReturnType)(System.String, System.String, GraphQL.Types.QueryArguments, System.Func(Of GraphQL.Types.ResolveFieldContext(Of TSourceType), System.Threading.Tasks.Task(Of TReturnType)), System.String)
+  name.vb: FieldAsync(Of TGraphType, TReturnType)(String, String, QueryArguments, Func(Of ResolveFieldContext(Of TSourceType), Task(Of TReturnType)), String)
+  spec.csharp:
+  - uid: GraphQL.Types.ComplexGraphType`1.FieldAsync``2(System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{`0},System.Threading.Tasks.Task{``1}},System.String)
+    name: FieldAsync<TGraphType, TReturnType>
+    nameWithType: ComplexGraphType<TSourceType>.FieldAsync<TGraphType, TReturnType>
+    fullName: GraphQL.Types.ComplexGraphType<TSourceType>.FieldAsync<TGraphType, TReturnType>
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: GraphQL.Types.QueryArguments
+    name: QueryArguments
+    nameWithType: QueryArguments
+    fullName: GraphQL.Types.QueryArguments
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: GraphQL.Types.ResolveFieldContext`1
+    name: ResolveFieldContext
+    nameWithType: ResolveFieldContext
+    fullName: GraphQL.Types.ResolveFieldContext
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TSourceType
+    nameWithType: TSourceType
+    fullName: TSourceType
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    nameWithType: Task
+    fullName: System.Threading.Tasks.Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TReturnType
+    nameWithType: TReturnType
+    fullName: TReturnType
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GraphQL.Types.ComplexGraphType`1.FieldAsync``2(System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{`0},System.Threading.Tasks.Task{``1}},System.String)
+    name: FieldAsync(Of TGraphType, TReturnType)
+    nameWithType: ComplexGraphType(Of TSourceType).FieldAsync(Of TGraphType, TReturnType)
+    fullName: GraphQL.Types.ComplexGraphType(Of TSourceType).FieldAsync(Of TGraphType, TReturnType)
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: GraphQL.Types.QueryArguments
+    name: QueryArguments
+    nameWithType: QueryArguments
+    fullName: GraphQL.Types.QueryArguments
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: GraphQL.Types.ResolveFieldContext`1
+    name: ResolveFieldContext
+    nameWithType: ResolveFieldContext
+    fullName: GraphQL.Types.ResolveFieldContext
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TSourceType
+    nameWithType: TSourceType
+    fullName: TSourceType
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    nameWithType: Task
+    fullName: System.Threading.Tasks.Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TReturnType
+    nameWithType: TReturnType
+    fullName: TReturnType
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GraphQL.Types.ComplexGraphType`1.FieldSubscribe``1(System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{`0},System.Object},System.Func{GraphQL.Subscription.ResolveEventStreamContext,System.IObservable{System.Object}},System.String)
+  commentId: M:GraphQL.Types.ComplexGraphType`1.FieldSubscribe``1(System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{`0},System.Object},System.Func{GraphQL.Subscription.ResolveEventStreamContext,System.IObservable{System.Object}},System.String)
+  isExternal: true
+  name: FieldSubscribe<TGraphType>(String, String, QueryArguments, Func<ResolveFieldContext<TSourceType>, Object>, Func<ResolveEventStreamContext, IObservable<Object>>, String)
+  nameWithType: ComplexGraphType<TSourceType>.FieldSubscribe<TGraphType>(String, String, QueryArguments, Func<ResolveFieldContext<TSourceType>, Object>, Func<ResolveEventStreamContext, IObservable<Object>>, String)
+  fullName: GraphQL.Types.ComplexGraphType<TSourceType>.FieldSubscribe<TGraphType>(System.String, System.String, GraphQL.Types.QueryArguments, System.Func<GraphQL.Types.ResolveFieldContext<TSourceType>, System.Object>, System.Func<GraphQL.Subscription.ResolveEventStreamContext, System.IObservable<System.Object>>, System.String)
+  nameWithType.vb: ComplexGraphType(Of TSourceType).FieldSubscribe(Of TGraphType)(String, String, QueryArguments, Func(Of ResolveFieldContext(Of TSourceType), Object), Func(Of ResolveEventStreamContext, IObservable(Of Object)), String)
+  fullName.vb: GraphQL.Types.ComplexGraphType(Of TSourceType).FieldSubscribe(Of TGraphType)(System.String, System.String, GraphQL.Types.QueryArguments, System.Func(Of GraphQL.Types.ResolveFieldContext(Of TSourceType), System.Object), System.Func(Of GraphQL.Subscription.ResolveEventStreamContext, System.IObservable(Of System.Object)), System.String)
+  name.vb: FieldSubscribe(Of TGraphType)(String, String, QueryArguments, Func(Of ResolveFieldContext(Of TSourceType), Object), Func(Of ResolveEventStreamContext, IObservable(Of Object)), String)
+  spec.csharp:
+  - uid: GraphQL.Types.ComplexGraphType`1.FieldSubscribe``1(System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{`0},System.Object},System.Func{GraphQL.Subscription.ResolveEventStreamContext,System.IObservable{System.Object}},System.String)
+    name: FieldSubscribe<TGraphType>
+    nameWithType: ComplexGraphType<TSourceType>.FieldSubscribe<TGraphType>
+    fullName: GraphQL.Types.ComplexGraphType<TSourceType>.FieldSubscribe<TGraphType>
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: GraphQL.Types.QueryArguments
+    name: QueryArguments
+    nameWithType: QueryArguments
+    fullName: GraphQL.Types.QueryArguments
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: GraphQL.Types.ResolveFieldContext`1
+    name: ResolveFieldContext
+    nameWithType: ResolveFieldContext
+    fullName: GraphQL.Types.ResolveFieldContext
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TSourceType
+    nameWithType: TSourceType
+    fullName: TSourceType
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: GraphQL.Subscription.ResolveEventStreamContext
+    name: ResolveEventStreamContext
+    nameWithType: ResolveEventStreamContext
+    fullName: GraphQL.Subscription.ResolveEventStreamContext
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.IObservable`1
+    name: IObservable
+    nameWithType: IObservable
+    fullName: System.IObservable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GraphQL.Types.ComplexGraphType`1.FieldSubscribe``1(System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{`0},System.Object},System.Func{GraphQL.Subscription.ResolveEventStreamContext,System.IObservable{System.Object}},System.String)
+    name: FieldSubscribe(Of TGraphType)
+    nameWithType: ComplexGraphType(Of TSourceType).FieldSubscribe(Of TGraphType)
+    fullName: GraphQL.Types.ComplexGraphType(Of TSourceType).FieldSubscribe(Of TGraphType)
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: GraphQL.Types.QueryArguments
+    name: QueryArguments
+    nameWithType: QueryArguments
+    fullName: GraphQL.Types.QueryArguments
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: GraphQL.Types.ResolveFieldContext`1
+    name: ResolveFieldContext
+    nameWithType: ResolveFieldContext
+    fullName: GraphQL.Types.ResolveFieldContext
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TSourceType
+    nameWithType: TSourceType
+    fullName: TSourceType
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: GraphQL.Subscription.ResolveEventStreamContext
+    name: ResolveEventStreamContext
+    nameWithType: ResolveEventStreamContext
+    fullName: GraphQL.Subscription.ResolveEventStreamContext
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.IObservable`1
+    name: IObservable
+    nameWithType: IObservable
+    fullName: System.IObservable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GraphQL.Types.ComplexGraphType`1.FieldSubscribeAsync``1(System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{`0},System.Object},System.Func{GraphQL.Subscription.ResolveEventStreamContext,System.Threading.Tasks.Task{System.IObservable{System.Object}}},System.String)
+  commentId: M:GraphQL.Types.ComplexGraphType`1.FieldSubscribeAsync``1(System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{`0},System.Object},System.Func{GraphQL.Subscription.ResolveEventStreamContext,System.Threading.Tasks.Task{System.IObservable{System.Object}}},System.String)
+  isExternal: true
+  name: FieldSubscribeAsync<TGraphType>(String, String, QueryArguments, Func<ResolveFieldContext<TSourceType>, Object>, Func<ResolveEventStreamContext, Task<IObservable<Object>>>, String)
+  nameWithType: ComplexGraphType<TSourceType>.FieldSubscribeAsync<TGraphType>(String, String, QueryArguments, Func<ResolveFieldContext<TSourceType>, Object>, Func<ResolveEventStreamContext, Task<IObservable<Object>>>, String)
+  fullName: GraphQL.Types.ComplexGraphType<TSourceType>.FieldSubscribeAsync<TGraphType>(System.String, System.String, GraphQL.Types.QueryArguments, System.Func<GraphQL.Types.ResolveFieldContext<TSourceType>, System.Object>, System.Func<GraphQL.Subscription.ResolveEventStreamContext, System.Threading.Tasks.Task<System.IObservable<System.Object>>>, System.String)
+  nameWithType.vb: ComplexGraphType(Of TSourceType).FieldSubscribeAsync(Of TGraphType)(String, String, QueryArguments, Func(Of ResolveFieldContext(Of TSourceType), Object), Func(Of ResolveEventStreamContext, Task(Of IObservable(Of Object))), String)
+  fullName.vb: GraphQL.Types.ComplexGraphType(Of TSourceType).FieldSubscribeAsync(Of TGraphType)(System.String, System.String, GraphQL.Types.QueryArguments, System.Func(Of GraphQL.Types.ResolveFieldContext(Of TSourceType), System.Object), System.Func(Of GraphQL.Subscription.ResolveEventStreamContext, System.Threading.Tasks.Task(Of System.IObservable(Of System.Object))), System.String)
+  name.vb: FieldSubscribeAsync(Of TGraphType)(String, String, QueryArguments, Func(Of ResolveFieldContext(Of TSourceType), Object), Func(Of ResolveEventStreamContext, Task(Of IObservable(Of Object))), String)
+  spec.csharp:
+  - uid: GraphQL.Types.ComplexGraphType`1.FieldSubscribeAsync``1(System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{`0},System.Object},System.Func{GraphQL.Subscription.ResolveEventStreamContext,System.Threading.Tasks.Task{System.IObservable{System.Object}}},System.String)
+    name: FieldSubscribeAsync<TGraphType>
+    nameWithType: ComplexGraphType<TSourceType>.FieldSubscribeAsync<TGraphType>
+    fullName: GraphQL.Types.ComplexGraphType<TSourceType>.FieldSubscribeAsync<TGraphType>
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: GraphQL.Types.QueryArguments
+    name: QueryArguments
+    nameWithType: QueryArguments
+    fullName: GraphQL.Types.QueryArguments
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: GraphQL.Types.ResolveFieldContext`1
+    name: ResolveFieldContext
+    nameWithType: ResolveFieldContext
+    fullName: GraphQL.Types.ResolveFieldContext
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TSourceType
+    nameWithType: TSourceType
+    fullName: TSourceType
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: GraphQL.Subscription.ResolveEventStreamContext
+    name: ResolveEventStreamContext
+    nameWithType: ResolveEventStreamContext
+    fullName: GraphQL.Subscription.ResolveEventStreamContext
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    nameWithType: Task
+    fullName: System.Threading.Tasks.Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.IObservable`1
+    name: IObservable
+    nameWithType: IObservable
+    fullName: System.IObservable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GraphQL.Types.ComplexGraphType`1.FieldSubscribeAsync``1(System.String,System.String,GraphQL.Types.QueryArguments,System.Func{GraphQL.Types.ResolveFieldContext{`0},System.Object},System.Func{GraphQL.Subscription.ResolveEventStreamContext,System.Threading.Tasks.Task{System.IObservable{System.Object}}},System.String)
+    name: FieldSubscribeAsync(Of TGraphType)
+    nameWithType: ComplexGraphType(Of TSourceType).FieldSubscribeAsync(Of TGraphType)
+    fullName: GraphQL.Types.ComplexGraphType(Of TSourceType).FieldSubscribeAsync(Of TGraphType)
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: GraphQL.Types.QueryArguments
+    name: QueryArguments
+    nameWithType: QueryArguments
+    fullName: GraphQL.Types.QueryArguments
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: GraphQL.Types.ResolveFieldContext`1
+    name: ResolveFieldContext
+    nameWithType: ResolveFieldContext
+    fullName: GraphQL.Types.ResolveFieldContext
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TSourceType
+    nameWithType: TSourceType
+    fullName: TSourceType
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: GraphQL.Subscription.ResolveEventStreamContext
+    name: ResolveEventStreamContext
+    nameWithType: ResolveEventStreamContext
+    fullName: GraphQL.Subscription.ResolveEventStreamContext
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    nameWithType: Task
+    fullName: System.Threading.Tasks.Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.IObservable`1
+    name: IObservable
+    nameWithType: IObservable
+    fullName: System.IObservable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GraphQL.Types.ComplexGraphType`1.Field``2(System.String)
+  commentId: M:GraphQL.Types.ComplexGraphType`1.Field``2(System.String)
+  isExternal: true
+  name: Field<TGraphType, TReturnType>(String)
+  nameWithType: ComplexGraphType<TSourceType>.Field<TGraphType, TReturnType>(String)
+  fullName: GraphQL.Types.ComplexGraphType<TSourceType>.Field<TGraphType, TReturnType>(System.String)
+  nameWithType.vb: ComplexGraphType(Of TSourceType).Field(Of TGraphType, TReturnType)(String)
+  fullName.vb: GraphQL.Types.ComplexGraphType(Of TSourceType).Field(Of TGraphType, TReturnType)(System.String)
+  name.vb: Field(Of TGraphType, TReturnType)(String)
+  spec.csharp:
+  - uid: GraphQL.Types.ComplexGraphType`1.Field``2(System.String)
+    name: Field<TGraphType, TReturnType>
+    nameWithType: ComplexGraphType<TSourceType>.Field<TGraphType, TReturnType>
+    fullName: GraphQL.Types.ComplexGraphType<TSourceType>.Field<TGraphType, TReturnType>
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GraphQL.Types.ComplexGraphType`1.Field``2(System.String)
+    name: Field(Of TGraphType, TReturnType)
+    nameWithType: ComplexGraphType(Of TSourceType).Field(Of TGraphType, TReturnType)
+    fullName: GraphQL.Types.ComplexGraphType(Of TSourceType).Field(Of TGraphType, TReturnType)
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GraphQL.Types.ComplexGraphType`1.Field``1
+  commentId: M:GraphQL.Types.ComplexGraphType`1.Field``1
+  isExternal: true
+  name: Field<TGraphType>()
+  nameWithType: ComplexGraphType<TSourceType>.Field<TGraphType>()
+  fullName: GraphQL.Types.ComplexGraphType<TSourceType>.Field<TGraphType>()
+  nameWithType.vb: ComplexGraphType(Of TSourceType).Field(Of TGraphType)()
+  fullName.vb: GraphQL.Types.ComplexGraphType(Of TSourceType).Field(Of TGraphType)()
+  name.vb: Field(Of TGraphType)()
+  spec.csharp:
+  - uid: GraphQL.Types.ComplexGraphType`1.Field``1
+    name: Field<TGraphType>
+    nameWithType: ComplexGraphType<TSourceType>.Field<TGraphType>
+    fullName: GraphQL.Types.ComplexGraphType<TSourceType>.Field<TGraphType>
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GraphQL.Types.ComplexGraphType`1.Field``1
+    name: Field(Of TGraphType)
+    nameWithType: ComplexGraphType(Of TSourceType).Field(Of TGraphType)
+    fullName: GraphQL.Types.ComplexGraphType(Of TSourceType).Field(Of TGraphType)
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GraphQL.Types.ComplexGraphType`1.Field``1(System.String,System.Linq.Expressions.Expression{System.Func{`0,``0}},System.Boolean,System.Type)
+  commentId: M:GraphQL.Types.ComplexGraphType`1.Field``1(System.String,System.Linq.Expressions.Expression{System.Func{`0,``0}},System.Boolean,System.Type)
+  isExternal: true
+  name: Field<TProperty>(String, Expression<Func<TSourceType, TProperty>>, Boolean, Type)
+  nameWithType: ComplexGraphType<TSourceType>.Field<TProperty>(String, Expression<Func<TSourceType, TProperty>>, Boolean, Type)
+  fullName: GraphQL.Types.ComplexGraphType<TSourceType>.Field<TProperty>(System.String, System.Linq.Expressions.Expression<System.Func<TSourceType, TProperty>>, System.Boolean, System.Type)
+  nameWithType.vb: ComplexGraphType(Of TSourceType).Field(Of TProperty)(String, Expression(Of Func(Of TSourceType, TProperty)), Boolean, Type)
+  fullName.vb: GraphQL.Types.ComplexGraphType(Of TSourceType).Field(Of TProperty)(System.String, System.Linq.Expressions.Expression(Of System.Func(Of TSourceType, TProperty)), System.Boolean, System.Type)
+  name.vb: Field(Of TProperty)(String, Expression(Of Func(Of TSourceType, TProperty)), Boolean, Type)
+  spec.csharp:
+  - uid: GraphQL.Types.ComplexGraphType`1.Field``1(System.String,System.Linq.Expressions.Expression{System.Func{`0,``0}},System.Boolean,System.Type)
+    name: Field<TProperty>
+    nameWithType: ComplexGraphType<TSourceType>.Field<TProperty>
+    fullName: GraphQL.Types.ComplexGraphType<TSourceType>.Field<TProperty>
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TSourceType
+    nameWithType: TSourceType
+    fullName: TSourceType
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TProperty
+    nameWithType: TProperty
+    fullName: TProperty
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GraphQL.Types.ComplexGraphType`1.Field``1(System.String,System.Linq.Expressions.Expression{System.Func{`0,``0}},System.Boolean,System.Type)
+    name: Field(Of TProperty)
+    nameWithType: ComplexGraphType(Of TSourceType).Field(Of TProperty)
+    fullName: GraphQL.Types.ComplexGraphType(Of TSourceType).Field(Of TProperty)
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TSourceType
+    nameWithType: TSourceType
+    fullName: TSourceType
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TProperty
+    nameWithType: TProperty
+    fullName: TProperty
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GraphQL.Types.ComplexGraphType`1.Field``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},System.Boolean,System.Type)
+  commentId: M:GraphQL.Types.ComplexGraphType`1.Field``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},System.Boolean,System.Type)
+  isExternal: true
+  name: Field<TProperty>(Expression<Func<TSourceType, TProperty>>, Boolean, Type)
+  nameWithType: ComplexGraphType<TSourceType>.Field<TProperty>(Expression<Func<TSourceType, TProperty>>, Boolean, Type)
+  fullName: GraphQL.Types.ComplexGraphType<TSourceType>.Field<TProperty>(System.Linq.Expressions.Expression<System.Func<TSourceType, TProperty>>, System.Boolean, System.Type)
+  nameWithType.vb: ComplexGraphType(Of TSourceType).Field(Of TProperty)(Expression(Of Func(Of TSourceType, TProperty)), Boolean, Type)
+  fullName.vb: GraphQL.Types.ComplexGraphType(Of TSourceType).Field(Of TProperty)(System.Linq.Expressions.Expression(Of System.Func(Of TSourceType, TProperty)), System.Boolean, System.Type)
+  name.vb: Field(Of TProperty)(Expression(Of Func(Of TSourceType, TProperty)), Boolean, Type)
+  spec.csharp:
+  - uid: GraphQL.Types.ComplexGraphType`1.Field``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},System.Boolean,System.Type)
+    name: Field<TProperty>
+    nameWithType: ComplexGraphType<TSourceType>.Field<TProperty>
+    fullName: GraphQL.Types.ComplexGraphType<TSourceType>.Field<TProperty>
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TSourceType
+    nameWithType: TSourceType
+    fullName: TSourceType
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TProperty
+    nameWithType: TProperty
+    fullName: TProperty
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GraphQL.Types.ComplexGraphType`1.Field``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},System.Boolean,System.Type)
+    name: Field(Of TProperty)
+    nameWithType: ComplexGraphType(Of TSourceType).Field(Of TProperty)
+    fullName: GraphQL.Types.ComplexGraphType(Of TSourceType).Field(Of TProperty)
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Linq.Expressions.Expression`1
+    name: Expression
+    nameWithType: Expression
+    fullName: System.Linq.Expressions.Expression
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Func`2
+    name: Func
+    nameWithType: Func
+    fullName: System.Func
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TSourceType
+    nameWithType: TSourceType
+    fullName: TSourceType
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TProperty
+    nameWithType: TProperty
+    fullName: TProperty
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GraphQL.Types.ComplexGraphType`1.Connection``1
+  commentId: M:GraphQL.Types.ComplexGraphType`1.Connection``1
+  isExternal: true
+  name: Connection<TNodeType>()
+  nameWithType: ComplexGraphType<TSourceType>.Connection<TNodeType>()
+  fullName: GraphQL.Types.ComplexGraphType<TSourceType>.Connection<TNodeType>()
+  nameWithType.vb: ComplexGraphType(Of TSourceType).Connection(Of TNodeType)()
+  fullName.vb: GraphQL.Types.ComplexGraphType(Of TSourceType).Connection(Of TNodeType)()
+  name.vb: Connection(Of TNodeType)()
+  spec.csharp:
+  - uid: GraphQL.Types.ComplexGraphType`1.Connection``1
+    name: Connection<TNodeType>
+    nameWithType: ComplexGraphType<TSourceType>.Connection<TNodeType>
+    fullName: GraphQL.Types.ComplexGraphType<TSourceType>.Connection<TNodeType>
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GraphQL.Types.ComplexGraphType`1.Connection``1
+    name: Connection(Of TNodeType)
+    nameWithType: ComplexGraphType(Of TSourceType).Connection(Of TNodeType)
+    fullName: GraphQL.Types.ComplexGraphType(Of TSourceType).Connection(Of TNodeType)
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GraphQL.Types.ComplexGraphType`1.Fields
+  commentId: P:GraphQL.Types.ComplexGraphType`1.Fields
+  isExternal: true
+  name: Fields
+  nameWithType: ComplexGraphType<TSourceType>.Fields
+  fullName: GraphQL.Types.ComplexGraphType<TSourceType>.Fields
+  nameWithType.vb: ComplexGraphType(Of TSourceType).Fields
+  fullName.vb: GraphQL.Types.ComplexGraphType(Of TSourceType).Fields
+- uid: GraphQL.Types.GraphType.GetMetadata``1(System.String,``0)
+  commentId: M:GraphQL.Types.GraphType.GetMetadata``1(System.String,``0)
+  isExternal: true
+  name: GetMetadata<TType>(String, TType)
+  nameWithType: GraphType.GetMetadata<TType>(String, TType)
+  fullName: GraphQL.Types.GraphType.GetMetadata<TType>(System.String, TType)
+  nameWithType.vb: GraphType.GetMetadata(Of TType)(String, TType)
+  fullName.vb: GraphQL.Types.GraphType.GetMetadata(Of TType)(System.String, TType)
+  name.vb: GetMetadata(Of TType)(String, TType)
+  spec.csharp:
+  - uid: GraphQL.Types.GraphType.GetMetadata``1(System.String,``0)
+    name: GetMetadata<TType>
+    nameWithType: GraphType.GetMetadata<TType>
+    fullName: GraphQL.Types.GraphType.GetMetadata<TType>
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TType
+    nameWithType: TType
+    fullName: TType
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GraphQL.Types.GraphType.GetMetadata``1(System.String,``0)
+    name: GetMetadata(Of TType)
+    nameWithType: GraphType.GetMetadata(Of TType)
+    fullName: GraphQL.Types.GraphType.GetMetadata(Of TType)
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: TType
+    nameWithType: TType
+    fullName: TType
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.GraphQL.SpeciesGraphType.#ctor*
+  commentId: Overload:FarmMaster.GraphQL.SpeciesGraphType.#ctor
+  name: SpeciesGraphType
+  nameWithType: SpeciesGraphType.SpeciesGraphType
+  fullName: FarmMaster.GraphQL.SpeciesGraphType.SpeciesGraphType

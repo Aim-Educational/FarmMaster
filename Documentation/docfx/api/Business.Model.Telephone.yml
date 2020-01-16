@@ -1,0 +1,702 @@
+### YamlMime:ManagedReference
+items:
+- uid: Business.Model.Telephone
+  commentId: T:Business.Model.Telephone
+  id: Telephone
+  parent: Business.Model
+  children:
+  - Business.Model.Telephone.Contact
+  - Business.Model.Telephone.ContactId
+  - Business.Model.Telephone.Name
+  - Business.Model.Telephone.Number
+  - Business.Model.Telephone.TelephoneId
+  - Business.Model.Telephone.Timestamp
+  langs:
+  - csharp
+  - vb
+  name: Telephone
+  nameWithType: Telephone
+  fullName: Business.Model.Telephone
+  type: Class
+  source:
+    remote:
+      path: Business/Model/Telephone.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: Telephone
+    path: ../Business/Model/Telephone.cs
+    startLine: 7
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: public class Telephone
+    content.vb: Public Class Telephone
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Business.Model.Telephone.TelephoneId
+  commentId: P:Business.Model.Telephone.TelephoneId
+  id: TelephoneId
+  parent: Business.Model.Telephone
+  langs:
+  - csharp
+  - vb
+  name: TelephoneId
+  nameWithType: Telephone.TelephoneId
+  fullName: Business.Model.Telephone.TelephoneId
+  type: Property
+  source:
+    remote:
+      path: Business/Model/Telephone.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: TelephoneId
+    path: ../Business/Model/Telephone.cs
+    startLine: 9
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: >-
+      [Key]
+
+      public int TelephoneId { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: >-
+      <Key>
+
+      Public Property TelephoneId As Integer
+  overload: Business.Model.Telephone.TelephoneId*
+  attributes:
+  - type: System.ComponentModel.DataAnnotations.KeyAttribute
+    ctor: System.ComponentModel.DataAnnotations.KeyAttribute.#ctor
+    arguments: []
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Business.Model.Telephone.Name
+  commentId: P:Business.Model.Telephone.Name
+  id: Name
+  parent: Business.Model.Telephone
+  langs:
+  - csharp
+  - vb
+  name: Name
+  nameWithType: Telephone.Name
+  fullName: Business.Model.Telephone.Name
+  type: Property
+  source:
+    remote:
+      path: Business/Model/Telephone.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: Name
+    path: ../Business/Model/Telephone.cs
+    startLine: 12
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: >-
+      [Required]
+
+      [StringLength(20)]
+
+      public string Name { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <Required>
+
+      <StringLength(20)>
+
+      Public Property Name As String
+  overload: Business.Model.Telephone.Name*
+  attributes:
+  - type: System.ComponentModel.DataAnnotations.RequiredAttribute
+    ctor: System.ComponentModel.DataAnnotations.RequiredAttribute.#ctor
+    arguments: []
+  - type: System.ComponentModel.DataAnnotations.StringLengthAttribute
+    ctor: System.ComponentModel.DataAnnotations.StringLengthAttribute.#ctor(System.Int32)
+    arguments:
+    - type: System.Int32
+      value: 20
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Business.Model.Telephone.Number
+  commentId: P:Business.Model.Telephone.Number
+  id: Number
+  parent: Business.Model.Telephone
+  langs:
+  - csharp
+  - vb
+  name: Number
+  nameWithType: Telephone.Number
+  fullName: Business.Model.Telephone.Number
+  type: Property
+  source:
+    remote:
+      path: Business/Model/Telephone.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: Number
+    path: ../Business/Model/Telephone.cs
+    startLine: 16
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: >-
+      [Required]
+
+      [StringLength(15)]
+
+      public string Number { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <Required>
+
+      <StringLength(15)>
+
+      Public Property Number As String
+  overload: Business.Model.Telephone.Number*
+  attributes:
+  - type: System.ComponentModel.DataAnnotations.RequiredAttribute
+    ctor: System.ComponentModel.DataAnnotations.RequiredAttribute.#ctor
+    arguments: []
+  - type: System.ComponentModel.DataAnnotations.StringLengthAttribute
+    ctor: System.ComponentModel.DataAnnotations.StringLengthAttribute.#ctor(System.Int32)
+    arguments:
+    - type: System.Int32
+      value: 15
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Business.Model.Telephone.ContactId
+  commentId: P:Business.Model.Telephone.ContactId
+  id: ContactId
+  parent: Business.Model.Telephone
+  langs:
+  - csharp
+  - vb
+  name: ContactId
+  nameWithType: Telephone.ContactId
+  fullName: Business.Model.Telephone.ContactId
+  type: Property
+  source:
+    remote:
+      path: Business/Model/Telephone.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: ContactId
+    path: ../Business/Model/Telephone.cs
+    startLine: 20
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: >-
+      [Required]
+
+      public int ContactId { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: >-
+      <Required>
+
+      Public Property ContactId As Integer
+  overload: Business.Model.Telephone.ContactId*
+  attributes:
+  - type: System.ComponentModel.DataAnnotations.RequiredAttribute
+    ctor: System.ComponentModel.DataAnnotations.RequiredAttribute.#ctor
+    arguments: []
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Business.Model.Telephone.Contact
+  commentId: P:Business.Model.Telephone.Contact
+  id: Contact
+  parent: Business.Model.Telephone
+  langs:
+  - csharp
+  - vb
+  name: Contact
+  nameWithType: Telephone.Contact
+  fullName: Business.Model.Telephone.Contact
+  type: Property
+  source:
+    remote:
+      path: Business/Model/Telephone.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: Contact
+    path: ../Business/Model/Telephone.cs
+    startLine: 22
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: public Contact Contact { get; set; }
+    parameters: []
+    return:
+      type: Business.Model.Contact
+    content.vb: Public Property Contact As Contact
+  overload: Business.Model.Telephone.Contact*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Business.Model.Telephone.Timestamp
+  commentId: P:Business.Model.Telephone.Timestamp
+  id: Timestamp
+  parent: Business.Model.Telephone
+  langs:
+  - csharp
+  - vb
+  name: Timestamp
+  nameWithType: Telephone.Timestamp
+  fullName: Business.Model.Telephone.Timestamp
+  type: Property
+  source:
+    remote:
+      path: Business/Model/Telephone.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: Timestamp
+    path: ../Business/Model/Telephone.cs
+    startLine: 24
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: >-
+      [Timestamp]
+
+      public byte[] Timestamp { get; set; }
+    parameters: []
+    return:
+      type: System.Byte[]
+    content.vb: >-
+      <Timestamp>
+
+      Public Property Timestamp As Byte()
+  overload: Business.Model.Telephone.Timestamp*
+  attributes:
+  - type: System.ComponentModel.DataAnnotations.TimestampAttribute
+    ctor: System.ComponentModel.DataAnnotations.TimestampAttribute.#ctor
+    arguments: []
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+references:
+- uid: Business.Model
+  commentId: N:Business.Model
+  name: Business.Model
+  nameWithType: Business.Model
+  fullName: Business.Model
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Business.Model.Telephone.TelephoneId*
+  commentId: Overload:Business.Model.Telephone.TelephoneId
+  name: TelephoneId
+  nameWithType: Telephone.TelephoneId
+  fullName: Business.Model.Telephone.TelephoneId
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: Business.Model.Telephone.Name*
+  commentId: Overload:Business.Model.Telephone.Name
+  name: Name
+  nameWithType: Telephone.Name
+  fullName: Business.Model.Telephone.Name
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: Business.Model.Telephone.Number*
+  commentId: Overload:Business.Model.Telephone.Number
+  name: Number
+  nameWithType: Telephone.Number
+  fullName: Business.Model.Telephone.Number
+- uid: Business.Model.Telephone.ContactId*
+  commentId: Overload:Business.Model.Telephone.ContactId
+  name: ContactId
+  nameWithType: Telephone.ContactId
+  fullName: Business.Model.Telephone.ContactId
+- uid: Business.Model.Telephone.Contact*
+  commentId: Overload:Business.Model.Telephone.Contact
+  name: Contact
+  nameWithType: Telephone.Contact
+  fullName: Business.Model.Telephone.Contact
+- uid: Business.Model.Contact
+  commentId: T:Business.Model.Contact
+  parent: Business.Model
+  name: Contact
+  nameWithType: Contact
+  fullName: Business.Model.Contact
+- uid: Business.Model.Telephone.Timestamp*
+  commentId: Overload:Business.Model.Telephone.Timestamp
+  name: Timestamp
+  nameWithType: Telephone.Timestamp
+  fullName: Business.Model.Telephone.Timestamp
+- uid: System.Byte[]
+  isExternal: true
+  name: Byte[]
+  nameWithType: Byte[]
+  fullName: System.Byte[]
+  nameWithType.vb: Byte()
+  fullName.vb: System.Byte()
+  name.vb: Byte()
+  spec.csharp:
+  - uid: System.Byte
+    name: Byte
+    nameWithType: Byte
+    fullName: System.Byte
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.Byte
+    name: Byte
+    nameWithType: Byte
+    fullName: System.Byte
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()

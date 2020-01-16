@@ -1,0 +1,448 @@
+### YamlMime:ManagedReference
+items:
+- uid: FarmMaster.Models.AnimalGroupScriptEditorSingleUseViewModel
+  commentId: T:FarmMaster.Models.AnimalGroupScriptEditorSingleUseViewModel
+  id: AnimalGroupScriptEditorSingleUseViewModel
+  parent: FarmMaster.Models
+  children:
+  - FarmMaster.Models.AnimalGroupScriptEditorSingleUseViewModel.AnimalGridId
+  - FarmMaster.Models.AnimalGroupScriptEditorSingleUseViewModel.GroupId
+  langs:
+  - csharp
+  - vb
+  name: AnimalGroupScriptEditorSingleUseViewModel
+  nameWithType: AnimalGroupScriptEditorSingleUseViewModel
+  fullName: FarmMaster.Models.AnimalGroupScriptEditorSingleUseViewModel
+  type: Class
+  source:
+    remote:
+      path: FarmMaster/Models/AnimalGroupScriptExecutionViewModel.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: AnimalGroupScriptEditorSingleUseViewModel
+    path: Models/AnimalGroupScriptExecutionViewModel.cs
+    startLine: 11
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Models
+  syntax:
+    content: 'public class AnimalGroupScriptEditorSingleUseViewModel : AnimalGroupScriptEditorViewModel'
+    content.vb: >-
+      Public Class AnimalGroupScriptEditorSingleUseViewModel
+
+          Inherits AnimalGroupScriptEditorViewModel
+  inheritance:
+  - System.Object
+  - FarmMaster.Models.AnimalGroupScriptEditorViewModel
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: FarmMaster.Models.AnimalGroupScriptEditorSingleUseViewModel.GroupId
+  commentId: P:FarmMaster.Models.AnimalGroupScriptEditorSingleUseViewModel.GroupId
+  id: GroupId
+  parent: FarmMaster.Models.AnimalGroupScriptEditorSingleUseViewModel
+  langs:
+  - csharp
+  - vb
+  name: GroupId
+  nameWithType: AnimalGroupScriptEditorSingleUseViewModel.GroupId
+  fullName: FarmMaster.Models.AnimalGroupScriptEditorSingleUseViewModel.GroupId
+  type: Property
+  source:
+    remote:
+      path: FarmMaster/Models/AnimalGroupScriptExecutionViewModel.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: GroupId
+    path: Models/AnimalGroupScriptExecutionViewModel.cs
+    startLine: 13
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Models
+  syntax:
+    content: public int GroupId { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property GroupId As Integer
+  overload: FarmMaster.Models.AnimalGroupScriptEditorSingleUseViewModel.GroupId*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Models.AnimalGroupScriptEditorSingleUseViewModel.AnimalGridId
+  commentId: P:FarmMaster.Models.AnimalGroupScriptEditorSingleUseViewModel.AnimalGridId
+  id: AnimalGridId
+  parent: FarmMaster.Models.AnimalGroupScriptEditorSingleUseViewModel
+  langs:
+  - csharp
+  - vb
+  name: AnimalGridId
+  nameWithType: AnimalGroupScriptEditorSingleUseViewModel.AnimalGridId
+  fullName: FarmMaster.Models.AnimalGroupScriptEditorSingleUseViewModel.AnimalGridId
+  type: Property
+  source:
+    remote:
+      path: FarmMaster/Models/AnimalGroupScriptExecutionViewModel.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: AnimalGridId
+    path: Models/AnimalGroupScriptExecutionViewModel.cs
+    startLine: 14
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Models
+  syntax:
+    content: public string AnimalGridId { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property AnimalGridId As String
+  overload: FarmMaster.Models.AnimalGroupScriptEditorSingleUseViewModel.AnimalGridId*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+references:
+- uid: FarmMaster.Models
+  commentId: N:FarmMaster.Models
+  name: FarmMaster.Models
+  nameWithType: FarmMaster.Models
+  fullName: FarmMaster.Models
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: FarmMaster.Models.AnimalGroupScriptEditorViewModel
+  commentId: T:FarmMaster.Models.AnimalGroupScriptEditorViewModel
+  parent: FarmMaster.Models
+  name: AnimalGroupScriptEditorViewModel
+  nameWithType: AnimalGroupScriptEditorViewModel
+  fullName: FarmMaster.Models.AnimalGroupScriptEditorViewModel
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: FarmMaster.Models.AnimalGroupScriptEditorSingleUseViewModel.GroupId*
+  commentId: Overload:FarmMaster.Models.AnimalGroupScriptEditorSingleUseViewModel.GroupId
+  name: GroupId
+  nameWithType: AnimalGroupScriptEditorSingleUseViewModel.GroupId
+  fullName: FarmMaster.Models.AnimalGroupScriptEditorSingleUseViewModel.GroupId
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: FarmMaster.Models.AnimalGroupScriptEditorSingleUseViewModel.AnimalGridId*
+  commentId: Overload:FarmMaster.Models.AnimalGroupScriptEditorSingleUseViewModel.AnimalGridId
+  name: AnimalGridId
+  nameWithType: AnimalGroupScriptEditorSingleUseViewModel.AnimalGridId
+  fullName: FarmMaster.Models.AnimalGroupScriptEditorSingleUseViewModel.AnimalGridId
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String

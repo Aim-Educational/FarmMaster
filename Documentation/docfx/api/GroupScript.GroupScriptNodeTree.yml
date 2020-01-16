@@ -1,0 +1,688 @@
+### YamlMime:ManagedReference
+items:
+- uid: GroupScript.GroupScriptNodeTree
+  commentId: T:GroupScript.GroupScriptNodeTree
+  id: GroupScriptNodeTree
+  parent: GroupScript
+  children:
+  - GroupScript.GroupScriptNodeTree.#ctor(System.Collections.Generic.IEnumerable{GroupScript.GroupScriptToken})
+  - GroupScript.GroupScriptNodeTree.Parameters
+  - GroupScript.GroupScriptNodeTree.RoutineHeadNode
+  - GroupScript.GroupScriptNodeTree.ScriptName
+  langs:
+  - csharp
+  - vb
+  name: GroupScriptNodeTree
+  nameWithType: GroupScriptNodeTree
+  fullName: GroupScript.GroupScriptNodeTree
+  type: Class
+  source:
+    remote:
+      path: GroupScript/GroupScriptNodeTree.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: GroupScriptNodeTree
+    path: ../GroupScript/GroupScriptNodeTree.cs
+    startLine: 6
+  assemblies:
+  - GroupScript
+  namespace: GroupScript
+  syntax:
+    content: public class GroupScriptNodeTree
+    content.vb: Public Class GroupScriptNodeTree
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: GroupScript.GroupScriptNodeTree.ScriptName
+  commentId: P:GroupScript.GroupScriptNodeTree.ScriptName
+  id: ScriptName
+  parent: GroupScript.GroupScriptNodeTree
+  langs:
+  - csharp
+  - vb
+  name: ScriptName
+  nameWithType: GroupScriptNodeTree.ScriptName
+  fullName: GroupScript.GroupScriptNodeTree.ScriptName
+  type: Property
+  source:
+    remote:
+      path: GroupScript/GroupScriptNodeTree.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: ScriptName
+    path: ../GroupScript/GroupScriptNodeTree.cs
+    startLine: 8
+  assemblies:
+  - GroupScript
+  namespace: GroupScript
+  syntax:
+    content: public string ScriptName { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property ScriptName As String
+  overload: GroupScript.GroupScriptNodeTree.ScriptName*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: GroupScript.GroupScriptNodeTree.Parameters
+  commentId: P:GroupScript.GroupScriptNodeTree.Parameters
+  id: Parameters
+  parent: GroupScript.GroupScriptNodeTree
+  langs:
+  - csharp
+  - vb
+  name: Parameters
+  nameWithType: GroupScriptNodeTree.Parameters
+  fullName: GroupScript.GroupScriptNodeTree.Parameters
+  type: Property
+  source:
+    remote:
+      path: GroupScript/GroupScriptNodeTree.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: Parameters
+    path: ../GroupScript/GroupScriptNodeTree.cs
+    startLine: 10
+  assemblies:
+  - GroupScript
+  namespace: GroupScript
+  syntax:
+    content: public IList<GroupScriptParameterDeclarationNode> Parameters { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IList{GroupScript.GroupScriptParameterDeclarationNode}
+    content.vb: Public Property Parameters As IList(Of GroupScriptParameterDeclarationNode)
+  overload: GroupScript.GroupScriptNodeTree.Parameters*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: GroupScript.GroupScriptNodeTree.RoutineHeadNode
+  commentId: P:GroupScript.GroupScriptNodeTree.RoutineHeadNode
+  id: RoutineHeadNode
+  parent: GroupScript.GroupScriptNodeTree
+  langs:
+  - csharp
+  - vb
+  name: RoutineHeadNode
+  nameWithType: GroupScriptNodeTree.RoutineHeadNode
+  fullName: GroupScript.GroupScriptNodeTree.RoutineHeadNode
+  type: Property
+  source:
+    remote:
+      path: GroupScript/GroupScriptNodeTree.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: RoutineHeadNode
+    path: ../GroupScript/GroupScriptNodeTree.cs
+    startLine: 12
+  assemblies:
+  - GroupScript
+  namespace: GroupScript
+  syntax:
+    content: public GroupScriptRoutineActionNode RoutineHeadNode { get; set; }
+    parameters: []
+    return:
+      type: GroupScript.GroupScriptRoutineActionNode
+    content.vb: Public Property RoutineHeadNode As GroupScriptRoutineActionNode
+  overload: GroupScript.GroupScriptNodeTree.RoutineHeadNode*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: GroupScript.GroupScriptNodeTree.#ctor(System.Collections.Generic.IEnumerable{GroupScript.GroupScriptToken})
+  commentId: M:GroupScript.GroupScriptNodeTree.#ctor(System.Collections.Generic.IEnumerable{GroupScript.GroupScriptToken})
+  id: '#ctor(System.Collections.Generic.IEnumerable{GroupScript.GroupScriptToken})'
+  parent: GroupScript.GroupScriptNodeTree
+  langs:
+  - csharp
+  - vb
+  name: GroupScriptNodeTree(IEnumerable<GroupScriptToken>)
+  nameWithType: GroupScriptNodeTree.GroupScriptNodeTree(IEnumerable<GroupScriptToken>)
+  fullName: GroupScript.GroupScriptNodeTree.GroupScriptNodeTree(System.Collections.Generic.IEnumerable<GroupScript.GroupScriptToken>)
+  type: Constructor
+  source:
+    remote:
+      path: GroupScript/GroupScriptNodeTree.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: .ctor
+    path: ../GroupScript/GroupScriptNodeTree.cs
+    startLine: 14
+  assemblies:
+  - GroupScript
+  namespace: GroupScript
+  syntax:
+    content: public GroupScriptNodeTree(IEnumerable<GroupScriptToken> tokens)
+    parameters:
+    - id: tokens
+      type: System.Collections.Generic.IEnumerable{GroupScript.GroupScriptToken}
+    content.vb: Public Sub New(tokens As IEnumerable(Of GroupScriptToken))
+  overload: GroupScript.GroupScriptNodeTree.#ctor*
+  nameWithType.vb: GroupScriptNodeTree.GroupScriptNodeTree(IEnumerable(Of GroupScriptToken))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: GroupScript.GroupScriptNodeTree.GroupScriptNodeTree(System.Collections.Generic.IEnumerable(Of GroupScript.GroupScriptToken))
+  name.vb: GroupScriptNodeTree(IEnumerable(Of GroupScriptToken))
+references:
+- uid: GroupScript
+  commentId: N:GroupScript
+  name: GroupScript
+  nameWithType: GroupScript
+  fullName: GroupScript
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: GroupScript.GroupScriptNodeTree.ScriptName*
+  commentId: Overload:GroupScript.GroupScriptNodeTree.ScriptName
+  name: ScriptName
+  nameWithType: GroupScriptNodeTree.ScriptName
+  fullName: GroupScript.GroupScriptNodeTree.ScriptName
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: GroupScript.GroupScriptNodeTree.Parameters*
+  commentId: Overload:GroupScript.GroupScriptNodeTree.Parameters
+  name: Parameters
+  nameWithType: GroupScriptNodeTree.Parameters
+  fullName: GroupScript.GroupScriptNodeTree.Parameters
+- uid: System.Collections.Generic.IList{GroupScript.GroupScriptParameterDeclarationNode}
+  commentId: T:System.Collections.Generic.IList{GroupScript.GroupScriptParameterDeclarationNode}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IList`1
+  name: IList<GroupScriptParameterDeclarationNode>
+  nameWithType: IList<GroupScriptParameterDeclarationNode>
+  fullName: System.Collections.Generic.IList<GroupScript.GroupScriptParameterDeclarationNode>
+  nameWithType.vb: IList(Of GroupScriptParameterDeclarationNode)
+  fullName.vb: System.Collections.Generic.IList(Of GroupScript.GroupScriptParameterDeclarationNode)
+  name.vb: IList(Of GroupScriptParameterDeclarationNode)
+  spec.csharp:
+  - uid: System.Collections.Generic.IList`1
+    name: IList
+    nameWithType: IList
+    fullName: System.Collections.Generic.IList
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: GroupScript.GroupScriptParameterDeclarationNode
+    name: GroupScriptParameterDeclarationNode
+    nameWithType: GroupScriptParameterDeclarationNode
+    fullName: GroupScript.GroupScriptParameterDeclarationNode
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IList`1
+    name: IList
+    nameWithType: IList
+    fullName: System.Collections.Generic.IList
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: GroupScript.GroupScriptParameterDeclarationNode
+    name: GroupScriptParameterDeclarationNode
+    nameWithType: GroupScriptParameterDeclarationNode
+    fullName: GroupScript.GroupScriptParameterDeclarationNode
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IList`1
+  commentId: T:System.Collections.Generic.IList`1
+  isExternal: true
+  name: IList<T>
+  nameWithType: IList<T>
+  fullName: System.Collections.Generic.IList<T>
+  nameWithType.vb: IList(Of T)
+  fullName.vb: System.Collections.Generic.IList(Of T)
+  name.vb: IList(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IList`1
+    name: IList
+    nameWithType: IList
+    fullName: System.Collections.Generic.IList
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IList`1
+    name: IList
+    nameWithType: IList
+    fullName: System.Collections.Generic.IList
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+- uid: GroupScript.GroupScriptNodeTree.RoutineHeadNode*
+  commentId: Overload:GroupScript.GroupScriptNodeTree.RoutineHeadNode
+  name: RoutineHeadNode
+  nameWithType: GroupScriptNodeTree.RoutineHeadNode
+  fullName: GroupScript.GroupScriptNodeTree.RoutineHeadNode
+- uid: GroupScript.GroupScriptRoutineActionNode
+  commentId: T:GroupScript.GroupScriptRoutineActionNode
+  parent: GroupScript
+  name: GroupScriptRoutineActionNode
+  nameWithType: GroupScriptRoutineActionNode
+  fullName: GroupScript.GroupScriptRoutineActionNode
+- uid: GroupScript.GroupScriptNodeTree.#ctor*
+  commentId: Overload:GroupScript.GroupScriptNodeTree.#ctor
+  name: GroupScriptNodeTree
+  nameWithType: GroupScriptNodeTree.GroupScriptNodeTree
+  fullName: GroupScript.GroupScriptNodeTree.GroupScriptNodeTree
+- uid: System.Collections.Generic.IEnumerable{GroupScript.GroupScriptToken}
+  commentId: T:System.Collections.Generic.IEnumerable{GroupScript.GroupScriptToken}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  name: IEnumerable<GroupScriptToken>
+  nameWithType: IEnumerable<GroupScriptToken>
+  fullName: System.Collections.Generic.IEnumerable<GroupScript.GroupScriptToken>
+  nameWithType.vb: IEnumerable(Of GroupScriptToken)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of GroupScript.GroupScriptToken)
+  name.vb: IEnumerable(Of GroupScriptToken)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: GroupScript.GroupScriptToken
+    name: GroupScriptToken
+    nameWithType: GroupScriptToken
+    fullName: GroupScript.GroupScriptToken
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: GroupScript.GroupScriptToken
+    name: GroupScriptToken
+    nameWithType: GroupScriptToken
+    fullName: GroupScript.GroupScriptToken
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )

@@ -1,0 +1,814 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class ServiceSpeciesBreedManager
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class ServiceSpeciesBreedManager
+   ">
+    <meta name="generator" content="docfx 2.48.1.0">
+    
+    <link rel="shortcut icon" href="../../../favicon.ico">
+    <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../styles/main.css">
+    <meta property="docfx:navrel" content="">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="FarmMaster.Services.ServiceSpeciesBreedManager">
+  
+  
+  <h1 id="FarmMaster_Services_ServiceSpeciesBreedManager" data-uid="FarmMaster.Services.ServiceSpeciesBreedManager" class="text-break">Class ServiceSpeciesBreedManager
+  </h1>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">ServiceSpeciesBreedManager</span></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="FarmMaster.Services.IServiceSpeciesBreedManager.html">IServiceSpeciesBreedManager</a></div>
+    <div><a class="xref" href="FarmMaster.Services.IServiceEntityManager-1.html">IServiceEntityManager</a>&lt;<a class="xref" href="Business.Model.Species.html">Species</a>&gt;</div>
+    <div><a class="xref" href="FarmMaster.Services.IServiceEntityManager-1.html">IServiceEntityManager</a>&lt;<a class="xref" href="Business.Model.Breed.html">Breed</a>&gt;</div>
+    <div><a class="xref" href="FarmMaster.Services.IServiceEntityManagerFullDeletion-1.html">IServiceEntityManagerFullDeletion</a>&lt;<a class="xref" href="Business.Model.Species.html">Species</a>&gt;</div>
+    <div><a class="xref" href="FarmMaster.Services.IServiceEntityManagerFullDeletion-1.html">IServiceEntityManagerFullDeletion</a>&lt;<a class="xref" href="Business.Model.Breed.html">Breed</a>&gt;</div>
+    <div><a class="xref" href="FarmMaster.Services.IServiceGdprData.html">IServiceGdprData</a></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.Equals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetHashCode()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.GetType()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.MemberwiseClone()</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ReferenceEquals(System.Object, System.Object)</span>
+    </div>
+    <div>
+      <span class="xref">System.Object.ToString()</span>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="FarmMaster.Services.html">FarmMaster.Services</a></h6>
+  <h6><strong>Assembly</strong>: FarmMaster.dll</h6>
+  <h5 id="FarmMaster_Services_ServiceSpeciesBreedManager_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class ServiceSpeciesBreedManager : IServiceSpeciesBreedManager, IServiceEntityManager&lt;Species&gt;, IServiceEntityManager&lt;Breed&gt;, IServiceEntityManagerFullDeletion&lt;Species&gt;, IServiceEntityManagerFullDeletion&lt;Breed&gt;, IServiceGdprData</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Aim-Educational/FarmMaster/new/assignment_script/apiSpec/new?filename=FarmMaster_Services_ServiceSpeciesBreedManager__ctor_Business_Model_FarmMasterContext_.md&amp;value=---%0Auid%3A%20FarmMaster.Services.ServiceSpeciesBreedManager.%23ctor(Business.Model.FarmMasterContext)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Aim-Educational/FarmMaster/blob/assignment_script/FarmMaster/Services/IServiceSpeciesBreedManager.cs/#L25">View Source</a>
+  </span>
+  <a id="FarmMaster_Services_ServiceSpeciesBreedManager__ctor_" data-uid="FarmMaster.Services.ServiceSpeciesBreedManager.#ctor*"></a>
+  <h4 id="FarmMaster_Services_ServiceSpeciesBreedManager__ctor_Business_Model_FarmMasterContext_" data-uid="FarmMaster.Services.ServiceSpeciesBreedManager.#ctor(Business.Model.FarmMasterContext)">ServiceSpeciesBreedManager(FarmMasterContext)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ServiceSpeciesBreedManager(FarmMasterContext context)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Business.Model.FarmMasterContext.html">FarmMasterContext</a></td>
+        <td><span class="parametername">context</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Aim-Educational/FarmMaster/new/assignment_script/apiSpec/new?filename=FarmMaster_Services_ServiceSpeciesBreedManager_AnonymiseContactData_Business_Model_Contact_.md&amp;value=---%0Auid%3A%20FarmMaster.Services.ServiceSpeciesBreedManager.AnonymiseContactData(Business.Model.Contact)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Aim-Educational/FarmMaster/blob/assignment_script/FarmMaster/Services/IServiceSpeciesBreedManager.cs/#L155">View Source</a>
+  </span>
+  <a id="FarmMaster_Services_ServiceSpeciesBreedManager_AnonymiseContactData_" data-uid="FarmMaster.Services.ServiceSpeciesBreedManager.AnonymiseContactData*"></a>
+  <h4 id="FarmMaster_Services_ServiceSpeciesBreedManager_AnonymiseContactData_Business_Model_Contact_" data-uid="FarmMaster.Services.ServiceSpeciesBreedManager.AnonymiseContactData(Business.Model.Contact)">AnonymiseContactData(Contact)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AnonymiseContactData(Contact contact)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Business.Model.Contact.html">Contact</a></td>
+        <td><span class="parametername">contact</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Aim-Educational/FarmMaster/new/assignment_script/apiSpec/new?filename=FarmMaster_Services_ServiceSpeciesBreedManager_AnonymiseUserData_Business_Model_User_.md&amp;value=---%0Auid%3A%20FarmMaster.Services.ServiceSpeciesBreedManager.AnonymiseUserData(Business.Model.User)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Aim-Educational/FarmMaster/blob/assignment_script/FarmMaster/Services/IServiceSpeciesBreedManager.cs/#L157">View Source</a>
+  </span>
+  <a id="FarmMaster_Services_ServiceSpeciesBreedManager_AnonymiseUserData_" data-uid="FarmMaster.Services.ServiceSpeciesBreedManager.AnonymiseUserData*"></a>
+  <h4 id="FarmMaster_Services_ServiceSpeciesBreedManager_AnonymiseUserData_Business_Model_User_" data-uid="FarmMaster.Services.ServiceSpeciesBreedManager.AnonymiseUserData(Business.Model.User)">AnonymiseUserData(User)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AnonymiseUserData(User user)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Business.Model.User.html">User</a></td>
+        <td><span class="parametername">user</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Aim-Educational/FarmMaster/new/assignment_script/apiSpec/new?filename=FarmMaster_Services_ServiceSpeciesBreedManager_CreateBreed_System_String_Business_Model_Species_Business_Model_Contact_System_Boolean_.md&amp;value=---%0Auid%3A%20FarmMaster.Services.ServiceSpeciesBreedManager.CreateBreed(System.String%2CBusiness.Model.Species%2CBusiness.Model.Contact%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Aim-Educational/FarmMaster/blob/assignment_script/FarmMaster/Services/IServiceSpeciesBreedManager.cs/#L30">View Source</a>
+  </span>
+  <a id="FarmMaster_Services_ServiceSpeciesBreedManager_CreateBreed_" data-uid="FarmMaster.Services.ServiceSpeciesBreedManager.CreateBreed*"></a>
+  <h4 id="FarmMaster_Services_ServiceSpeciesBreedManager_CreateBreed_System_String_Business_Model_Species_Business_Model_Contact_System_Boolean_" data-uid="FarmMaster.Services.ServiceSpeciesBreedManager.CreateBreed(System.String,Business.Model.Species,Business.Model.Contact,System.Boolean)">CreateBreed(String, Species, Contact, Boolean)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Breed CreateBreed(string name, Species species, Contact breedSociety, bool isRegisterable)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">name</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Business.Model.Species.html">Species</a></td>
+        <td><span class="parametername">species</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Business.Model.Contact.html">Contact</a></td>
+        <td><span class="parametername">breedSociety</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">isRegisterable</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Business.Model.Breed.html">Breed</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Aim-Educational/FarmMaster/new/assignment_script/apiSpec/new?filename=FarmMaster_Services_ServiceSpeciesBreedManager_CreateSpecies_System_String_System_Boolean_.md&amp;value=---%0Auid%3A%20FarmMaster.Services.ServiceSpeciesBreedManager.CreateSpecies(System.String%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Aim-Educational/FarmMaster/blob/assignment_script/FarmMaster/Services/IServiceSpeciesBreedManager.cs/#L54">View Source</a>
+  </span>
+  <a id="FarmMaster_Services_ServiceSpeciesBreedManager_CreateSpecies_" data-uid="FarmMaster.Services.ServiceSpeciesBreedManager.CreateSpecies*"></a>
+  <h4 id="FarmMaster_Services_ServiceSpeciesBreedManager_CreateSpecies_System_String_System_Boolean_" data-uid="FarmMaster.Services.ServiceSpeciesBreedManager.CreateSpecies(System.String,System.Boolean)">CreateSpecies(String, Boolean)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Species CreateSpecies(string name, bool isPoultry)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">name</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">isPoultry</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Business.Model.Species.html">Species</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Aim-Educational/FarmMaster/new/assignment_script/apiSpec/new?filename=FarmMaster_Services_ServiceSpeciesBreedManager_FullDelete_Business_Model_Breed_.md&amp;value=---%0Auid%3A%20FarmMaster.Services.ServiceSpeciesBreedManager.FullDelete(Business.Model.Breed)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Aim-Educational/FarmMaster/blob/assignment_script/FarmMaster/Services/IServiceSpeciesBreedManager.cs/#L83">View Source</a>
+  </span>
+  <a id="FarmMaster_Services_ServiceSpeciesBreedManager_FullDelete_" data-uid="FarmMaster.Services.ServiceSpeciesBreedManager.FullDelete*"></a>
+  <h4 id="FarmMaster_Services_ServiceSpeciesBreedManager_FullDelete_Business_Model_Breed_" data-uid="FarmMaster.Services.ServiceSpeciesBreedManager.FullDelete(Business.Model.Breed)">FullDelete(Breed)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void FullDelete(Breed entity)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Business.Model.Breed.html">Breed</a></td>
+        <td><span class="parametername">entity</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Aim-Educational/FarmMaster/new/assignment_script/apiSpec/new?filename=FarmMaster_Services_ServiceSpeciesBreedManager_FullDelete_Business_Model_Species_.md&amp;value=---%0Auid%3A%20FarmMaster.Services.ServiceSpeciesBreedManager.FullDelete(Business.Model.Species)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Aim-Educational/FarmMaster/blob/assignment_script/FarmMaster/Services/IServiceSpeciesBreedManager.cs/#L74">View Source</a>
+  </span>
+  <a id="FarmMaster_Services_ServiceSpeciesBreedManager_FullDelete_" data-uid="FarmMaster.Services.ServiceSpeciesBreedManager.FullDelete*"></a>
+  <h4 id="FarmMaster_Services_ServiceSpeciesBreedManager_FullDelete_Business_Model_Species_" data-uid="FarmMaster.Services.ServiceSpeciesBreedManager.FullDelete(Business.Model.Species)">FullDelete(Species)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void FullDelete(Species entity)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Business.Model.Species.html">Species</a></td>
+        <td><span class="parametername">entity</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Aim-Educational/FarmMaster/new/assignment_script/apiSpec/new?filename=FarmMaster_Services_ServiceSpeciesBreedManager_GetContactGdprData_Business_Model_Contact_Newtonsoft_Json_Linq_JObject_.md&amp;value=---%0Auid%3A%20FarmMaster.Services.ServiceSpeciesBreedManager.GetContactGdprData(Business.Model.Contact%2CNewtonsoft.Json.Linq.JObject)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Aim-Educational/FarmMaster/blob/assignment_script/FarmMaster/Services/IServiceSpeciesBreedManager.cs/#L89">View Source</a>
+  </span>
+  <a id="FarmMaster_Services_ServiceSpeciesBreedManager_GetContactGdprData_" data-uid="FarmMaster.Services.ServiceSpeciesBreedManager.GetContactGdprData*"></a>
+  <h4 id="FarmMaster_Services_ServiceSpeciesBreedManager_GetContactGdprData_Business_Model_Contact_Newtonsoft_Json_Linq_JObject_" data-uid="FarmMaster.Services.ServiceSpeciesBreedManager.GetContactGdprData(Business.Model.Contact,Newtonsoft.Json.Linq.JObject)">GetContactGdprData(Contact, JObject)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void GetContactGdprData(Contact contact, JObject json)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Business.Model.Contact.html">Contact</a></td>
+        <td><span class="parametername">contact</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">Newtonsoft.Json.Linq.JObject</span></td>
+        <td><span class="parametername">json</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Aim-Educational/FarmMaster/new/assignment_script/apiSpec/new?filename=FarmMaster_Services_ServiceSpeciesBreedManager_GetIdFor_Business_Model_Breed_.md&amp;value=---%0Auid%3A%20FarmMaster.Services.ServiceSpeciesBreedManager.GetIdFor(Business.Model.Breed)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Aim-Educational/FarmMaster/blob/assignment_script/FarmMaster/Services/IServiceSpeciesBreedManager.cs/#L109">View Source</a>
+  </span>
+  <a id="FarmMaster_Services_ServiceSpeciesBreedManager_GetIdFor_" data-uid="FarmMaster.Services.ServiceSpeciesBreedManager.GetIdFor*"></a>
+  <h4 id="FarmMaster_Services_ServiceSpeciesBreedManager_GetIdFor_Business_Model_Breed_" data-uid="FarmMaster.Services.ServiceSpeciesBreedManager.GetIdFor(Business.Model.Breed)">GetIdFor(Breed)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int GetIdFor(Breed entity)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Business.Model.Breed.html">Breed</a></td>
+        <td><span class="parametername">entity</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Aim-Educational/FarmMaster/new/assignment_script/apiSpec/new?filename=FarmMaster_Services_ServiceSpeciesBreedManager_GetIdFor_Business_Model_Species_.md&amp;value=---%0Auid%3A%20FarmMaster.Services.ServiceSpeciesBreedManager.GetIdFor(Business.Model.Species)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Aim-Educational/FarmMaster/blob/assignment_script/FarmMaster/Services/IServiceSpeciesBreedManager.cs/#L104">View Source</a>
+  </span>
+  <a id="FarmMaster_Services_ServiceSpeciesBreedManager_GetIdFor_" data-uid="FarmMaster.Services.ServiceSpeciesBreedManager.GetIdFor*"></a>
+  <h4 id="FarmMaster_Services_ServiceSpeciesBreedManager_GetIdFor_Business_Model_Species_" data-uid="FarmMaster.Services.ServiceSpeciesBreedManager.GetIdFor(Business.Model.Species)">GetIdFor(Species)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int GetIdFor(Species entity)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Business.Model.Species.html">Species</a></td>
+        <td><span class="parametername">entity</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Aim-Educational/FarmMaster/new/assignment_script/apiSpec/new?filename=FarmMaster_Services_ServiceSpeciesBreedManager_GetUserGdprData_Business_Model_User_Newtonsoft_Json_Linq_JObject_.md&amp;value=---%0Auid%3A%20FarmMaster.Services.ServiceSpeciesBreedManager.GetUserGdprData(Business.Model.User%2CNewtonsoft.Json.Linq.JObject)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Aim-Educational/FarmMaster/blob/assignment_script/FarmMaster/Services/IServiceSpeciesBreedManager.cs/#L99">View Source</a>
+  </span>
+  <a id="FarmMaster_Services_ServiceSpeciesBreedManager_GetUserGdprData_" data-uid="FarmMaster.Services.ServiceSpeciesBreedManager.GetUserGdprData*"></a>
+  <h4 id="FarmMaster_Services_ServiceSpeciesBreedManager_GetUserGdprData_Business_Model_User_Newtonsoft_Json_Linq_JObject_" data-uid="FarmMaster.Services.ServiceSpeciesBreedManager.GetUserGdprData(Business.Model.User,Newtonsoft.Json.Linq.JObject)">GetUserGdprData(User, JObject)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void GetUserGdprData(User user, JObject json)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Business.Model.User.html">User</a></td>
+        <td><span class="parametername">user</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">Newtonsoft.Json.Linq.JObject</span></td>
+        <td><span class="parametername">json</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Aim-Educational/FarmMaster/new/assignment_script/apiSpec/new?filename=FarmMaster_Services_ServiceSpeciesBreedManager_Query.md&amp;value=---%0Auid%3A%20FarmMaster.Services.ServiceSpeciesBreedManager.Query%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Aim-Educational/FarmMaster/blob/assignment_script/FarmMaster/Services/IServiceSpeciesBreedManager.cs/#L114">View Source</a>
+  </span>
+  <a id="FarmMaster_Services_ServiceSpeciesBreedManager_Query_" data-uid="FarmMaster.Services.ServiceSpeciesBreedManager.Query*"></a>
+  <h4 id="FarmMaster_Services_ServiceSpeciesBreedManager_Query" data-uid="FarmMaster.Services.ServiceSpeciesBreedManager.Query">Query()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IQueryable&lt;Species&gt; Query()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Linq.IQueryable</span>&lt;<a class="xref" href="Business.Model.Species.html">Species</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Aim-Educational/FarmMaster/new/assignment_script/apiSpec/new?filename=FarmMaster_Services_ServiceSpeciesBreedManager_QueryAllIncluded.md&amp;value=---%0Auid%3A%20FarmMaster.Services.ServiceSpeciesBreedManager.QueryAllIncluded%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Aim-Educational/FarmMaster/blob/assignment_script/FarmMaster/Services/IServiceSpeciesBreedManager.cs/#L119">View Source</a>
+  </span>
+  <a id="FarmMaster_Services_ServiceSpeciesBreedManager_QueryAllIncluded_" data-uid="FarmMaster.Services.ServiceSpeciesBreedManager.QueryAllIncluded*"></a>
+  <h4 id="FarmMaster_Services_ServiceSpeciesBreedManager_QueryAllIncluded" data-uid="FarmMaster.Services.ServiceSpeciesBreedManager.QueryAllIncluded">QueryAllIncluded()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IQueryable&lt;Species&gt; QueryAllIncluded()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Linq.IQueryable</span>&lt;<a class="xref" href="Business.Model.Species.html">Species</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Aim-Educational/FarmMaster/new/assignment_script/apiSpec/new?filename=FarmMaster_Services_ServiceSpeciesBreedManager_Update_Business_Model_Breed_.md&amp;value=---%0Auid%3A%20FarmMaster.Services.ServiceSpeciesBreedManager.Update(Business.Model.Breed)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Aim-Educational/FarmMaster/blob/assignment_script/FarmMaster/Services/IServiceSpeciesBreedManager.cs/#L133">View Source</a>
+  </span>
+  <a id="FarmMaster_Services_ServiceSpeciesBreedManager_Update_" data-uid="FarmMaster.Services.ServiceSpeciesBreedManager.Update*"></a>
+  <h4 id="FarmMaster_Services_ServiceSpeciesBreedManager_Update_Business_Model_Breed_" data-uid="FarmMaster.Services.ServiceSpeciesBreedManager.Update(Business.Model.Breed)">Update(Breed)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Update(Breed entity)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Business.Model.Breed.html">Breed</a></td>
+        <td><span class="parametername">entity</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Aim-Educational/FarmMaster/new/assignment_script/apiSpec/new?filename=FarmMaster_Services_ServiceSpeciesBreedManager_Update_Business_Model_Species_.md&amp;value=---%0Auid%3A%20FarmMaster.Services.ServiceSpeciesBreedManager.Update(Business.Model.Species)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Aim-Educational/FarmMaster/blob/assignment_script/FarmMaster/Services/IServiceSpeciesBreedManager.cs/#L127">View Source</a>
+  </span>
+  <a id="FarmMaster_Services_ServiceSpeciesBreedManager_Update_" data-uid="FarmMaster.Services.ServiceSpeciesBreedManager.Update*"></a>
+  <h4 id="FarmMaster_Services_ServiceSpeciesBreedManager_Update_Business_Model_Species_" data-uid="FarmMaster.Services.ServiceSpeciesBreedManager.Update(Business.Model.Species)">Update(Species)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Update(Species entity)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Business.Model.Species.html">Species</a></td>
+        <td><span class="parametername">entity</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="eii">Explicit Interface Implementations
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Aim-Educational/FarmMaster/new/assignment_script/apiSpec/new?filename=FarmMaster_Services_ServiceSpeciesBreedManager_FarmMaster_Services_IServiceEntityManager_Business_Model_Breed__Query.md&amp;value=---%0Auid%3A%20FarmMaster.Services.ServiceSpeciesBreedManager.FarmMaster%23Services%23IServiceEntityManager%7BBusiness%23Model%23Breed%7D%23Query%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Aim-Educational/FarmMaster/blob/assignment_script/FarmMaster/Services/IServiceSpeciesBreedManager.cs/#L139">View Source</a>
+  </span>
+  <a id="FarmMaster_Services_ServiceSpeciesBreedManager_FarmMaster_Services_IServiceEntityManager_Business_Model_Breed__Query_" data-uid="FarmMaster.Services.ServiceSpeciesBreedManager.FarmMaster#Services#IServiceEntityManager{Business#Model#Breed}#Query*"></a>
+  <h4 id="FarmMaster_Services_ServiceSpeciesBreedManager_FarmMaster_Services_IServiceEntityManager_Business_Model_Breed__Query" data-uid="FarmMaster.Services.ServiceSpeciesBreedManager.FarmMaster#Services#IServiceEntityManager{Business#Model#Breed}#Query">IServiceEntityManager&lt;Breed&gt;.Query()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IQueryable&lt;Breed&gt; IServiceEntityManager&lt;Breed&gt;.Query()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Linq.IQueryable</span>&lt;<a class="xref" href="Business.Model.Breed.html">Breed</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Aim-Educational/FarmMaster/new/assignment_script/apiSpec/new?filename=FarmMaster_Services_ServiceSpeciesBreedManager_FarmMaster_Services_IServiceEntityManager_Business_Model_Breed__QueryAllIncluded.md&amp;value=---%0Auid%3A%20FarmMaster.Services.ServiceSpeciesBreedManager.FarmMaster%23Services%23IServiceEntityManager%7BBusiness%23Model%23Breed%7D%23QueryAllIncluded%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Aim-Educational/FarmMaster/blob/assignment_script/FarmMaster/Services/IServiceSpeciesBreedManager.cs/#L144">View Source</a>
+  </span>
+  <a id="FarmMaster_Services_ServiceSpeciesBreedManager_FarmMaster_Services_IServiceEntityManager_Business_Model_Breed__QueryAllIncluded_" data-uid="FarmMaster.Services.ServiceSpeciesBreedManager.FarmMaster#Services#IServiceEntityManager{Business#Model#Breed}#QueryAllIncluded*"></a>
+  <h4 id="FarmMaster_Services_ServiceSpeciesBreedManager_FarmMaster_Services_IServiceEntityManager_Business_Model_Breed__QueryAllIncluded" data-uid="FarmMaster.Services.ServiceSpeciesBreedManager.FarmMaster#Services#IServiceEntityManager{Business#Model#Breed}#QueryAllIncluded">IServiceEntityManager&lt;Breed&gt;.QueryAllIncluded()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IQueryable&lt;Breed&gt; IServiceEntityManager&lt;Breed&gt;.QueryAllIncluded()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Linq.IQueryable</span>&lt;<a class="xref" href="Business.Model.Breed.html">Breed</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="FarmMaster.Services.IServiceSpeciesBreedManager.html">IServiceSpeciesBreedManager</a>
+  </div>
+  <div>
+      <a class="xref" href="FarmMaster.Services.IServiceEntityManager-1.html">IServiceEntityManager&lt;T&gt;</a>
+  </div>
+  <div>
+      <a class="xref" href="FarmMaster.Services.IServiceEntityManager-1.html">IServiceEntityManager&lt;T&gt;</a>
+  </div>
+  <div>
+      <a class="xref" href="FarmMaster.Services.IServiceEntityManagerFullDeletion-1.html">IServiceEntityManagerFullDeletion&lt;T&gt;</a>
+  </div>
+  <div>
+      <a class="xref" href="FarmMaster.Services.IServiceEntityManagerFullDeletion-1.html">IServiceEntityManagerFullDeletion&lt;T&gt;</a>
+  </div>
+  <div>
+      <a class="xref" href="FarmMaster.Services.IServiceGdprData.html">IServiceGdprData</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Aim-Educational/FarmMaster/new/assignment_script/apiSpec/new?filename=FarmMaster_Services_ServiceSpeciesBreedManager.md&amp;value=---%0Auid%3A%20FarmMaster.Services.ServiceSpeciesBreedManager%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/Aim-Educational/FarmMaster/blob/assignment_script/FarmMaster/Services/IServiceSpeciesBreedManager.cs/#L21" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
+  </body>
+</html>

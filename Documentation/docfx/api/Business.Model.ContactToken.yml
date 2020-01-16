@@ -1,0 +1,740 @@
+### YamlMime:ManagedReference
+items:
+- uid: Business.Model.ContactToken
+  commentId: T:Business.Model.ContactToken
+  id: ContactToken
+  parent: Business.Model
+  children:
+  - Business.Model.ContactToken.Contact
+  - Business.Model.ContactToken.ContactId
+  - Business.Model.ContactToken.ContactTokenId
+  - Business.Model.ContactToken.Expiry
+  - Business.Model.ContactToken.HasExpired
+  - Business.Model.ContactToken.Token
+  - Business.Model.ContactToken.UsageType
+  langs:
+  - csharp
+  - vb
+  name: ContactToken
+  nameWithType: ContactToken
+  fullName: Business.Model.ContactToken
+  type: Class
+  source:
+    remote:
+      path: Business/Model/ContactToken.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: ContactToken
+    path: ../Business/Model/ContactToken.cs
+    startLine: 13
+  assemblies:
+  - Business
+  namespace: Business.Model
+  summary: "\nNOTE: Some tokens might be specific for users.\nIt&apos;s easier to just extend them for both contacts and users (via their contacts), and just check to make sure the \nreferenced contact is for a user for user-specific tokens.\n"
+  example: []
+  syntax:
+    content: public class ContactToken
+    content.vb: Public Class ContactToken
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Business.Model.ContactToken.ContactTokenId
+  commentId: P:Business.Model.ContactToken.ContactTokenId
+  id: ContactTokenId
+  parent: Business.Model.ContactToken
+  langs:
+  - csharp
+  - vb
+  name: ContactTokenId
+  nameWithType: ContactToken.ContactTokenId
+  fullName: Business.Model.ContactToken.ContactTokenId
+  type: Property
+  source:
+    remote:
+      path: Business/Model/ContactToken.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: ContactTokenId
+    path: ../Business/Model/ContactToken.cs
+    startLine: 24
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: >-
+      [Key]
+
+      public int ContactTokenId { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: >-
+      <Key>
+
+      Public Property ContactTokenId As Integer
+  overload: Business.Model.ContactToken.ContactTokenId*
+  attributes:
+  - type: System.ComponentModel.DataAnnotations.KeyAttribute
+    ctor: System.ComponentModel.DataAnnotations.KeyAttribute.#ctor
+    arguments: []
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Business.Model.ContactToken.Token
+  commentId: P:Business.Model.ContactToken.Token
+  id: Token
+  parent: Business.Model.ContactToken
+  langs:
+  - csharp
+  - vb
+  name: Token
+  nameWithType: ContactToken.Token
+  fullName: Business.Model.ContactToken.Token
+  type: Property
+  source:
+    remote:
+      path: Business/Model/ContactToken.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: Token
+    path: ../Business/Model/ContactToken.cs
+    startLine: 27
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: >-
+      [Required]
+
+      [StringLength(36)]
+
+      public string Token { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <Required>
+
+      <StringLength(36)>
+
+      Public Property Token As String
+  overload: Business.Model.ContactToken.Token*
+  attributes:
+  - type: System.ComponentModel.DataAnnotations.RequiredAttribute
+    ctor: System.ComponentModel.DataAnnotations.RequiredAttribute.#ctor
+    arguments: []
+  - type: System.ComponentModel.DataAnnotations.StringLengthAttribute
+    ctor: System.ComponentModel.DataAnnotations.StringLengthAttribute.#ctor(System.Int32)
+    arguments:
+    - type: System.Int32
+      value: 36
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Business.Model.ContactToken.UsageType
+  commentId: P:Business.Model.ContactToken.UsageType
+  id: UsageType
+  parent: Business.Model.ContactToken
+  langs:
+  - csharp
+  - vb
+  name: UsageType
+  nameWithType: ContactToken.UsageType
+  fullName: Business.Model.ContactToken.UsageType
+  type: Property
+  source:
+    remote:
+      path: Business/Model/ContactToken.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: UsageType
+    path: ../Business/Model/ContactToken.cs
+    startLine: 31
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: >-
+      [Required]
+
+      public ContactToken.Type UsageType { get; set; }
+    parameters: []
+    return:
+      type: Business.Model.ContactToken.Type
+    content.vb: >-
+      <Required>
+
+      Public Property UsageType As ContactToken.Type
+  overload: Business.Model.ContactToken.UsageType*
+  attributes:
+  - type: System.ComponentModel.DataAnnotations.RequiredAttribute
+    ctor: System.ComponentModel.DataAnnotations.RequiredAttribute.#ctor
+    arguments: []
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Business.Model.ContactToken.ContactId
+  commentId: P:Business.Model.ContactToken.ContactId
+  id: ContactId
+  parent: Business.Model.ContactToken
+  langs:
+  - csharp
+  - vb
+  name: ContactId
+  nameWithType: ContactToken.ContactId
+  fullName: Business.Model.ContactToken.ContactId
+  type: Property
+  source:
+    remote:
+      path: Business/Model/ContactToken.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: ContactId
+    path: ../Business/Model/ContactToken.cs
+    startLine: 34
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: >-
+      [Required]
+
+      public int ContactId { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: >-
+      <Required>
+
+      Public Property ContactId As Integer
+  overload: Business.Model.ContactToken.ContactId*
+  attributes:
+  - type: System.ComponentModel.DataAnnotations.RequiredAttribute
+    ctor: System.ComponentModel.DataAnnotations.RequiredAttribute.#ctor
+    arguments: []
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Business.Model.ContactToken.Contact
+  commentId: P:Business.Model.ContactToken.Contact
+  id: Contact
+  parent: Business.Model.ContactToken
+  langs:
+  - csharp
+  - vb
+  name: Contact
+  nameWithType: ContactToken.Contact
+  fullName: Business.Model.ContactToken.Contact
+  type: Property
+  source:
+    remote:
+      path: Business/Model/ContactToken.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: Contact
+    path: ../Business/Model/ContactToken.cs
+    startLine: 36
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: public Contact Contact { get; set; }
+    parameters: []
+    return:
+      type: Business.Model.Contact
+    content.vb: Public Property Contact As Contact
+  overload: Business.Model.ContactToken.Contact*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Business.Model.ContactToken.Expiry
+  commentId: P:Business.Model.ContactToken.Expiry
+  id: Expiry
+  parent: Business.Model.ContactToken
+  langs:
+  - csharp
+  - vb
+  name: Expiry
+  nameWithType: ContactToken.Expiry
+  fullName: Business.Model.ContactToken.Expiry
+  type: Property
+  source:
+    remote:
+      path: Business/Model/ContactToken.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: Expiry
+    path: ../Business/Model/ContactToken.cs
+    startLine: 38
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: >-
+      [Required]
+
+      public DateTimeOffset Expiry { get; set; }
+    parameters: []
+    return:
+      type: System.DateTimeOffset
+    content.vb: >-
+      <Required>
+
+      Public Property Expiry As DateTimeOffset
+  overload: Business.Model.ContactToken.Expiry*
+  attributes:
+  - type: System.ComponentModel.DataAnnotations.RequiredAttribute
+    ctor: System.ComponentModel.DataAnnotations.RequiredAttribute.#ctor
+    arguments: []
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Business.Model.ContactToken.HasExpired
+  commentId: P:Business.Model.ContactToken.HasExpired
+  id: HasExpired
+  parent: Business.Model.ContactToken
+  langs:
+  - csharp
+  - vb
+  name: HasExpired
+  nameWithType: ContactToken.HasExpired
+  fullName: Business.Model.ContactToken.HasExpired
+  type: Property
+  source:
+    remote:
+      path: Business/Model/ContactToken.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: HasExpired
+    path: ../Business/Model/ContactToken.cs
+    startLine: 41
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: >-
+      [NotMapped]
+
+      public bool HasExpired { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: >-
+      <NotMapped>
+
+      Public ReadOnly Property HasExpired As Boolean
+  overload: Business.Model.ContactToken.HasExpired*
+  attributes:
+  - type: System.ComponentModel.DataAnnotations.Schema.NotMappedAttribute
+    ctor: System.ComponentModel.DataAnnotations.Schema.NotMappedAttribute.#ctor
+    arguments: []
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+references:
+- uid: Business.Model
+  commentId: N:Business.Model
+  name: Business.Model
+  nameWithType: Business.Model
+  fullName: Business.Model
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Business.Model.ContactToken.ContactTokenId*
+  commentId: Overload:Business.Model.ContactToken.ContactTokenId
+  name: ContactTokenId
+  nameWithType: ContactToken.ContactTokenId
+  fullName: Business.Model.ContactToken.ContactTokenId
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: Business.Model.ContactToken.Token*
+  commentId: Overload:Business.Model.ContactToken.Token
+  name: Token
+  nameWithType: ContactToken.Token
+  fullName: Business.Model.ContactToken.Token
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: Business.Model.ContactToken.UsageType*
+  commentId: Overload:Business.Model.ContactToken.UsageType
+  name: UsageType
+  nameWithType: ContactToken.UsageType
+  fullName: Business.Model.ContactToken.UsageType
+- uid: Business.Model.ContactToken.Type
+  commentId: T:Business.Model.ContactToken.Type
+  parent: Business.Model
+  name: ContactToken.Type
+  nameWithType: ContactToken.Type
+  fullName: Business.Model.ContactToken.Type
+- uid: Business.Model.ContactToken.ContactId*
+  commentId: Overload:Business.Model.ContactToken.ContactId
+  name: ContactId
+  nameWithType: ContactToken.ContactId
+  fullName: Business.Model.ContactToken.ContactId
+- uid: Business.Model.ContactToken.Contact*
+  commentId: Overload:Business.Model.ContactToken.Contact
+  name: Contact
+  nameWithType: ContactToken.Contact
+  fullName: Business.Model.ContactToken.Contact
+- uid: Business.Model.Contact
+  commentId: T:Business.Model.Contact
+  parent: Business.Model
+  name: Contact
+  nameWithType: Contact
+  fullName: Business.Model.Contact
+- uid: Business.Model.ContactToken.Expiry*
+  commentId: Overload:Business.Model.ContactToken.Expiry
+  name: Expiry
+  nameWithType: ContactToken.Expiry
+  fullName: Business.Model.ContactToken.Expiry
+- uid: System.DateTimeOffset
+  commentId: T:System.DateTimeOffset
+  parent: System
+  isExternal: true
+  name: DateTimeOffset
+  nameWithType: DateTimeOffset
+  fullName: System.DateTimeOffset
+- uid: Business.Model.ContactToken.HasExpired*
+  commentId: Overload:Business.Model.ContactToken.HasExpired
+  name: HasExpired
+  nameWithType: ContactToken.HasExpired
+  fullName: Business.Model.ContactToken.HasExpired
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean

@@ -1,0 +1,97 @@
+### YamlMime:ManagedReference
+items:
+- uid: FarmMaster.Services.IServiceEntityManagerAnonymousDeletion`1
+  commentId: T:FarmMaster.Services.IServiceEntityManagerAnonymousDeletion`1
+  id: IServiceEntityManagerAnonymousDeletion`1
+  parent: FarmMaster.Services
+  children:
+  - FarmMaster.Services.IServiceEntityManagerAnonymousDeletion`1.AnonymiseDelete(`0)
+  langs:
+  - csharp
+  - vb
+  name: IServiceEntityManagerAnonymousDeletion<T>
+  nameWithType: IServiceEntityManagerAnonymousDeletion<T>
+  fullName: FarmMaster.Services.IServiceEntityManagerAnonymousDeletion<T>
+  type: Interface
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceEntityManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: IServiceEntityManagerAnonymousDeletion
+    path: Services/IServiceEntityManager.cs
+    startLine: 20
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: >-
+      public interface IServiceEntityManagerAnonymousDeletion<T>
+
+          where T : class
+    typeParameters:
+    - id: T
+    content.vb: Public Interface IServiceEntityManagerAnonymousDeletion(Of T As Class)
+  nameWithType.vb: IServiceEntityManagerAnonymousDeletion(Of T)
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+  fullName.vb: FarmMaster.Services.IServiceEntityManagerAnonymousDeletion(Of T)
+  name.vb: IServiceEntityManagerAnonymousDeletion(Of T)
+- uid: FarmMaster.Services.IServiceEntityManagerAnonymousDeletion`1.AnonymiseDelete(`0)
+  commentId: M:FarmMaster.Services.IServiceEntityManagerAnonymousDeletion`1.AnonymiseDelete(`0)
+  id: AnonymiseDelete(`0)
+  parent: FarmMaster.Services.IServiceEntityManagerAnonymousDeletion`1
+  langs:
+  - csharp
+  - vb
+  name: AnonymiseDelete(T)
+  nameWithType: IServiceEntityManagerAnonymousDeletion<T>.AnonymiseDelete(T)
+  fullName: FarmMaster.Services.IServiceEntityManagerAnonymousDeletion<T>.AnonymiseDelete(T)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceEntityManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: AnonymiseDelete
+    path: Services/IServiceEntityManager.cs
+    startLine: 22
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: void AnonymiseDelete(T entity)
+    parameters:
+    - id: entity
+      type: '{T}'
+    content.vb: Sub AnonymiseDelete(entity As T)
+  overload: FarmMaster.Services.IServiceEntityManagerAnonymousDeletion`1.AnonymiseDelete*
+  nameWithType.vb: IServiceEntityManagerAnonymousDeletion(Of T).AnonymiseDelete(T)
+  fullName.vb: FarmMaster.Services.IServiceEntityManagerAnonymousDeletion(Of T).AnonymiseDelete(T)
+references:
+- uid: FarmMaster.Services
+  commentId: N:FarmMaster.Services
+  name: FarmMaster.Services
+  nameWithType: FarmMaster.Services
+  fullName: FarmMaster.Services
+- uid: FarmMaster.Services.IServiceEntityManagerAnonymousDeletion`1.AnonymiseDelete*
+  commentId: Overload:FarmMaster.Services.IServiceEntityManagerAnonymousDeletion`1.AnonymiseDelete
+  name: AnonymiseDelete
+  nameWithType: IServiceEntityManagerAnonymousDeletion<T>.AnonymiseDelete
+  fullName: FarmMaster.Services.IServiceEntityManagerAnonymousDeletion<T>.AnonymiseDelete
+  nameWithType.vb: IServiceEntityManagerAnonymousDeletion(Of T).AnonymiseDelete
+  fullName.vb: FarmMaster.Services.IServiceEntityManagerAnonymousDeletion(Of T).AnonymiseDelete
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: T
+  name: T
+  nameWithType: T
+  fullName: T

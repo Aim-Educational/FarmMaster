@@ -1,0 +1,754 @@
+### YamlMime:ManagedReference
+items:
+- uid: Business.Model.MetricRequest
+  commentId: T:Business.Model.MetricRequest
+  id: MetricRequest
+  parent: Business.Model
+  children:
+  - Business.Model.MetricRequest.BytesUsedAtEnd
+  - Business.Model.MetricRequest.BytesUsedAtStart
+  - Business.Model.MetricRequest.DateTimeUtc
+  - Business.Model.MetricRequest.Ip
+  - Business.Model.MetricRequest.MetricRequestId
+  - Business.Model.MetricRequest.Path
+  - Business.Model.MetricRequest.TraceIdentifier
+  langs:
+  - csharp
+  - vb
+  name: MetricRequest
+  nameWithType: MetricRequest
+  fullName: Business.Model.MetricRequest
+  type: Class
+  source:
+    remote:
+      path: Business/Model/MetricRequest.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: MetricRequest
+    path: ../Business/Model/MetricRequest.cs
+    startLine: 7
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: public class MetricRequest
+    content.vb: Public Class MetricRequest
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Business.Model.MetricRequest.MetricRequestId
+  commentId: P:Business.Model.MetricRequest.MetricRequestId
+  id: MetricRequestId
+  parent: Business.Model.MetricRequest
+  langs:
+  - csharp
+  - vb
+  name: MetricRequestId
+  nameWithType: MetricRequest.MetricRequestId
+  fullName: Business.Model.MetricRequest.MetricRequestId
+  type: Property
+  source:
+    remote:
+      path: Business/Model/MetricRequest.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: MetricRequestId
+    path: ../Business/Model/MetricRequest.cs
+    startLine: 9
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: >-
+      [Key]
+
+      public int MetricRequestId { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: >-
+      <Key>
+
+      Public Property MetricRequestId As Integer
+  overload: Business.Model.MetricRequest.MetricRequestId*
+  attributes:
+  - type: System.ComponentModel.DataAnnotations.KeyAttribute
+    ctor: System.ComponentModel.DataAnnotations.KeyAttribute.#ctor
+    arguments: []
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Business.Model.MetricRequest.TraceIdentifier
+  commentId: P:Business.Model.MetricRequest.TraceIdentifier
+  id: TraceIdentifier
+  parent: Business.Model.MetricRequest
+  langs:
+  - csharp
+  - vb
+  name: TraceIdentifier
+  nameWithType: MetricRequest.TraceIdentifier
+  fullName: Business.Model.MetricRequest.TraceIdentifier
+  type: Property
+  source:
+    remote:
+      path: Business/Model/MetricRequest.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: TraceIdentifier
+    path: ../Business/Model/MetricRequest.cs
+    startLine: 12
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: >-
+      [Required]
+
+      [StringLength(25)]
+
+      public string TraceIdentifier { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <Required>
+
+      <StringLength(25)>
+
+      Public Property TraceIdentifier As String
+  overload: Business.Model.MetricRequest.TraceIdentifier*
+  attributes:
+  - type: System.ComponentModel.DataAnnotations.RequiredAttribute
+    ctor: System.ComponentModel.DataAnnotations.RequiredAttribute.#ctor
+    arguments: []
+  - type: System.ComponentModel.DataAnnotations.StringLengthAttribute
+    ctor: System.ComponentModel.DataAnnotations.StringLengthAttribute.#ctor(System.Int32)
+    arguments:
+    - type: System.Int32
+      value: 25
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Business.Model.MetricRequest.Path
+  commentId: P:Business.Model.MetricRequest.Path
+  id: Path
+  parent: Business.Model.MetricRequest
+  langs:
+  - csharp
+  - vb
+  name: Path
+  nameWithType: MetricRequest.Path
+  fullName: Business.Model.MetricRequest.Path
+  type: Property
+  source:
+    remote:
+      path: Business/Model/MetricRequest.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: Path
+    path: ../Business/Model/MetricRequest.cs
+    startLine: 16
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: >-
+      [Required]
+
+      [StringLength(100)]
+
+      public string Path { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <Required>
+
+      <StringLength(100)>
+
+      Public Property Path As String
+  overload: Business.Model.MetricRequest.Path*
+  attributes:
+  - type: System.ComponentModel.DataAnnotations.RequiredAttribute
+    ctor: System.ComponentModel.DataAnnotations.RequiredAttribute.#ctor
+    arguments: []
+  - type: System.ComponentModel.DataAnnotations.StringLengthAttribute
+    ctor: System.ComponentModel.DataAnnotations.StringLengthAttribute.#ctor(System.Int32)
+    arguments:
+    - type: System.Int32
+      value: 100
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Business.Model.MetricRequest.Ip
+  commentId: P:Business.Model.MetricRequest.Ip
+  id: Ip
+  parent: Business.Model.MetricRequest
+  langs:
+  - csharp
+  - vb
+  name: Ip
+  nameWithType: MetricRequest.Ip
+  fullName: Business.Model.MetricRequest.Ip
+  type: Property
+  source:
+    remote:
+      path: Business/Model/MetricRequest.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: Ip
+    path: ../Business/Model/MetricRequest.cs
+    startLine: 20
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: >-
+      [Required]
+
+      [StringLength(45)]
+
+      public string Ip { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <Required>
+
+      <StringLength(45)>
+
+      Public Property Ip As String
+  overload: Business.Model.MetricRequest.Ip*
+  attributes:
+  - type: System.ComponentModel.DataAnnotations.RequiredAttribute
+    ctor: System.ComponentModel.DataAnnotations.RequiredAttribute.#ctor
+    arguments: []
+  - type: System.ComponentModel.DataAnnotations.StringLengthAttribute
+    ctor: System.ComponentModel.DataAnnotations.StringLengthAttribute.#ctor(System.Int32)
+    arguments:
+    - type: System.Int32
+      value: 45
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Business.Model.MetricRequest.BytesUsedAtStart
+  commentId: P:Business.Model.MetricRequest.BytesUsedAtStart
+  id: BytesUsedAtStart
+  parent: Business.Model.MetricRequest
+  langs:
+  - csharp
+  - vb
+  name: BytesUsedAtStart
+  nameWithType: MetricRequest.BytesUsedAtStart
+  fullName: Business.Model.MetricRequest.BytesUsedAtStart
+  type: Property
+  source:
+    remote:
+      path: Business/Model/MetricRequest.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: BytesUsedAtStart
+    path: ../Business/Model/MetricRequest.cs
+    startLine: 24
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: >-
+      [Required]
+
+      public long BytesUsedAtStart { get; set; }
+    parameters: []
+    return:
+      type: System.Int64
+    content.vb: >-
+      <Required>
+
+      Public Property BytesUsedAtStart As Long
+  overload: Business.Model.MetricRequest.BytesUsedAtStart*
+  attributes:
+  - type: System.ComponentModel.DataAnnotations.RequiredAttribute
+    ctor: System.ComponentModel.DataAnnotations.RequiredAttribute.#ctor
+    arguments: []
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Business.Model.MetricRequest.BytesUsedAtEnd
+  commentId: P:Business.Model.MetricRequest.BytesUsedAtEnd
+  id: BytesUsedAtEnd
+  parent: Business.Model.MetricRequest
+  langs:
+  - csharp
+  - vb
+  name: BytesUsedAtEnd
+  nameWithType: MetricRequest.BytesUsedAtEnd
+  fullName: Business.Model.MetricRequest.BytesUsedAtEnd
+  type: Property
+  source:
+    remote:
+      path: Business/Model/MetricRequest.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: BytesUsedAtEnd
+    path: ../Business/Model/MetricRequest.cs
+    startLine: 27
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: >-
+      [Required]
+
+      public long BytesUsedAtEnd { get; set; }
+    parameters: []
+    return:
+      type: System.Int64
+    content.vb: >-
+      <Required>
+
+      Public Property BytesUsedAtEnd As Long
+  overload: Business.Model.MetricRequest.BytesUsedAtEnd*
+  attributes:
+  - type: System.ComponentModel.DataAnnotations.RequiredAttribute
+    ctor: System.ComponentModel.DataAnnotations.RequiredAttribute.#ctor
+    arguments: []
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Business.Model.MetricRequest.DateTimeUtc
+  commentId: P:Business.Model.MetricRequest.DateTimeUtc
+  id: DateTimeUtc
+  parent: Business.Model.MetricRequest
+  langs:
+  - csharp
+  - vb
+  name: DateTimeUtc
+  nameWithType: MetricRequest.DateTimeUtc
+  fullName: Business.Model.MetricRequest.DateTimeUtc
+  type: Property
+  source:
+    remote:
+      path: Business/Model/MetricRequest.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: DateTimeUtc
+    path: ../Business/Model/MetricRequest.cs
+    startLine: 30
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: >-
+      [Required]
+
+      public DateTimeOffset DateTimeUtc { get; set; }
+    parameters: []
+    return:
+      type: System.DateTimeOffset
+    content.vb: >-
+      <Required>
+
+      Public Property DateTimeUtc As DateTimeOffset
+  overload: Business.Model.MetricRequest.DateTimeUtc*
+  attributes:
+  - type: System.ComponentModel.DataAnnotations.RequiredAttribute
+    ctor: System.ComponentModel.DataAnnotations.RequiredAttribute.#ctor
+    arguments: []
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+references:
+- uid: Business.Model
+  commentId: N:Business.Model
+  name: Business.Model
+  nameWithType: Business.Model
+  fullName: Business.Model
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Business.Model.MetricRequest.MetricRequestId*
+  commentId: Overload:Business.Model.MetricRequest.MetricRequestId
+  name: MetricRequestId
+  nameWithType: MetricRequest.MetricRequestId
+  fullName: Business.Model.MetricRequest.MetricRequestId
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: Business.Model.MetricRequest.TraceIdentifier*
+  commentId: Overload:Business.Model.MetricRequest.TraceIdentifier
+  name: TraceIdentifier
+  nameWithType: MetricRequest.TraceIdentifier
+  fullName: Business.Model.MetricRequest.TraceIdentifier
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: Business.Model.MetricRequest.Path*
+  commentId: Overload:Business.Model.MetricRequest.Path
+  name: Path
+  nameWithType: MetricRequest.Path
+  fullName: Business.Model.MetricRequest.Path
+- uid: Business.Model.MetricRequest.Ip*
+  commentId: Overload:Business.Model.MetricRequest.Ip
+  name: Ip
+  nameWithType: MetricRequest.Ip
+  fullName: Business.Model.MetricRequest.Ip
+- uid: Business.Model.MetricRequest.BytesUsedAtStart*
+  commentId: Overload:Business.Model.MetricRequest.BytesUsedAtStart
+  name: BytesUsedAtStart
+  nameWithType: MetricRequest.BytesUsedAtStart
+  fullName: Business.Model.MetricRequest.BytesUsedAtStart
+- uid: System.Int64
+  commentId: T:System.Int64
+  parent: System
+  isExternal: true
+  name: Int64
+  nameWithType: Int64
+  fullName: System.Int64
+- uid: Business.Model.MetricRequest.BytesUsedAtEnd*
+  commentId: Overload:Business.Model.MetricRequest.BytesUsedAtEnd
+  name: BytesUsedAtEnd
+  nameWithType: MetricRequest.BytesUsedAtEnd
+  fullName: Business.Model.MetricRequest.BytesUsedAtEnd
+- uid: Business.Model.MetricRequest.DateTimeUtc*
+  commentId: Overload:Business.Model.MetricRequest.DateTimeUtc
+  name: DateTimeUtc
+  nameWithType: MetricRequest.DateTimeUtc
+  fullName: Business.Model.MetricRequest.DateTimeUtc
+- uid: System.DateTimeOffset
+  commentId: T:System.DateTimeOffset
+  parent: System
+  isExternal: true
+  name: DateTimeOffset
+  nameWithType: DateTimeOffset
+  fullName: System.DateTimeOffset

@@ -1,0 +1,2211 @@
+### YamlMime:ManagedReference
+items:
+- uid: FarmMaster.Services.ServiceHoldingManager
+  commentId: T:FarmMaster.Services.ServiceHoldingManager
+  id: ServiceHoldingManager
+  parent: FarmMaster.Services
+  children:
+  - FarmMaster.Services.ServiceHoldingManager.#ctor(Business.Model.FarmMasterContext)
+  - FarmMaster.Services.ServiceHoldingManager.AddRegistrationByName(Business.Model.Holding,System.String,System.String,System.String)
+  - FarmMaster.Services.ServiceHoldingManager.AnonymiseContactData(Business.Model.Contact)
+  - FarmMaster.Services.ServiceHoldingManager.AnonymiseUserData(Business.Model.User)
+  - FarmMaster.Services.ServiceHoldingManager.Create(System.String,System.String,System.String,System.String,System.String,Business.Model.Contact)
+  - FarmMaster.Services.ServiceHoldingManager.GetContactGdprData(Business.Model.Contact,Newtonsoft.Json.Linq.JObject)
+  - FarmMaster.Services.ServiceHoldingManager.GetIdFor(Business.Model.Holding)
+  - FarmMaster.Services.ServiceHoldingManager.GetUserGdprData(Business.Model.User,Newtonsoft.Json.Linq.JObject)
+  - FarmMaster.Services.ServiceHoldingManager.Query
+  - FarmMaster.Services.ServiceHoldingManager.QueryAllIncluded
+  - FarmMaster.Services.ServiceHoldingManager.RemoveByReference(Business.Model.Holding)
+  - FarmMaster.Services.ServiceHoldingManager.RemoveRegistrationByName(Business.Model.Holding,System.String)
+  - FarmMaster.Services.ServiceHoldingManager.Update(Business.Model.Holding)
+  langs:
+  - csharp
+  - vb
+  name: ServiceHoldingManager
+  nameWithType: ServiceHoldingManager
+  fullName: FarmMaster.Services.ServiceHoldingManager
+  type: Class
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceHoldingManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: ServiceHoldingManager
+    path: Services/IServiceHoldingManager.cs
+    startLine: 18
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: 'public class ServiceHoldingManager : IServiceHoldingManager, IServiceEntityManager<Holding>, IServiceGdprData'
+    content.vb: >-
+      Public Class ServiceHoldingManager
+
+          Implements IServiceHoldingManager, IServiceEntityManager(Of Holding), IServiceGdprData
+  inheritance:
+  - System.Object
+  implements:
+  - FarmMaster.Services.IServiceHoldingManager
+  - FarmMaster.Services.IServiceEntityManager{Business.Model.Holding}
+  - FarmMaster.Services.IServiceGdprData
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  extensionMethods:
+  - FarmMaster.Services.IServiceEntityManager{Business.Model.Holding}.FarmMaster.Services.IServiceEntityDataExtentions.FromId``1(System.Int32)
+  - FarmMaster.Services.IServiceEntityManager{Business.Model.Holding}.FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded``1(System.Int32)
+  - FarmMaster.Services.IServiceEntityManager{Business.Model.Holding}.FarmMaster.Services.IServiceEntityDataExtentions.For``1
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: FarmMaster.Services.ServiceHoldingManager.#ctor(Business.Model.FarmMasterContext)
+  commentId: M:FarmMaster.Services.ServiceHoldingManager.#ctor(Business.Model.FarmMasterContext)
+  id: '#ctor(Business.Model.FarmMasterContext)'
+  parent: FarmMaster.Services.ServiceHoldingManager
+  langs:
+  - csharp
+  - vb
+  name: ServiceHoldingManager(FarmMasterContext)
+  nameWithType: ServiceHoldingManager.ServiceHoldingManager(FarmMasterContext)
+  fullName: FarmMaster.Services.ServiceHoldingManager.ServiceHoldingManager(Business.Model.FarmMasterContext)
+  type: Constructor
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceHoldingManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: .ctor
+    path: Services/IServiceHoldingManager.cs
+    startLine: 22
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: public ServiceHoldingManager(FarmMasterContext db)
+    parameters:
+    - id: db
+      type: Business.Model.FarmMasterContext
+    content.vb: Public Sub New(db As FarmMasterContext)
+  overload: FarmMaster.Services.ServiceHoldingManager.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Services.ServiceHoldingManager.GetIdFor(Business.Model.Holding)
+  commentId: M:FarmMaster.Services.ServiceHoldingManager.GetIdFor(Business.Model.Holding)
+  id: GetIdFor(Business.Model.Holding)
+  parent: FarmMaster.Services.ServiceHoldingManager
+  langs:
+  - csharp
+  - vb
+  name: GetIdFor(Holding)
+  nameWithType: ServiceHoldingManager.GetIdFor(Holding)
+  fullName: FarmMaster.Services.ServiceHoldingManager.GetIdFor(Business.Model.Holding)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceHoldingManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: GetIdFor
+    path: Services/IServiceHoldingManager.cs
+    startLine: 27
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: public int GetIdFor(Holding entity)
+    parameters:
+    - id: entity
+      type: Business.Model.Holding
+    return:
+      type: System.Int32
+    content.vb: Public Function GetIdFor(entity As Holding) As Integer
+  overload: FarmMaster.Services.ServiceHoldingManager.GetIdFor*
+  implements:
+  - FarmMaster.Services.IServiceEntityManager{Business.Model.Holding}.GetIdFor(Business.Model.Holding)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Services.ServiceHoldingManager.Query
+  commentId: M:FarmMaster.Services.ServiceHoldingManager.Query
+  id: Query
+  parent: FarmMaster.Services.ServiceHoldingManager
+  langs:
+  - csharp
+  - vb
+  name: Query()
+  nameWithType: ServiceHoldingManager.Query()
+  fullName: FarmMaster.Services.ServiceHoldingManager.Query()
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceHoldingManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: Query
+    path: Services/IServiceHoldingManager.cs
+    startLine: 32
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: public IQueryable<Holding> Query()
+    return:
+      type: System.Linq.IQueryable{Business.Model.Holding}
+    content.vb: Public Function Query As IQueryable(Of Holding)
+  overload: FarmMaster.Services.ServiceHoldingManager.Query*
+  implements:
+  - FarmMaster.Services.IServiceEntityManager{Business.Model.Holding}.Query
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Services.ServiceHoldingManager.QueryAllIncluded
+  commentId: M:FarmMaster.Services.ServiceHoldingManager.QueryAllIncluded
+  id: QueryAllIncluded
+  parent: FarmMaster.Services.ServiceHoldingManager
+  langs:
+  - csharp
+  - vb
+  name: QueryAllIncluded()
+  nameWithType: ServiceHoldingManager.QueryAllIncluded()
+  fullName: FarmMaster.Services.ServiceHoldingManager.QueryAllIncluded()
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceHoldingManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: QueryAllIncluded
+    path: Services/IServiceHoldingManager.cs
+    startLine: 37
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: public IQueryable<Holding> QueryAllIncluded()
+    return:
+      type: System.Linq.IQueryable{Business.Model.Holding}
+    content.vb: Public Function QueryAllIncluded As IQueryable(Of Holding)
+  overload: FarmMaster.Services.ServiceHoldingManager.QueryAllIncluded*
+  implements:
+  - FarmMaster.Services.IServiceEntityManager{Business.Model.Holding}.QueryAllIncluded
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Services.ServiceHoldingManager.Create(System.String,System.String,System.String,System.String,System.String,Business.Model.Contact)
+  commentId: M:FarmMaster.Services.ServiceHoldingManager.Create(System.String,System.String,System.String,System.String,System.String,Business.Model.Contact)
+  id: Create(System.String,System.String,System.String,System.String,System.String,Business.Model.Contact)
+  parent: FarmMaster.Services.ServiceHoldingManager
+  langs:
+  - csharp
+  - vb
+  name: Create(String, String, String, String, String, Contact)
+  nameWithType: ServiceHoldingManager.Create(String, String, String, String, String, Contact)
+  fullName: FarmMaster.Services.ServiceHoldingManager.Create(System.String, System.String, System.String, System.String, System.String, Business.Model.Contact)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceHoldingManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: Create
+    path: Services/IServiceHoldingManager.cs
+    startLine: 45
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: public Holding Create(string name, string holdingNumber, string gridReference, string address, string postCode, Contact owner)
+    parameters:
+    - id: name
+      type: System.String
+    - id: holdingNumber
+      type: System.String
+    - id: gridReference
+      type: System.String
+    - id: address
+      type: System.String
+    - id: postCode
+      type: System.String
+    - id: owner
+      type: Business.Model.Contact
+    return:
+      type: Business.Model.Holding
+    content.vb: Public Function Create(name As String, holdingNumber As String, gridReference As String, address As String, postCode As String, owner As Contact) As Holding
+  overload: FarmMaster.Services.ServiceHoldingManager.Create*
+  implements:
+  - FarmMaster.Services.IServiceHoldingManager.Create(System.String,System.String,System.String,System.String,System.String,Business.Model.Contact)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Services.ServiceHoldingManager.AddRegistrationByName(Business.Model.Holding,System.String,System.String,System.String)
+  commentId: M:FarmMaster.Services.ServiceHoldingManager.AddRegistrationByName(Business.Model.Holding,System.String,System.String,System.String)
+  id: AddRegistrationByName(Business.Model.Holding,System.String,System.String,System.String)
+  parent: FarmMaster.Services.ServiceHoldingManager
+  langs:
+  - csharp
+  - vb
+  name: AddRegistrationByName(Holding, String, String, String)
+  nameWithType: ServiceHoldingManager.AddRegistrationByName(Holding, String, String, String)
+  fullName: FarmMaster.Services.ServiceHoldingManager.AddRegistrationByName(Business.Model.Holding, System.String, System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceHoldingManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: AddRegistrationByName
+    path: Services/IServiceHoldingManager.cs
+    startLine: 67
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: public bool AddRegistrationByName(Holding holding, string regInternalName, string herdNumber, string rareBreedNumber)
+    parameters:
+    - id: holding
+      type: Business.Model.Holding
+    - id: regInternalName
+      type: System.String
+    - id: herdNumber
+      type: System.String
+    - id: rareBreedNumber
+      type: System.String
+    return:
+      type: System.Boolean
+    content.vb: Public Function AddRegistrationByName(holding As Holding, regInternalName As String, herdNumber As String, rareBreedNumber As String) As Boolean
+  overload: FarmMaster.Services.ServiceHoldingManager.AddRegistrationByName*
+  implements:
+  - FarmMaster.Services.IServiceHoldingManager.AddRegistrationByName(Business.Model.Holding,System.String,System.String,System.String)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Services.ServiceHoldingManager.RemoveRegistrationByName(Business.Model.Holding,System.String)
+  commentId: M:FarmMaster.Services.ServiceHoldingManager.RemoveRegistrationByName(Business.Model.Holding,System.String)
+  id: RemoveRegistrationByName(Business.Model.Holding,System.String)
+  parent: FarmMaster.Services.ServiceHoldingManager
+  langs:
+  - csharp
+  - vb
+  name: RemoveRegistrationByName(Holding, String)
+  nameWithType: ServiceHoldingManager.RemoveRegistrationByName(Holding, String)
+  fullName: FarmMaster.Services.ServiceHoldingManager.RemoveRegistrationByName(Business.Model.Holding, System.String)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceHoldingManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: RemoveRegistrationByName
+    path: Services/IServiceHoldingManager.cs
+    startLine: 90
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: public bool RemoveRegistrationByName(Holding holding, string regInternalName)
+    parameters:
+    - id: holding
+      type: Business.Model.Holding
+    - id: regInternalName
+      type: System.String
+    return:
+      type: System.Boolean
+    content.vb: Public Function RemoveRegistrationByName(holding As Holding, regInternalName As String) As Boolean
+  overload: FarmMaster.Services.ServiceHoldingManager.RemoveRegistrationByName*
+  implements:
+  - FarmMaster.Services.IServiceHoldingManager.RemoveRegistrationByName(Business.Model.Holding,System.String)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Services.ServiceHoldingManager.RemoveByReference(Business.Model.Holding)
+  commentId: M:FarmMaster.Services.ServiceHoldingManager.RemoveByReference(Business.Model.Holding)
+  id: RemoveByReference(Business.Model.Holding)
+  parent: FarmMaster.Services.ServiceHoldingManager
+  langs:
+  - csharp
+  - vb
+  name: RemoveByReference(Holding)
+  nameWithType: ServiceHoldingManager.RemoveByReference(Holding)
+  fullName: FarmMaster.Services.ServiceHoldingManager.RemoveByReference(Business.Model.Holding)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceHoldingManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: RemoveByReference
+    path: Services/IServiceHoldingManager.cs
+    startLine: 115
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: public void RemoveByReference(Holding holding)
+    parameters:
+    - id: holding
+      type: Business.Model.Holding
+    content.vb: Public Sub RemoveByReference(holding As Holding)
+  overload: FarmMaster.Services.ServiceHoldingManager.RemoveByReference*
+  implements:
+  - FarmMaster.Services.IServiceHoldingManager.RemoveByReference(Business.Model.Holding)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Services.ServiceHoldingManager.Update(Business.Model.Holding)
+  commentId: M:FarmMaster.Services.ServiceHoldingManager.Update(Business.Model.Holding)
+  id: Update(Business.Model.Holding)
+  parent: FarmMaster.Services.ServiceHoldingManager
+  langs:
+  - csharp
+  - vb
+  name: Update(Holding)
+  nameWithType: ServiceHoldingManager.Update(Holding)
+  fullName: FarmMaster.Services.ServiceHoldingManager.Update(Business.Model.Holding)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceHoldingManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: Update
+    path: Services/IServiceHoldingManager.cs
+    startLine: 131
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: public void Update(Holding entity)
+    parameters:
+    - id: entity
+      type: Business.Model.Holding
+    content.vb: Public Sub Update(entity As Holding)
+  overload: FarmMaster.Services.ServiceHoldingManager.Update*
+  implements:
+  - FarmMaster.Services.IServiceEntityManager{Business.Model.Holding}.Update(Business.Model.Holding)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Services.ServiceHoldingManager.GetContactGdprData(Business.Model.Contact,Newtonsoft.Json.Linq.JObject)
+  commentId: M:FarmMaster.Services.ServiceHoldingManager.GetContactGdprData(Business.Model.Contact,Newtonsoft.Json.Linq.JObject)
+  id: GetContactGdprData(Business.Model.Contact,Newtonsoft.Json.Linq.JObject)
+  parent: FarmMaster.Services.ServiceHoldingManager
+  langs:
+  - csharp
+  - vb
+  name: GetContactGdprData(Contact, JObject)
+  nameWithType: ServiceHoldingManager.GetContactGdprData(Contact, JObject)
+  fullName: FarmMaster.Services.ServiceHoldingManager.GetContactGdprData(Business.Model.Contact, Newtonsoft.Json.Linq.JObject)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceHoldingManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: GetContactGdprData
+    path: Services/IServiceHoldingManager.cs
+    startLine: 137
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: public void GetContactGdprData(Contact contact, JObject json)
+    parameters:
+    - id: contact
+      type: Business.Model.Contact
+    - id: json
+      type: Newtonsoft.Json.Linq.JObject
+    content.vb: Public Sub GetContactGdprData(contact As Contact, json As JObject)
+  overload: FarmMaster.Services.ServiceHoldingManager.GetContactGdprData*
+  implements:
+  - FarmMaster.Services.IServiceGdprData.GetContactGdprData(Business.Model.Contact,Newtonsoft.Json.Linq.JObject)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Services.ServiceHoldingManager.GetUserGdprData(Business.Model.User,Newtonsoft.Json.Linq.JObject)
+  commentId: M:FarmMaster.Services.ServiceHoldingManager.GetUserGdprData(Business.Model.User,Newtonsoft.Json.Linq.JObject)
+  id: GetUserGdprData(Business.Model.User,Newtonsoft.Json.Linq.JObject)
+  parent: FarmMaster.Services.ServiceHoldingManager
+  langs:
+  - csharp
+  - vb
+  name: GetUserGdprData(User, JObject)
+  nameWithType: ServiceHoldingManager.GetUserGdprData(User, JObject)
+  fullName: FarmMaster.Services.ServiceHoldingManager.GetUserGdprData(Business.Model.User, Newtonsoft.Json.Linq.JObject)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceHoldingManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: GetUserGdprData
+    path: Services/IServiceHoldingManager.cs
+    startLine: 159
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: public void GetUserGdprData(User user, JObject json)
+    parameters:
+    - id: user
+      type: Business.Model.User
+    - id: json
+      type: Newtonsoft.Json.Linq.JObject
+    content.vb: Public Sub GetUserGdprData(user As User, json As JObject)
+  overload: FarmMaster.Services.ServiceHoldingManager.GetUserGdprData*
+  implements:
+  - FarmMaster.Services.IServiceGdprData.GetUserGdprData(Business.Model.User,Newtonsoft.Json.Linq.JObject)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Services.ServiceHoldingManager.AnonymiseContactData(Business.Model.Contact)
+  commentId: M:FarmMaster.Services.ServiceHoldingManager.AnonymiseContactData(Business.Model.Contact)
+  id: AnonymiseContactData(Business.Model.Contact)
+  parent: FarmMaster.Services.ServiceHoldingManager
+  langs:
+  - csharp
+  - vb
+  name: AnonymiseContactData(Contact)
+  nameWithType: ServiceHoldingManager.AnonymiseContactData(Contact)
+  fullName: FarmMaster.Services.ServiceHoldingManager.AnonymiseContactData(Business.Model.Contact)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceHoldingManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: AnonymiseContactData
+    path: Services/IServiceHoldingManager.cs
+    startLine: 164
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: public void AnonymiseContactData(Contact contact)
+    parameters:
+    - id: contact
+      type: Business.Model.Contact
+    content.vb: Public Sub AnonymiseContactData(contact As Contact)
+  overload: FarmMaster.Services.ServiceHoldingManager.AnonymiseContactData*
+  implements:
+  - FarmMaster.Services.IServiceGdprData.AnonymiseContactData(Business.Model.Contact)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Services.ServiceHoldingManager.AnonymiseUserData(Business.Model.User)
+  commentId: M:FarmMaster.Services.ServiceHoldingManager.AnonymiseUserData(Business.Model.User)
+  id: AnonymiseUserData(Business.Model.User)
+  parent: FarmMaster.Services.ServiceHoldingManager
+  langs:
+  - csharp
+  - vb
+  name: AnonymiseUserData(User)
+  nameWithType: ServiceHoldingManager.AnonymiseUserData(User)
+  fullName: FarmMaster.Services.ServiceHoldingManager.AnonymiseUserData(Business.Model.User)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceHoldingManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: AnonymiseUserData
+    path: Services/IServiceHoldingManager.cs
+    startLine: 166
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: public void AnonymiseUserData(User user)
+    parameters:
+    - id: user
+      type: Business.Model.User
+    content.vb: Public Sub AnonymiseUserData(user As User)
+  overload: FarmMaster.Services.ServiceHoldingManager.AnonymiseUserData*
+  implements:
+  - FarmMaster.Services.IServiceGdprData.AnonymiseUserData(Business.Model.User)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: FarmMaster.Services
+  commentId: N:FarmMaster.Services
+  name: FarmMaster.Services
+  nameWithType: FarmMaster.Services
+  fullName: FarmMaster.Services
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: FarmMaster.Services.IServiceHoldingManager
+  commentId: T:FarmMaster.Services.IServiceHoldingManager
+  parent: FarmMaster.Services
+  name: IServiceHoldingManager
+  nameWithType: IServiceHoldingManager
+  fullName: FarmMaster.Services.IServiceHoldingManager
+- uid: FarmMaster.Services.IServiceEntityManager{Business.Model.Holding}
+  commentId: T:FarmMaster.Services.IServiceEntityManager{Business.Model.Holding}
+  parent: FarmMaster.Services
+  definition: FarmMaster.Services.IServiceEntityManager`1
+  name: IServiceEntityManager<Holding>
+  nameWithType: IServiceEntityManager<Holding>
+  fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.Holding>
+  nameWithType.vb: IServiceEntityManager(Of Holding)
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of Business.Model.Holding)
+  name.vb: IServiceEntityManager(Of Holding)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1
+    name: IServiceEntityManager
+    nameWithType: IServiceEntityManager
+    fullName: FarmMaster.Services.IServiceEntityManager
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Business.Model.Holding
+    name: Holding
+    nameWithType: Holding
+    fullName: Business.Model.Holding
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1
+    name: IServiceEntityManager
+    nameWithType: IServiceEntityManager
+    fullName: FarmMaster.Services.IServiceEntityManager
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Business.Model.Holding
+    name: Holding
+    nameWithType: Holding
+    fullName: Business.Model.Holding
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceGdprData
+  commentId: T:FarmMaster.Services.IServiceGdprData
+  parent: FarmMaster.Services
+  name: IServiceGdprData
+  nameWithType: IServiceGdprData
+  fullName: FarmMaster.Services.IServiceGdprData
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManager{Business.Model.Holding}.FarmMaster.Services.IServiceEntityDataExtentions.FromId``1(System.Int32)
+  commentId: M:FarmMaster.Services.IServiceEntityDataExtentions.FromId``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+  parent: FarmMaster.Services.IServiceEntityDataExtentions
+  definition: FarmMaster.Services.IServiceEntityDataExtentions.FromId``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+  name: FromId<Holding>(Int32)
+  nameWithType: IServiceEntityDataExtentions.FromId<Holding>(Int32)
+  fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromId<Business.Model.Holding>(System.Int32)
+  nameWithType.vb: IServiceEntityDataExtentions.FromId(Of Holding)(Int32)
+  fullName.vb: FarmMaster.Services.IServiceEntityDataExtentions.FromId(Of Business.Model.Holding)(System.Int32)
+  name.vb: FromId(Of Holding)(Int32)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.FromId``1(System.Int32)
+    name: FromId<Holding>
+    nameWithType: IServiceEntityDataExtentions.FromId<Holding>
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromId<Business.Model.Holding>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.FromId``1(System.Int32)
+    name: FromId(Of Holding)
+    nameWithType: IServiceEntityDataExtentions.FromId(Of Holding)
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromId(Of Business.Model.Holding)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManager{Business.Model.Holding}.FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded``1(System.Int32)
+  commentId: M:FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+  parent: FarmMaster.Services.IServiceEntityDataExtentions
+  definition: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+  name: FromIdAllIncluded<Holding>(Int32)
+  nameWithType: IServiceEntityDataExtentions.FromIdAllIncluded<Holding>(Int32)
+  fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded<Business.Model.Holding>(System.Int32)
+  nameWithType.vb: IServiceEntityDataExtentions.FromIdAllIncluded(Of Holding)(Int32)
+  fullName.vb: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded(Of Business.Model.Holding)(System.Int32)
+  name.vb: FromIdAllIncluded(Of Holding)(Int32)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded``1(System.Int32)
+    name: FromIdAllIncluded<Holding>
+    nameWithType: IServiceEntityDataExtentions.FromIdAllIncluded<Holding>
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded<Business.Model.Holding>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded``1(System.Int32)
+    name: FromIdAllIncluded(Of Holding)
+    nameWithType: IServiceEntityDataExtentions.FromIdAllIncluded(Of Holding)
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded(Of Business.Model.Holding)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManager{Business.Model.Holding}.FarmMaster.Services.IServiceEntityDataExtentions.For``1
+  commentId: M:FarmMaster.Services.IServiceEntityDataExtentions.For``1(FarmMaster.Services.IServiceEntityManager{``0})
+  parent: FarmMaster.Services.IServiceEntityDataExtentions
+  definition: FarmMaster.Services.IServiceEntityDataExtentions.For``1(FarmMaster.Services.IServiceEntityManager{``0})
+  name: For<Holding>()
+  nameWithType: IServiceEntityDataExtentions.For<Holding>()
+  fullName: FarmMaster.Services.IServiceEntityDataExtentions.For<Business.Model.Holding>()
+  nameWithType.vb: IServiceEntityDataExtentions.For(Of Holding)()
+  fullName.vb: FarmMaster.Services.IServiceEntityDataExtentions.For(Of Business.Model.Holding)()
+  name.vb: For(Of Holding)()
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.For``1
+    name: For<Holding>
+    nameWithType: IServiceEntityDataExtentions.For<Holding>
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.For<Business.Model.Holding>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.For``1
+    name: For(Of Holding)
+    nameWithType: IServiceEntityDataExtentions.For(Of Holding)
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.For(Of Business.Model.Holding)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: FarmMaster.Services.IServiceEntityManager`1
+  commentId: T:FarmMaster.Services.IServiceEntityManager`1
+  name: IServiceEntityManager<T>
+  nameWithType: IServiceEntityManager<T>
+  fullName: FarmMaster.Services.IServiceEntityManager<T>
+  nameWithType.vb: IServiceEntityManager(Of T)
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of T)
+  name.vb: IServiceEntityManager(Of T)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1
+    name: IServiceEntityManager
+    nameWithType: IServiceEntityManager
+    fullName: FarmMaster.Services.IServiceEntityManager
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1
+    name: IServiceEntityManager
+    nameWithType: IServiceEntityManager
+    fullName: FarmMaster.Services.IServiceEntityManager
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityDataExtentions.FromId``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+  commentId: M:FarmMaster.Services.IServiceEntityDataExtentions.FromId``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+  isExternal: true
+  name: FromId<T>(IServiceEntityManager<T>, Int32)
+  nameWithType: IServiceEntityDataExtentions.FromId<T>(IServiceEntityManager<T>, Int32)
+  fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromId<T>(FarmMaster.Services.IServiceEntityManager<T>, System.Int32)
+  nameWithType.vb: IServiceEntityDataExtentions.FromId(Of T)(IServiceEntityManager(Of T), Int32)
+  fullName.vb: FarmMaster.Services.IServiceEntityDataExtentions.FromId(Of T)(FarmMaster.Services.IServiceEntityManager(Of T), System.Int32)
+  name.vb: FromId(Of T)(IServiceEntityManager(Of T), Int32)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.FromId``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+    name: FromId<T>
+    nameWithType: IServiceEntityDataExtentions.FromId<T>
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromId<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: FarmMaster.Services.IServiceEntityManager`1
+    name: IServiceEntityManager
+    nameWithType: IServiceEntityManager
+    fullName: FarmMaster.Services.IServiceEntityManager
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.FromId``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+    name: FromId(Of T)
+    nameWithType: IServiceEntityDataExtentions.FromId(Of T)
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromId(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: FarmMaster.Services.IServiceEntityManager`1
+    name: IServiceEntityManager
+    nameWithType: IServiceEntityManager
+    fullName: FarmMaster.Services.IServiceEntityManager
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityDataExtentions
+  commentId: T:FarmMaster.Services.IServiceEntityDataExtentions
+  parent: FarmMaster.Services
+  name: IServiceEntityDataExtentions
+  nameWithType: IServiceEntityDataExtentions
+  fullName: FarmMaster.Services.IServiceEntityDataExtentions
+- uid: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+  commentId: M:FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+  isExternal: true
+  name: FromIdAllIncluded<T>(IServiceEntityManager<T>, Int32)
+  nameWithType: IServiceEntityDataExtentions.FromIdAllIncluded<T>(IServiceEntityManager<T>, Int32)
+  fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded<T>(FarmMaster.Services.IServiceEntityManager<T>, System.Int32)
+  nameWithType.vb: IServiceEntityDataExtentions.FromIdAllIncluded(Of T)(IServiceEntityManager(Of T), Int32)
+  fullName.vb: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded(Of T)(FarmMaster.Services.IServiceEntityManager(Of T), System.Int32)
+  name.vb: FromIdAllIncluded(Of T)(IServiceEntityManager(Of T), Int32)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+    name: FromIdAllIncluded<T>
+    nameWithType: IServiceEntityDataExtentions.FromIdAllIncluded<T>
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: FarmMaster.Services.IServiceEntityManager`1
+    name: IServiceEntityManager
+    nameWithType: IServiceEntityManager
+    fullName: FarmMaster.Services.IServiceEntityManager
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+    name: FromIdAllIncluded(Of T)
+    nameWithType: IServiceEntityDataExtentions.FromIdAllIncluded(Of T)
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: FarmMaster.Services.IServiceEntityManager`1
+    name: IServiceEntityManager
+    nameWithType: IServiceEntityManager
+    fullName: FarmMaster.Services.IServiceEntityManager
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityDataExtentions.For``1(FarmMaster.Services.IServiceEntityManager{``0})
+  commentId: M:FarmMaster.Services.IServiceEntityDataExtentions.For``1(FarmMaster.Services.IServiceEntityManager{``0})
+  name: For<T>(IServiceEntityManager<T>)
+  nameWithType: IServiceEntityDataExtentions.For<T>(IServiceEntityManager<T>)
+  fullName: FarmMaster.Services.IServiceEntityDataExtentions.For<T>(FarmMaster.Services.IServiceEntityManager<T>)
+  nameWithType.vb: IServiceEntityDataExtentions.For(Of T)(IServiceEntityManager(Of T))
+  fullName.vb: FarmMaster.Services.IServiceEntityDataExtentions.For(Of T)(FarmMaster.Services.IServiceEntityManager(Of T))
+  name.vb: For(Of T)(IServiceEntityManager(Of T))
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.For``1(FarmMaster.Services.IServiceEntityManager{``0})
+    name: For<T>
+    nameWithType: IServiceEntityDataExtentions.For<T>
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.For<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: FarmMaster.Services.IServiceEntityManager`1
+    name: IServiceEntityManager
+    nameWithType: IServiceEntityManager
+    fullName: FarmMaster.Services.IServiceEntityManager
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.For``1(FarmMaster.Services.IServiceEntityManager{``0})
+    name: For(Of T)
+    nameWithType: IServiceEntityDataExtentions.For(Of T)
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.For(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: FarmMaster.Services.IServiceEntityManager`1
+    name: IServiceEntityManager
+    nameWithType: IServiceEntityManager
+    fullName: FarmMaster.Services.IServiceEntityManager
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.ServiceHoldingManager.#ctor*
+  commentId: Overload:FarmMaster.Services.ServiceHoldingManager.#ctor
+  name: ServiceHoldingManager
+  nameWithType: ServiceHoldingManager.ServiceHoldingManager
+  fullName: FarmMaster.Services.ServiceHoldingManager.ServiceHoldingManager
+- uid: Business.Model.FarmMasterContext
+  commentId: T:Business.Model.FarmMasterContext
+  parent: Business.Model
+  name: FarmMasterContext
+  nameWithType: FarmMasterContext
+  fullName: Business.Model.FarmMasterContext
+- uid: Business.Model
+  commentId: N:Business.Model
+  name: Business.Model
+  nameWithType: Business.Model
+  fullName: Business.Model
+- uid: FarmMaster.Services.ServiceHoldingManager.GetIdFor*
+  commentId: Overload:FarmMaster.Services.ServiceHoldingManager.GetIdFor
+  name: GetIdFor
+  nameWithType: ServiceHoldingManager.GetIdFor
+  fullName: FarmMaster.Services.ServiceHoldingManager.GetIdFor
+- uid: FarmMaster.Services.IServiceEntityManager{Business.Model.Holding}.GetIdFor(Business.Model.Holding)
+  commentId: M:FarmMaster.Services.IServiceEntityManager{Business.Model.Holding}.GetIdFor(Business.Model.Holding)
+  parent: FarmMaster.Services.IServiceEntityManager{Business.Model.Holding}
+  definition: FarmMaster.Services.IServiceEntityManager`1.GetIdFor(`0)
+  name: GetIdFor(Holding)
+  nameWithType: IServiceEntityManager<Holding>.GetIdFor(Holding)
+  fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.Holding>.GetIdFor(Business.Model.Holding)
+  nameWithType.vb: IServiceEntityManager(Of Holding).GetIdFor(Holding)
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of Business.Model.Holding).GetIdFor(Business.Model.Holding)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.GetIdFor(`0)
+    name: GetIdFor
+    nameWithType: IServiceEntityManager<Holding>.GetIdFor
+    fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.Holding>.GetIdFor
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Holding
+    name: Holding
+    nameWithType: Holding
+    fullName: Business.Model.Holding
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.GetIdFor(`0)
+    name: GetIdFor
+    nameWithType: IServiceEntityManager(Of Holding).GetIdFor
+    fullName: FarmMaster.Services.IServiceEntityManager(Of Business.Model.Holding).GetIdFor
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Holding
+    name: Holding
+    nameWithType: Holding
+    fullName: Business.Model.Holding
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Business.Model.Holding
+  commentId: T:Business.Model.Holding
+  parent: Business.Model
+  name: Holding
+  nameWithType: Holding
+  fullName: Business.Model.Holding
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: FarmMaster.Services.IServiceEntityManager`1.GetIdFor(`0)
+  commentId: M:FarmMaster.Services.IServiceEntityManager`1.GetIdFor(`0)
+  name: GetIdFor(T)
+  nameWithType: IServiceEntityManager<T>.GetIdFor(T)
+  fullName: FarmMaster.Services.IServiceEntityManager<T>.GetIdFor(T)
+  nameWithType.vb: IServiceEntityManager(Of T).GetIdFor(T)
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of T).GetIdFor(T)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.GetIdFor(`0)
+    name: GetIdFor
+    nameWithType: IServiceEntityManager<T>.GetIdFor
+    fullName: FarmMaster.Services.IServiceEntityManager<T>.GetIdFor
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.GetIdFor(`0)
+    name: GetIdFor
+    nameWithType: IServiceEntityManager(Of T).GetIdFor
+    fullName: FarmMaster.Services.IServiceEntityManager(Of T).GetIdFor
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.ServiceHoldingManager.Query*
+  commentId: Overload:FarmMaster.Services.ServiceHoldingManager.Query
+  name: Query
+  nameWithType: ServiceHoldingManager.Query
+  fullName: FarmMaster.Services.ServiceHoldingManager.Query
+- uid: FarmMaster.Services.IServiceEntityManager{Business.Model.Holding}.Query
+  commentId: M:FarmMaster.Services.IServiceEntityManager{Business.Model.Holding}.Query
+  parent: FarmMaster.Services.IServiceEntityManager{Business.Model.Holding}
+  definition: FarmMaster.Services.IServiceEntityManager`1.Query
+  name: Query()
+  nameWithType: IServiceEntityManager<Holding>.Query()
+  fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.Holding>.Query()
+  nameWithType.vb: IServiceEntityManager(Of Holding).Query()
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of Business.Model.Holding).Query()
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.Query
+    name: Query
+    nameWithType: IServiceEntityManager<Holding>.Query
+    fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.Holding>.Query
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.Query
+    name: Query
+    nameWithType: IServiceEntityManager(Of Holding).Query
+    fullName: FarmMaster.Services.IServiceEntityManager(Of Business.Model.Holding).Query
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Linq.IQueryable{Business.Model.Holding}
+  commentId: T:System.Linq.IQueryable{Business.Model.Holding}
+  parent: System.Linq
+  definition: System.Linq.IQueryable`1
+  name: IQueryable<Holding>
+  nameWithType: IQueryable<Holding>
+  fullName: System.Linq.IQueryable<Business.Model.Holding>
+  nameWithType.vb: IQueryable(Of Holding)
+  fullName.vb: System.Linq.IQueryable(Of Business.Model.Holding)
+  name.vb: IQueryable(Of Holding)
+  spec.csharp:
+  - uid: System.Linq.IQueryable`1
+    name: IQueryable
+    nameWithType: IQueryable
+    fullName: System.Linq.IQueryable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Business.Model.Holding
+    name: Holding
+    nameWithType: Holding
+    fullName: Business.Model.Holding
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Linq.IQueryable`1
+    name: IQueryable
+    nameWithType: IQueryable
+    fullName: System.Linq.IQueryable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Business.Model.Holding
+    name: Holding
+    nameWithType: Holding
+    fullName: Business.Model.Holding
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManager`1.Query
+  commentId: M:FarmMaster.Services.IServiceEntityManager`1.Query
+  name: Query()
+  nameWithType: IServiceEntityManager<T>.Query()
+  fullName: FarmMaster.Services.IServiceEntityManager<T>.Query()
+  nameWithType.vb: IServiceEntityManager(Of T).Query()
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of T).Query()
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.Query
+    name: Query
+    nameWithType: IServiceEntityManager<T>.Query
+    fullName: FarmMaster.Services.IServiceEntityManager<T>.Query
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.Query
+    name: Query
+    nameWithType: IServiceEntityManager(Of T).Query
+    fullName: FarmMaster.Services.IServiceEntityManager(Of T).Query
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Linq.IQueryable`1
+  commentId: T:System.Linq.IQueryable`1
+  isExternal: true
+  name: IQueryable<T>
+  nameWithType: IQueryable<T>
+  fullName: System.Linq.IQueryable<T>
+  nameWithType.vb: IQueryable(Of T)
+  fullName.vb: System.Linq.IQueryable(Of T)
+  name.vb: IQueryable(Of T)
+  spec.csharp:
+  - uid: System.Linq.IQueryable`1
+    name: IQueryable
+    nameWithType: IQueryable
+    fullName: System.Linq.IQueryable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Linq.IQueryable`1
+    name: IQueryable
+    nameWithType: IQueryable
+    fullName: System.Linq.IQueryable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Linq
+  commentId: N:System.Linq
+  isExternal: true
+  name: System.Linq
+  nameWithType: System.Linq
+  fullName: System.Linq
+- uid: FarmMaster.Services.ServiceHoldingManager.QueryAllIncluded*
+  commentId: Overload:FarmMaster.Services.ServiceHoldingManager.QueryAllIncluded
+  name: QueryAllIncluded
+  nameWithType: ServiceHoldingManager.QueryAllIncluded
+  fullName: FarmMaster.Services.ServiceHoldingManager.QueryAllIncluded
+- uid: FarmMaster.Services.IServiceEntityManager{Business.Model.Holding}.QueryAllIncluded
+  commentId: M:FarmMaster.Services.IServiceEntityManager{Business.Model.Holding}.QueryAllIncluded
+  parent: FarmMaster.Services.IServiceEntityManager{Business.Model.Holding}
+  definition: FarmMaster.Services.IServiceEntityManager`1.QueryAllIncluded
+  name: QueryAllIncluded()
+  nameWithType: IServiceEntityManager<Holding>.QueryAllIncluded()
+  fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.Holding>.QueryAllIncluded()
+  nameWithType.vb: IServiceEntityManager(Of Holding).QueryAllIncluded()
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of Business.Model.Holding).QueryAllIncluded()
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.QueryAllIncluded
+    name: QueryAllIncluded
+    nameWithType: IServiceEntityManager<Holding>.QueryAllIncluded
+    fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.Holding>.QueryAllIncluded
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.QueryAllIncluded
+    name: QueryAllIncluded
+    nameWithType: IServiceEntityManager(Of Holding).QueryAllIncluded
+    fullName: FarmMaster.Services.IServiceEntityManager(Of Business.Model.Holding).QueryAllIncluded
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManager`1.QueryAllIncluded
+  commentId: M:FarmMaster.Services.IServiceEntityManager`1.QueryAllIncluded
+  name: QueryAllIncluded()
+  nameWithType: IServiceEntityManager<T>.QueryAllIncluded()
+  fullName: FarmMaster.Services.IServiceEntityManager<T>.QueryAllIncluded()
+  nameWithType.vb: IServiceEntityManager(Of T).QueryAllIncluded()
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of T).QueryAllIncluded()
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.QueryAllIncluded
+    name: QueryAllIncluded
+    nameWithType: IServiceEntityManager<T>.QueryAllIncluded
+    fullName: FarmMaster.Services.IServiceEntityManager<T>.QueryAllIncluded
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.QueryAllIncluded
+    name: QueryAllIncluded
+    nameWithType: IServiceEntityManager(Of T).QueryAllIncluded
+    fullName: FarmMaster.Services.IServiceEntityManager(Of T).QueryAllIncluded
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.ServiceHoldingManager.Create*
+  commentId: Overload:FarmMaster.Services.ServiceHoldingManager.Create
+  name: Create
+  nameWithType: ServiceHoldingManager.Create
+  fullName: FarmMaster.Services.ServiceHoldingManager.Create
+- uid: FarmMaster.Services.IServiceHoldingManager.Create(System.String,System.String,System.String,System.String,System.String,Business.Model.Contact)
+  commentId: M:FarmMaster.Services.IServiceHoldingManager.Create(System.String,System.String,System.String,System.String,System.String,Business.Model.Contact)
+  parent: FarmMaster.Services.IServiceHoldingManager
+  isExternal: true
+  name: Create(String, String, String, String, String, Contact)
+  nameWithType: IServiceHoldingManager.Create(String, String, String, String, String, Contact)
+  fullName: FarmMaster.Services.IServiceHoldingManager.Create(System.String, System.String, System.String, System.String, System.String, Business.Model.Contact)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceHoldingManager.Create(System.String,System.String,System.String,System.String,System.String,Business.Model.Contact)
+    name: Create
+    nameWithType: IServiceHoldingManager.Create
+    fullName: FarmMaster.Services.IServiceHoldingManager.Create
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Business.Model.Contact
+    name: Contact
+    nameWithType: Contact
+    fullName: Business.Model.Contact
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceHoldingManager.Create(System.String,System.String,System.String,System.String,System.String,Business.Model.Contact)
+    name: Create
+    nameWithType: IServiceHoldingManager.Create
+    fullName: FarmMaster.Services.IServiceHoldingManager.Create
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Business.Model.Contact
+    name: Contact
+    nameWithType: Contact
+    fullName: Business.Model.Contact
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: Business.Model.Contact
+  commentId: T:Business.Model.Contact
+  parent: Business.Model
+  name: Contact
+  nameWithType: Contact
+  fullName: Business.Model.Contact
+- uid: FarmMaster.Services.ServiceHoldingManager.AddRegistrationByName*
+  commentId: Overload:FarmMaster.Services.ServiceHoldingManager.AddRegistrationByName
+  name: AddRegistrationByName
+  nameWithType: ServiceHoldingManager.AddRegistrationByName
+  fullName: FarmMaster.Services.ServiceHoldingManager.AddRegistrationByName
+- uid: FarmMaster.Services.IServiceHoldingManager.AddRegistrationByName(Business.Model.Holding,System.String,System.String,System.String)
+  commentId: M:FarmMaster.Services.IServiceHoldingManager.AddRegistrationByName(Business.Model.Holding,System.String,System.String,System.String)
+  parent: FarmMaster.Services.IServiceHoldingManager
+  isExternal: true
+  name: AddRegistrationByName(Holding, String, String, String)
+  nameWithType: IServiceHoldingManager.AddRegistrationByName(Holding, String, String, String)
+  fullName: FarmMaster.Services.IServiceHoldingManager.AddRegistrationByName(Business.Model.Holding, System.String, System.String, System.String)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceHoldingManager.AddRegistrationByName(Business.Model.Holding,System.String,System.String,System.String)
+    name: AddRegistrationByName
+    nameWithType: IServiceHoldingManager.AddRegistrationByName
+    fullName: FarmMaster.Services.IServiceHoldingManager.AddRegistrationByName
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Holding
+    name: Holding
+    nameWithType: Holding
+    fullName: Business.Model.Holding
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceHoldingManager.AddRegistrationByName(Business.Model.Holding,System.String,System.String,System.String)
+    name: AddRegistrationByName
+    nameWithType: IServiceHoldingManager.AddRegistrationByName
+    fullName: FarmMaster.Services.IServiceHoldingManager.AddRegistrationByName
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Holding
+    name: Holding
+    nameWithType: Holding
+    fullName: Business.Model.Holding
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: FarmMaster.Services.ServiceHoldingManager.RemoveRegistrationByName*
+  commentId: Overload:FarmMaster.Services.ServiceHoldingManager.RemoveRegistrationByName
+  name: RemoveRegistrationByName
+  nameWithType: ServiceHoldingManager.RemoveRegistrationByName
+  fullName: FarmMaster.Services.ServiceHoldingManager.RemoveRegistrationByName
+- uid: FarmMaster.Services.IServiceHoldingManager.RemoveRegistrationByName(Business.Model.Holding,System.String)
+  commentId: M:FarmMaster.Services.IServiceHoldingManager.RemoveRegistrationByName(Business.Model.Holding,System.String)
+  parent: FarmMaster.Services.IServiceHoldingManager
+  isExternal: true
+  name: RemoveRegistrationByName(Holding, String)
+  nameWithType: IServiceHoldingManager.RemoveRegistrationByName(Holding, String)
+  fullName: FarmMaster.Services.IServiceHoldingManager.RemoveRegistrationByName(Business.Model.Holding, System.String)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceHoldingManager.RemoveRegistrationByName(Business.Model.Holding,System.String)
+    name: RemoveRegistrationByName
+    nameWithType: IServiceHoldingManager.RemoveRegistrationByName
+    fullName: FarmMaster.Services.IServiceHoldingManager.RemoveRegistrationByName
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Holding
+    name: Holding
+    nameWithType: Holding
+    fullName: Business.Model.Holding
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceHoldingManager.RemoveRegistrationByName(Business.Model.Holding,System.String)
+    name: RemoveRegistrationByName
+    nameWithType: IServiceHoldingManager.RemoveRegistrationByName
+    fullName: FarmMaster.Services.IServiceHoldingManager.RemoveRegistrationByName
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Holding
+    name: Holding
+    nameWithType: Holding
+    fullName: Business.Model.Holding
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.ServiceHoldingManager.RemoveByReference*
+  commentId: Overload:FarmMaster.Services.ServiceHoldingManager.RemoveByReference
+  name: RemoveByReference
+  nameWithType: ServiceHoldingManager.RemoveByReference
+  fullName: FarmMaster.Services.ServiceHoldingManager.RemoveByReference
+- uid: FarmMaster.Services.IServiceHoldingManager.RemoveByReference(Business.Model.Holding)
+  commentId: M:FarmMaster.Services.IServiceHoldingManager.RemoveByReference(Business.Model.Holding)
+  parent: FarmMaster.Services.IServiceHoldingManager
+  name: RemoveByReference(Holding)
+  nameWithType: IServiceHoldingManager.RemoveByReference(Holding)
+  fullName: FarmMaster.Services.IServiceHoldingManager.RemoveByReference(Business.Model.Holding)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceHoldingManager.RemoveByReference(Business.Model.Holding)
+    name: RemoveByReference
+    nameWithType: IServiceHoldingManager.RemoveByReference
+    fullName: FarmMaster.Services.IServiceHoldingManager.RemoveByReference
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Holding
+    name: Holding
+    nameWithType: Holding
+    fullName: Business.Model.Holding
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceHoldingManager.RemoveByReference(Business.Model.Holding)
+    name: RemoveByReference
+    nameWithType: IServiceHoldingManager.RemoveByReference
+    fullName: FarmMaster.Services.IServiceHoldingManager.RemoveByReference
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Holding
+    name: Holding
+    nameWithType: Holding
+    fullName: Business.Model.Holding
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.ServiceHoldingManager.Update*
+  commentId: Overload:FarmMaster.Services.ServiceHoldingManager.Update
+  name: Update
+  nameWithType: ServiceHoldingManager.Update
+  fullName: FarmMaster.Services.ServiceHoldingManager.Update
+- uid: FarmMaster.Services.IServiceEntityManager{Business.Model.Holding}.Update(Business.Model.Holding)
+  commentId: M:FarmMaster.Services.IServiceEntityManager{Business.Model.Holding}.Update(Business.Model.Holding)
+  parent: FarmMaster.Services.IServiceEntityManager{Business.Model.Holding}
+  definition: FarmMaster.Services.IServiceEntityManager`1.Update(`0)
+  name: Update(Holding)
+  nameWithType: IServiceEntityManager<Holding>.Update(Holding)
+  fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.Holding>.Update(Business.Model.Holding)
+  nameWithType.vb: IServiceEntityManager(Of Holding).Update(Holding)
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of Business.Model.Holding).Update(Business.Model.Holding)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.Update(`0)
+    name: Update
+    nameWithType: IServiceEntityManager<Holding>.Update
+    fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.Holding>.Update
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Holding
+    name: Holding
+    nameWithType: Holding
+    fullName: Business.Model.Holding
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.Update(`0)
+    name: Update
+    nameWithType: IServiceEntityManager(Of Holding).Update
+    fullName: FarmMaster.Services.IServiceEntityManager(Of Business.Model.Holding).Update
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Holding
+    name: Holding
+    nameWithType: Holding
+    fullName: Business.Model.Holding
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManager`1.Update(`0)
+  commentId: M:FarmMaster.Services.IServiceEntityManager`1.Update(`0)
+  name: Update(T)
+  nameWithType: IServiceEntityManager<T>.Update(T)
+  fullName: FarmMaster.Services.IServiceEntityManager<T>.Update(T)
+  nameWithType.vb: IServiceEntityManager(Of T).Update(T)
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of T).Update(T)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.Update(`0)
+    name: Update
+    nameWithType: IServiceEntityManager<T>.Update
+    fullName: FarmMaster.Services.IServiceEntityManager<T>.Update
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.Update(`0)
+    name: Update
+    nameWithType: IServiceEntityManager(Of T).Update
+    fullName: FarmMaster.Services.IServiceEntityManager(Of T).Update
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.ServiceHoldingManager.GetContactGdprData*
+  commentId: Overload:FarmMaster.Services.ServiceHoldingManager.GetContactGdprData
+  name: GetContactGdprData
+  nameWithType: ServiceHoldingManager.GetContactGdprData
+  fullName: FarmMaster.Services.ServiceHoldingManager.GetContactGdprData
+- uid: FarmMaster.Services.IServiceGdprData.GetContactGdprData(Business.Model.Contact,Newtonsoft.Json.Linq.JObject)
+  commentId: M:FarmMaster.Services.IServiceGdprData.GetContactGdprData(Business.Model.Contact,Newtonsoft.Json.Linq.JObject)
+  parent: FarmMaster.Services.IServiceGdprData
+  isExternal: true
+  name: GetContactGdprData(Contact, JObject)
+  nameWithType: IServiceGdprData.GetContactGdprData(Contact, JObject)
+  fullName: FarmMaster.Services.IServiceGdprData.GetContactGdprData(Business.Model.Contact, Newtonsoft.Json.Linq.JObject)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceGdprData.GetContactGdprData(Business.Model.Contact,Newtonsoft.Json.Linq.JObject)
+    name: GetContactGdprData
+    nameWithType: IServiceGdprData.GetContactGdprData
+    fullName: FarmMaster.Services.IServiceGdprData.GetContactGdprData
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Contact
+    name: Contact
+    nameWithType: Contact
+    fullName: Business.Model.Contact
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Newtonsoft.Json.Linq.JObject
+    name: JObject
+    nameWithType: JObject
+    fullName: Newtonsoft.Json.Linq.JObject
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceGdprData.GetContactGdprData(Business.Model.Contact,Newtonsoft.Json.Linq.JObject)
+    name: GetContactGdprData
+    nameWithType: IServiceGdprData.GetContactGdprData
+    fullName: FarmMaster.Services.IServiceGdprData.GetContactGdprData
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Contact
+    name: Contact
+    nameWithType: Contact
+    fullName: Business.Model.Contact
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Newtonsoft.Json.Linq.JObject
+    name: JObject
+    nameWithType: JObject
+    fullName: Newtonsoft.Json.Linq.JObject
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Newtonsoft.Json.Linq.JObject
+  commentId: T:Newtonsoft.Json.Linq.JObject
+  parent: Newtonsoft.Json.Linq
+  isExternal: true
+  name: JObject
+  nameWithType: JObject
+  fullName: Newtonsoft.Json.Linq.JObject
+- uid: Newtonsoft.Json.Linq
+  commentId: N:Newtonsoft.Json.Linq
+  isExternal: true
+  name: Newtonsoft.Json.Linq
+  nameWithType: Newtonsoft.Json.Linq
+  fullName: Newtonsoft.Json.Linq
+- uid: FarmMaster.Services.ServiceHoldingManager.GetUserGdprData*
+  commentId: Overload:FarmMaster.Services.ServiceHoldingManager.GetUserGdprData
+  name: GetUserGdprData
+  nameWithType: ServiceHoldingManager.GetUserGdprData
+  fullName: FarmMaster.Services.ServiceHoldingManager.GetUserGdprData
+- uid: FarmMaster.Services.IServiceGdprData.GetUserGdprData(Business.Model.User,Newtonsoft.Json.Linq.JObject)
+  commentId: M:FarmMaster.Services.IServiceGdprData.GetUserGdprData(Business.Model.User,Newtonsoft.Json.Linq.JObject)
+  parent: FarmMaster.Services.IServiceGdprData
+  isExternal: true
+  name: GetUserGdprData(User, JObject)
+  nameWithType: IServiceGdprData.GetUserGdprData(User, JObject)
+  fullName: FarmMaster.Services.IServiceGdprData.GetUserGdprData(Business.Model.User, Newtonsoft.Json.Linq.JObject)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceGdprData.GetUserGdprData(Business.Model.User,Newtonsoft.Json.Linq.JObject)
+    name: GetUserGdprData
+    nameWithType: IServiceGdprData.GetUserGdprData
+    fullName: FarmMaster.Services.IServiceGdprData.GetUserGdprData
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.User
+    name: User
+    nameWithType: User
+    fullName: Business.Model.User
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Newtonsoft.Json.Linq.JObject
+    name: JObject
+    nameWithType: JObject
+    fullName: Newtonsoft.Json.Linq.JObject
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceGdprData.GetUserGdprData(Business.Model.User,Newtonsoft.Json.Linq.JObject)
+    name: GetUserGdprData
+    nameWithType: IServiceGdprData.GetUserGdprData
+    fullName: FarmMaster.Services.IServiceGdprData.GetUserGdprData
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.User
+    name: User
+    nameWithType: User
+    fullName: Business.Model.User
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Newtonsoft.Json.Linq.JObject
+    name: JObject
+    nameWithType: JObject
+    fullName: Newtonsoft.Json.Linq.JObject
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Business.Model.User
+  commentId: T:Business.Model.User
+  parent: Business.Model
+  name: User
+  nameWithType: User
+  fullName: Business.Model.User
+- uid: FarmMaster.Services.ServiceHoldingManager.AnonymiseContactData*
+  commentId: Overload:FarmMaster.Services.ServiceHoldingManager.AnonymiseContactData
+  name: AnonymiseContactData
+  nameWithType: ServiceHoldingManager.AnonymiseContactData
+  fullName: FarmMaster.Services.ServiceHoldingManager.AnonymiseContactData
+- uid: FarmMaster.Services.IServiceGdprData.AnonymiseContactData(Business.Model.Contact)
+  commentId: M:FarmMaster.Services.IServiceGdprData.AnonymiseContactData(Business.Model.Contact)
+  parent: FarmMaster.Services.IServiceGdprData
+  name: AnonymiseContactData(Contact)
+  nameWithType: IServiceGdprData.AnonymiseContactData(Contact)
+  fullName: FarmMaster.Services.IServiceGdprData.AnonymiseContactData(Business.Model.Contact)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceGdprData.AnonymiseContactData(Business.Model.Contact)
+    name: AnonymiseContactData
+    nameWithType: IServiceGdprData.AnonymiseContactData
+    fullName: FarmMaster.Services.IServiceGdprData.AnonymiseContactData
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Contact
+    name: Contact
+    nameWithType: Contact
+    fullName: Business.Model.Contact
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceGdprData.AnonymiseContactData(Business.Model.Contact)
+    name: AnonymiseContactData
+    nameWithType: IServiceGdprData.AnonymiseContactData
+    fullName: FarmMaster.Services.IServiceGdprData.AnonymiseContactData
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Contact
+    name: Contact
+    nameWithType: Contact
+    fullName: Business.Model.Contact
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.ServiceHoldingManager.AnonymiseUserData*
+  commentId: Overload:FarmMaster.Services.ServiceHoldingManager.AnonymiseUserData
+  name: AnonymiseUserData
+  nameWithType: ServiceHoldingManager.AnonymiseUserData
+  fullName: FarmMaster.Services.ServiceHoldingManager.AnonymiseUserData
+- uid: FarmMaster.Services.IServiceGdprData.AnonymiseUserData(Business.Model.User)
+  commentId: M:FarmMaster.Services.IServiceGdprData.AnonymiseUserData(Business.Model.User)
+  parent: FarmMaster.Services.IServiceGdprData
+  name: AnonymiseUserData(User)
+  nameWithType: IServiceGdprData.AnonymiseUserData(User)
+  fullName: FarmMaster.Services.IServiceGdprData.AnonymiseUserData(Business.Model.User)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceGdprData.AnonymiseUserData(Business.Model.User)
+    name: AnonymiseUserData
+    nameWithType: IServiceGdprData.AnonymiseUserData
+    fullName: FarmMaster.Services.IServiceGdprData.AnonymiseUserData
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.User
+    name: User
+    nameWithType: User
+    fullName: Business.Model.User
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceGdprData.AnonymiseUserData(Business.Model.User)
+    name: AnonymiseUserData
+    nameWithType: IServiceGdprData.AnonymiseUserData
+    fullName: FarmMaster.Services.IServiceGdprData.AnonymiseUserData
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.User
+    name: User
+    nameWithType: User
+    fullName: Business.Model.User
+  - name: )
+    nameWithType: )
+    fullName: )

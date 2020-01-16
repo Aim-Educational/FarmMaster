@@ -1,0 +1,3476 @@
+### YamlMime:ManagedReference
+items:
+- uid: FarmMaster.Services.ServiceContactManager
+  commentId: T:FarmMaster.Services.ServiceContactManager
+  id: ServiceContactManager
+  parent: FarmMaster.Services
+  children:
+  - FarmMaster.Services.ServiceContactManager.#ctor(Business.Model.FarmMasterContext)
+  - FarmMaster.Services.ServiceContactManager.AddEmailAddress(Business.Model.Contact,Business.Model.User,System.String,System.String,System.String)
+  - FarmMaster.Services.ServiceContactManager.AddRelationship(Business.Model.Contact,Business.Model.Contact,Business.Model.User,System.String,System.String)
+  - FarmMaster.Services.ServiceContactManager.AddTelephoneNumber(Business.Model.Contact,Business.Model.User,System.String,System.String,System.String)
+  - FarmMaster.Services.ServiceContactManager.AnonymiseContactData(Business.Model.Contact)
+  - FarmMaster.Services.ServiceContactManager.AnonymiseUserData(Business.Model.User)
+  - FarmMaster.Services.ServiceContactManager.Create(Business.Model.Contact.Type,System.String,FarmMaster.Misc.SaveChanges)
+  - FarmMaster.Services.ServiceContactManager.ExpireTokenByTokenString(Business.Model.Contact,System.String)
+  - FarmMaster.Services.ServiceContactManager.GenerateToken(Business.Model.Contact,Business.Model.ContactToken.Type,System.DateTimeOffset,FarmMaster.Misc.IsUnique)
+  - FarmMaster.Services.ServiceContactManager.GetContactFromTokenString(System.String)
+  - FarmMaster.Services.ServiceContactManager.GetContactGdprData(Business.Model.Contact,Newtonsoft.Json.Linq.JObject)
+  - FarmMaster.Services.ServiceContactManager.GetIdFor(Business.Model.Contact)
+  - FarmMaster.Services.ServiceContactManager.GetUserGdprData(Business.Model.User,Newtonsoft.Json.Linq.JObject)
+  - FarmMaster.Services.ServiceContactManager.LogAction(Business.Model.Contact,Business.Model.User,Business.Model.ActionAgainstContactInfo.Type,System.String,System.String)
+  - FarmMaster.Services.ServiceContactManager.Query
+  - FarmMaster.Services.ServiceContactManager.QueryAllIncluded
+  - FarmMaster.Services.ServiceContactManager.RemoveEmailAddressById(Business.Model.Contact,Business.Model.User,System.String,System.Int32)
+  - FarmMaster.Services.ServiceContactManager.RemoveEmailAddressByName(Business.Model.Contact,Business.Model.User,System.String,System.String)
+  - FarmMaster.Services.ServiceContactManager.RemoveRelationshipById(Business.Model.Contact,Business.Model.User,System.String,System.Int32)
+  - FarmMaster.Services.ServiceContactManager.RemoveTelephoneNumberById(Business.Model.Contact,Business.Model.User,System.String,System.Int32)
+  - FarmMaster.Services.ServiceContactManager.RemoveTelephoneNumberByName(Business.Model.Contact,Business.Model.User,System.String,System.String)
+  - FarmMaster.Services.ServiceContactManager.Update(Business.Model.Contact)
+  langs:
+  - csharp
+  - vb
+  name: ServiceContactManager
+  nameWithType: ServiceContactManager
+  fullName: FarmMaster.Services.ServiceContactManager
+  type: Class
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceContactManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: ServiceContactManager
+    path: Services/IServiceContactManager.cs
+    startLine: 32
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: 'public class ServiceContactManager : IServiceContactManager, IServiceEntityManager<Contact>, IServiceGdprData'
+    content.vb: >-
+      Public Class ServiceContactManager
+
+          Implements IServiceContactManager, IServiceEntityManager(Of Contact), IServiceGdprData
+  inheritance:
+  - System.Object
+  implements:
+  - FarmMaster.Services.IServiceContactManager
+  - FarmMaster.Services.IServiceEntityManager{Business.Model.Contact}
+  - FarmMaster.Services.IServiceGdprData
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  extensionMethods:
+  - FarmMaster.Services.IServiceEntityManager{Business.Model.Contact}.FarmMaster.Services.IServiceEntityDataExtentions.FromId``1(System.Int32)
+  - FarmMaster.Services.IServiceEntityManager{Business.Model.Contact}.FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded``1(System.Int32)
+  - FarmMaster.Services.IServiceEntityManager{Business.Model.Contact}.FarmMaster.Services.IServiceEntityDataExtentions.For``1
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: FarmMaster.Services.ServiceContactManager.#ctor(Business.Model.FarmMasterContext)
+  commentId: M:FarmMaster.Services.ServiceContactManager.#ctor(Business.Model.FarmMasterContext)
+  id: '#ctor(Business.Model.FarmMasterContext)'
+  parent: FarmMaster.Services.ServiceContactManager
+  langs:
+  - csharp
+  - vb
+  name: ServiceContactManager(FarmMasterContext)
+  nameWithType: ServiceContactManager.ServiceContactManager(FarmMasterContext)
+  fullName: FarmMaster.Services.ServiceContactManager.ServiceContactManager(Business.Model.FarmMasterContext)
+  type: Constructor
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceContactManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: .ctor
+    path: Services/IServiceContactManager.cs
+    startLine: 36
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: public ServiceContactManager(FarmMasterContext context)
+    parameters:
+    - id: context
+      type: Business.Model.FarmMasterContext
+    content.vb: Public Sub New(context As FarmMasterContext)
+  overload: FarmMaster.Services.ServiceContactManager.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Services.ServiceContactManager.AddTelephoneNumber(Business.Model.Contact,Business.Model.User,System.String,System.String,System.String)
+  commentId: M:FarmMaster.Services.ServiceContactManager.AddTelephoneNumber(Business.Model.Contact,Business.Model.User,System.String,System.String,System.String)
+  id: AddTelephoneNumber(Business.Model.Contact,Business.Model.User,System.String,System.String,System.String)
+  parent: FarmMaster.Services.ServiceContactManager
+  langs:
+  - csharp
+  - vb
+  name: AddTelephoneNumber(Contact, User, String, String, String)
+  nameWithType: ServiceContactManager.AddTelephoneNumber(Contact, User, String, String, String)
+  fullName: FarmMaster.Services.ServiceContactManager.AddTelephoneNumber(Business.Model.Contact, Business.Model.User, System.String, System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceContactManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: AddTelephoneNumber
+    path: Services/IServiceContactManager.cs
+    startLine: 41
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: public Telephone AddTelephoneNumber(Contact contact, User responsible, string reason, string name, string number)
+    parameters:
+    - id: contact
+      type: Business.Model.Contact
+    - id: responsible
+      type: Business.Model.User
+    - id: reason
+      type: System.String
+    - id: name
+      type: System.String
+    - id: number
+      type: System.String
+    return:
+      type: Business.Model.Telephone
+    content.vb: Public Function AddTelephoneNumber(contact As Contact, responsible As User, reason As String, name As String, number As String) As Telephone
+  overload: FarmMaster.Services.ServiceContactManager.AddTelephoneNumber*
+  implements:
+  - FarmMaster.Services.IServiceContactManager.AddTelephoneNumber(Business.Model.Contact,Business.Model.User,System.String,System.String,System.String)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Services.ServiceContactManager.RemoveTelephoneNumberByName(Business.Model.Contact,Business.Model.User,System.String,System.String)
+  commentId: M:FarmMaster.Services.ServiceContactManager.RemoveTelephoneNumberByName(Business.Model.Contact,Business.Model.User,System.String,System.String)
+  id: RemoveTelephoneNumberByName(Business.Model.Contact,Business.Model.User,System.String,System.String)
+  parent: FarmMaster.Services.ServiceContactManager
+  langs:
+  - csharp
+  - vb
+  name: RemoveTelephoneNumberByName(Contact, User, String, String)
+  nameWithType: ServiceContactManager.RemoveTelephoneNumberByName(Contact, User, String, String)
+  fullName: FarmMaster.Services.ServiceContactManager.RemoveTelephoneNumberByName(Business.Model.Contact, Business.Model.User, System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceContactManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: RemoveTelephoneNumberByName
+    path: Services/IServiceContactManager.cs
+    startLine: 64
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: public bool RemoveTelephoneNumberByName(Contact contact, User responsible, string reason, string name)
+    parameters:
+    - id: contact
+      type: Business.Model.Contact
+    - id: responsible
+      type: Business.Model.User
+    - id: reason
+      type: System.String
+    - id: name
+      type: System.String
+    return:
+      type: System.Boolean
+    content.vb: Public Function RemoveTelephoneNumberByName(contact As Contact, responsible As User, reason As String, name As String) As Boolean
+  overload: FarmMaster.Services.ServiceContactManager.RemoveTelephoneNumberByName*
+  implements:
+  - FarmMaster.Services.IServiceContactManager.RemoveTelephoneNumberByName(Business.Model.Contact,Business.Model.User,System.String,System.String)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Services.ServiceContactManager.RemoveTelephoneNumberById(Business.Model.Contact,Business.Model.User,System.String,System.Int32)
+  commentId: M:FarmMaster.Services.ServiceContactManager.RemoveTelephoneNumberById(Business.Model.Contact,Business.Model.User,System.String,System.Int32)
+  id: RemoveTelephoneNumberById(Business.Model.Contact,Business.Model.User,System.String,System.Int32)
+  parent: FarmMaster.Services.ServiceContactManager
+  langs:
+  - csharp
+  - vb
+  name: RemoveTelephoneNumberById(Contact, User, String, Int32)
+  nameWithType: ServiceContactManager.RemoveTelephoneNumberById(Contact, User, String, Int32)
+  fullName: FarmMaster.Services.ServiceContactManager.RemoveTelephoneNumberById(Business.Model.Contact, Business.Model.User, System.String, System.Int32)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceContactManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: RemoveTelephoneNumberById
+    path: Services/IServiceContactManager.cs
+    startLine: 74
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: public bool RemoveTelephoneNumberById(Contact contact, User responsible, string reason, int id)
+    parameters:
+    - id: contact
+      type: Business.Model.Contact
+    - id: responsible
+      type: Business.Model.User
+    - id: reason
+      type: System.String
+    - id: id
+      type: System.Int32
+    return:
+      type: System.Boolean
+    content.vb: Public Function RemoveTelephoneNumberById(contact As Contact, responsible As User, reason As String, id As Integer) As Boolean
+  overload: FarmMaster.Services.ServiceContactManager.RemoveTelephoneNumberById*
+  implements:
+  - FarmMaster.Services.IServiceContactManager.RemoveTelephoneNumberById(Business.Model.Contact,Business.Model.User,System.String,System.Int32)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Services.ServiceContactManager.LogAction(Business.Model.Contact,Business.Model.User,Business.Model.ActionAgainstContactInfo.Type,System.String,System.String)
+  commentId: M:FarmMaster.Services.ServiceContactManager.LogAction(Business.Model.Contact,Business.Model.User,Business.Model.ActionAgainstContactInfo.Type,System.String,System.String)
+  id: LogAction(Business.Model.Contact,Business.Model.User,Business.Model.ActionAgainstContactInfo.Type,System.String,System.String)
+  parent: FarmMaster.Services.ServiceContactManager
+  langs:
+  - csharp
+  - vb
+  name: LogAction(Contact, User, ActionAgainstContactInfo.Type, String, String)
+  nameWithType: ServiceContactManager.LogAction(Contact, User, ActionAgainstContactInfo.Type, String, String)
+  fullName: FarmMaster.Services.ServiceContactManager.LogAction(Business.Model.Contact, Business.Model.User, Business.Model.ActionAgainstContactInfo.Type, System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceContactManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: LogAction
+    path: Services/IServiceContactManager.cs
+    startLine: 98
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: public void LogAction(Contact affected, User responsible, ActionAgainstContactInfo.Type type, string reason, string additionalInfo = null)
+    parameters:
+    - id: affected
+      type: Business.Model.Contact
+    - id: responsible
+      type: Business.Model.User
+    - id: type
+      type: Business.Model.ActionAgainstContactInfo.Type
+    - id: reason
+      type: System.String
+    - id: additionalInfo
+      type: System.String
+    content.vb: Public Sub LogAction(affected As Contact, responsible As User, type As ActionAgainstContactInfo.Type, reason As String, additionalInfo As String = Nothing)
+  overload: FarmMaster.Services.ServiceContactManager.LogAction*
+  implements:
+  - FarmMaster.Services.IServiceContactManager.LogAction(Business.Model.Contact,Business.Model.User,Business.Model.ActionAgainstContactInfo.Type,System.String,System.String)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Services.ServiceContactManager.AddEmailAddress(Business.Model.Contact,Business.Model.User,System.String,System.String,System.String)
+  commentId: M:FarmMaster.Services.ServiceContactManager.AddEmailAddress(Business.Model.Contact,Business.Model.User,System.String,System.String,System.String)
+  id: AddEmailAddress(Business.Model.Contact,Business.Model.User,System.String,System.String,System.String)
+  parent: FarmMaster.Services.ServiceContactManager
+  langs:
+  - csharp
+  - vb
+  name: AddEmailAddress(Contact, User, String, String, String)
+  nameWithType: ServiceContactManager.AddEmailAddress(Contact, User, String, String, String)
+  fullName: FarmMaster.Services.ServiceContactManager.AddEmailAddress(Business.Model.Contact, Business.Model.User, System.String, System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceContactManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: AddEmailAddress
+    path: Services/IServiceContactManager.cs
+    startLine: 115
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: public Email AddEmailAddress(Contact contact, User responsible, string reason, string name, string address)
+    parameters:
+    - id: contact
+      type: Business.Model.Contact
+    - id: responsible
+      type: Business.Model.User
+    - id: reason
+      type: System.String
+    - id: name
+      type: System.String
+    - id: address
+      type: System.String
+    return:
+      type: Business.Model.Email
+    content.vb: Public Function AddEmailAddress(contact As Contact, responsible As User, reason As String, name As String, address As String) As Email
+  overload: FarmMaster.Services.ServiceContactManager.AddEmailAddress*
+  implements:
+  - FarmMaster.Services.IServiceContactManager.AddEmailAddress(Business.Model.Contact,Business.Model.User,System.String,System.String,System.String)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Services.ServiceContactManager.RemoveEmailAddressByName(Business.Model.Contact,Business.Model.User,System.String,System.String)
+  commentId: M:FarmMaster.Services.ServiceContactManager.RemoveEmailAddressByName(Business.Model.Contact,Business.Model.User,System.String,System.String)
+  id: RemoveEmailAddressByName(Business.Model.Contact,Business.Model.User,System.String,System.String)
+  parent: FarmMaster.Services.ServiceContactManager
+  langs:
+  - csharp
+  - vb
+  name: RemoveEmailAddressByName(Contact, User, String, String)
+  nameWithType: ServiceContactManager.RemoveEmailAddressByName(Contact, User, String, String)
+  fullName: FarmMaster.Services.ServiceContactManager.RemoveEmailAddressByName(Business.Model.Contact, Business.Model.User, System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceContactManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: RemoveEmailAddressByName
+    path: Services/IServiceContactManager.cs
+    startLine: 138
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: public bool RemoveEmailAddressByName(Contact contact, User responsible, string reason, string name)
+    parameters:
+    - id: contact
+      type: Business.Model.Contact
+    - id: responsible
+      type: Business.Model.User
+    - id: reason
+      type: System.String
+    - id: name
+      type: System.String
+    return:
+      type: System.Boolean
+    content.vb: Public Function RemoveEmailAddressByName(contact As Contact, responsible As User, reason As String, name As String) As Boolean
+  overload: FarmMaster.Services.ServiceContactManager.RemoveEmailAddressByName*
+  implements:
+  - FarmMaster.Services.IServiceContactManager.RemoveEmailAddressByName(Business.Model.Contact,Business.Model.User,System.String,System.String)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Services.ServiceContactManager.RemoveEmailAddressById(Business.Model.Contact,Business.Model.User,System.String,System.Int32)
+  commentId: M:FarmMaster.Services.ServiceContactManager.RemoveEmailAddressById(Business.Model.Contact,Business.Model.User,System.String,System.Int32)
+  id: RemoveEmailAddressById(Business.Model.Contact,Business.Model.User,System.String,System.Int32)
+  parent: FarmMaster.Services.ServiceContactManager
+  langs:
+  - csharp
+  - vb
+  name: RemoveEmailAddressById(Contact, User, String, Int32)
+  nameWithType: ServiceContactManager.RemoveEmailAddressById(Contact, User, String, Int32)
+  fullName: FarmMaster.Services.ServiceContactManager.RemoveEmailAddressById(Business.Model.Contact, Business.Model.User, System.String, System.Int32)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceContactManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: RemoveEmailAddressById
+    path: Services/IServiceContactManager.cs
+    startLine: 148
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: public bool RemoveEmailAddressById(Contact contact, User responsible, string reason, int id)
+    parameters:
+    - id: contact
+      type: Business.Model.Contact
+    - id: responsible
+      type: Business.Model.User
+    - id: reason
+      type: System.String
+    - id: id
+      type: System.Int32
+    return:
+      type: System.Boolean
+    content.vb: Public Function RemoveEmailAddressById(contact As Contact, responsible As User, reason As String, id As Integer) As Boolean
+  overload: FarmMaster.Services.ServiceContactManager.RemoveEmailAddressById*
+  implements:
+  - FarmMaster.Services.IServiceContactManager.RemoveEmailAddressById(Business.Model.Contact,Business.Model.User,System.String,System.Int32)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Services.ServiceContactManager.AddRelationship(Business.Model.Contact,Business.Model.Contact,Business.Model.User,System.String,System.String)
+  commentId: M:FarmMaster.Services.ServiceContactManager.AddRelationship(Business.Model.Contact,Business.Model.Contact,Business.Model.User,System.String,System.String)
+  id: AddRelationship(Business.Model.Contact,Business.Model.Contact,Business.Model.User,System.String,System.String)
+  parent: FarmMaster.Services.ServiceContactManager
+  langs:
+  - csharp
+  - vb
+  name: AddRelationship(Contact, Contact, User, String, String)
+  nameWithType: ServiceContactManager.AddRelationship(Contact, Contact, User, String, String)
+  fullName: FarmMaster.Services.ServiceContactManager.AddRelationship(Business.Model.Contact, Business.Model.Contact, Business.Model.User, System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceContactManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: AddRelationship
+    path: Services/IServiceContactManager.cs
+    startLine: 172
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: public MapContactRelationship AddRelationship(Contact first, Contact second, User responsible, string reason, string description)
+    parameters:
+    - id: first
+      type: Business.Model.Contact
+    - id: second
+      type: Business.Model.Contact
+    - id: responsible
+      type: Business.Model.User
+    - id: reason
+      type: System.String
+    - id: description
+      type: System.String
+    return:
+      type: Business.Model.MapContactRelationship
+    content.vb: Public Function AddRelationship(first As Contact, second As Contact, responsible As User, reason As String, description As String) As MapContactRelationship
+  overload: FarmMaster.Services.ServiceContactManager.AddRelationship*
+  implements:
+  - FarmMaster.Services.IServiceContactManager.AddRelationship(Business.Model.Contact,Business.Model.Contact,Business.Model.User,System.String,System.String)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Services.ServiceContactManager.RemoveRelationshipById(Business.Model.Contact,Business.Model.User,System.String,System.Int32)
+  commentId: M:FarmMaster.Services.ServiceContactManager.RemoveRelationshipById(Business.Model.Contact,Business.Model.User,System.String,System.Int32)
+  id: RemoveRelationshipById(Business.Model.Contact,Business.Model.User,System.String,System.Int32)
+  parent: FarmMaster.Services.ServiceContactManager
+  langs:
+  - csharp
+  - vb
+  name: RemoveRelationshipById(Contact, User, String, Int32)
+  nameWithType: ServiceContactManager.RemoveRelationshipById(Contact, User, String, Int32)
+  fullName: FarmMaster.Services.ServiceContactManager.RemoveRelationshipById(Business.Model.Contact, Business.Model.User, System.String, System.Int32)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceContactManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: RemoveRelationshipById
+    path: Services/IServiceContactManager.cs
+    startLine: 203
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: public bool RemoveRelationshipById(Contact contact, User responsible, string reason, int id)
+    parameters:
+    - id: contact
+      type: Business.Model.Contact
+    - id: responsible
+      type: Business.Model.User
+    - id: reason
+      type: System.String
+    - id: id
+      type: System.Int32
+    return:
+      type: System.Boolean
+    content.vb: Public Function RemoveRelationshipById(contact As Contact, responsible As User, reason As String, id As Integer) As Boolean
+  overload: FarmMaster.Services.ServiceContactManager.RemoveRelationshipById*
+  implements:
+  - FarmMaster.Services.IServiceContactManager.RemoveRelationshipById(Business.Model.Contact,Business.Model.User,System.String,System.Int32)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Services.ServiceContactManager.Query
+  commentId: M:FarmMaster.Services.ServiceContactManager.Query
+  id: Query
+  parent: FarmMaster.Services.ServiceContactManager
+  langs:
+  - csharp
+  - vb
+  name: Query()
+  nameWithType: ServiceContactManager.Query()
+  fullName: FarmMaster.Services.ServiceContactManager.Query()
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceContactManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: Query
+    path: Services/IServiceContactManager.cs
+    startLine: 230
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: public IQueryable<Contact> Query()
+    return:
+      type: System.Linq.IQueryable{Business.Model.Contact}
+    content.vb: Public Function Query As IQueryable(Of Contact)
+  overload: FarmMaster.Services.ServiceContactManager.Query*
+  implements:
+  - FarmMaster.Services.IServiceEntityManager{Business.Model.Contact}.Query
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Services.ServiceContactManager.QueryAllIncluded
+  commentId: M:FarmMaster.Services.ServiceContactManager.QueryAllIncluded
+  id: QueryAllIncluded
+  parent: FarmMaster.Services.ServiceContactManager
+  langs:
+  - csharp
+  - vb
+  name: QueryAllIncluded()
+  nameWithType: ServiceContactManager.QueryAllIncluded()
+  fullName: FarmMaster.Services.ServiceContactManager.QueryAllIncluded()
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceContactManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: QueryAllIncluded
+    path: Services/IServiceContactManager.cs
+    startLine: 236
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: public IQueryable<Contact> QueryAllIncluded()
+    return:
+      type: System.Linq.IQueryable{Business.Model.Contact}
+    content.vb: Public Function QueryAllIncluded As IQueryable(Of Contact)
+  overload: FarmMaster.Services.ServiceContactManager.QueryAllIncluded*
+  implements:
+  - FarmMaster.Services.IServiceEntityManager{Business.Model.Contact}.QueryAllIncluded
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Services.ServiceContactManager.GetIdFor(Business.Model.Contact)
+  commentId: M:FarmMaster.Services.ServiceContactManager.GetIdFor(Business.Model.Contact)
+  id: GetIdFor(Business.Model.Contact)
+  parent: FarmMaster.Services.ServiceContactManager
+  langs:
+  - csharp
+  - vb
+  name: GetIdFor(Contact)
+  nameWithType: ServiceContactManager.GetIdFor(Contact)
+  fullName: FarmMaster.Services.ServiceContactManager.GetIdFor(Business.Model.Contact)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceContactManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: GetIdFor
+    path: Services/IServiceContactManager.cs
+    startLine: 244
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: public int GetIdFor(Contact entity)
+    parameters:
+    - id: entity
+      type: Business.Model.Contact
+    return:
+      type: System.Int32
+    content.vb: Public Function GetIdFor(entity As Contact) As Integer
+  overload: FarmMaster.Services.ServiceContactManager.GetIdFor*
+  implements:
+  - FarmMaster.Services.IServiceEntityManager{Business.Model.Contact}.GetIdFor(Business.Model.Contact)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Services.ServiceContactManager.Create(Business.Model.Contact.Type,System.String,FarmMaster.Misc.SaveChanges)
+  commentId: M:FarmMaster.Services.ServiceContactManager.Create(Business.Model.Contact.Type,System.String,FarmMaster.Misc.SaveChanges)
+  id: Create(Business.Model.Contact.Type,System.String,FarmMaster.Misc.SaveChanges)
+  parent: FarmMaster.Services.ServiceContactManager
+  langs:
+  - csharp
+  - vb
+  name: Create(Contact.Type, String, SaveChanges)
+  nameWithType: ServiceContactManager.Create(Contact.Type, String, SaveChanges)
+  fullName: FarmMaster.Services.ServiceContactManager.Create(Business.Model.Contact.Type, System.String, FarmMaster.Misc.SaveChanges)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceContactManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: Create
+    path: Services/IServiceContactManager.cs
+    startLine: 249
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: public Contact Create(Contact.Type type, string fullName, SaveChanges saveChanges = SaveChanges.Yes)
+    parameters:
+    - id: type
+      type: Business.Model.Contact.Type
+    - id: fullName
+      type: System.String
+    - id: saveChanges
+      type: FarmMaster.Misc.SaveChanges
+    return:
+      type: Business.Model.Contact
+    content.vb: Public Function Create(type As Contact.Type, fullName As String, saveChanges As SaveChanges = SaveChanges.Yes) As Contact
+  overload: FarmMaster.Services.ServiceContactManager.Create*
+  implements:
+  - FarmMaster.Services.IServiceContactManager.Create(Business.Model.Contact.Type,System.String,FarmMaster.Misc.SaveChanges)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Services.ServiceContactManager.Update(Business.Model.Contact)
+  commentId: M:FarmMaster.Services.ServiceContactManager.Update(Business.Model.Contact)
+  id: Update(Business.Model.Contact)
+  parent: FarmMaster.Services.ServiceContactManager
+  langs:
+  - csharp
+  - vb
+  name: Update(Contact)
+  nameWithType: ServiceContactManager.Update(Contact)
+  fullName: FarmMaster.Services.ServiceContactManager.Update(Business.Model.Contact)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceContactManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: Update
+    path: Services/IServiceContactManager.cs
+    startLine: 266
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: public void Update(Contact entity)
+    parameters:
+    - id: entity
+      type: Business.Model.Contact
+    content.vb: Public Sub Update(entity As Contact)
+  overload: FarmMaster.Services.ServiceContactManager.Update*
+  implements:
+  - FarmMaster.Services.IServiceEntityManager{Business.Model.Contact}.Update(Business.Model.Contact)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Services.ServiceContactManager.GetContactGdprData(Business.Model.Contact,Newtonsoft.Json.Linq.JObject)
+  commentId: M:FarmMaster.Services.ServiceContactManager.GetContactGdprData(Business.Model.Contact,Newtonsoft.Json.Linq.JObject)
+  id: GetContactGdprData(Business.Model.Contact,Newtonsoft.Json.Linq.JObject)
+  parent: FarmMaster.Services.ServiceContactManager
+  langs:
+  - csharp
+  - vb
+  name: GetContactGdprData(Contact, JObject)
+  nameWithType: ServiceContactManager.GetContactGdprData(Contact, JObject)
+  fullName: FarmMaster.Services.ServiceContactManager.GetContactGdprData(Business.Model.Contact, Newtonsoft.Json.Linq.JObject)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceContactManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: GetContactGdprData
+    path: Services/IServiceContactManager.cs
+    startLine: 272
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: public void GetContactGdprData(Contact contact, JObject json)
+    parameters:
+    - id: contact
+      type: Business.Model.Contact
+    - id: json
+      type: Newtonsoft.Json.Linq.JObject
+    content.vb: Public Sub GetContactGdprData(contact As Contact, json As JObject)
+  overload: FarmMaster.Services.ServiceContactManager.GetContactGdprData*
+  implements:
+  - FarmMaster.Services.IServiceGdprData.GetContactGdprData(Business.Model.Contact,Newtonsoft.Json.Linq.JObject)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Services.ServiceContactManager.GetUserGdprData(Business.Model.User,Newtonsoft.Json.Linq.JObject)
+  commentId: M:FarmMaster.Services.ServiceContactManager.GetUserGdprData(Business.Model.User,Newtonsoft.Json.Linq.JObject)
+  id: GetUserGdprData(Business.Model.User,Newtonsoft.Json.Linq.JObject)
+  parent: FarmMaster.Services.ServiceContactManager
+  langs:
+  - csharp
+  - vb
+  name: GetUserGdprData(User, JObject)
+  nameWithType: ServiceContactManager.GetUserGdprData(User, JObject)
+  fullName: FarmMaster.Services.ServiceContactManager.GetUserGdprData(Business.Model.User, Newtonsoft.Json.Linq.JObject)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceContactManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: GetUserGdprData
+    path: Services/IServiceContactManager.cs
+    startLine: 310
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: public void GetUserGdprData(User user, JObject json)
+    parameters:
+    - id: user
+      type: Business.Model.User
+    - id: json
+      type: Newtonsoft.Json.Linq.JObject
+    content.vb: Public Sub GetUserGdprData(user As User, json As JObject)
+  overload: FarmMaster.Services.ServiceContactManager.GetUserGdprData*
+  implements:
+  - FarmMaster.Services.IServiceGdprData.GetUserGdprData(Business.Model.User,Newtonsoft.Json.Linq.JObject)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Services.ServiceContactManager.AnonymiseContactData(Business.Model.Contact)
+  commentId: M:FarmMaster.Services.ServiceContactManager.AnonymiseContactData(Business.Model.Contact)
+  id: AnonymiseContactData(Business.Model.Contact)
+  parent: FarmMaster.Services.ServiceContactManager
+  langs:
+  - csharp
+  - vb
+  name: AnonymiseContactData(Contact)
+  nameWithType: ServiceContactManager.AnonymiseContactData(Contact)
+  fullName: FarmMaster.Services.ServiceContactManager.AnonymiseContactData(Business.Model.Contact)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceContactManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: AnonymiseContactData
+    path: Services/IServiceContactManager.cs
+    startLine: 315
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: public void AnonymiseContactData(Contact contact)
+    parameters:
+    - id: contact
+      type: Business.Model.Contact
+    content.vb: Public Sub AnonymiseContactData(contact As Contact)
+  overload: FarmMaster.Services.ServiceContactManager.AnonymiseContactData*
+  implements:
+  - FarmMaster.Services.IServiceGdprData.AnonymiseContactData(Business.Model.Contact)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Services.ServiceContactManager.AnonymiseUserData(Business.Model.User)
+  commentId: M:FarmMaster.Services.ServiceContactManager.AnonymiseUserData(Business.Model.User)
+  id: AnonymiseUserData(Business.Model.User)
+  parent: FarmMaster.Services.ServiceContactManager
+  langs:
+  - csharp
+  - vb
+  name: AnonymiseUserData(User)
+  nameWithType: ServiceContactManager.AnonymiseUserData(User)
+  fullName: FarmMaster.Services.ServiceContactManager.AnonymiseUserData(Business.Model.User)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceContactManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: AnonymiseUserData
+    path: Services/IServiceContactManager.cs
+    startLine: 336
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: public void AnonymiseUserData(User user)
+    parameters:
+    - id: user
+      type: Business.Model.User
+    content.vb: Public Sub AnonymiseUserData(user As User)
+  overload: FarmMaster.Services.ServiceContactManager.AnonymiseUserData*
+  implements:
+  - FarmMaster.Services.IServiceGdprData.AnonymiseUserData(Business.Model.User)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Services.ServiceContactManager.GenerateToken(Business.Model.Contact,Business.Model.ContactToken.Type,System.DateTimeOffset,FarmMaster.Misc.IsUnique)
+  commentId: M:FarmMaster.Services.ServiceContactManager.GenerateToken(Business.Model.Contact,Business.Model.ContactToken.Type,System.DateTimeOffset,FarmMaster.Misc.IsUnique)
+  id: GenerateToken(Business.Model.Contact,Business.Model.ContactToken.Type,System.DateTimeOffset,FarmMaster.Misc.IsUnique)
+  parent: FarmMaster.Services.ServiceContactManager
+  langs:
+  - csharp
+  - vb
+  name: GenerateToken(Contact, ContactToken.Type, DateTimeOffset, IsUnique)
+  nameWithType: ServiceContactManager.GenerateToken(Contact, ContactToken.Type, DateTimeOffset, IsUnique)
+  fullName: FarmMaster.Services.ServiceContactManager.GenerateToken(Business.Model.Contact, Business.Model.ContactToken.Type, System.DateTimeOffset, FarmMaster.Misc.IsUnique)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceContactManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: GenerateToken
+    path: Services/IServiceContactManager.cs
+    startLine: 342
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: public ContactToken GenerateToken(Contact contact, ContactToken.Type type, DateTimeOffset expires, IsUnique isUnique = IsUnique.Yes)
+    parameters:
+    - id: contact
+      type: Business.Model.Contact
+    - id: type
+      type: Business.Model.ContactToken.Type
+    - id: expires
+      type: System.DateTimeOffset
+    - id: isUnique
+      type: FarmMaster.Misc.IsUnique
+    return:
+      type: Business.Model.ContactToken
+    content.vb: Public Function GenerateToken(contact As Contact, type As ContactToken.Type, expires As DateTimeOffset, isUnique As IsUnique = IsUnique.Yes) As ContactToken
+  overload: FarmMaster.Services.ServiceContactManager.GenerateToken*
+  implements:
+  - FarmMaster.Services.IServiceContactManager.GenerateToken(Business.Model.Contact,Business.Model.ContactToken.Type,System.DateTimeOffset,FarmMaster.Misc.IsUnique)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Services.ServiceContactManager.ExpireTokenByTokenString(Business.Model.Contact,System.String)
+  commentId: M:FarmMaster.Services.ServiceContactManager.ExpireTokenByTokenString(Business.Model.Contact,System.String)
+  id: ExpireTokenByTokenString(Business.Model.Contact,System.String)
+  parent: FarmMaster.Services.ServiceContactManager
+  langs:
+  - csharp
+  - vb
+  name: ExpireTokenByTokenString(Contact, String)
+  nameWithType: ServiceContactManager.ExpireTokenByTokenString(Contact, String)
+  fullName: FarmMaster.Services.ServiceContactManager.ExpireTokenByTokenString(Business.Model.Contact, System.String)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceContactManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: ExpireTokenByTokenString
+    path: Services/IServiceContactManager.cs
+    startLine: 365
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: public CouldDelete ExpireTokenByTokenString(Contact contact, string tokenString)
+    parameters:
+    - id: contact
+      type: Business.Model.Contact
+    - id: tokenString
+      type: System.String
+    return:
+      type: FarmMaster.Misc.CouldDelete
+    content.vb: Public Function ExpireTokenByTokenString(contact As Contact, tokenString As String) As CouldDelete
+  overload: FarmMaster.Services.ServiceContactManager.ExpireTokenByTokenString*
+  implements:
+  - FarmMaster.Services.IServiceContactManager.ExpireTokenByTokenString(Business.Model.Contact,System.String)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Services.ServiceContactManager.GetContactFromTokenString(System.String)
+  commentId: M:FarmMaster.Services.ServiceContactManager.GetContactFromTokenString(System.String)
+  id: GetContactFromTokenString(System.String)
+  parent: FarmMaster.Services.ServiceContactManager
+  langs:
+  - csharp
+  - vb
+  name: GetContactFromTokenString(String)
+  nameWithType: ServiceContactManager.GetContactFromTokenString(String)
+  fullName: FarmMaster.Services.ServiceContactManager.GetContactFromTokenString(System.String)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceContactManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: GetContactFromTokenString
+    path: Services/IServiceContactManager.cs
+    startLine: 378
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: public Contact GetContactFromTokenString(string tokenString)
+    parameters:
+    - id: tokenString
+      type: System.String
+    return:
+      type: Business.Model.Contact
+    content.vb: Public Function GetContactFromTokenString(tokenString As String) As Contact
+  overload: FarmMaster.Services.ServiceContactManager.GetContactFromTokenString*
+  implements:
+  - FarmMaster.Services.IServiceContactManager.GetContactFromTokenString(System.String)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: FarmMaster.Services
+  commentId: N:FarmMaster.Services
+  name: FarmMaster.Services
+  nameWithType: FarmMaster.Services
+  fullName: FarmMaster.Services
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: FarmMaster.Services.IServiceContactManager
+  commentId: T:FarmMaster.Services.IServiceContactManager
+  parent: FarmMaster.Services
+  name: IServiceContactManager
+  nameWithType: IServiceContactManager
+  fullName: FarmMaster.Services.IServiceContactManager
+- uid: FarmMaster.Services.IServiceEntityManager{Business.Model.Contact}
+  commentId: T:FarmMaster.Services.IServiceEntityManager{Business.Model.Contact}
+  parent: FarmMaster.Services
+  definition: FarmMaster.Services.IServiceEntityManager`1
+  name: IServiceEntityManager<Contact>
+  nameWithType: IServiceEntityManager<Contact>
+  fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.Contact>
+  nameWithType.vb: IServiceEntityManager(Of Contact)
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of Business.Model.Contact)
+  name.vb: IServiceEntityManager(Of Contact)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1
+    name: IServiceEntityManager
+    nameWithType: IServiceEntityManager
+    fullName: FarmMaster.Services.IServiceEntityManager
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Business.Model.Contact
+    name: Contact
+    nameWithType: Contact
+    fullName: Business.Model.Contact
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1
+    name: IServiceEntityManager
+    nameWithType: IServiceEntityManager
+    fullName: FarmMaster.Services.IServiceEntityManager
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Business.Model.Contact
+    name: Contact
+    nameWithType: Contact
+    fullName: Business.Model.Contact
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceGdprData
+  commentId: T:FarmMaster.Services.IServiceGdprData
+  parent: FarmMaster.Services
+  name: IServiceGdprData
+  nameWithType: IServiceGdprData
+  fullName: FarmMaster.Services.IServiceGdprData
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManager{Business.Model.Contact}.FarmMaster.Services.IServiceEntityDataExtentions.FromId``1(System.Int32)
+  commentId: M:FarmMaster.Services.IServiceEntityDataExtentions.FromId``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+  parent: FarmMaster.Services.IServiceEntityDataExtentions
+  definition: FarmMaster.Services.IServiceEntityDataExtentions.FromId``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+  name: FromId<Contact>(Int32)
+  nameWithType: IServiceEntityDataExtentions.FromId<Contact>(Int32)
+  fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromId<Business.Model.Contact>(System.Int32)
+  nameWithType.vb: IServiceEntityDataExtentions.FromId(Of Contact)(Int32)
+  fullName.vb: FarmMaster.Services.IServiceEntityDataExtentions.FromId(Of Business.Model.Contact)(System.Int32)
+  name.vb: FromId(Of Contact)(Int32)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.FromId``1(System.Int32)
+    name: FromId<Contact>
+    nameWithType: IServiceEntityDataExtentions.FromId<Contact>
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromId<Business.Model.Contact>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.FromId``1(System.Int32)
+    name: FromId(Of Contact)
+    nameWithType: IServiceEntityDataExtentions.FromId(Of Contact)
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromId(Of Business.Model.Contact)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManager{Business.Model.Contact}.FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded``1(System.Int32)
+  commentId: M:FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+  parent: FarmMaster.Services.IServiceEntityDataExtentions
+  definition: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+  name: FromIdAllIncluded<Contact>(Int32)
+  nameWithType: IServiceEntityDataExtentions.FromIdAllIncluded<Contact>(Int32)
+  fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded<Business.Model.Contact>(System.Int32)
+  nameWithType.vb: IServiceEntityDataExtentions.FromIdAllIncluded(Of Contact)(Int32)
+  fullName.vb: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded(Of Business.Model.Contact)(System.Int32)
+  name.vb: FromIdAllIncluded(Of Contact)(Int32)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded``1(System.Int32)
+    name: FromIdAllIncluded<Contact>
+    nameWithType: IServiceEntityDataExtentions.FromIdAllIncluded<Contact>
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded<Business.Model.Contact>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded``1(System.Int32)
+    name: FromIdAllIncluded(Of Contact)
+    nameWithType: IServiceEntityDataExtentions.FromIdAllIncluded(Of Contact)
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded(Of Business.Model.Contact)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManager{Business.Model.Contact}.FarmMaster.Services.IServiceEntityDataExtentions.For``1
+  commentId: M:FarmMaster.Services.IServiceEntityDataExtentions.For``1(FarmMaster.Services.IServiceEntityManager{``0})
+  parent: FarmMaster.Services.IServiceEntityDataExtentions
+  definition: FarmMaster.Services.IServiceEntityDataExtentions.For``1(FarmMaster.Services.IServiceEntityManager{``0})
+  name: For<Contact>()
+  nameWithType: IServiceEntityDataExtentions.For<Contact>()
+  fullName: FarmMaster.Services.IServiceEntityDataExtentions.For<Business.Model.Contact>()
+  nameWithType.vb: IServiceEntityDataExtentions.For(Of Contact)()
+  fullName.vb: FarmMaster.Services.IServiceEntityDataExtentions.For(Of Business.Model.Contact)()
+  name.vb: For(Of Contact)()
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.For``1
+    name: For<Contact>
+    nameWithType: IServiceEntityDataExtentions.For<Contact>
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.For<Business.Model.Contact>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.For``1
+    name: For(Of Contact)
+    nameWithType: IServiceEntityDataExtentions.For(Of Contact)
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.For(Of Business.Model.Contact)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: FarmMaster.Services.IServiceEntityManager`1
+  commentId: T:FarmMaster.Services.IServiceEntityManager`1
+  name: IServiceEntityManager<T>
+  nameWithType: IServiceEntityManager<T>
+  fullName: FarmMaster.Services.IServiceEntityManager<T>
+  nameWithType.vb: IServiceEntityManager(Of T)
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of T)
+  name.vb: IServiceEntityManager(Of T)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1
+    name: IServiceEntityManager
+    nameWithType: IServiceEntityManager
+    fullName: FarmMaster.Services.IServiceEntityManager
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1
+    name: IServiceEntityManager
+    nameWithType: IServiceEntityManager
+    fullName: FarmMaster.Services.IServiceEntityManager
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityDataExtentions.FromId``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+  commentId: M:FarmMaster.Services.IServiceEntityDataExtentions.FromId``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+  isExternal: true
+  name: FromId<T>(IServiceEntityManager<T>, Int32)
+  nameWithType: IServiceEntityDataExtentions.FromId<T>(IServiceEntityManager<T>, Int32)
+  fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromId<T>(FarmMaster.Services.IServiceEntityManager<T>, System.Int32)
+  nameWithType.vb: IServiceEntityDataExtentions.FromId(Of T)(IServiceEntityManager(Of T), Int32)
+  fullName.vb: FarmMaster.Services.IServiceEntityDataExtentions.FromId(Of T)(FarmMaster.Services.IServiceEntityManager(Of T), System.Int32)
+  name.vb: FromId(Of T)(IServiceEntityManager(Of T), Int32)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.FromId``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+    name: FromId<T>
+    nameWithType: IServiceEntityDataExtentions.FromId<T>
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromId<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: FarmMaster.Services.IServiceEntityManager`1
+    name: IServiceEntityManager
+    nameWithType: IServiceEntityManager
+    fullName: FarmMaster.Services.IServiceEntityManager
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.FromId``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+    name: FromId(Of T)
+    nameWithType: IServiceEntityDataExtentions.FromId(Of T)
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromId(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: FarmMaster.Services.IServiceEntityManager`1
+    name: IServiceEntityManager
+    nameWithType: IServiceEntityManager
+    fullName: FarmMaster.Services.IServiceEntityManager
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityDataExtentions
+  commentId: T:FarmMaster.Services.IServiceEntityDataExtentions
+  parent: FarmMaster.Services
+  name: IServiceEntityDataExtentions
+  nameWithType: IServiceEntityDataExtentions
+  fullName: FarmMaster.Services.IServiceEntityDataExtentions
+- uid: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+  commentId: M:FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+  isExternal: true
+  name: FromIdAllIncluded<T>(IServiceEntityManager<T>, Int32)
+  nameWithType: IServiceEntityDataExtentions.FromIdAllIncluded<T>(IServiceEntityManager<T>, Int32)
+  fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded<T>(FarmMaster.Services.IServiceEntityManager<T>, System.Int32)
+  nameWithType.vb: IServiceEntityDataExtentions.FromIdAllIncluded(Of T)(IServiceEntityManager(Of T), Int32)
+  fullName.vb: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded(Of T)(FarmMaster.Services.IServiceEntityManager(Of T), System.Int32)
+  name.vb: FromIdAllIncluded(Of T)(IServiceEntityManager(Of T), Int32)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+    name: FromIdAllIncluded<T>
+    nameWithType: IServiceEntityDataExtentions.FromIdAllIncluded<T>
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: FarmMaster.Services.IServiceEntityManager`1
+    name: IServiceEntityManager
+    nameWithType: IServiceEntityManager
+    fullName: FarmMaster.Services.IServiceEntityManager
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+    name: FromIdAllIncluded(Of T)
+    nameWithType: IServiceEntityDataExtentions.FromIdAllIncluded(Of T)
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: FarmMaster.Services.IServiceEntityManager`1
+    name: IServiceEntityManager
+    nameWithType: IServiceEntityManager
+    fullName: FarmMaster.Services.IServiceEntityManager
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityDataExtentions.For``1(FarmMaster.Services.IServiceEntityManager{``0})
+  commentId: M:FarmMaster.Services.IServiceEntityDataExtentions.For``1(FarmMaster.Services.IServiceEntityManager{``0})
+  name: For<T>(IServiceEntityManager<T>)
+  nameWithType: IServiceEntityDataExtentions.For<T>(IServiceEntityManager<T>)
+  fullName: FarmMaster.Services.IServiceEntityDataExtentions.For<T>(FarmMaster.Services.IServiceEntityManager<T>)
+  nameWithType.vb: IServiceEntityDataExtentions.For(Of T)(IServiceEntityManager(Of T))
+  fullName.vb: FarmMaster.Services.IServiceEntityDataExtentions.For(Of T)(FarmMaster.Services.IServiceEntityManager(Of T))
+  name.vb: For(Of T)(IServiceEntityManager(Of T))
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.For``1(FarmMaster.Services.IServiceEntityManager{``0})
+    name: For<T>
+    nameWithType: IServiceEntityDataExtentions.For<T>
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.For<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: FarmMaster.Services.IServiceEntityManager`1
+    name: IServiceEntityManager
+    nameWithType: IServiceEntityManager
+    fullName: FarmMaster.Services.IServiceEntityManager
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.For``1(FarmMaster.Services.IServiceEntityManager{``0})
+    name: For(Of T)
+    nameWithType: IServiceEntityDataExtentions.For(Of T)
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.For(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: FarmMaster.Services.IServiceEntityManager`1
+    name: IServiceEntityManager
+    nameWithType: IServiceEntityManager
+    fullName: FarmMaster.Services.IServiceEntityManager
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.ServiceContactManager.#ctor*
+  commentId: Overload:FarmMaster.Services.ServiceContactManager.#ctor
+  name: ServiceContactManager
+  nameWithType: ServiceContactManager.ServiceContactManager
+  fullName: FarmMaster.Services.ServiceContactManager.ServiceContactManager
+- uid: Business.Model.FarmMasterContext
+  commentId: T:Business.Model.FarmMasterContext
+  parent: Business.Model
+  name: FarmMasterContext
+  nameWithType: FarmMasterContext
+  fullName: Business.Model.FarmMasterContext
+- uid: Business.Model
+  commentId: N:Business.Model
+  name: Business.Model
+  nameWithType: Business.Model
+  fullName: Business.Model
+- uid: FarmMaster.Services.ServiceContactManager.AddTelephoneNumber*
+  commentId: Overload:FarmMaster.Services.ServiceContactManager.AddTelephoneNumber
+  name: AddTelephoneNumber
+  nameWithType: ServiceContactManager.AddTelephoneNumber
+  fullName: FarmMaster.Services.ServiceContactManager.AddTelephoneNumber
+- uid: FarmMaster.Services.IServiceContactManager.AddTelephoneNumber(Business.Model.Contact,Business.Model.User,System.String,System.String,System.String)
+  commentId: M:FarmMaster.Services.IServiceContactManager.AddTelephoneNumber(Business.Model.Contact,Business.Model.User,System.String,System.String,System.String)
+  parent: FarmMaster.Services.IServiceContactManager
+  isExternal: true
+  name: AddTelephoneNumber(Contact, User, String, String, String)
+  nameWithType: IServiceContactManager.AddTelephoneNumber(Contact, User, String, String, String)
+  fullName: FarmMaster.Services.IServiceContactManager.AddTelephoneNumber(Business.Model.Contact, Business.Model.User, System.String, System.String, System.String)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceContactManager.AddTelephoneNumber(Business.Model.Contact,Business.Model.User,System.String,System.String,System.String)
+    name: AddTelephoneNumber
+    nameWithType: IServiceContactManager.AddTelephoneNumber
+    fullName: FarmMaster.Services.IServiceContactManager.AddTelephoneNumber
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Contact
+    name: Contact
+    nameWithType: Contact
+    fullName: Business.Model.Contact
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Business.Model.User
+    name: User
+    nameWithType: User
+    fullName: Business.Model.User
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceContactManager.AddTelephoneNumber(Business.Model.Contact,Business.Model.User,System.String,System.String,System.String)
+    name: AddTelephoneNumber
+    nameWithType: IServiceContactManager.AddTelephoneNumber
+    fullName: FarmMaster.Services.IServiceContactManager.AddTelephoneNumber
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Contact
+    name: Contact
+    nameWithType: Contact
+    fullName: Business.Model.Contact
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Business.Model.User
+    name: User
+    nameWithType: User
+    fullName: Business.Model.User
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Business.Model.Contact
+  commentId: T:Business.Model.Contact
+  parent: Business.Model
+  name: Contact
+  nameWithType: Contact
+  fullName: Business.Model.Contact
+- uid: Business.Model.User
+  commentId: T:Business.Model.User
+  parent: Business.Model
+  name: User
+  nameWithType: User
+  fullName: Business.Model.User
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: Business.Model.Telephone
+  commentId: T:Business.Model.Telephone
+  parent: Business.Model
+  name: Telephone
+  nameWithType: Telephone
+  fullName: Business.Model.Telephone
+- uid: FarmMaster.Services.ServiceContactManager.RemoveTelephoneNumberByName*
+  commentId: Overload:FarmMaster.Services.ServiceContactManager.RemoveTelephoneNumberByName
+  name: RemoveTelephoneNumberByName
+  nameWithType: ServiceContactManager.RemoveTelephoneNumberByName
+  fullName: FarmMaster.Services.ServiceContactManager.RemoveTelephoneNumberByName
+- uid: FarmMaster.Services.IServiceContactManager.RemoveTelephoneNumberByName(Business.Model.Contact,Business.Model.User,System.String,System.String)
+  commentId: M:FarmMaster.Services.IServiceContactManager.RemoveTelephoneNumberByName(Business.Model.Contact,Business.Model.User,System.String,System.String)
+  parent: FarmMaster.Services.IServiceContactManager
+  isExternal: true
+  name: RemoveTelephoneNumberByName(Contact, User, String, String)
+  nameWithType: IServiceContactManager.RemoveTelephoneNumberByName(Contact, User, String, String)
+  fullName: FarmMaster.Services.IServiceContactManager.RemoveTelephoneNumberByName(Business.Model.Contact, Business.Model.User, System.String, System.String)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceContactManager.RemoveTelephoneNumberByName(Business.Model.Contact,Business.Model.User,System.String,System.String)
+    name: RemoveTelephoneNumberByName
+    nameWithType: IServiceContactManager.RemoveTelephoneNumberByName
+    fullName: FarmMaster.Services.IServiceContactManager.RemoveTelephoneNumberByName
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Contact
+    name: Contact
+    nameWithType: Contact
+    fullName: Business.Model.Contact
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Business.Model.User
+    name: User
+    nameWithType: User
+    fullName: Business.Model.User
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceContactManager.RemoveTelephoneNumberByName(Business.Model.Contact,Business.Model.User,System.String,System.String)
+    name: RemoveTelephoneNumberByName
+    nameWithType: IServiceContactManager.RemoveTelephoneNumberByName
+    fullName: FarmMaster.Services.IServiceContactManager.RemoveTelephoneNumberByName
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Contact
+    name: Contact
+    nameWithType: Contact
+    fullName: Business.Model.Contact
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Business.Model.User
+    name: User
+    nameWithType: User
+    fullName: Business.Model.User
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: FarmMaster.Services.ServiceContactManager.RemoveTelephoneNumberById*
+  commentId: Overload:FarmMaster.Services.ServiceContactManager.RemoveTelephoneNumberById
+  name: RemoveTelephoneNumberById
+  nameWithType: ServiceContactManager.RemoveTelephoneNumberById
+  fullName: FarmMaster.Services.ServiceContactManager.RemoveTelephoneNumberById
+- uid: FarmMaster.Services.IServiceContactManager.RemoveTelephoneNumberById(Business.Model.Contact,Business.Model.User,System.String,System.Int32)
+  commentId: M:FarmMaster.Services.IServiceContactManager.RemoveTelephoneNumberById(Business.Model.Contact,Business.Model.User,System.String,System.Int32)
+  parent: FarmMaster.Services.IServiceContactManager
+  isExternal: true
+  name: RemoveTelephoneNumberById(Contact, User, String, Int32)
+  nameWithType: IServiceContactManager.RemoveTelephoneNumberById(Contact, User, String, Int32)
+  fullName: FarmMaster.Services.IServiceContactManager.RemoveTelephoneNumberById(Business.Model.Contact, Business.Model.User, System.String, System.Int32)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceContactManager.RemoveTelephoneNumberById(Business.Model.Contact,Business.Model.User,System.String,System.Int32)
+    name: RemoveTelephoneNumberById
+    nameWithType: IServiceContactManager.RemoveTelephoneNumberById
+    fullName: FarmMaster.Services.IServiceContactManager.RemoveTelephoneNumberById
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Contact
+    name: Contact
+    nameWithType: Contact
+    fullName: Business.Model.Contact
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Business.Model.User
+    name: User
+    nameWithType: User
+    fullName: Business.Model.User
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceContactManager.RemoveTelephoneNumberById(Business.Model.Contact,Business.Model.User,System.String,System.Int32)
+    name: RemoveTelephoneNumberById
+    nameWithType: IServiceContactManager.RemoveTelephoneNumberById
+    fullName: FarmMaster.Services.IServiceContactManager.RemoveTelephoneNumberById
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Contact
+    name: Contact
+    nameWithType: Contact
+    fullName: Business.Model.Contact
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Business.Model.User
+    name: User
+    nameWithType: User
+    fullName: Business.Model.User
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: FarmMaster.Services.ServiceContactManager.LogAction*
+  commentId: Overload:FarmMaster.Services.ServiceContactManager.LogAction
+  name: LogAction
+  nameWithType: ServiceContactManager.LogAction
+  fullName: FarmMaster.Services.ServiceContactManager.LogAction
+- uid: FarmMaster.Services.IServiceContactManager.LogAction(Business.Model.Contact,Business.Model.User,Business.Model.ActionAgainstContactInfo.Type,System.String,System.String)
+  commentId: M:FarmMaster.Services.IServiceContactManager.LogAction(Business.Model.Contact,Business.Model.User,Business.Model.ActionAgainstContactInfo.Type,System.String,System.String)
+  parent: FarmMaster.Services.IServiceContactManager
+  isExternal: true
+  name: LogAction(Contact, User, ActionAgainstContactInfo.Type, String, String)
+  nameWithType: IServiceContactManager.LogAction(Contact, User, ActionAgainstContactInfo.Type, String, String)
+  fullName: FarmMaster.Services.IServiceContactManager.LogAction(Business.Model.Contact, Business.Model.User, Business.Model.ActionAgainstContactInfo.Type, System.String, System.String)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceContactManager.LogAction(Business.Model.Contact,Business.Model.User,Business.Model.ActionAgainstContactInfo.Type,System.String,System.String)
+    name: LogAction
+    nameWithType: IServiceContactManager.LogAction
+    fullName: FarmMaster.Services.IServiceContactManager.LogAction
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Contact
+    name: Contact
+    nameWithType: Contact
+    fullName: Business.Model.Contact
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Business.Model.User
+    name: User
+    nameWithType: User
+    fullName: Business.Model.User
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Business.Model.ActionAgainstContactInfo.Type
+    name: ActionAgainstContactInfo.Type
+    nameWithType: ActionAgainstContactInfo.Type
+    fullName: Business.Model.ActionAgainstContactInfo.Type
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceContactManager.LogAction(Business.Model.Contact,Business.Model.User,Business.Model.ActionAgainstContactInfo.Type,System.String,System.String)
+    name: LogAction
+    nameWithType: IServiceContactManager.LogAction
+    fullName: FarmMaster.Services.IServiceContactManager.LogAction
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Contact
+    name: Contact
+    nameWithType: Contact
+    fullName: Business.Model.Contact
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Business.Model.User
+    name: User
+    nameWithType: User
+    fullName: Business.Model.User
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Business.Model.ActionAgainstContactInfo.Type
+    name: ActionAgainstContactInfo.Type
+    nameWithType: ActionAgainstContactInfo.Type
+    fullName: Business.Model.ActionAgainstContactInfo.Type
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Business.Model.ActionAgainstContactInfo.Type
+  commentId: T:Business.Model.ActionAgainstContactInfo.Type
+  parent: Business.Model
+  name: ActionAgainstContactInfo.Type
+  nameWithType: ActionAgainstContactInfo.Type
+  fullName: Business.Model.ActionAgainstContactInfo.Type
+- uid: FarmMaster.Services.ServiceContactManager.AddEmailAddress*
+  commentId: Overload:FarmMaster.Services.ServiceContactManager.AddEmailAddress
+  name: AddEmailAddress
+  nameWithType: ServiceContactManager.AddEmailAddress
+  fullName: FarmMaster.Services.ServiceContactManager.AddEmailAddress
+- uid: FarmMaster.Services.IServiceContactManager.AddEmailAddress(Business.Model.Contact,Business.Model.User,System.String,System.String,System.String)
+  commentId: M:FarmMaster.Services.IServiceContactManager.AddEmailAddress(Business.Model.Contact,Business.Model.User,System.String,System.String,System.String)
+  parent: FarmMaster.Services.IServiceContactManager
+  isExternal: true
+  name: AddEmailAddress(Contact, User, String, String, String)
+  nameWithType: IServiceContactManager.AddEmailAddress(Contact, User, String, String, String)
+  fullName: FarmMaster.Services.IServiceContactManager.AddEmailAddress(Business.Model.Contact, Business.Model.User, System.String, System.String, System.String)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceContactManager.AddEmailAddress(Business.Model.Contact,Business.Model.User,System.String,System.String,System.String)
+    name: AddEmailAddress
+    nameWithType: IServiceContactManager.AddEmailAddress
+    fullName: FarmMaster.Services.IServiceContactManager.AddEmailAddress
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Contact
+    name: Contact
+    nameWithType: Contact
+    fullName: Business.Model.Contact
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Business.Model.User
+    name: User
+    nameWithType: User
+    fullName: Business.Model.User
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceContactManager.AddEmailAddress(Business.Model.Contact,Business.Model.User,System.String,System.String,System.String)
+    name: AddEmailAddress
+    nameWithType: IServiceContactManager.AddEmailAddress
+    fullName: FarmMaster.Services.IServiceContactManager.AddEmailAddress
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Contact
+    name: Contact
+    nameWithType: Contact
+    fullName: Business.Model.Contact
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Business.Model.User
+    name: User
+    nameWithType: User
+    fullName: Business.Model.User
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Business.Model.Email
+  commentId: T:Business.Model.Email
+  parent: Business.Model
+  name: Email
+  nameWithType: Email
+  fullName: Business.Model.Email
+- uid: FarmMaster.Services.ServiceContactManager.RemoveEmailAddressByName*
+  commentId: Overload:FarmMaster.Services.ServiceContactManager.RemoveEmailAddressByName
+  name: RemoveEmailAddressByName
+  nameWithType: ServiceContactManager.RemoveEmailAddressByName
+  fullName: FarmMaster.Services.ServiceContactManager.RemoveEmailAddressByName
+- uid: FarmMaster.Services.IServiceContactManager.RemoveEmailAddressByName(Business.Model.Contact,Business.Model.User,System.String,System.String)
+  commentId: M:FarmMaster.Services.IServiceContactManager.RemoveEmailAddressByName(Business.Model.Contact,Business.Model.User,System.String,System.String)
+  parent: FarmMaster.Services.IServiceContactManager
+  isExternal: true
+  name: RemoveEmailAddressByName(Contact, User, String, String)
+  nameWithType: IServiceContactManager.RemoveEmailAddressByName(Contact, User, String, String)
+  fullName: FarmMaster.Services.IServiceContactManager.RemoveEmailAddressByName(Business.Model.Contact, Business.Model.User, System.String, System.String)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceContactManager.RemoveEmailAddressByName(Business.Model.Contact,Business.Model.User,System.String,System.String)
+    name: RemoveEmailAddressByName
+    nameWithType: IServiceContactManager.RemoveEmailAddressByName
+    fullName: FarmMaster.Services.IServiceContactManager.RemoveEmailAddressByName
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Contact
+    name: Contact
+    nameWithType: Contact
+    fullName: Business.Model.Contact
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Business.Model.User
+    name: User
+    nameWithType: User
+    fullName: Business.Model.User
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceContactManager.RemoveEmailAddressByName(Business.Model.Contact,Business.Model.User,System.String,System.String)
+    name: RemoveEmailAddressByName
+    nameWithType: IServiceContactManager.RemoveEmailAddressByName
+    fullName: FarmMaster.Services.IServiceContactManager.RemoveEmailAddressByName
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Contact
+    name: Contact
+    nameWithType: Contact
+    fullName: Business.Model.Contact
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Business.Model.User
+    name: User
+    nameWithType: User
+    fullName: Business.Model.User
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.ServiceContactManager.RemoveEmailAddressById*
+  commentId: Overload:FarmMaster.Services.ServiceContactManager.RemoveEmailAddressById
+  name: RemoveEmailAddressById
+  nameWithType: ServiceContactManager.RemoveEmailAddressById
+  fullName: FarmMaster.Services.ServiceContactManager.RemoveEmailAddressById
+- uid: FarmMaster.Services.IServiceContactManager.RemoveEmailAddressById(Business.Model.Contact,Business.Model.User,System.String,System.Int32)
+  commentId: M:FarmMaster.Services.IServiceContactManager.RemoveEmailAddressById(Business.Model.Contact,Business.Model.User,System.String,System.Int32)
+  parent: FarmMaster.Services.IServiceContactManager
+  isExternal: true
+  name: RemoveEmailAddressById(Contact, User, String, Int32)
+  nameWithType: IServiceContactManager.RemoveEmailAddressById(Contact, User, String, Int32)
+  fullName: FarmMaster.Services.IServiceContactManager.RemoveEmailAddressById(Business.Model.Contact, Business.Model.User, System.String, System.Int32)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceContactManager.RemoveEmailAddressById(Business.Model.Contact,Business.Model.User,System.String,System.Int32)
+    name: RemoveEmailAddressById
+    nameWithType: IServiceContactManager.RemoveEmailAddressById
+    fullName: FarmMaster.Services.IServiceContactManager.RemoveEmailAddressById
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Contact
+    name: Contact
+    nameWithType: Contact
+    fullName: Business.Model.Contact
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Business.Model.User
+    name: User
+    nameWithType: User
+    fullName: Business.Model.User
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceContactManager.RemoveEmailAddressById(Business.Model.Contact,Business.Model.User,System.String,System.Int32)
+    name: RemoveEmailAddressById
+    nameWithType: IServiceContactManager.RemoveEmailAddressById
+    fullName: FarmMaster.Services.IServiceContactManager.RemoveEmailAddressById
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Contact
+    name: Contact
+    nameWithType: Contact
+    fullName: Business.Model.Contact
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Business.Model.User
+    name: User
+    nameWithType: User
+    fullName: Business.Model.User
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.ServiceContactManager.AddRelationship*
+  commentId: Overload:FarmMaster.Services.ServiceContactManager.AddRelationship
+  name: AddRelationship
+  nameWithType: ServiceContactManager.AddRelationship
+  fullName: FarmMaster.Services.ServiceContactManager.AddRelationship
+- uid: FarmMaster.Services.IServiceContactManager.AddRelationship(Business.Model.Contact,Business.Model.Contact,Business.Model.User,System.String,System.String)
+  commentId: M:FarmMaster.Services.IServiceContactManager.AddRelationship(Business.Model.Contact,Business.Model.Contact,Business.Model.User,System.String,System.String)
+  parent: FarmMaster.Services.IServiceContactManager
+  isExternal: true
+  name: AddRelationship(Contact, Contact, User, String, String)
+  nameWithType: IServiceContactManager.AddRelationship(Contact, Contact, User, String, String)
+  fullName: FarmMaster.Services.IServiceContactManager.AddRelationship(Business.Model.Contact, Business.Model.Contact, Business.Model.User, System.String, System.String)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceContactManager.AddRelationship(Business.Model.Contact,Business.Model.Contact,Business.Model.User,System.String,System.String)
+    name: AddRelationship
+    nameWithType: IServiceContactManager.AddRelationship
+    fullName: FarmMaster.Services.IServiceContactManager.AddRelationship
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Contact
+    name: Contact
+    nameWithType: Contact
+    fullName: Business.Model.Contact
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Business.Model.Contact
+    name: Contact
+    nameWithType: Contact
+    fullName: Business.Model.Contact
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Business.Model.User
+    name: User
+    nameWithType: User
+    fullName: Business.Model.User
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceContactManager.AddRelationship(Business.Model.Contact,Business.Model.Contact,Business.Model.User,System.String,System.String)
+    name: AddRelationship
+    nameWithType: IServiceContactManager.AddRelationship
+    fullName: FarmMaster.Services.IServiceContactManager.AddRelationship
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Contact
+    name: Contact
+    nameWithType: Contact
+    fullName: Business.Model.Contact
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Business.Model.Contact
+    name: Contact
+    nameWithType: Contact
+    fullName: Business.Model.Contact
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Business.Model.User
+    name: User
+    nameWithType: User
+    fullName: Business.Model.User
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Business.Model.MapContactRelationship
+  commentId: T:Business.Model.MapContactRelationship
+  parent: Business.Model
+  name: MapContactRelationship
+  nameWithType: MapContactRelationship
+  fullName: Business.Model.MapContactRelationship
+- uid: FarmMaster.Services.ServiceContactManager.RemoveRelationshipById*
+  commentId: Overload:FarmMaster.Services.ServiceContactManager.RemoveRelationshipById
+  name: RemoveRelationshipById
+  nameWithType: ServiceContactManager.RemoveRelationshipById
+  fullName: FarmMaster.Services.ServiceContactManager.RemoveRelationshipById
+- uid: FarmMaster.Services.IServiceContactManager.RemoveRelationshipById(Business.Model.Contact,Business.Model.User,System.String,System.Int32)
+  commentId: M:FarmMaster.Services.IServiceContactManager.RemoveRelationshipById(Business.Model.Contact,Business.Model.User,System.String,System.Int32)
+  parent: FarmMaster.Services.IServiceContactManager
+  isExternal: true
+  name: RemoveRelationshipById(Contact, User, String, Int32)
+  nameWithType: IServiceContactManager.RemoveRelationshipById(Contact, User, String, Int32)
+  fullName: FarmMaster.Services.IServiceContactManager.RemoveRelationshipById(Business.Model.Contact, Business.Model.User, System.String, System.Int32)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceContactManager.RemoveRelationshipById(Business.Model.Contact,Business.Model.User,System.String,System.Int32)
+    name: RemoveRelationshipById
+    nameWithType: IServiceContactManager.RemoveRelationshipById
+    fullName: FarmMaster.Services.IServiceContactManager.RemoveRelationshipById
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Contact
+    name: Contact
+    nameWithType: Contact
+    fullName: Business.Model.Contact
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Business.Model.User
+    name: User
+    nameWithType: User
+    fullName: Business.Model.User
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceContactManager.RemoveRelationshipById(Business.Model.Contact,Business.Model.User,System.String,System.Int32)
+    name: RemoveRelationshipById
+    nameWithType: IServiceContactManager.RemoveRelationshipById
+    fullName: FarmMaster.Services.IServiceContactManager.RemoveRelationshipById
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Contact
+    name: Contact
+    nameWithType: Contact
+    fullName: Business.Model.Contact
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Business.Model.User
+    name: User
+    nameWithType: User
+    fullName: Business.Model.User
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.ServiceContactManager.Query*
+  commentId: Overload:FarmMaster.Services.ServiceContactManager.Query
+  name: Query
+  nameWithType: ServiceContactManager.Query
+  fullName: FarmMaster.Services.ServiceContactManager.Query
+- uid: FarmMaster.Services.IServiceEntityManager{Business.Model.Contact}.Query
+  commentId: M:FarmMaster.Services.IServiceEntityManager{Business.Model.Contact}.Query
+  parent: FarmMaster.Services.IServiceEntityManager{Business.Model.Contact}
+  definition: FarmMaster.Services.IServiceEntityManager`1.Query
+  name: Query()
+  nameWithType: IServiceEntityManager<Contact>.Query()
+  fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.Contact>.Query()
+  nameWithType.vb: IServiceEntityManager(Of Contact).Query()
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of Business.Model.Contact).Query()
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.Query
+    name: Query
+    nameWithType: IServiceEntityManager<Contact>.Query
+    fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.Contact>.Query
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.Query
+    name: Query
+    nameWithType: IServiceEntityManager(Of Contact).Query
+    fullName: FarmMaster.Services.IServiceEntityManager(Of Business.Model.Contact).Query
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Linq.IQueryable{Business.Model.Contact}
+  commentId: T:System.Linq.IQueryable{Business.Model.Contact}
+  parent: System.Linq
+  definition: System.Linq.IQueryable`1
+  name: IQueryable<Contact>
+  nameWithType: IQueryable<Contact>
+  fullName: System.Linq.IQueryable<Business.Model.Contact>
+  nameWithType.vb: IQueryable(Of Contact)
+  fullName.vb: System.Linq.IQueryable(Of Business.Model.Contact)
+  name.vb: IQueryable(Of Contact)
+  spec.csharp:
+  - uid: System.Linq.IQueryable`1
+    name: IQueryable
+    nameWithType: IQueryable
+    fullName: System.Linq.IQueryable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Business.Model.Contact
+    name: Contact
+    nameWithType: Contact
+    fullName: Business.Model.Contact
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Linq.IQueryable`1
+    name: IQueryable
+    nameWithType: IQueryable
+    fullName: System.Linq.IQueryable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Business.Model.Contact
+    name: Contact
+    nameWithType: Contact
+    fullName: Business.Model.Contact
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManager`1.Query
+  commentId: M:FarmMaster.Services.IServiceEntityManager`1.Query
+  name: Query()
+  nameWithType: IServiceEntityManager<T>.Query()
+  fullName: FarmMaster.Services.IServiceEntityManager<T>.Query()
+  nameWithType.vb: IServiceEntityManager(Of T).Query()
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of T).Query()
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.Query
+    name: Query
+    nameWithType: IServiceEntityManager<T>.Query
+    fullName: FarmMaster.Services.IServiceEntityManager<T>.Query
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.Query
+    name: Query
+    nameWithType: IServiceEntityManager(Of T).Query
+    fullName: FarmMaster.Services.IServiceEntityManager(Of T).Query
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Linq.IQueryable`1
+  commentId: T:System.Linq.IQueryable`1
+  isExternal: true
+  name: IQueryable<T>
+  nameWithType: IQueryable<T>
+  fullName: System.Linq.IQueryable<T>
+  nameWithType.vb: IQueryable(Of T)
+  fullName.vb: System.Linq.IQueryable(Of T)
+  name.vb: IQueryable(Of T)
+  spec.csharp:
+  - uid: System.Linq.IQueryable`1
+    name: IQueryable
+    nameWithType: IQueryable
+    fullName: System.Linq.IQueryable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Linq.IQueryable`1
+    name: IQueryable
+    nameWithType: IQueryable
+    fullName: System.Linq.IQueryable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Linq
+  commentId: N:System.Linq
+  isExternal: true
+  name: System.Linq
+  nameWithType: System.Linq
+  fullName: System.Linq
+- uid: FarmMaster.Services.ServiceContactManager.QueryAllIncluded*
+  commentId: Overload:FarmMaster.Services.ServiceContactManager.QueryAllIncluded
+  name: QueryAllIncluded
+  nameWithType: ServiceContactManager.QueryAllIncluded
+  fullName: FarmMaster.Services.ServiceContactManager.QueryAllIncluded
+- uid: FarmMaster.Services.IServiceEntityManager{Business.Model.Contact}.QueryAllIncluded
+  commentId: M:FarmMaster.Services.IServiceEntityManager{Business.Model.Contact}.QueryAllIncluded
+  parent: FarmMaster.Services.IServiceEntityManager{Business.Model.Contact}
+  definition: FarmMaster.Services.IServiceEntityManager`1.QueryAllIncluded
+  name: QueryAllIncluded()
+  nameWithType: IServiceEntityManager<Contact>.QueryAllIncluded()
+  fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.Contact>.QueryAllIncluded()
+  nameWithType.vb: IServiceEntityManager(Of Contact).QueryAllIncluded()
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of Business.Model.Contact).QueryAllIncluded()
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.QueryAllIncluded
+    name: QueryAllIncluded
+    nameWithType: IServiceEntityManager<Contact>.QueryAllIncluded
+    fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.Contact>.QueryAllIncluded
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.QueryAllIncluded
+    name: QueryAllIncluded
+    nameWithType: IServiceEntityManager(Of Contact).QueryAllIncluded
+    fullName: FarmMaster.Services.IServiceEntityManager(Of Business.Model.Contact).QueryAllIncluded
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManager`1.QueryAllIncluded
+  commentId: M:FarmMaster.Services.IServiceEntityManager`1.QueryAllIncluded
+  name: QueryAllIncluded()
+  nameWithType: IServiceEntityManager<T>.QueryAllIncluded()
+  fullName: FarmMaster.Services.IServiceEntityManager<T>.QueryAllIncluded()
+  nameWithType.vb: IServiceEntityManager(Of T).QueryAllIncluded()
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of T).QueryAllIncluded()
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.QueryAllIncluded
+    name: QueryAllIncluded
+    nameWithType: IServiceEntityManager<T>.QueryAllIncluded
+    fullName: FarmMaster.Services.IServiceEntityManager<T>.QueryAllIncluded
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.QueryAllIncluded
+    name: QueryAllIncluded
+    nameWithType: IServiceEntityManager(Of T).QueryAllIncluded
+    fullName: FarmMaster.Services.IServiceEntityManager(Of T).QueryAllIncluded
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.ServiceContactManager.GetIdFor*
+  commentId: Overload:FarmMaster.Services.ServiceContactManager.GetIdFor
+  name: GetIdFor
+  nameWithType: ServiceContactManager.GetIdFor
+  fullName: FarmMaster.Services.ServiceContactManager.GetIdFor
+- uid: FarmMaster.Services.IServiceEntityManager{Business.Model.Contact}.GetIdFor(Business.Model.Contact)
+  commentId: M:FarmMaster.Services.IServiceEntityManager{Business.Model.Contact}.GetIdFor(Business.Model.Contact)
+  parent: FarmMaster.Services.IServiceEntityManager{Business.Model.Contact}
+  definition: FarmMaster.Services.IServiceEntityManager`1.GetIdFor(`0)
+  name: GetIdFor(Contact)
+  nameWithType: IServiceEntityManager<Contact>.GetIdFor(Contact)
+  fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.Contact>.GetIdFor(Business.Model.Contact)
+  nameWithType.vb: IServiceEntityManager(Of Contact).GetIdFor(Contact)
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of Business.Model.Contact).GetIdFor(Business.Model.Contact)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.GetIdFor(`0)
+    name: GetIdFor
+    nameWithType: IServiceEntityManager<Contact>.GetIdFor
+    fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.Contact>.GetIdFor
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Contact
+    name: Contact
+    nameWithType: Contact
+    fullName: Business.Model.Contact
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.GetIdFor(`0)
+    name: GetIdFor
+    nameWithType: IServiceEntityManager(Of Contact).GetIdFor
+    fullName: FarmMaster.Services.IServiceEntityManager(Of Business.Model.Contact).GetIdFor
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Contact
+    name: Contact
+    nameWithType: Contact
+    fullName: Business.Model.Contact
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManager`1.GetIdFor(`0)
+  commentId: M:FarmMaster.Services.IServiceEntityManager`1.GetIdFor(`0)
+  name: GetIdFor(T)
+  nameWithType: IServiceEntityManager<T>.GetIdFor(T)
+  fullName: FarmMaster.Services.IServiceEntityManager<T>.GetIdFor(T)
+  nameWithType.vb: IServiceEntityManager(Of T).GetIdFor(T)
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of T).GetIdFor(T)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.GetIdFor(`0)
+    name: GetIdFor
+    nameWithType: IServiceEntityManager<T>.GetIdFor
+    fullName: FarmMaster.Services.IServiceEntityManager<T>.GetIdFor
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.GetIdFor(`0)
+    name: GetIdFor
+    nameWithType: IServiceEntityManager(Of T).GetIdFor
+    fullName: FarmMaster.Services.IServiceEntityManager(Of T).GetIdFor
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.ServiceContactManager.Create*
+  commentId: Overload:FarmMaster.Services.ServiceContactManager.Create
+  name: Create
+  nameWithType: ServiceContactManager.Create
+  fullName: FarmMaster.Services.ServiceContactManager.Create
+- uid: FarmMaster.Services.IServiceContactManager.Create(Business.Model.Contact.Type,System.String,FarmMaster.Misc.SaveChanges)
+  commentId: M:FarmMaster.Services.IServiceContactManager.Create(Business.Model.Contact.Type,System.String,FarmMaster.Misc.SaveChanges)
+  parent: FarmMaster.Services.IServiceContactManager
+  isExternal: true
+  name: Create(Contact.Type, String, SaveChanges)
+  nameWithType: IServiceContactManager.Create(Contact.Type, String, SaveChanges)
+  fullName: FarmMaster.Services.IServiceContactManager.Create(Business.Model.Contact.Type, System.String, FarmMaster.Misc.SaveChanges)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceContactManager.Create(Business.Model.Contact.Type,System.String,FarmMaster.Misc.SaveChanges)
+    name: Create
+    nameWithType: IServiceContactManager.Create
+    fullName: FarmMaster.Services.IServiceContactManager.Create
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Contact.Type
+    name: Contact.Type
+    nameWithType: Contact.Type
+    fullName: Business.Model.Contact.Type
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: FarmMaster.Misc.SaveChanges
+    name: SaveChanges
+    nameWithType: SaveChanges
+    fullName: FarmMaster.Misc.SaveChanges
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceContactManager.Create(Business.Model.Contact.Type,System.String,FarmMaster.Misc.SaveChanges)
+    name: Create
+    nameWithType: IServiceContactManager.Create
+    fullName: FarmMaster.Services.IServiceContactManager.Create
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Contact.Type
+    name: Contact.Type
+    nameWithType: Contact.Type
+    fullName: Business.Model.Contact.Type
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: FarmMaster.Misc.SaveChanges
+    name: SaveChanges
+    nameWithType: SaveChanges
+    fullName: FarmMaster.Misc.SaveChanges
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Business.Model.Contact.Type
+  commentId: T:Business.Model.Contact.Type
+  parent: Business.Model
+  name: Contact.Type
+  nameWithType: Contact.Type
+  fullName: Business.Model.Contact.Type
+- uid: FarmMaster.Misc.SaveChanges
+  commentId: T:FarmMaster.Misc.SaveChanges
+  parent: FarmMaster.Misc
+  name: SaveChanges
+  nameWithType: SaveChanges
+  fullName: FarmMaster.Misc.SaveChanges
+- uid: FarmMaster.Misc
+  commentId: N:FarmMaster.Misc
+  name: FarmMaster.Misc
+  nameWithType: FarmMaster.Misc
+  fullName: FarmMaster.Misc
+- uid: FarmMaster.Services.ServiceContactManager.Update*
+  commentId: Overload:FarmMaster.Services.ServiceContactManager.Update
+  name: Update
+  nameWithType: ServiceContactManager.Update
+  fullName: FarmMaster.Services.ServiceContactManager.Update
+- uid: FarmMaster.Services.IServiceEntityManager{Business.Model.Contact}.Update(Business.Model.Contact)
+  commentId: M:FarmMaster.Services.IServiceEntityManager{Business.Model.Contact}.Update(Business.Model.Contact)
+  parent: FarmMaster.Services.IServiceEntityManager{Business.Model.Contact}
+  definition: FarmMaster.Services.IServiceEntityManager`1.Update(`0)
+  name: Update(Contact)
+  nameWithType: IServiceEntityManager<Contact>.Update(Contact)
+  fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.Contact>.Update(Business.Model.Contact)
+  nameWithType.vb: IServiceEntityManager(Of Contact).Update(Contact)
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of Business.Model.Contact).Update(Business.Model.Contact)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.Update(`0)
+    name: Update
+    nameWithType: IServiceEntityManager<Contact>.Update
+    fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.Contact>.Update
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Contact
+    name: Contact
+    nameWithType: Contact
+    fullName: Business.Model.Contact
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.Update(`0)
+    name: Update
+    nameWithType: IServiceEntityManager(Of Contact).Update
+    fullName: FarmMaster.Services.IServiceEntityManager(Of Business.Model.Contact).Update
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Contact
+    name: Contact
+    nameWithType: Contact
+    fullName: Business.Model.Contact
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManager`1.Update(`0)
+  commentId: M:FarmMaster.Services.IServiceEntityManager`1.Update(`0)
+  name: Update(T)
+  nameWithType: IServiceEntityManager<T>.Update(T)
+  fullName: FarmMaster.Services.IServiceEntityManager<T>.Update(T)
+  nameWithType.vb: IServiceEntityManager(Of T).Update(T)
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of T).Update(T)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.Update(`0)
+    name: Update
+    nameWithType: IServiceEntityManager<T>.Update
+    fullName: FarmMaster.Services.IServiceEntityManager<T>.Update
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.Update(`0)
+    name: Update
+    nameWithType: IServiceEntityManager(Of T).Update
+    fullName: FarmMaster.Services.IServiceEntityManager(Of T).Update
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.ServiceContactManager.GetContactGdprData*
+  commentId: Overload:FarmMaster.Services.ServiceContactManager.GetContactGdprData
+  name: GetContactGdprData
+  nameWithType: ServiceContactManager.GetContactGdprData
+  fullName: FarmMaster.Services.ServiceContactManager.GetContactGdprData
+- uid: FarmMaster.Services.IServiceGdprData.GetContactGdprData(Business.Model.Contact,Newtonsoft.Json.Linq.JObject)
+  commentId: M:FarmMaster.Services.IServiceGdprData.GetContactGdprData(Business.Model.Contact,Newtonsoft.Json.Linq.JObject)
+  parent: FarmMaster.Services.IServiceGdprData
+  isExternal: true
+  name: GetContactGdprData(Contact, JObject)
+  nameWithType: IServiceGdprData.GetContactGdprData(Contact, JObject)
+  fullName: FarmMaster.Services.IServiceGdprData.GetContactGdprData(Business.Model.Contact, Newtonsoft.Json.Linq.JObject)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceGdprData.GetContactGdprData(Business.Model.Contact,Newtonsoft.Json.Linq.JObject)
+    name: GetContactGdprData
+    nameWithType: IServiceGdprData.GetContactGdprData
+    fullName: FarmMaster.Services.IServiceGdprData.GetContactGdprData
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Contact
+    name: Contact
+    nameWithType: Contact
+    fullName: Business.Model.Contact
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Newtonsoft.Json.Linq.JObject
+    name: JObject
+    nameWithType: JObject
+    fullName: Newtonsoft.Json.Linq.JObject
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceGdprData.GetContactGdprData(Business.Model.Contact,Newtonsoft.Json.Linq.JObject)
+    name: GetContactGdprData
+    nameWithType: IServiceGdprData.GetContactGdprData
+    fullName: FarmMaster.Services.IServiceGdprData.GetContactGdprData
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Contact
+    name: Contact
+    nameWithType: Contact
+    fullName: Business.Model.Contact
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Newtonsoft.Json.Linq.JObject
+    name: JObject
+    nameWithType: JObject
+    fullName: Newtonsoft.Json.Linq.JObject
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Newtonsoft.Json.Linq.JObject
+  commentId: T:Newtonsoft.Json.Linq.JObject
+  parent: Newtonsoft.Json.Linq
+  isExternal: true
+  name: JObject
+  nameWithType: JObject
+  fullName: Newtonsoft.Json.Linq.JObject
+- uid: Newtonsoft.Json.Linq
+  commentId: N:Newtonsoft.Json.Linq
+  isExternal: true
+  name: Newtonsoft.Json.Linq
+  nameWithType: Newtonsoft.Json.Linq
+  fullName: Newtonsoft.Json.Linq
+- uid: FarmMaster.Services.ServiceContactManager.GetUserGdprData*
+  commentId: Overload:FarmMaster.Services.ServiceContactManager.GetUserGdprData
+  name: GetUserGdprData
+  nameWithType: ServiceContactManager.GetUserGdprData
+  fullName: FarmMaster.Services.ServiceContactManager.GetUserGdprData
+- uid: FarmMaster.Services.IServiceGdprData.GetUserGdprData(Business.Model.User,Newtonsoft.Json.Linq.JObject)
+  commentId: M:FarmMaster.Services.IServiceGdprData.GetUserGdprData(Business.Model.User,Newtonsoft.Json.Linq.JObject)
+  parent: FarmMaster.Services.IServiceGdprData
+  isExternal: true
+  name: GetUserGdprData(User, JObject)
+  nameWithType: IServiceGdprData.GetUserGdprData(User, JObject)
+  fullName: FarmMaster.Services.IServiceGdprData.GetUserGdprData(Business.Model.User, Newtonsoft.Json.Linq.JObject)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceGdprData.GetUserGdprData(Business.Model.User,Newtonsoft.Json.Linq.JObject)
+    name: GetUserGdprData
+    nameWithType: IServiceGdprData.GetUserGdprData
+    fullName: FarmMaster.Services.IServiceGdprData.GetUserGdprData
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.User
+    name: User
+    nameWithType: User
+    fullName: Business.Model.User
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Newtonsoft.Json.Linq.JObject
+    name: JObject
+    nameWithType: JObject
+    fullName: Newtonsoft.Json.Linq.JObject
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceGdprData.GetUserGdprData(Business.Model.User,Newtonsoft.Json.Linq.JObject)
+    name: GetUserGdprData
+    nameWithType: IServiceGdprData.GetUserGdprData
+    fullName: FarmMaster.Services.IServiceGdprData.GetUserGdprData
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.User
+    name: User
+    nameWithType: User
+    fullName: Business.Model.User
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Newtonsoft.Json.Linq.JObject
+    name: JObject
+    nameWithType: JObject
+    fullName: Newtonsoft.Json.Linq.JObject
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.ServiceContactManager.AnonymiseContactData*
+  commentId: Overload:FarmMaster.Services.ServiceContactManager.AnonymiseContactData
+  name: AnonymiseContactData
+  nameWithType: ServiceContactManager.AnonymiseContactData
+  fullName: FarmMaster.Services.ServiceContactManager.AnonymiseContactData
+- uid: FarmMaster.Services.IServiceGdprData.AnonymiseContactData(Business.Model.Contact)
+  commentId: M:FarmMaster.Services.IServiceGdprData.AnonymiseContactData(Business.Model.Contact)
+  parent: FarmMaster.Services.IServiceGdprData
+  name: AnonymiseContactData(Contact)
+  nameWithType: IServiceGdprData.AnonymiseContactData(Contact)
+  fullName: FarmMaster.Services.IServiceGdprData.AnonymiseContactData(Business.Model.Contact)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceGdprData.AnonymiseContactData(Business.Model.Contact)
+    name: AnonymiseContactData
+    nameWithType: IServiceGdprData.AnonymiseContactData
+    fullName: FarmMaster.Services.IServiceGdprData.AnonymiseContactData
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Contact
+    name: Contact
+    nameWithType: Contact
+    fullName: Business.Model.Contact
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceGdprData.AnonymiseContactData(Business.Model.Contact)
+    name: AnonymiseContactData
+    nameWithType: IServiceGdprData.AnonymiseContactData
+    fullName: FarmMaster.Services.IServiceGdprData.AnonymiseContactData
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Contact
+    name: Contact
+    nameWithType: Contact
+    fullName: Business.Model.Contact
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.ServiceContactManager.AnonymiseUserData*
+  commentId: Overload:FarmMaster.Services.ServiceContactManager.AnonymiseUserData
+  name: AnonymiseUserData
+  nameWithType: ServiceContactManager.AnonymiseUserData
+  fullName: FarmMaster.Services.ServiceContactManager.AnonymiseUserData
+- uid: FarmMaster.Services.IServiceGdprData.AnonymiseUserData(Business.Model.User)
+  commentId: M:FarmMaster.Services.IServiceGdprData.AnonymiseUserData(Business.Model.User)
+  parent: FarmMaster.Services.IServiceGdprData
+  name: AnonymiseUserData(User)
+  nameWithType: IServiceGdprData.AnonymiseUserData(User)
+  fullName: FarmMaster.Services.IServiceGdprData.AnonymiseUserData(Business.Model.User)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceGdprData.AnonymiseUserData(Business.Model.User)
+    name: AnonymiseUserData
+    nameWithType: IServiceGdprData.AnonymiseUserData
+    fullName: FarmMaster.Services.IServiceGdprData.AnonymiseUserData
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.User
+    name: User
+    nameWithType: User
+    fullName: Business.Model.User
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceGdprData.AnonymiseUserData(Business.Model.User)
+    name: AnonymiseUserData
+    nameWithType: IServiceGdprData.AnonymiseUserData
+    fullName: FarmMaster.Services.IServiceGdprData.AnonymiseUserData
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.User
+    name: User
+    nameWithType: User
+    fullName: Business.Model.User
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.ServiceContactManager.GenerateToken*
+  commentId: Overload:FarmMaster.Services.ServiceContactManager.GenerateToken
+  name: GenerateToken
+  nameWithType: ServiceContactManager.GenerateToken
+  fullName: FarmMaster.Services.ServiceContactManager.GenerateToken
+- uid: FarmMaster.Services.IServiceContactManager.GenerateToken(Business.Model.Contact,Business.Model.ContactToken.Type,System.DateTimeOffset,FarmMaster.Misc.IsUnique)
+  commentId: M:FarmMaster.Services.IServiceContactManager.GenerateToken(Business.Model.Contact,Business.Model.ContactToken.Type,System.DateTimeOffset,FarmMaster.Misc.IsUnique)
+  parent: FarmMaster.Services.IServiceContactManager
+  isExternal: true
+  name: GenerateToken(Contact, ContactToken.Type, DateTimeOffset, IsUnique)
+  nameWithType: IServiceContactManager.GenerateToken(Contact, ContactToken.Type, DateTimeOffset, IsUnique)
+  fullName: FarmMaster.Services.IServiceContactManager.GenerateToken(Business.Model.Contact, Business.Model.ContactToken.Type, System.DateTimeOffset, FarmMaster.Misc.IsUnique)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceContactManager.GenerateToken(Business.Model.Contact,Business.Model.ContactToken.Type,System.DateTimeOffset,FarmMaster.Misc.IsUnique)
+    name: GenerateToken
+    nameWithType: IServiceContactManager.GenerateToken
+    fullName: FarmMaster.Services.IServiceContactManager.GenerateToken
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Contact
+    name: Contact
+    nameWithType: Contact
+    fullName: Business.Model.Contact
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Business.Model.ContactToken.Type
+    name: ContactToken.Type
+    nameWithType: ContactToken.Type
+    fullName: Business.Model.ContactToken.Type
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.DateTimeOffset
+    name: DateTimeOffset
+    nameWithType: DateTimeOffset
+    fullName: System.DateTimeOffset
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: FarmMaster.Misc.IsUnique
+    name: IsUnique
+    nameWithType: IsUnique
+    fullName: FarmMaster.Misc.IsUnique
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceContactManager.GenerateToken(Business.Model.Contact,Business.Model.ContactToken.Type,System.DateTimeOffset,FarmMaster.Misc.IsUnique)
+    name: GenerateToken
+    nameWithType: IServiceContactManager.GenerateToken
+    fullName: FarmMaster.Services.IServiceContactManager.GenerateToken
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Contact
+    name: Contact
+    nameWithType: Contact
+    fullName: Business.Model.Contact
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Business.Model.ContactToken.Type
+    name: ContactToken.Type
+    nameWithType: ContactToken.Type
+    fullName: Business.Model.ContactToken.Type
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.DateTimeOffset
+    name: DateTimeOffset
+    nameWithType: DateTimeOffset
+    fullName: System.DateTimeOffset
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: FarmMaster.Misc.IsUnique
+    name: IsUnique
+    nameWithType: IsUnique
+    fullName: FarmMaster.Misc.IsUnique
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Business.Model.ContactToken.Type
+  commentId: T:Business.Model.ContactToken.Type
+  parent: Business.Model
+  name: ContactToken.Type
+  nameWithType: ContactToken.Type
+  fullName: Business.Model.ContactToken.Type
+- uid: System.DateTimeOffset
+  commentId: T:System.DateTimeOffset
+  parent: System
+  isExternal: true
+  name: DateTimeOffset
+  nameWithType: DateTimeOffset
+  fullName: System.DateTimeOffset
+- uid: FarmMaster.Misc.IsUnique
+  commentId: T:FarmMaster.Misc.IsUnique
+  parent: FarmMaster.Misc
+  name: IsUnique
+  nameWithType: IsUnique
+  fullName: FarmMaster.Misc.IsUnique
+- uid: Business.Model.ContactToken
+  commentId: T:Business.Model.ContactToken
+  parent: Business.Model
+  name: ContactToken
+  nameWithType: ContactToken
+  fullName: Business.Model.ContactToken
+- uid: FarmMaster.Services.ServiceContactManager.ExpireTokenByTokenString*
+  commentId: Overload:FarmMaster.Services.ServiceContactManager.ExpireTokenByTokenString
+  name: ExpireTokenByTokenString
+  nameWithType: ServiceContactManager.ExpireTokenByTokenString
+  fullName: FarmMaster.Services.ServiceContactManager.ExpireTokenByTokenString
+- uid: FarmMaster.Services.IServiceContactManager.ExpireTokenByTokenString(Business.Model.Contact,System.String)
+  commentId: M:FarmMaster.Services.IServiceContactManager.ExpireTokenByTokenString(Business.Model.Contact,System.String)
+  parent: FarmMaster.Services.IServiceContactManager
+  isExternal: true
+  name: ExpireTokenByTokenString(Contact, String)
+  nameWithType: IServiceContactManager.ExpireTokenByTokenString(Contact, String)
+  fullName: FarmMaster.Services.IServiceContactManager.ExpireTokenByTokenString(Business.Model.Contact, System.String)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceContactManager.ExpireTokenByTokenString(Business.Model.Contact,System.String)
+    name: ExpireTokenByTokenString
+    nameWithType: IServiceContactManager.ExpireTokenByTokenString
+    fullName: FarmMaster.Services.IServiceContactManager.ExpireTokenByTokenString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Contact
+    name: Contact
+    nameWithType: Contact
+    fullName: Business.Model.Contact
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceContactManager.ExpireTokenByTokenString(Business.Model.Contact,System.String)
+    name: ExpireTokenByTokenString
+    nameWithType: IServiceContactManager.ExpireTokenByTokenString
+    fullName: FarmMaster.Services.IServiceContactManager.ExpireTokenByTokenString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Contact
+    name: Contact
+    nameWithType: Contact
+    fullName: Business.Model.Contact
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Misc.CouldDelete
+  commentId: T:FarmMaster.Misc.CouldDelete
+  parent: FarmMaster.Misc
+  name: CouldDelete
+  nameWithType: CouldDelete
+  fullName: FarmMaster.Misc.CouldDelete
+- uid: FarmMaster.Services.ServiceContactManager.GetContactFromTokenString*
+  commentId: Overload:FarmMaster.Services.ServiceContactManager.GetContactFromTokenString
+  name: GetContactFromTokenString
+  nameWithType: ServiceContactManager.GetContactFromTokenString
+  fullName: FarmMaster.Services.ServiceContactManager.GetContactFromTokenString
+- uid: FarmMaster.Services.IServiceContactManager.GetContactFromTokenString(System.String)
+  commentId: M:FarmMaster.Services.IServiceContactManager.GetContactFromTokenString(System.String)
+  parent: FarmMaster.Services.IServiceContactManager
+  isExternal: true
+  name: GetContactFromTokenString(String)
+  nameWithType: IServiceContactManager.GetContactFromTokenString(String)
+  fullName: FarmMaster.Services.IServiceContactManager.GetContactFromTokenString(System.String)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceContactManager.GetContactFromTokenString(System.String)
+    name: GetContactFromTokenString
+    nameWithType: IServiceContactManager.GetContactFromTokenString
+    fullName: FarmMaster.Services.IServiceContactManager.GetContactFromTokenString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceContactManager.GetContactFromTokenString(System.String)
+    name: GetContactFromTokenString
+    nameWithType: IServiceContactManager.GetContactFromTokenString
+    fullName: FarmMaster.Services.IServiceContactManager.GetContactFromTokenString
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )

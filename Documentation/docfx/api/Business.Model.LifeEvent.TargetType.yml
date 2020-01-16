@@ -1,0 +1,114 @@
+### YamlMime:ManagedReference
+items:
+- uid: Business.Model.LifeEvent.TargetType
+  commentId: T:Business.Model.LifeEvent.TargetType
+  id: LifeEvent.TargetType
+  parent: Business.Model
+  children:
+  - Business.Model.LifeEvent.TargetType.Animal
+  - Business.Model.LifeEvent.TargetType.Unknown
+  langs:
+  - csharp
+  - vb
+  name: LifeEvent.TargetType
+  nameWithType: LifeEvent.TargetType
+  fullName: Business.Model.LifeEvent.TargetType
+  type: Enum
+  source:
+    remote:
+      path: Business/Model/LifeEvent.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: TargetType
+    path: ../Business/Model/LifeEvent.cs
+    startLine: 15
+  assemblies:
+  - Business
+  namespace: Business.Model
+  summary: "\nLife events will eventually be extended onto things like vehicles, so \nwe need to specify what targets each life event applies to.\n"
+  example: []
+  syntax:
+    content: public enum TargetType
+    content.vb: Public Enum TargetType
+  modifiers.csharp:
+  - public
+  - enum
+  modifiers.vb:
+  - Public
+  - Enum
+- uid: Business.Model.LifeEvent.TargetType.Unknown
+  commentId: F:Business.Model.LifeEvent.TargetType.Unknown
+  id: Unknown
+  parent: Business.Model.LifeEvent.TargetType
+  langs:
+  - csharp
+  - vb
+  name: Unknown
+  nameWithType: LifeEvent.TargetType.Unknown
+  fullName: Business.Model.LifeEvent.TargetType.Unknown
+  type: Field
+  source:
+    remote:
+      path: Business/Model/LifeEvent.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: Unknown
+    path: ../Business/Model/LifeEvent.cs
+    startLine: 17
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: Unknown = 0
+    return:
+      type: Business.Model.LifeEvent.TargetType
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: Business.Model.LifeEvent.TargetType.Animal
+  commentId: F:Business.Model.LifeEvent.TargetType.Animal
+  id: Animal
+  parent: Business.Model.LifeEvent.TargetType
+  langs:
+  - csharp
+  - vb
+  name: Animal
+  nameWithType: LifeEvent.TargetType.Animal
+  fullName: Business.Model.LifeEvent.TargetType.Animal
+  type: Field
+  source:
+    remote:
+      path: Business/Model/LifeEvent.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: Animal
+    path: ../Business/Model/LifeEvent.cs
+    startLine: 18
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: Animal = 1
+    return:
+      type: Business.Model.LifeEvent.TargetType
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+references:
+- uid: Business.Model
+  commentId: N:Business.Model
+  name: Business.Model
+  nameWithType: Business.Model
+  fullName: Business.Model
+- uid: Business.Model.LifeEvent.TargetType
+  commentId: T:Business.Model.LifeEvent.TargetType
+  parent: Business.Model
+  name: LifeEvent.TargetType
+  nameWithType: LifeEvent.TargetType
+  fullName: Business.Model.LifeEvent.TargetType

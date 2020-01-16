@@ -1,0 +1,1056 @@
+### YamlMime:ManagedReference
+items:
+- uid: FarmMaster.Services.IServiceSpeciesBreedManager
+  commentId: T:FarmMaster.Services.IServiceSpeciesBreedManager
+  id: IServiceSpeciesBreedManager
+  parent: FarmMaster.Services
+  children:
+  - FarmMaster.Services.IServiceSpeciesBreedManager.CreateBreed(System.String,Business.Model.Species,Business.Model.Contact,System.Boolean)
+  - FarmMaster.Services.IServiceSpeciesBreedManager.CreateSpecies(System.String,System.Boolean)
+  langs:
+  - csharp
+  - vb
+  name: IServiceSpeciesBreedManager
+  nameWithType: IServiceSpeciesBreedManager
+  fullName: FarmMaster.Services.IServiceSpeciesBreedManager
+  type: Interface
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceSpeciesBreedManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: IServiceSpeciesBreedManager
+    path: Services/IServiceSpeciesBreedManager.cs
+    startLine: 10
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: 'public interface IServiceSpeciesBreedManager : IServiceEntityManager<Species>, IServiceEntityManager<Breed>, IServiceEntityManagerFullDeletion<Species>, IServiceEntityManagerFullDeletion<Breed>, IServiceGdprData'
+    content.vb: >-
+      Public Interface IServiceSpeciesBreedManager
+
+          Inherits IServiceEntityManager(Of Species), IServiceEntityManager(Of Breed), IServiceEntityManagerFullDeletion(Of Species), IServiceEntityManagerFullDeletion(Of Breed), IServiceGdprData
+  inheritedMembers:
+  - FarmMaster.Services.IServiceEntityManager{Business.Model.Species}.Query
+  - FarmMaster.Services.IServiceEntityManager{Business.Model.Species}.QueryAllIncluded
+  - FarmMaster.Services.IServiceEntityManager{Business.Model.Species}.GetIdFor(Business.Model.Species)
+  - FarmMaster.Services.IServiceEntityManager{Business.Model.Species}.Update(Business.Model.Species)
+  - FarmMaster.Services.IServiceEntityManager{Business.Model.Breed}.GetIdFor(Business.Model.Breed)
+  - FarmMaster.Services.IServiceEntityManager{Business.Model.Breed}.Update(Business.Model.Breed)
+  - FarmMaster.Services.IServiceEntityManagerFullDeletion{Business.Model.Species}.FullDelete(Business.Model.Species)
+  - FarmMaster.Services.IServiceEntityManagerFullDeletion{Business.Model.Breed}.FullDelete(Business.Model.Breed)
+  - FarmMaster.Services.IServiceGdprData.GetContactGdprData(Business.Model.Contact,Newtonsoft.Json.Linq.JObject)
+  - FarmMaster.Services.IServiceGdprData.GetUserGdprData(Business.Model.User,Newtonsoft.Json.Linq.JObject)
+  - FarmMaster.Services.IServiceGdprData.AnonymiseContactData(Business.Model.Contact)
+  - FarmMaster.Services.IServiceGdprData.AnonymiseUserData(Business.Model.User)
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: FarmMaster.Services.IServiceSpeciesBreedManager.CreateSpecies(System.String,System.Boolean)
+  commentId: M:FarmMaster.Services.IServiceSpeciesBreedManager.CreateSpecies(System.String,System.Boolean)
+  id: CreateSpecies(System.String,System.Boolean)
+  parent: FarmMaster.Services.IServiceSpeciesBreedManager
+  langs:
+  - csharp
+  - vb
+  name: CreateSpecies(String, Boolean)
+  nameWithType: IServiceSpeciesBreedManager.CreateSpecies(String, Boolean)
+  fullName: FarmMaster.Services.IServiceSpeciesBreedManager.CreateSpecies(System.String, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceSpeciesBreedManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: CreateSpecies
+    path: Services/IServiceSpeciesBreedManager.cs
+    startLine: 16
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: Species CreateSpecies(string name, bool isPoultry)
+    parameters:
+    - id: name
+      type: System.String
+    - id: isPoultry
+      type: System.Boolean
+    return:
+      type: Business.Model.Species
+    content.vb: Function CreateSpecies(name As String, isPoultry As Boolean) As Species
+  overload: FarmMaster.Services.IServiceSpeciesBreedManager.CreateSpecies*
+- uid: FarmMaster.Services.IServiceSpeciesBreedManager.CreateBreed(System.String,Business.Model.Species,Business.Model.Contact,System.Boolean)
+  commentId: M:FarmMaster.Services.IServiceSpeciesBreedManager.CreateBreed(System.String,Business.Model.Species,Business.Model.Contact,System.Boolean)
+  id: CreateBreed(System.String,Business.Model.Species,Business.Model.Contact,System.Boolean)
+  parent: FarmMaster.Services.IServiceSpeciesBreedManager
+  langs:
+  - csharp
+  - vb
+  name: CreateBreed(String, Species, Contact, Boolean)
+  nameWithType: IServiceSpeciesBreedManager.CreateBreed(String, Species, Contact, Boolean)
+  fullName: FarmMaster.Services.IServiceSpeciesBreedManager.CreateBreed(System.String, Business.Model.Species, Business.Model.Contact, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceSpeciesBreedManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: CreateBreed
+    path: Services/IServiceSpeciesBreedManager.cs
+    startLine: 17
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: Breed CreateBreed(string name, Species species, Contact breedSociety, bool isRegisterable)
+    parameters:
+    - id: name
+      type: System.String
+    - id: species
+      type: Business.Model.Species
+    - id: breedSociety
+      type: Business.Model.Contact
+    - id: isRegisterable
+      type: System.Boolean
+    return:
+      type: Business.Model.Breed
+    content.vb: Function CreateBreed(name As String, species As Species, breedSociety As Contact, isRegisterable As Boolean) As Breed
+  overload: FarmMaster.Services.IServiceSpeciesBreedManager.CreateBreed*
+references:
+- uid: FarmMaster.Services
+  commentId: N:FarmMaster.Services
+  name: FarmMaster.Services
+  nameWithType: FarmMaster.Services
+  fullName: FarmMaster.Services
+- uid: FarmMaster.Services.IServiceEntityManager{Business.Model.Species}.Query
+  commentId: M:FarmMaster.Services.IServiceEntityManager{Business.Model.Species}.Query
+  parent: FarmMaster.Services.IServiceEntityManager{Business.Model.Species}
+  definition: FarmMaster.Services.IServiceEntityManager`1.Query
+  name: Query()
+  nameWithType: IServiceEntityManager<Species>.Query()
+  fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.Species>.Query()
+  nameWithType.vb: IServiceEntityManager(Of Species).Query()
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of Business.Model.Species).Query()
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.Query
+    name: Query
+    nameWithType: IServiceEntityManager<Species>.Query
+    fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.Species>.Query
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.Query
+    name: Query
+    nameWithType: IServiceEntityManager(Of Species).Query
+    fullName: FarmMaster.Services.IServiceEntityManager(Of Business.Model.Species).Query
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManager{Business.Model.Species}.QueryAllIncluded
+  commentId: M:FarmMaster.Services.IServiceEntityManager{Business.Model.Species}.QueryAllIncluded
+  parent: FarmMaster.Services.IServiceEntityManager{Business.Model.Species}
+  definition: FarmMaster.Services.IServiceEntityManager`1.QueryAllIncluded
+  name: QueryAllIncluded()
+  nameWithType: IServiceEntityManager<Species>.QueryAllIncluded()
+  fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.Species>.QueryAllIncluded()
+  nameWithType.vb: IServiceEntityManager(Of Species).QueryAllIncluded()
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of Business.Model.Species).QueryAllIncluded()
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.QueryAllIncluded
+    name: QueryAllIncluded
+    nameWithType: IServiceEntityManager<Species>.QueryAllIncluded
+    fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.Species>.QueryAllIncluded
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.QueryAllIncluded
+    name: QueryAllIncluded
+    nameWithType: IServiceEntityManager(Of Species).QueryAllIncluded
+    fullName: FarmMaster.Services.IServiceEntityManager(Of Business.Model.Species).QueryAllIncluded
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManager{Business.Model.Species}.GetIdFor(Business.Model.Species)
+  commentId: M:FarmMaster.Services.IServiceEntityManager{Business.Model.Species}.GetIdFor(Business.Model.Species)
+  parent: FarmMaster.Services.IServiceEntityManager{Business.Model.Species}
+  definition: FarmMaster.Services.IServiceEntityManager`1.GetIdFor(`0)
+  name: GetIdFor(Species)
+  nameWithType: IServiceEntityManager<Species>.GetIdFor(Species)
+  fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.Species>.GetIdFor(Business.Model.Species)
+  nameWithType.vb: IServiceEntityManager(Of Species).GetIdFor(Species)
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of Business.Model.Species).GetIdFor(Business.Model.Species)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.GetIdFor(`0)
+    name: GetIdFor
+    nameWithType: IServiceEntityManager<Species>.GetIdFor
+    fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.Species>.GetIdFor
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Species
+    name: Species
+    nameWithType: Species
+    fullName: Business.Model.Species
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.GetIdFor(`0)
+    name: GetIdFor
+    nameWithType: IServiceEntityManager(Of Species).GetIdFor
+    fullName: FarmMaster.Services.IServiceEntityManager(Of Business.Model.Species).GetIdFor
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Species
+    name: Species
+    nameWithType: Species
+    fullName: Business.Model.Species
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManager{Business.Model.Species}.Update(Business.Model.Species)
+  commentId: M:FarmMaster.Services.IServiceEntityManager{Business.Model.Species}.Update(Business.Model.Species)
+  parent: FarmMaster.Services.IServiceEntityManager{Business.Model.Species}
+  definition: FarmMaster.Services.IServiceEntityManager`1.Update(`0)
+  name: Update(Species)
+  nameWithType: IServiceEntityManager<Species>.Update(Species)
+  fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.Species>.Update(Business.Model.Species)
+  nameWithType.vb: IServiceEntityManager(Of Species).Update(Species)
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of Business.Model.Species).Update(Business.Model.Species)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.Update(`0)
+    name: Update
+    nameWithType: IServiceEntityManager<Species>.Update
+    fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.Species>.Update
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Species
+    name: Species
+    nameWithType: Species
+    fullName: Business.Model.Species
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.Update(`0)
+    name: Update
+    nameWithType: IServiceEntityManager(Of Species).Update
+    fullName: FarmMaster.Services.IServiceEntityManager(Of Business.Model.Species).Update
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Species
+    name: Species
+    nameWithType: Species
+    fullName: Business.Model.Species
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManager{Business.Model.Breed}.GetIdFor(Business.Model.Breed)
+  commentId: M:FarmMaster.Services.IServiceEntityManager{Business.Model.Breed}.GetIdFor(Business.Model.Breed)
+  parent: FarmMaster.Services.IServiceEntityManager{Business.Model.Breed}
+  definition: FarmMaster.Services.IServiceEntityManager`1.GetIdFor(`0)
+  name: GetIdFor(Breed)
+  nameWithType: IServiceEntityManager<Breed>.GetIdFor(Breed)
+  fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.Breed>.GetIdFor(Business.Model.Breed)
+  nameWithType.vb: IServiceEntityManager(Of Breed).GetIdFor(Breed)
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of Business.Model.Breed).GetIdFor(Business.Model.Breed)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.GetIdFor(`0)
+    name: GetIdFor
+    nameWithType: IServiceEntityManager<Breed>.GetIdFor
+    fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.Breed>.GetIdFor
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Breed
+    name: Breed
+    nameWithType: Breed
+    fullName: Business.Model.Breed
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.GetIdFor(`0)
+    name: GetIdFor
+    nameWithType: IServiceEntityManager(Of Breed).GetIdFor
+    fullName: FarmMaster.Services.IServiceEntityManager(Of Business.Model.Breed).GetIdFor
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Breed
+    name: Breed
+    nameWithType: Breed
+    fullName: Business.Model.Breed
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManager{Business.Model.Breed}.Update(Business.Model.Breed)
+  commentId: M:FarmMaster.Services.IServiceEntityManager{Business.Model.Breed}.Update(Business.Model.Breed)
+  parent: FarmMaster.Services.IServiceEntityManager{Business.Model.Breed}
+  definition: FarmMaster.Services.IServiceEntityManager`1.Update(`0)
+  name: Update(Breed)
+  nameWithType: IServiceEntityManager<Breed>.Update(Breed)
+  fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.Breed>.Update(Business.Model.Breed)
+  nameWithType.vb: IServiceEntityManager(Of Breed).Update(Breed)
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of Business.Model.Breed).Update(Business.Model.Breed)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.Update(`0)
+    name: Update
+    nameWithType: IServiceEntityManager<Breed>.Update
+    fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.Breed>.Update
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Breed
+    name: Breed
+    nameWithType: Breed
+    fullName: Business.Model.Breed
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.Update(`0)
+    name: Update
+    nameWithType: IServiceEntityManager(Of Breed).Update
+    fullName: FarmMaster.Services.IServiceEntityManager(Of Business.Model.Breed).Update
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Breed
+    name: Breed
+    nameWithType: Breed
+    fullName: Business.Model.Breed
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManagerFullDeletion{Business.Model.Species}.FullDelete(Business.Model.Species)
+  commentId: M:FarmMaster.Services.IServiceEntityManagerFullDeletion{Business.Model.Species}.FullDelete(Business.Model.Species)
+  parent: FarmMaster.Services.IServiceEntityManagerFullDeletion{Business.Model.Species}
+  definition: FarmMaster.Services.IServiceEntityManagerFullDeletion`1.FullDelete(`0)
+  name: FullDelete(Species)
+  nameWithType: IServiceEntityManagerFullDeletion<Species>.FullDelete(Species)
+  fullName: FarmMaster.Services.IServiceEntityManagerFullDeletion<Business.Model.Species>.FullDelete(Business.Model.Species)
+  nameWithType.vb: IServiceEntityManagerFullDeletion(Of Species).FullDelete(Species)
+  fullName.vb: FarmMaster.Services.IServiceEntityManagerFullDeletion(Of Business.Model.Species).FullDelete(Business.Model.Species)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManagerFullDeletion`1.FullDelete(`0)
+    name: FullDelete
+    nameWithType: IServiceEntityManagerFullDeletion<Species>.FullDelete
+    fullName: FarmMaster.Services.IServiceEntityManagerFullDeletion<Business.Model.Species>.FullDelete
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Species
+    name: Species
+    nameWithType: Species
+    fullName: Business.Model.Species
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManagerFullDeletion`1.FullDelete(`0)
+    name: FullDelete
+    nameWithType: IServiceEntityManagerFullDeletion(Of Species).FullDelete
+    fullName: FarmMaster.Services.IServiceEntityManagerFullDeletion(Of Business.Model.Species).FullDelete
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Species
+    name: Species
+    nameWithType: Species
+    fullName: Business.Model.Species
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManagerFullDeletion{Business.Model.Breed}.FullDelete(Business.Model.Breed)
+  commentId: M:FarmMaster.Services.IServiceEntityManagerFullDeletion{Business.Model.Breed}.FullDelete(Business.Model.Breed)
+  parent: FarmMaster.Services.IServiceEntityManagerFullDeletion{Business.Model.Breed}
+  definition: FarmMaster.Services.IServiceEntityManagerFullDeletion`1.FullDelete(`0)
+  name: FullDelete(Breed)
+  nameWithType: IServiceEntityManagerFullDeletion<Breed>.FullDelete(Breed)
+  fullName: FarmMaster.Services.IServiceEntityManagerFullDeletion<Business.Model.Breed>.FullDelete(Business.Model.Breed)
+  nameWithType.vb: IServiceEntityManagerFullDeletion(Of Breed).FullDelete(Breed)
+  fullName.vb: FarmMaster.Services.IServiceEntityManagerFullDeletion(Of Business.Model.Breed).FullDelete(Business.Model.Breed)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManagerFullDeletion`1.FullDelete(`0)
+    name: FullDelete
+    nameWithType: IServiceEntityManagerFullDeletion<Breed>.FullDelete
+    fullName: FarmMaster.Services.IServiceEntityManagerFullDeletion<Business.Model.Breed>.FullDelete
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Breed
+    name: Breed
+    nameWithType: Breed
+    fullName: Business.Model.Breed
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManagerFullDeletion`1.FullDelete(`0)
+    name: FullDelete
+    nameWithType: IServiceEntityManagerFullDeletion(Of Breed).FullDelete
+    fullName: FarmMaster.Services.IServiceEntityManagerFullDeletion(Of Business.Model.Breed).FullDelete
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Breed
+    name: Breed
+    nameWithType: Breed
+    fullName: Business.Model.Breed
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceGdprData.GetContactGdprData(Business.Model.Contact,Newtonsoft.Json.Linq.JObject)
+  commentId: M:FarmMaster.Services.IServiceGdprData.GetContactGdprData(Business.Model.Contact,Newtonsoft.Json.Linq.JObject)
+  parent: FarmMaster.Services.IServiceGdprData
+  isExternal: true
+  name: GetContactGdprData(Contact, JObject)
+  nameWithType: IServiceGdprData.GetContactGdprData(Contact, JObject)
+  fullName: FarmMaster.Services.IServiceGdprData.GetContactGdprData(Business.Model.Contact, Newtonsoft.Json.Linq.JObject)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceGdprData.GetContactGdprData(Business.Model.Contact,Newtonsoft.Json.Linq.JObject)
+    name: GetContactGdprData
+    nameWithType: IServiceGdprData.GetContactGdprData
+    fullName: FarmMaster.Services.IServiceGdprData.GetContactGdprData
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Contact
+    name: Contact
+    nameWithType: Contact
+    fullName: Business.Model.Contact
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Newtonsoft.Json.Linq.JObject
+    name: JObject
+    nameWithType: JObject
+    fullName: Newtonsoft.Json.Linq.JObject
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceGdprData.GetContactGdprData(Business.Model.Contact,Newtonsoft.Json.Linq.JObject)
+    name: GetContactGdprData
+    nameWithType: IServiceGdprData.GetContactGdprData
+    fullName: FarmMaster.Services.IServiceGdprData.GetContactGdprData
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Contact
+    name: Contact
+    nameWithType: Contact
+    fullName: Business.Model.Contact
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Newtonsoft.Json.Linq.JObject
+    name: JObject
+    nameWithType: JObject
+    fullName: Newtonsoft.Json.Linq.JObject
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceGdprData.GetUserGdprData(Business.Model.User,Newtonsoft.Json.Linq.JObject)
+  commentId: M:FarmMaster.Services.IServiceGdprData.GetUserGdprData(Business.Model.User,Newtonsoft.Json.Linq.JObject)
+  parent: FarmMaster.Services.IServiceGdprData
+  isExternal: true
+  name: GetUserGdprData(User, JObject)
+  nameWithType: IServiceGdprData.GetUserGdprData(User, JObject)
+  fullName: FarmMaster.Services.IServiceGdprData.GetUserGdprData(Business.Model.User, Newtonsoft.Json.Linq.JObject)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceGdprData.GetUserGdprData(Business.Model.User,Newtonsoft.Json.Linq.JObject)
+    name: GetUserGdprData
+    nameWithType: IServiceGdprData.GetUserGdprData
+    fullName: FarmMaster.Services.IServiceGdprData.GetUserGdprData
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.User
+    name: User
+    nameWithType: User
+    fullName: Business.Model.User
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Newtonsoft.Json.Linq.JObject
+    name: JObject
+    nameWithType: JObject
+    fullName: Newtonsoft.Json.Linq.JObject
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceGdprData.GetUserGdprData(Business.Model.User,Newtonsoft.Json.Linq.JObject)
+    name: GetUserGdprData
+    nameWithType: IServiceGdprData.GetUserGdprData
+    fullName: FarmMaster.Services.IServiceGdprData.GetUserGdprData
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.User
+    name: User
+    nameWithType: User
+    fullName: Business.Model.User
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Newtonsoft.Json.Linq.JObject
+    name: JObject
+    nameWithType: JObject
+    fullName: Newtonsoft.Json.Linq.JObject
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceGdprData.AnonymiseContactData(Business.Model.Contact)
+  commentId: M:FarmMaster.Services.IServiceGdprData.AnonymiseContactData(Business.Model.Contact)
+  parent: FarmMaster.Services.IServiceGdprData
+  name: AnonymiseContactData(Contact)
+  nameWithType: IServiceGdprData.AnonymiseContactData(Contact)
+  fullName: FarmMaster.Services.IServiceGdprData.AnonymiseContactData(Business.Model.Contact)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceGdprData.AnonymiseContactData(Business.Model.Contact)
+    name: AnonymiseContactData
+    nameWithType: IServiceGdprData.AnonymiseContactData
+    fullName: FarmMaster.Services.IServiceGdprData.AnonymiseContactData
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Contact
+    name: Contact
+    nameWithType: Contact
+    fullName: Business.Model.Contact
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceGdprData.AnonymiseContactData(Business.Model.Contact)
+    name: AnonymiseContactData
+    nameWithType: IServiceGdprData.AnonymiseContactData
+    fullName: FarmMaster.Services.IServiceGdprData.AnonymiseContactData
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Contact
+    name: Contact
+    nameWithType: Contact
+    fullName: Business.Model.Contact
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceGdprData.AnonymiseUserData(Business.Model.User)
+  commentId: M:FarmMaster.Services.IServiceGdprData.AnonymiseUserData(Business.Model.User)
+  parent: FarmMaster.Services.IServiceGdprData
+  name: AnonymiseUserData(User)
+  nameWithType: IServiceGdprData.AnonymiseUserData(User)
+  fullName: FarmMaster.Services.IServiceGdprData.AnonymiseUserData(Business.Model.User)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceGdprData.AnonymiseUserData(Business.Model.User)
+    name: AnonymiseUserData
+    nameWithType: IServiceGdprData.AnonymiseUserData
+    fullName: FarmMaster.Services.IServiceGdprData.AnonymiseUserData
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.User
+    name: User
+    nameWithType: User
+    fullName: Business.Model.User
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceGdprData.AnonymiseUserData(Business.Model.User)
+    name: AnonymiseUserData
+    nameWithType: IServiceGdprData.AnonymiseUserData
+    fullName: FarmMaster.Services.IServiceGdprData.AnonymiseUserData
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.User
+    name: User
+    nameWithType: User
+    fullName: Business.Model.User
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManager`1.Query
+  commentId: M:FarmMaster.Services.IServiceEntityManager`1.Query
+  name: Query()
+  nameWithType: IServiceEntityManager<T>.Query()
+  fullName: FarmMaster.Services.IServiceEntityManager<T>.Query()
+  nameWithType.vb: IServiceEntityManager(Of T).Query()
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of T).Query()
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.Query
+    name: Query
+    nameWithType: IServiceEntityManager<T>.Query
+    fullName: FarmMaster.Services.IServiceEntityManager<T>.Query
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.Query
+    name: Query
+    nameWithType: IServiceEntityManager(Of T).Query
+    fullName: FarmMaster.Services.IServiceEntityManager(Of T).Query
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManager{Business.Model.Species}
+  commentId: T:FarmMaster.Services.IServiceEntityManager{Business.Model.Species}
+  parent: FarmMaster.Services
+  definition: FarmMaster.Services.IServiceEntityManager`1
+  name: IServiceEntityManager<Species>
+  nameWithType: IServiceEntityManager<Species>
+  fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.Species>
+  nameWithType.vb: IServiceEntityManager(Of Species)
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of Business.Model.Species)
+  name.vb: IServiceEntityManager(Of Species)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1
+    name: IServiceEntityManager
+    nameWithType: IServiceEntityManager
+    fullName: FarmMaster.Services.IServiceEntityManager
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Business.Model.Species
+    name: Species
+    nameWithType: Species
+    fullName: Business.Model.Species
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1
+    name: IServiceEntityManager
+    nameWithType: IServiceEntityManager
+    fullName: FarmMaster.Services.IServiceEntityManager
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Business.Model.Species
+    name: Species
+    nameWithType: Species
+    fullName: Business.Model.Species
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManager`1.QueryAllIncluded
+  commentId: M:FarmMaster.Services.IServiceEntityManager`1.QueryAllIncluded
+  name: QueryAllIncluded()
+  nameWithType: IServiceEntityManager<T>.QueryAllIncluded()
+  fullName: FarmMaster.Services.IServiceEntityManager<T>.QueryAllIncluded()
+  nameWithType.vb: IServiceEntityManager(Of T).QueryAllIncluded()
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of T).QueryAllIncluded()
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.QueryAllIncluded
+    name: QueryAllIncluded
+    nameWithType: IServiceEntityManager<T>.QueryAllIncluded
+    fullName: FarmMaster.Services.IServiceEntityManager<T>.QueryAllIncluded
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.QueryAllIncluded
+    name: QueryAllIncluded
+    nameWithType: IServiceEntityManager(Of T).QueryAllIncluded
+    fullName: FarmMaster.Services.IServiceEntityManager(Of T).QueryAllIncluded
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManager`1.GetIdFor(`0)
+  commentId: M:FarmMaster.Services.IServiceEntityManager`1.GetIdFor(`0)
+  name: GetIdFor(T)
+  nameWithType: IServiceEntityManager<T>.GetIdFor(T)
+  fullName: FarmMaster.Services.IServiceEntityManager<T>.GetIdFor(T)
+  nameWithType.vb: IServiceEntityManager(Of T).GetIdFor(T)
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of T).GetIdFor(T)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.GetIdFor(`0)
+    name: GetIdFor
+    nameWithType: IServiceEntityManager<T>.GetIdFor
+    fullName: FarmMaster.Services.IServiceEntityManager<T>.GetIdFor
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.GetIdFor(`0)
+    name: GetIdFor
+    nameWithType: IServiceEntityManager(Of T).GetIdFor
+    fullName: FarmMaster.Services.IServiceEntityManager(Of T).GetIdFor
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManager`1.Update(`0)
+  commentId: M:FarmMaster.Services.IServiceEntityManager`1.Update(`0)
+  name: Update(T)
+  nameWithType: IServiceEntityManager<T>.Update(T)
+  fullName: FarmMaster.Services.IServiceEntityManager<T>.Update(T)
+  nameWithType.vb: IServiceEntityManager(Of T).Update(T)
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of T).Update(T)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.Update(`0)
+    name: Update
+    nameWithType: IServiceEntityManager<T>.Update
+    fullName: FarmMaster.Services.IServiceEntityManager<T>.Update
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.Update(`0)
+    name: Update
+    nameWithType: IServiceEntityManager(Of T).Update
+    fullName: FarmMaster.Services.IServiceEntityManager(Of T).Update
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManager{Business.Model.Breed}
+  commentId: T:FarmMaster.Services.IServiceEntityManager{Business.Model.Breed}
+  parent: FarmMaster.Services
+  definition: FarmMaster.Services.IServiceEntityManager`1
+  name: IServiceEntityManager<Breed>
+  nameWithType: IServiceEntityManager<Breed>
+  fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.Breed>
+  nameWithType.vb: IServiceEntityManager(Of Breed)
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of Business.Model.Breed)
+  name.vb: IServiceEntityManager(Of Breed)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1
+    name: IServiceEntityManager
+    nameWithType: IServiceEntityManager
+    fullName: FarmMaster.Services.IServiceEntityManager
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Business.Model.Breed
+    name: Breed
+    nameWithType: Breed
+    fullName: Business.Model.Breed
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1
+    name: IServiceEntityManager
+    nameWithType: IServiceEntityManager
+    fullName: FarmMaster.Services.IServiceEntityManager
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Business.Model.Breed
+    name: Breed
+    nameWithType: Breed
+    fullName: Business.Model.Breed
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManagerFullDeletion`1.FullDelete(`0)
+  commentId: M:FarmMaster.Services.IServiceEntityManagerFullDeletion`1.FullDelete(`0)
+  name: FullDelete(T)
+  nameWithType: IServiceEntityManagerFullDeletion<T>.FullDelete(T)
+  fullName: FarmMaster.Services.IServiceEntityManagerFullDeletion<T>.FullDelete(T)
+  nameWithType.vb: IServiceEntityManagerFullDeletion(Of T).FullDelete(T)
+  fullName.vb: FarmMaster.Services.IServiceEntityManagerFullDeletion(Of T).FullDelete(T)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManagerFullDeletion`1.FullDelete(`0)
+    name: FullDelete
+    nameWithType: IServiceEntityManagerFullDeletion<T>.FullDelete
+    fullName: FarmMaster.Services.IServiceEntityManagerFullDeletion<T>.FullDelete
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManagerFullDeletion`1.FullDelete(`0)
+    name: FullDelete
+    nameWithType: IServiceEntityManagerFullDeletion(Of T).FullDelete
+    fullName: FarmMaster.Services.IServiceEntityManagerFullDeletion(Of T).FullDelete
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManagerFullDeletion{Business.Model.Species}
+  commentId: T:FarmMaster.Services.IServiceEntityManagerFullDeletion{Business.Model.Species}
+  parent: FarmMaster.Services
+  definition: FarmMaster.Services.IServiceEntityManagerFullDeletion`1
+  name: IServiceEntityManagerFullDeletion<Species>
+  nameWithType: IServiceEntityManagerFullDeletion<Species>
+  fullName: FarmMaster.Services.IServiceEntityManagerFullDeletion<Business.Model.Species>
+  nameWithType.vb: IServiceEntityManagerFullDeletion(Of Species)
+  fullName.vb: FarmMaster.Services.IServiceEntityManagerFullDeletion(Of Business.Model.Species)
+  name.vb: IServiceEntityManagerFullDeletion(Of Species)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManagerFullDeletion`1
+    name: IServiceEntityManagerFullDeletion
+    nameWithType: IServiceEntityManagerFullDeletion
+    fullName: FarmMaster.Services.IServiceEntityManagerFullDeletion
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Business.Model.Species
+    name: Species
+    nameWithType: Species
+    fullName: Business.Model.Species
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManagerFullDeletion`1
+    name: IServiceEntityManagerFullDeletion
+    nameWithType: IServiceEntityManagerFullDeletion
+    fullName: FarmMaster.Services.IServiceEntityManagerFullDeletion
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Business.Model.Species
+    name: Species
+    nameWithType: Species
+    fullName: Business.Model.Species
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManagerFullDeletion{Business.Model.Breed}
+  commentId: T:FarmMaster.Services.IServiceEntityManagerFullDeletion{Business.Model.Breed}
+  parent: FarmMaster.Services
+  definition: FarmMaster.Services.IServiceEntityManagerFullDeletion`1
+  name: IServiceEntityManagerFullDeletion<Breed>
+  nameWithType: IServiceEntityManagerFullDeletion<Breed>
+  fullName: FarmMaster.Services.IServiceEntityManagerFullDeletion<Business.Model.Breed>
+  nameWithType.vb: IServiceEntityManagerFullDeletion(Of Breed)
+  fullName.vb: FarmMaster.Services.IServiceEntityManagerFullDeletion(Of Business.Model.Breed)
+  name.vb: IServiceEntityManagerFullDeletion(Of Breed)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManagerFullDeletion`1
+    name: IServiceEntityManagerFullDeletion
+    nameWithType: IServiceEntityManagerFullDeletion
+    fullName: FarmMaster.Services.IServiceEntityManagerFullDeletion
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Business.Model.Breed
+    name: Breed
+    nameWithType: Breed
+    fullName: Business.Model.Breed
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManagerFullDeletion`1
+    name: IServiceEntityManagerFullDeletion
+    nameWithType: IServiceEntityManagerFullDeletion
+    fullName: FarmMaster.Services.IServiceEntityManagerFullDeletion
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Business.Model.Breed
+    name: Breed
+    nameWithType: Breed
+    fullName: Business.Model.Breed
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceGdprData
+  commentId: T:FarmMaster.Services.IServiceGdprData
+  parent: FarmMaster.Services
+  name: IServiceGdprData
+  nameWithType: IServiceGdprData
+  fullName: FarmMaster.Services.IServiceGdprData
+- uid: FarmMaster.Services.IServiceEntityManager`1
+  commentId: T:FarmMaster.Services.IServiceEntityManager`1
+  name: IServiceEntityManager<T>
+  nameWithType: IServiceEntityManager<T>
+  fullName: FarmMaster.Services.IServiceEntityManager<T>
+  nameWithType.vb: IServiceEntityManager(Of T)
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of T)
+  name.vb: IServiceEntityManager(Of T)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1
+    name: IServiceEntityManager
+    nameWithType: IServiceEntityManager
+    fullName: FarmMaster.Services.IServiceEntityManager
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1
+    name: IServiceEntityManager
+    nameWithType: IServiceEntityManager
+    fullName: FarmMaster.Services.IServiceEntityManager
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManagerFullDeletion`1
+  commentId: T:FarmMaster.Services.IServiceEntityManagerFullDeletion`1
+  name: IServiceEntityManagerFullDeletion<T>
+  nameWithType: IServiceEntityManagerFullDeletion<T>
+  fullName: FarmMaster.Services.IServiceEntityManagerFullDeletion<T>
+  nameWithType.vb: IServiceEntityManagerFullDeletion(Of T)
+  fullName.vb: FarmMaster.Services.IServiceEntityManagerFullDeletion(Of T)
+  name.vb: IServiceEntityManagerFullDeletion(Of T)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManagerFullDeletion`1
+    name: IServiceEntityManagerFullDeletion
+    nameWithType: IServiceEntityManagerFullDeletion
+    fullName: FarmMaster.Services.IServiceEntityManagerFullDeletion
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManagerFullDeletion`1
+    name: IServiceEntityManagerFullDeletion
+    nameWithType: IServiceEntityManagerFullDeletion
+    fullName: FarmMaster.Services.IServiceEntityManagerFullDeletion
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceSpeciesBreedManager.CreateSpecies*
+  commentId: Overload:FarmMaster.Services.IServiceSpeciesBreedManager.CreateSpecies
+  name: CreateSpecies
+  nameWithType: IServiceSpeciesBreedManager.CreateSpecies
+  fullName: FarmMaster.Services.IServiceSpeciesBreedManager.CreateSpecies
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: Business.Model.Species
+  commentId: T:Business.Model.Species
+  parent: Business.Model
+  name: Species
+  nameWithType: Species
+  fullName: Business.Model.Species
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Business.Model
+  commentId: N:Business.Model
+  name: Business.Model
+  nameWithType: Business.Model
+  fullName: Business.Model
+- uid: FarmMaster.Services.IServiceSpeciesBreedManager.CreateBreed*
+  commentId: Overload:FarmMaster.Services.IServiceSpeciesBreedManager.CreateBreed
+  name: CreateBreed
+  nameWithType: IServiceSpeciesBreedManager.CreateBreed
+  fullName: FarmMaster.Services.IServiceSpeciesBreedManager.CreateBreed
+- uid: Business.Model.Contact
+  commentId: T:Business.Model.Contact
+  parent: Business.Model
+  name: Contact
+  nameWithType: Contact
+  fullName: Business.Model.Contact
+- uid: Business.Model.Breed
+  commentId: T:Business.Model.Breed
+  parent: Business.Model
+  name: Breed
+  nameWithType: Breed
+  fullName: Business.Model.Breed

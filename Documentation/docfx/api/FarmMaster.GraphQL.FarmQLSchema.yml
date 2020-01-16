@@ -1,0 +1,1202 @@
+### YamlMime:ManagedReference
+items:
+- uid: FarmMaster.GraphQL.FarmQLSchema
+  commentId: T:FarmMaster.GraphQL.FarmQLSchema
+  id: FarmQLSchema
+  parent: FarmMaster.GraphQL
+  children:
+  - FarmMaster.GraphQL.FarmQLSchema.#ctor(GraphQL.IDependencyResolver)
+  langs:
+  - csharp
+  - vb
+  name: FarmQLSchema
+  nameWithType: FarmQLSchema
+  fullName: FarmMaster.GraphQL.FarmQLSchema
+  type: Class
+  source:
+    remote:
+      path: FarmMaster/GraphQL/Core.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: FarmQLSchema
+    path: GraphQL/Core.cs
+    startLine: 16
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.GraphQL
+  syntax:
+    content: 'public class FarmQLSchema : Schema, ISchema, IDisposable'
+    content.vb: >-
+      Public Class FarmQLSchema
+
+          Inherits Schema
+
+          Implements ISchema, IDisposable
+  inheritance:
+  - System.Object
+  - GraphQL.Types.Schema
+  implements:
+  - GraphQL.Types.ISchema
+  - System.IDisposable
+  inheritedMembers:
+  - GraphQL.Types.Schema.For(System.String[],System.Action{GraphQL.Utilities.SchemaBuilder})
+  - GraphQL.Types.Schema.For(System.String,System.Action{GraphQL.Utilities.SchemaBuilder})
+  - GraphQL.Types.Schema.Initialize
+  - GraphQL.Types.Schema.RegisterType(GraphQL.Types.IGraphType)
+  - GraphQL.Types.Schema.RegisterTypes(GraphQL.Types.IGraphType[])
+  - GraphQL.Types.Schema.RegisterTypes(System.Type[])
+  - GraphQL.Types.Schema.RegisterType``1
+  - GraphQL.Types.Schema.RegisterDirective(GraphQL.Types.DirectiveGraphType)
+  - GraphQL.Types.Schema.RegisterDirectives(GraphQL.Types.DirectiveGraphType[])
+  - GraphQL.Types.Schema.FindDirective(System.String)
+  - GraphQL.Types.Schema.RegisterValueConverter(GraphQL.Types.IAstFromValueConverter)
+  - GraphQL.Types.Schema.FindValueConverter(System.Object,GraphQL.Types.IGraphType)
+  - GraphQL.Types.Schema.FindType(System.String)
+  - GraphQL.Types.Schema.Dispose
+  - GraphQL.Types.Schema.FieldNameConverter
+  - GraphQL.Types.Schema.Initialized
+  - GraphQL.Types.Schema.Query
+  - GraphQL.Types.Schema.Mutation
+  - GraphQL.Types.Schema.Subscription
+  - GraphQL.Types.Schema.ResolveType
+  - GraphQL.Types.Schema.DependencyResolver
+  - GraphQL.Types.Schema.Directives
+  - GraphQL.Types.Schema.AllTypes
+  - GraphQL.Types.Schema.AdditionalTypes
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: FarmMaster.GraphQL.FarmQLSchema.#ctor(GraphQL.IDependencyResolver)
+  commentId: M:FarmMaster.GraphQL.FarmQLSchema.#ctor(GraphQL.IDependencyResolver)
+  id: '#ctor(GraphQL.IDependencyResolver)'
+  parent: FarmMaster.GraphQL.FarmQLSchema
+  langs:
+  - csharp
+  - vb
+  name: FarmQLSchema(IDependencyResolver)
+  nameWithType: FarmQLSchema.FarmQLSchema(IDependencyResolver)
+  fullName: FarmMaster.GraphQL.FarmQLSchema.FarmQLSchema(GraphQL.IDependencyResolver)
+  type: Constructor
+  source:
+    remote:
+      path: FarmMaster/GraphQL/Core.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: .ctor
+    path: GraphQL/Core.cs
+    startLine: 18
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.GraphQL
+  syntax:
+    content: public FarmQLSchema(IDependencyResolver resolver)
+    parameters:
+    - id: resolver
+      type: GraphQL.IDependencyResolver
+    content.vb: Public Sub New(resolver As IDependencyResolver)
+  overload: FarmMaster.GraphQL.FarmQLSchema.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: FarmMaster.GraphQL
+  commentId: N:FarmMaster.GraphQL
+  name: FarmMaster.GraphQL
+  nameWithType: FarmMaster.GraphQL
+  fullName: FarmMaster.GraphQL
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: GraphQL.Types.Schema
+  commentId: T:GraphQL.Types.Schema
+  parent: GraphQL.Types
+  isExternal: true
+  name: Schema
+  nameWithType: Schema
+  fullName: GraphQL.Types.Schema
+- uid: GraphQL.Types.ISchema
+  commentId: T:GraphQL.Types.ISchema
+  parent: GraphQL.Types
+  isExternal: true
+  name: ISchema
+  nameWithType: ISchema
+  fullName: GraphQL.Types.ISchema
+- uid: System.IDisposable
+  commentId: T:System.IDisposable
+  parent: System
+  isExternal: true
+  name: IDisposable
+  nameWithType: IDisposable
+  fullName: System.IDisposable
+- uid: GraphQL.Types.Schema.For(System.String[],System.Action{GraphQL.Utilities.SchemaBuilder})
+  commentId: M:GraphQL.Types.Schema.For(System.String[],System.Action{GraphQL.Utilities.SchemaBuilder})
+  parent: GraphQL.Types.Schema
+  isExternal: true
+  name: For(String[], Action<SchemaBuilder>)
+  nameWithType: Schema.For(String[], Action<SchemaBuilder>)
+  fullName: GraphQL.Types.Schema.For(System.String[], System.Action<GraphQL.Utilities.SchemaBuilder>)
+  nameWithType.vb: Schema.For(String(), Action(Of SchemaBuilder))
+  fullName.vb: GraphQL.Types.Schema.For(System.String(), System.Action(Of GraphQL.Utilities.SchemaBuilder))
+  name.vb: For(String(), Action(Of SchemaBuilder))
+  spec.csharp:
+  - uid: GraphQL.Types.Schema.For(System.String[],System.Action{GraphQL.Utilities.SchemaBuilder})
+    name: For
+    nameWithType: Schema.For
+    fullName: GraphQL.Types.Schema.For
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: GraphQL.Utilities.SchemaBuilder
+    name: SchemaBuilder
+    nameWithType: SchemaBuilder
+    fullName: GraphQL.Utilities.SchemaBuilder
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GraphQL.Types.Schema.For(System.String[],System.Action{GraphQL.Utilities.SchemaBuilder})
+    name: For
+    nameWithType: Schema.For
+    fullName: GraphQL.Types.Schema.For
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: GraphQL.Utilities.SchemaBuilder
+    name: SchemaBuilder
+    nameWithType: SchemaBuilder
+    fullName: GraphQL.Utilities.SchemaBuilder
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GraphQL.Types.Schema.For(System.String,System.Action{GraphQL.Utilities.SchemaBuilder})
+  commentId: M:GraphQL.Types.Schema.For(System.String,System.Action{GraphQL.Utilities.SchemaBuilder})
+  parent: GraphQL.Types.Schema
+  isExternal: true
+  name: For(String, Action<SchemaBuilder>)
+  nameWithType: Schema.For(String, Action<SchemaBuilder>)
+  fullName: GraphQL.Types.Schema.For(System.String, System.Action<GraphQL.Utilities.SchemaBuilder>)
+  nameWithType.vb: Schema.For(String, Action(Of SchemaBuilder))
+  fullName.vb: GraphQL.Types.Schema.For(System.String, System.Action(Of GraphQL.Utilities.SchemaBuilder))
+  name.vb: For(String, Action(Of SchemaBuilder))
+  spec.csharp:
+  - uid: GraphQL.Types.Schema.For(System.String,System.Action{GraphQL.Utilities.SchemaBuilder})
+    name: For
+    nameWithType: Schema.For
+    fullName: GraphQL.Types.Schema.For
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: GraphQL.Utilities.SchemaBuilder
+    name: SchemaBuilder
+    nameWithType: SchemaBuilder
+    fullName: GraphQL.Utilities.SchemaBuilder
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GraphQL.Types.Schema.For(System.String,System.Action{GraphQL.Utilities.SchemaBuilder})
+    name: For
+    nameWithType: Schema.For
+    fullName: GraphQL.Types.Schema.For
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Action`1
+    name: Action
+    nameWithType: Action
+    fullName: System.Action
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: GraphQL.Utilities.SchemaBuilder
+    name: SchemaBuilder
+    nameWithType: SchemaBuilder
+    fullName: GraphQL.Utilities.SchemaBuilder
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GraphQL.Types.Schema.Initialize
+  commentId: M:GraphQL.Types.Schema.Initialize
+  parent: GraphQL.Types.Schema
+  isExternal: true
+  name: Initialize()
+  nameWithType: Schema.Initialize()
+  fullName: GraphQL.Types.Schema.Initialize()
+  spec.csharp:
+  - uid: GraphQL.Types.Schema.Initialize
+    name: Initialize
+    nameWithType: Schema.Initialize
+    fullName: GraphQL.Types.Schema.Initialize
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GraphQL.Types.Schema.Initialize
+    name: Initialize
+    nameWithType: Schema.Initialize
+    fullName: GraphQL.Types.Schema.Initialize
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GraphQL.Types.Schema.RegisterType(GraphQL.Types.IGraphType)
+  commentId: M:GraphQL.Types.Schema.RegisterType(GraphQL.Types.IGraphType)
+  parent: GraphQL.Types.Schema
+  isExternal: true
+  name: RegisterType(IGraphType)
+  nameWithType: Schema.RegisterType(IGraphType)
+  fullName: GraphQL.Types.Schema.RegisterType(GraphQL.Types.IGraphType)
+  spec.csharp:
+  - uid: GraphQL.Types.Schema.RegisterType(GraphQL.Types.IGraphType)
+    name: RegisterType
+    nameWithType: Schema.RegisterType
+    fullName: GraphQL.Types.Schema.RegisterType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: GraphQL.Types.IGraphType
+    name: IGraphType
+    nameWithType: IGraphType
+    fullName: GraphQL.Types.IGraphType
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GraphQL.Types.Schema.RegisterType(GraphQL.Types.IGraphType)
+    name: RegisterType
+    nameWithType: Schema.RegisterType
+    fullName: GraphQL.Types.Schema.RegisterType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: GraphQL.Types.IGraphType
+    name: IGraphType
+    nameWithType: IGraphType
+    fullName: GraphQL.Types.IGraphType
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GraphQL.Types.Schema.RegisterTypes(GraphQL.Types.IGraphType[])
+  commentId: M:GraphQL.Types.Schema.RegisterTypes(GraphQL.Types.IGraphType[])
+  parent: GraphQL.Types.Schema
+  isExternal: true
+  name: RegisterTypes(IGraphType[])
+  nameWithType: Schema.RegisterTypes(IGraphType[])
+  fullName: GraphQL.Types.Schema.RegisterTypes(GraphQL.Types.IGraphType[])
+  nameWithType.vb: Schema.RegisterTypes(IGraphType())
+  fullName.vb: GraphQL.Types.Schema.RegisterTypes(GraphQL.Types.IGraphType())
+  name.vb: RegisterTypes(IGraphType())
+  spec.csharp:
+  - uid: GraphQL.Types.Schema.RegisterTypes(GraphQL.Types.IGraphType[])
+    name: RegisterTypes
+    nameWithType: Schema.RegisterTypes
+    fullName: GraphQL.Types.Schema.RegisterTypes
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: GraphQL.Types.IGraphType
+    name: IGraphType
+    nameWithType: IGraphType
+    fullName: GraphQL.Types.IGraphType
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GraphQL.Types.Schema.RegisterTypes(GraphQL.Types.IGraphType[])
+    name: RegisterTypes
+    nameWithType: Schema.RegisterTypes
+    fullName: GraphQL.Types.Schema.RegisterTypes
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: GraphQL.Types.IGraphType
+    name: IGraphType
+    nameWithType: IGraphType
+    fullName: GraphQL.Types.IGraphType
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GraphQL.Types.Schema.RegisterTypes(System.Type[])
+  commentId: M:GraphQL.Types.Schema.RegisterTypes(System.Type[])
+  parent: GraphQL.Types.Schema
+  isExternal: true
+  name: RegisterTypes(Type[])
+  nameWithType: Schema.RegisterTypes(Type[])
+  fullName: GraphQL.Types.Schema.RegisterTypes(System.Type[])
+  nameWithType.vb: Schema.RegisterTypes(Type())
+  fullName.vb: GraphQL.Types.Schema.RegisterTypes(System.Type())
+  name.vb: RegisterTypes(Type())
+  spec.csharp:
+  - uid: GraphQL.Types.Schema.RegisterTypes(System.Type[])
+    name: RegisterTypes
+    nameWithType: Schema.RegisterTypes
+    fullName: GraphQL.Types.Schema.RegisterTypes
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GraphQL.Types.Schema.RegisterTypes(System.Type[])
+    name: RegisterTypes
+    nameWithType: Schema.RegisterTypes
+    fullName: GraphQL.Types.Schema.RegisterTypes
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GraphQL.Types.Schema.RegisterType``1
+  commentId: M:GraphQL.Types.Schema.RegisterType``1
+  parent: GraphQL.Types.Schema
+  isExternal: true
+  name: RegisterType<T>()
+  nameWithType: Schema.RegisterType<T>()
+  fullName: GraphQL.Types.Schema.RegisterType<T>()
+  nameWithType.vb: Schema.RegisterType(Of T)()
+  fullName.vb: GraphQL.Types.Schema.RegisterType(Of T)()
+  name.vb: RegisterType(Of T)()
+  spec.csharp:
+  - uid: GraphQL.Types.Schema.RegisterType``1
+    name: RegisterType<T>
+    nameWithType: Schema.RegisterType<T>
+    fullName: GraphQL.Types.Schema.RegisterType<T>
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GraphQL.Types.Schema.RegisterType``1
+    name: RegisterType(Of T)
+    nameWithType: Schema.RegisterType(Of T)
+    fullName: GraphQL.Types.Schema.RegisterType(Of T)
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GraphQL.Types.Schema.RegisterDirective(GraphQL.Types.DirectiveGraphType)
+  commentId: M:GraphQL.Types.Schema.RegisterDirective(GraphQL.Types.DirectiveGraphType)
+  parent: GraphQL.Types.Schema
+  isExternal: true
+  name: RegisterDirective(DirectiveGraphType)
+  nameWithType: Schema.RegisterDirective(DirectiveGraphType)
+  fullName: GraphQL.Types.Schema.RegisterDirective(GraphQL.Types.DirectiveGraphType)
+  spec.csharp:
+  - uid: GraphQL.Types.Schema.RegisterDirective(GraphQL.Types.DirectiveGraphType)
+    name: RegisterDirective
+    nameWithType: Schema.RegisterDirective
+    fullName: GraphQL.Types.Schema.RegisterDirective
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: GraphQL.Types.DirectiveGraphType
+    name: DirectiveGraphType
+    nameWithType: DirectiveGraphType
+    fullName: GraphQL.Types.DirectiveGraphType
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GraphQL.Types.Schema.RegisterDirective(GraphQL.Types.DirectiveGraphType)
+    name: RegisterDirective
+    nameWithType: Schema.RegisterDirective
+    fullName: GraphQL.Types.Schema.RegisterDirective
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: GraphQL.Types.DirectiveGraphType
+    name: DirectiveGraphType
+    nameWithType: DirectiveGraphType
+    fullName: GraphQL.Types.DirectiveGraphType
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GraphQL.Types.Schema.RegisterDirectives(GraphQL.Types.DirectiveGraphType[])
+  commentId: M:GraphQL.Types.Schema.RegisterDirectives(GraphQL.Types.DirectiveGraphType[])
+  parent: GraphQL.Types.Schema
+  isExternal: true
+  name: RegisterDirectives(DirectiveGraphType[])
+  nameWithType: Schema.RegisterDirectives(DirectiveGraphType[])
+  fullName: GraphQL.Types.Schema.RegisterDirectives(GraphQL.Types.DirectiveGraphType[])
+  nameWithType.vb: Schema.RegisterDirectives(DirectiveGraphType())
+  fullName.vb: GraphQL.Types.Schema.RegisterDirectives(GraphQL.Types.DirectiveGraphType())
+  name.vb: RegisterDirectives(DirectiveGraphType())
+  spec.csharp:
+  - uid: GraphQL.Types.Schema.RegisterDirectives(GraphQL.Types.DirectiveGraphType[])
+    name: RegisterDirectives
+    nameWithType: Schema.RegisterDirectives
+    fullName: GraphQL.Types.Schema.RegisterDirectives
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: GraphQL.Types.DirectiveGraphType
+    name: DirectiveGraphType
+    nameWithType: DirectiveGraphType
+    fullName: GraphQL.Types.DirectiveGraphType
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GraphQL.Types.Schema.RegisterDirectives(GraphQL.Types.DirectiveGraphType[])
+    name: RegisterDirectives
+    nameWithType: Schema.RegisterDirectives
+    fullName: GraphQL.Types.Schema.RegisterDirectives
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: GraphQL.Types.DirectiveGraphType
+    name: DirectiveGraphType
+    nameWithType: DirectiveGraphType
+    fullName: GraphQL.Types.DirectiveGraphType
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GraphQL.Types.Schema.FindDirective(System.String)
+  commentId: M:GraphQL.Types.Schema.FindDirective(System.String)
+  parent: GraphQL.Types.Schema
+  isExternal: true
+  name: FindDirective(String)
+  nameWithType: Schema.FindDirective(String)
+  fullName: GraphQL.Types.Schema.FindDirective(System.String)
+  spec.csharp:
+  - uid: GraphQL.Types.Schema.FindDirective(System.String)
+    name: FindDirective
+    nameWithType: Schema.FindDirective
+    fullName: GraphQL.Types.Schema.FindDirective
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GraphQL.Types.Schema.FindDirective(System.String)
+    name: FindDirective
+    nameWithType: Schema.FindDirective
+    fullName: GraphQL.Types.Schema.FindDirective
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GraphQL.Types.Schema.RegisterValueConverter(GraphQL.Types.IAstFromValueConverter)
+  commentId: M:GraphQL.Types.Schema.RegisterValueConverter(GraphQL.Types.IAstFromValueConverter)
+  parent: GraphQL.Types.Schema
+  isExternal: true
+  name: RegisterValueConverter(IAstFromValueConverter)
+  nameWithType: Schema.RegisterValueConverter(IAstFromValueConverter)
+  fullName: GraphQL.Types.Schema.RegisterValueConverter(GraphQL.Types.IAstFromValueConverter)
+  spec.csharp:
+  - uid: GraphQL.Types.Schema.RegisterValueConverter(GraphQL.Types.IAstFromValueConverter)
+    name: RegisterValueConverter
+    nameWithType: Schema.RegisterValueConverter
+    fullName: GraphQL.Types.Schema.RegisterValueConverter
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: GraphQL.Types.IAstFromValueConverter
+    name: IAstFromValueConverter
+    nameWithType: IAstFromValueConverter
+    fullName: GraphQL.Types.IAstFromValueConverter
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GraphQL.Types.Schema.RegisterValueConverter(GraphQL.Types.IAstFromValueConverter)
+    name: RegisterValueConverter
+    nameWithType: Schema.RegisterValueConverter
+    fullName: GraphQL.Types.Schema.RegisterValueConverter
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: GraphQL.Types.IAstFromValueConverter
+    name: IAstFromValueConverter
+    nameWithType: IAstFromValueConverter
+    fullName: GraphQL.Types.IAstFromValueConverter
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GraphQL.Types.Schema.FindValueConverter(System.Object,GraphQL.Types.IGraphType)
+  commentId: M:GraphQL.Types.Schema.FindValueConverter(System.Object,GraphQL.Types.IGraphType)
+  parent: GraphQL.Types.Schema
+  isExternal: true
+  name: FindValueConverter(Object, IGraphType)
+  nameWithType: Schema.FindValueConverter(Object, IGraphType)
+  fullName: GraphQL.Types.Schema.FindValueConverter(System.Object, GraphQL.Types.IGraphType)
+  spec.csharp:
+  - uid: GraphQL.Types.Schema.FindValueConverter(System.Object,GraphQL.Types.IGraphType)
+    name: FindValueConverter
+    nameWithType: Schema.FindValueConverter
+    fullName: GraphQL.Types.Schema.FindValueConverter
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: GraphQL.Types.IGraphType
+    name: IGraphType
+    nameWithType: IGraphType
+    fullName: GraphQL.Types.IGraphType
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GraphQL.Types.Schema.FindValueConverter(System.Object,GraphQL.Types.IGraphType)
+    name: FindValueConverter
+    nameWithType: Schema.FindValueConverter
+    fullName: GraphQL.Types.Schema.FindValueConverter
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: GraphQL.Types.IGraphType
+    name: IGraphType
+    nameWithType: IGraphType
+    fullName: GraphQL.Types.IGraphType
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GraphQL.Types.Schema.FindType(System.String)
+  commentId: M:GraphQL.Types.Schema.FindType(System.String)
+  parent: GraphQL.Types.Schema
+  isExternal: true
+  name: FindType(String)
+  nameWithType: Schema.FindType(String)
+  fullName: GraphQL.Types.Schema.FindType(System.String)
+  spec.csharp:
+  - uid: GraphQL.Types.Schema.FindType(System.String)
+    name: FindType
+    nameWithType: Schema.FindType
+    fullName: GraphQL.Types.Schema.FindType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GraphQL.Types.Schema.FindType(System.String)
+    name: FindType
+    nameWithType: Schema.FindType
+    fullName: GraphQL.Types.Schema.FindType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GraphQL.Types.Schema.Dispose
+  commentId: M:GraphQL.Types.Schema.Dispose
+  parent: GraphQL.Types.Schema
+  isExternal: true
+  name: Dispose()
+  nameWithType: Schema.Dispose()
+  fullName: GraphQL.Types.Schema.Dispose()
+  spec.csharp:
+  - uid: GraphQL.Types.Schema.Dispose
+    name: Dispose
+    nameWithType: Schema.Dispose
+    fullName: GraphQL.Types.Schema.Dispose
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: GraphQL.Types.Schema.Dispose
+    name: Dispose
+    nameWithType: Schema.Dispose
+    fullName: GraphQL.Types.Schema.Dispose
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: GraphQL.Types.Schema.FieldNameConverter
+  commentId: P:GraphQL.Types.Schema.FieldNameConverter
+  parent: GraphQL.Types.Schema
+  isExternal: true
+  name: FieldNameConverter
+  nameWithType: Schema.FieldNameConverter
+  fullName: GraphQL.Types.Schema.FieldNameConverter
+- uid: GraphQL.Types.Schema.Initialized
+  commentId: P:GraphQL.Types.Schema.Initialized
+  parent: GraphQL.Types.Schema
+  isExternal: true
+  name: Initialized
+  nameWithType: Schema.Initialized
+  fullName: GraphQL.Types.Schema.Initialized
+- uid: GraphQL.Types.Schema.Query
+  commentId: P:GraphQL.Types.Schema.Query
+  parent: GraphQL.Types.Schema
+  isExternal: true
+  name: Query
+  nameWithType: Schema.Query
+  fullName: GraphQL.Types.Schema.Query
+- uid: GraphQL.Types.Schema.Mutation
+  commentId: P:GraphQL.Types.Schema.Mutation
+  parent: GraphQL.Types.Schema
+  isExternal: true
+  name: Mutation
+  nameWithType: Schema.Mutation
+  fullName: GraphQL.Types.Schema.Mutation
+- uid: GraphQL.Types.Schema.Subscription
+  commentId: P:GraphQL.Types.Schema.Subscription
+  parent: GraphQL.Types.Schema
+  isExternal: true
+  name: Subscription
+  nameWithType: Schema.Subscription
+  fullName: GraphQL.Types.Schema.Subscription
+- uid: GraphQL.Types.Schema.ResolveType
+  commentId: P:GraphQL.Types.Schema.ResolveType
+  parent: GraphQL.Types.Schema
+  isExternal: true
+  name: ResolveType
+  nameWithType: Schema.ResolveType
+  fullName: GraphQL.Types.Schema.ResolveType
+- uid: GraphQL.Types.Schema.DependencyResolver
+  commentId: P:GraphQL.Types.Schema.DependencyResolver
+  parent: GraphQL.Types.Schema
+  isExternal: true
+  name: DependencyResolver
+  nameWithType: Schema.DependencyResolver
+  fullName: GraphQL.Types.Schema.DependencyResolver
+- uid: GraphQL.Types.Schema.Directives
+  commentId: P:GraphQL.Types.Schema.Directives
+  parent: GraphQL.Types.Schema
+  isExternal: true
+  name: Directives
+  nameWithType: Schema.Directives
+  fullName: GraphQL.Types.Schema.Directives
+- uid: GraphQL.Types.Schema.AllTypes
+  commentId: P:GraphQL.Types.Schema.AllTypes
+  parent: GraphQL.Types.Schema
+  isExternal: true
+  name: AllTypes
+  nameWithType: Schema.AllTypes
+  fullName: GraphQL.Types.Schema.AllTypes
+- uid: GraphQL.Types.Schema.AdditionalTypes
+  commentId: P:GraphQL.Types.Schema.AdditionalTypes
+  parent: GraphQL.Types.Schema
+  isExternal: true
+  name: AdditionalTypes
+  nameWithType: Schema.AdditionalTypes
+  fullName: GraphQL.Types.Schema.AdditionalTypes
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: GraphQL.Types
+  commentId: N:GraphQL.Types
+  isExternal: true
+  name: GraphQL.Types
+  nameWithType: GraphQL.Types
+  fullName: GraphQL.Types
+- uid: FarmMaster.GraphQL.FarmQLSchema.#ctor*
+  commentId: Overload:FarmMaster.GraphQL.FarmQLSchema.#ctor
+  name: FarmQLSchema
+  nameWithType: FarmQLSchema.FarmQLSchema
+  fullName: FarmMaster.GraphQL.FarmQLSchema.FarmQLSchema
+- uid: GraphQL.IDependencyResolver
+  commentId: T:GraphQL.IDependencyResolver
+  parent: GraphQL
+  isExternal: true
+  name: IDependencyResolver
+  nameWithType: IDependencyResolver
+  fullName: GraphQL.IDependencyResolver
+- uid: GraphQL
+  commentId: N:GraphQL
+  isExternal: true
+  name: GraphQL
+  nameWithType: GraphQL
+  fullName: GraphQL

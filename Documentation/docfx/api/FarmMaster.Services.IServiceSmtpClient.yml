@@ -1,0 +1,410 @@
+### YamlMime:ManagedReference
+items:
+- uid: FarmMaster.Services.IServiceSmtpClient
+  commentId: T:FarmMaster.Services.IServiceSmtpClient
+  id: IServiceSmtpClient
+  parent: FarmMaster.Services
+  children:
+  - FarmMaster.Services.IServiceSmtpClient.ContainsTemplate(System.String)
+  - FarmMaster.Services.IServiceSmtpClient.SendToAsync(Business.Model.User,System.Net.Mail.MailMessage)
+  - FarmMaster.Services.IServiceSmtpClient.SendToAsync(System.Collections.Generic.IEnumerable{System.String},System.Net.Mail.MailMessage)
+  - FarmMaster.Services.IServiceSmtpClient.SendToWithTemplateAsync(Business.Model.User,System.String,System.String,System.Object)
+  - FarmMaster.Services.IServiceSmtpClient.SendToWithTemplateAsync(System.Collections.Generic.IEnumerable{System.String},System.String,System.String,System.Object)
+  langs:
+  - csharp
+  - vb
+  name: IServiceSmtpClient
+  nameWithType: IServiceSmtpClient
+  fullName: FarmMaster.Services.IServiceSmtpClient
+  type: Interface
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceSmtpClient.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: IServiceSmtpClient
+    path: Services/IServiceSmtpClient.cs
+    startLine: 76
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  summary: "\nA barebones wrapper around an SmtpClient, with useful functions (and extentions) to make it easier\nto send messages to users.\n"
+  example: []
+  syntax:
+    content: public interface IServiceSmtpClient
+    content.vb: Public Interface IServiceSmtpClient
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: FarmMaster.Services.IServiceSmtpClient.SendToAsync(Business.Model.User,System.Net.Mail.MailMessage)
+  commentId: M:FarmMaster.Services.IServiceSmtpClient.SendToAsync(Business.Model.User,System.Net.Mail.MailMessage)
+  id: SendToAsync(Business.Model.User,System.Net.Mail.MailMessage)
+  parent: FarmMaster.Services.IServiceSmtpClient
+  langs:
+  - csharp
+  - vb
+  name: SendToAsync(User, MailMessage)
+  nameWithType: IServiceSmtpClient.SendToAsync(User, MailMessage)
+  fullName: FarmMaster.Services.IServiceSmtpClient.SendToAsync(Business.Model.User, System.Net.Mail.MailMessage)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceSmtpClient.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: SendToAsync
+    path: Services/IServiceSmtpClient.cs
+    startLine: 83
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  summary: "\nSends the given <code data-dev-comment-type=\"paramref\" class=\"paramref\">message</code> to the specified <code data-dev-comment-type=\"paramref\" class=\"paramref\">user</code>\n"
+  example: []
+  syntax:
+    content: Task SendToAsync(User user, MailMessage message)
+    parameters:
+    - id: user
+      type: Business.Model.User
+      description: The user to send the message to.
+    - id: message
+      type: System.Net.Mail.MailMessage
+      description: The message to send.
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Function SendToAsync(user As User, message As MailMessage) As Task
+  overload: FarmMaster.Services.IServiceSmtpClient.SendToAsync*
+- uid: FarmMaster.Services.IServiceSmtpClient.SendToAsync(System.Collections.Generic.IEnumerable{System.String},System.Net.Mail.MailMessage)
+  commentId: M:FarmMaster.Services.IServiceSmtpClient.SendToAsync(System.Collections.Generic.IEnumerable{System.String},System.Net.Mail.MailMessage)
+  id: SendToAsync(System.Collections.Generic.IEnumerable{System.String},System.Net.Mail.MailMessage)
+  parent: FarmMaster.Services.IServiceSmtpClient
+  langs:
+  - csharp
+  - vb
+  name: SendToAsync(IEnumerable<String>, MailMessage)
+  nameWithType: IServiceSmtpClient.SendToAsync(IEnumerable<String>, MailMessage)
+  fullName: FarmMaster.Services.IServiceSmtpClient.SendToAsync(System.Collections.Generic.IEnumerable<System.String>, System.Net.Mail.MailMessage)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceSmtpClient.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: SendToAsync
+    path: Services/IServiceSmtpClient.cs
+    startLine: 85
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: Task SendToAsync(IEnumerable<string> emails, MailMessage message)
+    parameters:
+    - id: emails
+      type: System.Collections.Generic.IEnumerable{System.String}
+    - id: message
+      type: System.Net.Mail.MailMessage
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Function SendToAsync(emails As IEnumerable(Of String), message As MailMessage) As Task
+  overload: FarmMaster.Services.IServiceSmtpClient.SendToAsync*
+  nameWithType.vb: IServiceSmtpClient.SendToAsync(IEnumerable(Of String), MailMessage)
+  fullName.vb: FarmMaster.Services.IServiceSmtpClient.SendToAsync(System.Collections.Generic.IEnumerable(Of System.String), System.Net.Mail.MailMessage)
+  name.vb: SendToAsync(IEnumerable(Of String), MailMessage)
+- uid: FarmMaster.Services.IServiceSmtpClient.SendToWithTemplateAsync(Business.Model.User,System.String,System.String,System.Object)
+  commentId: M:FarmMaster.Services.IServiceSmtpClient.SendToWithTemplateAsync(Business.Model.User,System.String,System.String,System.Object)
+  id: SendToWithTemplateAsync(Business.Model.User,System.String,System.String,System.Object)
+  parent: FarmMaster.Services.IServiceSmtpClient
+  langs:
+  - csharp
+  - vb
+  name: SendToWithTemplateAsync(User, String, String, Object)
+  nameWithType: IServiceSmtpClient.SendToWithTemplateAsync(User, String, String, Object)
+  fullName: FarmMaster.Services.IServiceSmtpClient.SendToWithTemplateAsync(Business.Model.User, System.String, System.String, System.Object)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceSmtpClient.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: SendToWithTemplateAsync
+    path: Services/IServiceSmtpClient.cs
+    startLine: 98
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  summary: "\nRenders a razor template with the given <code data-dev-comment-type=\"paramref\" class=\"paramref\">templateName</code>, and sends the rendered HTML to the\nspecified <code data-dev-comment-type=\"paramref\" class=\"paramref\">user</code>.\n"
+  remarks: "\nThe <code data-dev-comment-type=\"paramref\" class=\"paramref\">templateName</code> is used as a key for the <xref href=\"FarmMaster.Services.IServiceSmtpTemplateConfig.%23ctor\" data-throw-if-not-resolved=\"false\"></xref> dictionary.\n"
+  example: []
+  syntax:
+    content: Task SendToWithTemplateAsync(User user, string templateName, string subject, object model)
+    parameters:
+    - id: user
+      type: Business.Model.User
+      description: The user to send the message to.
+    - id: templateName
+      type: System.String
+      description: The name of the template to render.
+    - id: subject
+      type: System.String
+      description: The subject to give the message.
+    - id: model
+      type: System.Object
+      description: The model to pass to the template.
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Function SendToWithTemplateAsync(user As User, templateName As String, subject As String, model As Object) As Task
+  overload: FarmMaster.Services.IServiceSmtpClient.SendToWithTemplateAsync*
+- uid: FarmMaster.Services.IServiceSmtpClient.SendToWithTemplateAsync(System.Collections.Generic.IEnumerable{System.String},System.String,System.String,System.Object)
+  commentId: M:FarmMaster.Services.IServiceSmtpClient.SendToWithTemplateAsync(System.Collections.Generic.IEnumerable{System.String},System.String,System.String,System.Object)
+  id: SendToWithTemplateAsync(System.Collections.Generic.IEnumerable{System.String},System.String,System.String,System.Object)
+  parent: FarmMaster.Services.IServiceSmtpClient
+  langs:
+  - csharp
+  - vb
+  name: SendToWithTemplateAsync(IEnumerable<String>, String, String, Object)
+  nameWithType: IServiceSmtpClient.SendToWithTemplateAsync(IEnumerable<String>, String, String, Object)
+  fullName: FarmMaster.Services.IServiceSmtpClient.SendToWithTemplateAsync(System.Collections.Generic.IEnumerable<System.String>, System.String, System.String, System.Object)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceSmtpClient.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: SendToWithTemplateAsync
+    path: Services/IServiceSmtpClient.cs
+    startLine: 100
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: Task SendToWithTemplateAsync(IEnumerable<string> emails, string templateName, string subject, object model)
+    parameters:
+    - id: emails
+      type: System.Collections.Generic.IEnumerable{System.String}
+    - id: templateName
+      type: System.String
+    - id: subject
+      type: System.String
+    - id: model
+      type: System.Object
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Function SendToWithTemplateAsync(emails As IEnumerable(Of String), templateName As String, subject As String, model As Object) As Task
+  overload: FarmMaster.Services.IServiceSmtpClient.SendToWithTemplateAsync*
+  nameWithType.vb: IServiceSmtpClient.SendToWithTemplateAsync(IEnumerable(Of String), String, String, Object)
+  fullName.vb: FarmMaster.Services.IServiceSmtpClient.SendToWithTemplateAsync(System.Collections.Generic.IEnumerable(Of System.String), System.String, System.String, System.Object)
+  name.vb: SendToWithTemplateAsync(IEnumerable(Of String), String, String, Object)
+- uid: FarmMaster.Services.IServiceSmtpClient.ContainsTemplate(System.String)
+  commentId: M:FarmMaster.Services.IServiceSmtpClient.ContainsTemplate(System.String)
+  id: ContainsTemplate(System.String)
+  parent: FarmMaster.Services.IServiceSmtpClient
+  langs:
+  - csharp
+  - vb
+  name: ContainsTemplate(String)
+  nameWithType: IServiceSmtpClient.ContainsTemplate(String)
+  fullName: FarmMaster.Services.IServiceSmtpClient.ContainsTemplate(System.String)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceSmtpClient.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: ContainsTemplate
+    path: Services/IServiceSmtpClient.cs
+    startLine: 107
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  summary: "\nDetermines whether a template exists.\n"
+  example: []
+  syntax:
+    content: bool ContainsTemplate(string templateName)
+    parameters:
+    - id: templateName
+      type: System.String
+      description: The name of the template to check.
+    return:
+      type: System.Boolean
+      description: True if it exists. False otherwise.
+    content.vb: Function ContainsTemplate(templateName As String) As Boolean
+  overload: FarmMaster.Services.IServiceSmtpClient.ContainsTemplate*
+references:
+- uid: FarmMaster.Services
+  commentId: N:FarmMaster.Services
+  name: FarmMaster.Services
+  nameWithType: FarmMaster.Services
+  fullName: FarmMaster.Services
+- uid: FarmMaster.Services.IServiceSmtpClient.SendToAsync*
+  commentId: Overload:FarmMaster.Services.IServiceSmtpClient.SendToAsync
+  name: SendToAsync
+  nameWithType: IServiceSmtpClient.SendToAsync
+  fullName: FarmMaster.Services.IServiceSmtpClient.SendToAsync
+- uid: Business.Model.User
+  commentId: T:Business.Model.User
+  parent: Business.Model
+  name: User
+  nameWithType: User
+  fullName: Business.Model.User
+- uid: System.Net.Mail.MailMessage
+  commentId: T:System.Net.Mail.MailMessage
+  parent: System.Net.Mail
+  isExternal: true
+  name: MailMessage
+  nameWithType: MailMessage
+  fullName: System.Net.Mail.MailMessage
+- uid: System.Threading.Tasks.Task
+  commentId: T:System.Threading.Tasks.Task
+  parent: System.Threading.Tasks
+  isExternal: true
+  name: Task
+  nameWithType: Task
+  fullName: System.Threading.Tasks.Task
+- uid: Business.Model
+  commentId: N:Business.Model
+  name: Business.Model
+  nameWithType: Business.Model
+  fullName: Business.Model
+- uid: System.Net.Mail
+  commentId: N:System.Net.Mail
+  isExternal: true
+  name: System.Net.Mail
+  nameWithType: System.Net.Mail
+  fullName: System.Net.Mail
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+- uid: System.Collections.Generic.IEnumerable{System.String}
+  commentId: T:System.Collections.Generic.IEnumerable{System.String}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  name: IEnumerable<String>
+  nameWithType: IEnumerable<String>
+  fullName: System.Collections.Generic.IEnumerable<System.String>
+  nameWithType.vb: IEnumerable(Of String)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of System.String)
+  name.vb: IEnumerable(Of String)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+- uid: FarmMaster.Services.IServiceSmtpTemplateConfig.#ctor
+  commentId: M:FarmMaster.Services.IServiceSmtpTemplateConfig.#ctor
+  isExternal: true
+- uid: FarmMaster.Services.IServiceSmtpClient.SendToWithTemplateAsync*
+  commentId: Overload:FarmMaster.Services.IServiceSmtpClient.SendToWithTemplateAsync
+  name: SendToWithTemplateAsync
+  nameWithType: IServiceSmtpClient.SendToWithTemplateAsync
+  fullName: FarmMaster.Services.IServiceSmtpClient.SendToWithTemplateAsync
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: FarmMaster.Services.IServiceSmtpClient.ContainsTemplate*
+  commentId: Overload:FarmMaster.Services.IServiceSmtpClient.ContainsTemplate
+  name: ContainsTemplate
+  nameWithType: IServiceSmtpClient.ContainsTemplate
+  fullName: FarmMaster.Services.IServiceSmtpClient.ContainsTemplate
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean

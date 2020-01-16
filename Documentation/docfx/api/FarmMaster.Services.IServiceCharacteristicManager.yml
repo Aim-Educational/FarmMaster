@@ -1,0 +1,994 @@
+### YamlMime:ManagedReference
+items:
+- uid: FarmMaster.Services.IServiceCharacteristicManager
+  commentId: T:FarmMaster.Services.IServiceCharacteristicManager
+  id: IServiceCharacteristicManager
+  parent: FarmMaster.Services
+  children:
+  - FarmMaster.Services.IServiceCharacteristicManager.CreateFromHtmlString(Business.Model.AnimalCharacteristicList,System.String,Business.Model.DynamicField.Type,System.String)
+  - FarmMaster.Services.IServiceCharacteristicManager.FullDeleteById(Business.Model.AnimalCharacteristicList,System.Int32)
+  langs:
+  - csharp
+  - vb
+  name: IServiceCharacteristicManager
+  nameWithType: IServiceCharacteristicManager
+  fullName: FarmMaster.Services.IServiceCharacteristicManager
+  type: Interface
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceCharacteristicManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: IServiceCharacteristicManager
+    path: Services/IServiceCharacteristicManager.cs
+    startLine: 8
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: 'public interface IServiceCharacteristicManager : IServiceEntityManager<AnimalCharacteristic>, IServiceEntityManagerFullDeletion<AnimalCharacteristic>'
+    content.vb: >-
+      Public Interface IServiceCharacteristicManager
+
+          Inherits IServiceEntityManager(Of AnimalCharacteristic), IServiceEntityManagerFullDeletion(Of AnimalCharacteristic)
+  inheritedMembers:
+  - FarmMaster.Services.IServiceEntityManager{Business.Model.AnimalCharacteristic}.Query
+  - FarmMaster.Services.IServiceEntityManager{Business.Model.AnimalCharacteristic}.QueryAllIncluded
+  - FarmMaster.Services.IServiceEntityManager{Business.Model.AnimalCharacteristic}.GetIdFor(Business.Model.AnimalCharacteristic)
+  - FarmMaster.Services.IServiceEntityManager{Business.Model.AnimalCharacteristic}.Update(Business.Model.AnimalCharacteristic)
+  - FarmMaster.Services.IServiceEntityManagerFullDeletion{Business.Model.AnimalCharacteristic}.FullDelete(Business.Model.AnimalCharacteristic)
+  extensionMethods:
+  - FarmMaster.Services.IServiceEntityManager{Business.Model.AnimalCharacteristic}.FarmMaster.Services.IServiceEntityDataExtentions.FromId``1(System.Int32)
+  - FarmMaster.Services.IServiceEntityManager{Business.Model.AnimalCharacteristic}.FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded``1(System.Int32)
+  - FarmMaster.Services.IServiceEntityManager{Business.Model.AnimalCharacteristic}.FarmMaster.Services.IServiceEntityDataExtentions.For``1
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: FarmMaster.Services.IServiceCharacteristicManager.CreateFromHtmlString(Business.Model.AnimalCharacteristicList,System.String,Business.Model.DynamicField.Type,System.String)
+  commentId: M:FarmMaster.Services.IServiceCharacteristicManager.CreateFromHtmlString(Business.Model.AnimalCharacteristicList,System.String,Business.Model.DynamicField.Type,System.String)
+  id: CreateFromHtmlString(Business.Model.AnimalCharacteristicList,System.String,Business.Model.DynamicField.Type,System.String)
+  parent: FarmMaster.Services.IServiceCharacteristicManager
+  langs:
+  - csharp
+  - vb
+  name: CreateFromHtmlString(AnimalCharacteristicList, String, DynamicField.Type, String)
+  nameWithType: IServiceCharacteristicManager.CreateFromHtmlString(AnimalCharacteristicList, String, DynamicField.Type, String)
+  fullName: FarmMaster.Services.IServiceCharacteristicManager.CreateFromHtmlString(Business.Model.AnimalCharacteristicList, System.String, Business.Model.DynamicField.Type, System.String)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceCharacteristicManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: CreateFromHtmlString
+    path: Services/IServiceCharacteristicManager.cs
+    startLine: 10
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: AnimalCharacteristic CreateFromHtmlString(AnimalCharacteristicList list, string name, DynamicField.Type type, string htmlString)
+    parameters:
+    - id: list
+      type: Business.Model.AnimalCharacteristicList
+    - id: name
+      type: System.String
+    - id: type
+      type: Business.Model.DynamicField.Type
+    - id: htmlString
+      type: System.String
+    return:
+      type: Business.Model.AnimalCharacteristic
+    content.vb: Function CreateFromHtmlString(list As AnimalCharacteristicList, name As String, type As DynamicField.Type, htmlString As String) As AnimalCharacteristic
+  overload: FarmMaster.Services.IServiceCharacteristicManager.CreateFromHtmlString*
+- uid: FarmMaster.Services.IServiceCharacteristicManager.FullDeleteById(Business.Model.AnimalCharacteristicList,System.Int32)
+  commentId: M:FarmMaster.Services.IServiceCharacteristicManager.FullDeleteById(Business.Model.AnimalCharacteristicList,System.Int32)
+  id: FullDeleteById(Business.Model.AnimalCharacteristicList,System.Int32)
+  parent: FarmMaster.Services.IServiceCharacteristicManager
+  langs:
+  - csharp
+  - vb
+  name: FullDeleteById(AnimalCharacteristicList, Int32)
+  nameWithType: IServiceCharacteristicManager.FullDeleteById(AnimalCharacteristicList, Int32)
+  fullName: FarmMaster.Services.IServiceCharacteristicManager.FullDeleteById(Business.Model.AnimalCharacteristicList, System.Int32)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceCharacteristicManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: FullDeleteById
+    path: Services/IServiceCharacteristicManager.cs
+    startLine: 11
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: void FullDeleteById(AnimalCharacteristicList list, int id)
+    parameters:
+    - id: list
+      type: Business.Model.AnimalCharacteristicList
+    - id: id
+      type: System.Int32
+    content.vb: Sub FullDeleteById(list As AnimalCharacteristicList, id As Integer)
+  overload: FarmMaster.Services.IServiceCharacteristicManager.FullDeleteById*
+references:
+- uid: FarmMaster.Services
+  commentId: N:FarmMaster.Services
+  name: FarmMaster.Services
+  nameWithType: FarmMaster.Services
+  fullName: FarmMaster.Services
+- uid: FarmMaster.Services.IServiceEntityManager{Business.Model.AnimalCharacteristic}.Query
+  commentId: M:FarmMaster.Services.IServiceEntityManager{Business.Model.AnimalCharacteristic}.Query
+  parent: FarmMaster.Services.IServiceEntityManager{Business.Model.AnimalCharacteristic}
+  definition: FarmMaster.Services.IServiceEntityManager`1.Query
+  name: Query()
+  nameWithType: IServiceEntityManager<AnimalCharacteristic>.Query()
+  fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.AnimalCharacteristic>.Query()
+  nameWithType.vb: IServiceEntityManager(Of AnimalCharacteristic).Query()
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of Business.Model.AnimalCharacteristic).Query()
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.Query
+    name: Query
+    nameWithType: IServiceEntityManager<AnimalCharacteristic>.Query
+    fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.AnimalCharacteristic>.Query
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.Query
+    name: Query
+    nameWithType: IServiceEntityManager(Of AnimalCharacteristic).Query
+    fullName: FarmMaster.Services.IServiceEntityManager(Of Business.Model.AnimalCharacteristic).Query
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManager{Business.Model.AnimalCharacteristic}.QueryAllIncluded
+  commentId: M:FarmMaster.Services.IServiceEntityManager{Business.Model.AnimalCharacteristic}.QueryAllIncluded
+  parent: FarmMaster.Services.IServiceEntityManager{Business.Model.AnimalCharacteristic}
+  definition: FarmMaster.Services.IServiceEntityManager`1.QueryAllIncluded
+  name: QueryAllIncluded()
+  nameWithType: IServiceEntityManager<AnimalCharacteristic>.QueryAllIncluded()
+  fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.AnimalCharacteristic>.QueryAllIncluded()
+  nameWithType.vb: IServiceEntityManager(Of AnimalCharacteristic).QueryAllIncluded()
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of Business.Model.AnimalCharacteristic).QueryAllIncluded()
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.QueryAllIncluded
+    name: QueryAllIncluded
+    nameWithType: IServiceEntityManager<AnimalCharacteristic>.QueryAllIncluded
+    fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.AnimalCharacteristic>.QueryAllIncluded
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.QueryAllIncluded
+    name: QueryAllIncluded
+    nameWithType: IServiceEntityManager(Of AnimalCharacteristic).QueryAllIncluded
+    fullName: FarmMaster.Services.IServiceEntityManager(Of Business.Model.AnimalCharacteristic).QueryAllIncluded
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManager{Business.Model.AnimalCharacteristic}.GetIdFor(Business.Model.AnimalCharacteristic)
+  commentId: M:FarmMaster.Services.IServiceEntityManager{Business.Model.AnimalCharacteristic}.GetIdFor(Business.Model.AnimalCharacteristic)
+  parent: FarmMaster.Services.IServiceEntityManager{Business.Model.AnimalCharacteristic}
+  definition: FarmMaster.Services.IServiceEntityManager`1.GetIdFor(`0)
+  name: GetIdFor(AnimalCharacteristic)
+  nameWithType: IServiceEntityManager<AnimalCharacteristic>.GetIdFor(AnimalCharacteristic)
+  fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.AnimalCharacteristic>.GetIdFor(Business.Model.AnimalCharacteristic)
+  nameWithType.vb: IServiceEntityManager(Of AnimalCharacteristic).GetIdFor(AnimalCharacteristic)
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of Business.Model.AnimalCharacteristic).GetIdFor(Business.Model.AnimalCharacteristic)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.GetIdFor(`0)
+    name: GetIdFor
+    nameWithType: IServiceEntityManager<AnimalCharacteristic>.GetIdFor
+    fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.AnimalCharacteristic>.GetIdFor
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.AnimalCharacteristic
+    name: AnimalCharacteristic
+    nameWithType: AnimalCharacteristic
+    fullName: Business.Model.AnimalCharacteristic
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.GetIdFor(`0)
+    name: GetIdFor
+    nameWithType: IServiceEntityManager(Of AnimalCharacteristic).GetIdFor
+    fullName: FarmMaster.Services.IServiceEntityManager(Of Business.Model.AnimalCharacteristic).GetIdFor
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.AnimalCharacteristic
+    name: AnimalCharacteristic
+    nameWithType: AnimalCharacteristic
+    fullName: Business.Model.AnimalCharacteristic
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManager{Business.Model.AnimalCharacteristic}.Update(Business.Model.AnimalCharacteristic)
+  commentId: M:FarmMaster.Services.IServiceEntityManager{Business.Model.AnimalCharacteristic}.Update(Business.Model.AnimalCharacteristic)
+  parent: FarmMaster.Services.IServiceEntityManager{Business.Model.AnimalCharacteristic}
+  definition: FarmMaster.Services.IServiceEntityManager`1.Update(`0)
+  name: Update(AnimalCharacteristic)
+  nameWithType: IServiceEntityManager<AnimalCharacteristic>.Update(AnimalCharacteristic)
+  fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.AnimalCharacteristic>.Update(Business.Model.AnimalCharacteristic)
+  nameWithType.vb: IServiceEntityManager(Of AnimalCharacteristic).Update(AnimalCharacteristic)
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of Business.Model.AnimalCharacteristic).Update(Business.Model.AnimalCharacteristic)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.Update(`0)
+    name: Update
+    nameWithType: IServiceEntityManager<AnimalCharacteristic>.Update
+    fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.AnimalCharacteristic>.Update
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.AnimalCharacteristic
+    name: AnimalCharacteristic
+    nameWithType: AnimalCharacteristic
+    fullName: Business.Model.AnimalCharacteristic
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.Update(`0)
+    name: Update
+    nameWithType: IServiceEntityManager(Of AnimalCharacteristic).Update
+    fullName: FarmMaster.Services.IServiceEntityManager(Of Business.Model.AnimalCharacteristic).Update
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.AnimalCharacteristic
+    name: AnimalCharacteristic
+    nameWithType: AnimalCharacteristic
+    fullName: Business.Model.AnimalCharacteristic
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManagerFullDeletion{Business.Model.AnimalCharacteristic}.FullDelete(Business.Model.AnimalCharacteristic)
+  commentId: M:FarmMaster.Services.IServiceEntityManagerFullDeletion{Business.Model.AnimalCharacteristic}.FullDelete(Business.Model.AnimalCharacteristic)
+  parent: FarmMaster.Services.IServiceEntityManagerFullDeletion{Business.Model.AnimalCharacteristic}
+  definition: FarmMaster.Services.IServiceEntityManagerFullDeletion`1.FullDelete(`0)
+  name: FullDelete(AnimalCharacteristic)
+  nameWithType: IServiceEntityManagerFullDeletion<AnimalCharacteristic>.FullDelete(AnimalCharacteristic)
+  fullName: FarmMaster.Services.IServiceEntityManagerFullDeletion<Business.Model.AnimalCharacteristic>.FullDelete(Business.Model.AnimalCharacteristic)
+  nameWithType.vb: IServiceEntityManagerFullDeletion(Of AnimalCharacteristic).FullDelete(AnimalCharacteristic)
+  fullName.vb: FarmMaster.Services.IServiceEntityManagerFullDeletion(Of Business.Model.AnimalCharacteristic).FullDelete(Business.Model.AnimalCharacteristic)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManagerFullDeletion`1.FullDelete(`0)
+    name: FullDelete
+    nameWithType: IServiceEntityManagerFullDeletion<AnimalCharacteristic>.FullDelete
+    fullName: FarmMaster.Services.IServiceEntityManagerFullDeletion<Business.Model.AnimalCharacteristic>.FullDelete
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.AnimalCharacteristic
+    name: AnimalCharacteristic
+    nameWithType: AnimalCharacteristic
+    fullName: Business.Model.AnimalCharacteristic
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManagerFullDeletion`1.FullDelete(`0)
+    name: FullDelete
+    nameWithType: IServiceEntityManagerFullDeletion(Of AnimalCharacteristic).FullDelete
+    fullName: FarmMaster.Services.IServiceEntityManagerFullDeletion(Of Business.Model.AnimalCharacteristic).FullDelete
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.AnimalCharacteristic
+    name: AnimalCharacteristic
+    nameWithType: AnimalCharacteristic
+    fullName: Business.Model.AnimalCharacteristic
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManager{Business.Model.AnimalCharacteristic}.FarmMaster.Services.IServiceEntityDataExtentions.FromId``1(System.Int32)
+  commentId: M:FarmMaster.Services.IServiceEntityDataExtentions.FromId``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+  parent: FarmMaster.Services.IServiceEntityDataExtentions
+  definition: FarmMaster.Services.IServiceEntityDataExtentions.FromId``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+  name: FromId<AnimalCharacteristic>(Int32)
+  nameWithType: IServiceEntityDataExtentions.FromId<AnimalCharacteristic>(Int32)
+  fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromId<Business.Model.AnimalCharacteristic>(System.Int32)
+  nameWithType.vb: IServiceEntityDataExtentions.FromId(Of AnimalCharacteristic)(Int32)
+  fullName.vb: FarmMaster.Services.IServiceEntityDataExtentions.FromId(Of Business.Model.AnimalCharacteristic)(System.Int32)
+  name.vb: FromId(Of AnimalCharacteristic)(Int32)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.FromId``1(System.Int32)
+    name: FromId<AnimalCharacteristic>
+    nameWithType: IServiceEntityDataExtentions.FromId<AnimalCharacteristic>
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromId<Business.Model.AnimalCharacteristic>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.FromId``1(System.Int32)
+    name: FromId(Of AnimalCharacteristic)
+    nameWithType: IServiceEntityDataExtentions.FromId(Of AnimalCharacteristic)
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromId(Of Business.Model.AnimalCharacteristic)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManager{Business.Model.AnimalCharacteristic}.FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded``1(System.Int32)
+  commentId: M:FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+  parent: FarmMaster.Services.IServiceEntityDataExtentions
+  definition: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+  name: FromIdAllIncluded<AnimalCharacteristic>(Int32)
+  nameWithType: IServiceEntityDataExtentions.FromIdAllIncluded<AnimalCharacteristic>(Int32)
+  fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded<Business.Model.AnimalCharacteristic>(System.Int32)
+  nameWithType.vb: IServiceEntityDataExtentions.FromIdAllIncluded(Of AnimalCharacteristic)(Int32)
+  fullName.vb: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded(Of Business.Model.AnimalCharacteristic)(System.Int32)
+  name.vb: FromIdAllIncluded(Of AnimalCharacteristic)(Int32)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded``1(System.Int32)
+    name: FromIdAllIncluded<AnimalCharacteristic>
+    nameWithType: IServiceEntityDataExtentions.FromIdAllIncluded<AnimalCharacteristic>
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded<Business.Model.AnimalCharacteristic>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded``1(System.Int32)
+    name: FromIdAllIncluded(Of AnimalCharacteristic)
+    nameWithType: IServiceEntityDataExtentions.FromIdAllIncluded(Of AnimalCharacteristic)
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded(Of Business.Model.AnimalCharacteristic)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManager{Business.Model.AnimalCharacteristic}.FarmMaster.Services.IServiceEntityDataExtentions.For``1
+  commentId: M:FarmMaster.Services.IServiceEntityDataExtentions.For``1(FarmMaster.Services.IServiceEntityManager{``0})
+  parent: FarmMaster.Services.IServiceEntityDataExtentions
+  definition: FarmMaster.Services.IServiceEntityDataExtentions.For``1(FarmMaster.Services.IServiceEntityManager{``0})
+  name: For<AnimalCharacteristic>()
+  nameWithType: IServiceEntityDataExtentions.For<AnimalCharacteristic>()
+  fullName: FarmMaster.Services.IServiceEntityDataExtentions.For<Business.Model.AnimalCharacteristic>()
+  nameWithType.vb: IServiceEntityDataExtentions.For(Of AnimalCharacteristic)()
+  fullName.vb: FarmMaster.Services.IServiceEntityDataExtentions.For(Of Business.Model.AnimalCharacteristic)()
+  name.vb: For(Of AnimalCharacteristic)()
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.For``1
+    name: For<AnimalCharacteristic>
+    nameWithType: IServiceEntityDataExtentions.For<AnimalCharacteristic>
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.For<Business.Model.AnimalCharacteristic>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.For``1
+    name: For(Of AnimalCharacteristic)
+    nameWithType: IServiceEntityDataExtentions.For(Of AnimalCharacteristic)
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.For(Of Business.Model.AnimalCharacteristic)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManager`1.Query
+  commentId: M:FarmMaster.Services.IServiceEntityManager`1.Query
+  name: Query()
+  nameWithType: IServiceEntityManager<T>.Query()
+  fullName: FarmMaster.Services.IServiceEntityManager<T>.Query()
+  nameWithType.vb: IServiceEntityManager(Of T).Query()
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of T).Query()
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.Query
+    name: Query
+    nameWithType: IServiceEntityManager<T>.Query
+    fullName: FarmMaster.Services.IServiceEntityManager<T>.Query
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.Query
+    name: Query
+    nameWithType: IServiceEntityManager(Of T).Query
+    fullName: FarmMaster.Services.IServiceEntityManager(Of T).Query
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManager{Business.Model.AnimalCharacteristic}
+  commentId: T:FarmMaster.Services.IServiceEntityManager{Business.Model.AnimalCharacteristic}
+  parent: FarmMaster.Services
+  definition: FarmMaster.Services.IServiceEntityManager`1
+  name: IServiceEntityManager<AnimalCharacteristic>
+  nameWithType: IServiceEntityManager<AnimalCharacteristic>
+  fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.AnimalCharacteristic>
+  nameWithType.vb: IServiceEntityManager(Of AnimalCharacteristic)
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of Business.Model.AnimalCharacteristic)
+  name.vb: IServiceEntityManager(Of AnimalCharacteristic)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1
+    name: IServiceEntityManager
+    nameWithType: IServiceEntityManager
+    fullName: FarmMaster.Services.IServiceEntityManager
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Business.Model.AnimalCharacteristic
+    name: AnimalCharacteristic
+    nameWithType: AnimalCharacteristic
+    fullName: Business.Model.AnimalCharacteristic
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1
+    name: IServiceEntityManager
+    nameWithType: IServiceEntityManager
+    fullName: FarmMaster.Services.IServiceEntityManager
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Business.Model.AnimalCharacteristic
+    name: AnimalCharacteristic
+    nameWithType: AnimalCharacteristic
+    fullName: Business.Model.AnimalCharacteristic
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManager`1.QueryAllIncluded
+  commentId: M:FarmMaster.Services.IServiceEntityManager`1.QueryAllIncluded
+  name: QueryAllIncluded()
+  nameWithType: IServiceEntityManager<T>.QueryAllIncluded()
+  fullName: FarmMaster.Services.IServiceEntityManager<T>.QueryAllIncluded()
+  nameWithType.vb: IServiceEntityManager(Of T).QueryAllIncluded()
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of T).QueryAllIncluded()
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.QueryAllIncluded
+    name: QueryAllIncluded
+    nameWithType: IServiceEntityManager<T>.QueryAllIncluded
+    fullName: FarmMaster.Services.IServiceEntityManager<T>.QueryAllIncluded
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.QueryAllIncluded
+    name: QueryAllIncluded
+    nameWithType: IServiceEntityManager(Of T).QueryAllIncluded
+    fullName: FarmMaster.Services.IServiceEntityManager(Of T).QueryAllIncluded
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManager`1.GetIdFor(`0)
+  commentId: M:FarmMaster.Services.IServiceEntityManager`1.GetIdFor(`0)
+  name: GetIdFor(T)
+  nameWithType: IServiceEntityManager<T>.GetIdFor(T)
+  fullName: FarmMaster.Services.IServiceEntityManager<T>.GetIdFor(T)
+  nameWithType.vb: IServiceEntityManager(Of T).GetIdFor(T)
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of T).GetIdFor(T)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.GetIdFor(`0)
+    name: GetIdFor
+    nameWithType: IServiceEntityManager<T>.GetIdFor
+    fullName: FarmMaster.Services.IServiceEntityManager<T>.GetIdFor
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.GetIdFor(`0)
+    name: GetIdFor
+    nameWithType: IServiceEntityManager(Of T).GetIdFor
+    fullName: FarmMaster.Services.IServiceEntityManager(Of T).GetIdFor
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManager`1.Update(`0)
+  commentId: M:FarmMaster.Services.IServiceEntityManager`1.Update(`0)
+  name: Update(T)
+  nameWithType: IServiceEntityManager<T>.Update(T)
+  fullName: FarmMaster.Services.IServiceEntityManager<T>.Update(T)
+  nameWithType.vb: IServiceEntityManager(Of T).Update(T)
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of T).Update(T)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.Update(`0)
+    name: Update
+    nameWithType: IServiceEntityManager<T>.Update
+    fullName: FarmMaster.Services.IServiceEntityManager<T>.Update
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.Update(`0)
+    name: Update
+    nameWithType: IServiceEntityManager(Of T).Update
+    fullName: FarmMaster.Services.IServiceEntityManager(Of T).Update
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManagerFullDeletion`1.FullDelete(`0)
+  commentId: M:FarmMaster.Services.IServiceEntityManagerFullDeletion`1.FullDelete(`0)
+  name: FullDelete(T)
+  nameWithType: IServiceEntityManagerFullDeletion<T>.FullDelete(T)
+  fullName: FarmMaster.Services.IServiceEntityManagerFullDeletion<T>.FullDelete(T)
+  nameWithType.vb: IServiceEntityManagerFullDeletion(Of T).FullDelete(T)
+  fullName.vb: FarmMaster.Services.IServiceEntityManagerFullDeletion(Of T).FullDelete(T)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManagerFullDeletion`1.FullDelete(`0)
+    name: FullDelete
+    nameWithType: IServiceEntityManagerFullDeletion<T>.FullDelete
+    fullName: FarmMaster.Services.IServiceEntityManagerFullDeletion<T>.FullDelete
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManagerFullDeletion`1.FullDelete(`0)
+    name: FullDelete
+    nameWithType: IServiceEntityManagerFullDeletion(Of T).FullDelete
+    fullName: FarmMaster.Services.IServiceEntityManagerFullDeletion(Of T).FullDelete
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManagerFullDeletion{Business.Model.AnimalCharacteristic}
+  commentId: T:FarmMaster.Services.IServiceEntityManagerFullDeletion{Business.Model.AnimalCharacteristic}
+  parent: FarmMaster.Services
+  definition: FarmMaster.Services.IServiceEntityManagerFullDeletion`1
+  name: IServiceEntityManagerFullDeletion<AnimalCharacteristic>
+  nameWithType: IServiceEntityManagerFullDeletion<AnimalCharacteristic>
+  fullName: FarmMaster.Services.IServiceEntityManagerFullDeletion<Business.Model.AnimalCharacteristic>
+  nameWithType.vb: IServiceEntityManagerFullDeletion(Of AnimalCharacteristic)
+  fullName.vb: FarmMaster.Services.IServiceEntityManagerFullDeletion(Of Business.Model.AnimalCharacteristic)
+  name.vb: IServiceEntityManagerFullDeletion(Of AnimalCharacteristic)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManagerFullDeletion`1
+    name: IServiceEntityManagerFullDeletion
+    nameWithType: IServiceEntityManagerFullDeletion
+    fullName: FarmMaster.Services.IServiceEntityManagerFullDeletion
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Business.Model.AnimalCharacteristic
+    name: AnimalCharacteristic
+    nameWithType: AnimalCharacteristic
+    fullName: Business.Model.AnimalCharacteristic
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManagerFullDeletion`1
+    name: IServiceEntityManagerFullDeletion
+    nameWithType: IServiceEntityManagerFullDeletion
+    fullName: FarmMaster.Services.IServiceEntityManagerFullDeletion
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Business.Model.AnimalCharacteristic
+    name: AnimalCharacteristic
+    nameWithType: AnimalCharacteristic
+    fullName: Business.Model.AnimalCharacteristic
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityDataExtentions.FromId``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+  commentId: M:FarmMaster.Services.IServiceEntityDataExtentions.FromId``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+  isExternal: true
+  name: FromId<T>(IServiceEntityManager<T>, Int32)
+  nameWithType: IServiceEntityDataExtentions.FromId<T>(IServiceEntityManager<T>, Int32)
+  fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromId<T>(FarmMaster.Services.IServiceEntityManager<T>, System.Int32)
+  nameWithType.vb: IServiceEntityDataExtentions.FromId(Of T)(IServiceEntityManager(Of T), Int32)
+  fullName.vb: FarmMaster.Services.IServiceEntityDataExtentions.FromId(Of T)(FarmMaster.Services.IServiceEntityManager(Of T), System.Int32)
+  name.vb: FromId(Of T)(IServiceEntityManager(Of T), Int32)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.FromId``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+    name: FromId<T>
+    nameWithType: IServiceEntityDataExtentions.FromId<T>
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromId<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: FarmMaster.Services.IServiceEntityManager`1
+    name: IServiceEntityManager
+    nameWithType: IServiceEntityManager
+    fullName: FarmMaster.Services.IServiceEntityManager
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.FromId``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+    name: FromId(Of T)
+    nameWithType: IServiceEntityDataExtentions.FromId(Of T)
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromId(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: FarmMaster.Services.IServiceEntityManager`1
+    name: IServiceEntityManager
+    nameWithType: IServiceEntityManager
+    fullName: FarmMaster.Services.IServiceEntityManager
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityDataExtentions
+  commentId: T:FarmMaster.Services.IServiceEntityDataExtentions
+  parent: FarmMaster.Services
+  name: IServiceEntityDataExtentions
+  nameWithType: IServiceEntityDataExtentions
+  fullName: FarmMaster.Services.IServiceEntityDataExtentions
+- uid: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+  commentId: M:FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+  isExternal: true
+  name: FromIdAllIncluded<T>(IServiceEntityManager<T>, Int32)
+  nameWithType: IServiceEntityDataExtentions.FromIdAllIncluded<T>(IServiceEntityManager<T>, Int32)
+  fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded<T>(FarmMaster.Services.IServiceEntityManager<T>, System.Int32)
+  nameWithType.vb: IServiceEntityDataExtentions.FromIdAllIncluded(Of T)(IServiceEntityManager(Of T), Int32)
+  fullName.vb: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded(Of T)(FarmMaster.Services.IServiceEntityManager(Of T), System.Int32)
+  name.vb: FromIdAllIncluded(Of T)(IServiceEntityManager(Of T), Int32)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+    name: FromIdAllIncluded<T>
+    nameWithType: IServiceEntityDataExtentions.FromIdAllIncluded<T>
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: FarmMaster.Services.IServiceEntityManager`1
+    name: IServiceEntityManager
+    nameWithType: IServiceEntityManager
+    fullName: FarmMaster.Services.IServiceEntityManager
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+    name: FromIdAllIncluded(Of T)
+    nameWithType: IServiceEntityDataExtentions.FromIdAllIncluded(Of T)
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: FarmMaster.Services.IServiceEntityManager`1
+    name: IServiceEntityManager
+    nameWithType: IServiceEntityManager
+    fullName: FarmMaster.Services.IServiceEntityManager
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityDataExtentions.For``1(FarmMaster.Services.IServiceEntityManager{``0})
+  commentId: M:FarmMaster.Services.IServiceEntityDataExtentions.For``1(FarmMaster.Services.IServiceEntityManager{``0})
+  name: For<T>(IServiceEntityManager<T>)
+  nameWithType: IServiceEntityDataExtentions.For<T>(IServiceEntityManager<T>)
+  fullName: FarmMaster.Services.IServiceEntityDataExtentions.For<T>(FarmMaster.Services.IServiceEntityManager<T>)
+  nameWithType.vb: IServiceEntityDataExtentions.For(Of T)(IServiceEntityManager(Of T))
+  fullName.vb: FarmMaster.Services.IServiceEntityDataExtentions.For(Of T)(FarmMaster.Services.IServiceEntityManager(Of T))
+  name.vb: For(Of T)(IServiceEntityManager(Of T))
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.For``1(FarmMaster.Services.IServiceEntityManager{``0})
+    name: For<T>
+    nameWithType: IServiceEntityDataExtentions.For<T>
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.For<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: FarmMaster.Services.IServiceEntityManager`1
+    name: IServiceEntityManager
+    nameWithType: IServiceEntityManager
+    fullName: FarmMaster.Services.IServiceEntityManager
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.For``1(FarmMaster.Services.IServiceEntityManager{``0})
+    name: For(Of T)
+    nameWithType: IServiceEntityDataExtentions.For(Of T)
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.For(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: FarmMaster.Services.IServiceEntityManager`1
+    name: IServiceEntityManager
+    nameWithType: IServiceEntityManager
+    fullName: FarmMaster.Services.IServiceEntityManager
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManager`1
+  commentId: T:FarmMaster.Services.IServiceEntityManager`1
+  name: IServiceEntityManager<T>
+  nameWithType: IServiceEntityManager<T>
+  fullName: FarmMaster.Services.IServiceEntityManager<T>
+  nameWithType.vb: IServiceEntityManager(Of T)
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of T)
+  name.vb: IServiceEntityManager(Of T)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1
+    name: IServiceEntityManager
+    nameWithType: IServiceEntityManager
+    fullName: FarmMaster.Services.IServiceEntityManager
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1
+    name: IServiceEntityManager
+    nameWithType: IServiceEntityManager
+    fullName: FarmMaster.Services.IServiceEntityManager
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManagerFullDeletion`1
+  commentId: T:FarmMaster.Services.IServiceEntityManagerFullDeletion`1
+  name: IServiceEntityManagerFullDeletion<T>
+  nameWithType: IServiceEntityManagerFullDeletion<T>
+  fullName: FarmMaster.Services.IServiceEntityManagerFullDeletion<T>
+  nameWithType.vb: IServiceEntityManagerFullDeletion(Of T)
+  fullName.vb: FarmMaster.Services.IServiceEntityManagerFullDeletion(Of T)
+  name.vb: IServiceEntityManagerFullDeletion(Of T)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManagerFullDeletion`1
+    name: IServiceEntityManagerFullDeletion
+    nameWithType: IServiceEntityManagerFullDeletion
+    fullName: FarmMaster.Services.IServiceEntityManagerFullDeletion
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManagerFullDeletion`1
+    name: IServiceEntityManagerFullDeletion
+    nameWithType: IServiceEntityManagerFullDeletion
+    fullName: FarmMaster.Services.IServiceEntityManagerFullDeletion
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceCharacteristicManager.CreateFromHtmlString*
+  commentId: Overload:FarmMaster.Services.IServiceCharacteristicManager.CreateFromHtmlString
+  name: CreateFromHtmlString
+  nameWithType: IServiceCharacteristicManager.CreateFromHtmlString
+  fullName: FarmMaster.Services.IServiceCharacteristicManager.CreateFromHtmlString
+- uid: Business.Model.AnimalCharacteristicList
+  commentId: T:Business.Model.AnimalCharacteristicList
+  parent: Business.Model
+  name: AnimalCharacteristicList
+  nameWithType: AnimalCharacteristicList
+  fullName: Business.Model.AnimalCharacteristicList
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: Business.Model.DynamicField.Type
+  commentId: T:Business.Model.DynamicField.Type
+  parent: Business.Model
+  name: DynamicField.Type
+  nameWithType: DynamicField.Type
+  fullName: Business.Model.DynamicField.Type
+- uid: Business.Model.AnimalCharacteristic
+  commentId: T:Business.Model.AnimalCharacteristic
+  parent: Business.Model
+  name: AnimalCharacteristic
+  nameWithType: AnimalCharacteristic
+  fullName: Business.Model.AnimalCharacteristic
+- uid: Business.Model
+  commentId: N:Business.Model
+  name: Business.Model
+  nameWithType: Business.Model
+  fullName: Business.Model
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: FarmMaster.Services.IServiceCharacteristicManager.FullDeleteById*
+  commentId: Overload:FarmMaster.Services.IServiceCharacteristicManager.FullDeleteById
+  name: FullDeleteById
+  nameWithType: IServiceCharacteristicManager.FullDeleteById
+  fullName: FarmMaster.Services.IServiceCharacteristicManager.FullDeleteById
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32

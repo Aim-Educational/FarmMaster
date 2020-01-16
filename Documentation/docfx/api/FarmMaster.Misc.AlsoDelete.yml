@@ -1,0 +1,112 @@
+### YamlMime:ManagedReference
+items:
+- uid: FarmMaster.Misc.AlsoDelete
+  commentId: T:FarmMaster.Misc.AlsoDelete
+  id: AlsoDelete
+  parent: FarmMaster.Misc
+  children:
+  - FarmMaster.Misc.AlsoDelete.No
+  - FarmMaster.Misc.AlsoDelete.Yes
+  langs:
+  - csharp
+  - vb
+  name: AlsoDelete
+  nameWithType: AlsoDelete
+  fullName: FarmMaster.Misc.AlsoDelete
+  type: Enum
+  source:
+    remote:
+      path: FarmMaster/Misc/FlagEnums.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: AlsoDelete
+    path: Misc/FlagEnums.cs
+    startLine: 26
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Misc
+  syntax:
+    content: public enum AlsoDelete
+    content.vb: Public Enum AlsoDelete
+  modifiers.csharp:
+  - public
+  - enum
+  modifiers.vb:
+  - Public
+  - Enum
+- uid: FarmMaster.Misc.AlsoDelete.Yes
+  commentId: F:FarmMaster.Misc.AlsoDelete.Yes
+  id: Yes
+  parent: FarmMaster.Misc.AlsoDelete
+  langs:
+  - csharp
+  - vb
+  name: Yes
+  nameWithType: AlsoDelete.Yes
+  fullName: FarmMaster.Misc.AlsoDelete.Yes
+  type: Field
+  source:
+    remote:
+      path: FarmMaster/Misc/FlagEnums.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: Yes
+    path: Misc/FlagEnums.cs
+    startLine: 28
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Misc
+  syntax:
+    content: Yes = 0
+    return:
+      type: FarmMaster.Misc.AlsoDelete
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: FarmMaster.Misc.AlsoDelete.No
+  commentId: F:FarmMaster.Misc.AlsoDelete.No
+  id: No
+  parent: FarmMaster.Misc.AlsoDelete
+  langs:
+  - csharp
+  - vb
+  name: No
+  nameWithType: AlsoDelete.No
+  fullName: FarmMaster.Misc.AlsoDelete.No
+  type: Field
+  source:
+    remote:
+      path: FarmMaster/Misc/FlagEnums.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: No
+    path: Misc/FlagEnums.cs
+    startLine: 29
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Misc
+  syntax:
+    content: No = 1
+    return:
+      type: FarmMaster.Misc.AlsoDelete
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+references:
+- uid: FarmMaster.Misc
+  commentId: N:FarmMaster.Misc
+  name: FarmMaster.Misc
+  nameWithType: FarmMaster.Misc
+  fullName: FarmMaster.Misc
+- uid: FarmMaster.Misc.AlsoDelete
+  commentId: T:FarmMaster.Misc.AlsoDelete
+  parent: FarmMaster.Misc
+  name: AlsoDelete
+  nameWithType: AlsoDelete
+  fullName: FarmMaster.Misc.AlsoDelete

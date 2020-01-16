@@ -1,0 +1,40 @@
+### YamlMime:ManagedReference
+items:
+- uid: FarmMaster.Middleware
+  commentId: N:FarmMaster.Middleware
+  id: FarmMaster.Middleware
+  children:
+  - FarmMaster.Middleware.FarmMasterMetricsMiddleware
+  - FarmMaster.Middleware.FarmMasterMetricsMiddlewareExtensions
+  - FarmMaster.Middleware.FarmMasterUserMiddleware
+  - FarmMaster.Middleware.FarmMasterUserMiddlewareExtensions
+  langs:
+  - csharp
+  - vb
+  name: FarmMaster.Middleware
+  nameWithType: FarmMaster.Middleware
+  fullName: FarmMaster.Middleware
+  type: Namespace
+  assemblies:
+  - FarmMaster
+references:
+- uid: FarmMaster.Middleware.FarmMasterMetricsMiddleware
+  commentId: T:FarmMaster.Middleware.FarmMasterMetricsMiddleware
+  name: FarmMasterMetricsMiddleware
+  nameWithType: FarmMasterMetricsMiddleware
+  fullName: FarmMaster.Middleware.FarmMasterMetricsMiddleware
+- uid: FarmMaster.Middleware.FarmMasterMetricsMiddlewareExtensions
+  commentId: T:FarmMaster.Middleware.FarmMasterMetricsMiddlewareExtensions
+  name: FarmMasterMetricsMiddlewareExtensions
+  nameWithType: FarmMasterMetricsMiddlewareExtensions
+  fullName: FarmMaster.Middleware.FarmMasterMetricsMiddlewareExtensions
+- uid: FarmMaster.Middleware.FarmMasterUserMiddleware
+  commentId: T:FarmMaster.Middleware.FarmMasterUserMiddleware
+  name: FarmMasterUserMiddleware
+  nameWithType: FarmMasterUserMiddleware
+  fullName: FarmMaster.Middleware.FarmMasterUserMiddleware
+- uid: FarmMaster.Middleware.FarmMasterUserMiddlewareExtensions
+  commentId: T:FarmMaster.Middleware.FarmMasterUserMiddlewareExtensions
+  name: FarmMasterUserMiddlewareExtensions
+  nameWithType: FarmMasterUserMiddlewareExtensions
+  fullName: FarmMaster.Middleware.FarmMasterUserMiddlewareExtensions

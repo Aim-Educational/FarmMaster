@@ -1,0 +1,1014 @@
+### YamlMime:ManagedReference
+items:
+- uid: FarmMaster.Services.IServiceImageManager
+  commentId: T:FarmMaster.Services.IServiceImageManager
+  id: IServiceImageManager
+  parent: FarmMaster.Services
+  children:
+  - FarmMaster.Services.IServiceImageManager.GetFileNameForImageAndSize(Business.Model.Image,System.UInt16,System.UInt16)
+  - FarmMaster.Services.IServiceImageManager.ResizeToPhysicalFile(Business.Model.Image,System.UInt16,System.UInt16)
+  - FarmMaster.Services.IServiceImageManager.UploadFromForm(Microsoft.AspNetCore.Http.IFormFile)
+  langs:
+  - csharp
+  - vb
+  name: IServiceImageManager
+  nameWithType: IServiceImageManager
+  fullName: FarmMaster.Services.IServiceImageManager
+  type: Interface
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceImageManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: IServiceImageManager
+    path: Services/IServiceImageManager.cs
+    startLine: 17
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: 'public interface IServiceImageManager : IServiceEntityManager<Image>'
+    content.vb: >-
+      Public Interface IServiceImageManager
+
+          Inherits IServiceEntityManager(Of Image)
+  inheritedMembers:
+  - FarmMaster.Services.IServiceEntityManager{Business.Model.Image}.Query
+  - FarmMaster.Services.IServiceEntityManager{Business.Model.Image}.QueryAllIncluded
+  - FarmMaster.Services.IServiceEntityManager{Business.Model.Image}.GetIdFor(Business.Model.Image)
+  - FarmMaster.Services.IServiceEntityManager{Business.Model.Image}.Update(Business.Model.Image)
+  extensionMethods:
+  - FarmMaster.Services.IServiceEntityManager{Business.Model.Image}.FarmMaster.Services.IServiceEntityDataExtentions.FromId``1(System.Int32)
+  - FarmMaster.Services.IServiceEntityManager{Business.Model.Image}.FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded``1(System.Int32)
+  - FarmMaster.Services.IServiceEntityManager{Business.Model.Image}.FarmMaster.Services.IServiceEntityDataExtentions.For``1
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+- uid: FarmMaster.Services.IServiceImageManager.UploadFromForm(Microsoft.AspNetCore.Http.IFormFile)
+  commentId: M:FarmMaster.Services.IServiceImageManager.UploadFromForm(Microsoft.AspNetCore.Http.IFormFile)
+  id: UploadFromForm(Microsoft.AspNetCore.Http.IFormFile)
+  parent: FarmMaster.Services.IServiceImageManager
+  langs:
+  - csharp
+  - vb
+  name: UploadFromForm(IFormFile)
+  nameWithType: IServiceImageManager.UploadFromForm(IFormFile)
+  fullName: FarmMaster.Services.IServiceImageManager.UploadFromForm(Microsoft.AspNetCore.Http.IFormFile)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceImageManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: UploadFromForm
+    path: Services/IServiceImageManager.cs
+    startLine: 19
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: Task<Image> UploadFromForm(IFormFile file)
+    parameters:
+    - id: file
+      type: Microsoft.AspNetCore.Http.IFormFile
+    return:
+      type: System.Threading.Tasks.Task{Business.Model.Image}
+    content.vb: Function UploadFromForm(file As IFormFile) As Task(Of Image)
+  overload: FarmMaster.Services.IServiceImageManager.UploadFromForm*
+- uid: FarmMaster.Services.IServiceImageManager.ResizeToPhysicalFile(Business.Model.Image,System.UInt16,System.UInt16)
+  commentId: M:FarmMaster.Services.IServiceImageManager.ResizeToPhysicalFile(Business.Model.Image,System.UInt16,System.UInt16)
+  id: ResizeToPhysicalFile(Business.Model.Image,System.UInt16,System.UInt16)
+  parent: FarmMaster.Services.IServiceImageManager
+  langs:
+  - csharp
+  - vb
+  name: ResizeToPhysicalFile(Image, UInt16, UInt16)
+  nameWithType: IServiceImageManager.ResizeToPhysicalFile(Image, UInt16, UInt16)
+  fullName: FarmMaster.Services.IServiceImageManager.ResizeToPhysicalFile(Business.Model.Image, System.UInt16, System.UInt16)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceImageManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: ResizeToPhysicalFile
+    path: Services/IServiceImageManager.cs
+    startLine: 21
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: Task<string> ResizeToPhysicalFile(Image image, ushort width, ushort height)
+    parameters:
+    - id: image
+      type: Business.Model.Image
+    - id: width
+      type: System.UInt16
+    - id: height
+      type: System.UInt16
+    return:
+      type: System.Threading.Tasks.Task{System.String}
+    content.vb: Function ResizeToPhysicalFile(image As Image, width As UShort, height As UShort) As Task(Of String)
+  overload: FarmMaster.Services.IServiceImageManager.ResizeToPhysicalFile*
+- uid: FarmMaster.Services.IServiceImageManager.GetFileNameForImageAndSize(Business.Model.Image,System.UInt16,System.UInt16)
+  commentId: M:FarmMaster.Services.IServiceImageManager.GetFileNameForImageAndSize(Business.Model.Image,System.UInt16,System.UInt16)
+  id: GetFileNameForImageAndSize(Business.Model.Image,System.UInt16,System.UInt16)
+  parent: FarmMaster.Services.IServiceImageManager
+  langs:
+  - csharp
+  - vb
+  name: GetFileNameForImageAndSize(Image, UInt16, UInt16)
+  nameWithType: IServiceImageManager.GetFileNameForImageAndSize(Image, UInt16, UInt16)
+  fullName: FarmMaster.Services.IServiceImageManager.GetFileNameForImageAndSize(Business.Model.Image, System.UInt16, System.UInt16)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceImageManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: GetFileNameForImageAndSize
+    path: Services/IServiceImageManager.cs
+    startLine: 23
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: string GetFileNameForImageAndSize(Image image, ushort width, ushort height)
+    parameters:
+    - id: image
+      type: Business.Model.Image
+    - id: width
+      type: System.UInt16
+    - id: height
+      type: System.UInt16
+    return:
+      type: System.String
+    content.vb: Function GetFileNameForImageAndSize(image As Image, width As UShort, height As UShort) As String
+  overload: FarmMaster.Services.IServiceImageManager.GetFileNameForImageAndSize*
+references:
+- uid: FarmMaster.Services
+  commentId: N:FarmMaster.Services
+  name: FarmMaster.Services
+  nameWithType: FarmMaster.Services
+  fullName: FarmMaster.Services
+- uid: FarmMaster.Services.IServiceEntityManager{Business.Model.Image}.Query
+  commentId: M:FarmMaster.Services.IServiceEntityManager{Business.Model.Image}.Query
+  parent: FarmMaster.Services.IServiceEntityManager{Business.Model.Image}
+  definition: FarmMaster.Services.IServiceEntityManager`1.Query
+  name: Query()
+  nameWithType: IServiceEntityManager<Image>.Query()
+  fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.Image>.Query()
+  nameWithType.vb: IServiceEntityManager(Of Image).Query()
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of Business.Model.Image).Query()
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.Query
+    name: Query
+    nameWithType: IServiceEntityManager<Image>.Query
+    fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.Image>.Query
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.Query
+    name: Query
+    nameWithType: IServiceEntityManager(Of Image).Query
+    fullName: FarmMaster.Services.IServiceEntityManager(Of Business.Model.Image).Query
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManager{Business.Model.Image}.QueryAllIncluded
+  commentId: M:FarmMaster.Services.IServiceEntityManager{Business.Model.Image}.QueryAllIncluded
+  parent: FarmMaster.Services.IServiceEntityManager{Business.Model.Image}
+  definition: FarmMaster.Services.IServiceEntityManager`1.QueryAllIncluded
+  name: QueryAllIncluded()
+  nameWithType: IServiceEntityManager<Image>.QueryAllIncluded()
+  fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.Image>.QueryAllIncluded()
+  nameWithType.vb: IServiceEntityManager(Of Image).QueryAllIncluded()
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of Business.Model.Image).QueryAllIncluded()
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.QueryAllIncluded
+    name: QueryAllIncluded
+    nameWithType: IServiceEntityManager<Image>.QueryAllIncluded
+    fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.Image>.QueryAllIncluded
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.QueryAllIncluded
+    name: QueryAllIncluded
+    nameWithType: IServiceEntityManager(Of Image).QueryAllIncluded
+    fullName: FarmMaster.Services.IServiceEntityManager(Of Business.Model.Image).QueryAllIncluded
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManager{Business.Model.Image}.GetIdFor(Business.Model.Image)
+  commentId: M:FarmMaster.Services.IServiceEntityManager{Business.Model.Image}.GetIdFor(Business.Model.Image)
+  parent: FarmMaster.Services.IServiceEntityManager{Business.Model.Image}
+  definition: FarmMaster.Services.IServiceEntityManager`1.GetIdFor(`0)
+  name: GetIdFor(Image)
+  nameWithType: IServiceEntityManager<Image>.GetIdFor(Image)
+  fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.Image>.GetIdFor(Business.Model.Image)
+  nameWithType.vb: IServiceEntityManager(Of Image).GetIdFor(Image)
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of Business.Model.Image).GetIdFor(Business.Model.Image)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.GetIdFor(`0)
+    name: GetIdFor
+    nameWithType: IServiceEntityManager<Image>.GetIdFor
+    fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.Image>.GetIdFor
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Image
+    name: Image
+    nameWithType: Image
+    fullName: Business.Model.Image
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.GetIdFor(`0)
+    name: GetIdFor
+    nameWithType: IServiceEntityManager(Of Image).GetIdFor
+    fullName: FarmMaster.Services.IServiceEntityManager(Of Business.Model.Image).GetIdFor
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Image
+    name: Image
+    nameWithType: Image
+    fullName: Business.Model.Image
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManager{Business.Model.Image}.Update(Business.Model.Image)
+  commentId: M:FarmMaster.Services.IServiceEntityManager{Business.Model.Image}.Update(Business.Model.Image)
+  parent: FarmMaster.Services.IServiceEntityManager{Business.Model.Image}
+  definition: FarmMaster.Services.IServiceEntityManager`1.Update(`0)
+  name: Update(Image)
+  nameWithType: IServiceEntityManager<Image>.Update(Image)
+  fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.Image>.Update(Business.Model.Image)
+  nameWithType.vb: IServiceEntityManager(Of Image).Update(Image)
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of Business.Model.Image).Update(Business.Model.Image)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.Update(`0)
+    name: Update
+    nameWithType: IServiceEntityManager<Image>.Update
+    fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.Image>.Update
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Image
+    name: Image
+    nameWithType: Image
+    fullName: Business.Model.Image
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.Update(`0)
+    name: Update
+    nameWithType: IServiceEntityManager(Of Image).Update
+    fullName: FarmMaster.Services.IServiceEntityManager(Of Business.Model.Image).Update
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Image
+    name: Image
+    nameWithType: Image
+    fullName: Business.Model.Image
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManager{Business.Model.Image}.FarmMaster.Services.IServiceEntityDataExtentions.FromId``1(System.Int32)
+  commentId: M:FarmMaster.Services.IServiceEntityDataExtentions.FromId``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+  parent: FarmMaster.Services.IServiceEntityDataExtentions
+  definition: FarmMaster.Services.IServiceEntityDataExtentions.FromId``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+  name: FromId<Image>(Int32)
+  nameWithType: IServiceEntityDataExtentions.FromId<Image>(Int32)
+  fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromId<Business.Model.Image>(System.Int32)
+  nameWithType.vb: IServiceEntityDataExtentions.FromId(Of Image)(Int32)
+  fullName.vb: FarmMaster.Services.IServiceEntityDataExtentions.FromId(Of Business.Model.Image)(System.Int32)
+  name.vb: FromId(Of Image)(Int32)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.FromId``1(System.Int32)
+    name: FromId<Image>
+    nameWithType: IServiceEntityDataExtentions.FromId<Image>
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromId<Business.Model.Image>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.FromId``1(System.Int32)
+    name: FromId(Of Image)
+    nameWithType: IServiceEntityDataExtentions.FromId(Of Image)
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromId(Of Business.Model.Image)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManager{Business.Model.Image}.FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded``1(System.Int32)
+  commentId: M:FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+  parent: FarmMaster.Services.IServiceEntityDataExtentions
+  definition: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+  name: FromIdAllIncluded<Image>(Int32)
+  nameWithType: IServiceEntityDataExtentions.FromIdAllIncluded<Image>(Int32)
+  fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded<Business.Model.Image>(System.Int32)
+  nameWithType.vb: IServiceEntityDataExtentions.FromIdAllIncluded(Of Image)(Int32)
+  fullName.vb: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded(Of Business.Model.Image)(System.Int32)
+  name.vb: FromIdAllIncluded(Of Image)(Int32)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded``1(System.Int32)
+    name: FromIdAllIncluded<Image>
+    nameWithType: IServiceEntityDataExtentions.FromIdAllIncluded<Image>
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded<Business.Model.Image>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded``1(System.Int32)
+    name: FromIdAllIncluded(Of Image)
+    nameWithType: IServiceEntityDataExtentions.FromIdAllIncluded(Of Image)
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded(Of Business.Model.Image)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManager{Business.Model.Image}.FarmMaster.Services.IServiceEntityDataExtentions.For``1
+  commentId: M:FarmMaster.Services.IServiceEntityDataExtentions.For``1(FarmMaster.Services.IServiceEntityManager{``0})
+  parent: FarmMaster.Services.IServiceEntityDataExtentions
+  definition: FarmMaster.Services.IServiceEntityDataExtentions.For``1(FarmMaster.Services.IServiceEntityManager{``0})
+  name: For<Image>()
+  nameWithType: IServiceEntityDataExtentions.For<Image>()
+  fullName: FarmMaster.Services.IServiceEntityDataExtentions.For<Business.Model.Image>()
+  nameWithType.vb: IServiceEntityDataExtentions.For(Of Image)()
+  fullName.vb: FarmMaster.Services.IServiceEntityDataExtentions.For(Of Business.Model.Image)()
+  name.vb: For(Of Image)()
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.For``1
+    name: For<Image>
+    nameWithType: IServiceEntityDataExtentions.For<Image>
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.For<Business.Model.Image>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.For``1
+    name: For(Of Image)
+    nameWithType: IServiceEntityDataExtentions.For(Of Image)
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.For(Of Business.Model.Image)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManager`1.Query
+  commentId: M:FarmMaster.Services.IServiceEntityManager`1.Query
+  name: Query()
+  nameWithType: IServiceEntityManager<T>.Query()
+  fullName: FarmMaster.Services.IServiceEntityManager<T>.Query()
+  nameWithType.vb: IServiceEntityManager(Of T).Query()
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of T).Query()
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.Query
+    name: Query
+    nameWithType: IServiceEntityManager<T>.Query
+    fullName: FarmMaster.Services.IServiceEntityManager<T>.Query
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.Query
+    name: Query
+    nameWithType: IServiceEntityManager(Of T).Query
+    fullName: FarmMaster.Services.IServiceEntityManager(Of T).Query
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManager{Business.Model.Image}
+  commentId: T:FarmMaster.Services.IServiceEntityManager{Business.Model.Image}
+  parent: FarmMaster.Services
+  definition: FarmMaster.Services.IServiceEntityManager`1
+  name: IServiceEntityManager<Image>
+  nameWithType: IServiceEntityManager<Image>
+  fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.Image>
+  nameWithType.vb: IServiceEntityManager(Of Image)
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of Business.Model.Image)
+  name.vb: IServiceEntityManager(Of Image)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1
+    name: IServiceEntityManager
+    nameWithType: IServiceEntityManager
+    fullName: FarmMaster.Services.IServiceEntityManager
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Business.Model.Image
+    name: Image
+    nameWithType: Image
+    fullName: Business.Model.Image
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1
+    name: IServiceEntityManager
+    nameWithType: IServiceEntityManager
+    fullName: FarmMaster.Services.IServiceEntityManager
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Business.Model.Image
+    name: Image
+    nameWithType: Image
+    fullName: Business.Model.Image
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManager`1.QueryAllIncluded
+  commentId: M:FarmMaster.Services.IServiceEntityManager`1.QueryAllIncluded
+  name: QueryAllIncluded()
+  nameWithType: IServiceEntityManager<T>.QueryAllIncluded()
+  fullName: FarmMaster.Services.IServiceEntityManager<T>.QueryAllIncluded()
+  nameWithType.vb: IServiceEntityManager(Of T).QueryAllIncluded()
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of T).QueryAllIncluded()
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.QueryAllIncluded
+    name: QueryAllIncluded
+    nameWithType: IServiceEntityManager<T>.QueryAllIncluded
+    fullName: FarmMaster.Services.IServiceEntityManager<T>.QueryAllIncluded
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.QueryAllIncluded
+    name: QueryAllIncluded
+    nameWithType: IServiceEntityManager(Of T).QueryAllIncluded
+    fullName: FarmMaster.Services.IServiceEntityManager(Of T).QueryAllIncluded
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManager`1.GetIdFor(`0)
+  commentId: M:FarmMaster.Services.IServiceEntityManager`1.GetIdFor(`0)
+  name: GetIdFor(T)
+  nameWithType: IServiceEntityManager<T>.GetIdFor(T)
+  fullName: FarmMaster.Services.IServiceEntityManager<T>.GetIdFor(T)
+  nameWithType.vb: IServiceEntityManager(Of T).GetIdFor(T)
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of T).GetIdFor(T)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.GetIdFor(`0)
+    name: GetIdFor
+    nameWithType: IServiceEntityManager<T>.GetIdFor
+    fullName: FarmMaster.Services.IServiceEntityManager<T>.GetIdFor
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.GetIdFor(`0)
+    name: GetIdFor
+    nameWithType: IServiceEntityManager(Of T).GetIdFor
+    fullName: FarmMaster.Services.IServiceEntityManager(Of T).GetIdFor
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManager`1.Update(`0)
+  commentId: M:FarmMaster.Services.IServiceEntityManager`1.Update(`0)
+  name: Update(T)
+  nameWithType: IServiceEntityManager<T>.Update(T)
+  fullName: FarmMaster.Services.IServiceEntityManager<T>.Update(T)
+  nameWithType.vb: IServiceEntityManager(Of T).Update(T)
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of T).Update(T)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.Update(`0)
+    name: Update
+    nameWithType: IServiceEntityManager<T>.Update
+    fullName: FarmMaster.Services.IServiceEntityManager<T>.Update
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.Update(`0)
+    name: Update
+    nameWithType: IServiceEntityManager(Of T).Update
+    fullName: FarmMaster.Services.IServiceEntityManager(Of T).Update
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityDataExtentions.FromId``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+  commentId: M:FarmMaster.Services.IServiceEntityDataExtentions.FromId``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+  isExternal: true
+  name: FromId<T>(IServiceEntityManager<T>, Int32)
+  nameWithType: IServiceEntityDataExtentions.FromId<T>(IServiceEntityManager<T>, Int32)
+  fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromId<T>(FarmMaster.Services.IServiceEntityManager<T>, System.Int32)
+  nameWithType.vb: IServiceEntityDataExtentions.FromId(Of T)(IServiceEntityManager(Of T), Int32)
+  fullName.vb: FarmMaster.Services.IServiceEntityDataExtentions.FromId(Of T)(FarmMaster.Services.IServiceEntityManager(Of T), System.Int32)
+  name.vb: FromId(Of T)(IServiceEntityManager(Of T), Int32)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.FromId``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+    name: FromId<T>
+    nameWithType: IServiceEntityDataExtentions.FromId<T>
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromId<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: FarmMaster.Services.IServiceEntityManager`1
+    name: IServiceEntityManager
+    nameWithType: IServiceEntityManager
+    fullName: FarmMaster.Services.IServiceEntityManager
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.FromId``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+    name: FromId(Of T)
+    nameWithType: IServiceEntityDataExtentions.FromId(Of T)
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromId(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: FarmMaster.Services.IServiceEntityManager`1
+    name: IServiceEntityManager
+    nameWithType: IServiceEntityManager
+    fullName: FarmMaster.Services.IServiceEntityManager
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityDataExtentions
+  commentId: T:FarmMaster.Services.IServiceEntityDataExtentions
+  parent: FarmMaster.Services
+  name: IServiceEntityDataExtentions
+  nameWithType: IServiceEntityDataExtentions
+  fullName: FarmMaster.Services.IServiceEntityDataExtentions
+- uid: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+  commentId: M:FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+  isExternal: true
+  name: FromIdAllIncluded<T>(IServiceEntityManager<T>, Int32)
+  nameWithType: IServiceEntityDataExtentions.FromIdAllIncluded<T>(IServiceEntityManager<T>, Int32)
+  fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded<T>(FarmMaster.Services.IServiceEntityManager<T>, System.Int32)
+  nameWithType.vb: IServiceEntityDataExtentions.FromIdAllIncluded(Of T)(IServiceEntityManager(Of T), Int32)
+  fullName.vb: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded(Of T)(FarmMaster.Services.IServiceEntityManager(Of T), System.Int32)
+  name.vb: FromIdAllIncluded(Of T)(IServiceEntityManager(Of T), Int32)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+    name: FromIdAllIncluded<T>
+    nameWithType: IServiceEntityDataExtentions.FromIdAllIncluded<T>
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: FarmMaster.Services.IServiceEntityManager`1
+    name: IServiceEntityManager
+    nameWithType: IServiceEntityManager
+    fullName: FarmMaster.Services.IServiceEntityManager
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+    name: FromIdAllIncluded(Of T)
+    nameWithType: IServiceEntityDataExtentions.FromIdAllIncluded(Of T)
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: FarmMaster.Services.IServiceEntityManager`1
+    name: IServiceEntityManager
+    nameWithType: IServiceEntityManager
+    fullName: FarmMaster.Services.IServiceEntityManager
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityDataExtentions.For``1(FarmMaster.Services.IServiceEntityManager{``0})
+  commentId: M:FarmMaster.Services.IServiceEntityDataExtentions.For``1(FarmMaster.Services.IServiceEntityManager{``0})
+  name: For<T>(IServiceEntityManager<T>)
+  nameWithType: IServiceEntityDataExtentions.For<T>(IServiceEntityManager<T>)
+  fullName: FarmMaster.Services.IServiceEntityDataExtentions.For<T>(FarmMaster.Services.IServiceEntityManager<T>)
+  nameWithType.vb: IServiceEntityDataExtentions.For(Of T)(IServiceEntityManager(Of T))
+  fullName.vb: FarmMaster.Services.IServiceEntityDataExtentions.For(Of T)(FarmMaster.Services.IServiceEntityManager(Of T))
+  name.vb: For(Of T)(IServiceEntityManager(Of T))
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.For``1(FarmMaster.Services.IServiceEntityManager{``0})
+    name: For<T>
+    nameWithType: IServiceEntityDataExtentions.For<T>
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.For<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: FarmMaster.Services.IServiceEntityManager`1
+    name: IServiceEntityManager
+    nameWithType: IServiceEntityManager
+    fullName: FarmMaster.Services.IServiceEntityManager
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.For``1(FarmMaster.Services.IServiceEntityManager{``0})
+    name: For(Of T)
+    nameWithType: IServiceEntityDataExtentions.For(Of T)
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.For(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: FarmMaster.Services.IServiceEntityManager`1
+    name: IServiceEntityManager
+    nameWithType: IServiceEntityManager
+    fullName: FarmMaster.Services.IServiceEntityManager
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManager`1
+  commentId: T:FarmMaster.Services.IServiceEntityManager`1
+  name: IServiceEntityManager<T>
+  nameWithType: IServiceEntityManager<T>
+  fullName: FarmMaster.Services.IServiceEntityManager<T>
+  nameWithType.vb: IServiceEntityManager(Of T)
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of T)
+  name.vb: IServiceEntityManager(Of T)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1
+    name: IServiceEntityManager
+    nameWithType: IServiceEntityManager
+    fullName: FarmMaster.Services.IServiceEntityManager
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1
+    name: IServiceEntityManager
+    nameWithType: IServiceEntityManager
+    fullName: FarmMaster.Services.IServiceEntityManager
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceImageManager.UploadFromForm*
+  commentId: Overload:FarmMaster.Services.IServiceImageManager.UploadFromForm
+  name: UploadFromForm
+  nameWithType: IServiceImageManager.UploadFromForm
+  fullName: FarmMaster.Services.IServiceImageManager.UploadFromForm
+- uid: Microsoft.AspNetCore.Http.IFormFile
+  commentId: T:Microsoft.AspNetCore.Http.IFormFile
+  parent: Microsoft.AspNetCore.Http
+  isExternal: true
+  name: IFormFile
+  nameWithType: IFormFile
+  fullName: Microsoft.AspNetCore.Http.IFormFile
+- uid: System.Threading.Tasks.Task{Business.Model.Image}
+  commentId: T:System.Threading.Tasks.Task{Business.Model.Image}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  name: Task<Image>
+  nameWithType: Task<Image>
+  fullName: System.Threading.Tasks.Task<Business.Model.Image>
+  nameWithType.vb: Task(Of Image)
+  fullName.vb: System.Threading.Tasks.Task(Of Business.Model.Image)
+  name.vb: Task(Of Image)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    nameWithType: Task
+    fullName: System.Threading.Tasks.Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Business.Model.Image
+    name: Image
+    nameWithType: Image
+    fullName: Business.Model.Image
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    nameWithType: Task
+    fullName: System.Threading.Tasks.Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Business.Model.Image
+    name: Image
+    nameWithType: Image
+    fullName: Business.Model.Image
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.AspNetCore.Http
+  commentId: N:Microsoft.AspNetCore.Http
+  isExternal: true
+  name: Microsoft.AspNetCore.Http
+  nameWithType: Microsoft.AspNetCore.Http
+  fullName: Microsoft.AspNetCore.Http
+- uid: System.Threading.Tasks.Task`1
+  commentId: T:System.Threading.Tasks.Task`1
+  isExternal: true
+  name: Task<TResult>
+  nameWithType: Task<TResult>
+  fullName: System.Threading.Tasks.Task<TResult>
+  nameWithType.vb: Task(Of TResult)
+  fullName.vb: System.Threading.Tasks.Task(Of TResult)
+  name.vb: Task(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    nameWithType: Task
+    fullName: System.Threading.Tasks.Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    nameWithType: Task
+    fullName: System.Threading.Tasks.Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TResult
+    nameWithType: TResult
+    fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+- uid: FarmMaster.Services.IServiceImageManager.ResizeToPhysicalFile*
+  commentId: Overload:FarmMaster.Services.IServiceImageManager.ResizeToPhysicalFile
+  name: ResizeToPhysicalFile
+  nameWithType: IServiceImageManager.ResizeToPhysicalFile
+  fullName: FarmMaster.Services.IServiceImageManager.ResizeToPhysicalFile
+- uid: Business.Model.Image
+  commentId: T:Business.Model.Image
+  parent: Business.Model
+  name: Image
+  nameWithType: Image
+  fullName: Business.Model.Image
+- uid: System.UInt16
+  commentId: T:System.UInt16
+  parent: System
+  isExternal: true
+  name: UInt16
+  nameWithType: UInt16
+  fullName: System.UInt16
+- uid: System.Threading.Tasks.Task{System.String}
+  commentId: T:System.Threading.Tasks.Task{System.String}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  name: Task<String>
+  nameWithType: Task<String>
+  fullName: System.Threading.Tasks.Task<System.String>
+  nameWithType.vb: Task(Of String)
+  fullName.vb: System.Threading.Tasks.Task(Of System.String)
+  name.vb: Task(Of String)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    nameWithType: Task
+    fullName: System.Threading.Tasks.Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    nameWithType: Task
+    fullName: System.Threading.Tasks.Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Business.Model
+  commentId: N:Business.Model
+  name: Business.Model
+  nameWithType: Business.Model
+  fullName: Business.Model
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: FarmMaster.Services.IServiceImageManager.GetFileNameForImageAndSize*
+  commentId: Overload:FarmMaster.Services.IServiceImageManager.GetFileNameForImageAndSize
+  name: GetFileNameForImageAndSize
+  nameWithType: IServiceImageManager.GetFileNameForImageAndSize
+  fullName: FarmMaster.Services.IServiceImageManager.GetFileNameForImageAndSize
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String

@@ -1,0 +1,2750 @@
+### YamlMime:ManagedReference
+items:
+- uid: FarmMaster.Services.ServiceAnimalManager
+  commentId: T:FarmMaster.Services.ServiceAnimalManager
+  id: ServiceAnimalManager
+  parent: FarmMaster.Services
+  children:
+  - FarmMaster.Services.ServiceAnimalManager.#ctor(Business.Model.FarmMasterContext,FarmMaster.Services.IServiceLifeEventManager,FarmMaster.Services.IServiceImageManager)
+  - FarmMaster.Services.ServiceAnimalManager.AddBreed(Business.Model.Animal,Business.Model.Breed)
+  - FarmMaster.Services.ServiceAnimalManager.AddLifeEventEntry(Business.Model.Animal,Business.Model.LifeEventEntry)
+  - FarmMaster.Services.ServiceAnimalManager.AnonymiseContactData(Business.Model.Contact)
+  - FarmMaster.Services.ServiceAnimalManager.AnonymiseUserData(Business.Model.User)
+  - FarmMaster.Services.ServiceAnimalManager.Create(System.String,System.String,Business.Model.Animal.Gender,Business.Model.Contact,Business.Model.Species,Business.Model.Animal,Business.Model.Animal,Business.Model.Holding)
+  - FarmMaster.Services.ServiceAnimalManager.GetBornEventEntry(Business.Model.Animal)
+  - FarmMaster.Services.ServiceAnimalManager.GetContactGdprData(Business.Model.Contact,Newtonsoft.Json.Linq.JObject)
+  - FarmMaster.Services.ServiceAnimalManager.GetIdFor(Business.Model.Animal)
+  - FarmMaster.Services.ServiceAnimalManager.GetUserGdprData(Business.Model.User,Newtonsoft.Json.Linq.JObject)
+  - FarmMaster.Services.ServiceAnimalManager.Query
+  - FarmMaster.Services.ServiceAnimalManager.QueryAllIncluded
+  - FarmMaster.Services.ServiceAnimalManager.RemoveBreed(Business.Model.Animal,Business.Model.Breed)
+  - FarmMaster.Services.ServiceAnimalManager.RemoveLifeEventEntry(Business.Model.Animal,Business.Model.LifeEventEntry,FarmMaster.Misc.AlsoDelete)
+  - FarmMaster.Services.ServiceAnimalManager.SetBornEventEntry(Business.Model.Animal,System.DateTimeOffset)
+  - FarmMaster.Services.ServiceAnimalManager.SetImageFromForm(Business.Model.Animal,Microsoft.AspNetCore.Http.IFormFile)
+  - FarmMaster.Services.ServiceAnimalManager.Update(Business.Model.Animal)
+  langs:
+  - csharp
+  - vb
+  name: ServiceAnimalManager
+  nameWithType: ServiceAnimalManager
+  fullName: FarmMaster.Services.ServiceAnimalManager
+  type: Class
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceAnimalManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: ServiceAnimalManager
+    path: Services/IServiceAnimalManager.cs
+    startLine: 23
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: 'public class ServiceAnimalManager : IServiceAnimalManager, IServiceEntityManager<Animal>, IServiceGdprData'
+    content.vb: >-
+      Public Class ServiceAnimalManager
+
+          Implements IServiceAnimalManager, IServiceEntityManager(Of Animal), IServiceGdprData
+  inheritance:
+  - System.Object
+  implements:
+  - FarmMaster.Services.IServiceAnimalManager
+  - FarmMaster.Services.IServiceEntityManager{Business.Model.Animal}
+  - FarmMaster.Services.IServiceGdprData
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  extensionMethods:
+  - FarmMaster.Services.IServiceEntityManager{Business.Model.Animal}.FarmMaster.Services.IServiceEntityDataExtentions.FromId``1(System.Int32)
+  - FarmMaster.Services.IServiceEntityManager{Business.Model.Animal}.FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded``1(System.Int32)
+  - FarmMaster.Services.IServiceEntityManager{Business.Model.Animal}.FarmMaster.Services.IServiceEntityDataExtentions.For``1
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: FarmMaster.Services.ServiceAnimalManager.#ctor(Business.Model.FarmMasterContext,FarmMaster.Services.IServiceLifeEventManager,FarmMaster.Services.IServiceImageManager)
+  commentId: M:FarmMaster.Services.ServiceAnimalManager.#ctor(Business.Model.FarmMasterContext,FarmMaster.Services.IServiceLifeEventManager,FarmMaster.Services.IServiceImageManager)
+  id: '#ctor(Business.Model.FarmMasterContext,FarmMaster.Services.IServiceLifeEventManager,FarmMaster.Services.IServiceImageManager)'
+  parent: FarmMaster.Services.ServiceAnimalManager
+  langs:
+  - csharp
+  - vb
+  name: ServiceAnimalManager(FarmMasterContext, IServiceLifeEventManager, IServiceImageManager)
+  nameWithType: ServiceAnimalManager.ServiceAnimalManager(FarmMasterContext, IServiceLifeEventManager, IServiceImageManager)
+  fullName: FarmMaster.Services.ServiceAnimalManager.ServiceAnimalManager(Business.Model.FarmMasterContext, FarmMaster.Services.IServiceLifeEventManager, FarmMaster.Services.IServiceImageManager)
+  type: Constructor
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceAnimalManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: .ctor
+    path: Services/IServiceAnimalManager.cs
+    startLine: 29
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: public ServiceAnimalManager(FarmMasterContext context, IServiceLifeEventManager lifeEvents, IServiceImageManager images)
+    parameters:
+    - id: context
+      type: Business.Model.FarmMasterContext
+    - id: lifeEvents
+      type: FarmMaster.Services.IServiceLifeEventManager
+    - id: images
+      type: FarmMaster.Services.IServiceImageManager
+    content.vb: Public Sub New(context As FarmMasterContext, lifeEvents As IServiceLifeEventManager, images As IServiceImageManager)
+  overload: FarmMaster.Services.ServiceAnimalManager.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Services.ServiceAnimalManager.Create(System.String,System.String,Business.Model.Animal.Gender,Business.Model.Contact,Business.Model.Species,Business.Model.Animal,Business.Model.Animal,Business.Model.Holding)
+  commentId: M:FarmMaster.Services.ServiceAnimalManager.Create(System.String,System.String,Business.Model.Animal.Gender,Business.Model.Contact,Business.Model.Species,Business.Model.Animal,Business.Model.Animal,Business.Model.Holding)
+  id: Create(System.String,System.String,Business.Model.Animal.Gender,Business.Model.Contact,Business.Model.Species,Business.Model.Animal,Business.Model.Animal,Business.Model.Holding)
+  parent: FarmMaster.Services.ServiceAnimalManager
+  langs:
+  - csharp
+  - vb
+  name: Create(String, String, Animal.Gender, Contact, Species, Animal, Animal, Holding)
+  nameWithType: ServiceAnimalManager.Create(String, String, Animal.Gender, Contact, Species, Animal, Animal, Holding)
+  fullName: FarmMaster.Services.ServiceAnimalManager.Create(System.String, System.String, Business.Model.Animal.Gender, Business.Model.Contact, Business.Model.Species, Business.Model.Animal, Business.Model.Animal, Business.Model.Holding)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceAnimalManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: Create
+    path: Services/IServiceAnimalManager.cs
+    startLine: 39
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: public Animal Create(string name, string tag, Animal.Gender sex, Contact owner, Species species, Animal mum, Animal dad, Holding holding)
+    parameters:
+    - id: name
+      type: System.String
+    - id: tag
+      type: System.String
+    - id: sex
+      type: Business.Model.Animal.Gender
+    - id: owner
+      type: Business.Model.Contact
+    - id: species
+      type: Business.Model.Species
+    - id: mum
+      type: Business.Model.Animal
+    - id: dad
+      type: Business.Model.Animal
+    - id: holding
+      type: Business.Model.Holding
+    return:
+      type: Business.Model.Animal
+    content.vb: Public Function Create(name As String, tag As String, sex As Animal.Gender, owner As Contact, species As Species, mum As Animal, dad As Animal, holding As Holding) As Animal
+  overload: FarmMaster.Services.ServiceAnimalManager.Create*
+  implements:
+  - FarmMaster.Services.IServiceAnimalManager.Create(System.String,System.String,Business.Model.Animal.Gender,Business.Model.Contact,Business.Model.Species,Business.Model.Animal,Business.Model.Animal,Business.Model.Holding)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Services.ServiceAnimalManager.AddBreed(Business.Model.Animal,Business.Model.Breed)
+  commentId: M:FarmMaster.Services.ServiceAnimalManager.AddBreed(Business.Model.Animal,Business.Model.Breed)
+  id: AddBreed(Business.Model.Animal,Business.Model.Breed)
+  parent: FarmMaster.Services.ServiceAnimalManager
+  langs:
+  - csharp
+  - vb
+  name: AddBreed(Animal, Breed)
+  nameWithType: ServiceAnimalManager.AddBreed(Animal, Breed)
+  fullName: FarmMaster.Services.ServiceAnimalManager.AddBreed(Business.Model.Animal, Business.Model.Breed)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceAnimalManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: AddBreed
+    path: Services/IServiceAnimalManager.cs
+    startLine: 68
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: public void AddBreed(Animal animal, Breed breed)
+    parameters:
+    - id: animal
+      type: Business.Model.Animal
+    - id: breed
+      type: Business.Model.Breed
+    content.vb: Public Sub AddBreed(animal As Animal, breed As Breed)
+  overload: FarmMaster.Services.ServiceAnimalManager.AddBreed*
+  implements:
+  - FarmMaster.Services.IServiceAnimalManager.AddBreed(Business.Model.Animal,Business.Model.Breed)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Services.ServiceAnimalManager.SetImageFromForm(Business.Model.Animal,Microsoft.AspNetCore.Http.IFormFile)
+  commentId: M:FarmMaster.Services.ServiceAnimalManager.SetImageFromForm(Business.Model.Animal,Microsoft.AspNetCore.Http.IFormFile)
+  id: SetImageFromForm(Business.Model.Animal,Microsoft.AspNetCore.Http.IFormFile)
+  parent: FarmMaster.Services.ServiceAnimalManager
+  langs:
+  - csharp
+  - vb
+  name: SetImageFromForm(Animal, IFormFile)
+  nameWithType: ServiceAnimalManager.SetImageFromForm(Animal, IFormFile)
+  fullName: FarmMaster.Services.ServiceAnimalManager.SetImageFromForm(Business.Model.Animal, Microsoft.AspNetCore.Http.IFormFile)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceAnimalManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: SetImageFromForm
+    path: Services/IServiceAnimalManager.cs
+    startLine: 83
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: public void SetImageFromForm(Animal animal, IFormFile formImage)
+    parameters:
+    - id: animal
+      type: Business.Model.Animal
+    - id: formImage
+      type: Microsoft.AspNetCore.Http.IFormFile
+    content.vb: Public Sub SetImageFromForm(animal As Animal, formImage As IFormFile)
+  overload: FarmMaster.Services.ServiceAnimalManager.SetImageFromForm*
+  implements:
+  - FarmMaster.Services.IServiceAnimalManager.SetImageFromForm(Business.Model.Animal,Microsoft.AspNetCore.Http.IFormFile)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Services.ServiceAnimalManager.RemoveBreed(Business.Model.Animal,Business.Model.Breed)
+  commentId: M:FarmMaster.Services.ServiceAnimalManager.RemoveBreed(Business.Model.Animal,Business.Model.Breed)
+  id: RemoveBreed(Business.Model.Animal,Business.Model.Breed)
+  parent: FarmMaster.Services.ServiceAnimalManager
+  langs:
+  - csharp
+  - vb
+  name: RemoveBreed(Animal, Breed)
+  nameWithType: ServiceAnimalManager.RemoveBreed(Animal, Breed)
+  fullName: FarmMaster.Services.ServiceAnimalManager.RemoveBreed(Business.Model.Animal, Business.Model.Breed)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceAnimalManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: RemoveBreed
+    path: Services/IServiceAnimalManager.cs
+    startLine: 100
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: public CouldDelete RemoveBreed(Animal animal, Breed breed)
+    parameters:
+    - id: animal
+      type: Business.Model.Animal
+    - id: breed
+      type: Business.Model.Breed
+    return:
+      type: FarmMaster.Misc.CouldDelete
+    content.vb: Public Function RemoveBreed(animal As Animal, breed As Breed) As CouldDelete
+  overload: FarmMaster.Services.ServiceAnimalManager.RemoveBreed*
+  implements:
+  - FarmMaster.Services.IServiceAnimalManager.RemoveBreed(Business.Model.Animal,Business.Model.Breed)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Services.ServiceAnimalManager.AddLifeEventEntry(Business.Model.Animal,Business.Model.LifeEventEntry)
+  commentId: M:FarmMaster.Services.ServiceAnimalManager.AddLifeEventEntry(Business.Model.Animal,Business.Model.LifeEventEntry)
+  id: AddLifeEventEntry(Business.Model.Animal,Business.Model.LifeEventEntry)
+  parent: FarmMaster.Services.ServiceAnimalManager
+  langs:
+  - csharp
+  - vb
+  name: AddLifeEventEntry(Animal, LifeEventEntry)
+  nameWithType: ServiceAnimalManager.AddLifeEventEntry(Animal, LifeEventEntry)
+  fullName: FarmMaster.Services.ServiceAnimalManager.AddLifeEventEntry(Business.Model.Animal, Business.Model.LifeEventEntry)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceAnimalManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: AddLifeEventEntry
+    path: Services/IServiceAnimalManager.cs
+    startLine: 111
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: public void AddLifeEventEntry(Animal animal, LifeEventEntry entry)
+    parameters:
+    - id: animal
+      type: Business.Model.Animal
+    - id: entry
+      type: Business.Model.LifeEventEntry
+    content.vb: Public Sub AddLifeEventEntry(animal As Animal, entry As LifeEventEntry)
+  overload: FarmMaster.Services.ServiceAnimalManager.AddLifeEventEntry*
+  implements:
+  - FarmMaster.Services.IServiceAnimalManager.AddLifeEventEntry(Business.Model.Animal,Business.Model.LifeEventEntry)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Services.ServiceAnimalManager.RemoveLifeEventEntry(Business.Model.Animal,Business.Model.LifeEventEntry,FarmMaster.Misc.AlsoDelete)
+  commentId: M:FarmMaster.Services.ServiceAnimalManager.RemoveLifeEventEntry(Business.Model.Animal,Business.Model.LifeEventEntry,FarmMaster.Misc.AlsoDelete)
+  id: RemoveLifeEventEntry(Business.Model.Animal,Business.Model.LifeEventEntry,FarmMaster.Misc.AlsoDelete)
+  parent: FarmMaster.Services.ServiceAnimalManager
+  langs:
+  - csharp
+  - vb
+  name: RemoveLifeEventEntry(Animal, LifeEventEntry, AlsoDelete)
+  nameWithType: ServiceAnimalManager.RemoveLifeEventEntry(Animal, LifeEventEntry, AlsoDelete)
+  fullName: FarmMaster.Services.ServiceAnimalManager.RemoveLifeEventEntry(Business.Model.Animal, Business.Model.LifeEventEntry, FarmMaster.Misc.AlsoDelete)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceAnimalManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: RemoveLifeEventEntry
+    path: Services/IServiceAnimalManager.cs
+    startLine: 137
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: public CouldDelete RemoveLifeEventEntry(Animal animal, LifeEventEntry entry, AlsoDelete alsoDeleteEntry = AlsoDelete.No)
+    parameters:
+    - id: animal
+      type: Business.Model.Animal
+    - id: entry
+      type: Business.Model.LifeEventEntry
+    - id: alsoDeleteEntry
+      type: FarmMaster.Misc.AlsoDelete
+    return:
+      type: FarmMaster.Misc.CouldDelete
+    content.vb: Public Function RemoveLifeEventEntry(animal As Animal, entry As LifeEventEntry, alsoDeleteEntry As AlsoDelete = AlsoDelete.No) As CouldDelete
+  overload: FarmMaster.Services.ServiceAnimalManager.RemoveLifeEventEntry*
+  implements:
+  - FarmMaster.Services.IServiceAnimalManager.RemoveLifeEventEntry(Business.Model.Animal,Business.Model.LifeEventEntry,FarmMaster.Misc.AlsoDelete)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Services.ServiceAnimalManager.SetBornEventEntry(Business.Model.Animal,System.DateTimeOffset)
+  commentId: M:FarmMaster.Services.ServiceAnimalManager.SetBornEventEntry(Business.Model.Animal,System.DateTimeOffset)
+  id: SetBornEventEntry(Business.Model.Animal,System.DateTimeOffset)
+  parent: FarmMaster.Services.ServiceAnimalManager
+  langs:
+  - csharp
+  - vb
+  name: SetBornEventEntry(Animal, DateTimeOffset)
+  nameWithType: ServiceAnimalManager.SetBornEventEntry(Animal, DateTimeOffset)
+  fullName: FarmMaster.Services.ServiceAnimalManager.SetBornEventEntry(Business.Model.Animal, System.DateTimeOffset)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceAnimalManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: SetBornEventEntry
+    path: Services/IServiceAnimalManager.cs
+    startLine: 152
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: public void SetBornEventEntry(Animal animal, DateTimeOffset dateTimeBorn)
+    parameters:
+    - id: animal
+      type: Business.Model.Animal
+    - id: dateTimeBorn
+      type: System.DateTimeOffset
+    content.vb: Public Sub SetBornEventEntry(animal As Animal, dateTimeBorn As DateTimeOffset)
+  overload: FarmMaster.Services.ServiceAnimalManager.SetBornEventEntry*
+  implements:
+  - FarmMaster.Services.IServiceAnimalManager.SetBornEventEntry(Business.Model.Animal,System.DateTimeOffset)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Services.ServiceAnimalManager.GetBornEventEntry(Business.Model.Animal)
+  commentId: M:FarmMaster.Services.ServiceAnimalManager.GetBornEventEntry(Business.Model.Animal)
+  id: GetBornEventEntry(Business.Model.Animal)
+  parent: FarmMaster.Services.ServiceAnimalManager
+  langs:
+  - csharp
+  - vb
+  name: GetBornEventEntry(Animal)
+  nameWithType: ServiceAnimalManager.GetBornEventEntry(Animal)
+  fullName: FarmMaster.Services.ServiceAnimalManager.GetBornEventEntry(Business.Model.Animal)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceAnimalManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: GetBornEventEntry
+    path: Services/IServiceAnimalManager.cs
+    startLine: 176
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: public DateTimeOffset? GetBornEventEntry(Animal animal)
+    parameters:
+    - id: animal
+      type: Business.Model.Animal
+    return:
+      type: System.Nullable{System.DateTimeOffset}
+    content.vb: Public Function GetBornEventEntry(animal As Animal) As DateTimeOffset?
+  overload: FarmMaster.Services.ServiceAnimalManager.GetBornEventEntry*
+  implements:
+  - FarmMaster.Services.IServiceAnimalManager.GetBornEventEntry(Business.Model.Animal)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Services.ServiceAnimalManager.GetIdFor(Business.Model.Animal)
+  commentId: M:FarmMaster.Services.ServiceAnimalManager.GetIdFor(Business.Model.Animal)
+  id: GetIdFor(Business.Model.Animal)
+  parent: FarmMaster.Services.ServiceAnimalManager
+  langs:
+  - csharp
+  - vb
+  name: GetIdFor(Animal)
+  nameWithType: ServiceAnimalManager.GetIdFor(Animal)
+  fullName: FarmMaster.Services.ServiceAnimalManager.GetIdFor(Business.Model.Animal)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceAnimalManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: GetIdFor
+    path: Services/IServiceAnimalManager.cs
+    startLine: 193
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: public int GetIdFor(Animal entity)
+    parameters:
+    - id: entity
+      type: Business.Model.Animal
+    return:
+      type: System.Int32
+    content.vb: Public Function GetIdFor(entity As Animal) As Integer
+  overload: FarmMaster.Services.ServiceAnimalManager.GetIdFor*
+  implements:
+  - FarmMaster.Services.IServiceEntityManager{Business.Model.Animal}.GetIdFor(Business.Model.Animal)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Services.ServiceAnimalManager.Query
+  commentId: M:FarmMaster.Services.ServiceAnimalManager.Query
+  id: Query
+  parent: FarmMaster.Services.ServiceAnimalManager
+  langs:
+  - csharp
+  - vb
+  name: Query()
+  nameWithType: ServiceAnimalManager.Query()
+  fullName: FarmMaster.Services.ServiceAnimalManager.Query()
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceAnimalManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: Query
+    path: Services/IServiceAnimalManager.cs
+    startLine: 198
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: public IQueryable<Animal> Query()
+    return:
+      type: System.Linq.IQueryable{Business.Model.Animal}
+    content.vb: Public Function Query As IQueryable(Of Animal)
+  overload: FarmMaster.Services.ServiceAnimalManager.Query*
+  implements:
+  - FarmMaster.Services.IServiceEntityManager{Business.Model.Animal}.Query
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Services.ServiceAnimalManager.QueryAllIncluded
+  commentId: M:FarmMaster.Services.ServiceAnimalManager.QueryAllIncluded
+  id: QueryAllIncluded
+  parent: FarmMaster.Services.ServiceAnimalManager
+  langs:
+  - csharp
+  - vb
+  name: QueryAllIncluded()
+  nameWithType: ServiceAnimalManager.QueryAllIncluded()
+  fullName: FarmMaster.Services.ServiceAnimalManager.QueryAllIncluded()
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceAnimalManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: QueryAllIncluded
+    path: Services/IServiceAnimalManager.cs
+    startLine: 203
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: public IQueryable<Animal> QueryAllIncluded()
+    return:
+      type: System.Linq.IQueryable{Business.Model.Animal}
+    content.vb: Public Function QueryAllIncluded As IQueryable(Of Animal)
+  overload: FarmMaster.Services.ServiceAnimalManager.QueryAllIncluded*
+  implements:
+  - FarmMaster.Services.IServiceEntityManager{Business.Model.Animal}.QueryAllIncluded
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Services.ServiceAnimalManager.Update(Business.Model.Animal)
+  commentId: M:FarmMaster.Services.ServiceAnimalManager.Update(Business.Model.Animal)
+  id: Update(Business.Model.Animal)
+  parent: FarmMaster.Services.ServiceAnimalManager
+  langs:
+  - csharp
+  - vb
+  name: Update(Animal)
+  nameWithType: ServiceAnimalManager.Update(Animal)
+  fullName: FarmMaster.Services.ServiceAnimalManager.Update(Business.Model.Animal)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceAnimalManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: Update
+    path: Services/IServiceAnimalManager.cs
+    startLine: 223
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: public void Update(Animal entity)
+    parameters:
+    - id: entity
+      type: Business.Model.Animal
+    content.vb: Public Sub Update(entity As Animal)
+  overload: FarmMaster.Services.ServiceAnimalManager.Update*
+  implements:
+  - FarmMaster.Services.IServiceEntityManager{Business.Model.Animal}.Update(Business.Model.Animal)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Services.ServiceAnimalManager.GetContactGdprData(Business.Model.Contact,Newtonsoft.Json.Linq.JObject)
+  commentId: M:FarmMaster.Services.ServiceAnimalManager.GetContactGdprData(Business.Model.Contact,Newtonsoft.Json.Linq.JObject)
+  id: GetContactGdprData(Business.Model.Contact,Newtonsoft.Json.Linq.JObject)
+  parent: FarmMaster.Services.ServiceAnimalManager
+  langs:
+  - csharp
+  - vb
+  name: GetContactGdprData(Contact, JObject)
+  nameWithType: ServiceAnimalManager.GetContactGdprData(Contact, JObject)
+  fullName: FarmMaster.Services.ServiceAnimalManager.GetContactGdprData(Business.Model.Contact, Newtonsoft.Json.Linq.JObject)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceAnimalManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: GetContactGdprData
+    path: Services/IServiceAnimalManager.cs
+    startLine: 229
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: public void GetContactGdprData(Contact contact, JObject json)
+    parameters:
+    - id: contact
+      type: Business.Model.Contact
+    - id: json
+      type: Newtonsoft.Json.Linq.JObject
+    content.vb: Public Sub GetContactGdprData(contact As Contact, json As JObject)
+  overload: FarmMaster.Services.ServiceAnimalManager.GetContactGdprData*
+  implements:
+  - FarmMaster.Services.IServiceGdprData.GetContactGdprData(Business.Model.Contact,Newtonsoft.Json.Linq.JObject)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Services.ServiceAnimalManager.GetUserGdprData(Business.Model.User,Newtonsoft.Json.Linq.JObject)
+  commentId: M:FarmMaster.Services.ServiceAnimalManager.GetUserGdprData(Business.Model.User,Newtonsoft.Json.Linq.JObject)
+  id: GetUserGdprData(Business.Model.User,Newtonsoft.Json.Linq.JObject)
+  parent: FarmMaster.Services.ServiceAnimalManager
+  langs:
+  - csharp
+  - vb
+  name: GetUserGdprData(User, JObject)
+  nameWithType: ServiceAnimalManager.GetUserGdprData(User, JObject)
+  fullName: FarmMaster.Services.ServiceAnimalManager.GetUserGdprData(Business.Model.User, Newtonsoft.Json.Linq.JObject)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceAnimalManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: GetUserGdprData
+    path: Services/IServiceAnimalManager.cs
+    startLine: 238
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: public void GetUserGdprData(User user, JObject json)
+    parameters:
+    - id: user
+      type: Business.Model.User
+    - id: json
+      type: Newtonsoft.Json.Linq.JObject
+    content.vb: Public Sub GetUserGdprData(user As User, json As JObject)
+  overload: FarmMaster.Services.ServiceAnimalManager.GetUserGdprData*
+  implements:
+  - FarmMaster.Services.IServiceGdprData.GetUserGdprData(Business.Model.User,Newtonsoft.Json.Linq.JObject)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Services.ServiceAnimalManager.AnonymiseContactData(Business.Model.Contact)
+  commentId: M:FarmMaster.Services.ServiceAnimalManager.AnonymiseContactData(Business.Model.Contact)
+  id: AnonymiseContactData(Business.Model.Contact)
+  parent: FarmMaster.Services.ServiceAnimalManager
+  langs:
+  - csharp
+  - vb
+  name: AnonymiseContactData(Contact)
+  nameWithType: ServiceAnimalManager.AnonymiseContactData(Contact)
+  fullName: FarmMaster.Services.ServiceAnimalManager.AnonymiseContactData(Business.Model.Contact)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceAnimalManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: AnonymiseContactData
+    path: Services/IServiceAnimalManager.cs
+    startLine: 243
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: public void AnonymiseContactData(Contact contact)
+    parameters:
+    - id: contact
+      type: Business.Model.Contact
+    content.vb: Public Sub AnonymiseContactData(contact As Contact)
+  overload: FarmMaster.Services.ServiceAnimalManager.AnonymiseContactData*
+  implements:
+  - FarmMaster.Services.IServiceGdprData.AnonymiseContactData(Business.Model.Contact)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Services.ServiceAnimalManager.AnonymiseUserData(Business.Model.User)
+  commentId: M:FarmMaster.Services.ServiceAnimalManager.AnonymiseUserData(Business.Model.User)
+  id: AnonymiseUserData(Business.Model.User)
+  parent: FarmMaster.Services.ServiceAnimalManager
+  langs:
+  - csharp
+  - vb
+  name: AnonymiseUserData(User)
+  nameWithType: ServiceAnimalManager.AnonymiseUserData(User)
+  fullName: FarmMaster.Services.ServiceAnimalManager.AnonymiseUserData(Business.Model.User)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceAnimalManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: AnonymiseUserData
+    path: Services/IServiceAnimalManager.cs
+    startLine: 246
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: public void AnonymiseUserData(User user)
+    parameters:
+    - id: user
+      type: Business.Model.User
+    content.vb: Public Sub AnonymiseUserData(user As User)
+  overload: FarmMaster.Services.ServiceAnimalManager.AnonymiseUserData*
+  implements:
+  - FarmMaster.Services.IServiceGdprData.AnonymiseUserData(Business.Model.User)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: FarmMaster.Services
+  commentId: N:FarmMaster.Services
+  name: FarmMaster.Services
+  nameWithType: FarmMaster.Services
+  fullName: FarmMaster.Services
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: FarmMaster.Services.IServiceAnimalManager
+  commentId: T:FarmMaster.Services.IServiceAnimalManager
+  parent: FarmMaster.Services
+  name: IServiceAnimalManager
+  nameWithType: IServiceAnimalManager
+  fullName: FarmMaster.Services.IServiceAnimalManager
+- uid: FarmMaster.Services.IServiceEntityManager{Business.Model.Animal}
+  commentId: T:FarmMaster.Services.IServiceEntityManager{Business.Model.Animal}
+  parent: FarmMaster.Services
+  definition: FarmMaster.Services.IServiceEntityManager`1
+  name: IServiceEntityManager<Animal>
+  nameWithType: IServiceEntityManager<Animal>
+  fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.Animal>
+  nameWithType.vb: IServiceEntityManager(Of Animal)
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of Business.Model.Animal)
+  name.vb: IServiceEntityManager(Of Animal)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1
+    name: IServiceEntityManager
+    nameWithType: IServiceEntityManager
+    fullName: FarmMaster.Services.IServiceEntityManager
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Business.Model.Animal
+    name: Animal
+    nameWithType: Animal
+    fullName: Business.Model.Animal
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1
+    name: IServiceEntityManager
+    nameWithType: IServiceEntityManager
+    fullName: FarmMaster.Services.IServiceEntityManager
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Business.Model.Animal
+    name: Animal
+    nameWithType: Animal
+    fullName: Business.Model.Animal
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceGdprData
+  commentId: T:FarmMaster.Services.IServiceGdprData
+  parent: FarmMaster.Services
+  name: IServiceGdprData
+  nameWithType: IServiceGdprData
+  fullName: FarmMaster.Services.IServiceGdprData
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManager{Business.Model.Animal}.FarmMaster.Services.IServiceEntityDataExtentions.FromId``1(System.Int32)
+  commentId: M:FarmMaster.Services.IServiceEntityDataExtentions.FromId``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+  parent: FarmMaster.Services.IServiceEntityDataExtentions
+  definition: FarmMaster.Services.IServiceEntityDataExtentions.FromId``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+  name: FromId<Animal>(Int32)
+  nameWithType: IServiceEntityDataExtentions.FromId<Animal>(Int32)
+  fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromId<Business.Model.Animal>(System.Int32)
+  nameWithType.vb: IServiceEntityDataExtentions.FromId(Of Animal)(Int32)
+  fullName.vb: FarmMaster.Services.IServiceEntityDataExtentions.FromId(Of Business.Model.Animal)(System.Int32)
+  name.vb: FromId(Of Animal)(Int32)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.FromId``1(System.Int32)
+    name: FromId<Animal>
+    nameWithType: IServiceEntityDataExtentions.FromId<Animal>
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromId<Business.Model.Animal>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.FromId``1(System.Int32)
+    name: FromId(Of Animal)
+    nameWithType: IServiceEntityDataExtentions.FromId(Of Animal)
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromId(Of Business.Model.Animal)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManager{Business.Model.Animal}.FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded``1(System.Int32)
+  commentId: M:FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+  parent: FarmMaster.Services.IServiceEntityDataExtentions
+  definition: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+  name: FromIdAllIncluded<Animal>(Int32)
+  nameWithType: IServiceEntityDataExtentions.FromIdAllIncluded<Animal>(Int32)
+  fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded<Business.Model.Animal>(System.Int32)
+  nameWithType.vb: IServiceEntityDataExtentions.FromIdAllIncluded(Of Animal)(Int32)
+  fullName.vb: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded(Of Business.Model.Animal)(System.Int32)
+  name.vb: FromIdAllIncluded(Of Animal)(Int32)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded``1(System.Int32)
+    name: FromIdAllIncluded<Animal>
+    nameWithType: IServiceEntityDataExtentions.FromIdAllIncluded<Animal>
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded<Business.Model.Animal>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded``1(System.Int32)
+    name: FromIdAllIncluded(Of Animal)
+    nameWithType: IServiceEntityDataExtentions.FromIdAllIncluded(Of Animal)
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded(Of Business.Model.Animal)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManager{Business.Model.Animal}.FarmMaster.Services.IServiceEntityDataExtentions.For``1
+  commentId: M:FarmMaster.Services.IServiceEntityDataExtentions.For``1(FarmMaster.Services.IServiceEntityManager{``0})
+  parent: FarmMaster.Services.IServiceEntityDataExtentions
+  definition: FarmMaster.Services.IServiceEntityDataExtentions.For``1(FarmMaster.Services.IServiceEntityManager{``0})
+  name: For<Animal>()
+  nameWithType: IServiceEntityDataExtentions.For<Animal>()
+  fullName: FarmMaster.Services.IServiceEntityDataExtentions.For<Business.Model.Animal>()
+  nameWithType.vb: IServiceEntityDataExtentions.For(Of Animal)()
+  fullName.vb: FarmMaster.Services.IServiceEntityDataExtentions.For(Of Business.Model.Animal)()
+  name.vb: For(Of Animal)()
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.For``1
+    name: For<Animal>
+    nameWithType: IServiceEntityDataExtentions.For<Animal>
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.For<Business.Model.Animal>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.For``1
+    name: For(Of Animal)
+    nameWithType: IServiceEntityDataExtentions.For(Of Animal)
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.For(Of Business.Model.Animal)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: FarmMaster.Services.IServiceEntityManager`1
+  commentId: T:FarmMaster.Services.IServiceEntityManager`1
+  name: IServiceEntityManager<T>
+  nameWithType: IServiceEntityManager<T>
+  fullName: FarmMaster.Services.IServiceEntityManager<T>
+  nameWithType.vb: IServiceEntityManager(Of T)
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of T)
+  name.vb: IServiceEntityManager(Of T)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1
+    name: IServiceEntityManager
+    nameWithType: IServiceEntityManager
+    fullName: FarmMaster.Services.IServiceEntityManager
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1
+    name: IServiceEntityManager
+    nameWithType: IServiceEntityManager
+    fullName: FarmMaster.Services.IServiceEntityManager
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityDataExtentions.FromId``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+  commentId: M:FarmMaster.Services.IServiceEntityDataExtentions.FromId``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+  isExternal: true
+  name: FromId<T>(IServiceEntityManager<T>, Int32)
+  nameWithType: IServiceEntityDataExtentions.FromId<T>(IServiceEntityManager<T>, Int32)
+  fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromId<T>(FarmMaster.Services.IServiceEntityManager<T>, System.Int32)
+  nameWithType.vb: IServiceEntityDataExtentions.FromId(Of T)(IServiceEntityManager(Of T), Int32)
+  fullName.vb: FarmMaster.Services.IServiceEntityDataExtentions.FromId(Of T)(FarmMaster.Services.IServiceEntityManager(Of T), System.Int32)
+  name.vb: FromId(Of T)(IServiceEntityManager(Of T), Int32)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.FromId``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+    name: FromId<T>
+    nameWithType: IServiceEntityDataExtentions.FromId<T>
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromId<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: FarmMaster.Services.IServiceEntityManager`1
+    name: IServiceEntityManager
+    nameWithType: IServiceEntityManager
+    fullName: FarmMaster.Services.IServiceEntityManager
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.FromId``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+    name: FromId(Of T)
+    nameWithType: IServiceEntityDataExtentions.FromId(Of T)
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromId(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: FarmMaster.Services.IServiceEntityManager`1
+    name: IServiceEntityManager
+    nameWithType: IServiceEntityManager
+    fullName: FarmMaster.Services.IServiceEntityManager
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityDataExtentions
+  commentId: T:FarmMaster.Services.IServiceEntityDataExtentions
+  parent: FarmMaster.Services
+  name: IServiceEntityDataExtentions
+  nameWithType: IServiceEntityDataExtentions
+  fullName: FarmMaster.Services.IServiceEntityDataExtentions
+- uid: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+  commentId: M:FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+  isExternal: true
+  name: FromIdAllIncluded<T>(IServiceEntityManager<T>, Int32)
+  nameWithType: IServiceEntityDataExtentions.FromIdAllIncluded<T>(IServiceEntityManager<T>, Int32)
+  fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded<T>(FarmMaster.Services.IServiceEntityManager<T>, System.Int32)
+  nameWithType.vb: IServiceEntityDataExtentions.FromIdAllIncluded(Of T)(IServiceEntityManager(Of T), Int32)
+  fullName.vb: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded(Of T)(FarmMaster.Services.IServiceEntityManager(Of T), System.Int32)
+  name.vb: FromIdAllIncluded(Of T)(IServiceEntityManager(Of T), Int32)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+    name: FromIdAllIncluded<T>
+    nameWithType: IServiceEntityDataExtentions.FromIdAllIncluded<T>
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: FarmMaster.Services.IServiceEntityManager`1
+    name: IServiceEntityManager
+    nameWithType: IServiceEntityManager
+    fullName: FarmMaster.Services.IServiceEntityManager
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+    name: FromIdAllIncluded(Of T)
+    nameWithType: IServiceEntityDataExtentions.FromIdAllIncluded(Of T)
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: FarmMaster.Services.IServiceEntityManager`1
+    name: IServiceEntityManager
+    nameWithType: IServiceEntityManager
+    fullName: FarmMaster.Services.IServiceEntityManager
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityDataExtentions.For``1(FarmMaster.Services.IServiceEntityManager{``0})
+  commentId: M:FarmMaster.Services.IServiceEntityDataExtentions.For``1(FarmMaster.Services.IServiceEntityManager{``0})
+  name: For<T>(IServiceEntityManager<T>)
+  nameWithType: IServiceEntityDataExtentions.For<T>(IServiceEntityManager<T>)
+  fullName: FarmMaster.Services.IServiceEntityDataExtentions.For<T>(FarmMaster.Services.IServiceEntityManager<T>)
+  nameWithType.vb: IServiceEntityDataExtentions.For(Of T)(IServiceEntityManager(Of T))
+  fullName.vb: FarmMaster.Services.IServiceEntityDataExtentions.For(Of T)(FarmMaster.Services.IServiceEntityManager(Of T))
+  name.vb: For(Of T)(IServiceEntityManager(Of T))
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.For``1(FarmMaster.Services.IServiceEntityManager{``0})
+    name: For<T>
+    nameWithType: IServiceEntityDataExtentions.For<T>
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.For<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: FarmMaster.Services.IServiceEntityManager`1
+    name: IServiceEntityManager
+    nameWithType: IServiceEntityManager
+    fullName: FarmMaster.Services.IServiceEntityManager
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.For``1(FarmMaster.Services.IServiceEntityManager{``0})
+    name: For(Of T)
+    nameWithType: IServiceEntityDataExtentions.For(Of T)
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.For(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: FarmMaster.Services.IServiceEntityManager`1
+    name: IServiceEntityManager
+    nameWithType: IServiceEntityManager
+    fullName: FarmMaster.Services.IServiceEntityManager
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.ServiceAnimalManager.#ctor*
+  commentId: Overload:FarmMaster.Services.ServiceAnimalManager.#ctor
+  name: ServiceAnimalManager
+  nameWithType: ServiceAnimalManager.ServiceAnimalManager
+  fullName: FarmMaster.Services.ServiceAnimalManager.ServiceAnimalManager
+- uid: Business.Model.FarmMasterContext
+  commentId: T:Business.Model.FarmMasterContext
+  parent: Business.Model
+  name: FarmMasterContext
+  nameWithType: FarmMasterContext
+  fullName: Business.Model.FarmMasterContext
+- uid: FarmMaster.Services.IServiceLifeEventManager
+  commentId: T:FarmMaster.Services.IServiceLifeEventManager
+  parent: FarmMaster.Services
+  name: IServiceLifeEventManager
+  nameWithType: IServiceLifeEventManager
+  fullName: FarmMaster.Services.IServiceLifeEventManager
+- uid: FarmMaster.Services.IServiceImageManager
+  commentId: T:FarmMaster.Services.IServiceImageManager
+  parent: FarmMaster.Services
+  name: IServiceImageManager
+  nameWithType: IServiceImageManager
+  fullName: FarmMaster.Services.IServiceImageManager
+- uid: Business.Model
+  commentId: N:Business.Model
+  name: Business.Model
+  nameWithType: Business.Model
+  fullName: Business.Model
+- uid: FarmMaster.Services.ServiceAnimalManager.Create*
+  commentId: Overload:FarmMaster.Services.ServiceAnimalManager.Create
+  name: Create
+  nameWithType: ServiceAnimalManager.Create
+  fullName: FarmMaster.Services.ServiceAnimalManager.Create
+- uid: FarmMaster.Services.IServiceAnimalManager.Create(System.String,System.String,Business.Model.Animal.Gender,Business.Model.Contact,Business.Model.Species,Business.Model.Animal,Business.Model.Animal,Business.Model.Holding)
+  commentId: M:FarmMaster.Services.IServiceAnimalManager.Create(System.String,System.String,Business.Model.Animal.Gender,Business.Model.Contact,Business.Model.Species,Business.Model.Animal,Business.Model.Animal,Business.Model.Holding)
+  parent: FarmMaster.Services.IServiceAnimalManager
+  isExternal: true
+  name: Create(String, String, Animal.Gender, Contact, Species, Animal, Animal, Holding)
+  nameWithType: IServiceAnimalManager.Create(String, String, Animal.Gender, Contact, Species, Animal, Animal, Holding)
+  fullName: FarmMaster.Services.IServiceAnimalManager.Create(System.String, System.String, Business.Model.Animal.Gender, Business.Model.Contact, Business.Model.Species, Business.Model.Animal, Business.Model.Animal, Business.Model.Holding)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceAnimalManager.Create(System.String,System.String,Business.Model.Animal.Gender,Business.Model.Contact,Business.Model.Species,Business.Model.Animal,Business.Model.Animal,Business.Model.Holding)
+    name: Create
+    nameWithType: IServiceAnimalManager.Create
+    fullName: FarmMaster.Services.IServiceAnimalManager.Create
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Business.Model.Animal.Gender
+    name: Animal.Gender
+    nameWithType: Animal.Gender
+    fullName: Business.Model.Animal.Gender
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Business.Model.Contact
+    name: Contact
+    nameWithType: Contact
+    fullName: Business.Model.Contact
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Business.Model.Species
+    name: Species
+    nameWithType: Species
+    fullName: Business.Model.Species
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Business.Model.Animal
+    name: Animal
+    nameWithType: Animal
+    fullName: Business.Model.Animal
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Business.Model.Animal
+    name: Animal
+    nameWithType: Animal
+    fullName: Business.Model.Animal
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Business.Model.Holding
+    name: Holding
+    nameWithType: Holding
+    fullName: Business.Model.Holding
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceAnimalManager.Create(System.String,System.String,Business.Model.Animal.Gender,Business.Model.Contact,Business.Model.Species,Business.Model.Animal,Business.Model.Animal,Business.Model.Holding)
+    name: Create
+    nameWithType: IServiceAnimalManager.Create
+    fullName: FarmMaster.Services.IServiceAnimalManager.Create
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Business.Model.Animal.Gender
+    name: Animal.Gender
+    nameWithType: Animal.Gender
+    fullName: Business.Model.Animal.Gender
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Business.Model.Contact
+    name: Contact
+    nameWithType: Contact
+    fullName: Business.Model.Contact
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Business.Model.Species
+    name: Species
+    nameWithType: Species
+    fullName: Business.Model.Species
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Business.Model.Animal
+    name: Animal
+    nameWithType: Animal
+    fullName: Business.Model.Animal
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Business.Model.Animal
+    name: Animal
+    nameWithType: Animal
+    fullName: Business.Model.Animal
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Business.Model.Holding
+    name: Holding
+    nameWithType: Holding
+    fullName: Business.Model.Holding
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: Business.Model.Animal.Gender
+  commentId: T:Business.Model.Animal.Gender
+  parent: Business.Model
+  name: Animal.Gender
+  nameWithType: Animal.Gender
+  fullName: Business.Model.Animal.Gender
+- uid: Business.Model.Contact
+  commentId: T:Business.Model.Contact
+  parent: Business.Model
+  name: Contact
+  nameWithType: Contact
+  fullName: Business.Model.Contact
+- uid: Business.Model.Species
+  commentId: T:Business.Model.Species
+  parent: Business.Model
+  name: Species
+  nameWithType: Species
+  fullName: Business.Model.Species
+- uid: Business.Model.Animal
+  commentId: T:Business.Model.Animal
+  parent: Business.Model
+  name: Animal
+  nameWithType: Animal
+  fullName: Business.Model.Animal
+- uid: Business.Model.Holding
+  commentId: T:Business.Model.Holding
+  parent: Business.Model
+  name: Holding
+  nameWithType: Holding
+  fullName: Business.Model.Holding
+- uid: FarmMaster.Services.ServiceAnimalManager.AddBreed*
+  commentId: Overload:FarmMaster.Services.ServiceAnimalManager.AddBreed
+  name: AddBreed
+  nameWithType: ServiceAnimalManager.AddBreed
+  fullName: FarmMaster.Services.ServiceAnimalManager.AddBreed
+- uid: FarmMaster.Services.IServiceAnimalManager.AddBreed(Business.Model.Animal,Business.Model.Breed)
+  commentId: M:FarmMaster.Services.IServiceAnimalManager.AddBreed(Business.Model.Animal,Business.Model.Breed)
+  parent: FarmMaster.Services.IServiceAnimalManager
+  name: AddBreed(Animal, Breed)
+  nameWithType: IServiceAnimalManager.AddBreed(Animal, Breed)
+  fullName: FarmMaster.Services.IServiceAnimalManager.AddBreed(Business.Model.Animal, Business.Model.Breed)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceAnimalManager.AddBreed(Business.Model.Animal,Business.Model.Breed)
+    name: AddBreed
+    nameWithType: IServiceAnimalManager.AddBreed
+    fullName: FarmMaster.Services.IServiceAnimalManager.AddBreed
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Animal
+    name: Animal
+    nameWithType: Animal
+    fullName: Business.Model.Animal
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Business.Model.Breed
+    name: Breed
+    nameWithType: Breed
+    fullName: Business.Model.Breed
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceAnimalManager.AddBreed(Business.Model.Animal,Business.Model.Breed)
+    name: AddBreed
+    nameWithType: IServiceAnimalManager.AddBreed
+    fullName: FarmMaster.Services.IServiceAnimalManager.AddBreed
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Animal
+    name: Animal
+    nameWithType: Animal
+    fullName: Business.Model.Animal
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Business.Model.Breed
+    name: Breed
+    nameWithType: Breed
+    fullName: Business.Model.Breed
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Business.Model.Breed
+  commentId: T:Business.Model.Breed
+  parent: Business.Model
+  name: Breed
+  nameWithType: Breed
+  fullName: Business.Model.Breed
+- uid: FarmMaster.Services.ServiceAnimalManager.SetImageFromForm*
+  commentId: Overload:FarmMaster.Services.ServiceAnimalManager.SetImageFromForm
+  name: SetImageFromForm
+  nameWithType: ServiceAnimalManager.SetImageFromForm
+  fullName: FarmMaster.Services.ServiceAnimalManager.SetImageFromForm
+- uid: FarmMaster.Services.IServiceAnimalManager.SetImageFromForm(Business.Model.Animal,Microsoft.AspNetCore.Http.IFormFile)
+  commentId: M:FarmMaster.Services.IServiceAnimalManager.SetImageFromForm(Business.Model.Animal,Microsoft.AspNetCore.Http.IFormFile)
+  parent: FarmMaster.Services.IServiceAnimalManager
+  isExternal: true
+  name: SetImageFromForm(Animal, IFormFile)
+  nameWithType: IServiceAnimalManager.SetImageFromForm(Animal, IFormFile)
+  fullName: FarmMaster.Services.IServiceAnimalManager.SetImageFromForm(Business.Model.Animal, Microsoft.AspNetCore.Http.IFormFile)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceAnimalManager.SetImageFromForm(Business.Model.Animal,Microsoft.AspNetCore.Http.IFormFile)
+    name: SetImageFromForm
+    nameWithType: IServiceAnimalManager.SetImageFromForm
+    fullName: FarmMaster.Services.IServiceAnimalManager.SetImageFromForm
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Animal
+    name: Animal
+    nameWithType: Animal
+    fullName: Business.Model.Animal
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.AspNetCore.Http.IFormFile
+    name: IFormFile
+    nameWithType: IFormFile
+    fullName: Microsoft.AspNetCore.Http.IFormFile
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceAnimalManager.SetImageFromForm(Business.Model.Animal,Microsoft.AspNetCore.Http.IFormFile)
+    name: SetImageFromForm
+    nameWithType: IServiceAnimalManager.SetImageFromForm
+    fullName: FarmMaster.Services.IServiceAnimalManager.SetImageFromForm
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Animal
+    name: Animal
+    nameWithType: Animal
+    fullName: Business.Model.Animal
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Microsoft.AspNetCore.Http.IFormFile
+    name: IFormFile
+    nameWithType: IFormFile
+    fullName: Microsoft.AspNetCore.Http.IFormFile
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.AspNetCore.Http.IFormFile
+  commentId: T:Microsoft.AspNetCore.Http.IFormFile
+  parent: Microsoft.AspNetCore.Http
+  isExternal: true
+  name: IFormFile
+  nameWithType: IFormFile
+  fullName: Microsoft.AspNetCore.Http.IFormFile
+- uid: Microsoft.AspNetCore.Http
+  commentId: N:Microsoft.AspNetCore.Http
+  isExternal: true
+  name: Microsoft.AspNetCore.Http
+  nameWithType: Microsoft.AspNetCore.Http
+  fullName: Microsoft.AspNetCore.Http
+- uid: FarmMaster.Services.ServiceAnimalManager.RemoveBreed*
+  commentId: Overload:FarmMaster.Services.ServiceAnimalManager.RemoveBreed
+  name: RemoveBreed
+  nameWithType: ServiceAnimalManager.RemoveBreed
+  fullName: FarmMaster.Services.ServiceAnimalManager.RemoveBreed
+- uid: FarmMaster.Services.IServiceAnimalManager.RemoveBreed(Business.Model.Animal,Business.Model.Breed)
+  commentId: M:FarmMaster.Services.IServiceAnimalManager.RemoveBreed(Business.Model.Animal,Business.Model.Breed)
+  parent: FarmMaster.Services.IServiceAnimalManager
+  name: RemoveBreed(Animal, Breed)
+  nameWithType: IServiceAnimalManager.RemoveBreed(Animal, Breed)
+  fullName: FarmMaster.Services.IServiceAnimalManager.RemoveBreed(Business.Model.Animal, Business.Model.Breed)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceAnimalManager.RemoveBreed(Business.Model.Animal,Business.Model.Breed)
+    name: RemoveBreed
+    nameWithType: IServiceAnimalManager.RemoveBreed
+    fullName: FarmMaster.Services.IServiceAnimalManager.RemoveBreed
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Animal
+    name: Animal
+    nameWithType: Animal
+    fullName: Business.Model.Animal
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Business.Model.Breed
+    name: Breed
+    nameWithType: Breed
+    fullName: Business.Model.Breed
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceAnimalManager.RemoveBreed(Business.Model.Animal,Business.Model.Breed)
+    name: RemoveBreed
+    nameWithType: IServiceAnimalManager.RemoveBreed
+    fullName: FarmMaster.Services.IServiceAnimalManager.RemoveBreed
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Animal
+    name: Animal
+    nameWithType: Animal
+    fullName: Business.Model.Animal
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Business.Model.Breed
+    name: Breed
+    nameWithType: Breed
+    fullName: Business.Model.Breed
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Misc.CouldDelete
+  commentId: T:FarmMaster.Misc.CouldDelete
+  parent: FarmMaster.Misc
+  name: CouldDelete
+  nameWithType: CouldDelete
+  fullName: FarmMaster.Misc.CouldDelete
+- uid: FarmMaster.Misc
+  commentId: N:FarmMaster.Misc
+  name: FarmMaster.Misc
+  nameWithType: FarmMaster.Misc
+  fullName: FarmMaster.Misc
+- uid: FarmMaster.Services.ServiceAnimalManager.AddLifeEventEntry*
+  commentId: Overload:FarmMaster.Services.ServiceAnimalManager.AddLifeEventEntry
+  name: AddLifeEventEntry
+  nameWithType: ServiceAnimalManager.AddLifeEventEntry
+  fullName: FarmMaster.Services.ServiceAnimalManager.AddLifeEventEntry
+- uid: FarmMaster.Services.IServiceAnimalManager.AddLifeEventEntry(Business.Model.Animal,Business.Model.LifeEventEntry)
+  commentId: M:FarmMaster.Services.IServiceAnimalManager.AddLifeEventEntry(Business.Model.Animal,Business.Model.LifeEventEntry)
+  parent: FarmMaster.Services.IServiceAnimalManager
+  name: AddLifeEventEntry(Animal, LifeEventEntry)
+  nameWithType: IServiceAnimalManager.AddLifeEventEntry(Animal, LifeEventEntry)
+  fullName: FarmMaster.Services.IServiceAnimalManager.AddLifeEventEntry(Business.Model.Animal, Business.Model.LifeEventEntry)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceAnimalManager.AddLifeEventEntry(Business.Model.Animal,Business.Model.LifeEventEntry)
+    name: AddLifeEventEntry
+    nameWithType: IServiceAnimalManager.AddLifeEventEntry
+    fullName: FarmMaster.Services.IServiceAnimalManager.AddLifeEventEntry
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Animal
+    name: Animal
+    nameWithType: Animal
+    fullName: Business.Model.Animal
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Business.Model.LifeEventEntry
+    name: LifeEventEntry
+    nameWithType: LifeEventEntry
+    fullName: Business.Model.LifeEventEntry
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceAnimalManager.AddLifeEventEntry(Business.Model.Animal,Business.Model.LifeEventEntry)
+    name: AddLifeEventEntry
+    nameWithType: IServiceAnimalManager.AddLifeEventEntry
+    fullName: FarmMaster.Services.IServiceAnimalManager.AddLifeEventEntry
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Animal
+    name: Animal
+    nameWithType: Animal
+    fullName: Business.Model.Animal
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Business.Model.LifeEventEntry
+    name: LifeEventEntry
+    nameWithType: LifeEventEntry
+    fullName: Business.Model.LifeEventEntry
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Business.Model.LifeEventEntry
+  commentId: T:Business.Model.LifeEventEntry
+  parent: Business.Model
+  name: LifeEventEntry
+  nameWithType: LifeEventEntry
+  fullName: Business.Model.LifeEventEntry
+- uid: FarmMaster.Services.ServiceAnimalManager.RemoveLifeEventEntry*
+  commentId: Overload:FarmMaster.Services.ServiceAnimalManager.RemoveLifeEventEntry
+  name: RemoveLifeEventEntry
+  nameWithType: ServiceAnimalManager.RemoveLifeEventEntry
+  fullName: FarmMaster.Services.ServiceAnimalManager.RemoveLifeEventEntry
+- uid: FarmMaster.Services.IServiceAnimalManager.RemoveLifeEventEntry(Business.Model.Animal,Business.Model.LifeEventEntry,FarmMaster.Misc.AlsoDelete)
+  commentId: M:FarmMaster.Services.IServiceAnimalManager.RemoveLifeEventEntry(Business.Model.Animal,Business.Model.LifeEventEntry,FarmMaster.Misc.AlsoDelete)
+  parent: FarmMaster.Services.IServiceAnimalManager
+  name: RemoveLifeEventEntry(Animal, LifeEventEntry, AlsoDelete)
+  nameWithType: IServiceAnimalManager.RemoveLifeEventEntry(Animal, LifeEventEntry, AlsoDelete)
+  fullName: FarmMaster.Services.IServiceAnimalManager.RemoveLifeEventEntry(Business.Model.Animal, Business.Model.LifeEventEntry, FarmMaster.Misc.AlsoDelete)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceAnimalManager.RemoveLifeEventEntry(Business.Model.Animal,Business.Model.LifeEventEntry,FarmMaster.Misc.AlsoDelete)
+    name: RemoveLifeEventEntry
+    nameWithType: IServiceAnimalManager.RemoveLifeEventEntry
+    fullName: FarmMaster.Services.IServiceAnimalManager.RemoveLifeEventEntry
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Animal
+    name: Animal
+    nameWithType: Animal
+    fullName: Business.Model.Animal
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Business.Model.LifeEventEntry
+    name: LifeEventEntry
+    nameWithType: LifeEventEntry
+    fullName: Business.Model.LifeEventEntry
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: FarmMaster.Misc.AlsoDelete
+    name: AlsoDelete
+    nameWithType: AlsoDelete
+    fullName: FarmMaster.Misc.AlsoDelete
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceAnimalManager.RemoveLifeEventEntry(Business.Model.Animal,Business.Model.LifeEventEntry,FarmMaster.Misc.AlsoDelete)
+    name: RemoveLifeEventEntry
+    nameWithType: IServiceAnimalManager.RemoveLifeEventEntry
+    fullName: FarmMaster.Services.IServiceAnimalManager.RemoveLifeEventEntry
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Animal
+    name: Animal
+    nameWithType: Animal
+    fullName: Business.Model.Animal
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Business.Model.LifeEventEntry
+    name: LifeEventEntry
+    nameWithType: LifeEventEntry
+    fullName: Business.Model.LifeEventEntry
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: FarmMaster.Misc.AlsoDelete
+    name: AlsoDelete
+    nameWithType: AlsoDelete
+    fullName: FarmMaster.Misc.AlsoDelete
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Misc.AlsoDelete
+  commentId: T:FarmMaster.Misc.AlsoDelete
+  parent: FarmMaster.Misc
+  name: AlsoDelete
+  nameWithType: AlsoDelete
+  fullName: FarmMaster.Misc.AlsoDelete
+- uid: FarmMaster.Services.ServiceAnimalManager.SetBornEventEntry*
+  commentId: Overload:FarmMaster.Services.ServiceAnimalManager.SetBornEventEntry
+  name: SetBornEventEntry
+  nameWithType: ServiceAnimalManager.SetBornEventEntry
+  fullName: FarmMaster.Services.ServiceAnimalManager.SetBornEventEntry
+- uid: FarmMaster.Services.IServiceAnimalManager.SetBornEventEntry(Business.Model.Animal,System.DateTimeOffset)
+  commentId: M:FarmMaster.Services.IServiceAnimalManager.SetBornEventEntry(Business.Model.Animal,System.DateTimeOffset)
+  parent: FarmMaster.Services.IServiceAnimalManager
+  isExternal: true
+  name: SetBornEventEntry(Animal, DateTimeOffset)
+  nameWithType: IServiceAnimalManager.SetBornEventEntry(Animal, DateTimeOffset)
+  fullName: FarmMaster.Services.IServiceAnimalManager.SetBornEventEntry(Business.Model.Animal, System.DateTimeOffset)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceAnimalManager.SetBornEventEntry(Business.Model.Animal,System.DateTimeOffset)
+    name: SetBornEventEntry
+    nameWithType: IServiceAnimalManager.SetBornEventEntry
+    fullName: FarmMaster.Services.IServiceAnimalManager.SetBornEventEntry
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Animal
+    name: Animal
+    nameWithType: Animal
+    fullName: Business.Model.Animal
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.DateTimeOffset
+    name: DateTimeOffset
+    nameWithType: DateTimeOffset
+    fullName: System.DateTimeOffset
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceAnimalManager.SetBornEventEntry(Business.Model.Animal,System.DateTimeOffset)
+    name: SetBornEventEntry
+    nameWithType: IServiceAnimalManager.SetBornEventEntry
+    fullName: FarmMaster.Services.IServiceAnimalManager.SetBornEventEntry
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Animal
+    name: Animal
+    nameWithType: Animal
+    fullName: Business.Model.Animal
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.DateTimeOffset
+    name: DateTimeOffset
+    nameWithType: DateTimeOffset
+    fullName: System.DateTimeOffset
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.DateTimeOffset
+  commentId: T:System.DateTimeOffset
+  parent: System
+  isExternal: true
+  name: DateTimeOffset
+  nameWithType: DateTimeOffset
+  fullName: System.DateTimeOffset
+- uid: FarmMaster.Services.ServiceAnimalManager.GetBornEventEntry*
+  commentId: Overload:FarmMaster.Services.ServiceAnimalManager.GetBornEventEntry
+  name: GetBornEventEntry
+  nameWithType: ServiceAnimalManager.GetBornEventEntry
+  fullName: FarmMaster.Services.ServiceAnimalManager.GetBornEventEntry
+- uid: FarmMaster.Services.IServiceAnimalManager.GetBornEventEntry(Business.Model.Animal)
+  commentId: M:FarmMaster.Services.IServiceAnimalManager.GetBornEventEntry(Business.Model.Animal)
+  parent: FarmMaster.Services.IServiceAnimalManager
+  name: GetBornEventEntry(Animal)
+  nameWithType: IServiceAnimalManager.GetBornEventEntry(Animal)
+  fullName: FarmMaster.Services.IServiceAnimalManager.GetBornEventEntry(Business.Model.Animal)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceAnimalManager.GetBornEventEntry(Business.Model.Animal)
+    name: GetBornEventEntry
+    nameWithType: IServiceAnimalManager.GetBornEventEntry
+    fullName: FarmMaster.Services.IServiceAnimalManager.GetBornEventEntry
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Animal
+    name: Animal
+    nameWithType: Animal
+    fullName: Business.Model.Animal
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceAnimalManager.GetBornEventEntry(Business.Model.Animal)
+    name: GetBornEventEntry
+    nameWithType: IServiceAnimalManager.GetBornEventEntry
+    fullName: FarmMaster.Services.IServiceAnimalManager.GetBornEventEntry
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Animal
+    name: Animal
+    nameWithType: Animal
+    fullName: Business.Model.Animal
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Nullable{System.DateTimeOffset}
+  commentId: T:System.Nullable{System.DateTimeOffset}
+  parent: System
+  definition: System.Nullable`1
+  name: Nullable<DateTimeOffset>
+  nameWithType: Nullable<DateTimeOffset>
+  fullName: System.Nullable<System.DateTimeOffset>
+  nameWithType.vb: Nullable(Of DateTimeOffset)
+  fullName.vb: System.Nullable(Of System.DateTimeOffset)
+  name.vb: Nullable(Of DateTimeOffset)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.DateTimeOffset
+    name: DateTimeOffset
+    nameWithType: DateTimeOffset
+    fullName: System.DateTimeOffset
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.DateTimeOffset
+    name: DateTimeOffset
+    nameWithType: DateTimeOffset
+    fullName: System.DateTimeOffset
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Nullable`1
+  commentId: T:System.Nullable`1
+  isExternal: true
+  name: Nullable<T>
+  nameWithType: Nullable<T>
+  fullName: System.Nullable<T>
+  nameWithType.vb: Nullable(Of T)
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  spec.csharp:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Nullable`1
+    name: Nullable
+    nameWithType: Nullable
+    fullName: System.Nullable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.ServiceAnimalManager.GetIdFor*
+  commentId: Overload:FarmMaster.Services.ServiceAnimalManager.GetIdFor
+  name: GetIdFor
+  nameWithType: ServiceAnimalManager.GetIdFor
+  fullName: FarmMaster.Services.ServiceAnimalManager.GetIdFor
+- uid: FarmMaster.Services.IServiceEntityManager{Business.Model.Animal}.GetIdFor(Business.Model.Animal)
+  commentId: M:FarmMaster.Services.IServiceEntityManager{Business.Model.Animal}.GetIdFor(Business.Model.Animal)
+  parent: FarmMaster.Services.IServiceEntityManager{Business.Model.Animal}
+  definition: FarmMaster.Services.IServiceEntityManager`1.GetIdFor(`0)
+  name: GetIdFor(Animal)
+  nameWithType: IServiceEntityManager<Animal>.GetIdFor(Animal)
+  fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.Animal>.GetIdFor(Business.Model.Animal)
+  nameWithType.vb: IServiceEntityManager(Of Animal).GetIdFor(Animal)
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of Business.Model.Animal).GetIdFor(Business.Model.Animal)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.GetIdFor(`0)
+    name: GetIdFor
+    nameWithType: IServiceEntityManager<Animal>.GetIdFor
+    fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.Animal>.GetIdFor
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Animal
+    name: Animal
+    nameWithType: Animal
+    fullName: Business.Model.Animal
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.GetIdFor(`0)
+    name: GetIdFor
+    nameWithType: IServiceEntityManager(Of Animal).GetIdFor
+    fullName: FarmMaster.Services.IServiceEntityManager(Of Business.Model.Animal).GetIdFor
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Animal
+    name: Animal
+    nameWithType: Animal
+    fullName: Business.Model.Animal
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: FarmMaster.Services.IServiceEntityManager`1.GetIdFor(`0)
+  commentId: M:FarmMaster.Services.IServiceEntityManager`1.GetIdFor(`0)
+  name: GetIdFor(T)
+  nameWithType: IServiceEntityManager<T>.GetIdFor(T)
+  fullName: FarmMaster.Services.IServiceEntityManager<T>.GetIdFor(T)
+  nameWithType.vb: IServiceEntityManager(Of T).GetIdFor(T)
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of T).GetIdFor(T)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.GetIdFor(`0)
+    name: GetIdFor
+    nameWithType: IServiceEntityManager<T>.GetIdFor
+    fullName: FarmMaster.Services.IServiceEntityManager<T>.GetIdFor
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.GetIdFor(`0)
+    name: GetIdFor
+    nameWithType: IServiceEntityManager(Of T).GetIdFor
+    fullName: FarmMaster.Services.IServiceEntityManager(Of T).GetIdFor
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.ServiceAnimalManager.Query*
+  commentId: Overload:FarmMaster.Services.ServiceAnimalManager.Query
+  name: Query
+  nameWithType: ServiceAnimalManager.Query
+  fullName: FarmMaster.Services.ServiceAnimalManager.Query
+- uid: FarmMaster.Services.IServiceEntityManager{Business.Model.Animal}.Query
+  commentId: M:FarmMaster.Services.IServiceEntityManager{Business.Model.Animal}.Query
+  parent: FarmMaster.Services.IServiceEntityManager{Business.Model.Animal}
+  definition: FarmMaster.Services.IServiceEntityManager`1.Query
+  name: Query()
+  nameWithType: IServiceEntityManager<Animal>.Query()
+  fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.Animal>.Query()
+  nameWithType.vb: IServiceEntityManager(Of Animal).Query()
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of Business.Model.Animal).Query()
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.Query
+    name: Query
+    nameWithType: IServiceEntityManager<Animal>.Query
+    fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.Animal>.Query
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.Query
+    name: Query
+    nameWithType: IServiceEntityManager(Of Animal).Query
+    fullName: FarmMaster.Services.IServiceEntityManager(Of Business.Model.Animal).Query
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Linq.IQueryable{Business.Model.Animal}
+  commentId: T:System.Linq.IQueryable{Business.Model.Animal}
+  parent: System.Linq
+  definition: System.Linq.IQueryable`1
+  name: IQueryable<Animal>
+  nameWithType: IQueryable<Animal>
+  fullName: System.Linq.IQueryable<Business.Model.Animal>
+  nameWithType.vb: IQueryable(Of Animal)
+  fullName.vb: System.Linq.IQueryable(Of Business.Model.Animal)
+  name.vb: IQueryable(Of Animal)
+  spec.csharp:
+  - uid: System.Linq.IQueryable`1
+    name: IQueryable
+    nameWithType: IQueryable
+    fullName: System.Linq.IQueryable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Business.Model.Animal
+    name: Animal
+    nameWithType: Animal
+    fullName: Business.Model.Animal
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Linq.IQueryable`1
+    name: IQueryable
+    nameWithType: IQueryable
+    fullName: System.Linq.IQueryable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Business.Model.Animal
+    name: Animal
+    nameWithType: Animal
+    fullName: Business.Model.Animal
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManager`1.Query
+  commentId: M:FarmMaster.Services.IServiceEntityManager`1.Query
+  name: Query()
+  nameWithType: IServiceEntityManager<T>.Query()
+  fullName: FarmMaster.Services.IServiceEntityManager<T>.Query()
+  nameWithType.vb: IServiceEntityManager(Of T).Query()
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of T).Query()
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.Query
+    name: Query
+    nameWithType: IServiceEntityManager<T>.Query
+    fullName: FarmMaster.Services.IServiceEntityManager<T>.Query
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.Query
+    name: Query
+    nameWithType: IServiceEntityManager(Of T).Query
+    fullName: FarmMaster.Services.IServiceEntityManager(Of T).Query
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Linq.IQueryable`1
+  commentId: T:System.Linq.IQueryable`1
+  isExternal: true
+  name: IQueryable<T>
+  nameWithType: IQueryable<T>
+  fullName: System.Linq.IQueryable<T>
+  nameWithType.vb: IQueryable(Of T)
+  fullName.vb: System.Linq.IQueryable(Of T)
+  name.vb: IQueryable(Of T)
+  spec.csharp:
+  - uid: System.Linq.IQueryable`1
+    name: IQueryable
+    nameWithType: IQueryable
+    fullName: System.Linq.IQueryable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Linq.IQueryable`1
+    name: IQueryable
+    nameWithType: IQueryable
+    fullName: System.Linq.IQueryable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Linq
+  commentId: N:System.Linq
+  isExternal: true
+  name: System.Linq
+  nameWithType: System.Linq
+  fullName: System.Linq
+- uid: FarmMaster.Services.ServiceAnimalManager.QueryAllIncluded*
+  commentId: Overload:FarmMaster.Services.ServiceAnimalManager.QueryAllIncluded
+  name: QueryAllIncluded
+  nameWithType: ServiceAnimalManager.QueryAllIncluded
+  fullName: FarmMaster.Services.ServiceAnimalManager.QueryAllIncluded
+- uid: FarmMaster.Services.IServiceEntityManager{Business.Model.Animal}.QueryAllIncluded
+  commentId: M:FarmMaster.Services.IServiceEntityManager{Business.Model.Animal}.QueryAllIncluded
+  parent: FarmMaster.Services.IServiceEntityManager{Business.Model.Animal}
+  definition: FarmMaster.Services.IServiceEntityManager`1.QueryAllIncluded
+  name: QueryAllIncluded()
+  nameWithType: IServiceEntityManager<Animal>.QueryAllIncluded()
+  fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.Animal>.QueryAllIncluded()
+  nameWithType.vb: IServiceEntityManager(Of Animal).QueryAllIncluded()
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of Business.Model.Animal).QueryAllIncluded()
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.QueryAllIncluded
+    name: QueryAllIncluded
+    nameWithType: IServiceEntityManager<Animal>.QueryAllIncluded
+    fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.Animal>.QueryAllIncluded
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.QueryAllIncluded
+    name: QueryAllIncluded
+    nameWithType: IServiceEntityManager(Of Animal).QueryAllIncluded
+    fullName: FarmMaster.Services.IServiceEntityManager(Of Business.Model.Animal).QueryAllIncluded
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManager`1.QueryAllIncluded
+  commentId: M:FarmMaster.Services.IServiceEntityManager`1.QueryAllIncluded
+  name: QueryAllIncluded()
+  nameWithType: IServiceEntityManager<T>.QueryAllIncluded()
+  fullName: FarmMaster.Services.IServiceEntityManager<T>.QueryAllIncluded()
+  nameWithType.vb: IServiceEntityManager(Of T).QueryAllIncluded()
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of T).QueryAllIncluded()
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.QueryAllIncluded
+    name: QueryAllIncluded
+    nameWithType: IServiceEntityManager<T>.QueryAllIncluded
+    fullName: FarmMaster.Services.IServiceEntityManager<T>.QueryAllIncluded
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.QueryAllIncluded
+    name: QueryAllIncluded
+    nameWithType: IServiceEntityManager(Of T).QueryAllIncluded
+    fullName: FarmMaster.Services.IServiceEntityManager(Of T).QueryAllIncluded
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.ServiceAnimalManager.Update*
+  commentId: Overload:FarmMaster.Services.ServiceAnimalManager.Update
+  name: Update
+  nameWithType: ServiceAnimalManager.Update
+  fullName: FarmMaster.Services.ServiceAnimalManager.Update
+- uid: FarmMaster.Services.IServiceEntityManager{Business.Model.Animal}.Update(Business.Model.Animal)
+  commentId: M:FarmMaster.Services.IServiceEntityManager{Business.Model.Animal}.Update(Business.Model.Animal)
+  parent: FarmMaster.Services.IServiceEntityManager{Business.Model.Animal}
+  definition: FarmMaster.Services.IServiceEntityManager`1.Update(`0)
+  name: Update(Animal)
+  nameWithType: IServiceEntityManager<Animal>.Update(Animal)
+  fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.Animal>.Update(Business.Model.Animal)
+  nameWithType.vb: IServiceEntityManager(Of Animal).Update(Animal)
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of Business.Model.Animal).Update(Business.Model.Animal)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.Update(`0)
+    name: Update
+    nameWithType: IServiceEntityManager<Animal>.Update
+    fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.Animal>.Update
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Animal
+    name: Animal
+    nameWithType: Animal
+    fullName: Business.Model.Animal
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.Update(`0)
+    name: Update
+    nameWithType: IServiceEntityManager(Of Animal).Update
+    fullName: FarmMaster.Services.IServiceEntityManager(Of Business.Model.Animal).Update
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Animal
+    name: Animal
+    nameWithType: Animal
+    fullName: Business.Model.Animal
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManager`1.Update(`0)
+  commentId: M:FarmMaster.Services.IServiceEntityManager`1.Update(`0)
+  name: Update(T)
+  nameWithType: IServiceEntityManager<T>.Update(T)
+  fullName: FarmMaster.Services.IServiceEntityManager<T>.Update(T)
+  nameWithType.vb: IServiceEntityManager(Of T).Update(T)
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of T).Update(T)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.Update(`0)
+    name: Update
+    nameWithType: IServiceEntityManager<T>.Update
+    fullName: FarmMaster.Services.IServiceEntityManager<T>.Update
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.Update(`0)
+    name: Update
+    nameWithType: IServiceEntityManager(Of T).Update
+    fullName: FarmMaster.Services.IServiceEntityManager(Of T).Update
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.ServiceAnimalManager.GetContactGdprData*
+  commentId: Overload:FarmMaster.Services.ServiceAnimalManager.GetContactGdprData
+  name: GetContactGdprData
+  nameWithType: ServiceAnimalManager.GetContactGdprData
+  fullName: FarmMaster.Services.ServiceAnimalManager.GetContactGdprData
+- uid: FarmMaster.Services.IServiceGdprData.GetContactGdprData(Business.Model.Contact,Newtonsoft.Json.Linq.JObject)
+  commentId: M:FarmMaster.Services.IServiceGdprData.GetContactGdprData(Business.Model.Contact,Newtonsoft.Json.Linq.JObject)
+  parent: FarmMaster.Services.IServiceGdprData
+  isExternal: true
+  name: GetContactGdprData(Contact, JObject)
+  nameWithType: IServiceGdprData.GetContactGdprData(Contact, JObject)
+  fullName: FarmMaster.Services.IServiceGdprData.GetContactGdprData(Business.Model.Contact, Newtonsoft.Json.Linq.JObject)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceGdprData.GetContactGdprData(Business.Model.Contact,Newtonsoft.Json.Linq.JObject)
+    name: GetContactGdprData
+    nameWithType: IServiceGdprData.GetContactGdprData
+    fullName: FarmMaster.Services.IServiceGdprData.GetContactGdprData
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Contact
+    name: Contact
+    nameWithType: Contact
+    fullName: Business.Model.Contact
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Newtonsoft.Json.Linq.JObject
+    name: JObject
+    nameWithType: JObject
+    fullName: Newtonsoft.Json.Linq.JObject
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceGdprData.GetContactGdprData(Business.Model.Contact,Newtonsoft.Json.Linq.JObject)
+    name: GetContactGdprData
+    nameWithType: IServiceGdprData.GetContactGdprData
+    fullName: FarmMaster.Services.IServiceGdprData.GetContactGdprData
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Contact
+    name: Contact
+    nameWithType: Contact
+    fullName: Business.Model.Contact
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Newtonsoft.Json.Linq.JObject
+    name: JObject
+    nameWithType: JObject
+    fullName: Newtonsoft.Json.Linq.JObject
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Newtonsoft.Json.Linq.JObject
+  commentId: T:Newtonsoft.Json.Linq.JObject
+  parent: Newtonsoft.Json.Linq
+  isExternal: true
+  name: JObject
+  nameWithType: JObject
+  fullName: Newtonsoft.Json.Linq.JObject
+- uid: Newtonsoft.Json.Linq
+  commentId: N:Newtonsoft.Json.Linq
+  isExternal: true
+  name: Newtonsoft.Json.Linq
+  nameWithType: Newtonsoft.Json.Linq
+  fullName: Newtonsoft.Json.Linq
+- uid: FarmMaster.Services.ServiceAnimalManager.GetUserGdprData*
+  commentId: Overload:FarmMaster.Services.ServiceAnimalManager.GetUserGdprData
+  name: GetUserGdprData
+  nameWithType: ServiceAnimalManager.GetUserGdprData
+  fullName: FarmMaster.Services.ServiceAnimalManager.GetUserGdprData
+- uid: FarmMaster.Services.IServiceGdprData.GetUserGdprData(Business.Model.User,Newtonsoft.Json.Linq.JObject)
+  commentId: M:FarmMaster.Services.IServiceGdprData.GetUserGdprData(Business.Model.User,Newtonsoft.Json.Linq.JObject)
+  parent: FarmMaster.Services.IServiceGdprData
+  isExternal: true
+  name: GetUserGdprData(User, JObject)
+  nameWithType: IServiceGdprData.GetUserGdprData(User, JObject)
+  fullName: FarmMaster.Services.IServiceGdprData.GetUserGdprData(Business.Model.User, Newtonsoft.Json.Linq.JObject)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceGdprData.GetUserGdprData(Business.Model.User,Newtonsoft.Json.Linq.JObject)
+    name: GetUserGdprData
+    nameWithType: IServiceGdprData.GetUserGdprData
+    fullName: FarmMaster.Services.IServiceGdprData.GetUserGdprData
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.User
+    name: User
+    nameWithType: User
+    fullName: Business.Model.User
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Newtonsoft.Json.Linq.JObject
+    name: JObject
+    nameWithType: JObject
+    fullName: Newtonsoft.Json.Linq.JObject
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceGdprData.GetUserGdprData(Business.Model.User,Newtonsoft.Json.Linq.JObject)
+    name: GetUserGdprData
+    nameWithType: IServiceGdprData.GetUserGdprData
+    fullName: FarmMaster.Services.IServiceGdprData.GetUserGdprData
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.User
+    name: User
+    nameWithType: User
+    fullName: Business.Model.User
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Newtonsoft.Json.Linq.JObject
+    name: JObject
+    nameWithType: JObject
+    fullName: Newtonsoft.Json.Linq.JObject
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Business.Model.User
+  commentId: T:Business.Model.User
+  parent: Business.Model
+  name: User
+  nameWithType: User
+  fullName: Business.Model.User
+- uid: FarmMaster.Services.ServiceAnimalManager.AnonymiseContactData*
+  commentId: Overload:FarmMaster.Services.ServiceAnimalManager.AnonymiseContactData
+  name: AnonymiseContactData
+  nameWithType: ServiceAnimalManager.AnonymiseContactData
+  fullName: FarmMaster.Services.ServiceAnimalManager.AnonymiseContactData
+- uid: FarmMaster.Services.IServiceGdprData.AnonymiseContactData(Business.Model.Contact)
+  commentId: M:FarmMaster.Services.IServiceGdprData.AnonymiseContactData(Business.Model.Contact)
+  parent: FarmMaster.Services.IServiceGdprData
+  name: AnonymiseContactData(Contact)
+  nameWithType: IServiceGdprData.AnonymiseContactData(Contact)
+  fullName: FarmMaster.Services.IServiceGdprData.AnonymiseContactData(Business.Model.Contact)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceGdprData.AnonymiseContactData(Business.Model.Contact)
+    name: AnonymiseContactData
+    nameWithType: IServiceGdprData.AnonymiseContactData
+    fullName: FarmMaster.Services.IServiceGdprData.AnonymiseContactData
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Contact
+    name: Contact
+    nameWithType: Contact
+    fullName: Business.Model.Contact
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceGdprData.AnonymiseContactData(Business.Model.Contact)
+    name: AnonymiseContactData
+    nameWithType: IServiceGdprData.AnonymiseContactData
+    fullName: FarmMaster.Services.IServiceGdprData.AnonymiseContactData
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Contact
+    name: Contact
+    nameWithType: Contact
+    fullName: Business.Model.Contact
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.ServiceAnimalManager.AnonymiseUserData*
+  commentId: Overload:FarmMaster.Services.ServiceAnimalManager.AnonymiseUserData
+  name: AnonymiseUserData
+  nameWithType: ServiceAnimalManager.AnonymiseUserData
+  fullName: FarmMaster.Services.ServiceAnimalManager.AnonymiseUserData
+- uid: FarmMaster.Services.IServiceGdprData.AnonymiseUserData(Business.Model.User)
+  commentId: M:FarmMaster.Services.IServiceGdprData.AnonymiseUserData(Business.Model.User)
+  parent: FarmMaster.Services.IServiceGdprData
+  name: AnonymiseUserData(User)
+  nameWithType: IServiceGdprData.AnonymiseUserData(User)
+  fullName: FarmMaster.Services.IServiceGdprData.AnonymiseUserData(Business.Model.User)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceGdprData.AnonymiseUserData(Business.Model.User)
+    name: AnonymiseUserData
+    nameWithType: IServiceGdprData.AnonymiseUserData
+    fullName: FarmMaster.Services.IServiceGdprData.AnonymiseUserData
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.User
+    name: User
+    nameWithType: User
+    fullName: Business.Model.User
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceGdprData.AnonymiseUserData(Business.Model.User)
+    name: AnonymiseUserData
+    nameWithType: IServiceGdprData.AnonymiseUserData
+    fullName: FarmMaster.Services.IServiceGdprData.AnonymiseUserData
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.User
+    name: User
+    nameWithType: User
+    fullName: Business.Model.User
+  - name: )
+    nameWithType: )
+    fullName: )

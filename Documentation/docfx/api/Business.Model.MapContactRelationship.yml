@@ -1,0 +1,775 @@
+### YamlMime:ManagedReference
+items:
+- uid: Business.Model.MapContactRelationship
+  commentId: T:Business.Model.MapContactRelationship
+  id: MapContactRelationship
+  parent: Business.Model
+  children:
+  - Business.Model.MapContactRelationship.ContactOne
+  - Business.Model.MapContactRelationship.ContactOneId
+  - Business.Model.MapContactRelationship.ContactTwo
+  - Business.Model.MapContactRelationship.ContactTwoId
+  - Business.Model.MapContactRelationship.Description
+  - Business.Model.MapContactRelationship.GetContactNotMe(Business.Model.Contact)
+  - Business.Model.MapContactRelationship.MapContactRelationshipId
+  - Business.Model.MapContactRelationship.Timestamp
+  langs:
+  - csharp
+  - vb
+  name: MapContactRelationship
+  nameWithType: MapContactRelationship
+  fullName: Business.Model.MapContactRelationship
+  type: Class
+  source:
+    remote:
+      path: Business/Model/MapContactRelationship.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: MapContactRelationship
+    path: ../Business/Model/MapContactRelationship.cs
+    startLine: 7
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: public class MapContactRelationship
+    content.vb: Public Class MapContactRelationship
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Business.Model.MapContactRelationship.MapContactRelationshipId
+  commentId: P:Business.Model.MapContactRelationship.MapContactRelationshipId
+  id: MapContactRelationshipId
+  parent: Business.Model.MapContactRelationship
+  langs:
+  - csharp
+  - vb
+  name: MapContactRelationshipId
+  nameWithType: MapContactRelationship.MapContactRelationshipId
+  fullName: Business.Model.MapContactRelationship.MapContactRelationshipId
+  type: Property
+  source:
+    remote:
+      path: Business/Model/MapContactRelationship.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: MapContactRelationshipId
+    path: ../Business/Model/MapContactRelationship.cs
+    startLine: 9
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: >-
+      [Key]
+
+      public int MapContactRelationshipId { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: >-
+      <Key>
+
+      Public Property MapContactRelationshipId As Integer
+  overload: Business.Model.MapContactRelationship.MapContactRelationshipId*
+  attributes:
+  - type: System.ComponentModel.DataAnnotations.KeyAttribute
+    ctor: System.ComponentModel.DataAnnotations.KeyAttribute.#ctor
+    arguments: []
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Business.Model.MapContactRelationship.ContactOneId
+  commentId: P:Business.Model.MapContactRelationship.ContactOneId
+  id: ContactOneId
+  parent: Business.Model.MapContactRelationship
+  langs:
+  - csharp
+  - vb
+  name: ContactOneId
+  nameWithType: MapContactRelationship.ContactOneId
+  fullName: Business.Model.MapContactRelationship.ContactOneId
+  type: Property
+  source:
+    remote:
+      path: Business/Model/MapContactRelationship.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: ContactOneId
+    path: ../Business/Model/MapContactRelationship.cs
+    startLine: 12
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: >-
+      [Required]
+
+      public int ContactOneId { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: >-
+      <Required>
+
+      Public Property ContactOneId As Integer
+  overload: Business.Model.MapContactRelationship.ContactOneId*
+  attributes:
+  - type: System.ComponentModel.DataAnnotations.RequiredAttribute
+    ctor: System.ComponentModel.DataAnnotations.RequiredAttribute.#ctor
+    arguments: []
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Business.Model.MapContactRelationship.ContactOne
+  commentId: P:Business.Model.MapContactRelationship.ContactOne
+  id: ContactOne
+  parent: Business.Model.MapContactRelationship
+  langs:
+  - csharp
+  - vb
+  name: ContactOne
+  nameWithType: MapContactRelationship.ContactOne
+  fullName: Business.Model.MapContactRelationship.ContactOne
+  type: Property
+  source:
+    remote:
+      path: Business/Model/MapContactRelationship.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: ContactOne
+    path: ../Business/Model/MapContactRelationship.cs
+    startLine: 14
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: public Contact ContactOne { get; set; }
+    parameters: []
+    return:
+      type: Business.Model.Contact
+    content.vb: Public Property ContactOne As Contact
+  overload: Business.Model.MapContactRelationship.ContactOne*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Business.Model.MapContactRelationship.ContactTwoId
+  commentId: P:Business.Model.MapContactRelationship.ContactTwoId
+  id: ContactTwoId
+  parent: Business.Model.MapContactRelationship
+  langs:
+  - csharp
+  - vb
+  name: ContactTwoId
+  nameWithType: MapContactRelationship.ContactTwoId
+  fullName: Business.Model.MapContactRelationship.ContactTwoId
+  type: Property
+  source:
+    remote:
+      path: Business/Model/MapContactRelationship.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: ContactTwoId
+    path: ../Business/Model/MapContactRelationship.cs
+    startLine: 16
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: >-
+      [Required]
+
+      public int ContactTwoId { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: >-
+      <Required>
+
+      Public Property ContactTwoId As Integer
+  overload: Business.Model.MapContactRelationship.ContactTwoId*
+  attributes:
+  - type: System.ComponentModel.DataAnnotations.RequiredAttribute
+    ctor: System.ComponentModel.DataAnnotations.RequiredAttribute.#ctor
+    arguments: []
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Business.Model.MapContactRelationship.ContactTwo
+  commentId: P:Business.Model.MapContactRelationship.ContactTwo
+  id: ContactTwo
+  parent: Business.Model.MapContactRelationship
+  langs:
+  - csharp
+  - vb
+  name: ContactTwo
+  nameWithType: MapContactRelationship.ContactTwo
+  fullName: Business.Model.MapContactRelationship.ContactTwo
+  type: Property
+  source:
+    remote:
+      path: Business/Model/MapContactRelationship.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: ContactTwo
+    path: ../Business/Model/MapContactRelationship.cs
+    startLine: 18
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: public Contact ContactTwo { get; set; }
+    parameters: []
+    return:
+      type: Business.Model.Contact
+    content.vb: Public Property ContactTwo As Contact
+  overload: Business.Model.MapContactRelationship.ContactTwo*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Business.Model.MapContactRelationship.Description
+  commentId: P:Business.Model.MapContactRelationship.Description
+  id: Description
+  parent: Business.Model.MapContactRelationship
+  langs:
+  - csharp
+  - vb
+  name: Description
+  nameWithType: MapContactRelationship.Description
+  fullName: Business.Model.MapContactRelationship.Description
+  type: Property
+  source:
+    remote:
+      path: Business/Model/MapContactRelationship.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: Description
+    path: ../Business/Model/MapContactRelationship.cs
+    startLine: 20
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: >-
+      [Required]
+
+      [StringLength(64)]
+
+      public string Description { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <Required>
+
+      <StringLength(64)>
+
+      Public Property Description As String
+  overload: Business.Model.MapContactRelationship.Description*
+  attributes:
+  - type: System.ComponentModel.DataAnnotations.RequiredAttribute
+    ctor: System.ComponentModel.DataAnnotations.RequiredAttribute.#ctor
+    arguments: []
+  - type: System.ComponentModel.DataAnnotations.StringLengthAttribute
+    ctor: System.ComponentModel.DataAnnotations.StringLengthAttribute.#ctor(System.Int32)
+    arguments:
+    - type: System.Int32
+      value: 64
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Business.Model.MapContactRelationship.Timestamp
+  commentId: P:Business.Model.MapContactRelationship.Timestamp
+  id: Timestamp
+  parent: Business.Model.MapContactRelationship
+  langs:
+  - csharp
+  - vb
+  name: Timestamp
+  nameWithType: MapContactRelationship.Timestamp
+  fullName: Business.Model.MapContactRelationship.Timestamp
+  type: Property
+  source:
+    remote:
+      path: Business/Model/MapContactRelationship.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: Timestamp
+    path: ../Business/Model/MapContactRelationship.cs
+    startLine: 24
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: >-
+      [Timestamp]
+
+      public byte[] Timestamp { get; set; }
+    parameters: []
+    return:
+      type: System.Byte[]
+    content.vb: >-
+      <Timestamp>
+
+      Public Property Timestamp As Byte()
+  overload: Business.Model.MapContactRelationship.Timestamp*
+  attributes:
+  - type: System.ComponentModel.DataAnnotations.TimestampAttribute
+    ctor: System.ComponentModel.DataAnnotations.TimestampAttribute.#ctor
+    arguments: []
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Business.Model.MapContactRelationship.GetContactNotMe(Business.Model.Contact)
+  commentId: M:Business.Model.MapContactRelationship.GetContactNotMe(Business.Model.Contact)
+  id: GetContactNotMe(Business.Model.Contact)
+  parent: Business.Model.MapContactRelationship
+  langs:
+  - csharp
+  - vb
+  name: GetContactNotMe(Contact)
+  nameWithType: MapContactRelationship.GetContactNotMe(Contact)
+  fullName: Business.Model.MapContactRelationship.GetContactNotMe(Business.Model.Contact)
+  type: Method
+  source:
+    remote:
+      path: Business/Model/MapContactRelationship.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: GetContactNotMe
+    path: ../Business/Model/MapContactRelationship.cs
+    startLine: 27
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: public Contact GetContactNotMe(Contact me)
+    parameters:
+    - id: me
+      type: Business.Model.Contact
+    return:
+      type: Business.Model.Contact
+    content.vb: Public Function GetContactNotMe(me As Contact) As Contact
+  overload: Business.Model.MapContactRelationship.GetContactNotMe*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: Business.Model
+  commentId: N:Business.Model
+  name: Business.Model
+  nameWithType: Business.Model
+  fullName: Business.Model
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Business.Model.MapContactRelationship.MapContactRelationshipId*
+  commentId: Overload:Business.Model.MapContactRelationship.MapContactRelationshipId
+  name: MapContactRelationshipId
+  nameWithType: MapContactRelationship.MapContactRelationshipId
+  fullName: Business.Model.MapContactRelationship.MapContactRelationshipId
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: Business.Model.MapContactRelationship.ContactOneId*
+  commentId: Overload:Business.Model.MapContactRelationship.ContactOneId
+  name: ContactOneId
+  nameWithType: MapContactRelationship.ContactOneId
+  fullName: Business.Model.MapContactRelationship.ContactOneId
+- uid: Business.Model.MapContactRelationship.ContactOne*
+  commentId: Overload:Business.Model.MapContactRelationship.ContactOne
+  name: ContactOne
+  nameWithType: MapContactRelationship.ContactOne
+  fullName: Business.Model.MapContactRelationship.ContactOne
+- uid: Business.Model.Contact
+  commentId: T:Business.Model.Contact
+  parent: Business.Model
+  name: Contact
+  nameWithType: Contact
+  fullName: Business.Model.Contact
+- uid: Business.Model.MapContactRelationship.ContactTwoId*
+  commentId: Overload:Business.Model.MapContactRelationship.ContactTwoId
+  name: ContactTwoId
+  nameWithType: MapContactRelationship.ContactTwoId
+  fullName: Business.Model.MapContactRelationship.ContactTwoId
+- uid: Business.Model.MapContactRelationship.ContactTwo*
+  commentId: Overload:Business.Model.MapContactRelationship.ContactTwo
+  name: ContactTwo
+  nameWithType: MapContactRelationship.ContactTwo
+  fullName: Business.Model.MapContactRelationship.ContactTwo
+- uid: Business.Model.MapContactRelationship.Description*
+  commentId: Overload:Business.Model.MapContactRelationship.Description
+  name: Description
+  nameWithType: MapContactRelationship.Description
+  fullName: Business.Model.MapContactRelationship.Description
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: Business.Model.MapContactRelationship.Timestamp*
+  commentId: Overload:Business.Model.MapContactRelationship.Timestamp
+  name: Timestamp
+  nameWithType: MapContactRelationship.Timestamp
+  fullName: Business.Model.MapContactRelationship.Timestamp
+- uid: System.Byte[]
+  isExternal: true
+  name: Byte[]
+  nameWithType: Byte[]
+  fullName: System.Byte[]
+  nameWithType.vb: Byte()
+  fullName.vb: System.Byte()
+  name.vb: Byte()
+  spec.csharp:
+  - uid: System.Byte
+    name: Byte
+    nameWithType: Byte
+    fullName: System.Byte
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.Byte
+    name: Byte
+    nameWithType: Byte
+    fullName: System.Byte
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: Business.Model.MapContactRelationship.GetContactNotMe*
+  commentId: Overload:Business.Model.MapContactRelationship.GetContactNotMe
+  name: GetContactNotMe
+  nameWithType: MapContactRelationship.GetContactNotMe
+  fullName: Business.Model.MapContactRelationship.GetContactNotMe

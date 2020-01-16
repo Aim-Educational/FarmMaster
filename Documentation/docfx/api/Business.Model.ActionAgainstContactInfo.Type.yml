@@ -1,0 +1,343 @@
+### YamlMime:ManagedReference
+items:
+- uid: Business.Model.ActionAgainstContactInfo.Type
+  commentId: T:Business.Model.ActionAgainstContactInfo.Type
+  id: ActionAgainstContactInfo.Type
+  parent: Business.Model
+  children:
+  - Business.Model.ActionAgainstContactInfo.Type.Add_EmailAddress
+  - Business.Model.ActionAgainstContactInfo.Type.Add_PhoneNumber
+  - Business.Model.ActionAgainstContactInfo.Type.Add_Relation
+  - Business.Model.ActionAgainstContactInfo.Type.Delete_EmailAddress
+  - Business.Model.ActionAgainstContactInfo.Type.Delete_PhoneNumber
+  - Business.Model.ActionAgainstContactInfo.Type.Delete_Relation
+  - Business.Model.ActionAgainstContactInfo.Type.Edit_ContactInfo_General
+  - Business.Model.ActionAgainstContactInfo.Type.Unknown
+  - Business.Model.ActionAgainstContactInfo.Type.View_ContactInfo
+  langs:
+  - csharp
+  - vb
+  name: ActionAgainstContactInfo.Type
+  nameWithType: ActionAgainstContactInfo.Type
+  fullName: Business.Model.ActionAgainstContactInfo.Type
+  type: Enum
+  source:
+    remote:
+      path: Business/Model/ActionAgainstContactInfo.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: Type
+    path: ../Business/Model/ActionAgainstContactInfo.cs
+    startLine: 9
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: public enum Type
+    content.vb: Public Enum Type
+  modifiers.csharp:
+  - public
+  - enum
+  modifiers.vb:
+  - Public
+  - Enum
+- uid: Business.Model.ActionAgainstContactInfo.Type.Unknown
+  commentId: F:Business.Model.ActionAgainstContactInfo.Type.Unknown
+  id: Unknown
+  parent: Business.Model.ActionAgainstContactInfo.Type
+  langs:
+  - csharp
+  - vb
+  name: Unknown
+  nameWithType: ActionAgainstContactInfo.Type.Unknown
+  fullName: Business.Model.ActionAgainstContactInfo.Type.Unknown
+  type: Field
+  source:
+    remote:
+      path: Business/Model/ActionAgainstContactInfo.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: Unknown
+    path: ../Business/Model/ActionAgainstContactInfo.cs
+    startLine: 11
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: Unknown = 0
+    return:
+      type: Business.Model.ActionAgainstContactInfo.Type
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: Business.Model.ActionAgainstContactInfo.Type.View_ContactInfo
+  commentId: F:Business.Model.ActionAgainstContactInfo.Type.View_ContactInfo
+  id: View_ContactInfo
+  parent: Business.Model.ActionAgainstContactInfo.Type
+  langs:
+  - csharp
+  - vb
+  name: View_ContactInfo
+  nameWithType: ActionAgainstContactInfo.Type.View_ContactInfo
+  fullName: Business.Model.ActionAgainstContactInfo.Type.View_ContactInfo
+  type: Field
+  source:
+    remote:
+      path: Business/Model/ActionAgainstContactInfo.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: View_ContactInfo
+    path: ../Business/Model/ActionAgainstContactInfo.cs
+    startLine: 14
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: View_ContactInfo = 1
+    return:
+      type: Business.Model.ActionAgainstContactInfo.Type
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: Business.Model.ActionAgainstContactInfo.Type.Add_PhoneNumber
+  commentId: F:Business.Model.ActionAgainstContactInfo.Type.Add_PhoneNumber
+  id: Add_PhoneNumber
+  parent: Business.Model.ActionAgainstContactInfo.Type
+  langs:
+  - csharp
+  - vb
+  name: Add_PhoneNumber
+  nameWithType: ActionAgainstContactInfo.Type.Add_PhoneNumber
+  fullName: Business.Model.ActionAgainstContactInfo.Type.Add_PhoneNumber
+  type: Field
+  source:
+    remote:
+      path: Business/Model/ActionAgainstContactInfo.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: Add_PhoneNumber
+    path: ../Business/Model/ActionAgainstContactInfo.cs
+    startLine: 17
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: Add_PhoneNumber = 2
+    return:
+      type: Business.Model.ActionAgainstContactInfo.Type
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: Business.Model.ActionAgainstContactInfo.Type.Add_EmailAddress
+  commentId: F:Business.Model.ActionAgainstContactInfo.Type.Add_EmailAddress
+  id: Add_EmailAddress
+  parent: Business.Model.ActionAgainstContactInfo.Type
+  langs:
+  - csharp
+  - vb
+  name: Add_EmailAddress
+  nameWithType: ActionAgainstContactInfo.Type.Add_EmailAddress
+  fullName: Business.Model.ActionAgainstContactInfo.Type.Add_EmailAddress
+  type: Field
+  source:
+    remote:
+      path: Business/Model/ActionAgainstContactInfo.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: Add_EmailAddress
+    path: ../Business/Model/ActionAgainstContactInfo.cs
+    startLine: 18
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: Add_EmailAddress = 3
+    return:
+      type: Business.Model.ActionAgainstContactInfo.Type
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: Business.Model.ActionAgainstContactInfo.Type.Add_Relation
+  commentId: F:Business.Model.ActionAgainstContactInfo.Type.Add_Relation
+  id: Add_Relation
+  parent: Business.Model.ActionAgainstContactInfo.Type
+  langs:
+  - csharp
+  - vb
+  name: Add_Relation
+  nameWithType: ActionAgainstContactInfo.Type.Add_Relation
+  fullName: Business.Model.ActionAgainstContactInfo.Type.Add_Relation
+  type: Field
+  source:
+    remote:
+      path: Business/Model/ActionAgainstContactInfo.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: Add_Relation
+    path: ../Business/Model/ActionAgainstContactInfo.cs
+    startLine: 19
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: Add_Relation = 4
+    return:
+      type: Business.Model.ActionAgainstContactInfo.Type
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: Business.Model.ActionAgainstContactInfo.Type.Delete_PhoneNumber
+  commentId: F:Business.Model.ActionAgainstContactInfo.Type.Delete_PhoneNumber
+  id: Delete_PhoneNumber
+  parent: Business.Model.ActionAgainstContactInfo.Type
+  langs:
+  - csharp
+  - vb
+  name: Delete_PhoneNumber
+  nameWithType: ActionAgainstContactInfo.Type.Delete_PhoneNumber
+  fullName: Business.Model.ActionAgainstContactInfo.Type.Delete_PhoneNumber
+  type: Field
+  source:
+    remote:
+      path: Business/Model/ActionAgainstContactInfo.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: Delete_PhoneNumber
+    path: ../Business/Model/ActionAgainstContactInfo.cs
+    startLine: 22
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: Delete_PhoneNumber = 5
+    return:
+      type: Business.Model.ActionAgainstContactInfo.Type
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: Business.Model.ActionAgainstContactInfo.Type.Delete_EmailAddress
+  commentId: F:Business.Model.ActionAgainstContactInfo.Type.Delete_EmailAddress
+  id: Delete_EmailAddress
+  parent: Business.Model.ActionAgainstContactInfo.Type
+  langs:
+  - csharp
+  - vb
+  name: Delete_EmailAddress
+  nameWithType: ActionAgainstContactInfo.Type.Delete_EmailAddress
+  fullName: Business.Model.ActionAgainstContactInfo.Type.Delete_EmailAddress
+  type: Field
+  source:
+    remote:
+      path: Business/Model/ActionAgainstContactInfo.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: Delete_EmailAddress
+    path: ../Business/Model/ActionAgainstContactInfo.cs
+    startLine: 23
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: Delete_EmailAddress = 6
+    return:
+      type: Business.Model.ActionAgainstContactInfo.Type
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: Business.Model.ActionAgainstContactInfo.Type.Delete_Relation
+  commentId: F:Business.Model.ActionAgainstContactInfo.Type.Delete_Relation
+  id: Delete_Relation
+  parent: Business.Model.ActionAgainstContactInfo.Type
+  langs:
+  - csharp
+  - vb
+  name: Delete_Relation
+  nameWithType: ActionAgainstContactInfo.Type.Delete_Relation
+  fullName: Business.Model.ActionAgainstContactInfo.Type.Delete_Relation
+  type: Field
+  source:
+    remote:
+      path: Business/Model/ActionAgainstContactInfo.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: Delete_Relation
+    path: ../Business/Model/ActionAgainstContactInfo.cs
+    startLine: 24
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: Delete_Relation = 7
+    return:
+      type: Business.Model.ActionAgainstContactInfo.Type
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: Business.Model.ActionAgainstContactInfo.Type.Edit_ContactInfo_General
+  commentId: F:Business.Model.ActionAgainstContactInfo.Type.Edit_ContactInfo_General
+  id: Edit_ContactInfo_General
+  parent: Business.Model.ActionAgainstContactInfo.Type
+  langs:
+  - csharp
+  - vb
+  name: Edit_ContactInfo_General
+  nameWithType: ActionAgainstContactInfo.Type.Edit_ContactInfo_General
+  fullName: Business.Model.ActionAgainstContactInfo.Type.Edit_ContactInfo_General
+  type: Field
+  source:
+    remote:
+      path: Business/Model/ActionAgainstContactInfo.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: Edit_ContactInfo_General
+    path: ../Business/Model/ActionAgainstContactInfo.cs
+    startLine: 27
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: Edit_ContactInfo_General = 8
+    return:
+      type: Business.Model.ActionAgainstContactInfo.Type
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+references:
+- uid: Business.Model
+  commentId: N:Business.Model
+  name: Business.Model
+  nameWithType: Business.Model
+  fullName: Business.Model
+- uid: Business.Model.ActionAgainstContactInfo.Type
+  commentId: T:Business.Model.ActionAgainstContactInfo.Type
+  parent: Business.Model
+  name: ActionAgainstContactInfo.Type
+  nameWithType: ActionAgainstContactInfo.Type
+  fullName: Business.Model.ActionAgainstContactInfo.Type

@@ -1,0 +1,28 @@
+### YamlMime:ManagedReference
+items:
+- uid: FarmMaster
+  commentId: N:FarmMaster
+  id: FarmMaster
+  children:
+  - FarmMaster.Program
+  - FarmMaster.Startup
+  langs:
+  - csharp
+  - vb
+  name: FarmMaster
+  nameWithType: FarmMaster
+  fullName: FarmMaster
+  type: Namespace
+  assemblies:
+  - FarmMaster
+references:
+- uid: FarmMaster.Program
+  commentId: T:FarmMaster.Program
+  name: Program
+  nameWithType: Program
+  fullName: FarmMaster.Program
+- uid: FarmMaster.Startup
+  commentId: T:FarmMaster.Startup
+  name: Startup
+  nameWithType: Startup
+  fullName: FarmMaster.Startup

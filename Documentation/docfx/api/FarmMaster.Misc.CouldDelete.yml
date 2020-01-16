@@ -1,0 +1,112 @@
+### YamlMime:ManagedReference
+items:
+- uid: FarmMaster.Misc.CouldDelete
+  commentId: T:FarmMaster.Misc.CouldDelete
+  id: CouldDelete
+  parent: FarmMaster.Misc
+  children:
+  - FarmMaster.Misc.CouldDelete.No
+  - FarmMaster.Misc.CouldDelete.Yes
+  langs:
+  - csharp
+  - vb
+  name: CouldDelete
+  nameWithType: CouldDelete
+  fullName: FarmMaster.Misc.CouldDelete
+  type: Enum
+  source:
+    remote:
+      path: FarmMaster/Misc/FlagEnums.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: CouldDelete
+    path: Misc/FlagEnums.cs
+    startLine: 14
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Misc
+  syntax:
+    content: public enum CouldDelete
+    content.vb: Public Enum CouldDelete
+  modifiers.csharp:
+  - public
+  - enum
+  modifiers.vb:
+  - Public
+  - Enum
+- uid: FarmMaster.Misc.CouldDelete.Yes
+  commentId: F:FarmMaster.Misc.CouldDelete.Yes
+  id: Yes
+  parent: FarmMaster.Misc.CouldDelete
+  langs:
+  - csharp
+  - vb
+  name: Yes
+  nameWithType: CouldDelete.Yes
+  fullName: FarmMaster.Misc.CouldDelete.Yes
+  type: Field
+  source:
+    remote:
+      path: FarmMaster/Misc/FlagEnums.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: Yes
+    path: Misc/FlagEnums.cs
+    startLine: 16
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Misc
+  syntax:
+    content: Yes = 0
+    return:
+      type: FarmMaster.Misc.CouldDelete
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: FarmMaster.Misc.CouldDelete.No
+  commentId: F:FarmMaster.Misc.CouldDelete.No
+  id: No
+  parent: FarmMaster.Misc.CouldDelete
+  langs:
+  - csharp
+  - vb
+  name: No
+  nameWithType: CouldDelete.No
+  fullName: FarmMaster.Misc.CouldDelete.No
+  type: Field
+  source:
+    remote:
+      path: FarmMaster/Misc/FlagEnums.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: No
+    path: Misc/FlagEnums.cs
+    startLine: 17
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Misc
+  syntax:
+    content: No = 1
+    return:
+      type: FarmMaster.Misc.CouldDelete
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+references:
+- uid: FarmMaster.Misc
+  commentId: N:FarmMaster.Misc
+  name: FarmMaster.Misc
+  nameWithType: FarmMaster.Misc
+  fullName: FarmMaster.Misc
+- uid: FarmMaster.Misc.CouldDelete
+  commentId: T:FarmMaster.Misc.CouldDelete
+  parent: FarmMaster.Misc
+  name: CouldDelete
+  nameWithType: CouldDelete
+  fullName: FarmMaster.Misc.CouldDelete

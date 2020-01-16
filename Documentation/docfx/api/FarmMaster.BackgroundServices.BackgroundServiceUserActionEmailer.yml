@@ -1,0 +1,647 @@
+### YamlMime:ManagedReference
+items:
+- uid: FarmMaster.BackgroundServices.BackgroundServiceUserActionEmailer
+  commentId: T:FarmMaster.BackgroundServices.BackgroundServiceUserActionEmailer
+  id: BackgroundServiceUserActionEmailer
+  parent: FarmMaster.BackgroundServices
+  children:
+  - FarmMaster.BackgroundServices.BackgroundServiceUserActionEmailer.#ctor(Business.Model.FarmMasterContext,FarmMaster.Services.IServiceSmtpClient)
+  - FarmMaster.BackgroundServices.BackgroundServiceUserActionEmailer.Config
+  - FarmMaster.BackgroundServices.BackgroundServiceUserActionEmailer.OnShutdown
+  - FarmMaster.BackgroundServices.BackgroundServiceUserActionEmailer.OnTickAsync(System.Threading.CancellationToken)
+  langs:
+  - csharp
+  - vb
+  name: BackgroundServiceUserActionEmailer
+  nameWithType: BackgroundServiceUserActionEmailer
+  fullName: FarmMaster.BackgroundServices.BackgroundServiceUserActionEmailer
+  type: Class
+  source:
+    remote:
+      path: FarmMaster/BackgroundServices/BackgroundServiceUserActionEmailer.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: BackgroundServiceUserActionEmailer
+    path: BackgroundServices/BackgroundServiceUserActionEmailer.cs
+    startLine: 15
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.BackgroundServices
+  syntax:
+    content: 'public class BackgroundServiceUserActionEmailer : IFarmBackgroundService'
+    content.vb: >-
+      Public Class BackgroundServiceUserActionEmailer
+
+          Implements IFarmBackgroundService
+  inheritance:
+  - System.Object
+  implements:
+  - FarmMaster.BackgroundServices.IFarmBackgroundService
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: FarmMaster.BackgroundServices.BackgroundServiceUserActionEmailer.Config
+  commentId: P:FarmMaster.BackgroundServices.BackgroundServiceUserActionEmailer.Config
+  id: Config
+  parent: FarmMaster.BackgroundServices.BackgroundServiceUserActionEmailer
+  langs:
+  - csharp
+  - vb
+  name: Config
+  nameWithType: BackgroundServiceUserActionEmailer.Config
+  fullName: FarmMaster.BackgroundServices.BackgroundServiceUserActionEmailer.Config
+  type: Property
+  source:
+    remote:
+      path: FarmMaster/BackgroundServices/BackgroundServiceUserActionEmailer.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: Config
+    path: BackgroundServices/BackgroundServiceUserActionEmailer.cs
+    startLine: 20
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.BackgroundServices
+  syntax:
+    content: public IFarmBackgroundServiceConfig Config { get; }
+    parameters: []
+    return:
+      type: FarmMaster.BackgroundServices.IFarmBackgroundServiceConfig
+    content.vb: Public ReadOnly Property Config As IFarmBackgroundServiceConfig
+  overload: FarmMaster.BackgroundServices.BackgroundServiceUserActionEmailer.Config*
+  implements:
+  - FarmMaster.BackgroundServices.IFarmBackgroundService.Config
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: FarmMaster.BackgroundServices.BackgroundServiceUserActionEmailer.#ctor(Business.Model.FarmMasterContext,FarmMaster.Services.IServiceSmtpClient)
+  commentId: M:FarmMaster.BackgroundServices.BackgroundServiceUserActionEmailer.#ctor(Business.Model.FarmMasterContext,FarmMaster.Services.IServiceSmtpClient)
+  id: '#ctor(Business.Model.FarmMasterContext,FarmMaster.Services.IServiceSmtpClient)'
+  parent: FarmMaster.BackgroundServices.BackgroundServiceUserActionEmailer
+  langs:
+  - csharp
+  - vb
+  name: BackgroundServiceUserActionEmailer(FarmMasterContext, IServiceSmtpClient)
+  nameWithType: BackgroundServiceUserActionEmailer.BackgroundServiceUserActionEmailer(FarmMasterContext, IServiceSmtpClient)
+  fullName: FarmMaster.BackgroundServices.BackgroundServiceUserActionEmailer.BackgroundServiceUserActionEmailer(Business.Model.FarmMasterContext, FarmMaster.Services.IServiceSmtpClient)
+  type: Constructor
+  source:
+    remote:
+      path: FarmMaster/BackgroundServices/BackgroundServiceUserActionEmailer.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: .ctor
+    path: BackgroundServices/BackgroundServiceUserActionEmailer.cs
+    startLine: 26
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.BackgroundServices
+  syntax:
+    content: public BackgroundServiceUserActionEmailer(FarmMasterContext context, IServiceSmtpClient mail)
+    parameters:
+    - id: context
+      type: Business.Model.FarmMasterContext
+    - id: mail
+      type: FarmMaster.Services.IServiceSmtpClient
+    content.vb: Public Sub New(context As FarmMasterContext, mail As IServiceSmtpClient)
+  overload: FarmMaster.BackgroundServices.BackgroundServiceUserActionEmailer.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.BackgroundServices.BackgroundServiceUserActionEmailer.OnTickAsync(System.Threading.CancellationToken)
+  commentId: M:FarmMaster.BackgroundServices.BackgroundServiceUserActionEmailer.OnTickAsync(System.Threading.CancellationToken)
+  id: OnTickAsync(System.Threading.CancellationToken)
+  parent: FarmMaster.BackgroundServices.BackgroundServiceUserActionEmailer
+  langs:
+  - csharp
+  - vb
+  name: OnTickAsync(CancellationToken)
+  nameWithType: BackgroundServiceUserActionEmailer.OnTickAsync(CancellationToken)
+  fullName: FarmMaster.BackgroundServices.BackgroundServiceUserActionEmailer.OnTickAsync(System.Threading.CancellationToken)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/BackgroundServices/BackgroundServiceUserActionEmailer.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: OnTickAsync
+    path: BackgroundServices/BackgroundServiceUserActionEmailer.cs
+    startLine: 35
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.BackgroundServices
+  syntax:
+    content: public Task OnTickAsync(CancellationToken stoppingToken)
+    parameters:
+    - id: stoppingToken
+      type: System.Threading.CancellationToken
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Public Function OnTickAsync(stoppingToken As CancellationToken) As Task
+  overload: FarmMaster.BackgroundServices.BackgroundServiceUserActionEmailer.OnTickAsync*
+  implements:
+  - FarmMaster.BackgroundServices.IFarmBackgroundService.OnTickAsync(System.Threading.CancellationToken)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.BackgroundServices.BackgroundServiceUserActionEmailer.OnShutdown
+  commentId: M:FarmMaster.BackgroundServices.BackgroundServiceUserActionEmailer.OnShutdown
+  id: OnShutdown
+  parent: FarmMaster.BackgroundServices.BackgroundServiceUserActionEmailer
+  langs:
+  - csharp
+  - vb
+  name: OnShutdown()
+  nameWithType: BackgroundServiceUserActionEmailer.OnShutdown()
+  fullName: FarmMaster.BackgroundServices.BackgroundServiceUserActionEmailer.OnShutdown()
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/BackgroundServices/BackgroundServiceUserActionEmailer.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: OnShutdown
+    path: BackgroundServices/BackgroundServiceUserActionEmailer.cs
+    startLine: 79
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.BackgroundServices
+  syntax:
+    content: public Task OnShutdown()
+    return:
+      type: System.Threading.Tasks.Task
+    content.vb: Public Function OnShutdown As Task
+  overload: FarmMaster.BackgroundServices.BackgroundServiceUserActionEmailer.OnShutdown*
+  implements:
+  - FarmMaster.BackgroundServices.IFarmBackgroundService.OnShutdown
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: FarmMaster.BackgroundServices
+  commentId: N:FarmMaster.BackgroundServices
+  name: FarmMaster.BackgroundServices
+  nameWithType: FarmMaster.BackgroundServices
+  fullName: FarmMaster.BackgroundServices
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: FarmMaster.BackgroundServices.IFarmBackgroundService
+  commentId: T:FarmMaster.BackgroundServices.IFarmBackgroundService
+  parent: FarmMaster.BackgroundServices
+  name: IFarmBackgroundService
+  nameWithType: IFarmBackgroundService
+  fullName: FarmMaster.BackgroundServices.IFarmBackgroundService
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: FarmMaster.BackgroundServices.BackgroundServiceUserActionEmailer.Config*
+  commentId: Overload:FarmMaster.BackgroundServices.BackgroundServiceUserActionEmailer.Config
+  name: Config
+  nameWithType: BackgroundServiceUserActionEmailer.Config
+  fullName: FarmMaster.BackgroundServices.BackgroundServiceUserActionEmailer.Config
+- uid: FarmMaster.BackgroundServices.IFarmBackgroundService.Config
+  commentId: P:FarmMaster.BackgroundServices.IFarmBackgroundService.Config
+  parent: FarmMaster.BackgroundServices.IFarmBackgroundService
+  name: Config
+  nameWithType: IFarmBackgroundService.Config
+  fullName: FarmMaster.BackgroundServices.IFarmBackgroundService.Config
+- uid: FarmMaster.BackgroundServices.IFarmBackgroundServiceConfig
+  commentId: T:FarmMaster.BackgroundServices.IFarmBackgroundServiceConfig
+  parent: FarmMaster.BackgroundServices
+  name: IFarmBackgroundServiceConfig
+  nameWithType: IFarmBackgroundServiceConfig
+  fullName: FarmMaster.BackgroundServices.IFarmBackgroundServiceConfig
+- uid: FarmMaster.BackgroundServices.BackgroundServiceUserActionEmailer.#ctor*
+  commentId: Overload:FarmMaster.BackgroundServices.BackgroundServiceUserActionEmailer.#ctor
+  name: BackgroundServiceUserActionEmailer
+  nameWithType: BackgroundServiceUserActionEmailer.BackgroundServiceUserActionEmailer
+  fullName: FarmMaster.BackgroundServices.BackgroundServiceUserActionEmailer.BackgroundServiceUserActionEmailer
+- uid: Business.Model.FarmMasterContext
+  commentId: T:Business.Model.FarmMasterContext
+  parent: Business.Model
+  name: FarmMasterContext
+  nameWithType: FarmMasterContext
+  fullName: Business.Model.FarmMasterContext
+- uid: FarmMaster.Services.IServiceSmtpClient
+  commentId: T:FarmMaster.Services.IServiceSmtpClient
+  parent: FarmMaster.Services
+  name: IServiceSmtpClient
+  nameWithType: IServiceSmtpClient
+  fullName: FarmMaster.Services.IServiceSmtpClient
+- uid: Business.Model
+  commentId: N:Business.Model
+  name: Business.Model
+  nameWithType: Business.Model
+  fullName: Business.Model
+- uid: FarmMaster.Services
+  commentId: N:FarmMaster.Services
+  name: FarmMaster.Services
+  nameWithType: FarmMaster.Services
+  fullName: FarmMaster.Services
+- uid: FarmMaster.BackgroundServices.BackgroundServiceUserActionEmailer.OnTickAsync*
+  commentId: Overload:FarmMaster.BackgroundServices.BackgroundServiceUserActionEmailer.OnTickAsync
+  name: OnTickAsync
+  nameWithType: BackgroundServiceUserActionEmailer.OnTickAsync
+  fullName: FarmMaster.BackgroundServices.BackgroundServiceUserActionEmailer.OnTickAsync
+- uid: FarmMaster.BackgroundServices.IFarmBackgroundService.OnTickAsync(System.Threading.CancellationToken)
+  commentId: M:FarmMaster.BackgroundServices.IFarmBackgroundService.OnTickAsync(System.Threading.CancellationToken)
+  parent: FarmMaster.BackgroundServices.IFarmBackgroundService
+  isExternal: true
+  name: OnTickAsync(CancellationToken)
+  nameWithType: IFarmBackgroundService.OnTickAsync(CancellationToken)
+  fullName: FarmMaster.BackgroundServices.IFarmBackgroundService.OnTickAsync(System.Threading.CancellationToken)
+  spec.csharp:
+  - uid: FarmMaster.BackgroundServices.IFarmBackgroundService.OnTickAsync(System.Threading.CancellationToken)
+    name: OnTickAsync
+    nameWithType: IFarmBackgroundService.OnTickAsync
+    fullName: FarmMaster.BackgroundServices.IFarmBackgroundService.OnTickAsync
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    nameWithType: CancellationToken
+    fullName: System.Threading.CancellationToken
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.BackgroundServices.IFarmBackgroundService.OnTickAsync(System.Threading.CancellationToken)
+    name: OnTickAsync
+    nameWithType: IFarmBackgroundService.OnTickAsync
+    fullName: FarmMaster.BackgroundServices.IFarmBackgroundService.OnTickAsync
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Threading.CancellationToken
+    name: CancellationToken
+    nameWithType: CancellationToken
+    fullName: System.Threading.CancellationToken
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Threading.CancellationToken
+  commentId: T:System.Threading.CancellationToken
+  parent: System.Threading
+  isExternal: true
+  name: CancellationToken
+  nameWithType: CancellationToken
+  fullName: System.Threading.CancellationToken
+- uid: System.Threading.Tasks.Task
+  commentId: T:System.Threading.Tasks.Task
+  parent: System.Threading.Tasks
+  isExternal: true
+  name: Task
+  nameWithType: Task
+  fullName: System.Threading.Tasks.Task
+- uid: System.Threading
+  commentId: N:System.Threading
+  isExternal: true
+  name: System.Threading
+  nameWithType: System.Threading
+  fullName: System.Threading
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+- uid: FarmMaster.BackgroundServices.BackgroundServiceUserActionEmailer.OnShutdown*
+  commentId: Overload:FarmMaster.BackgroundServices.BackgroundServiceUserActionEmailer.OnShutdown
+  name: OnShutdown
+  nameWithType: BackgroundServiceUserActionEmailer.OnShutdown
+  fullName: FarmMaster.BackgroundServices.BackgroundServiceUserActionEmailer.OnShutdown
+- uid: FarmMaster.BackgroundServices.IFarmBackgroundService.OnShutdown
+  commentId: M:FarmMaster.BackgroundServices.IFarmBackgroundService.OnShutdown
+  parent: FarmMaster.BackgroundServices.IFarmBackgroundService
+  name: OnShutdown()
+  nameWithType: IFarmBackgroundService.OnShutdown()
+  fullName: FarmMaster.BackgroundServices.IFarmBackgroundService.OnShutdown()
+  spec.csharp:
+  - uid: FarmMaster.BackgroundServices.IFarmBackgroundService.OnShutdown
+    name: OnShutdown
+    nameWithType: IFarmBackgroundService.OnShutdown
+    fullName: FarmMaster.BackgroundServices.IFarmBackgroundService.OnShutdown
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.BackgroundServices.IFarmBackgroundService.OnShutdown
+    name: OnShutdown
+    nameWithType: IFarmBackgroundService.OnShutdown
+    fullName: FarmMaster.BackgroundServices.IFarmBackgroundService.OnShutdown
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )

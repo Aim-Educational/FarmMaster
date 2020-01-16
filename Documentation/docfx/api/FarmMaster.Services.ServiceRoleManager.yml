@@ -1,0 +1,2002 @@
+### YamlMime:ManagedReference
+items:
+- uid: FarmMaster.Services.ServiceRoleManager
+  commentId: T:FarmMaster.Services.ServiceRoleManager
+  id: ServiceRoleManager
+  parent: FarmMaster.Services
+  children:
+  - FarmMaster.Services.ServiceRoleManager.#ctor(Business.Model.FarmMasterContext)
+  - FarmMaster.Services.ServiceRoleManager.AddPermission(Business.Model.Role,System.String,FarmMaster.Misc.SaveChanges)
+  - FarmMaster.Services.ServiceRoleManager.Create(System.String,System.String,System.String[])
+  - FarmMaster.Services.ServiceRoleManager.GetIdFor(Business.Model.Role)
+  - FarmMaster.Services.ServiceRoleManager.HasPermission(Business.Model.Role,System.String)
+  - FarmMaster.Services.ServiceRoleManager.Query
+  - FarmMaster.Services.ServiceRoleManager.QueryAllIncluded
+  - FarmMaster.Services.ServiceRoleManager.RemovePermission(Business.Model.Role,System.String,FarmMaster.Misc.SaveChanges)
+  - FarmMaster.Services.ServiceRoleManager.RemoveRole(Business.Model.Role)
+  - FarmMaster.Services.ServiceRoleManager.RoleFromName(System.String)
+  - FarmMaster.Services.ServiceRoleManager.Update(Business.Model.Role)
+  langs:
+  - csharp
+  - vb
+  name: ServiceRoleManager
+  nameWithType: ServiceRoleManager
+  fullName: FarmMaster.Services.ServiceRoleManager
+  type: Class
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceRoleManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: ServiceRoleManager
+    path: Services/IServiceRoleManager.cs
+    startLine: 20
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: 'public class ServiceRoleManager : IServiceRoleManager, IServiceEntityManager<Role>'
+    content.vb: >-
+      Public Class ServiceRoleManager
+
+          Implements IServiceRoleManager, IServiceEntityManager(Of Role)
+  inheritance:
+  - System.Object
+  implements:
+  - FarmMaster.Services.IServiceRoleManager
+  - FarmMaster.Services.IServiceEntityManager{Business.Model.Role}
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  extensionMethods:
+  - FarmMaster.Services.IServiceEntityManager{Business.Model.Role}.FarmMaster.Services.IServiceEntityDataExtentions.FromId``1(System.Int32)
+  - FarmMaster.Services.IServiceEntityManager{Business.Model.Role}.FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded``1(System.Int32)
+  - FarmMaster.Services.IServiceEntityManager{Business.Model.Role}.FarmMaster.Services.IServiceEntityDataExtentions.For``1
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: FarmMaster.Services.ServiceRoleManager.#ctor(Business.Model.FarmMasterContext)
+  commentId: M:FarmMaster.Services.ServiceRoleManager.#ctor(Business.Model.FarmMasterContext)
+  id: '#ctor(Business.Model.FarmMasterContext)'
+  parent: FarmMaster.Services.ServiceRoleManager
+  langs:
+  - csharp
+  - vb
+  name: ServiceRoleManager(FarmMasterContext)
+  nameWithType: ServiceRoleManager.ServiceRoleManager(FarmMasterContext)
+  fullName: FarmMaster.Services.ServiceRoleManager.ServiceRoleManager(Business.Model.FarmMasterContext)
+  type: Constructor
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceRoleManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: .ctor
+    path: Services/IServiceRoleManager.cs
+    startLine: 24
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: public ServiceRoleManager(FarmMasterContext context)
+    parameters:
+    - id: context
+      type: Business.Model.FarmMasterContext
+    content.vb: Public Sub New(context As FarmMasterContext)
+  overload: FarmMaster.Services.ServiceRoleManager.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Services.ServiceRoleManager.AddPermission(Business.Model.Role,System.String,FarmMaster.Misc.SaveChanges)
+  commentId: M:FarmMaster.Services.ServiceRoleManager.AddPermission(Business.Model.Role,System.String,FarmMaster.Misc.SaveChanges)
+  id: AddPermission(Business.Model.Role,System.String,FarmMaster.Misc.SaveChanges)
+  parent: FarmMaster.Services.ServiceRoleManager
+  langs:
+  - csharp
+  - vb
+  name: AddPermission(Role, String, SaveChanges)
+  nameWithType: ServiceRoleManager.AddPermission(Role, String, SaveChanges)
+  fullName: FarmMaster.Services.ServiceRoleManager.AddPermission(Business.Model.Role, System.String, FarmMaster.Misc.SaveChanges)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceRoleManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: AddPermission
+    path: Services/IServiceRoleManager.cs
+    startLine: 29
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: public void AddPermission(Role role, string permInternalName, SaveChanges saveChanges = SaveChanges.Yes)
+    parameters:
+    - id: role
+      type: Business.Model.Role
+    - id: permInternalName
+      type: System.String
+    - id: saveChanges
+      type: FarmMaster.Misc.SaveChanges
+    content.vb: Public Sub AddPermission(role As Role, permInternalName As String, saveChanges As SaveChanges = SaveChanges.Yes)
+  overload: FarmMaster.Services.ServiceRoleManager.AddPermission*
+  implements:
+  - FarmMaster.Services.IServiceRoleManager.AddPermission(Business.Model.Role,System.String,FarmMaster.Misc.SaveChanges)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Services.ServiceRoleManager.Create(System.String,System.String,System.String[])
+  commentId: M:FarmMaster.Services.ServiceRoleManager.Create(System.String,System.String,System.String[])
+  id: Create(System.String,System.String,System.String[])
+  parent: FarmMaster.Services.ServiceRoleManager
+  langs:
+  - csharp
+  - vb
+  name: Create(String, String, String[])
+  nameWithType: ServiceRoleManager.Create(String, String, String[])
+  fullName: FarmMaster.Services.ServiceRoleManager.Create(System.String, System.String, System.String[])
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceRoleManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: Create
+    path: Services/IServiceRoleManager.cs
+    startLine: 49
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: public Role Create(string name, string description, params string[] permInternalNames)
+    parameters:
+    - id: name
+      type: System.String
+    - id: description
+      type: System.String
+    - id: permInternalNames
+      type: System.String[]
+    return:
+      type: Business.Model.Role
+    content.vb: Public Function Create(name As String, description As String, ParamArray permInternalNames As String()) As Role
+  overload: FarmMaster.Services.ServiceRoleManager.Create*
+  implements:
+  - FarmMaster.Services.IServiceRoleManager.Create(System.String,System.String,System.String[])
+  nameWithType.vb: ServiceRoleManager.Create(String, String, String())
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: FarmMaster.Services.ServiceRoleManager.Create(System.String, System.String, System.String())
+  name.vb: Create(String, String, String())
+- uid: FarmMaster.Services.ServiceRoleManager.RemoveRole(Business.Model.Role)
+  commentId: M:FarmMaster.Services.ServiceRoleManager.RemoveRole(Business.Model.Role)
+  id: RemoveRole(Business.Model.Role)
+  parent: FarmMaster.Services.ServiceRoleManager
+  langs:
+  - csharp
+  - vb
+  name: RemoveRole(Role)
+  nameWithType: ServiceRoleManager.RemoveRole(Role)
+  fullName: FarmMaster.Services.ServiceRoleManager.RemoveRole(Business.Model.Role)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceRoleManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: RemoveRole
+    path: Services/IServiceRoleManager.cs
+    startLine: 69
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: public void RemoveRole(Role role)
+    parameters:
+    - id: role
+      type: Business.Model.Role
+    content.vb: Public Sub RemoveRole(role As Role)
+  overload: FarmMaster.Services.ServiceRoleManager.RemoveRole*
+  implements:
+  - FarmMaster.Services.IServiceRoleManager.RemoveRole(Business.Model.Role)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Services.ServiceRoleManager.HasPermission(Business.Model.Role,System.String)
+  commentId: M:FarmMaster.Services.ServiceRoleManager.HasPermission(Business.Model.Role,System.String)
+  id: HasPermission(Business.Model.Role,System.String)
+  parent: FarmMaster.Services.ServiceRoleManager
+  langs:
+  - csharp
+  - vb
+  name: HasPermission(Role, String)
+  nameWithType: ServiceRoleManager.HasPermission(Role, String)
+  fullName: FarmMaster.Services.ServiceRoleManager.HasPermission(Business.Model.Role, System.String)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceRoleManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: HasPermission
+    path: Services/IServiceRoleManager.cs
+    startLine: 84
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: public bool HasPermission(Role role, string permInternalName)
+    parameters:
+    - id: role
+      type: Business.Model.Role
+    - id: permInternalName
+      type: System.String
+    return:
+      type: System.Boolean
+    content.vb: Public Function HasPermission(role As Role, permInternalName As String) As Boolean
+  overload: FarmMaster.Services.ServiceRoleManager.HasPermission*
+  implements:
+  - FarmMaster.Services.IServiceRoleManager.HasPermission(Business.Model.Role,System.String)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Services.ServiceRoleManager.RemovePermission(Business.Model.Role,System.String,FarmMaster.Misc.SaveChanges)
+  commentId: M:FarmMaster.Services.ServiceRoleManager.RemovePermission(Business.Model.Role,System.String,FarmMaster.Misc.SaveChanges)
+  id: RemovePermission(Business.Model.Role,System.String,FarmMaster.Misc.SaveChanges)
+  parent: FarmMaster.Services.ServiceRoleManager
+  langs:
+  - csharp
+  - vb
+  name: RemovePermission(Role, String, SaveChanges)
+  nameWithType: ServiceRoleManager.RemovePermission(Role, String, SaveChanges)
+  fullName: FarmMaster.Services.ServiceRoleManager.RemovePermission(Business.Model.Role, System.String, FarmMaster.Misc.SaveChanges)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceRoleManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: RemovePermission
+    path: Services/IServiceRoleManager.cs
+    startLine: 92
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: public void RemovePermission(Role role, string permInternalName, SaveChanges saveChanges = SaveChanges.Yes)
+    parameters:
+    - id: role
+      type: Business.Model.Role
+    - id: permInternalName
+      type: System.String
+    - id: saveChanges
+      type: FarmMaster.Misc.SaveChanges
+    content.vb: Public Sub RemovePermission(role As Role, permInternalName As String, saveChanges As SaveChanges = SaveChanges.Yes)
+  overload: FarmMaster.Services.ServiceRoleManager.RemovePermission*
+  implements:
+  - FarmMaster.Services.IServiceRoleManager.RemovePermission(Business.Model.Role,System.String,FarmMaster.Misc.SaveChanges)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Services.ServiceRoleManager.RoleFromName(System.String)
+  commentId: M:FarmMaster.Services.ServiceRoleManager.RoleFromName(System.String)
+  id: RoleFromName(System.String)
+  parent: FarmMaster.Services.ServiceRoleManager
+  langs:
+  - csharp
+  - vb
+  name: RoleFromName(String)
+  nameWithType: ServiceRoleManager.RoleFromName(String)
+  fullName: FarmMaster.Services.ServiceRoleManager.RoleFromName(System.String)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceRoleManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: RoleFromName
+    path: Services/IServiceRoleManager.cs
+    startLine: 117
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: public Role RoleFromName(string name)
+    parameters:
+    - id: name
+      type: System.String
+    return:
+      type: Business.Model.Role
+    content.vb: Public Function RoleFromName(name As String) As Role
+  overload: FarmMaster.Services.ServiceRoleManager.RoleFromName*
+  implements:
+  - FarmMaster.Services.IServiceRoleManager.RoleFromName(System.String)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Services.ServiceRoleManager.Query
+  commentId: M:FarmMaster.Services.ServiceRoleManager.Query
+  id: Query
+  parent: FarmMaster.Services.ServiceRoleManager
+  langs:
+  - csharp
+  - vb
+  name: Query()
+  nameWithType: ServiceRoleManager.Query()
+  fullName: FarmMaster.Services.ServiceRoleManager.Query()
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceRoleManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: Query
+    path: Services/IServiceRoleManager.cs
+    startLine: 122
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: public IQueryable<Role> Query()
+    return:
+      type: System.Linq.IQueryable{Business.Model.Role}
+    content.vb: Public Function Query As IQueryable(Of Role)
+  overload: FarmMaster.Services.ServiceRoleManager.Query*
+  implements:
+  - FarmMaster.Services.IServiceEntityManager{Business.Model.Role}.Query
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Services.ServiceRoleManager.QueryAllIncluded
+  commentId: M:FarmMaster.Services.ServiceRoleManager.QueryAllIncluded
+  id: QueryAllIncluded
+  parent: FarmMaster.Services.ServiceRoleManager
+  langs:
+  - csharp
+  - vb
+  name: QueryAllIncluded()
+  nameWithType: ServiceRoleManager.QueryAllIncluded()
+  fullName: FarmMaster.Services.ServiceRoleManager.QueryAllIncluded()
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceRoleManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: QueryAllIncluded
+    path: Services/IServiceRoleManager.cs
+    startLine: 127
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: public IQueryable<Role> QueryAllIncluded()
+    return:
+      type: System.Linq.IQueryable{Business.Model.Role}
+    content.vb: Public Function QueryAllIncluded As IQueryable(Of Role)
+  overload: FarmMaster.Services.ServiceRoleManager.QueryAllIncluded*
+  implements:
+  - FarmMaster.Services.IServiceEntityManager{Business.Model.Role}.QueryAllIncluded
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Services.ServiceRoleManager.GetIdFor(Business.Model.Role)
+  commentId: M:FarmMaster.Services.ServiceRoleManager.GetIdFor(Business.Model.Role)
+  id: GetIdFor(Business.Model.Role)
+  parent: FarmMaster.Services.ServiceRoleManager
+  langs:
+  - csharp
+  - vb
+  name: GetIdFor(Role)
+  nameWithType: ServiceRoleManager.GetIdFor(Role)
+  fullName: FarmMaster.Services.ServiceRoleManager.GetIdFor(Business.Model.Role)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceRoleManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: GetIdFor
+    path: Services/IServiceRoleManager.cs
+    startLine: 134
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: public int GetIdFor(Role entity)
+    parameters:
+    - id: entity
+      type: Business.Model.Role
+    return:
+      type: System.Int32
+    content.vb: Public Function GetIdFor(entity As Role) As Integer
+  overload: FarmMaster.Services.ServiceRoleManager.GetIdFor*
+  implements:
+  - FarmMaster.Services.IServiceEntityManager{Business.Model.Role}.GetIdFor(Business.Model.Role)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: FarmMaster.Services.ServiceRoleManager.Update(Business.Model.Role)
+  commentId: M:FarmMaster.Services.ServiceRoleManager.Update(Business.Model.Role)
+  id: Update(Business.Model.Role)
+  parent: FarmMaster.Services.ServiceRoleManager
+  langs:
+  - csharp
+  - vb
+  name: Update(Role)
+  nameWithType: ServiceRoleManager.Update(Role)
+  fullName: FarmMaster.Services.ServiceRoleManager.Update(Business.Model.Role)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Services/IServiceRoleManager.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: Update
+    path: Services/IServiceRoleManager.cs
+    startLine: 139
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Services
+  syntax:
+    content: public void Update(Role entity)
+    parameters:
+    - id: entity
+      type: Business.Model.Role
+    content.vb: Public Sub Update(entity As Role)
+  overload: FarmMaster.Services.ServiceRoleManager.Update*
+  implements:
+  - FarmMaster.Services.IServiceEntityManager{Business.Model.Role}.Update(Business.Model.Role)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: FarmMaster.Services
+  commentId: N:FarmMaster.Services
+  name: FarmMaster.Services
+  nameWithType: FarmMaster.Services
+  fullName: FarmMaster.Services
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: FarmMaster.Services.IServiceRoleManager
+  commentId: T:FarmMaster.Services.IServiceRoleManager
+  parent: FarmMaster.Services
+  name: IServiceRoleManager
+  nameWithType: IServiceRoleManager
+  fullName: FarmMaster.Services.IServiceRoleManager
+- uid: FarmMaster.Services.IServiceEntityManager{Business.Model.Role}
+  commentId: T:FarmMaster.Services.IServiceEntityManager{Business.Model.Role}
+  parent: FarmMaster.Services
+  definition: FarmMaster.Services.IServiceEntityManager`1
+  name: IServiceEntityManager<Role>
+  nameWithType: IServiceEntityManager<Role>
+  fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.Role>
+  nameWithType.vb: IServiceEntityManager(Of Role)
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of Business.Model.Role)
+  name.vb: IServiceEntityManager(Of Role)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1
+    name: IServiceEntityManager
+    nameWithType: IServiceEntityManager
+    fullName: FarmMaster.Services.IServiceEntityManager
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Business.Model.Role
+    name: Role
+    nameWithType: Role
+    fullName: Business.Model.Role
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1
+    name: IServiceEntityManager
+    nameWithType: IServiceEntityManager
+    fullName: FarmMaster.Services.IServiceEntityManager
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Business.Model.Role
+    name: Role
+    nameWithType: Role
+    fullName: Business.Model.Role
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManager{Business.Model.Role}.FarmMaster.Services.IServiceEntityDataExtentions.FromId``1(System.Int32)
+  commentId: M:FarmMaster.Services.IServiceEntityDataExtentions.FromId``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+  parent: FarmMaster.Services.IServiceEntityDataExtentions
+  definition: FarmMaster.Services.IServiceEntityDataExtentions.FromId``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+  name: FromId<Role>(Int32)
+  nameWithType: IServiceEntityDataExtentions.FromId<Role>(Int32)
+  fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromId<Business.Model.Role>(System.Int32)
+  nameWithType.vb: IServiceEntityDataExtentions.FromId(Of Role)(Int32)
+  fullName.vb: FarmMaster.Services.IServiceEntityDataExtentions.FromId(Of Business.Model.Role)(System.Int32)
+  name.vb: FromId(Of Role)(Int32)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.FromId``1(System.Int32)
+    name: FromId<Role>
+    nameWithType: IServiceEntityDataExtentions.FromId<Role>
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromId<Business.Model.Role>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.FromId``1(System.Int32)
+    name: FromId(Of Role)
+    nameWithType: IServiceEntityDataExtentions.FromId(Of Role)
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromId(Of Business.Model.Role)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManager{Business.Model.Role}.FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded``1(System.Int32)
+  commentId: M:FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+  parent: FarmMaster.Services.IServiceEntityDataExtentions
+  definition: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+  name: FromIdAllIncluded<Role>(Int32)
+  nameWithType: IServiceEntityDataExtentions.FromIdAllIncluded<Role>(Int32)
+  fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded<Business.Model.Role>(System.Int32)
+  nameWithType.vb: IServiceEntityDataExtentions.FromIdAllIncluded(Of Role)(Int32)
+  fullName.vb: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded(Of Business.Model.Role)(System.Int32)
+  name.vb: FromIdAllIncluded(Of Role)(Int32)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded``1(System.Int32)
+    name: FromIdAllIncluded<Role>
+    nameWithType: IServiceEntityDataExtentions.FromIdAllIncluded<Role>
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded<Business.Model.Role>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded``1(System.Int32)
+    name: FromIdAllIncluded(Of Role)
+    nameWithType: IServiceEntityDataExtentions.FromIdAllIncluded(Of Role)
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded(Of Business.Model.Role)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManager{Business.Model.Role}.FarmMaster.Services.IServiceEntityDataExtentions.For``1
+  commentId: M:FarmMaster.Services.IServiceEntityDataExtentions.For``1(FarmMaster.Services.IServiceEntityManager{``0})
+  parent: FarmMaster.Services.IServiceEntityDataExtentions
+  definition: FarmMaster.Services.IServiceEntityDataExtentions.For``1(FarmMaster.Services.IServiceEntityManager{``0})
+  name: For<Role>()
+  nameWithType: IServiceEntityDataExtentions.For<Role>()
+  fullName: FarmMaster.Services.IServiceEntityDataExtentions.For<Business.Model.Role>()
+  nameWithType.vb: IServiceEntityDataExtentions.For(Of Role)()
+  fullName.vb: FarmMaster.Services.IServiceEntityDataExtentions.For(Of Business.Model.Role)()
+  name.vb: For(Of Role)()
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.For``1
+    name: For<Role>
+    nameWithType: IServiceEntityDataExtentions.For<Role>
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.For<Business.Model.Role>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.For``1
+    name: For(Of Role)
+    nameWithType: IServiceEntityDataExtentions.For(Of Role)
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.For(Of Business.Model.Role)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: FarmMaster.Services.IServiceEntityManager`1
+  commentId: T:FarmMaster.Services.IServiceEntityManager`1
+  name: IServiceEntityManager<T>
+  nameWithType: IServiceEntityManager<T>
+  fullName: FarmMaster.Services.IServiceEntityManager<T>
+  nameWithType.vb: IServiceEntityManager(Of T)
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of T)
+  name.vb: IServiceEntityManager(Of T)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1
+    name: IServiceEntityManager
+    nameWithType: IServiceEntityManager
+    fullName: FarmMaster.Services.IServiceEntityManager
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1
+    name: IServiceEntityManager
+    nameWithType: IServiceEntityManager
+    fullName: FarmMaster.Services.IServiceEntityManager
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityDataExtentions.FromId``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+  commentId: M:FarmMaster.Services.IServiceEntityDataExtentions.FromId``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+  isExternal: true
+  name: FromId<T>(IServiceEntityManager<T>, Int32)
+  nameWithType: IServiceEntityDataExtentions.FromId<T>(IServiceEntityManager<T>, Int32)
+  fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromId<T>(FarmMaster.Services.IServiceEntityManager<T>, System.Int32)
+  nameWithType.vb: IServiceEntityDataExtentions.FromId(Of T)(IServiceEntityManager(Of T), Int32)
+  fullName.vb: FarmMaster.Services.IServiceEntityDataExtentions.FromId(Of T)(FarmMaster.Services.IServiceEntityManager(Of T), System.Int32)
+  name.vb: FromId(Of T)(IServiceEntityManager(Of T), Int32)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.FromId``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+    name: FromId<T>
+    nameWithType: IServiceEntityDataExtentions.FromId<T>
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromId<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: FarmMaster.Services.IServiceEntityManager`1
+    name: IServiceEntityManager
+    nameWithType: IServiceEntityManager
+    fullName: FarmMaster.Services.IServiceEntityManager
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.FromId``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+    name: FromId(Of T)
+    nameWithType: IServiceEntityDataExtentions.FromId(Of T)
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromId(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: FarmMaster.Services.IServiceEntityManager`1
+    name: IServiceEntityManager
+    nameWithType: IServiceEntityManager
+    fullName: FarmMaster.Services.IServiceEntityManager
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityDataExtentions
+  commentId: T:FarmMaster.Services.IServiceEntityDataExtentions
+  parent: FarmMaster.Services
+  name: IServiceEntityDataExtentions
+  nameWithType: IServiceEntityDataExtentions
+  fullName: FarmMaster.Services.IServiceEntityDataExtentions
+- uid: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+  commentId: M:FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+  isExternal: true
+  name: FromIdAllIncluded<T>(IServiceEntityManager<T>, Int32)
+  nameWithType: IServiceEntityDataExtentions.FromIdAllIncluded<T>(IServiceEntityManager<T>, Int32)
+  fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded<T>(FarmMaster.Services.IServiceEntityManager<T>, System.Int32)
+  nameWithType.vb: IServiceEntityDataExtentions.FromIdAllIncluded(Of T)(IServiceEntityManager(Of T), Int32)
+  fullName.vb: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded(Of T)(FarmMaster.Services.IServiceEntityManager(Of T), System.Int32)
+  name.vb: FromIdAllIncluded(Of T)(IServiceEntityManager(Of T), Int32)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+    name: FromIdAllIncluded<T>
+    nameWithType: IServiceEntityDataExtentions.FromIdAllIncluded<T>
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: FarmMaster.Services.IServiceEntityManager`1
+    name: IServiceEntityManager
+    nameWithType: IServiceEntityManager
+    fullName: FarmMaster.Services.IServiceEntityManager
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded``1(FarmMaster.Services.IServiceEntityManager{``0},System.Int32)
+    name: FromIdAllIncluded(Of T)
+    nameWithType: IServiceEntityDataExtentions.FromIdAllIncluded(Of T)
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.FromIdAllIncluded(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: FarmMaster.Services.IServiceEntityManager`1
+    name: IServiceEntityManager
+    nameWithType: IServiceEntityManager
+    fullName: FarmMaster.Services.IServiceEntityManager
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityDataExtentions.For``1(FarmMaster.Services.IServiceEntityManager{``0})
+  commentId: M:FarmMaster.Services.IServiceEntityDataExtentions.For``1(FarmMaster.Services.IServiceEntityManager{``0})
+  name: For<T>(IServiceEntityManager<T>)
+  nameWithType: IServiceEntityDataExtentions.For<T>(IServiceEntityManager<T>)
+  fullName: FarmMaster.Services.IServiceEntityDataExtentions.For<T>(FarmMaster.Services.IServiceEntityManager<T>)
+  nameWithType.vb: IServiceEntityDataExtentions.For(Of T)(IServiceEntityManager(Of T))
+  fullName.vb: FarmMaster.Services.IServiceEntityDataExtentions.For(Of T)(FarmMaster.Services.IServiceEntityManager(Of T))
+  name.vb: For(Of T)(IServiceEntityManager(Of T))
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.For``1(FarmMaster.Services.IServiceEntityManager{``0})
+    name: For<T>
+    nameWithType: IServiceEntityDataExtentions.For<T>
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.For<T>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: FarmMaster.Services.IServiceEntityManager`1
+    name: IServiceEntityManager
+    nameWithType: IServiceEntityManager
+    fullName: FarmMaster.Services.IServiceEntityManager
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityDataExtentions.For``1(FarmMaster.Services.IServiceEntityManager{``0})
+    name: For(Of T)
+    nameWithType: IServiceEntityDataExtentions.For(Of T)
+    fullName: FarmMaster.Services.IServiceEntityDataExtentions.For(Of T)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: FarmMaster.Services.IServiceEntityManager`1
+    name: IServiceEntityManager
+    nameWithType: IServiceEntityManager
+    fullName: FarmMaster.Services.IServiceEntityManager
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.ServiceRoleManager.#ctor*
+  commentId: Overload:FarmMaster.Services.ServiceRoleManager.#ctor
+  name: ServiceRoleManager
+  nameWithType: ServiceRoleManager.ServiceRoleManager
+  fullName: FarmMaster.Services.ServiceRoleManager.ServiceRoleManager
+- uid: Business.Model.FarmMasterContext
+  commentId: T:Business.Model.FarmMasterContext
+  parent: Business.Model
+  name: FarmMasterContext
+  nameWithType: FarmMasterContext
+  fullName: Business.Model.FarmMasterContext
+- uid: Business.Model
+  commentId: N:Business.Model
+  name: Business.Model
+  nameWithType: Business.Model
+  fullName: Business.Model
+- uid: FarmMaster.Services.ServiceRoleManager.AddPermission*
+  commentId: Overload:FarmMaster.Services.ServiceRoleManager.AddPermission
+  name: AddPermission
+  nameWithType: ServiceRoleManager.AddPermission
+  fullName: FarmMaster.Services.ServiceRoleManager.AddPermission
+- uid: FarmMaster.Services.IServiceRoleManager.AddPermission(Business.Model.Role,System.String,FarmMaster.Misc.SaveChanges)
+  commentId: M:FarmMaster.Services.IServiceRoleManager.AddPermission(Business.Model.Role,System.String,FarmMaster.Misc.SaveChanges)
+  parent: FarmMaster.Services.IServiceRoleManager
+  isExternal: true
+  name: AddPermission(Role, String, SaveChanges)
+  nameWithType: IServiceRoleManager.AddPermission(Role, String, SaveChanges)
+  fullName: FarmMaster.Services.IServiceRoleManager.AddPermission(Business.Model.Role, System.String, FarmMaster.Misc.SaveChanges)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceRoleManager.AddPermission(Business.Model.Role,System.String,FarmMaster.Misc.SaveChanges)
+    name: AddPermission
+    nameWithType: IServiceRoleManager.AddPermission
+    fullName: FarmMaster.Services.IServiceRoleManager.AddPermission
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Role
+    name: Role
+    nameWithType: Role
+    fullName: Business.Model.Role
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: FarmMaster.Misc.SaveChanges
+    name: SaveChanges
+    nameWithType: SaveChanges
+    fullName: FarmMaster.Misc.SaveChanges
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceRoleManager.AddPermission(Business.Model.Role,System.String,FarmMaster.Misc.SaveChanges)
+    name: AddPermission
+    nameWithType: IServiceRoleManager.AddPermission
+    fullName: FarmMaster.Services.IServiceRoleManager.AddPermission
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Role
+    name: Role
+    nameWithType: Role
+    fullName: Business.Model.Role
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: FarmMaster.Misc.SaveChanges
+    name: SaveChanges
+    nameWithType: SaveChanges
+    fullName: FarmMaster.Misc.SaveChanges
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Business.Model.Role
+  commentId: T:Business.Model.Role
+  parent: Business.Model
+  name: Role
+  nameWithType: Role
+  fullName: Business.Model.Role
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: FarmMaster.Misc.SaveChanges
+  commentId: T:FarmMaster.Misc.SaveChanges
+  parent: FarmMaster.Misc
+  name: SaveChanges
+  nameWithType: SaveChanges
+  fullName: FarmMaster.Misc.SaveChanges
+- uid: FarmMaster.Misc
+  commentId: N:FarmMaster.Misc
+  name: FarmMaster.Misc
+  nameWithType: FarmMaster.Misc
+  fullName: FarmMaster.Misc
+- uid: FarmMaster.Services.ServiceRoleManager.Create*
+  commentId: Overload:FarmMaster.Services.ServiceRoleManager.Create
+  name: Create
+  nameWithType: ServiceRoleManager.Create
+  fullName: FarmMaster.Services.ServiceRoleManager.Create
+- uid: FarmMaster.Services.IServiceRoleManager.Create(System.String,System.String,System.String[])
+  commentId: M:FarmMaster.Services.IServiceRoleManager.Create(System.String,System.String,System.String[])
+  parent: FarmMaster.Services.IServiceRoleManager
+  isExternal: true
+  name: Create(String, String, String[])
+  nameWithType: IServiceRoleManager.Create(String, String, String[])
+  fullName: FarmMaster.Services.IServiceRoleManager.Create(System.String, System.String, System.String[])
+  nameWithType.vb: IServiceRoleManager.Create(String, String, String())
+  fullName.vb: FarmMaster.Services.IServiceRoleManager.Create(System.String, System.String, System.String())
+  name.vb: Create(String, String, String())
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceRoleManager.Create(System.String,System.String,System.String[])
+    name: Create
+    nameWithType: IServiceRoleManager.Create
+    fullName: FarmMaster.Services.IServiceRoleManager.Create
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceRoleManager.Create(System.String,System.String,System.String[])
+    name: Create
+    nameWithType: IServiceRoleManager.Create
+    fullName: FarmMaster.Services.IServiceRoleManager.Create
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.String[]
+  isExternal: true
+  name: String[]
+  nameWithType: String[]
+  fullName: System.String[]
+  nameWithType.vb: String()
+  fullName.vb: System.String()
+  name.vb: String()
+  spec.csharp:
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: FarmMaster.Services.ServiceRoleManager.RemoveRole*
+  commentId: Overload:FarmMaster.Services.ServiceRoleManager.RemoveRole
+  name: RemoveRole
+  nameWithType: ServiceRoleManager.RemoveRole
+  fullName: FarmMaster.Services.ServiceRoleManager.RemoveRole
+- uid: FarmMaster.Services.IServiceRoleManager.RemoveRole(Business.Model.Role)
+  commentId: M:FarmMaster.Services.IServiceRoleManager.RemoveRole(Business.Model.Role)
+  parent: FarmMaster.Services.IServiceRoleManager
+  name: RemoveRole(Role)
+  nameWithType: IServiceRoleManager.RemoveRole(Role)
+  fullName: FarmMaster.Services.IServiceRoleManager.RemoveRole(Business.Model.Role)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceRoleManager.RemoveRole(Business.Model.Role)
+    name: RemoveRole
+    nameWithType: IServiceRoleManager.RemoveRole
+    fullName: FarmMaster.Services.IServiceRoleManager.RemoveRole
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Role
+    name: Role
+    nameWithType: Role
+    fullName: Business.Model.Role
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceRoleManager.RemoveRole(Business.Model.Role)
+    name: RemoveRole
+    nameWithType: IServiceRoleManager.RemoveRole
+    fullName: FarmMaster.Services.IServiceRoleManager.RemoveRole
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Role
+    name: Role
+    nameWithType: Role
+    fullName: Business.Model.Role
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.ServiceRoleManager.HasPermission*
+  commentId: Overload:FarmMaster.Services.ServiceRoleManager.HasPermission
+  name: HasPermission
+  nameWithType: ServiceRoleManager.HasPermission
+  fullName: FarmMaster.Services.ServiceRoleManager.HasPermission
+- uid: FarmMaster.Services.IServiceRoleManager.HasPermission(Business.Model.Role,System.String)
+  commentId: M:FarmMaster.Services.IServiceRoleManager.HasPermission(Business.Model.Role,System.String)
+  parent: FarmMaster.Services.IServiceRoleManager
+  isExternal: true
+  name: HasPermission(Role, String)
+  nameWithType: IServiceRoleManager.HasPermission(Role, String)
+  fullName: FarmMaster.Services.IServiceRoleManager.HasPermission(Business.Model.Role, System.String)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceRoleManager.HasPermission(Business.Model.Role,System.String)
+    name: HasPermission
+    nameWithType: IServiceRoleManager.HasPermission
+    fullName: FarmMaster.Services.IServiceRoleManager.HasPermission
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Role
+    name: Role
+    nameWithType: Role
+    fullName: Business.Model.Role
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceRoleManager.HasPermission(Business.Model.Role,System.String)
+    name: HasPermission
+    nameWithType: IServiceRoleManager.HasPermission
+    fullName: FarmMaster.Services.IServiceRoleManager.HasPermission
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Role
+    name: Role
+    nameWithType: Role
+    fullName: Business.Model.Role
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: FarmMaster.Services.ServiceRoleManager.RemovePermission*
+  commentId: Overload:FarmMaster.Services.ServiceRoleManager.RemovePermission
+  name: RemovePermission
+  nameWithType: ServiceRoleManager.RemovePermission
+  fullName: FarmMaster.Services.ServiceRoleManager.RemovePermission
+- uid: FarmMaster.Services.IServiceRoleManager.RemovePermission(Business.Model.Role,System.String,FarmMaster.Misc.SaveChanges)
+  commentId: M:FarmMaster.Services.IServiceRoleManager.RemovePermission(Business.Model.Role,System.String,FarmMaster.Misc.SaveChanges)
+  parent: FarmMaster.Services.IServiceRoleManager
+  isExternal: true
+  name: RemovePermission(Role, String, SaveChanges)
+  nameWithType: IServiceRoleManager.RemovePermission(Role, String, SaveChanges)
+  fullName: FarmMaster.Services.IServiceRoleManager.RemovePermission(Business.Model.Role, System.String, FarmMaster.Misc.SaveChanges)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceRoleManager.RemovePermission(Business.Model.Role,System.String,FarmMaster.Misc.SaveChanges)
+    name: RemovePermission
+    nameWithType: IServiceRoleManager.RemovePermission
+    fullName: FarmMaster.Services.IServiceRoleManager.RemovePermission
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Role
+    name: Role
+    nameWithType: Role
+    fullName: Business.Model.Role
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: FarmMaster.Misc.SaveChanges
+    name: SaveChanges
+    nameWithType: SaveChanges
+    fullName: FarmMaster.Misc.SaveChanges
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceRoleManager.RemovePermission(Business.Model.Role,System.String,FarmMaster.Misc.SaveChanges)
+    name: RemovePermission
+    nameWithType: IServiceRoleManager.RemovePermission
+    fullName: FarmMaster.Services.IServiceRoleManager.RemovePermission
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Role
+    name: Role
+    nameWithType: Role
+    fullName: Business.Model.Role
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: FarmMaster.Misc.SaveChanges
+    name: SaveChanges
+    nameWithType: SaveChanges
+    fullName: FarmMaster.Misc.SaveChanges
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.ServiceRoleManager.RoleFromName*
+  commentId: Overload:FarmMaster.Services.ServiceRoleManager.RoleFromName
+  name: RoleFromName
+  nameWithType: ServiceRoleManager.RoleFromName
+  fullName: FarmMaster.Services.ServiceRoleManager.RoleFromName
+- uid: FarmMaster.Services.IServiceRoleManager.RoleFromName(System.String)
+  commentId: M:FarmMaster.Services.IServiceRoleManager.RoleFromName(System.String)
+  parent: FarmMaster.Services.IServiceRoleManager
+  isExternal: true
+  name: RoleFromName(String)
+  nameWithType: IServiceRoleManager.RoleFromName(String)
+  fullName: FarmMaster.Services.IServiceRoleManager.RoleFromName(System.String)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceRoleManager.RoleFromName(System.String)
+    name: RoleFromName
+    nameWithType: IServiceRoleManager.RoleFromName
+    fullName: FarmMaster.Services.IServiceRoleManager.RoleFromName
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceRoleManager.RoleFromName(System.String)
+    name: RoleFromName
+    nameWithType: IServiceRoleManager.RoleFromName
+    fullName: FarmMaster.Services.IServiceRoleManager.RoleFromName
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.ServiceRoleManager.Query*
+  commentId: Overload:FarmMaster.Services.ServiceRoleManager.Query
+  name: Query
+  nameWithType: ServiceRoleManager.Query
+  fullName: FarmMaster.Services.ServiceRoleManager.Query
+- uid: FarmMaster.Services.IServiceEntityManager{Business.Model.Role}.Query
+  commentId: M:FarmMaster.Services.IServiceEntityManager{Business.Model.Role}.Query
+  parent: FarmMaster.Services.IServiceEntityManager{Business.Model.Role}
+  definition: FarmMaster.Services.IServiceEntityManager`1.Query
+  name: Query()
+  nameWithType: IServiceEntityManager<Role>.Query()
+  fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.Role>.Query()
+  nameWithType.vb: IServiceEntityManager(Of Role).Query()
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of Business.Model.Role).Query()
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.Query
+    name: Query
+    nameWithType: IServiceEntityManager<Role>.Query
+    fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.Role>.Query
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.Query
+    name: Query
+    nameWithType: IServiceEntityManager(Of Role).Query
+    fullName: FarmMaster.Services.IServiceEntityManager(Of Business.Model.Role).Query
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Linq.IQueryable{Business.Model.Role}
+  commentId: T:System.Linq.IQueryable{Business.Model.Role}
+  parent: System.Linq
+  definition: System.Linq.IQueryable`1
+  name: IQueryable<Role>
+  nameWithType: IQueryable<Role>
+  fullName: System.Linq.IQueryable<Business.Model.Role>
+  nameWithType.vb: IQueryable(Of Role)
+  fullName.vb: System.Linq.IQueryable(Of Business.Model.Role)
+  name.vb: IQueryable(Of Role)
+  spec.csharp:
+  - uid: System.Linq.IQueryable`1
+    name: IQueryable
+    nameWithType: IQueryable
+    fullName: System.Linq.IQueryable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Business.Model.Role
+    name: Role
+    nameWithType: Role
+    fullName: Business.Model.Role
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Linq.IQueryable`1
+    name: IQueryable
+    nameWithType: IQueryable
+    fullName: System.Linq.IQueryable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Business.Model.Role
+    name: Role
+    nameWithType: Role
+    fullName: Business.Model.Role
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManager`1.Query
+  commentId: M:FarmMaster.Services.IServiceEntityManager`1.Query
+  name: Query()
+  nameWithType: IServiceEntityManager<T>.Query()
+  fullName: FarmMaster.Services.IServiceEntityManager<T>.Query()
+  nameWithType.vb: IServiceEntityManager(Of T).Query()
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of T).Query()
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.Query
+    name: Query
+    nameWithType: IServiceEntityManager<T>.Query
+    fullName: FarmMaster.Services.IServiceEntityManager<T>.Query
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.Query
+    name: Query
+    nameWithType: IServiceEntityManager(Of T).Query
+    fullName: FarmMaster.Services.IServiceEntityManager(Of T).Query
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Linq.IQueryable`1
+  commentId: T:System.Linq.IQueryable`1
+  isExternal: true
+  name: IQueryable<T>
+  nameWithType: IQueryable<T>
+  fullName: System.Linq.IQueryable<T>
+  nameWithType.vb: IQueryable(Of T)
+  fullName.vb: System.Linq.IQueryable(Of T)
+  name.vb: IQueryable(Of T)
+  spec.csharp:
+  - uid: System.Linq.IQueryable`1
+    name: IQueryable
+    nameWithType: IQueryable
+    fullName: System.Linq.IQueryable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Linq.IQueryable`1
+    name: IQueryable
+    nameWithType: IQueryable
+    fullName: System.Linq.IQueryable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Linq
+  commentId: N:System.Linq
+  isExternal: true
+  name: System.Linq
+  nameWithType: System.Linq
+  fullName: System.Linq
+- uid: FarmMaster.Services.ServiceRoleManager.QueryAllIncluded*
+  commentId: Overload:FarmMaster.Services.ServiceRoleManager.QueryAllIncluded
+  name: QueryAllIncluded
+  nameWithType: ServiceRoleManager.QueryAllIncluded
+  fullName: FarmMaster.Services.ServiceRoleManager.QueryAllIncluded
+- uid: FarmMaster.Services.IServiceEntityManager{Business.Model.Role}.QueryAllIncluded
+  commentId: M:FarmMaster.Services.IServiceEntityManager{Business.Model.Role}.QueryAllIncluded
+  parent: FarmMaster.Services.IServiceEntityManager{Business.Model.Role}
+  definition: FarmMaster.Services.IServiceEntityManager`1.QueryAllIncluded
+  name: QueryAllIncluded()
+  nameWithType: IServiceEntityManager<Role>.QueryAllIncluded()
+  fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.Role>.QueryAllIncluded()
+  nameWithType.vb: IServiceEntityManager(Of Role).QueryAllIncluded()
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of Business.Model.Role).QueryAllIncluded()
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.QueryAllIncluded
+    name: QueryAllIncluded
+    nameWithType: IServiceEntityManager<Role>.QueryAllIncluded
+    fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.Role>.QueryAllIncluded
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.QueryAllIncluded
+    name: QueryAllIncluded
+    nameWithType: IServiceEntityManager(Of Role).QueryAllIncluded
+    fullName: FarmMaster.Services.IServiceEntityManager(Of Business.Model.Role).QueryAllIncluded
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManager`1.QueryAllIncluded
+  commentId: M:FarmMaster.Services.IServiceEntityManager`1.QueryAllIncluded
+  name: QueryAllIncluded()
+  nameWithType: IServiceEntityManager<T>.QueryAllIncluded()
+  fullName: FarmMaster.Services.IServiceEntityManager<T>.QueryAllIncluded()
+  nameWithType.vb: IServiceEntityManager(Of T).QueryAllIncluded()
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of T).QueryAllIncluded()
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.QueryAllIncluded
+    name: QueryAllIncluded
+    nameWithType: IServiceEntityManager<T>.QueryAllIncluded
+    fullName: FarmMaster.Services.IServiceEntityManager<T>.QueryAllIncluded
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.QueryAllIncluded
+    name: QueryAllIncluded
+    nameWithType: IServiceEntityManager(Of T).QueryAllIncluded
+    fullName: FarmMaster.Services.IServiceEntityManager(Of T).QueryAllIncluded
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.ServiceRoleManager.GetIdFor*
+  commentId: Overload:FarmMaster.Services.ServiceRoleManager.GetIdFor
+  name: GetIdFor
+  nameWithType: ServiceRoleManager.GetIdFor
+  fullName: FarmMaster.Services.ServiceRoleManager.GetIdFor
+- uid: FarmMaster.Services.IServiceEntityManager{Business.Model.Role}.GetIdFor(Business.Model.Role)
+  commentId: M:FarmMaster.Services.IServiceEntityManager{Business.Model.Role}.GetIdFor(Business.Model.Role)
+  parent: FarmMaster.Services.IServiceEntityManager{Business.Model.Role}
+  definition: FarmMaster.Services.IServiceEntityManager`1.GetIdFor(`0)
+  name: GetIdFor(Role)
+  nameWithType: IServiceEntityManager<Role>.GetIdFor(Role)
+  fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.Role>.GetIdFor(Business.Model.Role)
+  nameWithType.vb: IServiceEntityManager(Of Role).GetIdFor(Role)
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of Business.Model.Role).GetIdFor(Business.Model.Role)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.GetIdFor(`0)
+    name: GetIdFor
+    nameWithType: IServiceEntityManager<Role>.GetIdFor
+    fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.Role>.GetIdFor
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Role
+    name: Role
+    nameWithType: Role
+    fullName: Business.Model.Role
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.GetIdFor(`0)
+    name: GetIdFor
+    nameWithType: IServiceEntityManager(Of Role).GetIdFor
+    fullName: FarmMaster.Services.IServiceEntityManager(Of Business.Model.Role).GetIdFor
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Role
+    name: Role
+    nameWithType: Role
+    fullName: Business.Model.Role
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: FarmMaster.Services.IServiceEntityManager`1.GetIdFor(`0)
+  commentId: M:FarmMaster.Services.IServiceEntityManager`1.GetIdFor(`0)
+  name: GetIdFor(T)
+  nameWithType: IServiceEntityManager<T>.GetIdFor(T)
+  fullName: FarmMaster.Services.IServiceEntityManager<T>.GetIdFor(T)
+  nameWithType.vb: IServiceEntityManager(Of T).GetIdFor(T)
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of T).GetIdFor(T)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.GetIdFor(`0)
+    name: GetIdFor
+    nameWithType: IServiceEntityManager<T>.GetIdFor
+    fullName: FarmMaster.Services.IServiceEntityManager<T>.GetIdFor
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.GetIdFor(`0)
+    name: GetIdFor
+    nameWithType: IServiceEntityManager(Of T).GetIdFor
+    fullName: FarmMaster.Services.IServiceEntityManager(Of T).GetIdFor
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.ServiceRoleManager.Update*
+  commentId: Overload:FarmMaster.Services.ServiceRoleManager.Update
+  name: Update
+  nameWithType: ServiceRoleManager.Update
+  fullName: FarmMaster.Services.ServiceRoleManager.Update
+- uid: FarmMaster.Services.IServiceEntityManager{Business.Model.Role}.Update(Business.Model.Role)
+  commentId: M:FarmMaster.Services.IServiceEntityManager{Business.Model.Role}.Update(Business.Model.Role)
+  parent: FarmMaster.Services.IServiceEntityManager{Business.Model.Role}
+  definition: FarmMaster.Services.IServiceEntityManager`1.Update(`0)
+  name: Update(Role)
+  nameWithType: IServiceEntityManager<Role>.Update(Role)
+  fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.Role>.Update(Business.Model.Role)
+  nameWithType.vb: IServiceEntityManager(Of Role).Update(Role)
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of Business.Model.Role).Update(Business.Model.Role)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.Update(`0)
+    name: Update
+    nameWithType: IServiceEntityManager<Role>.Update
+    fullName: FarmMaster.Services.IServiceEntityManager<Business.Model.Role>.Update
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Role
+    name: Role
+    nameWithType: Role
+    fullName: Business.Model.Role
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.Update(`0)
+    name: Update
+    nameWithType: IServiceEntityManager(Of Role).Update
+    fullName: FarmMaster.Services.IServiceEntityManager(Of Business.Model.Role).Update
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Business.Model.Role
+    name: Role
+    nameWithType: Role
+    fullName: Business.Model.Role
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: FarmMaster.Services.IServiceEntityManager`1.Update(`0)
+  commentId: M:FarmMaster.Services.IServiceEntityManager`1.Update(`0)
+  name: Update(T)
+  nameWithType: IServiceEntityManager<T>.Update(T)
+  fullName: FarmMaster.Services.IServiceEntityManager<T>.Update(T)
+  nameWithType.vb: IServiceEntityManager(Of T).Update(T)
+  fullName.vb: FarmMaster.Services.IServiceEntityManager(Of T).Update(T)
+  spec.csharp:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.Update(`0)
+    name: Update
+    nameWithType: IServiceEntityManager<T>.Update
+    fullName: FarmMaster.Services.IServiceEntityManager<T>.Update
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: FarmMaster.Services.IServiceEntityManager`1.Update(`0)
+    name: Update
+    nameWithType: IServiceEntityManager(Of T).Update
+    fullName: FarmMaster.Services.IServiceEntityManager(Of T).Update
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )

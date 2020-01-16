@@ -18,6 +18,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove=".gitignore" />
+    <None Remove="log.txt" />
     <None Remove="Scripts\characteristic_helper.ts" />
     <None Remove="Scripts\cookies.ts" />
     <None Remove="Scripts\farm_ajax.ts" />

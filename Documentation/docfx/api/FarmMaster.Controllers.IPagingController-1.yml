@@ -1,0 +1,212 @@
+### YamlMime:ManagedReference
+items:
+- uid: FarmMaster.Controllers.IPagingController`1
+  commentId: T:FarmMaster.Controllers.IPagingController`1
+  id: IPagingController`1
+  parent: FarmMaster.Controllers
+  children:
+  - FarmMaster.Controllers.IPagingController`1.AjaxGetTablePageCount(FarmMaster.Controllers.AjaxPagingControllerRequestModel,Business.Model.User)
+  - FarmMaster.Controllers.IPagingController`1.AjaxRenderTablePage(FarmMaster.Controllers.AjaxPagingControllerRenderRequestModel,Business.Model.User)
+  langs:
+  - csharp
+  - vb
+  name: IPagingController<T>
+  nameWithType: IPagingController<T>
+  fullName: FarmMaster.Controllers.IPagingController<T>
+  type: Interface
+  source:
+    remote:
+      path: FarmMaster/Controllers/IPagingController.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: IPagingController
+    path: Controllers/IPagingController.cs
+    startLine: 13
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Controllers
+  syntax:
+    content: >-
+      public interface IPagingController<T>
+
+          where T : class
+    typeParameters:
+    - id: T
+    content.vb: Public Interface IPagingController(Of T As Class)
+  nameWithType.vb: IPagingController(Of T)
+  modifiers.csharp:
+  - public
+  - interface
+  modifiers.vb:
+  - Public
+  - Interface
+  fullName.vb: FarmMaster.Controllers.IPagingController(Of T)
+  name.vb: IPagingController(Of T)
+- uid: FarmMaster.Controllers.IPagingController`1.AjaxGetTablePageCount(FarmMaster.Controllers.AjaxPagingControllerRequestModel,Business.Model.User)
+  commentId: M:FarmMaster.Controllers.IPagingController`1.AjaxGetTablePageCount(FarmMaster.Controllers.AjaxPagingControllerRequestModel,Business.Model.User)
+  id: AjaxGetTablePageCount(FarmMaster.Controllers.AjaxPagingControllerRequestModel,Business.Model.User)
+  parent: FarmMaster.Controllers.IPagingController`1
+  langs:
+  - csharp
+  - vb
+  name: AjaxGetTablePageCount(AjaxPagingControllerRequestModel, User)
+  nameWithType: IPagingController<T>.AjaxGetTablePageCount(AjaxPagingControllerRequestModel, User)
+  fullName: FarmMaster.Controllers.IPagingController<T>.AjaxGetTablePageCount(FarmMaster.Controllers.AjaxPagingControllerRequestModel, Business.Model.User)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Controllers/IPagingController.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: AjaxGetTablePageCount
+    path: Controllers/IPagingController.cs
+    startLine: 15
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Controllers
+  syntax:
+    content: >-
+      [HttpPost]
+
+      [AllowAnonymous]
+
+      IActionResult AjaxGetTablePageCount([FromBody] AjaxPagingControllerRequestModel model, User user)
+    parameters:
+    - id: model
+      type: FarmMaster.Controllers.AjaxPagingControllerRequestModel
+      attributes:
+      - type: Microsoft.AspNetCore.Mvc.FromBodyAttribute
+        ctor: Microsoft.AspNetCore.Mvc.FromBodyAttribute.#ctor
+        arguments: []
+    - id: user
+      type: Business.Model.User
+    return:
+      type: Microsoft.AspNetCore.Mvc.IActionResult
+    content.vb: >-
+      <HttpPost>
+
+      <AllowAnonymous>
+
+      Function AjaxGetTablePageCount(model As AjaxPagingControllerRequestModel, user As User) As IActionResult
+  overload: FarmMaster.Controllers.IPagingController`1.AjaxGetTablePageCount*
+  attributes:
+  - type: Microsoft.AspNetCore.Mvc.HttpPostAttribute
+    ctor: Microsoft.AspNetCore.Mvc.HttpPostAttribute.#ctor
+    arguments: []
+  - type: Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute
+    ctor: Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute.#ctor
+    arguments: []
+  nameWithType.vb: IPagingController(Of T).AjaxGetTablePageCount(AjaxPagingControllerRequestModel, User)
+  fullName.vb: FarmMaster.Controllers.IPagingController(Of T).AjaxGetTablePageCount(FarmMaster.Controllers.AjaxPagingControllerRequestModel, Business.Model.User)
+- uid: FarmMaster.Controllers.IPagingController`1.AjaxRenderTablePage(FarmMaster.Controllers.AjaxPagingControllerRenderRequestModel,Business.Model.User)
+  commentId: M:FarmMaster.Controllers.IPagingController`1.AjaxRenderTablePage(FarmMaster.Controllers.AjaxPagingControllerRenderRequestModel,Business.Model.User)
+  id: AjaxRenderTablePage(FarmMaster.Controllers.AjaxPagingControllerRenderRequestModel,Business.Model.User)
+  parent: FarmMaster.Controllers.IPagingController`1
+  langs:
+  - csharp
+  - vb
+  name: AjaxRenderTablePage(AjaxPagingControllerRenderRequestModel, User)
+  nameWithType: IPagingController<T>.AjaxRenderTablePage(AjaxPagingControllerRenderRequestModel, User)
+  fullName: FarmMaster.Controllers.IPagingController<T>.AjaxRenderTablePage(FarmMaster.Controllers.AjaxPagingControllerRenderRequestModel, Business.Model.User)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Controllers/IPagingController.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: AjaxRenderTablePage
+    path: Controllers/IPagingController.cs
+    startLine: 19
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Controllers
+  syntax:
+    content: >-
+      [HttpPost]
+
+      [AllowAnonymous]
+
+      IActionResult AjaxRenderTablePage([FromBody] AjaxPagingControllerRenderRequestModel model, User user)
+    parameters:
+    - id: model
+      type: FarmMaster.Controllers.AjaxPagingControllerRenderRequestModel
+      attributes:
+      - type: Microsoft.AspNetCore.Mvc.FromBodyAttribute
+        ctor: Microsoft.AspNetCore.Mvc.FromBodyAttribute.#ctor
+        arguments: []
+    - id: user
+      type: Business.Model.User
+    return:
+      type: Microsoft.AspNetCore.Mvc.IActionResult
+    content.vb: >-
+      <HttpPost>
+
+      <AllowAnonymous>
+
+      Function AjaxRenderTablePage(model As AjaxPagingControllerRenderRequestModel, user As User) As IActionResult
+  overload: FarmMaster.Controllers.IPagingController`1.AjaxRenderTablePage*
+  attributes:
+  - type: Microsoft.AspNetCore.Mvc.HttpPostAttribute
+    ctor: Microsoft.AspNetCore.Mvc.HttpPostAttribute.#ctor
+    arguments: []
+  - type: Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute
+    ctor: Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute.#ctor
+    arguments: []
+  nameWithType.vb: IPagingController(Of T).AjaxRenderTablePage(AjaxPagingControllerRenderRequestModel, User)
+  fullName.vb: FarmMaster.Controllers.IPagingController(Of T).AjaxRenderTablePage(FarmMaster.Controllers.AjaxPagingControllerRenderRequestModel, Business.Model.User)
+references:
+- uid: FarmMaster.Controllers
+  commentId: N:FarmMaster.Controllers
+  name: FarmMaster.Controllers
+  nameWithType: FarmMaster.Controllers
+  fullName: FarmMaster.Controllers
+- uid: FarmMaster.Controllers.IPagingController`1.AjaxGetTablePageCount*
+  commentId: Overload:FarmMaster.Controllers.IPagingController`1.AjaxGetTablePageCount
+  name: AjaxGetTablePageCount
+  nameWithType: IPagingController<T>.AjaxGetTablePageCount
+  fullName: FarmMaster.Controllers.IPagingController<T>.AjaxGetTablePageCount
+  nameWithType.vb: IPagingController(Of T).AjaxGetTablePageCount
+  fullName.vb: FarmMaster.Controllers.IPagingController(Of T).AjaxGetTablePageCount
+- uid: FarmMaster.Controllers.AjaxPagingControllerRequestModel
+  commentId: T:FarmMaster.Controllers.AjaxPagingControllerRequestModel
+  parent: FarmMaster.Controllers
+  name: AjaxPagingControllerRequestModel
+  nameWithType: AjaxPagingControllerRequestModel
+  fullName: FarmMaster.Controllers.AjaxPagingControllerRequestModel
+- uid: Business.Model.User
+  commentId: T:Business.Model.User
+  parent: Business.Model
+  name: User
+  nameWithType: User
+  fullName: Business.Model.User
+- uid: Microsoft.AspNetCore.Mvc.IActionResult
+  commentId: T:Microsoft.AspNetCore.Mvc.IActionResult
+  parent: Microsoft.AspNetCore.Mvc
+  isExternal: true
+  name: IActionResult
+  nameWithType: IActionResult
+  fullName: Microsoft.AspNetCore.Mvc.IActionResult
+- uid: Business.Model
+  commentId: N:Business.Model
+  name: Business.Model
+  nameWithType: Business.Model
+  fullName: Business.Model
+- uid: Microsoft.AspNetCore.Mvc
+  commentId: N:Microsoft.AspNetCore.Mvc
+  isExternal: true
+  name: Microsoft.AspNetCore.Mvc
+  nameWithType: Microsoft.AspNetCore.Mvc
+  fullName: Microsoft.AspNetCore.Mvc
+- uid: FarmMaster.Controllers.IPagingController`1.AjaxRenderTablePage*
+  commentId: Overload:FarmMaster.Controllers.IPagingController`1.AjaxRenderTablePage
+  name: AjaxRenderTablePage
+  nameWithType: IPagingController<T>.AjaxRenderTablePage
+  fullName: FarmMaster.Controllers.IPagingController<T>.AjaxRenderTablePage
+  nameWithType.vb: IPagingController(Of T).AjaxRenderTablePage
+  fullName.vb: FarmMaster.Controllers.IPagingController(Of T).AjaxRenderTablePage
+- uid: FarmMaster.Controllers.AjaxPagingControllerRenderRequestModel
+  commentId: T:FarmMaster.Controllers.AjaxPagingControllerRenderRequestModel
+  parent: FarmMaster.Controllers
+  name: AjaxPagingControllerRenderRequestModel
+  nameWithType: AjaxPagingControllerRenderRequestModel
+  fullName: FarmMaster.Controllers.AjaxPagingControllerRenderRequestModel

@@ -1,0 +1,527 @@
+### YamlMime:ManagedReference
+items:
+- uid: FarmMaster.Filters.FarmAuthoriseFilter
+  commentId: T:FarmMaster.Filters.FarmAuthoriseFilter
+  id: FarmAuthoriseFilter
+  parent: FarmMaster.Filters
+  children:
+  - FarmMaster.Filters.FarmAuthoriseFilter.#ctor(System.String[],System.String[])
+  - FarmMaster.Filters.FarmAuthoriseFilter.OnAuthorization(Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext)
+  langs:
+  - csharp
+  - vb
+  name: FarmAuthoriseFilter
+  nameWithType: FarmAuthoriseFilter
+  fullName: FarmMaster.Filters.FarmAuthoriseFilter
+  type: Class
+  source:
+    remote:
+      path: FarmMaster/Filters/FarmAuthoriseFilter.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: FarmAuthoriseFilter
+    path: Filters/FarmAuthoriseFilter.cs
+    startLine: 23
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Filters
+  syntax:
+    content: 'public class FarmAuthoriseFilter : IAuthorizationFilter, IFilterMetadata'
+    content.vb: >-
+      Public Class FarmAuthoriseFilter
+
+          Implements IAuthorizationFilter, IFilterMetadata
+  inheritance:
+  - System.Object
+  implements:
+  - Microsoft.AspNetCore.Mvc.Filters.IAuthorizationFilter
+  - Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: FarmMaster.Filters.FarmAuthoriseFilter.#ctor(System.String[],System.String[])
+  commentId: M:FarmMaster.Filters.FarmAuthoriseFilter.#ctor(System.String[],System.String[])
+  id: '#ctor(System.String[],System.String[])'
+  parent: FarmMaster.Filters.FarmAuthoriseFilter
+  langs:
+  - csharp
+  - vb
+  name: FarmAuthoriseFilter(String[], String[])
+  nameWithType: FarmAuthoriseFilter.FarmAuthoriseFilter(String[], String[])
+  fullName: FarmMaster.Filters.FarmAuthoriseFilter.FarmAuthoriseFilter(System.String[], System.String[])
+  type: Constructor
+  source:
+    remote:
+      path: FarmMaster/Filters/FarmAuthoriseFilter.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: .ctor
+    path: Filters/FarmAuthoriseFilter.cs
+    startLine: 28
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Filters
+  syntax:
+    content: public FarmAuthoriseFilter(string[] PermsAND, string[] PermsOR)
+    parameters:
+    - id: PermsAND
+      type: System.String[]
+    - id: PermsOR
+      type: System.String[]
+    content.vb: Public Sub New(PermsAND As String(), PermsOR As String())
+  overload: FarmMaster.Filters.FarmAuthoriseFilter.#ctor*
+  nameWithType.vb: FarmAuthoriseFilter.FarmAuthoriseFilter(String(), String())
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: FarmMaster.Filters.FarmAuthoriseFilter.FarmAuthoriseFilter(System.String(), System.String())
+  name.vb: FarmAuthoriseFilter(String(), String())
+- uid: FarmMaster.Filters.FarmAuthoriseFilter.OnAuthorization(Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext)
+  commentId: M:FarmMaster.Filters.FarmAuthoriseFilter.OnAuthorization(Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext)
+  id: OnAuthorization(Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext)
+  parent: FarmMaster.Filters.FarmAuthoriseFilter
+  langs:
+  - csharp
+  - vb
+  name: OnAuthorization(AuthorizationFilterContext)
+  nameWithType: FarmAuthoriseFilter.OnAuthorization(AuthorizationFilterContext)
+  fullName: FarmMaster.Filters.FarmAuthoriseFilter.OnAuthorization(Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext)
+  type: Method
+  source:
+    remote:
+      path: FarmMaster/Filters/FarmAuthoriseFilter.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: OnAuthorization
+    path: Filters/FarmAuthoriseFilter.cs
+    startLine: 34
+  assemblies:
+  - FarmMaster
+  namespace: FarmMaster.Filters
+  syntax:
+    content: public void OnAuthorization(AuthorizationFilterContext context)
+    parameters:
+    - id: context
+      type: Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext
+    content.vb: Public Sub OnAuthorization(context As AuthorizationFilterContext)
+  overload: FarmMaster.Filters.FarmAuthoriseFilter.OnAuthorization*
+  implements:
+  - Microsoft.AspNetCore.Mvc.Filters.IAuthorizationFilter.OnAuthorization(Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: FarmMaster.Filters
+  commentId: N:FarmMaster.Filters
+  name: FarmMaster.Filters
+  nameWithType: FarmMaster.Filters
+  fullName: FarmMaster.Filters
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: Microsoft.AspNetCore.Mvc.Filters.IAuthorizationFilter
+  commentId: T:Microsoft.AspNetCore.Mvc.Filters.IAuthorizationFilter
+  parent: Microsoft.AspNetCore.Mvc.Filters
+  isExternal: true
+  name: IAuthorizationFilter
+  nameWithType: IAuthorizationFilter
+  fullName: Microsoft.AspNetCore.Mvc.Filters.IAuthorizationFilter
+- uid: Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata
+  commentId: T:Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata
+  parent: Microsoft.AspNetCore.Mvc.Filters
+  isExternal: true
+  name: IFilterMetadata
+  nameWithType: IFilterMetadata
+  fullName: Microsoft.AspNetCore.Mvc.Filters.IFilterMetadata
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Microsoft.AspNetCore.Mvc.Filters
+  commentId: N:Microsoft.AspNetCore.Mvc.Filters
+  isExternal: true
+  name: Microsoft.AspNetCore.Mvc.Filters
+  nameWithType: Microsoft.AspNetCore.Mvc.Filters
+  fullName: Microsoft.AspNetCore.Mvc.Filters
+- uid: FarmMaster.Filters.FarmAuthoriseFilter.#ctor*
+  commentId: Overload:FarmMaster.Filters.FarmAuthoriseFilter.#ctor
+  name: FarmAuthoriseFilter
+  nameWithType: FarmAuthoriseFilter.FarmAuthoriseFilter
+  fullName: FarmMaster.Filters.FarmAuthoriseFilter.FarmAuthoriseFilter
+- uid: System.String[]
+  isExternal: true
+  name: String[]
+  nameWithType: String[]
+  fullName: System.String[]
+  nameWithType.vb: String()
+  fullName.vb: System.String()
+  name.vb: String()
+  spec.csharp:
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: FarmMaster.Filters.FarmAuthoriseFilter.OnAuthorization*
+  commentId: Overload:FarmMaster.Filters.FarmAuthoriseFilter.OnAuthorization
+  name: OnAuthorization
+  nameWithType: FarmAuthoriseFilter.OnAuthorization
+  fullName: FarmMaster.Filters.FarmAuthoriseFilter.OnAuthorization
+- uid: Microsoft.AspNetCore.Mvc.Filters.IAuthorizationFilter.OnAuthorization(Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext)
+  commentId: M:Microsoft.AspNetCore.Mvc.Filters.IAuthorizationFilter.OnAuthorization(Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext)
+  parent: Microsoft.AspNetCore.Mvc.Filters.IAuthorizationFilter
+  isExternal: true
+  name: OnAuthorization(AuthorizationFilterContext)
+  nameWithType: IAuthorizationFilter.OnAuthorization(AuthorizationFilterContext)
+  fullName: Microsoft.AspNetCore.Mvc.Filters.IAuthorizationFilter.OnAuthorization(Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext)
+  spec.csharp:
+  - uid: Microsoft.AspNetCore.Mvc.Filters.IAuthorizationFilter.OnAuthorization(Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext)
+    name: OnAuthorization
+    nameWithType: IAuthorizationFilter.OnAuthorization
+    fullName: Microsoft.AspNetCore.Mvc.Filters.IAuthorizationFilter.OnAuthorization
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext
+    name: AuthorizationFilterContext
+    nameWithType: AuthorizationFilterContext
+    fullName: Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Microsoft.AspNetCore.Mvc.Filters.IAuthorizationFilter.OnAuthorization(Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext)
+    name: OnAuthorization
+    nameWithType: IAuthorizationFilter.OnAuthorization
+    fullName: Microsoft.AspNetCore.Mvc.Filters.IAuthorizationFilter.OnAuthorization
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext
+    name: AuthorizationFilterContext
+    nameWithType: AuthorizationFilterContext
+    fullName: Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext
+  commentId: T:Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext
+  parent: Microsoft.AspNetCore.Mvc.Filters
+  isExternal: true
+  name: AuthorizationFilterContext
+  nameWithType: AuthorizationFilterContext
+  fullName: Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext

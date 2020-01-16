@@ -1,0 +1,1065 @@
+### YamlMime:ManagedReference
+items:
+- uid: Business.Model.Breed
+  commentId: T:Business.Model.Breed
+  id: Breed
+  parent: Business.Model
+  children:
+  - Business.Model.Breed.BreedId
+  - Business.Model.Breed.BreedSociety
+  - Business.Model.Breed.BreedSocietyId
+  - Business.Model.Breed.CharacteristicList
+  - Business.Model.Breed.CharacteristicListId
+  - Business.Model.Breed.IsRegisterable
+  - Business.Model.Breed.IsSafeToDelete
+  - Business.Model.Breed.Mappings
+  - Business.Model.Breed.Name
+  - Business.Model.Breed.Species
+  - Business.Model.Breed.SpeciesId
+  - Business.Model.Breed.Timestamp
+  langs:
+  - csharp
+  - vb
+  name: Breed
+  nameWithType: Breed
+  fullName: Business.Model.Breed
+  type: Class
+  source:
+    remote:
+      path: Business/Model/Breed.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: Breed
+    path: ../Business/Model/Breed.cs
+    startLine: 9
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: public class Breed
+    content.vb: Public Class Breed
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Business.Model.Breed.BreedId
+  commentId: P:Business.Model.Breed.BreedId
+  id: BreedId
+  parent: Business.Model.Breed
+  langs:
+  - csharp
+  - vb
+  name: BreedId
+  nameWithType: Breed.BreedId
+  fullName: Business.Model.Breed.BreedId
+  type: Property
+  source:
+    remote:
+      path: Business/Model/Breed.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: BreedId
+    path: ../Business/Model/Breed.cs
+    startLine: 11
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: >-
+      [Key]
+
+      public int BreedId { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: >-
+      <Key>
+
+      Public Property BreedId As Integer
+  overload: Business.Model.Breed.BreedId*
+  attributes:
+  - type: System.ComponentModel.DataAnnotations.KeyAttribute
+    ctor: System.ComponentModel.DataAnnotations.KeyAttribute.#ctor
+    arguments: []
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Business.Model.Breed.Name
+  commentId: P:Business.Model.Breed.Name
+  id: Name
+  parent: Business.Model.Breed
+  langs:
+  - csharp
+  - vb
+  name: Name
+  nameWithType: Breed.Name
+  fullName: Business.Model.Breed.Name
+  type: Property
+  source:
+    remote:
+      path: Business/Model/Breed.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: Name
+    path: ../Business/Model/Breed.cs
+    startLine: 14
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: >-
+      [Required]
+
+      [StringLength(75)]
+
+      public string Name { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: >-
+      <Required>
+
+      <StringLength(75)>
+
+      Public Property Name As String
+  overload: Business.Model.Breed.Name*
+  attributes:
+  - type: System.ComponentModel.DataAnnotations.RequiredAttribute
+    ctor: System.ComponentModel.DataAnnotations.RequiredAttribute.#ctor
+    arguments: []
+  - type: System.ComponentModel.DataAnnotations.StringLengthAttribute
+    ctor: System.ComponentModel.DataAnnotations.StringLengthAttribute.#ctor(System.Int32)
+    arguments:
+    - type: System.Int32
+      value: 75
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Business.Model.Breed.IsRegisterable
+  commentId: P:Business.Model.Breed.IsRegisterable
+  id: IsRegisterable
+  parent: Business.Model.Breed
+  langs:
+  - csharp
+  - vb
+  name: IsRegisterable
+  nameWithType: Breed.IsRegisterable
+  fullName: Business.Model.Breed.IsRegisterable
+  type: Property
+  source:
+    remote:
+      path: Business/Model/Breed.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: IsRegisterable
+    path: ../Business/Model/Breed.cs
+    startLine: 18
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: public bool IsRegisterable { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property IsRegisterable As Boolean
+  overload: Business.Model.Breed.IsRegisterable*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Business.Model.Breed.BreedSocietyId
+  commentId: P:Business.Model.Breed.BreedSocietyId
+  id: BreedSocietyId
+  parent: Business.Model.Breed
+  langs:
+  - csharp
+  - vb
+  name: BreedSocietyId
+  nameWithType: Breed.BreedSocietyId
+  fullName: Business.Model.Breed.BreedSocietyId
+  type: Property
+  source:
+    remote:
+      path: Business/Model/Breed.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: BreedSocietyId
+    path: ../Business/Model/Breed.cs
+    startLine: 20
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: >-
+      [Required]
+
+      public int BreedSocietyId { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: >-
+      <Required>
+
+      Public Property BreedSocietyId As Integer
+  overload: Business.Model.Breed.BreedSocietyId*
+  attributes:
+  - type: System.ComponentModel.DataAnnotations.RequiredAttribute
+    ctor: System.ComponentModel.DataAnnotations.RequiredAttribute.#ctor
+    arguments: []
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Business.Model.Breed.BreedSociety
+  commentId: P:Business.Model.Breed.BreedSociety
+  id: BreedSociety
+  parent: Business.Model.Breed
+  langs:
+  - csharp
+  - vb
+  name: BreedSociety
+  nameWithType: Breed.BreedSociety
+  fullName: Business.Model.Breed.BreedSociety
+  type: Property
+  source:
+    remote:
+      path: Business/Model/Breed.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: BreedSociety
+    path: ../Business/Model/Breed.cs
+    startLine: 22
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: public Contact BreedSociety { get; set; }
+    parameters: []
+    return:
+      type: Business.Model.Contact
+    content.vb: Public Property BreedSociety As Contact
+  overload: Business.Model.Breed.BreedSociety*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Business.Model.Breed.SpeciesId
+  commentId: P:Business.Model.Breed.SpeciesId
+  id: SpeciesId
+  parent: Business.Model.Breed
+  langs:
+  - csharp
+  - vb
+  name: SpeciesId
+  nameWithType: Breed.SpeciesId
+  fullName: Business.Model.Breed.SpeciesId
+  type: Property
+  source:
+    remote:
+      path: Business/Model/Breed.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: SpeciesId
+    path: ../Business/Model/Breed.cs
+    startLine: 24
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: >-
+      [Required]
+
+      public int SpeciesId { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: >-
+      <Required>
+
+      Public Property SpeciesId As Integer
+  overload: Business.Model.Breed.SpeciesId*
+  attributes:
+  - type: System.ComponentModel.DataAnnotations.RequiredAttribute
+    ctor: System.ComponentModel.DataAnnotations.RequiredAttribute.#ctor
+    arguments: []
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Business.Model.Breed.Species
+  commentId: P:Business.Model.Breed.Species
+  id: Species
+  parent: Business.Model.Breed
+  langs:
+  - csharp
+  - vb
+  name: Species
+  nameWithType: Breed.Species
+  fullName: Business.Model.Breed.Species
+  type: Property
+  source:
+    remote:
+      path: Business/Model/Breed.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: Species
+    path: ../Business/Model/Breed.cs
+    startLine: 26
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: public Species Species { get; set; }
+    parameters: []
+    return:
+      type: Business.Model.Species
+    content.vb: Public Property Species As Species
+  overload: Business.Model.Breed.Species*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Business.Model.Breed.CharacteristicListId
+  commentId: P:Business.Model.Breed.CharacteristicListId
+  id: CharacteristicListId
+  parent: Business.Model.Breed
+  langs:
+  - csharp
+  - vb
+  name: CharacteristicListId
+  nameWithType: Breed.CharacteristicListId
+  fullName: Business.Model.Breed.CharacteristicListId
+  type: Property
+  source:
+    remote:
+      path: Business/Model/Breed.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: CharacteristicListId
+    path: ../Business/Model/Breed.cs
+    startLine: 28
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: >-
+      [Required]
+
+      public int CharacteristicListId { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: >-
+      <Required>
+
+      Public Property CharacteristicListId As Integer
+  overload: Business.Model.Breed.CharacteristicListId*
+  attributes:
+  - type: System.ComponentModel.DataAnnotations.RequiredAttribute
+    ctor: System.ComponentModel.DataAnnotations.RequiredAttribute.#ctor
+    arguments: []
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Business.Model.Breed.CharacteristicList
+  commentId: P:Business.Model.Breed.CharacteristicList
+  id: CharacteristicList
+  parent: Business.Model.Breed
+  langs:
+  - csharp
+  - vb
+  name: CharacteristicList
+  nameWithType: Breed.CharacteristicList
+  fullName: Business.Model.Breed.CharacteristicList
+  type: Property
+  source:
+    remote:
+      path: Business/Model/Breed.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: CharacteristicList
+    path: ../Business/Model/Breed.cs
+    startLine: 30
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: public AnimalCharacteristicList CharacteristicList { get; set; }
+    parameters: []
+    return:
+      type: Business.Model.AnimalCharacteristicList
+    content.vb: Public Property CharacteristicList As AnimalCharacteristicList
+  overload: Business.Model.Breed.CharacteristicList*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Business.Model.Breed.Timestamp
+  commentId: P:Business.Model.Breed.Timestamp
+  id: Timestamp
+  parent: Business.Model.Breed
+  langs:
+  - csharp
+  - vb
+  name: Timestamp
+  nameWithType: Breed.Timestamp
+  fullName: Business.Model.Breed.Timestamp
+  type: Property
+  source:
+    remote:
+      path: Business/Model/Breed.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: Timestamp
+    path: ../Business/Model/Breed.cs
+    startLine: 32
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: >-
+      [Timestamp]
+
+      public byte[] Timestamp { get; set; }
+    parameters: []
+    return:
+      type: System.Byte[]
+    content.vb: >-
+      <Timestamp>
+
+      Public Property Timestamp As Byte()
+  overload: Business.Model.Breed.Timestamp*
+  attributes:
+  - type: System.ComponentModel.DataAnnotations.TimestampAttribute
+    ctor: System.ComponentModel.DataAnnotations.TimestampAttribute.#ctor
+    arguments: []
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Business.Model.Breed.Mappings
+  commentId: P:Business.Model.Breed.Mappings
+  id: Mappings
+  parent: Business.Model.Breed
+  langs:
+  - csharp
+  - vb
+  name: Mappings
+  nameWithType: Breed.Mappings
+  fullName: Business.Model.Breed.Mappings
+  type: Property
+  source:
+    remote:
+      path: Business/Model/Breed.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: Mappings
+    path: ../Business/Model/Breed.cs
+    startLine: 35
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: public IEnumerable<MapBreedToAnimal> Mappings { get; set; }
+    parameters: []
+    return:
+      type: System.Collections.Generic.IEnumerable{Business.Model.MapBreedToAnimal}
+    content.vb: Public Property Mappings As IEnumerable(Of MapBreedToAnimal)
+  overload: Business.Model.Breed.Mappings*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Business.Model.Breed.IsSafeToDelete
+  commentId: P:Business.Model.Breed.IsSafeToDelete
+  id: IsSafeToDelete
+  parent: Business.Model.Breed
+  langs:
+  - csharp
+  - vb
+  name: IsSafeToDelete
+  nameWithType: Breed.IsSafeToDelete
+  fullName: Business.Model.Breed.IsSafeToDelete
+  type: Property
+  source:
+    remote:
+      path: Business/Model/Breed.cs
+      branch: assignment_script
+      repo: https://github.com/Aim-Educational/FarmMaster.git
+    id: IsSafeToDelete
+    path: ../Business/Model/Breed.cs
+    startLine: 37
+  assemblies:
+  - Business
+  namespace: Business.Model
+  syntax:
+    content: >-
+      [NotMapped]
+
+      public bool IsSafeToDelete { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: >-
+      <NotMapped>
+
+      Public ReadOnly Property IsSafeToDelete As Boolean
+  overload: Business.Model.Breed.IsSafeToDelete*
+  attributes:
+  - type: System.ComponentModel.DataAnnotations.Schema.NotMappedAttribute
+    ctor: System.ComponentModel.DataAnnotations.Schema.NotMappedAttribute.#ctor
+    arguments: []
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+references:
+- uid: Business.Model
+  commentId: N:Business.Model
+  name: Business.Model
+  nameWithType: Business.Model
+  fullName: Business.Model
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  name: Object
+  nameWithType: Object
+  fullName: System.Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  nameWithType: Object.Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  nameWithType: Object.Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    nameWithType: Object.Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  nameWithType: Object.GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    nameWithType: Object.GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  nameWithType: Object.GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    nameWithType: Object.GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  nameWithType: Object.MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    nameWithType: Object.MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    nameWithType: Object.ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  nameWithType: Object.ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    nameWithType: Object.ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Business.Model.Breed.BreedId*
+  commentId: Overload:Business.Model.Breed.BreedId
+  name: BreedId
+  nameWithType: Breed.BreedId
+  fullName: Business.Model.Breed.BreedId
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: Business.Model.Breed.Name*
+  commentId: Overload:Business.Model.Breed.Name
+  name: Name
+  nameWithType: Breed.Name
+  fullName: Business.Model.Breed.Name
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: Business.Model.Breed.IsRegisterable*
+  commentId: Overload:Business.Model.Breed.IsRegisterable
+  name: IsRegisterable
+  nameWithType: Breed.IsRegisterable
+  fullName: Business.Model.Breed.IsRegisterable
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: Business.Model.Breed.BreedSocietyId*
+  commentId: Overload:Business.Model.Breed.BreedSocietyId
+  name: BreedSocietyId
+  nameWithType: Breed.BreedSocietyId
+  fullName: Business.Model.Breed.BreedSocietyId
+- uid: Business.Model.Breed.BreedSociety*
+  commentId: Overload:Business.Model.Breed.BreedSociety
+  name: BreedSociety
+  nameWithType: Breed.BreedSociety
+  fullName: Business.Model.Breed.BreedSociety
+- uid: Business.Model.Contact
+  commentId: T:Business.Model.Contact
+  parent: Business.Model
+  name: Contact
+  nameWithType: Contact
+  fullName: Business.Model.Contact
+- uid: Business.Model.Breed.SpeciesId*
+  commentId: Overload:Business.Model.Breed.SpeciesId
+  name: SpeciesId
+  nameWithType: Breed.SpeciesId
+  fullName: Business.Model.Breed.SpeciesId
+- uid: Business.Model.Breed.Species*
+  commentId: Overload:Business.Model.Breed.Species
+  name: Species
+  nameWithType: Breed.Species
+  fullName: Business.Model.Breed.Species
+- uid: Business.Model.Species
+  commentId: T:Business.Model.Species
+  parent: Business.Model
+  name: Species
+  nameWithType: Species
+  fullName: Business.Model.Species
+- uid: Business.Model.Breed.CharacteristicListId*
+  commentId: Overload:Business.Model.Breed.CharacteristicListId
+  name: CharacteristicListId
+  nameWithType: Breed.CharacteristicListId
+  fullName: Business.Model.Breed.CharacteristicListId
+- uid: Business.Model.Breed.CharacteristicList*
+  commentId: Overload:Business.Model.Breed.CharacteristicList
+  name: CharacteristicList
+  nameWithType: Breed.CharacteristicList
+  fullName: Business.Model.Breed.CharacteristicList
+- uid: Business.Model.AnimalCharacteristicList
+  commentId: T:Business.Model.AnimalCharacteristicList
+  parent: Business.Model
+  name: AnimalCharacteristicList
+  nameWithType: AnimalCharacteristicList
+  fullName: Business.Model.AnimalCharacteristicList
+- uid: Business.Model.Breed.Timestamp*
+  commentId: Overload:Business.Model.Breed.Timestamp
+  name: Timestamp
+  nameWithType: Breed.Timestamp
+  fullName: Business.Model.Breed.Timestamp
+- uid: System.Byte[]
+  isExternal: true
+  name: Byte[]
+  nameWithType: Byte[]
+  fullName: System.Byte[]
+  nameWithType.vb: Byte()
+  fullName.vb: System.Byte()
+  name.vb: Byte()
+  spec.csharp:
+  - uid: System.Byte
+    name: Byte
+    nameWithType: Byte
+    fullName: System.Byte
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.Byte
+    name: Byte
+    nameWithType: Byte
+    fullName: System.Byte
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: Business.Model.Breed.Mappings*
+  commentId: Overload:Business.Model.Breed.Mappings
+  name: Mappings
+  nameWithType: Breed.Mappings
+  fullName: Business.Model.Breed.Mappings
+- uid: System.Collections.Generic.IEnumerable{Business.Model.MapBreedToAnimal}
+  commentId: T:System.Collections.Generic.IEnumerable{Business.Model.MapBreedToAnimal}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IEnumerable`1
+  name: IEnumerable<MapBreedToAnimal>
+  nameWithType: IEnumerable<MapBreedToAnimal>
+  fullName: System.Collections.Generic.IEnumerable<Business.Model.MapBreedToAnimal>
+  nameWithType.vb: IEnumerable(Of MapBreedToAnimal)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of Business.Model.MapBreedToAnimal)
+  name.vb: IEnumerable(Of MapBreedToAnimal)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: Business.Model.MapBreedToAnimal
+    name: MapBreedToAnimal
+    nameWithType: MapBreedToAnimal
+    fullName: Business.Model.MapBreedToAnimal
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: Business.Model.MapBreedToAnimal
+    name: MapBreedToAnimal
+    nameWithType: MapBreedToAnimal
+    fullName: Business.Model.MapBreedToAnimal
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IEnumerable`1
+  commentId: T:System.Collections.Generic.IEnumerable`1
+  isExternal: true
+  name: IEnumerable<T>
+  nameWithType: IEnumerable<T>
+  fullName: System.Collections.Generic.IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
+  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name.vb: IEnumerable(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: T
+    nameWithType: T
+    fullName: T
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+- uid: Business.Model.Breed.IsSafeToDelete*
+  commentId: Overload:Business.Model.Breed.IsSafeToDelete
+  name: IsSafeToDelete
+  nameWithType: Breed.IsSafeToDelete
+  fullName: Business.Model.Breed.IsSafeToDelete
