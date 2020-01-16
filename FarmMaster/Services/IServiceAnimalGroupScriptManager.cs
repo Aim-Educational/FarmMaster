@@ -12,6 +12,7 @@ namespace FarmMaster.Services
     public interface IServiceAnimalGroupScriptManager : IServiceEntityManager<AnimalGroupScript>
     {
         AnimalGroupScript CompileAndCreate(string code);
+        IQueryable<Animal> ExecuteScriptByName(string name, IDictionary<string, object> parameters = null);
         IQueryable<Animal> ExecuteSingleUseScript(string code, IDictionary<string, object> parameters = null);
     }
 
@@ -44,11 +45,25 @@ namespace FarmMaster.Services
             return script;
         }
 
+        public IQueryable<Animal> ExecuteScriptByName(string name, IDictionary<string, object> parameters = null)
+        {
+            var script = this._context.AnimalGroupScripts.FirstOrDefault(s => s.Name == name);
+            if(script == null)
+                throw new KeyNotFoundException($"No script called '{name}' was found.");
+
+            return this.ExecuteScript(script.Code, parameters);
+        }
+
         public IQueryable<Animal> ExecuteSingleUseScript(string code, IDictionary<string, object> parameters = null)
         {
-            var parser      = new GroupScriptParser(code);
-            var ast         = new GroupScriptNodeTree(parser);
-            var serverCode  = GroupScriptCompiler.CompileToStoredProcedureCode(ast, parameters);
+            return this.ExecuteScript(code, parameters);
+        }
+
+        private IQueryable<Animal> ExecuteScript(string code, IDictionary<string, object> parameters)
+        {
+            var parser     = new GroupScriptParser(code);
+            var ast        = new GroupScriptNodeTree(parser);
+            var serverCode = GroupScriptCompiler.CompileToStoredProcedureCode(ast, parameters);
 
             // This is a bit yuck, but something like this was *always* going to be messy in some way.
             return this._context.Animals.FromSql($"SELECT * FROM SP_AnimalGroupScriptFilter({serverCode})");

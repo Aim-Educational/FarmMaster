@@ -178,6 +178,29 @@ namespace FarmMaster.Controllers
         }
 
         [HttpPost]
+        [FarmAjaxReturnsMessageAndValue(BusinessConstants.Permissions.USE_GROUP_SCRIPTS)]
+        public IActionResult AnimalGroup_Script_ByName_Execute_AsNameIdImageId(
+            [FromBody] AjaxGroupScriptByNameExecuteRequest model,
+            User _,
+            [FromServices] IServiceAnimalGroupScriptManager scripts
+        )
+        {
+            var script = scripts.Query().FirstOrDefault(s => s.Name == model.ScriptName);
+            if(script == null)
+                throw new KeyNotFoundException($"No script called '{script.Name}' exists.");
+
+            return new AjaxValueResult(
+                scripts.ExecuteScriptByName(model.ScriptName, model.Parameters)
+                       .Select(a => new 
+                       {
+                           name = a.Name,
+                           id = a.AnimalId,
+                           imageId = a.ImageId
+                       })
+            );
+        }
+
+        [HttpPost]
         [FarmAjaxReturnsMessageAndValue(BusinessConstants.Permissions.EDIT_ANIMAL_GROUPS)]
         public IActionResult AnimalGroup_ById_Script_ExecuteSingleUse_AsNameIdImageId(
             [FromBody] AjaxByIdWithLargeValueRequest model,

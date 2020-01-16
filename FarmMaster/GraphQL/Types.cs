@@ -2,6 +2,7 @@
 using FarmMaster.Services;
 using GraphQL;
 using GraphQL.Types;
+using GroupScript;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -140,6 +141,48 @@ namespace FarmMaster.GraphQL
             Field(g => g.Name)
                 .Name("Name")
                 .Description("The group's name.");
+        }
+    }
+
+    public class AnimalGroupScriptGraphType : ObjectGraphType<AnimalGroupScript>
+    {
+        public AnimalGroupScriptGraphType()
+        {
+            Field(s => s.AnimalGroupScriptId, type: typeof(IdGraphType))
+                .Name("Id")
+                .Description("The scripts's ID.");
+            Field(s => s.Name)
+                .Name("Name")
+                .Description("The script's name.");
+            Field("parameters",
+                  s => 
+                      (new GroupScriptNodeTree(new GroupScriptParser(s.Code))).Parameters.Select(p => new AnimalGroupScriptParameter
+                      {
+                          Name = p.Name,
+                          TypeName = Convert.ToString(p.DataType) // Very. VERY. temporary
+                      }),
+                  type: typeof(ListGraphType<AnimalGroupScriptParameterGraphType>)
+            );
+        }
+    }
+
+    // Don't think this should really be in this file, but it'll live here for a bit.
+    public class AnimalGroupScriptParameter
+    {
+        public string Name { get; set; }
+        public string TypeName { get; set; } // TODO: Turn this into an enum at some point :P
+    }
+
+    public class AnimalGroupScriptParameterGraphType : ObjectGraphType<AnimalGroupScriptParameter>
+    {
+        public AnimalGroupScriptParameterGraphType()
+        {
+            Field(p => p.Name)
+                .Name("Name")
+                .Description("The parameter's name.");
+            Field(p => p.TypeName)
+                .Name("TypeName")
+                .Description("The name of the parameter's type.");
         }
     }
 }

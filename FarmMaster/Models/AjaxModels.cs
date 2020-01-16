@@ -115,6 +115,15 @@ namespace FarmMaster.Models
     }
     #endregion
 
+    #region Specific
+
+    public class AjaxGroupScriptByNameExecuteRequest : AjaxRequestModel
+    {
+        public string ScriptName { get; set; }
+        public IDictionary<string, object> Parameters { get; set; }
+    }
+    #endregion
+
     #region Common Response Objects
     /// <summary>
     /// Used as a return value.

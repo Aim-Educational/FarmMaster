@@ -65,7 +65,7 @@ namespace GroupScript
             if (param.DataType == GroupScriptTokenType.Keyword_Species)
                 return Convert.ToInt32(param.Value);
             else if (param.DataType == GroupScriptTokenType.Keyword_Param)
-                return (int)parameters[param.Value];
+                return Convert.ToInt32(parameters[param.Value]);
             else
                 throw new NotSupportedException($"Expected a SPECIES, INT, or PARAM value, not a {param.DataType}.");
         }
@@ -105,7 +105,7 @@ namespace GroupScript
                 switch(param.DataType)
                 {
                     case GroupScriptTokenType.Keyword_Species:
-                        if (paramValueType != typeof(int))
+                        if (paramValueType.IsAssignableFrom(typeof(int)))
                             throw new Exception($"For SPECIES parameter '{param.Name}' expected value of type int not {paramValueType}");
                         break;
 
