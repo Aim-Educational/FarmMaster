@@ -118,3 +118,45 @@ This is especially important when looking for documentation about ASP Core and E
 
 * While a bit unweidly, [giving the GraphQL library a look](https://graphql-dotnet.github.io/docs/getting-started/introduction) can't do much harm.
   * There will be a dedicated section for how to modify FarmMaster's GraphQL setup, so don't worry too much if this goes over your head at first.
+
+### Semantic/Fomantic UI
+
+This is mostly if you're going to be writing any HTML, since this is the main CSS framework behind FarmMaster's frontend.
+
+Honestly, just go to [this](https://fomantic-ui.com/elements/button.html) page, and every so often give something in the huge list of things
+on the left-hand side a read through, so you can slowly learn how it's used.
+
+If nothing else, learn its [grid system](https://fomantic-ui.com/collections/grid.html), as that's really useful to know.
+
+While counter productive, large portions of the website actually use custom CSS (there's a dedicated section explaining all of this), so
+while learning Fomantic UI is great, it'd probably be best not to spend too much time on it, and instead look towards vanilla CSS and SASS.
+
+### SASS
+
+Again, this'll be part of the dedicated section to CSS and friends, but start learning [here](https://sass-lang.com/guide) and [here](https://sass-lang.com/documentation).
+
+Please note when creating custom SASS that you should use (and [learn](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)) flexbox, which is just
+a better way of laying out a page in general.
+
+## CI/CD pipeline
+
+FarmMaster's CI is pretty simplistic.
+
+First of all, read up on what [CI/CD](https://docs.gitlab.com/ee/ci/) is if you're unaware of it. FarmMaster's CI file may [prove interesting](https://github.com/Aim-Educational/FarmMaster/blob/master/.gitlab-ci.yml) as a learning resource as well.
+
+As stated in the CI file, there are only two jobs currently: `test`, and `publish_and_package`.
+
+The `test` job is ran on every commit, and simply runs any unittests FarmMaster has (which definitely need to be improved...).
+
+The `publish_and_package` job is only ran everytime a git tag is created (e.g. `git tag v0.2.0-alpha`). This job will download the latest version
+of [AimCLI](https://github.com/Aim-Educational/AimCLITool) (which also makes use of CI/CD), perform the `dotnet publish` command which creates a production
+ready package of FarmMaster, and then finally uses `AimCLI` to zip up the distribution of FarmMaster alongside any other metadata, which is then stored
+as an 'artifact' on Gitlab's side, allowing this zipped up package to be downloaded.
+
+In otherwords, `publish_and_package` simply builds and packages the latest distribution of FarmMaster.
+
+After that, someone who has access to the server FarmMaster is hosted on (eventually this will become an automated process) will have
+to SSH into the server to trigger `AimCLI` to deploy the latest distribution.
+
+While this may all sound like over-kill, this actually streamlines the process to the point of little friction (and once I bother to
+automate the final half of the process, there will be no friction!)
