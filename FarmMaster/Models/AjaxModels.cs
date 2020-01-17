@@ -36,10 +36,21 @@ namespace FarmMaster.Models
     #endregion
     
     #region Common (Genericly useable)
+    public class AjaxWithListRequest<T> : AjaxRequestModel
+    {
+        
+    }
+
     public class AjaxByIdRequest : AjaxRequestModel
     {
         [Required]
         public int? Id { get; set; }
+    }
+
+    public class AjaxByIdWithListRequest<ListT> : AjaxByIdRequest
+    {
+        [Required]
+        public IEnumerable<ListT> List { get; set; }
     }
 
     public class AjaxByIdForIdRequest : AjaxRequestModel
@@ -121,6 +132,7 @@ namespace FarmMaster.Models
     {
         public string ScriptName { get; set; }
         public IDictionary<string, object> Parameters { get; set; }
+        public int? AnimalGroupId { get; set; }
     }
     #endregion
 

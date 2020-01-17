@@ -177,6 +177,36 @@ namespace FarmMaster.Controllers
             });
         }
 
+        /// <summary>
+        /// This should technically be under the AnimalGroup section, not AnimalGroup.Script,
+        /// but AnimalGroup.Script is where most of its uses are going to come from.
+        /// </summary>
+        [HttpPost]
+        [FarmAjaxReturnsMessage(BusinessConstants.Permissions.EDIT_ANIMAL_GROUPS)]
+        public IActionResult AnimalGroup_ById_Script_AddAllAnimals_ById(
+            [FromBody] AjaxByIdWithListRequest<int> model,
+            User _,
+            [FromServices] IServiceAnimalGroupManager groups,
+            [FromServices] IServiceAnimalManager animals
+        )
+        {
+            var group = groups.Query()
+                              .Include(g => g.Animals)
+                              .FirstOrDefault(g => g.AnimalGroupId == model.Id);
+            if (group == null)
+                throw new IndexOutOfRangeException($"No group with ID #{model.Id}");
+
+            var query = animals.Query()
+                               .Where(a => model.List.Contains(a.AnimalId))
+                               .Where(a => !group.Animals.Any(m => m.AnimalId == a.AnimalId))
+                               .ToList(); // EF doesn't like iterating a lazy query and saving at the same time.
+
+            foreach(var animal in query)
+                groups.AssignAnimal(group, animal); // TODO: Add a SaveChanges parameter to this function.
+
+            return new EmptyResult();
+        }
+
         [HttpPost]
         [FarmAjaxReturnsMessageAndValue(BusinessConstants.Permissions.USE_GROUP_SCRIPTS)]
         public IActionResult AnimalGroup_Script_ByName_Execute_AsNameIdImageId(
@@ -191,6 +221,8 @@ namespace FarmMaster.Controllers
 
             return new AjaxValueResult(
                 scripts.ExecuteScriptByName(model.ScriptName, model.Parameters)
+                       .Include(a => a.Groups)
+                       .Where(a => model.AnimalGroupId == null || !a.Groups.Any(g => g.AnimalGroupId == model.AnimalGroupId))
                        .Select(a => new 
                        {
                            name = a.Name,
@@ -201,7 +233,7 @@ namespace FarmMaster.Controllers
         }
 
         [HttpPost]
-        [FarmAjaxReturnsMessageAndValue(BusinessConstants.Permissions.EDIT_ANIMAL_GROUPS)]
+        [FarmAjaxReturnsMessageAndValue(BusinessConstants.Permissions.USE_GROUP_SCRIPTS)]
         public IActionResult AnimalGroup_ById_Script_ExecuteSingleUse_AsNameIdImageId(
             [FromBody] AjaxByIdWithLargeValueRequest model,
             User _,
@@ -216,23 +248,6 @@ namespace FarmMaster.Controllers
                 id = a.AnimalId,
                 imageId = a.ImageId
             }));
-        }
-
-        [HttpPost]
-        [FarmAjaxReturnsMessage(BusinessConstants.Permissions.EDIT_ANIMAL_GROUPS)]
-        public IActionResult AnimalGroup_ById_Script_ExecuteSingleUse_AddAll(
-            [FromBody] AjaxByIdWithLargeValueRequest model,
-            User _,
-            [FromServices] IServiceAnimalGroupManager groups,
-            [FromServices] IServiceAnimalGroupScriptManager scripts
-        )
-        {
-            var query = this.ExecuteSingleGetQuery(groups, scripts, model.Id ?? -1, model.Value, out AnimalGroup group);
-            foreach(var animal in query)
-                groups.AssignAnimal(group, animal); // TODO: Either add a bulk overload of this function, or add a SaveChanges parameter
-                                                    //       'cus right now this is really inefficient for large groups of animals.
-
-            return new EmptyResult();
         }
 
         private IQueryable<Animal> ExecuteSingleGetQuery(
