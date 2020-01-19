@@ -105,7 +105,7 @@ namespace GroupScript
                 switch(param.DataType)
                 {
                     case GroupScriptTokenType.Keyword_Species:
-                        if (paramValueType.IsAssignableFrom(typeof(int)))
+                        if (paramValueType != typeof(int) && paramValueType != typeof(long))
                             throw new Exception($"For SPECIES parameter '{param.Name}' expected value of type int not {paramValueType}");
                         break;
 

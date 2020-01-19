@@ -41,6 +41,18 @@ namespace GroupScript.Tests
                 "AND~BORN_AFTER 2019-01-01T00:00:00.0000000+00:00~BORN_BEFORE 2020-01-01T00:00:00.0000000+00:00~SPECIES_IS 1~END~", 
                 result
             );
+
+            // Testing specifically to make sure longs can work
+            result = GroupScriptCompiler.CompileToStoredProcedureCode(ast, new Dictionary<string, object>()
+            {
+                { "after", new DateTimeOffset(2019, 1, 1, 0, 0, 0, TimeSpan.FromSeconds(0)) },
+                { "species", 1L }
+            });
+
+            Assert.AreEqual(
+                "AND~BORN_AFTER 2019-01-01T00:00:00.0000000+00:00~BORN_BEFORE 2020-01-01T00:00:00.0000000+00:00~SPECIES_IS 1~END~",
+                result
+            );
         }
     }
 }
