@@ -5,12 +5,12 @@ stages:
   - package
   - build_docs
 
-# test:
-#   stage: test
-#   script:
-#     - dotnet test
-#   except:
-#     - gh-pages
+test:
+  stage: test
+  script:
+    - dotnet test
+  except:
+    - gh-pages
 
 publish_and_package:
   stage: package
