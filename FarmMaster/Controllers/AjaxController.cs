@@ -164,7 +164,7 @@ namespace FarmMaster.Controllers
         #region AnimalGroup.Script
         [HttpPost]
         [FarmAjaxReturnsMessageAndValue(BusinessConstants.Permissions.USE_GROUP_SCRIPTS)]
-        public IActionResult AnimalGroup_Script_CreateAndCompile_AsId(
+        public IActionResult AnimalGroup_Script_CreateAndCompile_AsName(
             [FromBody] AjaxByIdWithLargeValueRequest model,
             User _,
             [FromServices] IServiceAnimalGroupScriptManager scripts
@@ -173,7 +173,7 @@ namespace FarmMaster.Controllers
             var script = scripts.CompileAndCreate(model.Value);
             return new AjaxValueResult(new
             {
-                id = script.AnimalGroupScriptId
+                name = script.Name
             });
         }
 

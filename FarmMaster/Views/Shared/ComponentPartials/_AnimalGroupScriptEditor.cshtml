@@ -349,7 +349,7 @@ else if (Model is AnimalGroupScriptEditorCreateEditViewModel createEditModel)
         <div id="tabGroupScriptExecute" class="tab container hidden">
             <div id="containerGroupScriptParams" class="ui form">
                 <div class="field">
-                    <label>Script:</label>
+                    <label>Script</label>
                     <div class="ui search selection dropdown">
                         <input id="selectGroupScriptToExecute" type="hidden" />
                         <i class="dropdown icon"></i>
@@ -358,8 +358,9 @@ else if (Model is AnimalGroupScriptEditorCreateEditViewModel createEditModel)
                         </div>
                     </div>
                 </div>
-
-                <button id="buttonGroupScriptExecute" class="ui primary button">Execute</button>
+            </div>
+            <div class="ui top padded items">
+                <button id="buttonGroupScriptExecute" class="ui primary fluid button">Execute</button>
             </div>
         </div>
         <div id="tabGroupScriptResults" class="tab container hidden">
@@ -369,11 +370,16 @@ else if (Model is AnimalGroupScriptEditorCreateEditViewModel createEditModel)
             </div>
         </div>
         <div id="tabGroupScriptDelete" class="tab container hidden">
-            <div class="ui search selection dropdown">
-                <input id="selectGroupScriptToDelete" type="hidden" />
-                <i class="dropdown icon"></i>
-                <div class="text"></div>
-                <div class="menu">
+            <div class="ui form">
+                <div class="field">
+                    <label>Script</label>
+                    <div class="ui search selection dropdown">
+                        <input id="selectGroupScriptToDelete" type="hidden" />
+                        <i class="dropdown icon"></i>
+                        <div class="text"></div>
+                        <div class="menu">
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="ui top padded items">
@@ -402,13 +408,19 @@ else if (Model is AnimalGroupScriptEditorCreateEditViewModel createEditModel)
         const buttonCreate = document.getElementById("buttonGroupScriptCreate");
         buttonCreate.addEventListener("click", () => {
             FarmAjax.postWithMessageAndValueResponse(
-                "/Ajax/AnimalGroup_Script_CreateAndCompile_AsId",
+                "/Ajax/AnimalGroup_Script_CreateAndCompile_AsName",
                 {
                     id: -1, // Dummy, unused, and too lazy to make yet another AJAX class.
                     value: getCode()
                 },
-                rv => { // Returned ID isn't used yet.
+                rv => {
                     rv.populateMessageBox(document.getElementById("errorGroupScript"));
+                    if (rv.messageType !== FarmAjaxMessageType.Information)
+                        return;
+
+                    // TODO: Can't add it to the execute dropdown yet, as that needs param info, and I'm lazy.
+                    const dropdownDelete = document.getElementById("selectGroupScriptToDelete").parentElement;
+                    _gs_addItemToDropdown(dropdownDelete, rv.value.name);
                 }
             );
         });
@@ -434,9 +446,8 @@ else if (Model is AnimalGroupScriptEditorCreateEditViewModel createEditModel)
                         },
                         r => {
                             r.populateMessageBox(document.getElementById("errorGroupScriptDelete"));
-                            if (r.messageType !== FarmAjaxMessageType.Information) {
+                            if (r.messageType !== FarmAjaxMessageType.Information)
                                 return;
-                            }
 
                             const menuDelete = dropdownDelete.parentNode.querySelector("div.menu");
                             const menuExecute = dropdownExecute.parentNode.querySelector("div.menu");
