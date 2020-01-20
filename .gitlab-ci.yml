@@ -32,17 +32,17 @@ build_docs:
   stage: build_docs
   image: erothejoker/docker-docfx:latest
   script:
-    - cd Documentation
-    - docfx
     - apt-get update
     - apt-get install git
     - git config --global user.email "sealabjaster@gmail.com"
     - git config --global user.name "Bradley Chatha (CI/CD)"
-    - git remote add pages https://sealabjaster:09c95621373ad79d79739991420941d7fabef640@github.com/Aim-Educational/FarmMaster
+    - git remote add pages https://sealabjaster:$GITHUB_TOKEN@github.com/Aim-Educational/FarmMaster
     - git fetch pages
     - git checkout pages/master
-    - cd ..
     - git subtree add --prefix Documentation/_site pages/gh-pages
+    - cd Documentation
+    - docfx
+    - cd ..
     - git add Documentation/_site/* -f
     - git commit -m "Docs build $CI_COMMIT_SHA"
     - git subtree push --prefix _site Documentation/pages gh-pages
