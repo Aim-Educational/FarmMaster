@@ -41,6 +41,13 @@ namespace FarmMaster.Models
         
     }
 
+    public class AjaxByNameRequest : AjaxRequestModel
+    {
+        [Required]
+        [StringLength(75)]
+        public string Name { get; set; }
+    }
+
     public class AjaxByIdRequest : AjaxRequestModel
     {
         [Required]

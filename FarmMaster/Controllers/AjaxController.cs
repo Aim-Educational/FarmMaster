@@ -217,7 +217,7 @@ namespace FarmMaster.Controllers
         {
             var script = scripts.Query().FirstOrDefault(s => s.Name == model.ScriptName);
             if(script == null)
-                throw new KeyNotFoundException($"No script called '{script.Name}' exists.");
+                throw new KeyNotFoundException($"No script called '{model.ScriptName}' exists.");
 
             return new AjaxValueResult(
                 scripts.ExecuteScriptByName(model.ScriptName, model.Parameters)
@@ -230,6 +230,22 @@ namespace FarmMaster.Controllers
                            imageId = a.ImageId
                        })
             );
+        }
+
+        [HttpPost]
+        [FarmAjaxReturnsMessage(BusinessConstants.Permissions.USE_GROUP_SCRIPTS)]
+        public IActionResult AnimalGroup_Script_ByName_Delete(
+            [FromBody] AjaxByNameRequest model,
+            User _,
+            [FromServices] IServiceAnimalGroupScriptManager scripts
+        )
+        {
+            var script = scripts.Query().FirstOrDefault(s => s.Name == model.Name);
+            if (script == null)
+                throw new KeyNotFoundException($"No script called '{model.Name}' exists.");
+
+            scripts.FullDelete(script);
+            return new EmptyResult();
         }
 
         [HttpPost]

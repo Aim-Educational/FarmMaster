@@ -1,4 +1,8 @@
-﻿@model AnimalGroupScriptEditorViewModel
+﻿<!--
+    REQUIRES "_ModalAreYouSure_NoUndo" PARTIAL TO BE INCLUDED AS WELL.
+-->
+
+@model AnimalGroupScriptEditorViewModel
 <!--Common functions between modes-->
 <script type="module">
     // Tabbing function. Used to swap tabs programatically.
@@ -329,6 +333,7 @@ else if (Model is AnimalGroupScriptEditorCreateEditViewModel createEditModel)
                 <button id="buttonGroupScriptResults" class="ui button">Results</button>
             </div>
             <div class="tab">
+                <button id="buttonGroupScriptDeleteTab" class="ui button">Delete</button>
             </div>
         </div>
         <div id="tabGroupScriptCode" class="tab container">
@@ -363,6 +368,19 @@ else if (Model is AnimalGroupScriptEditorCreateEditViewModel createEditModel)
 
             </div>
         </div>
+        <div id="tabGroupScriptDelete" class="tab container hidden">
+            <div class="ui search selection dropdown">
+                <input id="selectGroupScriptToDelete" type="hidden" />
+                <i class="dropdown icon"></i>
+                <div class="text"></div>
+                <div class="menu">
+                </div>
+            </div>
+            <div class="ui top padded items">
+                <button id="buttonGroupScriptDelete" class="ui red fluid button">Delete Script</button>
+            </div>
+            <div id="errorGroupScriptDelete" class="ui error message transition hidden"></div>
+        </div>
     </section>
 
     <!--Tab controls-->
@@ -370,6 +388,7 @@ else if (Model is AnimalGroupScriptEditorCreateEditViewModel createEditModel)
         _gs_setupTabButton("buttonGroupScriptCode", "tabGroupScriptCode");
         _gs_setupTabButton("buttonGroupScriptTest", "tabGroupScriptExecute");
         _gs_setupTabButton("buttonGroupScriptResults", "tabGroupScriptResults");
+        _gs_setupTabButton("buttonGroupScriptDeleteTab", "tabGroupScriptDelete");
     </script>
 
     <!--Create/Edit-->
@@ -394,6 +413,50 @@ else if (Model is AnimalGroupScriptEditorCreateEditViewModel createEditModel)
             );
         });
     </script>
+
+    <!--Delete-->
+    <script type="module">
+        import { FarmAjax, FarmAjaxMessageType, Modal } from "/js/index.js";
+
+        const dropdownDelete = document.getElementById("selectGroupScriptToDelete");
+        const dropdownExecute = document.getElementById("selectGroupScriptToExecute");
+        const buttonDelete = document.getElementById("buttonGroupScriptDelete");
+
+        buttonDelete.addEventListener("click", () => {
+            Modal.askAreYouSure()
+                .then(() =>
+                {
+                    const name = $(dropdownDelete.parentNode).dropdown("get text");
+                    FarmAjax.postWithMessageResponse(
+                        "/Ajax/AnimalGroup_Script_ByName_Delete",
+                        {
+                            name: name
+                        },
+                        r => {
+                            r.populateMessageBox(document.getElementById("errorGroupScriptDelete"));
+                            if (r.messageType !== FarmAjaxMessageType.Information) {
+                                return;
+                            }
+
+                            const menuDelete = dropdownDelete.parentNode.querySelector("div.menu");
+                            const menuExecute = dropdownExecute.parentNode.querySelector("div.menu");
+
+                            // Both menus are in sync item-order wise, so this should be fine.
+                            for (let i = 0; i < menuDelete.childElementCount; i++) {
+                                if (menuDelete.childNodes.item(i).innerText == name) {
+                                    menuDelete.removeChild(menuDelete.childNodes.item(i));
+                                    menuExecute.removeChild(menuExecute.childNodes.item(i));
+                                    break;
+                                }
+                            }
+
+                            $(dropdownDelete.parentNode).dropdown();
+                            $(dropdownExecute.parentNode).dropdown();
+                        }
+                    );
+                });
+        });
+    </script>
 }
 
 <!--Execute(both types contain this tab)-->
@@ -412,14 +475,30 @@ else if (Model is AnimalGroupScriptEditorCreateEditViewModel createEditModel)
             }
         }`)
         .then(data => {
+            // The Create/Edit version has a dropdown for deleting scripts, so logically that'd be handled here as well.
+            @if(Model is AnimalGroupScriptEditorCreateEditViewModel)
+            {
+                @:const dropdownDelete = document.getElementById("selectGroupScriptToDelete").parentElement;
+            }
+
             for (const script of data.animalGroupScripts) {
                 let value = "";
                 for (const param of script.parameters)
                     value = value + param.name + " " + param.typeName + " ";
 
                 _gs_addItemToDropdown(dropdown, script.name, value);
+
+                @if(Model is AnimalGroupScriptEditorCreateEditViewModel)
+                {
+                    @:_gs_addItemToDropdown(dropdownDelete, script.name, value);
+                }
             }
+
             $(dropdown).dropdown();
+            @if(Model is AnimalGroupScriptEditorCreateEditViewModel)
+            {
+                @:$(dropdownDelete).dropdown();
+            }
         });
 
     dropdown.addEventListener("change", () => {

@@ -9,7 +9,8 @@ using System.Threading.Tasks;
 
 namespace FarmMaster.Services
 {
-    public interface IServiceAnimalGroupScriptManager : IServiceEntityManager<AnimalGroupScript>
+    public interface IServiceAnimalGroupScriptManager : IServiceEntityManager<AnimalGroupScript>,
+                                                        IServiceEntityManagerFullDeletion<AnimalGroupScript>
     {
         AnimalGroupScript CompileAndCreate(string code);
         IQueryable<Animal> ExecuteScriptByName(string name, IDictionary<string, object> parameters = null);
@@ -87,6 +88,12 @@ namespace FarmMaster.Services
         public void Update(AnimalGroupScript entity)
         {
             this._context.Update(entity);
+            this._context.SaveChanges();
+        }
+
+        public void FullDelete(AnimalGroupScript entity)
+        {
+            this._context.Remove(entity);
             this._context.SaveChanges();
         }
     }
