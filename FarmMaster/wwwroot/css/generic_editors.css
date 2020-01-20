@@ -176,9 +176,16 @@ section.tabbed {
       flex-direction: column;
       width: 25%;
       padding: 0.5em 0.5em 0.5em 0.5em;
-      background-color: #e0e0e0; }
+      background-color: #e0e0e0;
+      border-bottom-color: #e0e0e0; }
       section.tabbed div.tabs div.tab.active {
-        background-color: #cccccc; }
+        background-color: #cccccc;
+        border-bottom-width: 3px;
+        border-bottom-style: solid;
+        border-bottom-color: #0080ff;
+        transition: border-color linear 0.3s; }
+        section.tabbed div.tabs div.tab.active button.ui.button {
+          background-color: #cccccc; }
   section.tabbed div.tab.container {
     display: flex;
     flex-direction: column;

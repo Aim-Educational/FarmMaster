@@ -281,9 +281,19 @@ section.tabbed {
             width: 25%;
             padding: 0.5em 0.5em 0.5em 0.5em;
             background-color: hsl(0, 0, 88%);
+            border-bottom-color: hsl(0, 0, 88%); // To make the border transition work properly
 
             &.active {
                 background-color: hsl(0, 0, 80%);
+                border-bottom-width: 3px;
+                border-bottom-style: solid;
+                border-bottom-color: rgb(0, 128, 255);
+                transition: border-color linear 0.3s;
+
+                // Make Semantic UI buttons keep their "active" colour.
+                button.ui.button {
+                    background-color: hsl(0, 0, 80%);
+                }
             }
         }
     }
