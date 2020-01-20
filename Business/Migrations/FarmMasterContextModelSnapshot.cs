@@ -157,6 +157,29 @@ namespace Business.Migrations
                     b.ToTable("AnimalGroups");
                 });
 
+            modelBuilder.Entity("Business.Model.AnimalGroupScript", b =>
+                {
+                    b.Property<int>("AnimalGroupScriptId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Code")
+                        .HasMaxLength(8192);
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(75);
+
+                    b.Property<byte[]>("Timestamp")
+                        .IsConcurrencyToken()
+                        .ValueGeneratedOnAddOrUpdate();
+
+                    b.HasKey("AnimalGroupScriptId");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
+
+                    b.ToTable("AnimalGroupScripts");
+                });
+
             modelBuilder.Entity("Business.Model.Breed", b =>
                 {
                     b.Property<int>("BreedId")

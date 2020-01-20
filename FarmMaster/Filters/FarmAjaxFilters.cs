@@ -80,8 +80,8 @@ namespace FarmMaster.Filters
         public override void OnActionExecuted(ActionExecutedContext context)
         {
             var result = context.Result as AjaxValueResult;
-            if (result == null)
-                throw new InvalidOperationException($"The result *must* be of type AjaxValueResult, not {result.GetType()}.");
+            if (result == null && context.Result != null) // If both are null, then an exception bubbled up.
+                throw new InvalidOperationException($"The result *must* be of type AjaxValueResult, not {context.Result?.GetType()}.");
 
             if (context.Exception == null)
             {

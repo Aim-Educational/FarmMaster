@@ -149,6 +149,10 @@ namespace Business.Model
              .HasIndex(nameof(MapAnimalToAnimalGroup.AnimalGroupId), nameof(MapAnimalToAnimalGroup.AnimalId))
              .IsUnique();
 
+            b.Entity<AnimalGroupScript>()
+             .HasIndex(s => s.Name)
+             .IsUnique();
+
             this.SeedRolePermissions(b);
             this.SeedHoldingRegistrations(b);
             this.SeedLifeEvents(b);
@@ -185,6 +189,7 @@ namespace Business.Model
         public DbSet<ImageData>                         ImageData                        { get; set; }
         public DbSet<AnimalGroup>                       AnimalGroups                     { get; set; }
         public DbSet<MapAnimalToAnimalGroup>            MapAnimalToAnimalGroups          { get; set; }
+        public DbSet<AnimalGroupScript>                 AnimalGroupScripts               { get; set; }
         #endregion
 
         #region Data seeding
@@ -228,7 +233,9 @@ namespace Business.Model
                 (Perms.CREATE_ANIMAL_GROUPS,    "Create Animal Groups"),
                 (Perms.DELETE_ANIMAL_GROUPS,    "Delete Animal Groups"),
                 (Perms.EDIT_ANIMAL_GROUPS,      "Edit Animal Groups"),
-                (Perms.VIEW_ANIMAL_GROUPS,      "View Animal Groups")
+                (Perms.VIEW_ANIMAL_GROUPS,      "View Animal Groups"),
+
+                (Perms.USE_GROUP_SCRIPTS,       "Use (create/edit) Group Scripts")
             };
 
             // Try to keep things in the same order please, future me...

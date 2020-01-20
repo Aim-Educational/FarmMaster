@@ -82,16 +82,17 @@ namespace FarmMaster
             });
 
             // Data managers
-            services.AddScoped<IServiceUserManager,             ServiceUserManager>();
-            services.AddScoped<IServiceContactManager,          ServiceContactManager>();
-            services.AddScoped<IServiceRoleManager,             ServiceRoleManager>();
-            services.AddScoped<IServiceHoldingManager,          ServiceHoldingManager>();
-            services.AddScoped<IServiceSpeciesBreedManager,     ServiceSpeciesBreedManager>();
-            services.AddScoped<IServiceCharacteristicManager,   ServiceCharacteristicManager>();
-            services.AddScoped<IServiceLifeEventManager,        ServiceLifeEventManager>();
-            services.AddScoped<IServiceAnimalManager,           ServiceAnimalManager>();
-            services.AddScoped<IServiceImageManager,            ServiceImageManager>();
-            services.AddScoped<IServiceAnimalGroupManager,      ServiceAnimalGroupManager>();
+            services.AddScoped<IServiceUserManager,                 ServiceUserManager>();
+            services.AddScoped<IServiceContactManager,              ServiceContactManager>();
+            services.AddScoped<IServiceRoleManager,                 ServiceRoleManager>();
+            services.AddScoped<IServiceHoldingManager,              ServiceHoldingManager>();
+            services.AddScoped<IServiceSpeciesBreedManager,         ServiceSpeciesBreedManager>();
+            services.AddScoped<IServiceCharacteristicManager,       ServiceCharacteristicManager>();
+            services.AddScoped<IServiceLifeEventManager,            ServiceLifeEventManager>();
+            services.AddScoped<IServiceAnimalManager,               ServiceAnimalManager>();
+            services.AddScoped<IServiceImageManager,                ServiceImageManager>();
+            services.AddScoped<IServiceAnimalGroupManager,          ServiceAnimalGroupManager>();
+            services.AddScoped<IServiceAnimalGroupScriptManager,    ServiceAnimalGroupScriptManager>();
 
             // Other services
             services.AddScoped<IServiceGdpr, ServiceGdprAggregator>();

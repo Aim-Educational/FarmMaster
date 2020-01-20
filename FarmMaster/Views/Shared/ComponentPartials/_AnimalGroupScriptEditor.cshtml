@@ -1,0 +1,660 @@
+﻿<!--
+    REQUIRES "_ModalAreYouSure_NoUndo" PARTIAL TO BE INCLUDED AS WELL.
+-->
+
+@model AnimalGroupScriptEditorViewModel
+<!--Common functions between modes-->
+<script type="module">
+    // Tabbing function. Used to swap tabs programatically.
+    function swapToContainer(containerId) {
+        const container = document.getElementById(containerId);
+        for (const otherContainer of container.parentNode.querySelectorAll("div.tab.container"))
+            otherContainer.classList.add("hidden");
+
+        container.classList.remove("hidden");
+
+        const button = document.getElementById(container.dataset.button);
+        for (const otherButton of button.parentNode.parentNode.querySelectorAll("div.tab.active"))
+            otherButton.classList.remove("active");
+
+        button.parentNode.classList.add("active");
+    }
+    window._gs_swapToContainer = swapToContainer;
+
+    // Tabbing function. Used to pair a tab button to a container.
+    function setupTabButton(buttonId, containerId) {
+        const button = document.getElementById(buttonId);
+        const container = document.getElementById(containerId);
+        container.dataset.button = buttonId;
+
+        button.addEventListener("click", () => {
+            swapToContainer(containerId);
+        });
+    }
+    window._gs_setupTabButton = setupTabButton;
+
+    // Results function. Adds an animal card to the given animal grid (.animal.card.three.grid)
+    function addAnimalCard(animalGrid, idNameImageId) {
+        const animalCard = animalGrid.appendChild(document.createElement("div"));
+        animalCard.classList.add("animal", "card");
+        animalCard.dataset.animalId = idNameImageId.id;
+        {
+            const a = animalCard.appendChild(document.createElement("a"));
+            a.href = "/Animal/Edit/" + idNameImageId.id;
+            a.target = "_blank";
+            {
+                const uiCard = a.appendChild(document.createElement("div"));
+                uiCard.classList.add("ui", "card");
+                {
+                    const image = uiCard.appendChild(document.createElement("div"));
+                    image.classList.add("image");
+                    {
+                        const img = image.appendChild(document.createElement("img"));
+                        img.src = "/Image/Get?imageId=" + idNameImageId.imageId + "&width=664&height=700";
+                    }
+
+                    const content = uiCard.appendChild(document.createElement("div"));
+                    content.classList.add("content");
+                    {
+                        const header = content.appendChild(document.createElement("div"));
+                        header.classList.add("header");
+                        header.innerText = idNameImageId.name;
+                    }
+                }
+            }
+        }
+    }
+    window._gs_addAnimalCard = addAnimalCard;
+
+    // This really should be in some kind of util library :P
+    // TODO:!
+    function addItemToDropdown(dropdown, name, value = null, isActive = false) {
+        const menu = dropdown.querySelector(".menu");
+        const div = menu.appendChild(document.createElement("div"));
+        div.classList.add("item");
+        div.dataset.value = (value === null) ? name : value;
+        div.innerHTML = name;
+
+        if (isActive)
+            $(dropdown).dropdown("set selected", value);
+    }
+    window._gs_addItemToDropdown = addItemToDropdown;
+</script>
+
+<!--Parameter interface generation-->
+<script type="module">
+    import { GraphQL } from "/js/index.js";
+
+    // Enum of the different data types a parameter can be.
+    window._gs_ParamType = {
+        SPECIES: 0
+    };
+
+    window._gs_cache = {};              // Cache data, so we don't have to perform multiple requests.
+    window._gs_paramAggregators = [];   // Functions that aggregate all the parameter data for a request.
+
+    // aka. The value string from the script selects.
+    window._gs_parseParamValueString = function (valueString) {
+        // Current format: [name]<space>[type]<space>[etc..]
+        // Andy, if you ever dive deep into this mess, I'm sorry ;))
+
+        if (valueString.length == 0)
+            return [];
+
+        let toReturn = [];
+        const list = valueString.split(" ");
+        for (let i = 0; i < list.length; i++) {
+            const value = list[i];
+            if (value.length == 0) // E.g. random empty space that's usually at the end.
+                continue;
+
+            // Don't trust JS to do this in lexical order(across browsers), so doing it with seperate variables.
+            const name = list[i++];
+            let type = "";
+
+            // TODO: This is just dumb shit until I can be bothered to code it as an enum properly, on the server side.
+            switch (list[i]) {
+                case "Keyword_Species":
+                    type = _gs_ParamType.SPECIES;
+                    break;
+
+                default: alert(list[i]);
+            }
+
+            toReturn.push({
+                name: name,
+                type: type
+            });
+        }
+
+        return toReturn;
+    };
+
+    // BUG: If a parameter has multiple species, and we haven't cached yet, then
+    //      multiple requests might be sent.
+    //
+    //      Too minor an issue to bother with atm.
+    function getOrCacheSpecies() {
+        if (_gs_cache.species)
+            return new Promise((resolve, reject) => resolve(_gs_cache.species));
+
+        return GraphQL
+            .query(`query CacheSpecies {
+                species {
+                    name
+                    id
+                }
+            }`)
+            .then(data => {
+                _gs_cache.species = data;
+                return data;
+            });
+    }
+
+    window._gs_generateParamInputInterface = function (parentNode, nameType) {
+        // Not doing the usual formatting of making DOM elements, since it'd get too unweidly for this function.
+        const div = parentNode.appendChild(document.createElement("div"));
+        div.classList.add("field");
+
+        const label = div.appendChild(document.createElement("label"));
+        label.innerText = nameType.name;
+
+        switch (nameType.type) {
+            case _gs_ParamType.SPECIES:
+                const dropdown = div.appendChild(document.createElement("div"));
+                dropdown.classList.add("ui", "search", "selection", "dropdown");
+
+                const input = dropdown.appendChild(document.createElement("input"));
+                input.type = "hidden";
+
+                const i = dropdown.appendChild(document.createElement("i"));
+                i.classList.add("dropdown", "icon");
+
+                const text = dropdown.appendChild(document.createElement("div"));
+                text.classList.add("text");
+
+                const menu = dropdown.appendChild(document.createElement("div"));
+                menu.classList.add("menu");
+
+                getOrCacheSpecies().then(data => {
+                    for (const species of data.species)
+                        _gs_addItemToDropdown(dropdown, species.name, species.id);
+
+                    $(dropdown).dropdown();
+                });
+
+                _gs_paramAggregators.push((result) => result[nameType.name] = Number(input.value));
+                break;
+
+            default: alert("Unknown type: " + nameType.type);
+        }
+    }
+</script>
+
+@if (Model is AnimalGroupScriptEditorSingleUseViewModel singleUseModel)
+{
+    <section class="tabbed">
+        <div class="tabs">
+            <div class="tab active">
+                <button id="buttonGroupScriptCode" class="ui button">Code</button>
+            </div>
+            <div class="tab">
+                <button id="buttonGroupScriptExecuteTab" class="ui button">Execute</button>
+            </div>
+            <div class="tab">
+                <button id="buttonGroupScriptResults" class="ui button">Results</button>
+            </div>
+            <div class="tab">
+            </div>
+        </div>
+        <div id="tabGroupScriptCode" class="tab container">
+            <div class="ui warning message">
+                NOTE: This is a <strong>single use</strong> script. All code in the textbox below should act like it is inside of a
+                ROUTINE block. The NAME and PARAMETERS blocks are handled automatically.
+            </div>
+            <textarea id="codeGroupScript" class="code" rows="10"></textarea>
+            <div id="errorGroupScript" class="ui error message transition hidden"></div>
+            <div class="top padded items"></div>
+            <button id="buttonExecuteGroupScript" class="ui primary button">Preview Results</button>
+        </div>
+        <div id="tabGroupScriptExecute" class="tab container hidden">
+            <div id="containerGroupScriptParams" class="ui form">
+                <div class="field">
+                    <label>Script:</label>
+                    <div class="ui search selection dropdown">
+                        <input id="selectGroupScriptToExecute" type="hidden" />
+                        <i class="dropdown icon"></i>
+                        <div class="text"></div>
+                        <div class="menu">
+                        </div>
+                    </div>
+                </div>
+
+                <button id="buttonGroupScriptExecute" class="ui primary button">Execute</button>
+            </div>
+        </div>
+        <div id="tabGroupScriptResults" class="tab container hidden">
+            <button id="buttonConfirmGroupScriptResults" class="ui primary button">Add listed animals to group</button>
+            <div class="top padded items"></div>
+            <div class="animal card three grid">
+
+            </div>
+        </div>
+    </section>
+
+    <!--Tab controls-->
+    <script type="module">
+        _gs_setupTabButton("buttonGroupScriptCode", "tabGroupScriptCode");
+        _gs_setupTabButton("buttonGroupScriptExecuteTab", "tabGroupScriptExecute");
+        _gs_setupTabButton("buttonGroupScriptResults", "tabGroupScriptResults");
+    </script>
+
+    <!--Execution-->
+    <script type="module">
+        import { FarmAjax, FarmAjaxMessageType } from "/js/index.js";
+
+        function getRawCode() {
+            var code = document.getElementById("codeGroupScript").value;
+            code = "NAME automatico PARAMETERS END ROUTINE \n" + code + "\n END";
+
+            return code;
+        }
+
+        document.getElementById("buttonExecuteGroupScript").onclick = () => {
+            document.getElementById("errorGroupScript").classList.remove("visible");
+
+            const code = getRawCode();
+            FarmAjax.postWithMessageAndValueResponse(
+                "/Ajax/AnimalGroup_ById_Script_ExecuteSingleUse_AsNameIdImageId",
+                {
+                    id: @singleUseModel.GroupId,
+                    value: code
+                },
+                rv => {
+                    if (rv.messageType !== FarmAjaxMessageType.Information) {
+                        rv.populateMessageBox(document.getElementById("errorGroupScript"));
+                        return;
+                    }
+
+                    const animalGrid = document.getElementById("tabGroupScriptResults").querySelector("div.animal.card.three.grid");
+                    animalGrid.innerHTML = "";
+                    for (const idNameImageId of rv.value)
+                        _gs_addAnimalCard(animalGrid, idNameImageId);
+
+                    _gs_swapToContainer("tabGroupScriptResults");
+                }
+            );
+        }
+    </script>
+
+    <!--Results-->
+    <script type="module">
+        import { FarmAjax, FarmAjaxMessageType } from "/js/index.js";
+
+        const button = document.getElementById("buttonConfirmGroupScriptResults");
+        button.addEventListener("click", () => {
+            const animalGrid = document.getElementById("tabGroupScriptResults").querySelector("div.animal.card.three.grid");
+            const animalIds = [];
+
+            for (const card of animalGrid.querySelectorAll("div.animal.card"))
+                animalIds.push(Number(card.dataset.animalId));
+
+            FarmAjax.postWithMessageResponse(
+                "/Ajax/AnimalGroup_ById_Script_AddAllAnimals_ById",
+                {
+                    id: @singleUseModel.GroupId,
+                    list: animalIds
+                },
+                r => {
+                    if (r.messageType !== FarmAjaxMessageType.Information) {
+                        r.populateMessageBox(document.getElementById("errorGroupScript"));
+                        return;
+                    }
+
+                    const newAnimalGrid = document.getElementById("@singleUseModel.AnimalGridId");
+                    while (animalGrid.childNodes.length > 0)
+                        newAnimalGrid.appendChild(animalGrid.childNodes.item(0));
+                }
+            );
+        });
+    </script>
+}
+else if (Model is AnimalGroupScriptEditorCreateEditViewModel createEditModel)
+{
+    <section class="tabbed">
+        <div class="tabs">
+            <div class="tab active">
+                <button id="buttonGroupScriptCode" class="ui button">Code</button>
+            </div>
+            <div class="tab">
+                <button id="buttonGroupScriptTest" class="ui button">Test</button>
+            </div>
+            <div class="tab">
+                <button id="buttonGroupScriptResults" class="ui button">Results</button>
+            </div>
+            <div class="tab">
+                <button id="buttonGroupScriptDeleteTab" class="ui button">Delete</button>
+            </div>
+        </div>
+        <div id="tabGroupScriptCode" class="tab container">
+            <button id="buttonGroupScriptCreateNew" class="ui primary fluid button">Create a new script</button>
+            <div class="ui horizontal divider">
+                Or
+            </div>
+            <div class="ui form">
+                <div class="field">
+                    <div class="ui search selection dropdown">
+                        <input id="selectGroupScriptToEdit" type="hidden" />
+                        <i class="dropdown icon"></i>
+                        <div class="text"></div>
+                        <div class="menu">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="top padded items">
+                <button id="buttonGroupScriptEdit" class="ui primary fluid button">Edit an existing script</button>
+            </div>
+        </div>
+        <div id="tabGroupScriptCodeEditor" class="tab container hidden">
+            <button id="buttonGroupScriptBack" class="ui tiny secondary button">Back</button>
+            <div class="ui warning message">
+                NOTE: A more user-friendly interface will come a bit later on.
+            </div>
+            <textarea id="codeGroupScript" class="code" rows="10"></textarea>
+            <div id="errorGroupScript" class="ui error message transition hidden"></div>
+
+            <div class="top padded items"></div>
+            <button id="buttonGroupScriptCreateOrEdit" class="ui primary button">Create</button>
+        </div>
+        <div id="tabGroupScriptExecute" class="tab container hidden">
+            <div id="containerGroupScriptParams" class="ui form">
+                <div class="field">
+                    <label>Script</label>
+                    <div class="ui search selection dropdown">
+                        <input id="selectGroupScriptToExecute" type="hidden" />
+                        <i class="dropdown icon"></i>
+                        <div class="text"></div>
+                        <div class="menu">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ui top padded items">
+                <button id="buttonGroupScriptExecute" class="ui primary fluid button">Execute</button>
+            </div>
+        </div>
+        <div id="tabGroupScriptResults" class="tab container hidden">
+            <div class="top padded items"></div>
+            <div class="animal card three grid">
+
+            </div>
+        </div>
+        <div id="tabGroupScriptDelete" class="tab container hidden">
+            <div class="ui form">
+                <div class="field">
+                    <label>Script</label>
+                    <div class="ui search selection dropdown">
+                        <input id="selectGroupScriptToDelete" type="hidden" />
+                        <i class="dropdown icon"></i>
+                        <div class="text"></div>
+                        <div class="menu">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ui top padded items">
+                <button id="buttonGroupScriptDelete" class="ui red fluid button">Delete Script</button>
+            </div>
+            <div id="errorGroupScriptDelete" class="ui error message transition hidden"></div>
+        </div>
+    </section>
+
+    <!--Tab controls & Global setup-->
+    <script type="module">
+        window._gs_CodeMode = {
+            CREATE: 0,
+            EDIT: 1
+        };
+
+        window._gs_currentMode = null; // Just so it has a value.
+
+        _gs_setupTabButton("buttonGroupScriptCode", "tabGroupScriptCode");
+        _gs_setupTabButton("buttonGroupScriptTest", "tabGroupScriptExecute");
+        _gs_setupTabButton("buttonGroupScriptResults", "tabGroupScriptResults");
+        _gs_setupTabButton("buttonGroupScriptDeleteTab", "tabGroupScriptDelete");
+    </script>
+
+    <!--Create/Edit-->
+    <script type="module">
+        import { FarmAjax, FarmAjaxMessageType, GraphQL } from "/js/index.js";
+        
+        const buttonCreateOrEdit = document.getElementById("buttonGroupScriptCreateOrEdit");
+
+        const buttonCreateNew = document.getElementById("buttonGroupScriptCreateNew"); // Changes mode to create, doesn't actually create.
+        buttonCreateNew.addEventListener("click", () => {
+            _gs_setupTabButton("buttonGroupScriptCode", "tabGroupScriptCodeEditor");
+            _gs_swapToContainer("tabGroupScriptCodeEditor");
+            _gs_currentMode = _gs_CodeMode.CREATE;
+
+            buttonCreateOrEdit.innerText = "Create";
+        });
+
+        const buttonBack = document.getElementById("buttonGroupScriptBack");
+        buttonBack.addEventListener("click", () => {
+            _gs_setupTabButton("buttonGroupScriptCode", "tabGroupScriptCode");
+            _gs_swapToContainer("tabGroupScriptCode");
+        });
+
+        const buttonEdit = document.getElementById("buttonGroupScriptEdit");
+        buttonEdit.addEventListener("click", () => {
+            window._gs_scriptName = $(document.getElementById("selectGroupScriptToEdit").parentNode).dropdown("get text");
+            GraphQL.query(
+                    `query GetScriptCode($name: ID) {
+                        animalGroupScripts(name:$name) {
+                            code
+                        }
+                    }`,
+                    { name: _gs_scriptName }
+                )
+                .then(data => {
+                    if (data.animalGroupScripts.length == 0)
+                        return;
+                    
+                    _gs_setupTabButton("buttonGroupScriptCode", "tabGroupScriptCodeEditor");
+                    _gs_swapToContainer("tabGroupScriptCodeEditor");
+                    _gs_currentMode = _gs_CodeMode.EDIT;
+
+                    document.getElementById("codeGroupScript").value = data.animalGroupScripts[0].code;
+                    buttonCreateOrEdit.innerText = "Edit";
+                });
+        });
+
+        function getCode() {
+            return document.getElementById("codeGroupScript").value;
+        }
+
+        buttonCreateOrEdit.addEventListener("click", () => {
+            if (_gs_currentMode === _gs_CodeMode.CREATE) {
+                FarmAjax.postWithMessageAndValueResponse(
+                    "/Ajax/AnimalGroup_Script_CreateAndCompile_AsName",
+                    {
+                        id: -1, // Dummy, unused, and too lazy to make yet another AJAX class.
+                        value: getCode()
+                    },
+                    rv => {
+                        rv.populateMessageBox(document.getElementById("errorGroupScript"));
+                        if (rv.messageType !== FarmAjaxMessageType.Information)
+                            return;
+
+                        // TODO: Can't add it to the execute dropdown yet, as that needs param info, and I'm lazy.
+                        const dropdownDelete = document.getElementById("selectGroupScriptToDelete").parentElement;
+                        const dropdownEdit = document.getElementById("selectGroupScriptToEdit").parentElement;
+                        _gs_addItemToDropdown(dropdownDelete, rv.value.name);
+                        _gs_addItemToDropdown(dropdownEdit, rv.value.name);
+                    }
+                );
+            }
+            else if (_gs_currentMode == _gs_CodeMode.EDIT) {
+                FarmAjax.postWithMessageResponse(
+                    "/Ajax/AnimalGroup_Script_ByName_EditCode",
+                    {
+                        name: _gs_scriptName,
+                        value: getCode()
+                    },
+                    r => {
+                        r.populateMessageBox(document.getElementById("errorGroupScript"));
+                    }
+                );
+            }
+            else
+                alert("Unknown mode: " + JSON.stringify(_gs_currentMode));
+        });
+    </script>
+
+    <!--Delete-->
+    <script type="module">
+        import { FarmAjax, FarmAjaxMessageType, Modal } from "/js/index.js";
+
+        const dropdownDelete = document.getElementById("selectGroupScriptToDelete");
+        const dropdownExecute = document.getElementById("selectGroupScriptToExecute");
+        const dropdownEdit = document.getElementById("selectGroupScriptToEdit");
+        const buttonDelete = document.getElementById("buttonGroupScriptDelete");
+
+        buttonDelete.addEventListener("click", () => {
+            Modal.askAreYouSure()
+                .then(() =>
+                {
+                    const name = $(dropdownDelete.parentNode).dropdown("get text");
+                    FarmAjax.postWithMessageResponse(
+                        "/Ajax/AnimalGroup_Script_ByName_Delete",
+                        {
+                            name: name
+                        },
+                        r => {
+                            r.populateMessageBox(document.getElementById("errorGroupScriptDelete"));
+                            if (r.messageType !== FarmAjaxMessageType.Information)
+                                return;
+
+                            const menuDelete = dropdownDelete.parentNode.querySelector("div.menu");
+                            const menuExecute = dropdownExecute.parentNode.querySelector("div.menu");
+                            const menuEdit = dropdownEdit.parentNode.querySelector("div.menu");
+
+                            // All menus are in sync item-order wise, so this should be fine.
+                            for (let i = 0; i < menuDelete.childElementCount; i++) {
+                                if (menuDelete.childNodes.item(i).innerText == name) {
+                                    menuDelete.removeChild(menuDelete.childNodes.item(i));
+                                    menuExecute.removeChild(menuExecute.childNodes.item(i));
+                                    menuEdit.removeChild(menuEdit.childNodes.item(i));
+                                    break;
+                                }
+                            }
+                        }
+                    );
+                });
+        });
+    </script>
+}
+
+<!--Execute(both types contain this tab)-->
+<script type="module">
+    import { FarmAjax, FarmAjaxMessageType, GraphQL } from "/js/index.js";
+
+    const dropdown = document.getElementById("selectGroupScriptToExecute").parentNode;
+    GraphQL
+        .query(`query GetScriptNames {
+            animalGroupScripts {
+                name
+                parameters {
+                    name
+                    typeName
+                }
+            }
+        }`)
+        .then(data => {
+            // The Create/Edit version has a dropdown for deleting and editing scripts, so logically that'd be handled here as well.
+            @if(Model is AnimalGroupScriptEditorCreateEditViewModel)
+            {
+                @:const dropdownDelete = document.getElementById("selectGroupScriptToDelete").parentElement;
+                @:const dropdownEdit = document.getElementById("selectGroupScriptToEdit").parentElement;
+            }
+
+            for (const script of data.animalGroupScripts) {
+                let value = "";
+                for (const param of script.parameters)
+                    value = value + param.name + " " + param.typeName + " ";
+
+                _gs_addItemToDropdown(dropdown, script.name, value);
+
+                @if(Model is AnimalGroupScriptEditorCreateEditViewModel)
+                {
+                    @:_gs_addItemToDropdown(dropdownDelete, script.name, value);
+                    @:_gs_addItemToDropdown(dropdownEdit, script.name, value);
+                }
+            }
+
+            $(dropdown).dropdown();
+            @if(Model is AnimalGroupScriptEditorCreateEditViewModel)
+            {
+                @:$(dropdownDelete).dropdown();
+                @:$(dropdownEdit).dropdown();
+            }
+        });
+
+    dropdown.addEventListener("change", () => {
+        const params = _gs_parseParamValueString(dropdown.querySelector("input").value);
+        const container = document.getElementById("containerGroupScriptParams");
+
+        _gs_paramAggregators = []; // Reset aggregators for the previous inputs.
+
+        let skipFirst = true; // First field is the script dropdown.
+        for (const field of container.querySelectorAll("div.field")) {
+            if (skipFirst) {
+                skipFirst = false;
+                continue;
+            }
+
+            container.removeChild(field);
+        }
+
+        if (params.length > 0) {
+            for (const param of params)
+                _gs_generateParamInputInterface(container, param);
+        }
+    });
+
+    document.getElementById("buttonGroupScriptExecute").addEventListener("click", () => {
+        const request = {
+            scriptName: $(document.getElementById("selectGroupScriptToExecute").parentNode).dropdown("get text"),
+            parameters: {},
+            animalGroupId: null
+        };
+
+        for (const func of _gs_paramAggregators)
+            func(request.parameters);
+
+        @if(Model is AnimalGroupScriptEditorSingleUseViewModel singleUse)
+        {
+            @:request.animalGroupId = @singleUse.GroupId;
+        }
+
+        FarmAjax.postWithMessageAndValueResponse(
+            "/Ajax/AnimalGroup_Script_ByName_Execute_AsNameIdImageId",
+            request,
+            rv => {
+                if (rv.messageType !== FarmAjaxMessageType.Information) {
+                    _gs_swapToContainer("tabGroupScriptCode"); // meh... Not a great place for this particular error box, move eventually.
+                    rv.populateMessageBox(document.getElementById("errorGroupScript"));
+                    return;
+                }
+
+                const animalGrid = document.getElementById("tabGroupScriptResults").querySelector("div.animal.card.three.grid");
+                animalGrid.innerHTML = "";
+                for (const idNameImageId of rv.value)
+                    _gs_addAnimalCard(animalGrid, idNameImageId);
+
+                _gs_swapToContainer("tabGroupScriptResults");
+            }
+        );
+    });
+</script>

@@ -218,6 +218,27 @@ namespace FarmMaster.GraphQL
                                  .OrderBy(g => g.Name);
                 }
             );
+            Field<ListGraphType<AnimalGroupScriptGraphType>>(
+                "animalGroupScripts",
+                arguments: new QueryArguments(
+                new QueryArgument<IdGraphType>
+                {
+                    Name = "name",
+                    Description = "Filter by a specific script name.",
+                    DefaultValue = null
+                }),
+                resolve: graphql => 
+                { 
+                    // Arguments
+                    var name = graphql.GetArgument<string>("name");
+
+                    var scripts = context.GetRequiredService<IServiceAnimalGroupScriptManager>();
+
+                    return scripts.Query()
+                                  .Where(s => name == null || s.Name == name)
+                                  .OrderBy(s => s.Name);
+                }
+            );
         }
     }
 
@@ -234,7 +255,10 @@ namespace FarmMaster.GraphQL
             services.AddSingleton<LifeEventGraphType>();
             services.AddSingleton<LifeEventEntryGraphType>();
             services.AddSingleton<AnimalGroupGraphType>();
+            services.AddSingleton<AnimalGroupScriptGraphType>();
+            services.AddSingleton<AnimalGroupScriptParameterGraphType>();
             services.AddSingleton<ListGraphType<LifeEventEntryGraphType>>();
+            services.AddSingleton<ListGraphType<AnimalGroupScriptParameterGraphType>>();
             services.AddSingleton<EnumerationGraphType<Animal.Gender>>();
             services.AddSingleton<EnumerationGraphType<LifeEvent.TargetType>>();
             services.AddSingleton<IntGraphType>();
