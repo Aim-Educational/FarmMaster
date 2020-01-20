@@ -3,11 +3,14 @@ image: mcr.microsoft.com/dotnet/core/sdk:2.2-bionic
 stages:
   - test
   - package
+  - build_docs
 
 test:
   stage: test
   script:
     - dotnet test
+  except:
+    - gh-pages
 
 publish_and_package:
   stage: package
@@ -21,3 +24,26 @@ publish_and_package:
       - deploy-package.tar
   only:
     - tags
+  except:
+    - gh-pages
+
+# http://www.hardkoded.com/blog/creating-docfx-site
+build_docs:
+  stage: build_docs
+  image: mono:latest
+  script:
+    - cd Documentation
+    - mono docfx
+    - apt-get update
+    - apt-get install git
+    - git config --global user.email "sealabjaster@gmail.com"
+    - git config --global user.name "Bradley Chatha (CI/CD)"
+    - git remote add pages https://sealabjaster:09c95621373ad79d79739991420941d7fabef640@github.com/Aim-Educational/FarmMaster
+    - git fetch pages
+    - git checkout master
+    - git subtree add --prefix _site pages/gh-pages
+    - git add _site/* -f
+    - git commit -m "Docs build $CI_COMMIT_SHA"
+    - git subtree push --prefix _site pages gh-pages
+  only:
+    - gh-pages
