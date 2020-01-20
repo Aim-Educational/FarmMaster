@@ -46,4 +46,4 @@ build_docs:
     - git commit -m "Docs build $CI_COMMIT_SHA"
     - git subtree push --prefix _site pages gh-pages
   only:
-    - gh-pages
+    - master
