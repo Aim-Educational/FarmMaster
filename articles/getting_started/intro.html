@@ -1,0 +1,190 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Getting started </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Getting started ">
+    <meta name="generator" content="docfx 2.43.3.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="getting-started">Getting started</h1>
+
+<p>This section is mostly about getting FarmMaster cloned and setup on your local computer, so you can start
+work on developing the program.</p>
+<h2 id="requisites">Requisites</h2>
+<ul>
+<li><a href="https://dotnet.microsoft.com/download">dotnet 2.2+ SDK and runtime (3.x also works)</a></li>
+<li><a href="https://visualstudio.microsoft.com/">(Optional) Visual Studio 2017+</a></li>
+<li>Access to a <a href="https://www.postgresql.org/">PostgreSQL</a> server, either remotely or locally (Andy, contact me if you need access to the one I develop on)</li>
+</ul>
+<h2 id="cloning-and-building-the-project">Cloning and building the project</h2>
+<ol>
+<li><p>Clone the project from <a href="https://github.com/Aim-Educational/FarmMaster">https://github.com/Aim-Educational/FarmMaster</a>, e.g. <code>git clone https://github.com/Aim-Educational/FarmMaster</code></p>
+</li>
+<li><p>Use the command <code>dotnet restore</code> in the root folder of the project, where the <code>.sln</code> file is.</p>
+</li>
+<li><p>Open the up the solution. For Visual Studio users this simply involves opening the <code>.sln</code> file.</p>
+</li>
+<li><p>Build the <code>FarmMaster</code> project. For Visual Studio users, press CTRL+B, F5, or right click the project on the right-hand side and press &quot;build&quot;.</p>
+</li>
+<li><p>If the build succeeds, then everything is setup correctly. If something goes wrong, please contact me with the issue and a fix (if you could find one) so I can
+update this document with a list of issues and solutions.</p>
+</li>
+</ol>
+<h2 id="configuring-the-postgres-connection-string">Configuring the Postgres connection string</h2>
+<p>At this point, you can <em>build</em> the project, but can't really <em>run</em> it as it requires access to a postgres server.</p>
+<p>There are <a href="https://docs.microsoft.com/en-us/aspnet/core/fundamentals/configuration/?view=aspnetcore-3.1#default-configuration">many</a> ways to do this,
+however I strongly recommend going the route of modifying the configuration file at <code>./FarmMaster/appsettings.Development.json</code> (in Visual Studio,
+there should be an arrow next to the <code>appsettings.json</code> file that'll show the <code>.Development</code> variant).</p>
+<p>The biggest reason for this, is that when it comes to creating an EF migration, FarmMaster's custom context factory will be able to automatically
+read the connection string from that file, because otherwise you'd have to manually input the connection string via the command line every time you
+wanted to create a migration.</p>
+<p>When you open the json file, it should look a little like this:</p>
+<pre><code class="lang-json">{
+  &quot;Logging&quot;: {
+    &quot;LogLevel&quot;: {
+      &quot;Default&quot;: &quot;Debug&quot;,
+      &quot;System&quot;: &quot;Information&quot;,
+      &quot;Microsoft&quot;: &quot;Information&quot;
+    }
+  }
+}
+</code></pre>
+<p>There are two connection strings that need to exist in this file, one for migrations (which includes applying migrations), and one for general use by
+FarmMaster. During development, these may be the same connection string if wanted. During release, these should technically be seperate.</p>
+<p>So, we'll create a new &quot;ConnectionStrings&quot; section (just like the &quot;Logging&quot; section), and give it the sub-keys &quot;Migrate&quot; and &quot;General&quot; with our
+connection strings. I've provided the general format of the connection string, but of course change the values where needed:</p>
+<pre><code class="lang-json">{
+  &quot;Logging&quot;: { ... },
+
+  &quot;ConnectionStrings&quot;: {
+    &quot;General&quot;: &quot;Host=11.111.11.111;Port=5432;Database=FarmMaster;User Id=farmmaster;Password=AndySmells&quot;, // pls no kick me out.
+    &quot;Migrate&quot;: &quot;Host=11.111.11.111;Port=5432;Database=FarmMaster;User Id=migrator;Password=DebbieAlsoSmells&quot;
+  },
+}
+</code></pre>
+<div class="IMPORTANT">
+<h5>Important</h5>
+<p>Please. <strong>PLEASE</strong> do not commit any changes to <code>appsettings.Development.json</code> into Git.</p>
+<p>A very easy way to avoid this is to execute the following command inside of the <code>./FarmMaster/</code> folder:
+<code>git update-index --assume-unchanged appsettings.Development.json</code></p>
+<p>The above command makes it so that any changes to the file are ignored by git.</p>
+</div>
+<p>After performing this step, you should now be able to run the program without it instantly throwing an exception.</p>
+<p>Again, if you encounter any issues, please contact me so I can update this document.</p>
+<h2 id="configuring-the-smtp-settings">Configuring the SMTP settings</h2>
+<div class="NOTE">
+<h5>Note</h5>
+<p>This step is optional for development, and is only really needed if you're using email in some way (e.g. to send a registration email).</p>
+</div>
+<p>Just as we did for the connection strings, all we have to do here is use one of the various methods to provide the SMTP settings into our
+program.</p>
+<p>Again, I recommend using <code>appsettings.Development.json</code>, and I will provide a template of the data you need to pass - simply change the values
+as needed:</p>
+<pre><code class="lang-json">&quot;Smtp&quot;: {
+  &quot;Host&quot;: &quot;smtp.gmail.com&quot;,
+  &quot;Port&quot;: 587,
+  &quot;Username&quot;: &quot;debbie@andycorp.com&quot;,
+  &quot;Password&quot;: &quot;Dreaming About That New Caravan123&quot;
+}
+</code></pre>
+<p>Andy should have the SMTP details for the Office 365 bot account, if you don't want to set something up yourself.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Your local instance of FarmMaster should now be setup. From here, please work through the rest of the <code>Getting Started</code> section (look at the left-hand side).</p>
+<p>As a side note, the documentation for the codebase is also available here by clicking <code>Api Reference</code> at the top of this page.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

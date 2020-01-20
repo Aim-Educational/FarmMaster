@@ -1,0 +1,808 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class SpeciesBreedController
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class SpeciesBreedController
+   ">
+    <meta name="generator" content="docfx 2.43.3.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="FarmMaster.Controllers.SpeciesBreedController">
+  
+  
+  <h1 id="FarmMaster_Controllers_SpeciesBreedController" data-uid="FarmMaster.Controllers.SpeciesBreedController" class="text-break">Class SpeciesBreedController
+  </h1>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><span class="xref">System.Object</span></div>
+    <div class="level1"><span class="xref">SpeciesBreedController</span></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="FarmMaster.Controllers.IPagingController-1.html">IPagingController</a>&lt;<a class="xref" href="Business.Model.Species.html">Species</a>&gt;</div>
+    <div><a class="xref" href="FarmMaster.Controllers.IPagingController-1.html">IPagingController</a>&lt;<a class="xref" href="Business.Model.Breed.html">Breed</a>&gt;</div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="FarmMaster.Controllers.html">FarmMaster.Controllers</a></h6>
+  <h6><strong>Assembly</strong>: FarmMaster.dll</h6>
+  <h5 id="FarmMaster_Controllers_SpeciesBreedController_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class SpeciesBreedController : Controller, IPagingController&lt;Species&gt;, IPagingController&lt;Breed&gt;</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  
+  
+  <a id="FarmMaster_Controllers_SpeciesBreedController__ctor_" data-uid="FarmMaster.Controllers.SpeciesBreedController.#ctor*"></a>
+  <h4 id="FarmMaster_Controllers_SpeciesBreedController__ctor_FarmMaster_Services_IServiceUserManager_FarmMaster_Services_IServiceRoleManager_FarmMaster_Services_IServiceSpeciesBreedManager_FarmMaster_Services_IViewRenderService_FarmMaster_Services_IServiceCharacteristicManager_FarmMaster_Services_IServiceContactManager_" data-uid="FarmMaster.Controllers.SpeciesBreedController.#ctor(FarmMaster.Services.IServiceUserManager,FarmMaster.Services.IServiceRoleManager,FarmMaster.Services.IServiceSpeciesBreedManager,FarmMaster.Services.IViewRenderService,FarmMaster.Services.IServiceCharacteristicManager,FarmMaster.Services.IServiceContactManager)">SpeciesBreedController(IServiceUserManager, IServiceRoleManager, IServiceSpeciesBreedManager, IViewRenderService, IServiceCharacteristicManager, IServiceContactManager)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SpeciesBreedController(IServiceUserManager users, IServiceRoleManager roles, IServiceSpeciesBreedManager speciesBreeds, IViewRenderService viewRenderer, IServiceCharacteristicManager characteristics, IServiceContactManager contacts)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FarmMaster.Services.IServiceUserManager.html">IServiceUserManager</a></td>
+        <td><span class="parametername">users</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="FarmMaster.Services.IServiceRoleManager.html">IServiceRoleManager</a></td>
+        <td><span class="parametername">roles</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="FarmMaster.Services.IServiceSpeciesBreedManager.html">IServiceSpeciesBreedManager</a></td>
+        <td><span class="parametername">speciesBreeds</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="FarmMaster.Services.IViewRenderService.html">IViewRenderService</a></td>
+        <td><span class="parametername">viewRenderer</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="FarmMaster.Services.IServiceCharacteristicManager.html">IServiceCharacteristicManager</a></td>
+        <td><span class="parametername">characteristics</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="FarmMaster.Services.IServiceContactManager.html">IServiceContactManager</a></td>
+        <td><span class="parametername">contacts</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <a id="FarmMaster_Controllers_SpeciesBreedController_AjaxGetAllBreeds_" data-uid="FarmMaster.Controllers.SpeciesBreedController.AjaxGetAllBreeds*"></a>
+  <h4 id="FarmMaster_Controllers_SpeciesBreedController_AjaxGetAllBreeds_FarmMaster_Models_AjaxRequestModel_Business_Model_User_" data-uid="FarmMaster.Controllers.SpeciesBreedController.AjaxGetAllBreeds(FarmMaster.Models.AjaxRequestModel,Business.Model.User)">AjaxGetAllBreeds(AjaxRequestModel, User)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IActionResult AjaxGetAllBreeds(AjaxRequestModel model, User _)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FarmMaster.Models.AjaxRequestModel.html">AjaxRequestModel</a></td>
+        <td><span class="parametername">model</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Business.Model.User.html">User</a></td>
+        <td><span class="parametername">_</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IActionResult</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FarmMaster_Controllers_SpeciesBreedController_AjaxGetAllSpecies_" data-uid="FarmMaster.Controllers.SpeciesBreedController.AjaxGetAllSpecies*"></a>
+  <h4 id="FarmMaster_Controllers_SpeciesBreedController_AjaxGetAllSpecies_FarmMaster_Models_AjaxRequestModel_Business_Model_User_" data-uid="FarmMaster.Controllers.SpeciesBreedController.AjaxGetAllSpecies(FarmMaster.Models.AjaxRequestModel,Business.Model.User)">AjaxGetAllSpecies(AjaxRequestModel, User)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IActionResult AjaxGetAllSpecies(AjaxRequestModel model, User _)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FarmMaster.Models.AjaxRequestModel.html">AjaxRequestModel</a></td>
+        <td><span class="parametername">model</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Business.Model.User.html">User</a></td>
+        <td><span class="parametername">_</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IActionResult</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FarmMaster_Controllers_SpeciesBreedController_AjaxGetTablePageCount_" data-uid="FarmMaster.Controllers.SpeciesBreedController.AjaxGetTablePageCount*"></a>
+  <h4 id="FarmMaster_Controllers_SpeciesBreedController_AjaxGetTablePageCount_FarmMaster_Controllers_AjaxPagingControllerRequestModel_Business_Model_User_" data-uid="FarmMaster.Controllers.SpeciesBreedController.AjaxGetTablePageCount(FarmMaster.Controllers.AjaxPagingControllerRequestModel,Business.Model.User)">AjaxGetTablePageCount(AjaxPagingControllerRequestModel, User)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IActionResult AjaxGetTablePageCount(AjaxPagingControllerRequestModel model, User _)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FarmMaster.Controllers.AjaxPagingControllerRequestModel.html">AjaxPagingControllerRequestModel</a></td>
+        <td><span class="parametername">model</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Business.Model.User.html">User</a></td>
+        <td><span class="parametername">_</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IActionResult</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FarmMaster_Controllers_SpeciesBreedController_AjaxRenderTablePage_" data-uid="FarmMaster.Controllers.SpeciesBreedController.AjaxRenderTablePage*"></a>
+  <h4 id="FarmMaster_Controllers_SpeciesBreedController_AjaxRenderTablePage_FarmMaster_Controllers_AjaxPagingControllerRenderRequestModel_Business_Model_User_" data-uid="FarmMaster.Controllers.SpeciesBreedController.AjaxRenderTablePage(FarmMaster.Controllers.AjaxPagingControllerRenderRequestModel,Business.Model.User)">AjaxRenderTablePage(AjaxPagingControllerRenderRequestModel, User)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IActionResult AjaxRenderTablePage(AjaxPagingControllerRenderRequestModel model, User _)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FarmMaster.Controllers.AjaxPagingControllerRenderRequestModel.html">AjaxPagingControllerRenderRequestModel</a></td>
+        <td><span class="parametername">model</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Business.Model.User.html">User</a></td>
+        <td><span class="parametername">_</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IActionResult</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FarmMaster_Controllers_SpeciesBreedController_CreateBreed_" data-uid="FarmMaster.Controllers.SpeciesBreedController.CreateBreed*"></a>
+  <h4 id="FarmMaster_Controllers_SpeciesBreedController_CreateBreed" data-uid="FarmMaster.Controllers.SpeciesBreedController.CreateBreed">CreateBreed()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IActionResult CreateBreed()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IActionResult</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FarmMaster_Controllers_SpeciesBreedController_CreateBreed_" data-uid="FarmMaster.Controllers.SpeciesBreedController.CreateBreed*"></a>
+  <h4 id="FarmMaster_Controllers_SpeciesBreedController_CreateBreed_FarmMaster_Models_BreedCreateViewModel_" data-uid="FarmMaster.Controllers.SpeciesBreedController.CreateBreed(FarmMaster.Models.BreedCreateViewModel)">CreateBreed(BreedCreateViewModel)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IActionResult CreateBreed(BreedCreateViewModel model)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FarmMaster.Models.BreedCreateViewModel.html">BreedCreateViewModel</a></td>
+        <td><span class="parametername">model</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IActionResult</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FarmMaster_Controllers_SpeciesBreedController_CreateSpecies_" data-uid="FarmMaster.Controllers.SpeciesBreedController.CreateSpecies*"></a>
+  <h4 id="FarmMaster_Controllers_SpeciesBreedController_CreateSpecies" data-uid="FarmMaster.Controllers.SpeciesBreedController.CreateSpecies">CreateSpecies()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IActionResult CreateSpecies()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IActionResult</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FarmMaster_Controllers_SpeciesBreedController_CreateSpecies_" data-uid="FarmMaster.Controllers.SpeciesBreedController.CreateSpecies*"></a>
+  <h4 id="FarmMaster_Controllers_SpeciesBreedController_CreateSpecies_FarmMaster_Models_SpeciesCreateViewModel_" data-uid="FarmMaster.Controllers.SpeciesBreedController.CreateSpecies(FarmMaster.Models.SpeciesCreateViewModel)">CreateSpecies(SpeciesCreateViewModel)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IActionResult CreateSpecies(SpeciesCreateViewModel model)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FarmMaster.Models.SpeciesCreateViewModel.html">SpeciesCreateViewModel</a></td>
+        <td><span class="parametername">model</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IActionResult</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FarmMaster_Controllers_SpeciesBreedController_DeleteBreed_" data-uid="FarmMaster.Controllers.SpeciesBreedController.DeleteBreed*"></a>
+  <h4 id="FarmMaster_Controllers_SpeciesBreedController_DeleteBreed_System_Int32_" data-uid="FarmMaster.Controllers.SpeciesBreedController.DeleteBreed(System.Int32)">DeleteBreed(Int32)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IActionResult DeleteBreed(int id)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">id</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IActionResult</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FarmMaster_Controllers_SpeciesBreedController_DeleteSpecies_" data-uid="FarmMaster.Controllers.SpeciesBreedController.DeleteSpecies*"></a>
+  <h4 id="FarmMaster_Controllers_SpeciesBreedController_DeleteSpecies_System_Int32_" data-uid="FarmMaster.Controllers.SpeciesBreedController.DeleteSpecies(System.Int32)">DeleteSpecies(Int32)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IActionResult DeleteSpecies(int id)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">id</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IActionResult</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FarmMaster_Controllers_SpeciesBreedController_EditBreed_" data-uid="FarmMaster.Controllers.SpeciesBreedController.EditBreed*"></a>
+  <h4 id="FarmMaster_Controllers_SpeciesBreedController_EditBreed_FarmMaster_Models_BreedEditViewModel_" data-uid="FarmMaster.Controllers.SpeciesBreedController.EditBreed(FarmMaster.Models.BreedEditViewModel)">EditBreed(BreedEditViewModel)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IActionResult EditBreed(BreedEditViewModel model)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FarmMaster.Models.BreedEditViewModel.html">BreedEditViewModel</a></td>
+        <td><span class="parametername">model</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IActionResult</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FarmMaster_Controllers_SpeciesBreedController_EditBreed_" data-uid="FarmMaster.Controllers.SpeciesBreedController.EditBreed*"></a>
+  <h4 id="FarmMaster_Controllers_SpeciesBreedController_EditBreed_System_Int32_" data-uid="FarmMaster.Controllers.SpeciesBreedController.EditBreed(System.Int32)">EditBreed(Int32)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IActionResult EditBreed(int id)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">id</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IActionResult</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FarmMaster_Controllers_SpeciesBreedController_EditSpecies_" data-uid="FarmMaster.Controllers.SpeciesBreedController.EditSpecies*"></a>
+  <h4 id="FarmMaster_Controllers_SpeciesBreedController_EditSpecies_FarmMaster_Models_SpeciesEditViewModel_" data-uid="FarmMaster.Controllers.SpeciesBreedController.EditSpecies(FarmMaster.Models.SpeciesEditViewModel)">EditSpecies(SpeciesEditViewModel)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IActionResult EditSpecies(SpeciesEditViewModel model)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FarmMaster.Models.SpeciesEditViewModel.html">SpeciesEditViewModel</a></td>
+        <td><span class="parametername">model</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IActionResult</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FarmMaster_Controllers_SpeciesBreedController_EditSpecies_" data-uid="FarmMaster.Controllers.SpeciesBreedController.EditSpecies*"></a>
+  <h4 id="FarmMaster_Controllers_SpeciesBreedController_EditSpecies_System_Int32_" data-uid="FarmMaster.Controllers.SpeciesBreedController.EditSpecies(System.Int32)">EditSpecies(Int32)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IActionResult EditSpecies(int id)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">id</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IActionResult</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FarmMaster_Controllers_SpeciesBreedController_Index_" data-uid="FarmMaster.Controllers.SpeciesBreedController.Index*"></a>
+  <h4 id="FarmMaster_Controllers_SpeciesBreedController_Index_System_String_" data-uid="FarmMaster.Controllers.SpeciesBreedController.Index(System.String)">Index(String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IActionResult Index(string message)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">message</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IActionResult</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="FarmMaster.Controllers.IPagingController-1.html">IPagingController&lt;T&gt;</a>
+  </div>
+  <div>
+      <a class="xref" href="FarmMaster.Controllers.IPagingController-1.html">IPagingController&lt;T&gt;</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

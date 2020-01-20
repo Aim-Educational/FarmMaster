@@ -1,0 +1,874 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Interface IServiceContactManager
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Interface IServiceContactManager
+   ">
+    <meta name="generator" content="docfx 2.43.3.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="FarmMaster.Services.IServiceContactManager">
+  
+  
+  <h1 id="FarmMaster_Services_IServiceContactManager" data-uid="FarmMaster.Services.IServiceContactManager" class="text-break">Interface IServiceContactManager
+  </h1>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="FarmMaster.Services.IServiceEntityManager-1.html#FarmMaster_Services_IServiceEntityManager_1_Query">IServiceEntityManager&lt;Contact&gt;.Query()</a>
+    </div>
+    <div>
+      <a class="xref" href="FarmMaster.Services.IServiceEntityManager-1.html#FarmMaster_Services_IServiceEntityManager_1_QueryAllIncluded">IServiceEntityManager&lt;Contact&gt;.QueryAllIncluded()</a>
+    </div>
+    <div>
+      <a class="xref" href="FarmMaster.Services.IServiceEntityManager-1.html#FarmMaster_Services_IServiceEntityManager_1_GetIdFor__0_">IServiceEntityManager&lt;Contact&gt;.GetIdFor(Contact)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarmMaster.Services.IServiceEntityManager-1.html#FarmMaster_Services_IServiceEntityManager_1_Update__0_">IServiceEntityManager&lt;Contact&gt;.Update(Contact)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarmMaster.Services.IServiceGdprData.html#FarmMaster_Services_IServiceGdprData_GetContactGdprData_Business_Model_Contact_JObject_">IServiceGdprData.GetContactGdprData(Contact, JObject)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarmMaster.Services.IServiceGdprData.html#FarmMaster_Services_IServiceGdprData_GetUserGdprData_Business_Model_User_JObject_">IServiceGdprData.GetUserGdprData(User, JObject)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarmMaster.Services.IServiceGdprData.html#FarmMaster_Services_IServiceGdprData_AnonymiseContactData_Business_Model_Contact_">IServiceGdprData.AnonymiseContactData(Contact)</a>
+    </div>
+    <div>
+      <a class="xref" href="FarmMaster.Services.IServiceGdprData.html#FarmMaster_Services_IServiceGdprData_AnonymiseUserData_Business_Model_User_">IServiceGdprData.AnonymiseUserData(User)</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="FarmMaster.Services.html">FarmMaster.Services</a></h6>
+  <h6><strong>Assembly</strong>: FarmMaster.dll</h6>
+  <h5 id="FarmMaster_Services_IServiceContactManager_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface IServiceContactManager : IServiceEntityManager&lt;Contact&gt;, IServiceGdprData</code></pre>
+  </div>
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <a id="FarmMaster_Services_IServiceContactManager_AddEmailAddress_" data-uid="FarmMaster.Services.IServiceContactManager.AddEmailAddress*"></a>
+  <h4 id="FarmMaster_Services_IServiceContactManager_AddEmailAddress_Business_Model_Contact_Business_Model_User_System_String_System_String_System_String_" data-uid="FarmMaster.Services.IServiceContactManager.AddEmailAddress(Business.Model.Contact,Business.Model.User,System.String,System.String,System.String)">AddEmailAddress(Contact, User, String, String, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Email AddEmailAddress(Contact contact, User responsible, string reason, string name, string value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Business.Model.Contact.html">Contact</a></td>
+        <td><span class="parametername">contact</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Business.Model.User.html">User</a></td>
+        <td><span class="parametername">responsible</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">reason</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">name</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">value</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Business.Model.Email.html">Email</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FarmMaster_Services_IServiceContactManager_AddRelationship_" data-uid="FarmMaster.Services.IServiceContactManager.AddRelationship*"></a>
+  <h4 id="FarmMaster_Services_IServiceContactManager_AddRelationship_Business_Model_Contact_Business_Model_Contact_Business_Model_User_System_String_System_String_" data-uid="FarmMaster.Services.IServiceContactManager.AddRelationship(Business.Model.Contact,Business.Model.Contact,Business.Model.User,System.String,System.String)">AddRelationship(Contact, Contact, User, String, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">MapContactRelationship AddRelationship(Contact first, Contact second, User responsible, string reason, string description)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Business.Model.Contact.html">Contact</a></td>
+        <td><span class="parametername">first</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Business.Model.Contact.html">Contact</a></td>
+        <td><span class="parametername">second</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Business.Model.User.html">User</a></td>
+        <td><span class="parametername">responsible</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">reason</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">description</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Business.Model.MapContactRelationship.html">MapContactRelationship</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FarmMaster_Services_IServiceContactManager_AddTelephoneNumber_" data-uid="FarmMaster.Services.IServiceContactManager.AddTelephoneNumber*"></a>
+  <h4 id="FarmMaster_Services_IServiceContactManager_AddTelephoneNumber_Business_Model_Contact_Business_Model_User_System_String_System_String_System_String_" data-uid="FarmMaster.Services.IServiceContactManager.AddTelephoneNumber(Business.Model.Contact,Business.Model.User,System.String,System.String,System.String)">AddTelephoneNumber(Contact, User, String, String, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Telephone AddTelephoneNumber(Contact contact, User responsible, string reason, string name, string number)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Business.Model.Contact.html">Contact</a></td>
+        <td><span class="parametername">contact</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Business.Model.User.html">User</a></td>
+        <td><span class="parametername">responsible</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">reason</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">name</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">number</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Business.Model.Telephone.html">Telephone</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FarmMaster_Services_IServiceContactManager_Create_" data-uid="FarmMaster.Services.IServiceContactManager.Create*"></a>
+  <h4 id="FarmMaster_Services_IServiceContactManager_Create_Business_Model_Contact_Type_System_String_FarmMaster_Misc_SaveChanges_" data-uid="FarmMaster.Services.IServiceContactManager.Create(Business.Model.Contact.Type,System.String,FarmMaster.Misc.SaveChanges)">Create(Contact.Type, String, SaveChanges)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Contact Create(Contact.Type type, string fullName, SaveChanges saveChanges = SaveChanges.Yes)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Business.Model.Contact.Type.html">Contact.Type</a></td>
+        <td><span class="parametername">type</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">fullName</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="FarmMaster.Misc.SaveChanges.html">SaveChanges</a></td>
+        <td><span class="parametername">saveChanges</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Business.Model.Contact.html">Contact</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FarmMaster_Services_IServiceContactManager_ExpireTokenByTokenString_" data-uid="FarmMaster.Services.IServiceContactManager.ExpireTokenByTokenString*"></a>
+  <h4 id="FarmMaster_Services_IServiceContactManager_ExpireTokenByTokenString_Business_Model_Contact_System_String_" data-uid="FarmMaster.Services.IServiceContactManager.ExpireTokenByTokenString(Business.Model.Contact,System.String)">ExpireTokenByTokenString(Contact, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">CouldDelete ExpireTokenByTokenString(Contact contact, string token)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Business.Model.Contact.html">Contact</a></td>
+        <td><span class="parametername">contact</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">token</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FarmMaster.Misc.CouldDelete.html">CouldDelete</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FarmMaster_Services_IServiceContactManager_GenerateToken_" data-uid="FarmMaster.Services.IServiceContactManager.GenerateToken*"></a>
+  <h4 id="FarmMaster_Services_IServiceContactManager_GenerateToken_Business_Model_Contact_Business_Model_ContactToken_Type_DateTimeOffset_FarmMaster_Misc_IsUnique_" data-uid="FarmMaster.Services.IServiceContactManager.GenerateToken(Business.Model.Contact,Business.Model.ContactToken.Type,DateTimeOffset,FarmMaster.Misc.IsUnique)">GenerateToken(Contact, ContactToken.Type, DateTimeOffset, IsUnique)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ContactToken GenerateToken(Contact contact, ContactToken.Type type, DateTimeOffset expires, IsUnique isUnique = IsUnique.Yes)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Business.Model.Contact.html">Contact</a></td>
+        <td><span class="parametername">contact</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Business.Model.ContactToken.Type.html">ContactToken.Type</a></td>
+        <td><span class="parametername">type</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">DateTimeOffset</span></td>
+        <td><span class="parametername">expires</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="FarmMaster.Misc.IsUnique.html">IsUnique</a></td>
+        <td><span class="parametername">isUnique</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Business.Model.ContactToken.html">ContactToken</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FarmMaster_Services_IServiceContactManager_GetContactFromTokenString_" data-uid="FarmMaster.Services.IServiceContactManager.GetContactFromTokenString*"></a>
+  <h4 id="FarmMaster_Services_IServiceContactManager_GetContactFromTokenString_System_String_" data-uid="FarmMaster.Services.IServiceContactManager.GetContactFromTokenString(System.String)">GetContactFromTokenString(String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">Contact GetContactFromTokenString(string tokenString)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">tokenString</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Business.Model.Contact.html">Contact</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FarmMaster_Services_IServiceContactManager_LogAction_" data-uid="FarmMaster.Services.IServiceContactManager.LogAction*"></a>
+  <h4 id="FarmMaster_Services_IServiceContactManager_LogAction_Business_Model_Contact_Business_Model_User_Business_Model_ActionAgainstContactInfo_Type_System_String_System_String_" data-uid="FarmMaster.Services.IServiceContactManager.LogAction(Business.Model.Contact,Business.Model.User,Business.Model.ActionAgainstContactInfo.Type,System.String,System.String)">LogAction(Contact, User, ActionAgainstContactInfo.Type, String, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void LogAction(Contact affected, User responsible, ActionAgainstContactInfo.Type type, string reason, string additionalInfo = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Business.Model.Contact.html">Contact</a></td>
+        <td><span class="parametername">affected</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Business.Model.User.html">User</a></td>
+        <td><span class="parametername">responsible</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Business.Model.ActionAgainstContactInfo.Type.html">ActionAgainstContactInfo.Type</a></td>
+        <td><span class="parametername">type</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">reason</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">additionalInfo</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FarmMaster_Services_IServiceContactManager_RemoveEmailAddressById_" data-uid="FarmMaster.Services.IServiceContactManager.RemoveEmailAddressById*"></a>
+  <h4 id="FarmMaster_Services_IServiceContactManager_RemoveEmailAddressById_Business_Model_Contact_Business_Model_User_System_String_System_Int32_" data-uid="FarmMaster.Services.IServiceContactManager.RemoveEmailAddressById(Business.Model.Contact,Business.Model.User,System.String,System.Int32)">RemoveEmailAddressById(Contact, User, String, Int32)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool RemoveEmailAddressById(Contact contact, User responsible, string reason, int id)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Business.Model.Contact.html">Contact</a></td>
+        <td><span class="parametername">contact</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Business.Model.User.html">User</a></td>
+        <td><span class="parametername">responsible</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">reason</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">id</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FarmMaster_Services_IServiceContactManager_RemoveEmailAddressByName_" data-uid="FarmMaster.Services.IServiceContactManager.RemoveEmailAddressByName*"></a>
+  <h4 id="FarmMaster_Services_IServiceContactManager_RemoveEmailAddressByName_Business_Model_Contact_Business_Model_User_System_String_System_String_" data-uid="FarmMaster.Services.IServiceContactManager.RemoveEmailAddressByName(Business.Model.Contact,Business.Model.User,System.String,System.String)">RemoveEmailAddressByName(Contact, User, String, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool RemoveEmailAddressByName(Contact contact, User responsible, string reason, string name)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Business.Model.Contact.html">Contact</a></td>
+        <td><span class="parametername">contact</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Business.Model.User.html">User</a></td>
+        <td><span class="parametername">responsible</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">reason</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">name</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FarmMaster_Services_IServiceContactManager_RemoveRelationshipById_" data-uid="FarmMaster.Services.IServiceContactManager.RemoveRelationshipById*"></a>
+  <h4 id="FarmMaster_Services_IServiceContactManager_RemoveRelationshipById_Business_Model_Contact_Business_Model_User_System_String_System_Int32_" data-uid="FarmMaster.Services.IServiceContactManager.RemoveRelationshipById(Business.Model.Contact,Business.Model.User,System.String,System.Int32)">RemoveRelationshipById(Contact, User, String, Int32)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool RemoveRelationshipById(Contact contact, User responsible, string reason, int id)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Business.Model.Contact.html">Contact</a></td>
+        <td><span class="parametername">contact</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Business.Model.User.html">User</a></td>
+        <td><span class="parametername">responsible</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">reason</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">id</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FarmMaster_Services_IServiceContactManager_RemoveTelephoneNumberById_" data-uid="FarmMaster.Services.IServiceContactManager.RemoveTelephoneNumberById*"></a>
+  <h4 id="FarmMaster_Services_IServiceContactManager_RemoveTelephoneNumberById_Business_Model_Contact_Business_Model_User_System_String_System_Int32_" data-uid="FarmMaster.Services.IServiceContactManager.RemoveTelephoneNumberById(Business.Model.Contact,Business.Model.User,System.String,System.Int32)">RemoveTelephoneNumberById(Contact, User, String, Int32)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool RemoveTelephoneNumberById(Contact contact, User responsible, string reason, int id)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Business.Model.Contact.html">Contact</a></td>
+        <td><span class="parametername">contact</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Business.Model.User.html">User</a></td>
+        <td><span class="parametername">responsible</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">reason</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">id</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FarmMaster_Services_IServiceContactManager_RemoveTelephoneNumberByName_" data-uid="FarmMaster.Services.IServiceContactManager.RemoveTelephoneNumberByName*"></a>
+  <h4 id="FarmMaster_Services_IServiceContactManager_RemoveTelephoneNumberByName_Business_Model_Contact_Business_Model_User_System_String_System_String_" data-uid="FarmMaster.Services.IServiceContactManager.RemoveTelephoneNumberByName(Business.Model.Contact,Business.Model.User,System.String,System.String)">RemoveTelephoneNumberByName(Contact, User, String, String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool RemoveTelephoneNumberByName(Contact contact, User responsible, string reason, string name)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Business.Model.Contact.html">Contact</a></td>
+        <td><span class="parametername">contact</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Business.Model.User.html">User</a></td>
+        <td><span class="parametername">responsible</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">reason</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">name</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="FarmMaster.Services.IServiceEntityDataExtentions.html#FarmMaster_Services_IServiceEntityDataExtentions_FromId__1_FarmMaster_Services_IServiceEntityManager___0__System_Int32_">IServiceEntityDataExtentions.FromId&lt;T&gt;(IServiceEntityManager&lt;T&gt;, Int32)</a>
+  </div>
+  <div>
+      <a class="xref" href="FarmMaster.Services.IServiceEntityDataExtentions.html#FarmMaster_Services_IServiceEntityDataExtentions_FromIdAllIncluded__1_FarmMaster_Services_IServiceEntityManager___0__System_Int32_">IServiceEntityDataExtentions.FromIdAllIncluded&lt;T&gt;(IServiceEntityManager&lt;T&gt;, Int32)</a>
+  </div>
+  <div>
+      <a class="xref" href="FarmMaster.Services.IServiceEntityDataExtentions.html#FarmMaster_Services_IServiceEntityDataExtentions_For__1_FarmMaster_Services_IServiceEntityManager___0__">IServiceEntityDataExtentions.For&lt;T&gt;(IServiceEntityManager&lt;T&gt;)</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
