@@ -30,7 +30,7 @@ publish_and_package:
 # http://www.hardkoded.com/blog/creating-docfx-site
 build_docs:
   stage: build_docs
-  image: mono:latest
+  image: erothejoker/docker-docfx:latest
   script:
     - cd Documentation
     - mono docfx
