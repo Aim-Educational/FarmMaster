@@ -45,6 +45,6 @@ build_docs:
     - cd ..
     - git add Documentation/_site/* -f
     - git commit -m "Docs build $CI_COMMIT_SHA"
-    - git subtree push --prefix _site Documentation/pages gh-pages
+    - git subtree push --prefix Documentation/_site pages gh-pages
   only:
     - master
