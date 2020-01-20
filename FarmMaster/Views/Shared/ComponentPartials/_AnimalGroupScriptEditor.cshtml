@@ -337,6 +337,27 @@ else if (Model is AnimalGroupScriptEditorCreateEditViewModel createEditModel)
             </div>
         </div>
         <div id="tabGroupScriptCode" class="tab container">
+            <button id="buttonGroupScriptCreateNew" class="ui primary fluid button">Create a new script</button>
+            <div class="ui horizontal divider">
+                Or
+            </div>
+            <div class="ui form">
+                <div class="field">
+                    <div class="ui search selection dropdown">
+                        <input id="selectGroupScriptToEdit" type="hidden" />
+                        <i class="dropdown icon"></i>
+                        <div class="text"></div>
+                        <div class="menu">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="top padded items">
+                <button id="buttonGroupScriptEdit" class="ui primary fluid button">Edit an existing script</button>
+            </div>
+        </div>
+        <div id="tabGroupScriptCodeEditor" class="tab container hidden">
+            <button id="buttonGroupScriptBack" class="ui tiny secondary button">Back</button>
             <div class="ui warning message">
                 NOTE: A more user-friendly interface will come a bit later on.
             </div>
@@ -344,7 +365,7 @@ else if (Model is AnimalGroupScriptEditorCreateEditViewModel createEditModel)
             <div id="errorGroupScript" class="ui error message transition hidden"></div>
 
             <div class="top padded items"></div>
-            <button id="buttonGroupScriptCreate" class="ui primary button">Create</button>
+            <button id="buttonGroupScriptCreateOrEdit" class="ui primary button">Create</button>
         </div>
         <div id="tabGroupScriptExecute" class="tab container hidden">
             <div id="containerGroupScriptParams" class="ui form">
@@ -389,8 +410,15 @@ else if (Model is AnimalGroupScriptEditorCreateEditViewModel createEditModel)
         </div>
     </section>
 
-    <!--Tab controls-->
+    <!--Tab controls & Global setup-->
     <script type="module">
+        window._gs_CodeMode = {
+            CREATE: 0,
+            EDIT: 1
+        };
+
+        window._gs_currentMode = null; // Just so it has a value.
+
         _gs_setupTabButton("buttonGroupScriptCode", "tabGroupScriptCode");
         _gs_setupTabButton("buttonGroupScriptTest", "tabGroupScriptExecute");
         _gs_setupTabButton("buttonGroupScriptResults", "tabGroupScriptResults");
@@ -399,30 +427,88 @@ else if (Model is AnimalGroupScriptEditorCreateEditViewModel createEditModel)
 
     <!--Create/Edit-->
     <script type="module">
-        import { FarmAjax, FarmAjaxMessageType } from "/js/index.js";
+        import { FarmAjax, FarmAjaxMessageType, GraphQL } from "/js/index.js";
+        
+        const buttonCreateOrEdit = document.getElementById("buttonGroupScriptCreateOrEdit");
+
+        const buttonCreateNew = document.getElementById("buttonGroupScriptCreateNew"); // Changes mode to create, doesn't actually create.
+        buttonCreateNew.addEventListener("click", () => {
+            _gs_setupTabButton("buttonGroupScriptCode", "tabGroupScriptCodeEditor");
+            _gs_swapToContainer("tabGroupScriptCodeEditor");
+            _gs_currentMode = _gs_CodeMode.CREATE;
+
+            buttonCreateOrEdit.innerText = "Create";
+        });
+
+        const buttonBack = document.getElementById("buttonGroupScriptBack");
+        buttonBack.addEventListener("click", () => {
+            _gs_setupTabButton("buttonGroupScriptCode", "tabGroupScriptCode");
+            _gs_swapToContainer("tabGroupScriptCode");
+        });
+
+        const buttonEdit = document.getElementById("buttonGroupScriptEdit");
+        buttonEdit.addEventListener("click", () => {
+            window._gs_scriptName = $(document.getElementById("selectGroupScriptToEdit").parentNode).dropdown("get text");
+            GraphQL.query(
+                    `query GetScriptCode($name: ID) {
+                        animalGroupScripts(name:$name) {
+                            code
+                        }
+                    }`,
+                    { name: _gs_scriptName }
+                )
+                .then(data => {
+                    if (data.animalGroupScripts.length == 0)
+                        return;
+                    
+                    _gs_setupTabButton("buttonGroupScriptCode", "tabGroupScriptCodeEditor");
+                    _gs_swapToContainer("tabGroupScriptCodeEditor");
+                    _gs_currentMode = _gs_CodeMode.EDIT;
+
+                    document.getElementById("codeGroupScript").value = data.animalGroupScripts[0].code;
+                    buttonCreateOrEdit.innerText = "Edit";
+                });
+        });
 
         function getCode() {
             return document.getElementById("codeGroupScript").value;
         }
 
-        const buttonCreate = document.getElementById("buttonGroupScriptCreate");
-        buttonCreate.addEventListener("click", () => {
-            FarmAjax.postWithMessageAndValueResponse(
-                "/Ajax/AnimalGroup_Script_CreateAndCompile_AsName",
-                {
-                    id: -1, // Dummy, unused, and too lazy to make yet another AJAX class.
-                    value: getCode()
-                },
-                rv => {
-                    rv.populateMessageBox(document.getElementById("errorGroupScript"));
-                    if (rv.messageType !== FarmAjaxMessageType.Information)
-                        return;
+        buttonCreateOrEdit.addEventListener("click", () => {
+            if (_gs_currentMode === _gs_CodeMode.CREATE) {
+                FarmAjax.postWithMessageAndValueResponse(
+                    "/Ajax/AnimalGroup_Script_CreateAndCompile_AsName",
+                    {
+                        id: -1, // Dummy, unused, and too lazy to make yet another AJAX class.
+                        value: getCode()
+                    },
+                    rv => {
+                        rv.populateMessageBox(document.getElementById("errorGroupScript"));
+                        if (rv.messageType !== FarmAjaxMessageType.Information)
+                            return;
 
-                    // TODO: Can't add it to the execute dropdown yet, as that needs param info, and I'm lazy.
-                    const dropdownDelete = document.getElementById("selectGroupScriptToDelete").parentElement;
-                    _gs_addItemToDropdown(dropdownDelete, rv.value.name);
-                }
-            );
+                        // TODO: Can't add it to the execute dropdown yet, as that needs param info, and I'm lazy.
+                        const dropdownDelete = document.getElementById("selectGroupScriptToDelete").parentElement;
+                        const dropdownEdit = document.getElementById("selectGroupScriptToEdit").parentElement;
+                        _gs_addItemToDropdown(dropdownDelete, rv.value.name);
+                        _gs_addItemToDropdown(dropdownEdit, rv.value.name);
+                    }
+                );
+            }
+            else if (_gs_currentMode == _gs_CodeMode.EDIT) {
+                FarmAjax.postWithMessageResponse(
+                    "/Ajax/AnimalGroup_Script_ByName_EditCode",
+                    {
+                        name: _gs_scriptName,
+                        value: getCode()
+                    },
+                    r => {
+                        r.populateMessageBox(document.getElementById("errorGroupScript"));
+                    }
+                );
+            }
+            else
+                alert("Unknown mode: " + JSON.stringify(_gs_currentMode));
         });
     </script>
 
@@ -432,6 +518,7 @@ else if (Model is AnimalGroupScriptEditorCreateEditViewModel createEditModel)
 
         const dropdownDelete = document.getElementById("selectGroupScriptToDelete");
         const dropdownExecute = document.getElementById("selectGroupScriptToExecute");
+        const dropdownEdit = document.getElementById("selectGroupScriptToEdit");
         const buttonDelete = document.getElementById("buttonGroupScriptDelete");
 
         buttonDelete.addEventListener("click", () => {
@@ -451,18 +538,17 @@ else if (Model is AnimalGroupScriptEditorCreateEditViewModel createEditModel)
 
                             const menuDelete = dropdownDelete.parentNode.querySelector("div.menu");
                             const menuExecute = dropdownExecute.parentNode.querySelector("div.menu");
+                            const menuEdit = dropdownEdit.parentNode.querySelector("div.menu");
 
-                            // Both menus are in sync item-order wise, so this should be fine.
+                            // All menus are in sync item-order wise, so this should be fine.
                             for (let i = 0; i < menuDelete.childElementCount; i++) {
                                 if (menuDelete.childNodes.item(i).innerText == name) {
                                     menuDelete.removeChild(menuDelete.childNodes.item(i));
                                     menuExecute.removeChild(menuExecute.childNodes.item(i));
+                                    menuEdit.removeChild(menuEdit.childNodes.item(i));
                                     break;
                                 }
                             }
-
-                            $(dropdownDelete.parentNode).dropdown();
-                            $(dropdownExecute.parentNode).dropdown();
                         }
                     );
                 });
@@ -486,10 +572,11 @@ else if (Model is AnimalGroupScriptEditorCreateEditViewModel createEditModel)
             }
         }`)
         .then(data => {
-            // The Create/Edit version has a dropdown for deleting scripts, so logically that'd be handled here as well.
+            // The Create/Edit version has a dropdown for deleting and editing scripts, so logically that'd be handled here as well.
             @if(Model is AnimalGroupScriptEditorCreateEditViewModel)
             {
                 @:const dropdownDelete = document.getElementById("selectGroupScriptToDelete").parentElement;
+                @:const dropdownEdit = document.getElementById("selectGroupScriptToEdit").parentElement;
             }
 
             for (const script of data.animalGroupScripts) {
@@ -502,6 +589,7 @@ else if (Model is AnimalGroupScriptEditorCreateEditViewModel createEditModel)
                 @if(Model is AnimalGroupScriptEditorCreateEditViewModel)
                 {
                     @:_gs_addItemToDropdown(dropdownDelete, script.name, value);
+                    @:_gs_addItemToDropdown(dropdownEdit, script.name, value);
                 }
             }
 
@@ -509,6 +597,7 @@ else if (Model is AnimalGroupScriptEditorCreateEditViewModel createEditModel)
             @if(Model is AnimalGroupScriptEditorCreateEditViewModel)
             {
                 @:$(dropdownDelete).dropdown();
+                @:$(dropdownEdit).dropdown();
             }
         });
 

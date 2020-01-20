@@ -163,6 +163,9 @@ namespace FarmMaster.GraphQL
                       }),
                   type: typeof(ListGraphType<AnimalGroupScriptParameterGraphType>)
             );
+            Field(s => s.Code)
+                .Name("Code")
+                .Description("The script's code.");
         }
     }
 

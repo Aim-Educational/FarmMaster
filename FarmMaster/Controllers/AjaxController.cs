@@ -168,13 +168,25 @@ namespace FarmMaster.Controllers
             [FromBody] AjaxByIdWithLargeValueRequest model,
             User _,
             [FromServices] IServiceAnimalGroupScriptManager scripts
-        ) 
+        )
         {
             var script = scripts.CompileAndCreate(model.Value);
             return new AjaxValueResult(new
             {
                 name = script.Name
             });
+        }
+
+        [HttpPost]
+        [FarmAjaxReturnsMessage(BusinessConstants.Permissions.USE_GROUP_SCRIPTS)]
+        public IActionResult AnimalGroup_Script_ByName_EditCode(
+            [FromBody] AjaxByNameWithLargeValueRequest model,
+            User _,
+            [FromServices] IServiceAnimalGroupScriptManager scripts
+        ) 
+        {
+            scripts.EditCodeByName(model.Name, model.Value);
+            return new EmptyResult();
         }
 
         /// <summary>

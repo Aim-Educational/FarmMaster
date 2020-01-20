@@ -48,6 +48,13 @@ namespace FarmMaster.Models
         public string Name { get; set; }
     }
 
+    public class AjaxByNameWithLargeValueRequest : AjaxByNameRequest
+    {
+        [Required]
+        [StringLength(1024 * 8)]
+        public string Value { get; set; }
+    }
+
     public class AjaxByIdRequest : AjaxRequestModel
     {
         [Required]
