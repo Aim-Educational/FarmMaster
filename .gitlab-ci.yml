@@ -33,7 +33,7 @@ build_docs:
   image: erothejoker/docker-docfx:latest
   script:
     - cd Documentation
-    - mono docfx
+    - docfx
     - apt-get update
     - apt-get install git
     - git config --global user.email "sealabjaster@gmail.com"
