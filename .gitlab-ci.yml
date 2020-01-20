@@ -41,9 +41,10 @@ build_docs:
     - git remote add pages https://sealabjaster:09c95621373ad79d79739991420941d7fabef640@github.com/Aim-Educational/FarmMaster
     - git fetch pages
     - git checkout pages/master
-    - git subtree add --prefix _site pages/gh-pages
-    - git add _site/* -f
+    - cd ..
+    - git subtree add --prefix Documentation/_site pages/gh-pages
+    - git add Documentation/_site/* -f
     - git commit -m "Docs build $CI_COMMIT_SHA"
-    - git subtree push --prefix _site pages gh-pages
+    - git subtree push --prefix _site Documentation/pages gh-pages
   only:
     - master
