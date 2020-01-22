@@ -2,3 +2,5 @@
   href: intro.md
 - name: Codebase Overview
   href: code_overview.md
+- name: Adding and using permissions
+  href: perms.md
