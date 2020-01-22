@@ -1,0 +1,210 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Permissions </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Permissions ">
+    <meta name="generator" content="docfx 2.43.3.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="permissions">Permissions</h1>
+
+<p>This section will go over how roles and permissions are structured, and how to add/use them inside of the codebase.</p>
+<h2 id="model">Model</h2>
+<p>First, there are permissions. Permissions in the database model are &quot;Enum&quot;-type entities: They are immutable to both user and server, and they
+are basically just a database version of a normal <code>enum</code>, except they can store more info and can be used more directly inside of EF than normal
+enums can.</p>
+<p>The function of permissions is to allow users to assign them to roles. Roles are essentially just a bundle of permissions that can
+be used to group users together. These permissions can then be read by the server to lock out certain endpoints unless the user
+accessing them has a certain permission(s) in their role.</p>
+<p>The admin role (referred to as the 'God role' internally) contains no permissions, yet is specially handled to bypass every
+permission check.</p>
+<p>Now, there are three main entity classes for the role-permission system:</p>
+<ul>
+<li><p><a class="xref" href="../../api/Business.Model.Role.html">Role</a> - Contains information about a role, such as their name and hierarchy index.</p>
+</li>
+<li><p><a class="xref" href="../../api/Business.Model.EnumRolePermission.html">EnumRolePermission</a> - Contains information about a permission.</p>
+</li>
+<li><p><a class="xref" href="../../api/Business.Model.MapRolePermissionToRole.html">MapRolePermissionToRole</a> - A mapping entry that maps an <code>EnumRolePermission</code> to a <code>Role</code>.</p>
+</li>
+</ul>
+<p>I feel this setup is self-explanatory, so I have no need to comment further on the model.</p>
+<h2 id="creating-a-new-permission">Creating a new permission</h2>
+<p>When adding new functionality onto FarmMaster, you will likely need to create new permissions for users to be able to control
+who can access the new functionality.</p>
+<ol>
+<li><p>The first thing you need to do is to visit the <a class="xref" href="../../api/Business.Model.BusinessConstants.html">BusinessConstants</a> file, and locate the
+<a class="xref" href="../../api/Business.Model.BusinessConstants.Permissions.html">BusinessConstants.Permissions</a> class.</p>
+</li>
+<li><p>Once you have located this class you need to add in a new <code>public const string</code>, similar to the ones that already exist. Please
+try to keep the naming in both the variable name, and its value, consistant with the already existing ones.</p>
+</li>
+<li><p>Next, open the file for <a class="xref" href="../../api/Business.Model.FarmMasterContext.html">FarmMasterContext</a>. There should be a <code>#region</code> called &quot;Data Seeding&quot;, and
+within that region is a function called <a href="xref:Business.Model.FarmMasterContext.SeedRolePermissions">SeedRolePermissions</a>.</p>
+</li>
+<li><p>Within this function is an array called <code>roles</code>, which contains a bunch of tuple items describing a role. From here you can examine
+the existing entries to figure out how to add your new permission. <em>Please see the &quot;IMPORTANT&quot; notice below</em>.</p>
+</li>
+<li><p>Finally, open a command prompt/terminal inside of &quot;./Business/&quot; (Where <code>Business.csproj</code> is located), and use the <a href="https://docs.microsoft.com/en-us/ef/core/managing-schemas/migrations/?tabs=dotnet-core-cli#create-a-migration">dotnet ef migrations add</a>
+command to create a new EF migration for your permission.</p>
+</li>
+</ol>
+<div class="IMPORTANT">
+<h5>Important</h5>
+<p><strong>Always add new permissions to the bottom of the array.</strong></p>
+<p>The ids for the resulting <code>EnumRolePermission</code> entries are calculated based on the order of the <code>roles</code> array, so never. Ever. change
+the order of any item in the array.</p>
+<p>Please double check your migration to ensure that there are no <code>UpdateColumn</code> function calls, as that is a likely indicator that you've messed up the order somewhere.</p>
+</div>
+<p>After following the above steps, your new permission is good to go.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>FarmMaster's front end will automatically add a checkbox for your new permission onto the &quot;Role Edit&quot; page.</p>
+<p>The category that it gets put under depends on the first word of your permission's name. e.g. &quot;Add Animal&quot; is listed under &quot;Add&quot;.</p>
+</div>
+<h2 id="using-permissions">Using permissions</h2>
+<p>There are two main ways to use permissions right now: the <a href="xref:FarmMaster.Filters.FarmAuthorise">FarmAuthorise</a> filter, or the
+<a class="xref" href="../../api/FarmMaster.Services.IServiceRoleManager.html">IServiceRoleManager</a> service.</p>
+<h3 id="the-farmauthorise-filter">The [FarmAuthorise] filter</h3>
+<p>If you're not aware of what a &quot;filter&quot; is in ASP-land, please read about it <a href="https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/filters?view=aspnetcore-3.1">here</a>.
+FarmAuthorise is an <a href="https://docs.microsoft.com/en-us/aspnet/core/mvc/controllers/filters?view=aspnetcore-3.1#authorization-filters">authorisation filter</a>.</p>
+<p>The <code>FarmAuthorise</code> filter can be passed two arrays, one called <code>PermsOR</code> and another called <code>PermsAND</code> - both can be used together.</p>
+<p>Any permissions (permissions are passed via their internal names, a.k.a the values in <code>BusinessConstants.Permissions</code>) passed to <code>PermsOR</code> means
+&quot;this user can only access this endpoint if they have at least one of this permissions&quot;.</p>
+<p>Any permissions passed to <code>PermsAND</code> means &quot;this user can only access this endpoint if they have every one of these permissions&quot;.</p>
+<p>This is very similar the ASP's built-in <code>[Authorise]</code> filter, but <code>[FarmAuthorise]</code> integrates better with our role system.</p>
+<p>If you need to lock an endpoint behind the user simply being logged in, and you don't care about their permissions, then just
+don't pass anything to the filter's constructor.</p>
+<p>Here's an example of its usage, where the user needs the <code>CREATE_ANIMALS</code> permission to access the endpoint:</p>
+<pre><code class="lang-csharp">[FarmAuthorise(PermsAND: new[] { BusinessConstants.Permissions.CREATE_ANIMALS })]
+public IActionResult Create()
+{
+    return View(&quot;CreateEdit&quot;, new AnimalCreateEditViewModel{ IsCreate = true });
+}
+</code></pre>
+<h3 id="the-iservicerolemanager-service">The IServiceRoleManager service</h3>
+<p>There are times where code that doesn't have access to filters, or code that needs finer introspection of a user's permissions, need a way
+to access information about the user's role and permissions.</p>
+<p>Virtually every part of ASP Core (and FarmMaster) supports ASP's <a href="https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-3.1">Dependency Injection</a>, which can be used to access the <code>IServiceRoleManager</code> service.</p>
+<p>Having a look at its <a class="xref" href="../../api/FarmMaster.Services.IServiceRoleManager.html">documentation</a> should give you a general idea of what you can do with it, such
+as determining if a specific role has a certain permission.</p>
+<p>The <a class="xref" href="../../api/Business.Model.Role.html">Role</a> class itself has an extention method called <a href="xref:Business.Model.RoleExtentions.CanModify">CanModify</a> which can be used to determine
+if users of role <code>A</code> can modify the permissions of role <code>B</code>.</p>
+<h2 id="deleting-permissions">Deleting permissions</h2>
+<p>Deleting a permission is the exact opposite process of creating one:</p>
+<ol>
+<li><p>Delete the entry in <code>FarmMasterContext's</code> data seeding region.</p>
+</li>
+<li><p>Delete the entry in <code>BussinessConstants.Permissions</code>.</p>
+</li>
+<li><p>Create a new migration to commit the change.</p>
+</li>
+</ol>
+<div class="IMPORTANT">
+<h5>Important</h5>
+<p><strong>Only delete permissions if there are no permissions under it inside of the data seeding array</strong></p>
+<p>Again, this is because it'll mess up the ids.</p>
+<p>Set both values in the tuple to <code>null</code>, and the data seeder will skip over it while incrementing the id.
+Sure it might still exist in the database, but it won't be used anywhere.
+.</p>
+</div>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Permissions use cascading delete, so deleting a permission from the database will also delete all mapping entries for that permission.</p>
+</div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>
