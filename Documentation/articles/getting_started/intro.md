@@ -15,7 +15,7 @@ work on developing the program.
 
 2. Use the command `dotnet restore` in the root folder of the project, where the `.sln` file is.
 
-3. Open the up the solution. For Visual Studio users this simply involves opening the `.sln` file.
+3. Open up the solution. For Visual Studio users this simply involves opening the `.sln` file.
 
 4. Build the `FarmMaster` project. For Visual Studio users, press CTRL+B, F5, or right click the project on the right-hand side and press "build".
 
