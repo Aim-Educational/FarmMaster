@@ -213,7 +213,7 @@ a better way of laying out a page in general.</p>
 <h2 id="cicd-pipeline">CI/CD pipeline</h2>
 <p>FarmMaster's CI is pretty simplistic.</p>
 <p>First of all, read up on what <a href="https://docs.gitlab.com/ee/ci/">CI/CD</a> is if you're unaware of it. FarmMaster's CI file may <a href="https://github.com/Aim-Educational/FarmMaster/blob/master/.gitlab-ci.yml">prove interesting</a> as a learning resource as well.</p>
-<p>As stated in the CI file, there are currently two jobs: <code>test</code>, and <code>publish_and_package</code>.</p>
+<p>As stated in the CI file, there are currently three jobs: <code>test</code>; and <code>publish_and_package</code>, and <code>build_docs</code>.</p>
 <p>The <code>test</code> job is ran on every commit, and simply runs any unittests FarmMaster has (which definitely needs to be improved...).</p>
 <p>The <code>publish_and_package</code> job is only ran everytime a git tag is created (e.g. <code>git tag v0.2.0-alpha</code>). This job will download the latest version
 of <a href="https://github.com/Aim-Educational/AimCLITool">AimCLI</a> (which also makes use of CI/CD), perform the <code>dotnet publish</code> command which creates a production
@@ -222,6 +222,10 @@ as an 'artifact' on Gitlab's side, allowing this zipped up package to be downloa
 <p>In otherwords, <code>publish_and_package</code> simply builds and packages the latest distribution of FarmMaster.</p>
 <p>After that, someone who has access to the server FarmMaster is hosted on (eventually this will become an automated process) will have
 to SSH into the server to trigger <code>AimCLI</code> to deploy the latest distribution.</p>
+<p>The <code>build_docs</code> job is only ran for the master branch. Like the name implies, it will use <code>docfx</code> to build the auto-generated, and manually
+written (such as this page) documentation. Afterwards, it'll push any new changes into the <code>gh_pages</code> branch of FarmMaster which Github will
+then display at <a href="https://aim-educational.github.io/FarmMaster/">this</a> url.</p>
+<p>So basically, it'll update a live website of FarmMaster's documentation anytime the master branch is updated.</p>
 <p>While this may all sound like over-kill, this actually streamlines the process to the point of little friction (and once I bother to
 automate the final half of the process, there will be no friction - barring bugs!)</p>
 <h2 id="project-files">Project Files</h2>

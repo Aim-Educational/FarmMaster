@@ -3681,7 +3681,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/getting_started/code_overview.html",
-          "hash": "AP3zmVyHZynAbikpmrqt/w=="
+          "hash": "qtqTR5/adA+fd/CXjyh9vQ=="
         }
       },
       "is_incremental": false,
@@ -3693,7 +3693,22 @@
       "output": {
         ".html": {
           "relative_path": "articles/getting_started/intro.html",
-          "hash": "mqDFOD1Mz+W1jHt5KL3LJg=="
+          "hash": "/OE0bMHGC4uFrF/9mVI8Ew=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "UidNotFound"
+      ],
+      "type": "Conceptual",
+      "source_relative_path": "articles/getting_started/js_tx_ajax.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/getting_started/js_tx_ajax.html",
+          "hash": "m3GhzHxfAgzIAk/+ORuxlw=="
         }
       },
       "is_incremental": false,
@@ -3720,7 +3735,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/toc.html",
-          "hash": "WgB0BijXtMYJe9aIsWlVvQ=="
+          "hash": "5tBz9gktVbfF0zzGip6nSA=="
         }
       },
       "is_incremental": false,
@@ -3765,7 +3780,7 @@
         "ConceptualDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 5,
+          "total_file_count": 6,
           "skipped_file_count": 0
         },
         "ManagedReferenceDocumentProcessor": {
