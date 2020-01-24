@@ -1,0 +1,447 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Javascript (JS), Typescript (TS), AJAX, and client-side GraphQL in FarmMaster </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Javascript (JS), Typescript (TS), AJAX, and client-side GraphQL in FarmMaster ">
+    <meta name="generator" content="docfx 2.43.3.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="javascript-js-typescript-ts-ajax-and-client-side-graphql-in-farmmaster">Javascript (JS), Typescript (TS), AJAX, and client-side GraphQL in FarmMaster</h1>
+
+<p>This section describes how FarmMaster makes use of, and organises its use of JS, TS, AJAX, and GraphQL (on the browser's side).</p>
+<p>This section also details the usage of the other misc. Javascript libraries that FarmMaster provides.</p>
+<h2 id="typescript-is-used-for-libraries">Typescript is used for libraries</h2>
+<p>FarmMaster needs to provide its webpages a bit of repeated functionality (such as using AJAX, more on that later), which is done
+by providing its own set of libraries.</p>
+<p>These libraries are written in Typescript, as it is essentially just a better javascript. Typescript isn't used for specific web pages
+due to annoying amounts of friction during the TS -&gt; JS process.</p>
+<h3 id="flowpipelinestructure">Flow/pipeline/structure</h3>
+<p>Typescript usage in FarmMaster is structured in the following way:</p>
+<ol>
+<li><p>Libraries are written inside of the <code>./FarmMaster/Scripts</code> folder.</p>
+</li>
+<li><p>One of the nuget packages FarmMaster uses should automatically compile any changes upon save. If not, install
+the typescript compiler and invoke the <code>tsc</code> command inside of the <code>./FarmMaster/Scripts</code> folder.</p>
+</li>
+<li><p>The compiled files are placed into the <code>./FarmMaster/wwwroot/js</code> folder as part of the compliation process.</p>
+</li>
+<li><p>For existing libraries: Any updates to the code will now take affect.</p>
+</li>
+<li><p>For newly made libraries: The file <code>./FarmMaster/wwwroot/js/index.js</code> needs to be modified to make the library visible.</p>
+</li>
+<li><p>Webpages can now import libraries via code such as <code>import { FarmAjax, GraphQL } from &quot;/js/index.js&quot;</code></p>
+</li>
+</ol>
+<h3 id="indexjs">index.js</h3>
+<p>FarmMaster's libraries are compiled into their own individual <code>.js</code> files, and it'd be pretty annoying to maintain code
+that references half a dozen different files just to import the libraries they want.</p>
+<p>To get around this, FarmMaster takes advantage of the fact that its Typescript libraries compile into <a href="https://www.w3schools.com/js/js_es6.asp">ES6 modules</a>
+so that the user code only needs to reference a singular, well-known (a.k.a it won't randomly dissapear during development) file known
+as <code>index.js</code>.</p>
+<p>Basically, <code>index.js</code>'s job is to act as a module (or library) that exports <em>other</em> modules (all our other libraries) anytime it is used
+by the user code. If you give its code a read, you'll see what I mean.</p>
+<p>One other, but unrelated, job of <code>index.js</code> is to configure <a href="https://github.com/SealabJaster/jaster-validate-js">JasterValidate</a> which is a
+JS form validation library I created (since the one bundled with ASP is too limited). For the most part you won't ever have to worry about that
+part of <code>index.js</code>, but it was worth noting.</p>
+<h3 id="modifying-an-existing-library">Modifying an existing library</h3>
+<p>As per the pipeline above, simply edit the <code>.ts</code> file inside of the <code>./FarmMaster/Scripts</code> folder, and either save the file
+(for automatic compliation) or use the typescript compiler (<code>tsc</code>) to compile your changes into JS.</p>
+<p>Any changes made to the library will now be visible.</p>
+<h3 id="using-a-library">Using a library</h3>
+<p>To use one of FarmMaster's libraries:</p>
+<ol>
+<li><p>Open the <code>.cshtml</code> file you're modifying.</p>
+</li>
+<li><p>Create a <code>&lt;script type=&quot;module&quot;&gt;&lt;/script&gt;</code> tag somewhere (usually inside of an <code>@section Scripts{ }</code> block).</p>
+</li>
+<li><p>Import any symbols (classes, enums, etc.) you need via <code>import { FarmAjax, GraphQL } from &quot;/js/index.js&quot;</code></p>
+</li>
+<li><p>???</p>
+</li>
+<li><p>Profit.</p>
+</li>
+</ol>
+<h3 id="creating-a-library">Creating a library</h3>
+<p>To create a new library:</p>
+<ol>
+<li><p>Create a new <code>.ts</code> file inside of the <code>./FarmMaster/Scripts</code> folder.</p>
+</li>
+<li><p>Write the code for the library (remember to use the <code>export</code> keyword where needed).</p>
+</li>
+<li><p>Compile your changes in some way (see one of the sections above).</p>
+</li>
+<li><p>Open the file at <code>./FarmMaster/wwwroot/js/index.js</code>.</p>
+</li>
+<li><p>Add a line similar to the following (change the path as needed): <code>export * from &quot;/js/modal.js&quot;;</code></p>
+</li>
+</ol>
+<h2 id="javascript-is-used-for-page-specific-logic">Javascript is used for page-specific logic</h2>
+<p>Since each webpage is different, they need their own specific logic, and to do this we fallback to good old JS.</p>
+<p>Because FarmMaster's libraries are all written in the <code>ES6</code> version of Javascript, any javascript code needs to be inside of a
+<code>module</code> type <code>&lt;script&gt;</code> tag: <code>&lt;script type=&quot;module&quot;&gt;&lt;/script&gt;</code> otherwise things don't work.</p>
+<p>One caveat of an ES6 script tag is that anything declared inside one isn't global to the webpage.</p>
+<p>So say for example, you have multiple script tags but all of them need to access some utility function written inside of another script tag.</p>
+<p>To do this is simple, simply add your utility function (or whatever you want to make global) into the <code>window</code> object:</p>
+<pre><code class="lang-html">&lt;script type=&quot;module&quot;&gt;
+    function someUtilFunc() { return &quot;Andy&quot;; }
+
+    window.someUtilFunc = someUtilFunc;
+&lt;/script&gt;
+
+&lt;script type=&quot;module&quot;&gt;
+    // We can now access the util func as if it were global!
+    alert(&quot;Mastermind is &quot; + someUtilFunc()));
+&lt;/script&gt;
+</code></pre>
+<p>There is a downside that because most pages have their own kind of &quot;ecosystem&quot; for their JS code, and since virtually none of it is documented,
+there is a large overhead of having to learn how a specific page works in its <em>current</em> form before you can begin making fixes/changes to it. And
+you have to do this for <em>every</em> page.</p>
+<p>I'm sure there's industry standard ways to handle this, but I'm just a mere self-taught programmer, who's only learning things as needed (and of course, it's
+my first time writing JS to this sort of scale).</p>
+<p>I do have plans to explore a framework called <a href="https://vuejs.org/">Vue</a> soon (specifically for a refactor of the GroupScript editor's JS) to see if it'd be a good fit
+to refactor the JS code elsewhere.</p>
+<p>Another downside, although it's probably completely unavoidable without more effor than it is worth,
+is that due to how heavily coupled a page's JS code is to the actual markup of the page, even simply restructuring the layout may sometimes also require fixes to the JS code.</p>
+<h2 id="graphql-and-ajax">GraphQL and AJAX</h2>
+<p>A large portion of FarmMaster is supposed to be dynamic (as in, the page doesn't have to constantly refresh to show data).</p>
+<p>There are pros and cons to this, but even just for the sake of me needing to get experience with dynamic web pages, I feel like my large usage of AJAX and
+GraphQL are justified.</p>
+<p>FarmMaster utilises both <a href="https://www.w3schools.com/js/js_ajax_intro.asp">AJAX</a> and <a href="https://graphql.org/">GraphQL</a>, while also providing libraries to make
+using these parts of FarmMaster simpler to handle.</p>
+<p>A short version of their differences are:</p>
+<ul>
+<li><p>AJAX should only be used to modify data (but legacy code will still use it to retrieve data).</p>
+</li>
+<li><p>GraphQL is <strong>only</strong> used to retrieve data.</p>
+</li>
+</ul>
+<p>There are exceptions (such as the aforementioned legacy code), but those will be explored in more detail below.</p>
+<h3 id="graphql">GraphQL</h3>
+<p>GraphQL is used to retrieve data dynamically, whether that's because the website needs the lastest version of some data, or because
+it needs access to data that'd be cumbersome to include inside of a page's ViewModel, it doesn't matter because GraphQL is here to save the day.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>When I was integrating the GraphQL (server-side) into FarmMaster, the ability to restrict certain data to certain users (e.g. needing permission to see animal data)
+wasn't very well documented, so therefore any data exposed by GraphQL can be accessed by anyone who is simply logged in.</p>
+<p>So, until I look into the newer documentation for authorising certain data to certain users, only expose non-sensitive data through GraphQL.</p>
+<p>Or to be more blunt, if you ever have doubt about GDPR or some form of exploit that could be peformed with the data, then don't put it in GraphQL and instead
+create an AJAX endpoint which can be locked behind <code>[FarmAuthorise]</code>.</p>
+</div>
+<p>Also as this page is only going over the client-side portion of using GraphQL, this section won't cover how to expose new data through GraphQL (another article will do that).</p>
+<h4 id="using-graphql">Using GraphQL</h4>
+<p>First of all, if you'd like to simply test/experiment with FarmMaster's GraphQL setup, simply go to any FarmMaster instance and manually change the URL to point to the
+<code>/graphiql</code> endpoint: e.g. <code>farm.chatha.dev/graphiql</code>, just make sure you're signed in.</p>
+<p>If you're wanting to use GraphQL inside of a webpage, then you'll first need to import the <code>GraphQL</code> library:</p>
+<pre><code class="lang-html">&lt;script type=&quot;module&quot;&gt;
+    import { GraphQL } from &quot;/js/index/js&quot;;
+&lt;/script&gt;
+</code></pre>
+<p>After that, you can use the <code>GraphQL.query(query: string, parameters: object = null): Promise&lt;object&gt;</code> function:</p>
+<ul>
+<li><p>query - The GraphQL query to execute. Use the <code>/graphiql</code> endpoint to make testing your query easier.</p>
+</li>
+<li><p>parameters - If your query makes use of parameters, you can place them inside an object here. e.g The parameter <code>$someParam</code> could be given a value by using
+<code>{ someParam: 20 }</code> inside the object passed as the second parameter to this function.</p>
+</li>
+<li><p>A normal JS <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a> is returned where the query's data can be accessed
+by using <code>.then(value =&gt; { ... })</code>.</p>
+</li>
+</ul>
+<p>Here is a real-life snippet of GraphQL being used in FarmMaster which shows a parameterised query being executed to load all needed
+information about an animal (all within a single request!) before passing off each piece of data to a handler function:</p>
+<pre><code class="lang-js">GraphQL
+.query(`
+query InitialLoad($animalId: ID){
+    contacts {
+        id
+        name
+    }
+    species {
+        id
+        name
+    }
+    lifeEvents(target:ANIMAL) {
+        id
+        name
+    }
+    animals(id:$animalId) {
+        lifeEventEntries {
+            id
+            dateTimeUtc
+            lifeEvent {
+                id
+                name
+            }
+        }
+    }
+    holdings {
+        id
+        name
+    }
+    groupsAssignedTo: animalGroups(hasAnimalId:$animalId) {
+        id
+        name
+        description
+    }
+    groupsNotAssignedTo: animalGroups(hasNotAnimalId:$animalId) {
+        id
+        name
+        description
+    }
+}`,
+{ animalId: @Model.AnimalId }
+)
+.then(data =&gt; {
+    handleContacts(data.contacts);
+    handleSpecies(data.species);
+    handleLifeEventTypes(data.lifeEvents);
+    handleLifeEventEntries(data.animals[0].lifeEventEntries);
+    handleHoldings(data.holdings);
+    handleGroups(data.groupsAssignedTo, data.groupsNotAssignedTo);
+})
+.catch(errors =&gt; onError(errors));
+</code></pre>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Please pay attention to the fact that the <code>data</code> object returned matches the exact layout of the query.</p>
+<p>e.g. Compare how <code>data.animals[0].lifeEventEntries</code> reflects the query itself.</p>
+</div>
+<h3 id="ajax">AJAX</h3>
+<p>As described, there are cases (such as modifying data) that GraphQL doesn't handle (GraphQL <em>can</em> handle modifying data, I just prefer AJAX here) so we need
+to make use of AJAX instead.</p>
+<p>AJAX in FarmMaster basically boils down to: <code>Send JSON data to endpoint; Endpoint then returns JSON data in response (e.g. failed/succeeded).</code></p>
+<p><strong>All</strong> AJAX endpoints in FarmMaster (barring a few legacy ones that are going to be replaced) are placed inside of the <a class="xref" href="../../api/FarmMaster.Controllers.AjaxController.html">AjaxController</a>. This is for a variety of reasons such as organisation reasons, as well as reasons such as &quot;<strong>Where the bloody hell is this AJAX endpoint stored that I need to modify the code for?</strong>&quot; or &quot;<strong>Oh god what controller was that endpoint in again?</strong>&quot; (true story).</p>
+<p>AJAX endpoints in FarmMaster also follow a rather... <em>unconventional</em> naming scheme. For example, if you imagine a function/function chain that looks like
+<code>Animal.ById(id).Characteristic.AsNameValueId().GetAll()</code> then the AJAX endpoint would be called <code>Animal_ById_Characteristic_AsNameValueId_All</code>.</p>
+<p>You'll likely have to look at the existing endpoints to properly get a grasp of how things are named, but hopefully you'll at least try to see <em>why</em> I've done
+things this way, an example being encoding the return value inside the name itself (<code>AsNameValueId</code> -&gt; <code>{ name: string, value: whatever, id: number }</code> instead of just guessing or having to look at the C# side of things every time).</p>
+<p>As with GraphQL, this article only deals with the client-side part of AJAX, so the act of creating/modifying endpoints will be placed into a server-side specific article.</p>
+<h4 id="using-ajax">Using AJAX</h4>
+<p>The first thing you need to do is to import the <code>FarmAjax</code> and <code>FarmAjaxMessageType</code> symbols:</p>
+<pre><code class="lang-html">&lt;script type=&quot;module&quot;&gt;
+    import { FarmAjax, FarmAjaxMessageType } from &quot;/js/index/js&quot;;
+&lt;/script&gt;
+</code></pre>
+<p>The <code>FarmAjax</code> class contains functions for sending AJAX requests and collecting their results.</p>
+<p>All responses from an AJAX endpoint contains a <code>.messageType</code> property of type <code>FarmAjaxMessageType</code> (an enum), which details
+whether it was a success, failure, etc. So you'll need to import the symbol to be able to check whether your request worked or not.</p>
+<p>Now, the next thing you need to do is determine which endpoint you want to call, what <em>type</em> of endpoint it is, and what parameters you want to pass to it.</p>
+<p>There are two different <em>types</em> of AJAX endpoints in FarmMaster: <code>returns Message</code>, and <code>returns Message and Value</code>. The former simply returns a message (e.g. <code>.messageType</code>)
+while the latter returns both a message and a value, where the value is different between each endpoint.</p>
+<p>So let's decide we want to use <a class="xref" href="../../api/FarmMaster.Controllers.AjaxController.html#Animal_ById_Characteristic_AsNameValueTypeInheritedId_All">Animal_ById_Characteristic_AsNameValueTypeInheritedId_All</a>
+which (if you can decode the name):</p>
+<ul>
+<li><p>Is a <code>returns Message and Value</code>-type endpoint. You can tell this either by looking into the C# code to see whether it uses [FarmAjaxReturnsMessageAndValue]
+(xref:FarmMaster.Filters.FarmAjaxReturnsMessageAndValue) or <a href="xref:FarmMaster.Filters.FarmAjaxReturnsMessage">FarmAjaxReturnsMessage</a>, or by the fact the name contains
+<code>AsNameValueTypeInheritedId</code> which is a common convention in the namings to describe what (if any) data is returned.</p>
+</li>
+<li><p>It requires a parameter (because of <code>ById</code>). The convetion for this is: If there is only <em>one</em> id parameter, it is named <code>id</code>, otherwise if there are two, one is called <code>byId</code> and the other <code>forId</code>. In this case it'd be <code>id</code>.</p>
+</li>
+<li><p>It returns an array (because of <code>All</code>) of objects containing a Name, Value, Type, Inherited (boolean), and Id.</p>
+</li>
+</ul>
+<p>Now that we have all of this figured out, we can send our AJAX request using <code>FarmAjax.postWithMessageAndValueResponse&lt;T&gt;(url: string, data: any, onDone: (response: FarmAjaxMessageAndValueResponse&lt;T | null&gt;) =&gt; void)</code>:</p>
+<ul>
+<li><p>url - The endpoint we want to use, so in this case <code>/Ajax/Animal_ById_Characteristic_AsNameValueTypeInheritedId_All</code></p>
+</li>
+<li><p>data - The object containing the data, so in this case we'll use <code>{ id: 1 }</code> (normally you'd get the ID somewhere else, such as the ViewModel).</p>
+</li>
+<li><p>onDone - A function that is called if the AJAX request succeeded. I would've used a <code>Promise</code> like with GraphQL, but I literally didn't know they existed at that point in time
+and it's a bit too late now.</p>
+</li>
+</ul>
+<div class="NOTE">
+<h5>Note</h5>
+<p>There is another version called <code>postWithMessageResponse</code> for endpoints that don't return a value.</p>
+</div>
+<p>I know this is a lot to take in, but it's simpler to use in practice than it is to explain here. Anyway, let's use this endpoint:</p>
+<pre><code class="lang-html">&lt;script type=&quot;module&quot;&gt;
+    import { FarmAjax, FarmAjaxMessageType } from &quot;/js/index/js&quot;;
+
+    FarmAjax.postWithMessageAndValueResponse(
+        // url
+        &quot;/Ajax/Animal_ById_Characteristic_AsNameValueTypeInheritedId_All&quot;,
+
+        // data
+        { id: 1 },
+
+        // onDone
+        messageAndValue =&gt; {
+            // We'll handle errors (.messageType) in a moment.
+
+            // Example usage: Turn the value into JSON and show it on screen.
+            alert(JSON.stringify(messageAndValue.value));
+        }
+    );
+&lt;/script&gt;
+</code></pre>
+<p>And if everything goes well (such as the animal with an ID of <code>1</code> existing), then it should be a success! Otherwise... well, we have
+to check to see if something went wrong.</p>
+<p>I admit this is a bit clunky, and if I ever get the energy to rewrite things then I'd make use of <code>Promise</code> (e.g. for <code>.catch</code>) instead, but to check if there's an error we
+basically check if the <code>.messageType</code> isn't <code>FarmAjaxMessageType.Information</code>. After that we call the <code>.populateMessageBox</code> function with a <code>div</code> that I'll show you
+how to make in a second:</p>
+<pre><code class="lang-html">&lt;script type=&quot;module&quot;&gt;
+    import { FarmAjax, FarmAjaxMessageType } from &quot;/js/index/js&quot;;
+
+    FarmAjax.postWithMessageAndValueResponse(
+        // url
+        &quot;/Ajax/Animal_ById_Characteristic_AsNameValueTypeInheritedId_All&quot;,
+
+        // data
+        { id: 1 },
+
+        // onDone
+        messageAndValue =&gt; {
+            if(messageAndValue.messageType !== FarmAjaxMessageType.Information) {
+                messageAndValue.populateMessageBox(document.getElementById(&quot;errorBox&quot;));
+                return;
+            }
+
+            // Example usage: Turn the value into JSON and show it on screen.
+            alert(JSON.stringify(messageAndValue.value));
+        }
+    );
+&lt;/script&gt;
+</code></pre>
+<p>Basically all <code>populateMessageBox</code> does is show (if it's hidden) a <a href="https://semantic-ui.com/collections/message.html">Semantic UI message box</a> with the appropriate
+colouring and text based on what <code>.messageType</code>, <code>.messageFormat</code>, and <code>.message</code>'s values are. In other words, if something go wrong, show pretty message box.</p>
+<p>In terms of the HTML for the error box, simply place this HTML <em>somewhere</em> that it makes sense and change the id to something that also makes sense,
+the usual convention for FarmMaster is to prefix it with &quot;error&quot;:</p>
+<pre><code class="lang-html">&lt;div id=&quot;errorBox&quot; class=&quot;ui error message transition hidden&quot;&gt;&lt;/div&gt;
+</code></pre>
+<p>Again, it's not great, but I was still really <em>really</em> early into my learning with ASP, JS, Semantic UI, etc. back when I made that decision, so forgive me as I want
+to change it as much as you do. :P</p>
+<p>But anyway, that's how to use AJAX.</p>
+<h2 id="other-libraries">Other libraries</h2>
+<p>FarmMaster also provides a few other libraries, which I may as well document a bit here.</p>
+<h3 id="dranges">dranges</h3>
+<p>Another library I made that's not exclusive to FarmMaster, see <a href="https://www.npmjs.com/package/dranges">here</a>.</p>
+<h3 id="jastervalidate">JasterValidate</h3>
+<p>Again, see <a href="https://github.com/SealabJaster/jaster-validate-js">here</a>.</p>
+<p>I will document specific usage in FarmMaster in it's own article though, as it's important.</p>
+<h3 id="component_selectjs">component_select.js</h3>
+<p>Legacy, will be replaced.</p>
+<h3 id="cookies">Cookies</h3>
+<p>It exposes 3 free-standing functions called <code>setCookie(name, value)</code>, <code>getCookie(name)</code>, and <code>deleteCookie(name)</code>. They all kind of explain themselves.</p>
+<h3 id="modal">Modal</h3>
+<p>A wrapper around <a href="https://fomantic-ui.com/modules/modal.html">Semantic UI modals</a>.</p>
+<p>Basically, it exists for predefined modals such as the modals contained in the partial views: <code>_ModalAreYouSure_NoUndo</code>, and <code>_ModalReason_ContactAction</code>.</p>
+<p>For example, if you wanted a modal that asked a user &quot;Do you want to do this, you can't undo it?&quot; and then to execute an action <em>only</em> if they press &quot;Yes&quot;, then you'd
+do something like this:</p>
+<pre><code class="lang-html">&lt;partial name=&quot;_ModalAreYouSure_NoUndo&quot; /&gt;
+
+&lt;script type=&quot;module&quot;&gt;
+    import { Modal } from &quot;/js/index.js&quot;;
+
+    // The partial we included already has the HTML expected for this function to work:
+    Modal.askAreYouSure() // Returns a promise, so we use .then()
+        .then(() =&gt; {
+            alert(&quot;This will only show if the user presses yes!&quot;);
+        });
+&lt;/script&gt;
+</code></pre>
+<p>If you have your own modal that you want to use, simply use the <code>Modal.show(modalId: string): Promise</code> function. The <code>modalId</code> being a HTML
+<code>&lt;div id=&quot;lala&quot;&gt;</code> kind of thing.</p>
+<h3 id="characteristic_helperjs">characteristic_helper.js</h3>
+<p>You really don't need to concern yourself with this too much unless you're messing with the <code>_ComponentCharacteristics</code> partial.</p>
+<p>This file basically contains functions that can create strings that the server can interpret as a characteristic value. It's nice to have these functions
+in its own library in case they need to be used elsewhere.</p>
+<h3 id="component_tablejs">component_table.js</h3>
+<p>Legacy, will be replaced.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

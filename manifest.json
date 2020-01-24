@@ -3704,11 +3704,11 @@
         "UidNotFound"
       ],
       "type": "Conceptual",
-      "source_relative_path": "articles/getting_started/js_tx_ajax.md",
+      "source_relative_path": "articles/getting_started/js_ts_ajax.md",
       "output": {
         ".html": {
-          "relative_path": "articles/getting_started/js_tx_ajax.html",
-          "hash": "m3GhzHxfAgzIAk/+ORuxlw=="
+          "relative_path": "articles/getting_started/js_ts_ajax.html",
+          "hash": "OMN6vvpM7FK2n5fIsJcgkQ=="
         }
       },
       "is_incremental": false,
@@ -3735,7 +3735,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/toc.html",
-          "hash": "5tBz9gktVbfF0zzGip6nSA=="
+          "hash": "FWFLiwy0AWa73IkdTqIqfQ=="
         }
       },
       "is_incremental": false,
