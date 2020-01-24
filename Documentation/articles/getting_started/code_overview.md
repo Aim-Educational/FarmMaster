@@ -144,7 +144,7 @@ FarmMaster's CI is pretty simplistic.
 
 First of all, read up on what [CI/CD](https://docs.gitlab.com/ee/ci/) is if you're unaware of it. FarmMaster's CI file may [prove interesting](https://github.com/Aim-Educational/FarmMaster/blob/master/.gitlab-ci.yml) as a learning resource as well.
 
-As stated in the CI file, there are currently two jobs: `test`, and `publish_and_package`.
+As stated in the CI file, there are currently three jobs: `test`; and `publish_and_package`, and `build_docs`.
 
 The `test` job is ran on every commit, and simply runs any unittests FarmMaster has (which definitely needs to be improved...).
 
@@ -157,6 +157,12 @@ In otherwords, `publish_and_package` simply builds and packages the latest distr
 
 After that, someone who has access to the server FarmMaster is hosted on (eventually this will become an automated process) will have
 to SSH into the server to trigger `AimCLI` to deploy the latest distribution.
+
+The `build_docs` job is only ran for the master branch. Like the name implies, it will use `docfx` to build the auto-generated, and manually
+written (such as this page) documentation. Afterwards, it'll push any new changes into the `gh_pages` branch of FarmMaster which Github will
+then display at [this](https://aim-educational.github.io/FarmMaster/) url.
+
+So basically, it'll update a live website of FarmMaster's documentation anytime the master branch is updated.
 
 While this may all sound like over-kill, this actually streamlines the process to the point of little friction (and once I bother to
 automate the final half of the process, there will be no friction - barring bugs!)
