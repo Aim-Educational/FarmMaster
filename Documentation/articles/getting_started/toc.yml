@@ -4,3 +4,5 @@
   href: code_overview.md
 - name: Adding and using permissions
   href: perms.md
+- name: JS, TS, AJAX, and client-side GraphQL
+  href: js_ts_ajax.md
