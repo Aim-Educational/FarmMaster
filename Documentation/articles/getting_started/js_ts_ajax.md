@@ -149,7 +149,7 @@ it needs access to data that'd be cumbersome to include inside of a page's ViewM
 > So, until I look into the newer documentation for authorising certain data to certain users, only expose non-sensitive data through GraphQL.
 >
 > Or to be more blunt, if you ever have doubt about GDPR or some form of exploit that could be peformed with the data, then don't put it in GraphQL and instead
-> create an AJAX endpoint which can be locked behind `[FarmAuthorise]`.
+> create an AJAX endpoint which can be locked behind a filter that can check for permissions.
 
 Also as this page is only going over the client-side portion of using GraphQL, this section won't cover how to expose new data through GraphQL (another article will do that).
 
