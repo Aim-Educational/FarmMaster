@@ -3708,7 +3708,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/getting_started/js_ts_ajax.html",
-          "hash": "OMN6vvpM7FK2n5fIsJcgkQ=="
+          "hash": "aVtt4Oax9kAEM1KCdZf46w=="
         }
       },
       "is_incremental": false,
@@ -3730,12 +3730,27 @@
       "version": ""
     },
     {
+      "log_codes": [
+        "UidNotFound"
+      ],
+      "type": "Conceptual",
+      "source_relative_path": "articles/getting_started/server_side_ajax_graphql.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/getting_started/server_side_ajax_graphql.html",
+          "hash": "tX5RI03i3bBkSEPvC8GXdQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
       "type": "Toc",
       "source_relative_path": "articles/toc.yml",
       "output": {
         ".html": {
           "relative_path": "articles/toc.html",
-          "hash": "FWFLiwy0AWa73IkdTqIqfQ=="
+          "hash": "VnKtnDaPO3TpJ+bcMVIyTQ=="
         }
       },
       "is_incremental": false,
@@ -3780,7 +3795,7 @@
         "ConceptualDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 6,
+          "total_file_count": 7,
           "skipped_file_count": 0
         },
         "ManagedReferenceDocumentProcessor": {

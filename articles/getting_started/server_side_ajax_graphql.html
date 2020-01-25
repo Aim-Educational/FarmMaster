@@ -1,0 +1,205 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Server-side AJAX and GraphQL </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Server-side AJAX and GraphQL ">
+    <meta name="generator" content="docfx 2.43.3.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="server-side-ajax-and-graphql">Server-side AJAX and GraphQL</h1>
+
+<p>While the previous described the client-side portion of AJAX and GraphQL, this section will go over the server-side portion.</p>
+<h2 id="ajax">AJAX</h2>
+<p>As a quick reminder from the previous section, there are two types of AJAX functions - those that return a value, and those that don't.</p>
+<p>When creating an AJAX function you will have to pick between using either <a href="xref:FarmMaster.Filters.FarmAjaxReturnsMessage">FarmAjaxReturnsMessage</a> and
+<a href="xref:FarmMaster.Filters.FarmAjaxReturnsMessageAndValue">FarmAjaxReturnsMessageAndValue</a>.</p>
+<p>These special filters provider certain behaviours to the action that they're attached to:</p>
+<ul>
+<li><p>It will automatically verify that the model state is valid, and return an error message if there's an issue.</p>
+</li>
+<li><p>Any uncaught exceptions will be caught and returned as an error message to the client.</p>
+</li>
+<li><p>It requires that the action's model either be or inherit from <a class="xref" href="../../api/FarmMaster.Models.AjaxRequestModel.html">AjaxRequestModel</a>.</p>
+</li>
+<li><p>It can automatically retrieve the user using the action via reading the <code>SessionToken</code> from the action's model.</p>
+</li>
+<li><p>If you add a <a class="xref" href="../../api/Business.Model.User.html">User</a> as a parameter, then the filter will automatically set its value to the user using the action.</p>
+</li>
+<li><p>It can ensure that the user using the AJAX action has certain permissions, similar to <a href="xref:FarmMaster.Filters.FarmAuthorise">FarmAuthorise</a>.</p>
+</li>
+</ul>
+<p>Additionally, actions that return a value must wrap the value inside of the <a class="xref" href="../../api/FarmMaster.Filters.AjaxValueResult.html">AjaxValueResult</a> class,
+while actions that don't return a value must return a <code>new EmptyResult()</code>. It kind of goes without saying, but any values returned by AJAX will
+be automatically converted to JSON, so the data you return must be structured the same way you want to access it in javascript.</p>
+<p>These filters remove <em>substantial</em> amounts of boilerplate code that used to exist prior to their creation, so while they do a lot, and might get in the way
+sometimes, appreciate their value in the general case.</p>
+<h3 id="creating-a-new-ajax-action">Creating a new AJAX action</h3>
+<p>The first thing you want to do is open the file for <a class="xref" href="../../api/FarmMaster.Controllers.AjaxController.html">FarmMaster.Controllers.AjaxController</a> as that is where
+<strong>all</strong> AJAX actions are placed.</p>
+<p>Next, please observe the way the AJAX actions are named, as well as the <code>#region</code>s spread throughout the file.</p>
+<p>For our example action we'll make it so that it takes an ID for an animal, and then returns the name, tag, and id of that animal. Normally you'd want to use
+GraphQL for this, but this is just an example action.</p>
+<p>I'll show you the code then go over it:</p>
+<pre><code class="lang-c#">#region Animal
+[HttpPost]
+[FarmAjaxReturnsMessageAndValue(BusinessConstants.Permissions.VIEW_ANIMALS)]
+public IActionResult Animal_ById_AsNameTagId(
+    [FromBody] AjaxByIdRequest model,
+    User _,
+    [FromServices] IServiceAnimalManager animals
+)
+{
+    var animal = animals.Query().FirstOrDefault(a =&gt; a.AnimalId == model.Id);
+    if (animal == null)
+        throw new IndexOutOfRangeException($&quot;No animal with ID #{model.Id}&quot;);
+
+    return new AjaxValueResult(new
+        {
+            name = animal.Name,
+            tag = animal.Tag,
+            id = animal.AnimalId
+        }
+    );
+}
+#endregion
+</code></pre>
+<ul>
+<li><p>First off, notice that we placed the function inside of an <code>Animal</code> region (if a region doesn't exist, just create a new one) as that's where it fits best.</p>
+</li>
+<li><p>The action is marked as <code>[HttpPost]</code> as AJAX requests are typically done with HTTP POST.</p>
+</li>
+<li><p>We return a value for this action, so we use <code>[FarmAjaxReturnsMessageAndValue]</code> while also specifying that the user needs the <code>VIEW_ANIMALS</code> permission.</p>
+</li>
+<li><p>The action is called <code>Animal_ById_AsNameTagId</code>. Placing <code>ById</code> after a data type is a common convention to specify that an id needs to be passed. Using <code>AsXXX</code> (<code>AsNameTagId</code>)
+is a common convention for describing what data is returned. And of course we prefix it will <code>Animal</code> since that's what the action works on.</p>
+</li>
+<li><p>Our model is marked <code>[FromBody]</code> as that tells ASP where to look for the model's data in the HTTP request (the body).</p>
+</li>
+<li><p>Our model is of the type <code>AjaxByIdRequest</code>. There are <em>many</em> pre-made AJAX request models, but this specific one simply contains an <code>Id</code> field. It's better to reuse
+the pre-made ones than it is to create a new one. Create a new class (in <code>./FarmMaster/Models/AjaxModels.cs</code>) for actions that need specialised data inputs.</p>
+</li>
+<li><p>We specify a <code>User</code> parameter just to show how to access it. The AJAX filter will automatically set it to the user who's using the AJAX action.</p>
+</li>
+<li><p>The final parameter is marked <code>[FromServices]</code> which tells ASP to use its dependency injection to get the value of that parameter. So in this case, we're injecting
+the <a class="xref" href="../../api/FarmMaster.Services.IServiceAnimalManager.html">IServiceAnimalManager</a> as we need that to query for animals.</p>
+</li>
+<li><p>The first three lines of the function are simply getting an animal by the id from the AJAX model, and throwing an exception (returned as an error message) if the animal
+doesn't exist.</p>
+</li>
+<li><p>The <code>return</code> statement is wrapping an anonymous class containing the return data around the <code>AjaxValueResult</code> class, which is a hard requirement of
+<code>[FarmAjaxReturnsMessageAndValue]</code>.</p>
+</li>
+</ul>
+<p>After all that hard work, the following JSON is generated:</p>
+<pre><code class="lang-json">{
+    &quot;message&quot;: &quot;Success!&quot;,
+    &quot;messageType&quot;: 1,   // FarmAjaxMessageType.Information
+    &quot;messageFormat&quot;: 0, // FarmAjaxMessageFormat.Default
+    &quot;value&quot;: {
+        &quot;name&quot;: &quot;Babayetu&quot;,
+        &quot;tag&quot;: &quot;0284A&quot;,
+        &quot;id&quot;: 20
+    }
+}
+</code></pre>
+<p>You'll have to read the previous section if you wish to learn how to now call this AJAX action from client-side javascript.</p>
+<p>Hopefully this is all you'll need to get started with creating new AJAX actions :)</p>
+<h2 id="graphql">GraphQL</h2>
+<p>TODO: Because... dear lord how do I explain this.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>
