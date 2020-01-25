@@ -1,0 +1,218 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>IServiceEntityManager and the repository pattern </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="IServiceEntityManager and the repository pattern ">
+    <meta name="generator" content="docfx 2.43.3.0">
+    
+    <link rel="shortcut icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="iserviceentitymanager-and-the-repository-pattern">IServiceEntityManager and the repository pattern</h1>
+
+<p>This section covers how FarmMaster uses the <a href="https://deviq.com/repository-pattern/">repository pattern</a> to handle the abstraction
+of accessing data from the database.</p>
+<h2 id="what-is-the-repository-pattern">What is the repository pattern</h2>
+<p>In short, it is an abstraction that combines data access with business logic.</p>
+<p>So instead of the website being littered with code that has direct knowledge and access to the <a class="xref" href="../../api/Business.Model.FarmMasterContext.html">DbContext</a>
+we instead create a new <code>repository</code> interface for <em>every entity</em> that handles any functionality the website needs.</p>
+<h2 id="iserviceentitymanager">IServiceEntityManager</h2>
+<p>The <a href="xref:FarmMaster.Services.IServiceEntityManager">IServiceEntityManager</a> interface is the basis of this pattern. In FarmMaster a <code>repository</code>
+is called an <code>entity manager</code> since the naming makes more sense this way.</p>
+<p><code>IServiceEntityManager</code> describes a few functions that any inheriting service that intends to act as an entity manager needs to implement:</p>
+<ul>
+<li><p>GetIdFor - Deprecated, throw an exception in any new service you make.</p>
+</li>
+<li><p>Query - Instead of creating a seperate function for each different query, we instead give the user code a bit more control by providing this function which returns
+an <code>IQueryable</code>, so the user code can leverage LINQ to create fluent queries on the underlying data store (which is almost always the database).</p>
+</li>
+<li><p>QueryAllIncluded - Deprecated, throw an exception in any new service you make.</p>
+</li>
+<li><p>Update - Sometimes the user code needs to make a small edit or tweak to an entity's data, and it'd be overkill to make a new function for the specific modification.
+So, this function allows the user to pass an entity to the service, which will then save any changes made to the entity.</p>
+</li>
+</ul>
+<p>Furthermore, some old code you see may make use of two <a class="xref" href="../../api/FarmMaster.Services.IServiceEntityDataExtentions.html">extention functions</a> called <code>FromId</code> and
+<code>FromIdAllIncluded</code>. I wrote these when I was still early in my learning of EF Core, and their major downside is that <em>they pull the entire data set for every entity
+of a certain type from the database</em> due to it forcing a client-side evaluation super early on. <strong>Never use them</strong>, they will be removed at some point.</p>
+<h3 id="dependency-injection">Dependency injection</h3>
+<p>Because FarmMaster uses entity managers as <a href="https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-3.1">services</a>,
+it means that they can be accessed via ASP's dependency injection capabilities.</p>
+<p>So if you're making a new MVC action, or a new service/middleware/whatever that can use dependency injection, then getting access to these entity managers is
+as easy as accessing any other service.</p>
+<h3 id="making-a-new-entity-manager">Making a new entity manager</h3>
+<p>Making a new entity manager is simpler than it may seem - most of the complexity comes from the actual implementation code of the manager.</p>
+<ol>
+<li><p>Create a new file inside of <code>./FarmMaster/Services</code> with the naming scheme of <code>IServiceXXXManager.cs</code> where &quot;XXX&quot; is the name of the entity you want to manage
+(e.g. <a class="xref" href="../../api/FarmMaster.Services.IServiceUserManager.html">IServiceUserManager</a> for users).</p>
+</li>
+<li><p>Inside this file, create a new interface (call it the same thing as the file).</p>
+</li>
+<li><p>Make this interface inherit from <a href="xref:FarmMaster.Services.IServiceEntityManager">IServiceEntityManager</a>, passing the type of the entity you want to manage as
+the type parameter: <code>interface IServiceUserManager : IServiceEntityManager&lt;User&gt;</code></p>
+</li>
+<li><p>You may wish to define any other functions this interface may need, such as a <a class="xref" href="../../api/FarmMaster.Services.IServiceUserManager.html#Create">Create()</a> function.</p>
+</li>
+<li><p>Inside the same file, create a new class. You can call it whatever, but the general scheme is to use the same name as the interface but without the &quot;I&quot; at the start.</p>
+</li>
+<li><p>This new class will be the default implementation of your entity manager, so naturally you need to make sure it also inherits your newly made interface.</p>
+</li>
+<li><p>In Visual Studio you should have a red squiggly line underneath where you inherit your interface, hover over it and press &quot;Implement interface&quot; from the dropdown.
+For other IDEs/text editors you'll have to do things manually.</p>
+</li>
+<li><p>For the deprecated functions mentioned earlier, just make sure they're throwing exceptions.</p>
+</li>
+<li><p>For the none deprecated functions, you may wish to examine the code from the existing entity managers to see how to implement them.</p>
+</li>
+<li><p>Note that you'll likely need to use dependency injection to gain access to <code>FarmMasterContext</code>, again, see the existing services to learn how to do that.</p>
+</li>
+<li><p>Once you're happy with your default implementation, open the startup file (<code>./FarmMaster/Startup.cs</code>); locate the <code>ConfigureServices</code> function; locate the comment
+saying <code>// Data Managers</code>; add a line in that section for your newly made service, you should be able to figure out based on the existing lines of code.</p>
+</li>
+</ol>
+<p>After the steps above are done, you can now access your newly made service via dependency injection.</p>
+<div class="NOTE">
+<h5>Note</h5>
+<p>Instead of creating your own functions for deleting an entity, please see below about a standard interface.</p>
+</div>
+<h2 id="iserviceentitymanagerfulldeletion-and-iserviceentitymanageranonymousdeletion">IServiceEntityManagerFullDeletion and IServiceEntityManagerAnonymousDeletion</h2>
+<p>There are essentially two types of deletion that FarmMaster cares about: Completely removing the data from the database (full deletion), and
+simply hiding the data while possibly also dummying out some of the values (anonymous deletion).</p>
+<p>FarmMaster provides two interfaces, similar to <code>IServiceEntityManager</code>, that provide a standard way of defining whether your entity manager
+performs a full delete, or an anonymous delete.</p>
+<p>So please inherit <a href="xref:FarmMaster.Services.IServiceEntityManagerFullDeletion">IServiceEntityManagerFullDeletion</a> for full deletion, and
+<a href="xref:FarmMaster.Services.IServiceEntityManagerAnonymousDeletion">IServiceEntityManagerAnonymousDeletion</a> for anonymous deletion.</p>
+<h2 id="gdpr-support--iservicegdprdata">GDPR support &amp; IServiceGdprData</h2>
+<p>Some entity managers will manage entities that contain references to a <a class="xref" href="../../api/Business.Model.User.html">User</a> and/or <a class="xref" href="../../api/Business.Model.Contact.html">Contact</a>.</p>
+<p>These managers will need to provide support for GDPR information and deletion requests.</p>
+<p>A few things to note beforehand though:</p>
+<ul>
+<li><p>Contacts can be external entities or people that have been manually registered into the system. They are not users.</p>
+</li>
+<li><p>Users are people who have used the sign up page to gain access to the system.</p>
+</li>
+<li><p><strong>Users are also given their own Contact as part of the creation process</strong></p>
+</li>
+<li><p>The above means that you must also handle a user's <code>Contact</code>, as well as the <code>User</code> itself within your GDPR functions. <strong>The user's contact isn't automatically
+passed to the contact versions of the GDPR functions, do that yourself.</strong></p>
+</li>
+<li><p>Deletion requests for users and contacts are <em>always</em> anonymous deletions. If you keep any mapping entries between a user and something else, you are safe to
+fully delete them. If you have an entity that simply refers to a user directly (a.k.a as an Owner of something) then you can simply leave it be, as the name
+of the user will be anonymised by another service.</p>
+</li>
+<li><p>Your service only needs to remove/anonymise data about a contact or user that's <em>relevent to the entity you're managing</em>. For example, the manager for group script
+isn't responsible for removing a contact's emails, but the manager for contacts <em>is</em> responsible for that.</p>
+</li>
+</ul>
+<p>Now, adding GDPR support into your entity manager is very simple (again, complexity is from the implementation code): all you have to do
+is inherit and implement the <a class="xref" href="../../api/FarmMaster.Services.IServiceGdprData.html">IServiceGdprData</a> interface.</p>
+<p>For the <a class="xref" href="../../api/FarmMaster.Services.IServiceGdprData.html#AnonymiseContactData">AnonymiseContactData</a> and
+<a class="xref" href="../../api/FarmMaster.Services.IServiceGdprData.html#AnonymiseUserData">AnonymiseUserData</a> functions, simply do the anonymisation/deletion process described above. Look
+at services such as <code>IServiceContactManager</code> and <code>IServiceUserManager</code> if you need references for existing GDPR code.</p>
+<p>For the <a class="xref" href="../../api/FarmMaster.Services.IServiceGdprData.html#GetContactGdprData">GetContactGdprData</a> and
+<a class="xref" href="../../api/FarmMaster.Services.IServiceGdprData.html#GetUserGdprData">GetUserGdprData</a> you will be passed a <code>JObject</code> as the second parameter, which you need to populate
+with any data relevent to the given contact/user. Again, see other services to see how this code is implemented.</p>
+<h2 id="entity-managers-that-manage-multiple-entities">Entity Managers that manage multiple entities</h2>
+<p>There are cases where an entity manager may inherit from <code>IServiceEntityManager</code> multiple times (for example, <a class="xref" href="../../api/FarmMaster.Services.IServiceSpeciesBreedManager.html">IServiceSpeciesBreedManager</a>).</p>
+<p>This is fine and all since sometimes entities are so tightly related that a single manager for both makes sense, but there's an issue in accessing
+the functions that <code>IServiceEntityManager</code> exposes: calls to them are ambiguous, so it creates a compiler error.</p>
+<p>Fortunately FarmMaster provides an <a class="xref" href="../../api/FarmMaster.Services.IServiceUserManager.html#For">identity function</a> that can be used to lower a manager's
+type down into a specific <code>IServiceEntityManager</code>.</p>
+<p>For example, with <code>IServiceSpeciesBreedManager</code> if we wanted to access the <code>IServiceEntityManager&lt;Breed&gt;</code> variant of its functions, one could do:
+<code>serviceSpeciesBreed.For&lt;Breed&gt;().Query()...</code></p>
+<p>If you wanted species then: <code>serviceSpeciesBreed.For&lt;Species&gt;().Query()</code>, etc.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>
