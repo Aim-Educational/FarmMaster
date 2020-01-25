@@ -8,3 +8,5 @@
   href: js_ts_ajax.md
 - name: Server-side AJAX and GraphQL
   href: server_side_ajax_graphql.md
+- name: IServiceEntityManager
+  href: services.md
