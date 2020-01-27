@@ -167,22 +167,6 @@ namespace FarmMaster.Controllers
         }
         #endregion
 
-#pragma warning disable CA1801 // Unused parameter. 'model' *has* to be there otherwise the AJAX attributes throw an exception.
-        [HttpPost]
-        [AllowAnonymous]
-        [FarmAjaxReturnsMessageAndValue(BusinessConstants.Permissions.VIEW_CONTACTS)]
-        public IActionResult AjaxGetNameAndValueAll([FromBody] AjaxRequestModel model, User _)
-        {
-            return new AjaxValueResult(
-                    this._context.Contacts
-                                 .Where(c => !c.IsAnonymous)
-                                 .OrderBy(c => c.ShortName)
-                                 .Select(c => new ComponentSelectOption{ Description = c.ShortName, Value = Convert.ToString(c.ContactId) })
-                                 .ToList()
-            );
-        }
-#pragma warning restore CA1801
-
         [HttpPost]
         [AllowAnonymous]
         [FarmAjaxReturnsMessageAndValue(BusinessConstants.Permissions.VIEW_CONTACTS)]
