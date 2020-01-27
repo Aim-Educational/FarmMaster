@@ -97,19 +97,27 @@ export class Dropdown {
     //
     // If the data source is used in more than one page, its probably best to put it here.
 
-    public fromContactGraphQL() {
+    private fromNameIdGraphQL(entityName: string) {
         this.fromGraphQL({
             query: `query GetOwners {
-                contacts {
+                ${entityName} {
                     id
                     name
                 }
             }`,
 
-            dataGetter: (json: { contacts: { name: string, id: number }[] }) => json.contacts.map(function (v) {
+            dataGetter: (json: any) => json[entityName].map(function (v: { name: string, id: string }) {
                 return { name: v.name, value: String(v.id) };
             })
         });
+    }
+
+    public fromContactGraphQL() {
+        this.fromNameIdGraphQL("contacts");
+    }
+
+    public fromSpeciesGraphQL() {
+        this.fromNameIdGraphQL("species");
     }
 }
 

@@ -26,26 +26,18 @@
                     <input asp-for="Breed.Name" placeholder="Name" />
                 </div>
 
-                <div class="field">
-                    <label>Species</label>
-                    <div class="ui search selection dropdown">
-                        <input id="inputSpecies" type="hidden" data-default-value="@Model.Breed.SpeciesId" asp-for="Breed.SpeciesId" />
-                        <i class="dropdown icon"></i>
-                        <div class="default text">Species</div>
-                        <div class="menu">
-
-                        </div>
-                    </div>
-                </div>
-                <vc:dropdown
-                    label="Breed Society"
-                    asp-for="Breed.BreedSocietyId"
-                    default-value="@Model.Breed.BreedSocietyId"
-                    dropdown-id="selectSociety"
-                    goto-action="Index"
-                    goto-controller="Contact"
-                >
-                </vc:dropdown>
+                <vc:dropdown label="Species"
+                             asp-for="Breed.SpeciesId"
+                             default-value="@Model.Breed.SpeciesId"
+                             dropdown-id="selectSpecies"
+                             goto-action="Index"
+                             goto-controller="SpeciesBreed" />
+                <vc:dropdown label="Breed Society"
+                             asp-for="Breed.BreedSocietyId"
+                             default-value="@Model.Breed.BreedSocietyId"
+                             dropdown-id="selectSociety"
+                             goto-action="Index"
+                             goto-controller="Contact" />
                 <div class="field">
                     <div class="ui checkbox">
                         <input type="checkbox" asp-for="Breed.IsRegisterable" />
@@ -76,9 +68,8 @@
 
 @section Scripts {
     <script type="module">
-        import { Dropdown, Validation } from "/js/index.js"
+        import { Dropdown, Validation } from "/js/index.js";
 
-        $(".ui.dropdown").dropdown().dropdown("clear");
         $(".ui.checkbox").checkbox();
         $(".accordion").accordion();
 
@@ -86,5 +77,8 @@
 
         const selectSociety = new Dropdown("selectSociety");
         selectSociety.fromContactGraphQL();
+
+        const selectSpecies = new Dropdown("selectSpecies");
+        selectSpecies.fromSpeciesGraphQL();
     </script>
 }
