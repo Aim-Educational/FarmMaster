@@ -3,7 +3,7 @@
 @{ 
     var gotoClasses = "ui icon button";
 
-    if(Model.GotoAction.Length == 0 && Model.GotoController.Length == 0)
+    if(Model.GotoAction == null && Model.GotoController == null)
     {
         gotoClasses += " hidden";
     }
