@@ -24,7 +24,7 @@
 <section class="ui centered cards">
     @foreach(var card in cards)
     {
-        if(card.PermsOR.Any(perm => roles.HasPermission(user.Role, perm)))
+        if(card.PermsOR.Length == 0 || card.PermsOR.Any(perm => roles.HasPermission(user.Role, perm)))
         {
             <partial name="_CardLinkPartial" model="new HomeCardLinkPartialViewModel{ Name = card.Name, Action = card.Action, Controller = card.Controller, Image = card.Image }" />
         }
