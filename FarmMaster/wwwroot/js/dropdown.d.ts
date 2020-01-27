@@ -24,6 +24,10 @@ export declare class Dropdown {
     private fromNameIdGraphQL;
     fromContactGraphQL(): void;
     fromSpeciesGraphQL(): void;
+    fromHoldingGraphQL(): void;
+    fromAnimalGroupGraphQL(): void;
+    fromBreedGraphQL(): void;
+    fromLifeEventGraphQL(): void;
 }
 export default Dropdown;
 //# sourceMappingURL=dropdown.d.ts.map

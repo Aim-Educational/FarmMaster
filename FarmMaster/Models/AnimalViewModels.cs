@@ -45,5 +45,7 @@ namespace FarmMaster.Models
         public int? HoldingId { get; set; }
 
         public bool IsCreate { get; set; }
+
+        public bool DUMMY_VALUE { get; set; } // Getting past a limitation in Razor - not being able to have optional parameters in ViewComponents
     }
 }

@@ -67,56 +67,36 @@
                         </div>
                     </div>
                 </div>
-                <div class="field">
-                    <label>Owner</label>
-                    <div class="ui search selection dropdown">
-                        <input id="selectOwner" type="hidden" asp-for="OwnerId" value="@Model.OwnerId" />
-                        <i class="dropdown icon"></i>
-                        <div class="text"></div>
-                        <div class="menu">
-                        </div>
-                    </div>
-                </div>
-                <div class="field">
-                    <label>Holding</label>
-                    <div class="ui search selection dropdown">
-                        <input id="selectHolding" type="hidden" asp-for="HoldingId" value="@Model.HoldingId" />
-                        <i class="dropdown icon"></i>
-                        <div class="text"></div>
-                        <div class="menu">
-                        </div>
-                    </div>
-                </div>
-                <div class="field">
-                    <label>Species</label>
-                    <div class="ui search selection dropdown">
-                        <input id="selectSpecies" type="hidden" asp-for="SpeciesId" value="@(Model.SpeciesId ?? null)" />
-                        <i class="dropdown icon"></i>
-                        <div class="text"></div>
-                        <div class="menu">
-                        </div>
-                    </div>
-                </div>
-                <div class="field">
-                    <label>Dad</label>
-                    <div class="ui disabled search selection dropdown">
-                        <input id="selectDad" type="hidden" asp-for="DadId" value="@(Model.DadId ?? null)" />
-                        <i class="dropdown icon"></i>
-                        <div class="text"></div>
-                        <div class="menu">
-                        </div>
-                    </div>
-                </div>
-                <div class="field">
-                    <label>Mum</label>
-                    <div class="ui disabled search selection dropdown">
-                        <input id="selectMum" type="hidden" asp-for="MumId" value="@(Model.MumId ?? null)" />
-                        <i class="dropdown icon"></i>
-                        <div class="text"></div>
-                        <div class="menu">
-                        </div>
-                    </div>
-                </div>
+                <vc:dropdown label="Owner"
+                             asp-for="OwnerId"
+                             default-value="@Model.OwnerId"
+                             dropdown-id="selectOwner"
+                             goto-action="Index"
+                             goto-controller="Contact" />
+                <vc:dropdown label="Holding"
+                             asp-for="HoldingId"
+                             default-value="@Model.HoldingId"
+                             dropdown-id="selectHolding"
+                             goto-action="Index"
+                             goto-controller="Holding" />
+                <vc:dropdown label="Species"
+                             asp-for="SpeciesId"
+                             default-value="@Model.SpeciesId"
+                             dropdown-id="selectSpecies"
+                             goto-action="Index"
+                             goto-controller="SpeciesBreed" />
+                <vc:dropdown label="Dad"
+                             asp-for="DadId"
+                             default-value="@Model.DadId"
+                             dropdown-id="selectDad"
+                             goto-action="Index"
+                             goto-controller="Animal" />
+                <vc:dropdown label="Mum"
+                             asp-for="MumId"
+                             default-value="@Model.MumId"
+                             dropdown-id="selectMum"
+                             goto-action="Index"
+                             goto-controller="Animal" />
                 <div class="field">
                     <label>Breeds</label>
                     @{
@@ -150,16 +130,12 @@
                         Add to group
                     </div>
                     <div class="content ui form">
-                        <div class="field">
-                            <label>Group</label>
-                            <div class="ui search selection dropdown">
-                                <input id="selectGroup" type="hidden" />
-                                <i class="dropdown icon"></i>
-                                <div class="text"></div>
-                                <div class="menu">
-                                </div>
-                            </div>
-                        </div>
+                        <vc:dropdown label="Group"
+                                     asp-for="DUMMY_VALUE"
+                                     default-value=""
+                                     dropdown-id="selectGroup"
+                                     goto-action="Index"
+                                     goto-controller="AnimalGroup" />
                         <button id="buttonAddToGroup" class="ui button">Add to group</button>
                     </div>
                 </div>
@@ -207,16 +183,12 @@
                         Add a life event
                     </div>
                     <div class="content ui form">
-                        <div class="field">
-                            <label>Type</label>
-                            <div class="ui search selection dropdown">
-                                <input id="selectLifeEvent" type="hidden" />
-                                <i class="dropdown icon"></i>
-                                <div class="text"></div>
-                                <div class="menu">
-                                </div>
-                            </div>
-                        </div>
+                        <vc:dropdown label="Life Event"
+                                     asp-for="DUMMY_VALUE"
+                                     default-value=""
+                                     dropdown-id="selectLifeEvent"
+                                     goto-action="Index"
+                                     goto-controller="LifeEvent" />
                         <button id="buttonCreateEvent" class="ui button">Goto Event Creation Editor</button>
                     </div>
                 </div>
@@ -247,21 +219,21 @@
 @section Scripts {
     <!--GraphQL related code. Covers the entire 'Information' section, as well as populating the Life Event section and group dropdown.-->
     <script type="module">
-        import { GraphQL, FarmAjax, FarmAjaxMessageType, Modal } from "/js/index.js";
+        import { GraphQL, FarmAjax, FarmAjaxMessageType, Modal, Dropdown } from "/js/index.js";
+
+        const selectGroup       = new Dropdown("selectGroup");
+        const selectOwner       = new Dropdown("selectOwner");
+        const selectHolding     = new Dropdown("selectHolding");
+        const selectSpecies     = new Dropdown("selectSpecies");
+        const selectMum         = new Dropdown("selectMum");
+        const selectDad         = new Dropdown("selectDad");
+        const selectLifeEvent   = new Dropdown("selectLifeEvent");
+
+        window.selectGroup = selectGroup;
+        window.selectLifeEvent = selectLifeEvent;
 
         function onError(errors) {
             alert(JSON.stringify(errors));
-        }
-
-        function addItemToDropdown(dropdown, name, value = null, isActive = false) {
-            const menu = dropdown.querySelector(".menu");
-            const div = menu.appendChild(document.createElement("div"));
-            div.classList.add("item");
-            div.dataset.value = (value === null) ? name : value;
-            div.innerHTML = name;
-
-            if (isActive)
-                $(dropdown).dropdown("set selected", value);
         }
 
         function populateFromIdName(dropdown, idNameList, isMultipleSelect = false, ignoreIfAnimalId = false) {
@@ -289,6 +261,18 @@
             }
 
             $(dropdown).dropdown();
+        }
+
+        // FOR THE NEW DROP DOWNS, FUNCTION ABOVE WILL BE REPLACED SOON.
+        function fromIdName(dropdown, nameIdArray) {
+            dropdown.clear();
+            for (const nameId of nameIdArray) {
+                dropdown.addItem({
+                    name:        nameId.name,
+                    value:       nameId.id,
+                    isSelected:  nameId.id === dropdown.defaultValue
+                });
+            }
         }
 
         window.addGroupInfo = function (id, name, description) {
@@ -352,42 +336,41 @@
         // These are seperate functions to make it easier to add additional logic in the future.
         // I'm fully aware these could be condensed further.
         function handleContacts(contacts) {
-            const dropdown = document.getElementById("selectOwner").parentElement;
-            populateFromIdName(dropdown, contacts);
+            fromIdName(selectOwner, contacts);
         }
 
         function handleSpecies(species) {
-            const dropdown = document.getElementById("selectSpecies").parentElement;
-            populateFromIdName(dropdown, species);
+            fromIdName(selectSpecies, species);
         }
 
         function handleMums(mums) {
-            const dropdown = document.getElementById("selectMum").parentElement;
-            populateFromIdName(dropdown, mums, false, true);
+            for (let i = 0; i < mums.length; i++) {
+                if (mums[i].id === "@Model.AnimalId") {
+                    mums.splice(i, 1);
+                    break;
+                }
+            }
 
-            addItemToDropdown(dropdown, "Unknown", "", document.getElementById("selectMum").value === "");
-            $(dropdown).dropdown();
+            fromIdName(selectMum, mums);
         }
 
         function handleDads(dads) {
-            const dropdown = document.getElementById("selectDad").parentElement;
-            populateFromIdName(dropdown, dads, false, true);
+            for (let i = 0; i < dads.length; i++) {
+                if (dads[i].id === "@Model.AnimalId") {
+                    dads.splice(i, 1);
+                    break;
+                }
+            }
 
-            addItemToDropdown(dropdown, "Unknown", "", document.getElementById("selectDad").value === "");
-            $(dropdown).dropdown();
+            fromIdName(selectDad, dads);
         }
 
         function handleHoldings(holdings) {
-            const dropdown = document.getElementById("selectHolding").parentElement;
-            populateFromIdName(dropdown, holdings);
-
-            addItemToDropdown(dropdown, "Unknown/Other", "", document.getElementById("selectHolding").value === "");
-            $(dropdown).dropdown();
+            fromIdName(selectHolding, holdings);
         }
 
         function handleBreeds(breeds) {
-            const dropdown = document.getElementById("selectBreeds").parentElement;
-            populateFromIdName(dropdown, breeds, true);
+            //fromIdName(selectBreed, breeds);
         }
 
         function handleLifeEventTypes(lifeEvent) {
@@ -396,8 +379,7 @@
                 @:return;
             }
 
-            const dropdown = document.getElementById("selectLifeEvent").parentElement;
-            populateFromIdName(dropdown, lifeEvent);
+            fromIdName(selectLifeEvent, lifeEvent);
         }
 
         function handleLifeEventEntries(entries) {
@@ -484,15 +466,40 @@
             for (const group of groupsNotIn)
                 group.name = group.name + " - " + group.description;
 
-            const dropdown = document.getElementById("selectGroup").parentElement;
-            populateFromIdName(dropdown, groupsNotIn);
+            fromIdName(selectGroup, groupsNotIn);
 
             for (const group of groupsIn)
                 window.addGroupInfo(group.id, group.name, group.description);
         }
 
-        GraphQL
-            .query(`query InitialLoad($animalId: ID){
+        selectSpecies.inputNode.addEventListener("change", () => {
+            const speciesId = selectSpecies.inputNode.value;
+            GraphQL
+                .query(`query GetSpeciesData($id:ID) {
+                  mums: animals(gender:FEMALE, speciesId:$id){
+                    id
+                    name
+                  }
+                  dads: animals(gender:MALE, speciesId:$id){
+                    id
+                    name
+                  }
+                  breeds(speciesId:$id){
+                    id
+                    name
+                  }
+                }`, { id: speciesId })
+                .then(data => {
+                    handleMums(data.mums);
+                    handleDads(data.dads);
+                    handleBreeds(data.breeds);
+                })
+                .catch(errors => onError(errors));
+        });
+
+        function doInitialLoad() {
+            GraphQL
+                .query(`query InitialLoad($animalId: ID){
                 contacts {
                     id
                     name
@@ -530,46 +537,20 @@
                     description
                 }
             }`, { animalId: @Model.AnimalId })
-            .then(data => {
-                handleContacts(data.contacts);
-                handleSpecies(data.species);
-                handleLifeEventTypes(data.lifeEvents);
-                handleLifeEventEntries(data.animals[0].lifeEventEntries);
-                handleHoldings(data.holdings);
-                handleGroups(data.groupsAssignedTo, data.groupsNotAssignedTo);
-            })
-            .catch(errors => onError(errors));
-
-        document.getElementById("selectSpecies").addEventListener("change", () => {
-            const speciesId = document.getElementById("selectSpecies").value;
-            GraphQL
-                .query(`query GetSpeciesData($id:ID) {
-                  mums: animals(gender:FEMALE, speciesId:$id){
-                    id
-                    name
-                  }
-                  dads: animals(gender:MALE, speciesId:$id){
-                    id
-                    name
-                  }
-                  breeds(speciesId:$id){
-                    id
-                    name
-                  }
-                }`, { id: speciesId })
                 .then(data => {
-                    handleMums(data.mums);
-                    handleDads(data.dads);
-                    handleBreeds(data.breeds);
+                    handleContacts(data.contacts);
+                    handleSpecies(data.species);
+                    handleLifeEventTypes(data.lifeEvents);
+                    handleLifeEventEntries(data.animals[0].lifeEventEntries);
+                    handleHoldings(data.holdings);
+                    handleGroups(data.groupsAssignedTo, data.groupsNotAssignedTo);
                 })
                 .catch(errors => onError(errors));
-        });
-        @if(!Model.IsCreate)
-        {
-            @:document.getElementById("selectSpecies").dispatchEvent(new Event("change"));
         }
+        for (const select of [selectGroup, selectOwner, selectHolding, selectSpecies, selectMum, selectDad, selectLifeEvent])
+            select.fromRefreshFunc(doInitialLoad);
+        doInitialLoad();
 
-        $(".ui.dropdown").dropdown();
         $(".accordion").accordion();
     </script>
 
@@ -586,7 +567,7 @@
             @{
                 var lifeEventCreateBreadcrumb = lifeEventBreadcrumb + ">Create Entry:#";
             }
-            const lifeEventId = document.getElementById("selectLifeEvent").value;
+            const lifeEventId = selectLifeEvent.inputNode.value;
             const url =
                 "/LifeEvent/CreateEntry"
                 + "?lifeEventId=" + lifeEventId
@@ -612,7 +593,7 @@
                 "/Ajax/Animal_ById_AssignGroup_ById",
                 {
                     byId: @Model.AnimalId,
-                    forId: document.getElementById("selectGroup").value
+                    forId: selectGroup.inputNode.value
                 },
                 r => {
                     if (r.messageType !== FarmAjaxMessageType.Information) {

@@ -21,7 +21,7 @@
     </label>
 
     <div class="ui search selection dropdown">
-        <input type="hidden" asp-for="AspFor" data-default-value="@Model.DefaultValue" />
+        <input id="@Model.AspFor.Name" name="@Model.AspFor.Name" type="hidden" data-default-value="@Model.DefaultValue" />
         <i class="dropdown icon"></i>
         <div class="text"></div>
         <div class="menu">

@@ -50,8 +50,16 @@ export class Dropdown {
         if (value)
             item.dataset.value = value;
 
-        if (isSelected)
-            $(<any>this.menuNode.parentNode).dropdown("set selected", value || name)
+        if (isSelected) {
+            // Fomantic UI's own functions are too buggy to use, so we do things ourselves
+            item.classList.add("active", "selected");
+            this.inputNode.value = (!value) ? name : value;
+
+            const textbox = <HTMLDivElement>this.dropdownNode.querySelector("div.dropdown div.text");
+            textbox.innerText = name;
+
+            this.inputNode.dispatchEvent(new Event("change"));
+        }
 
         return item;
     }
@@ -59,6 +67,9 @@ export class Dropdown {
     public clear() {
         while (this.menuNode.firstChild)
             this.menuNode.removeChild(this.menuNode.firstChild);
+
+        const textbox = <HTMLDivElement>this.dropdownNode.querySelector("div.dropdown div.text");
+        textbox.innerText = "";
     }
 
     public refresh() {
@@ -90,7 +101,6 @@ export class Dropdown {
                 });
         });
         this.refresh();
-        this.refresh(); // Very weird bug where, during the first refresh, Fomantic UI won't perform "set selected" correctly.
     }
 
     // COMMON DROPDOWN DATA SOURCES
@@ -118,6 +128,22 @@ export class Dropdown {
 
     public fromSpeciesGraphQL() {
         this.fromNameIdGraphQL("species");
+    }
+
+    public fromHoldingGraphQL() {
+        this.fromNameIdGraphQL("holdings");
+    }
+
+    public fromAnimalGroupGraphQL() {
+        this.fromNameIdGraphQL("animalGroups");
+    }
+
+    public fromBreedGraphQL() {
+        this.fromNameIdGraphQL("breeds");
+    }
+
+    public fromLifeEventGraphQL() {
+        this.fromNameIdGraphQL("lifeEvents");
     }
 }
 
