@@ -205,5 +205,7 @@ div.field.for.entity label {
     margin-left: 0.5em;
     margin-top: -0.1em;
     height: 20px; }
+    div.field.for.entity label > .button.hidden {
+      display: none; }
     div.field.for.entity label > .button > i.icon {
       margin-top: -0.5em !important; }

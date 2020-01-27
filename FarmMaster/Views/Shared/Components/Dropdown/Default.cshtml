@@ -1,0 +1,31 @@
+﻿@model DropdownViewComponent.Model
+
+@{ 
+    var gotoClasses = "ui icon button";
+
+    if(Model.GotoAction.Length == 0 && Model.GotoController.Length == 0)
+    {
+        gotoClasses += " hidden";
+    }
+}
+
+<div id="@Model.DropdownId" class="field for entity">
+    <label>
+        Owner
+        <a class="@gotoClasses" asp-action="@Model.GotoAction" asp-controller="@Model.GotoController" target="_blank">
+            <i class="share icon"></i>
+        </a>
+        <a class="ui icon button">
+            <i class="sync icon"></i>
+        </a>
+    </label>
+
+    <div class="ui search selection dropdown for entity">
+        <input type="hidden" asp-for="AspFor" data-default-value="@Model.DefaultValue" />
+        <i class="dropdown icon"></i>
+        <div class="text"></div>
+        <div class="menu">
+
+        </div>
+    </div>
+</div>

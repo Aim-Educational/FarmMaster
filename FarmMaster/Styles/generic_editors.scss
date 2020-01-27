@@ -325,6 +325,10 @@ div.field.for.entity {
             margin-top: -0.1em;
             height: 20px;
 
+            &.hidden {
+                display: none;
+            }
+
             > i.icon {
                margin-top: -0.5em !important; // To override Fomantic UI's !important ;( 
             }

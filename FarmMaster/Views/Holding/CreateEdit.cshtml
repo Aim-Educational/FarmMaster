@@ -59,26 +59,14 @@
                     <label>Postcode</label>
                     <input asp-for="Holding.Postcode" />
                 </div>
-                <div class="field for entity">
-                    <label>
-                        Owner
-                        <a class="ui icon button" asp-action="Index" asp-controller="Contact" target="_blank">
-                            <i class="share icon"></i>
-                        </a>
-                        <a class="ui icon button">
-                            <i class="sync icon"></i>
-                        </a>
-                    </label>
-
-                    <div class="ui search selection dropdown for entity">
-                        <input id="selectOwner" type="hidden" asp-for="Holding.OwnerContactId" data-default-value="@(Model.Holding?.OwnerContactId ?? -1)" />
-                        <i class="dropdown icon"></i>
-                        <div class="text"></div>
-                        <div class="menu">
-
-                        </div>
-                    </div>
-                </div>
+                <vc:dropdown 
+                    asp-for="Holding.OwnerContactId"
+                    default-value="@(Convert.ToString(Model.Holding == null ? -1 : Model.Holding.HoldingId))"
+                    dropdown-id="selectOwner"
+                    goto-action="Index"
+                    goto-controller="Contact"
+                >
+                </vc:dropdown>
             </div>
         </section>
         <section>
