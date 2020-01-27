@@ -22,6 +22,7 @@
     <None Remove="log.txt" />
     <None Remove="Scripts\characteristic_helper.ts" />
     <None Remove="Scripts\cookies.ts" />
+    <None Remove="Scripts\dropdown.ts" />
     <None Remove="Scripts\farm_ajax.ts" />
     <None Remove="Scripts\graphql.ts" />
     <None Remove="Scripts\modal.ts" />
@@ -62,6 +63,7 @@
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\characteristic_helper.ts" />
     <TypeScriptCompile Include="Scripts\cookies.ts" />
+    <TypeScriptCompile Include="Scripts\dropdown.ts" />
     <TypeScriptCompile Include="Scripts\farm_ajax.ts" />
     <TypeScriptCompile Include="Scripts\graphql.ts" />
     <TypeScriptCompile Include="Scripts\modal.ts" />

@@ -111,23 +111,25 @@
 
 @section Scripts {
     <script type="module">
-        import { ComponentSelect, Validation, Modal } from "/js/index.js"
+        import { Dropdown, Validation, Modal } from "/js/index.js"
 
         $(".ui.checkbox").checkbox();
-        $(".ui.dropdown").dropdown();
 
         Validation.hookupForm(document.querySelector(".ui.form"));
 
-        function refreshOwner() {
-            ComponentSelect.populateFromAjaxWithMessageResponse(
-                document.getElementById("selectOwner"),
-                document.getElementById("errorOwner"),
-                "/Contact/AjaxGetNameAndValueAll",
-                null
-            );
-        }
-        refreshOwner();
-        window.refreshOwner = refreshOwner;
+        const selectOwner = new Dropdown("selectOwner");
+        selectOwner.fromGraphQL({
+            query: `query GetOwners {
+                contacts {
+                    id
+                    name
+                }
+            }`,
+
+            dataGetter: (json) => json.contacts.map(function (v) {
+                return { name: v.name, value: v.id };
+            })
+        });
 
         function showRegistrationHelp() {
             Modal.show("modalRegHelp");
