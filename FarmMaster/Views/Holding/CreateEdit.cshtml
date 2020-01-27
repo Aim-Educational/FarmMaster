@@ -59,7 +59,8 @@
                     <label>Postcode</label>
                     <input asp-for="Holding.Postcode" />
                 </div>
-                <vc:dropdown 
+                <vc:dropdown
+                    label="Owner"
                     asp-for="Holding.OwnerContactId"
                     default-value="@(Convert.ToString(Model.Holding == null ? -1 : Model.Holding.HoldingId))"
                     dropdown-id="selectOwner"
@@ -118,18 +119,7 @@
         Validation.hookupForm(document.querySelector(".ui.form"));
 
         const selectOwner = new Dropdown("selectOwner");
-        selectOwner.fromGraphQL({
-            query: `query GetOwners {
-                contacts {
-                    id
-                    name
-                }
-            }`,
-
-            dataGetter: (json) => json.contacts.map(function (v) {
-                return { name: v.name, value: v.id };
-            })
-        });
+        selectOwner.fromContactGraphQL();
 
         function showRegistrationHelp() {
             Modal.show("modalRegHelp");

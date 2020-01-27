@@ -31,10 +31,12 @@ export class Dropdown {
         refreshButton.addEventListener("click", () => this.refresh());
 
         // Just to make sure Fomantic UI knows about it, saving the user the hassle.
-        $(<any>this.menuNode.parentNode).dropdown();
+        $(<any>this.menuNode.parentNode).dropdown({ forceSelection: false });
 
         this._refreshFunc = function () { alert("No refresh function has been assigned."); };
     }
+
+    // FUNCTIONS TO MANIPULATE ITEMS
 
     public addItem(
         // Gotta love TS' syntax.
@@ -49,7 +51,7 @@ export class Dropdown {
             item.dataset.value = value;
 
         if (isSelected)
-            $(<any>this.menuNode.parentNode).dropdown("set selected", value || name);
+            $(<any>this.menuNode.parentNode).dropdown("set selected", value || name)
 
         return item;
     }
@@ -63,13 +65,15 @@ export class Dropdown {
         this._refreshFunc();
     }
 
+    // GENERIC DATA SOURCES
+
     public fromRefreshFunc(func: Function) {
         this._refreshFunc = func;
     }
 
     public fromGraphQL(
         { query,         parameters = null,          dataGetter }:
-        { query: string, parameters?: object | null, dataGetter: (data: object) => { name: string, value: string }[] }
+        { query: string, parameters?: object | null, dataGetter: (data: any) => { name: string, value: string }[] }
     ) {
         this.fromRefreshFunc(() => {
             GraphQL
@@ -87,6 +91,25 @@ export class Dropdown {
         });
         this.refresh();
         this.refresh(); // Very weird bug where, during the first refresh, Fomantic UI won't perform "set selected" correctly.
+    }
+
+    // COMMON DROPDOWN DATA SOURCES
+    //
+    // If the data source is used in more than one page, its probably best to put it here.
+
+    public fromContactGraphQL() {
+        this.fromGraphQL({
+            query: `query GetOwners {
+                contacts {
+                    id
+                    name
+                }
+            }`,
+
+            dataGetter: (json: { contacts: { name: string, id: number }[] }) => json.contacts.map(function (v) {
+                return { name: v.name, value: String(v.id) };
+            })
+        });
     }
 }
 

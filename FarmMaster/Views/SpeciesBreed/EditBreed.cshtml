@@ -37,17 +37,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="field">
-                    <label>Breed Society</label>
-                    <div class="ui search selection dropdown">
-                        <input id="inputBreedSociety" type="hidden" data-default-value="@Model.Breed.BreedSocietyId" asp-for="Breed.BreedSocietyId" />
-                        <i class="dropdown icon"></i>
-                        <div class="default text">Contacts</div>
-                        <div class="menu">
-
-                        </div>
-                    </div>
-                </div>
+                <vc:dropdown
+                    label="Breed Society"
+                    asp-for="Breed.BreedSocietyId"
+                    default-value="@Model.Breed.BreedSocietyId"
+                    dropdown-id="selectSociety"
+                    goto-action="Index"
+                    goto-controller="Contact"
+                >
+                </vc:dropdown>
                 <div class="field">
                     <div class="ui checkbox">
                         <input type="checkbox" asp-for="Breed.IsRegisterable" />
@@ -78,7 +76,7 @@
 
 @section Scripts {
     <script type="module">
-        import { ComponentSelect, Validation } from "/js/index.js"
+        import { Dropdown, Validation } from "/js/index.js"
 
         $(".ui.dropdown").dropdown().dropdown("clear");
         $(".ui.checkbox").checkbox();
@@ -86,18 +84,7 @@
 
         Validation.hookupForm(document.querySelector(".ui.form"));
 
-        ComponentSelect.populateFromAjaxWithMessageResponse(
-            document.getElementById("inputSpecies"),
-            document.getElementById("divAllErrors"),
-            "/SpeciesBreed/AjaxGetAllSpecies",
-            null
-        );
-
-        ComponentSelect.populateFromAjaxWithMessageResponse(
-            document.getElementById("inputBreedSociety"),
-            document.getElementById("divAllErrors"),
-            "/Contact/AjaxGetNameAndValueAll",
-            null
-        );
+        const selectSociety = new Dropdown("selectSociety");
+        selectSociety.fromContactGraphQL();
     </script>
 }

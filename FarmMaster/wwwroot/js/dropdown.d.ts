@@ -16,11 +16,12 @@ export declare class Dropdown {
     fromGraphQL({ query, parameters, dataGetter }: {
         query: string;
         parameters?: object | null;
-        dataGetter: (data: object) => {
+        dataGetter: (data: any) => {
             name: string;
             value: string;
         }[];
     }): void;
+    fromContactGraphQL(): void;
 }
 export default Dropdown;
 //# sourceMappingURL=dropdown.d.ts.map

@@ -15,12 +15,14 @@ namespace FarmMaster.ViewComponents
     public class DropdownViewComponent : ViewComponent
     {
         /// <param name="aspFor">Same as attaching an asp-for onto an input tag. Can be null.</param>
+        /// <param name="label">The label to attach to the dropdown.</param>
         /// <param name="dropdownId">An ID given to the dropdown. This ID can be passed to the Dropdown library if JS is needed.</param>
         /// <param name="defaultValue">The default value of the dropdown. This will determine what value is selected by default during a data load.</param>
         /// <param name="gotoController">The name of the controller for use with the 'Goto' button. Can be left empty for `null`.</param>
         /// <param name="gotoAction">The name of the action for use with the 'Goto' button. Can be left empty for `null`.</param>
         public IViewComponentResult Invoke(
             ModelExpression aspFor, 
+            string          label,
             string          dropdownId, 
             string          defaultValue,
             string          gotoController,
@@ -39,7 +41,8 @@ namespace FarmMaster.ViewComponents
                 DropdownId      = dropdownId,
                 DefaultValue    = defaultValue,
                 GotoAction      = gotoAction,
-                GotoController  = gotoController
+                GotoController  = gotoController,
+                Label           = label
             });
         }
 
@@ -50,6 +53,7 @@ namespace FarmMaster.ViewComponents
             public string DefaultValue { get; set; }
             public string GotoController { get; set; }
             public string GotoAction { get; set; }
+            public string Label { get; set; }
         }
     }
 }
