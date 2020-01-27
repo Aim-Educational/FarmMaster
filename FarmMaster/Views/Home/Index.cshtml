@@ -1,23 +1,32 @@
-﻿@{
+﻿@inject IServiceUserManager users
+@inject IServiceRoleManager roles
+@{
     ViewData["Title"] = "Home Page";
 
-    var cards = new List<(string Name, string Action, string Controller, string Image)>
+    var user = users.UserFromCookieSession(Context);
+
+    // TODO: I'm 99% sure I could automate the process of reading the `[FarmAuthorise]` attribute for each controller action,
+    //       instead of having the developer have to repeat (and keep in sync) the permissions.
+    var cards = new List<(string Name, string Action, string Controller, string Image, string[] PermsOR)>
     {
-        ("Roles",               "Index",    "Role",         "/images/icons/default.png"),
-        ("Contacts",            "Index",    "Contact",      "/images/icons/default.png"),
-        ("Holdings",            "Index",    "Holding",      "/images/icons/default.png"),
-        ("Species & Breeds",    "Index",    "SpeciesBreed", "/images/icons/default.png"),
-        ("Life Events",         "Index",    "LifeEvent",    "/images/icons/default.png"),
-        ("Animals",             "Index",    "Animal",       "/images/icons/default.png"),
-        ("Profile(TEMP)",       "Profile",  "Account",      "/images/icons/default.png"),
-        ("Animal Groups",       "Index",    "AnimalGroup",  "/images/icons/default.png"),
-        ("Group Script",        "Editor",   "GroupScript",  "/images/icons/default.png")
+        ("Roles",               "Index",    "Role",         "/images/icons/default.png", new[] { BusinessConstants.Permissions.VIEW_ROLES,          BusinessConstants.Permissions.EDIT_ROLES }),
+        ("Contacts",            "Index",    "Contact",      "/images/icons/default.png", new[] { BusinessConstants.Permissions.VIEW_CONTACTS,       BusinessConstants.Permissions.EDIT_CONTACTS }),
+        ("Holdings",            "Index",    "Holding",      "/images/icons/default.png", new[] { BusinessConstants.Permissions.VIEW_HOLDINGS,       BusinessConstants.Permissions.EDIT_HOLDINGS }),
+        ("Species & Breeds",    "Index",    "SpeciesBreed", "/images/icons/default.png", new[] { BusinessConstants.Permissions.VIEW_SPECIES_BREEDS, BusinessConstants.Permissions.EDIT_SPECIES_BREEDS }),
+        ("Life Events",         "Index",    "LifeEvent",    "/images/icons/default.png", new[] { BusinessConstants.Permissions.VIEW_LIFE_EVENTS, BusinessConstants.Permissions.EDIT_LIFE_EVENTS }),
+        ("Animals",             "Index",    "Animal",       "/images/icons/default.png", new[] { BusinessConstants.Permissions.VIEW_ANIMALS, BusinessConstants.Permissions.EDIT_ANIMALS }),
+        ("Profile(TEMP)",       "Profile",  "Account",      "/images/icons/default.png", new string[] { }),
+        ("Animal Groups",       "Index",    "AnimalGroup",  "/images/icons/default.png", new[] { BusinessConstants.Permissions.VIEW_ANIMAL_GROUPS, BusinessConstants.Permissions.EDIT_ANIMAL_GROUPS }),
+        ("Group Script",        "Editor",   "GroupScript",  "/images/icons/default.png", new[] { BusinessConstants.Permissions.USE_GROUP_SCRIPTS })
     };
 }
 
 <section class="ui centered cards">
     @foreach(var card in cards)
     {
-        <partial name="_CardLinkPartial" model="new HomeCardLinkPartialViewModel{ Name = card.Name, Action = card.Action, Controller = card.Controller, Image = card.Image }" />
+        if(card.PermsOR.Any(perm => roles.HasPermission(user.Role, perm)))
+        {
+            <partial name="_CardLinkPartial" model="new HomeCardLinkPartialViewModel{ Name = card.Name, Action = card.Action, Controller = card.Controller, Image = card.Image }" />
+        }
     }
 </section>
