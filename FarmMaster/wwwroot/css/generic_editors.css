@@ -196,3 +196,14 @@ section.tabbed {
 
 textarea.code {
   font-family: Consolas; }
+
+div.field.for.entity label {
+  display: flex;
+  flex-direction: row; }
+  div.field.for.entity label > .button {
+    display: inline-flex;
+    margin-left: 0.5em;
+    margin-top: -0.1em;
+    height: 20px; }
+    div.field.for.entity label > .button > i.icon {
+      margin-top: -0.5em !important; }

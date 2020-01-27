@@ -59,10 +59,18 @@
                     <label>Postcode</label>
                     <input asp-for="Holding.Postcode" />
                 </div>
-                <div class="field">
-                    <label>Owner</label>
+                <div class="field for entity">
+                    <label>
+                        Owner
+                        <a class="ui icon button" asp-action="Index" asp-controller="Contact" target="_blank">
+                            <i class="share icon"></i>
+                        </a>
+                        <a class="ui icon button">
+                            <i class="sync icon"></i>
+                        </a>
+                    </label>
 
-                    <div class="ui search selection dropdown">
+                    <div class="ui search selection dropdown for entity">
                         <input id="selectOwner" type="hidden" asp-for="Holding.OwnerContactId" data-default-value="@(Model.Holding?.OwnerContactId ?? -1)" />
                         <i class="dropdown icon"></i>
                         <div class="text"></div>
@@ -70,13 +78,6 @@
 
                         </div>
                     </div>
-
-                    <a class="ui primary button" asp-action="Index" asp-controller="Contact" target="_blank">
-                        GOTO
-                    </a>
-                    <button class="ui primary button" type="button" onclick="refreshOwner()">
-                        REFRESH
-                    </button>
                 </div>
             </div>
         </section>
