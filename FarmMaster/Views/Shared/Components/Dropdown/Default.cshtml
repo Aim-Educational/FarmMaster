@@ -2,10 +2,16 @@
 
 @{ 
     var gotoClasses = "ui icon button";
+    var dropdownClasses = "ui search selection dropdown";
 
     if(Model.GotoAction == null && Model.GotoController == null)
     {
         gotoClasses += " hidden";
+    }
+
+    if(Model.IsMultipleSelect)
+    {
+        dropdownClasses += " multiple";
     }
 }
 
@@ -20,7 +26,7 @@
         </a>
     </label>
 
-    <div class="ui search selection dropdown">
+    <div class="@dropdownClasses">
         <input id="@Model.AspFor.Name" name="@Model.AspFor.Name" type="hidden" data-default-value="@Model.DefaultValue" />
         <i class="dropdown icon"></i>
         <div class="text"></div>

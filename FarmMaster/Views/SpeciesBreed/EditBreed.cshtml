@@ -31,13 +31,15 @@
                              default-value="@Model.Breed.SpeciesId"
                              dropdown-id="selectSpecies"
                              goto-action="Index"
-                             goto-controller="SpeciesBreed" />
+                             goto-controller="SpeciesBreed"
+                             is-multiple-select="false" />
                 <vc:dropdown label="Breed Society"
                              asp-for="Breed.BreedSocietyId"
                              default-value="@Model.Breed.BreedSocietyId"
                              dropdown-id="selectSociety"
                              goto-action="Index"
-                             goto-controller="Contact" />
+                             goto-controller="Contact"
+                             is-multiple-select="false" />
                 <div class="field">
                     <div class="ui checkbox">
                         <input type="checkbox" asp-for="Breed.IsRegisterable" />

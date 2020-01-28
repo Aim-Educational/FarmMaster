@@ -2,9 +2,12 @@ export declare class Dropdown {
     readonly dropdownNode: HTMLDivElement;
     readonly inputNode: HTMLInputElement;
     readonly menuNode: HTMLDivElement;
+    readonly containerNode: HTMLDivElement;
     readonly defaultValue: string;
+    readonly isMultipleSelect: boolean;
     private _refreshFunc;
     constructor(dropdownNodeOrId: HTMLDivElement | string);
+    isDefaultValue(value: string): boolean;
     addItem({ name, value, isSelected }: {
         name: string;
         value?: string | null;

@@ -72,46 +72,49 @@
                              default-value="@Model.OwnerId"
                              dropdown-id="selectOwner"
                              goto-action="Index"
-                             goto-controller="Contact" />
+                             goto-controller="Contact"
+                             is-multiple-select="false" />
                 <vc:dropdown label="Holding"
                              asp-for="HoldingId"
                              default-value="@Model.HoldingId"
                              dropdown-id="selectHolding"
                              goto-action="Index"
-                             goto-controller="Holding" />
+                             goto-controller="Holding"
+                             is-multiple-select="false" />
                 <vc:dropdown label="Species"
                              asp-for="SpeciesId"
                              default-value="@Model.SpeciesId"
                              dropdown-id="selectSpecies"
                              goto-action="Index"
-                             goto-controller="SpeciesBreed" />
+                             goto-controller="SpeciesBreed"
+                             is-multiple-select="false" />
                 <vc:dropdown label="Dad"
                              asp-for="DadId"
                              default-value="@Model.DadId"
                              dropdown-id="selectDad"
                              goto-action="Index"
-                             goto-controller="Animal" />
+                             goto-controller="Animal"
+                             is-multiple-select="false" />
                 <vc:dropdown label="Mum"
                              asp-for="MumId"
                              default-value="@Model.MumId"
                              dropdown-id="selectMum"
                              goto-action="Index"
-                             goto-controller="Animal" />
-                <div class="field">
-                    <label>Breeds</label>
-                    @{
-                        var breedValueString = (Model.BreedIds?.Any() ?? false)
-                                               ? Model.BreedIds.Select(id => $"{id}").Aggregate((s1, s2) => s1 + "," + s2)
-                                               : null;
-                    }
-                    <div class="ui disabled multiple search selection dropdown">
-                        <input id="selectBreeds" type="hidden" asp-for="BreedIds" value="@breedValueString" />
-                        <i class="dropdown icon"></i>
-                        <div class="text"></div>
-                        <div class="menu">
-                        </div>
-                    </div>
-                </div>
+                             goto-controller="Animal"
+                             is-multiple-select="false" />
+
+                @{
+                    var breedValueString = (Model.BreedIds?.Any() ?? false)
+                                           ? Model.BreedIds.Select(id => $"{id}").Aggregate((s1, s2) => s1 + "," + s2)
+                                           : null;
+                }
+                <vc:dropdown label="Breeds"
+                             asp-for="BreedIds"
+                             default-value="@breedValueString"
+                             dropdown-id="selectBreeds"
+                             goto-action="Index"
+                             goto-controller="SpeciesBreed"
+                             is-multiple-select="true" />
 
                 <button class="ui primary fluid button" type="submit">
                     @(Model.IsCreate ? "Create New Animal" : "Edit Animal")
@@ -135,7 +138,8 @@
                                      default-value=""
                                      dropdown-id="selectGroup"
                                      goto-action="Index"
-                                     goto-controller="AnimalGroup" />
+                                     goto-controller="AnimalGroup"
+                                     is-multiple-select="false" />
                         <button id="buttonAddToGroup" class="ui button">Add to group</button>
                     </div>
                 </div>
@@ -188,7 +192,8 @@
                                      default-value=""
                                      dropdown-id="selectLifeEvent"
                                      goto-action="Index"
-                                     goto-controller="LifeEvent" />
+                                     goto-controller="LifeEvent"
+                                     is-multiple-select="false" />
                         <button id="buttonCreateEvent" class="ui button">Goto Event Creation Editor</button>
                     </div>
                 </div>
@@ -228,6 +233,7 @@
         const selectMum         = new Dropdown("selectMum");
         const selectDad         = new Dropdown("selectDad");
         const selectLifeEvent   = new Dropdown("selectLifeEvent");
+        const selectBreeds      = new Dropdown("selectBreeds");
 
         window.selectGroup = selectGroup;
         window.selectLifeEvent = selectLifeEvent;
@@ -370,7 +376,7 @@
         }
 
         function handleBreeds(breeds) {
-            //fromIdName(selectBreed, breeds);
+            fromIdName(selectBreeds, breeds);
         }
 
         function handleLifeEventTypes(lifeEvent) {
@@ -547,7 +553,7 @@
                 })
                 .catch(errors => onError(errors));
         }
-        for (const select of [selectGroup, selectOwner, selectHolding, selectSpecies, selectMum, selectDad, selectLifeEvent])
+        for (const select of [selectGroup, selectOwner, selectHolding, selectSpecies, selectMum, selectDad, selectLifeEvent, selectBreeds])
             select.fromRefreshFunc(doInitialLoad);
         doInitialLoad();
 

@@ -4,7 +4,9 @@ export class Dropdown {
     public readonly dropdownNode: HTMLDivElement;
     public readonly inputNode: HTMLInputElement;
     public readonly menuNode: HTMLDivElement;
+    public readonly containerNode: HTMLDivElement;
     public readonly defaultValue: string;
+    public readonly isMultipleSelect: boolean;
     private _refreshFunc: Function;
 
     constructor(dropdownNodeOrId: HTMLDivElement | string) {
@@ -25,7 +27,12 @@ export class Dropdown {
         if (!this.menuNode)
             throw "Could not find the menu element. Is your markup in Fomantic UI style?";
 
+        this.containerNode = <HTMLDivElement>this.inputNode.parentNode;
+        if (!this.containerNode)
+            throw "Could not find the container element. Is your markup in Fomantic UI style?";
+
         this.defaultValue = <string>this.inputNode.dataset.defaultValue;
+        this.isMultipleSelect = this.containerNode.classList.contains("multiple");
 
         const refreshButton = <HTMLElement>this.dropdownNode.querySelector("label .button[data-type=refresh]");
         refreshButton.addEventListener("click", () => this.refresh());
@@ -34,6 +41,14 @@ export class Dropdown {
         $(<any>this.menuNode.parentNode).dropdown({ forceSelection: false });
 
         this._refreshFunc = function () { alert("No refresh function has been assigned."); };
+    }
+
+    // UTILITY FUNCTIONS
+
+    public isDefaultValue(value: string): boolean {
+        return (this.isMultipleSelect)
+            ? this.defaultValue.split(",").indexOf(value) > -1
+            : value === this.defaultValue;
     }
 
     // FUNCTIONS TO MANIPULATE ITEMS
@@ -52,11 +67,32 @@ export class Dropdown {
 
         if (isSelected) {
             // Fomantic UI's own functions are too buggy to use, so we do things ourselves
-            item.classList.add("active", "selected");
-            this.inputNode.value = (!value) ? name : value;
+            item.classList.add("active", (this.isMultipleSelect) ? "filtered" : "selected");
 
-            const textbox = <HTMLDivElement>this.dropdownNode.querySelector("div.dropdown div.text");
-            textbox.innerText = name;
+            if (this.isMultipleSelect) {
+                if (this.inputNode.value.length > 0)
+                    this.inputNode.value += ",";
+
+                this.inputNode.value += (!value) ? name : value;
+
+                // If only Fomantic UI's user JS ever worked right....
+                const dropdownIcon = <HTMLElement>this.containerNode.querySelector("i.dropdown.icon");
+                const boxWithItem = document.createElement("a");
+
+                dropdownIcon.after(boxWithItem);
+                boxWithItem.classList.add("ui", "label");
+                boxWithItem.dataset.value = value || name;
+                boxWithItem.innerText = name;
+
+                const i = boxWithItem.appendChild(document.createElement("i"));
+                i.classList.add("delete", "icon");
+            }
+            else {
+                this.inputNode.value = (!value) ? name : value;
+
+                const textbox = <HTMLDivElement>this.dropdownNode.querySelector("div.dropdown div.text");
+                textbox.innerText = name;
+            }                
 
             this.inputNode.dispatchEvent(new Event("change"));
         }
@@ -94,7 +130,7 @@ export class Dropdown {
 
                     const nameValuePairs = dataGetter(data);
                     for (const pair of nameValuePairs)
-                        this.addItem({ name: pair.name, value: pair.value, isSelected: pair.value == this.defaultValue });
+                        this.addItem({ name: pair.name, value: pair.value, isSelected: this.isDefaultValue(pair.value) });
                 })
                 .catch((reason) => {
                     alert("TEMP error handling: " + JSON.stringify(reason));

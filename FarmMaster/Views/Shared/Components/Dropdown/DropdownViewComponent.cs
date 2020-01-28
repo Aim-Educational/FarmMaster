@@ -26,7 +26,8 @@ namespace FarmMaster.ViewComponents
             string          dropdownId, 
             string          defaultValue,
             string          gotoController,
-            string          gotoAction
+            string          gotoAction,
+            bool            isMultipleSelect
         )
         {
             if(gotoController.Length == 0)
@@ -37,12 +38,13 @@ namespace FarmMaster.ViewComponents
 
             return View(new Model 
             {
-                AspFor          = aspFor,
-                DropdownId      = dropdownId,
-                DefaultValue    = defaultValue,
-                GotoAction      = gotoAction,
-                GotoController  = gotoController,
-                Label           = label
+                AspFor              = aspFor,
+                DropdownId          = dropdownId,
+                DefaultValue        = defaultValue,
+                GotoAction          = gotoAction,
+                GotoController      = gotoController,
+                Label               = label,
+                IsMultipleSelect    = isMultipleSelect
             });
         }
 
@@ -54,6 +56,7 @@ namespace FarmMaster.ViewComponents
             public string GotoController { get; set; }
             public string GotoAction { get; set; }
             public string Label { get; set; }
+            public bool IsMultipleSelect { get; set; }
         }
     }
 }
