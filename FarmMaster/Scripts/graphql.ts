@@ -1,13 +1,18 @@
 ﻿const GRAPHQL_ENDPOINT: string = "/graphql";
 
+declare global {
+    interface Window { RequestVerificationToken: string }
+}
+
 export class GraphQL {
     public static query(query: string, variables: object | null): Promise<any> {
         return fetch(
             GRAPHQL_ENDPOINT,
             {
                 headers: {
-                    "Accept": "application/json",
-                    "Content-Type": "application/json"
+                    "Accept":                   "application/json",
+                    "Content-Type":             "application/json",
+                    "RequestVerificationToken": window.RequestVerificationToken
                 },
                 method: "POST",
                 body: JSON.stringify({

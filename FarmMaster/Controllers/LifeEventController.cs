@@ -129,7 +129,6 @@ namespace FarmMaster.Controllers
 
         #region Event Pages (POST)
         [HttpPost]
-        [ValidateAntiForgeryToken]
         [FarmAuthorise(PermsAND: new[] { BusinessConstants.Permissions.CREATE_LIFE_EVENTS })]
         public IActionResult Create(LifeEventCreateViewModel model)
         {
@@ -156,7 +155,6 @@ namespace FarmMaster.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         [FarmAuthorise(PermsAND: new[] { BusinessConstants.Permissions.EDIT_LIFE_EVENTS })]
         public IActionResult Edit(LifeEventEditViewModel model)
         {
@@ -334,7 +332,6 @@ namespace FarmMaster.Controllers
 
         #region Entry Editor (POST)
         [HttpPost]
-        [ValidateAntiForgeryToken]
         [FarmAuthorise(PermsAND: new[] { BusinessConstants.Permissions.USE_LIFE_EVENT_ENTRY })]
         public IActionResult CreateEntry(LifeEventEntryEditorViewModel model)
         {
@@ -380,7 +377,6 @@ namespace FarmMaster.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         [FarmAuthorise(PermsAND: new[] { BusinessConstants.Permissions.USE_LIFE_EVENT_ENTRY })]
         public IActionResult EditEntry(LifeEventEntryEditorViewModel model)
         {

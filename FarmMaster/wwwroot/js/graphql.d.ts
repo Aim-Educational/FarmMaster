@@ -1,3 +1,8 @@
+declare global {
+    interface Window {
+        RequestVerificationToken: string;
+    }
+}
 export declare class GraphQL {
     static query(query: string, variables: object | null): Promise<any>;
 }

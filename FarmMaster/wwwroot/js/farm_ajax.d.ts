@@ -1,3 +1,8 @@
+declare global {
+    interface Window {
+        RequestVerificationToken: string;
+    }
+}
 export declare enum FarmAjaxMessageType {
     None = 0,
     Information = 1,

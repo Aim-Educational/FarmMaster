@@ -105,7 +105,6 @@ namespace FarmMaster.Controllers
 
         #region Signup/in/out POST
         [HttpPost]
-        [ValidateAntiForgeryToken]
         [SuppressMessage("Design", "CA1031:Do not catch general exception types", Justification = "<Pending>")]
         public IActionResult Signup(AccountSignupViewModel model)
         {
@@ -148,7 +147,6 @@ namespace FarmMaster.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public IActionResult Login(AccountLoginViewModel model)
         {
             if(!ModelState.IsValid)
@@ -165,7 +163,6 @@ namespace FarmMaster.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public IActionResult ForgotPassword(AccountForgotPasswordViewModel model)
         {
             if(!ModelState.IsValid)
@@ -215,7 +212,6 @@ namespace FarmMaster.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public IActionResult ResetPassword(AccountResetPasswordViewModel model)
         {
             if(model.Password != model.PasswordConfirm)

@@ -1,4 +1,5 @@
-﻿@{ 
+﻿@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
+@{
     Layout = "_Layout";
     ViewData["CustomBreadcrumb"] = true;
 }
@@ -7,6 +8,11 @@
     @RenderSection("Styles", required: false)
     <link rel="stylesheet" href="~/css/generic_editors.min.css" />
 }
+
+<!--99% of editor pages uses AJAX, so may as well just do this in the layout.-->
+<script>
+    window.RequestVerificationToken = "@Xsrf.GetAndStoreTokens(Context).RequestToken";
+</script>
 
 <section class="editor header">
     <h1>@ViewData["Title"]</h1>
@@ -20,7 +26,7 @@
             {
                 <a class="section @(index == crumbLength - 1 ? "active" : "")" href="@crumb.Value">@crumb.Key</a>
 
-                if(index < crumbLength - 1)
+                if (index < crumbLength - 1)
                 {
                     <div class="divider">/</div>
                 }

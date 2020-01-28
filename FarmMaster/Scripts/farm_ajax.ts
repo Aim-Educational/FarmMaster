@@ -1,5 +1,9 @@
 ﻿import { getCookie } from "./cookies.js"
 
+declare global {
+    interface Window { RequestVerificationToken: string }
+}
+
 export enum FarmAjaxMessageType {
     None,
     Information,
@@ -136,7 +140,10 @@ export class FarmAjax {
             url: url,
             contentType: "application/json",
             dataType: "json",
-            data: JSON.stringify(data)
+            data: JSON.stringify(data),
+            headers: {
+                "RequestVerificationToken": window.RequestVerificationToken
+            }
         });
     }
 }

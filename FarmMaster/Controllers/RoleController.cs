@@ -83,7 +83,6 @@ namespace FarmMaster.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         [FarmAuthorise(PermsAND: new[] { BusinessConstants.Permissions.CREATE_ROLES })]
         public IActionResult Create(RoleCreateViewModel model, 
                                     [FromServices] IServiceRoleManager roles,
@@ -130,7 +129,6 @@ namespace FarmMaster.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         [FarmAuthorise(PermsAND: new[] { BusinessConstants.Permissions.EDIT_ROLES })]
         public IActionResult Edit(RoleCreateViewModel model, 
                                   [FromServices] IServiceRoleManager roles,

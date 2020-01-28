@@ -118,7 +118,6 @@ namespace FarmMaster.Controllers
 
         #region POST
         [HttpPost]
-        [ValidateAntiForgeryToken]
         [FarmAuthorise(PermsAND: new[] { BusinessConstants.Permissions.CREATE_CONTACTS })]
         public IActionResult Create(ContactCreateViewModel model)
         {
@@ -141,7 +140,6 @@ namespace FarmMaster.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         [FarmAuthorise(PermsAND: new[]{ BusinessConstants.Permissions.EDIT_CONTACTS })]
         public IActionResult Edit(ContactEditViewModel model)
         {

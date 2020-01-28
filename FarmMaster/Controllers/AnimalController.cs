@@ -83,7 +83,6 @@ namespace FarmMaster.Controllers
 
         #region POST
         [HttpPost]
-        [ValidateAntiForgeryToken]
         [FarmAuthorise(PermsOR: new[] { BusinessConstants.Permissions.CREATE_ANIMALS, BusinessConstants.Permissions.EDIT_ANIMALS })]
         public IActionResult CreateEdit(AnimalCreateEditViewModel model)
         {

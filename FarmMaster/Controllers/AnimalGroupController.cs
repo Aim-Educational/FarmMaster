@@ -67,7 +67,6 @@ namespace FarmMaster.Controllers
 
         #region POST
         [HttpPost]
-        [ValidateAntiForgeryToken]
         [FarmAuthorise(new[]{ BusinessConstants.Permissions.CREATE_ANIMAL_GROUPS })]
         public IActionResult Create(AnimalGroupCreateEditViewModel model)
         {
@@ -82,7 +81,6 @@ namespace FarmMaster.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         [FarmAuthorise(new[]{ BusinessConstants.Permissions.EDIT_ANIMAL_GROUPS })]
         public IActionResult Edit(AnimalGroupCreateEditViewModel model)
         {

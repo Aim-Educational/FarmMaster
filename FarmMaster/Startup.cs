@@ -142,7 +142,10 @@ namespace FarmMaster
 
             // MVC
             services
-            .AddMvc()
+            .AddMvc(o => 
+            {
+                o.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+            })
             .AddRazorOptions(o =>
             {
                 o.ViewLocationFormats.Add("/Views/Shared/Layouts/{0}.cshtml");

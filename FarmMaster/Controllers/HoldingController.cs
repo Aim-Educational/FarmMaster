@@ -110,7 +110,6 @@ namespace FarmMaster.Controllers
 
         #region POST
         [HttpPost]
-        [ValidateAntiForgeryToken]
         [FarmAuthorise(PermsOR: new[] { BusinessConstants.Permissions.CREATE_HOLDINGS })]
         public IActionResult Create(HoldingCreateEditViewModel model)
         {
@@ -160,7 +159,6 @@ namespace FarmMaster.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         [FarmAuthorise(PermsOR: new[] { BusinessConstants.Permissions.EDIT_HOLDINGS })]
         public IActionResult Edit(HoldingCreateEditViewModel model)
         {

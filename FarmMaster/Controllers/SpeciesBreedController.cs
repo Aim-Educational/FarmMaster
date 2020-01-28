@@ -93,7 +93,6 @@ namespace FarmMaster.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         [FarmAuthorise(PermsAND: new[] { BusinessConstants.Permissions.CREATE_SPECIES_BREEDS })]
         public IActionResult CreateSpecies(SpeciesCreateViewModel model)
         {
@@ -108,7 +107,6 @@ namespace FarmMaster.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         [FarmAuthorise(PermsAND: new[] { BusinessConstants.Permissions.EDIT_SPECIES_BREEDS })]
         public IActionResult EditSpecies(SpeciesEditViewModel model)
         {
@@ -169,7 +167,6 @@ namespace FarmMaster.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         [FarmAuthorise(PermsAND: new[] { BusinessConstants.Permissions.CREATE_SPECIES_BREEDS })]
         public IActionResult CreateBreed(BreedCreateViewModel model)
         {
@@ -200,7 +197,6 @@ namespace FarmMaster.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         [FarmAuthorise(PermsAND: new[] { BusinessConstants.Permissions.EDIT_SPECIES_BREEDS })]
         public IActionResult EditBreed(BreedEditViewModel model)
         {
