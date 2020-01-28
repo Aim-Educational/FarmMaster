@@ -20,7 +20,6 @@ namespace FarmMaster.Controllers
         [FarmAjaxReturnsMessageAndValue(BusinessConstants.Permissions.VIEW_ANIMALS)]
         public IActionResult Animal_ById_Characteristic_AsNameValueTypeInheritedId_All(
             [FromBody] AjaxByIdRequest model,
-            User _,
             [FromServices] IServiceAnimalManager animals
         )
         {
@@ -46,7 +45,6 @@ namespace FarmMaster.Controllers
         [FarmAjaxReturnsMessage(BusinessConstants.Permissions.EDIT_ANIMALS)]
         public IActionResult Animal_ById_Characteristic_Delete_ById(
             [FromBody] AjaxByIdForIdRequest model,
-            User _,
             [FromServices] IServiceAnimalManager animals,
             [FromServices] IServiceCharacteristicManager characteristics
         )
@@ -63,7 +61,6 @@ namespace FarmMaster.Controllers
         [FarmAjaxReturnsMessage(BusinessConstants.Permissions.EDIT_ANIMALS)]
         public IActionResult Animal_ById_Characteristic_Add(
             [FromBody] AjaxCharacteristicsAddRequest model,
-            User _,
             [FromServices] IServiceAnimalManager animals,
             [FromServices] IServiceCharacteristicManager characteristics
         )
@@ -88,7 +85,6 @@ namespace FarmMaster.Controllers
         [FarmAjaxReturnsMessage(BusinessConstants.Permissions.USE_LIFE_EVENT_ENTRY)]
         public IActionResult Animal_ById_LifeEventEntry_Delete_ById(
             [FromBody] AjaxByIdForIdRequest model,
-            User _,
             [FromServices] IServiceAnimalManager animals,
             [FromServices] IServiceLifeEventManager lifeEvents
         )
@@ -114,7 +110,6 @@ namespace FarmMaster.Controllers
         [FarmAjaxReturnsMessage(BusinessConstants.Permissions.EDIT_ANIMALS)]
         public IActionResult Animal_ById_AssignGroup_ById(
             [FromBody] AjaxByIdForIdRequest model,
-            User _,
             [FromServices] IServiceAnimalManager animals,
             [FromServices] IServiceAnimalGroupManager groups
         )
@@ -138,7 +133,6 @@ namespace FarmMaster.Controllers
         [FarmAjaxReturnsMessage(BusinessConstants.Permissions.EDIT_ANIMALS)]
         public IActionResult Animal_ById_RemoveFromGroup_ById(
             [FromBody] AjaxByIdForIdRequest model,
-            User _,
             [FromServices] IServiceAnimalManager animals,
             [FromServices] IServiceAnimalGroupManager groups
         )
@@ -166,7 +160,6 @@ namespace FarmMaster.Controllers
         [FarmAjaxReturnsMessageAndValue(BusinessConstants.Permissions.USE_GROUP_SCRIPTS)]
         public IActionResult AnimalGroup_Script_CreateAndCompile_AsName(
             [FromBody] AjaxByIdWithLargeValueRequest model,
-            User _,
             [FromServices] IServiceAnimalGroupScriptManager scripts
         )
         {
@@ -181,7 +174,6 @@ namespace FarmMaster.Controllers
         [FarmAjaxReturnsMessage(BusinessConstants.Permissions.USE_GROUP_SCRIPTS)]
         public IActionResult AnimalGroup_Script_ByName_EditCode(
             [FromBody] AjaxByNameWithLargeValueRequest model,
-            User _,
             [FromServices] IServiceAnimalGroupScriptManager scripts
         ) 
         {
@@ -197,7 +189,6 @@ namespace FarmMaster.Controllers
         [FarmAjaxReturnsMessage(BusinessConstants.Permissions.EDIT_ANIMAL_GROUPS)]
         public IActionResult AnimalGroup_ById_Script_AddAllAnimals_ById(
             [FromBody] AjaxByIdWithListRequest<int> model,
-            User _,
             [FromServices] IServiceAnimalGroupManager groups,
             [FromServices] IServiceAnimalManager animals
         )
@@ -223,7 +214,6 @@ namespace FarmMaster.Controllers
         [FarmAjaxReturnsMessageAndValue(BusinessConstants.Permissions.USE_GROUP_SCRIPTS)]
         public IActionResult AnimalGroup_Script_ByName_Execute_AsNameIdImageId(
             [FromBody] AjaxGroupScriptByNameExecuteRequest model,
-            User _,
             [FromServices] IServiceAnimalGroupScriptManager scripts
         )
         {
@@ -248,7 +238,6 @@ namespace FarmMaster.Controllers
         [FarmAjaxReturnsMessage(BusinessConstants.Permissions.USE_GROUP_SCRIPTS)]
         public IActionResult AnimalGroup_Script_ByName_Delete(
             [FromBody] AjaxByNameRequest model,
-            User _,
             [FromServices] IServiceAnimalGroupScriptManager scripts
         )
         {
@@ -264,7 +253,6 @@ namespace FarmMaster.Controllers
         [FarmAjaxReturnsMessageAndValue(BusinessConstants.Permissions.USE_GROUP_SCRIPTS)]
         public IActionResult AnimalGroup_ById_Script_ExecuteSingleUse_AsNameIdImageId(
             [FromBody] AjaxByIdWithLargeValueRequest model,
-            User _,
             [FromServices] IServiceAnimalGroupManager groups,
             [FromServices] IServiceAnimalGroupScriptManager scripts
         )
@@ -341,7 +329,6 @@ namespace FarmMaster.Controllers
         [FarmAjaxReturnsMessageAndValue(BusinessConstants.Permissions.VIEW_CONTACTS)]
         public IActionResult Contact_AsNameId_All(
             [FromBody] AjaxRequestModel _,
-            User __,
             [FromServices] IServiceContactManager contacts
         )
         {
@@ -359,7 +346,6 @@ namespace FarmMaster.Controllers
         [FarmAjaxReturnsMessageAndValue(BusinessConstants.Permissions.VIEW_CONTACTS)]
         public IActionResult Contact_ById_PhoneNumber_AsNameValueId_All(
             [FromBody] AjaxByIdRequest model,
-            User _,
             [FromServices] IServiceContactManager contacts
         )
         {
@@ -419,7 +405,6 @@ namespace FarmMaster.Controllers
         [FarmAjaxReturnsMessageAndValue(BusinessConstants.Permissions.VIEW_CONTACTS)]
         public IActionResult Contact_ById_Email_AsNameValueId_All(
             [FromBody] AjaxByIdRequest model,
-            User _,
             [FromServices] IServiceContactManager contacts
         )
         {
@@ -482,7 +467,6 @@ namespace FarmMaster.Controllers
         [FarmAjaxReturnsMessageAndValue(BusinessConstants.Permissions.VIEW_CONTACTS)]
         public IActionResult Contact_ById_Relationship_AsNameValueId_All(
             [FromBody] AjaxByIdRequest model,
-            User _,
             [FromServices] IServiceContactManager contacts,
             [FromServices] FarmMasterContext db // ;(
         ) 
@@ -548,8 +532,7 @@ namespace FarmMaster.Controllers
         [HttpPost]
         [FarmAjaxReturnsMessageAndValue(BusinessConstants.Permissions.VIEW_SPECIES_BREEDS)]
         public IActionResult Species_ById_Characteristic_AsNameValueTypeInheritedId_All(
-            [FromBody] AjaxByIdRequest model, 
-            User _,
+            [FromBody] AjaxByIdRequest model,
             [FromServices] IServiceSpeciesBreedManager speciesBreeds
         )
         {            
@@ -575,7 +558,6 @@ namespace FarmMaster.Controllers
         [FarmAjaxReturnsMessage(BusinessConstants.Permissions.EDIT_SPECIES_BREEDS)]
         public IActionResult Species_ById_Characteristic_Delete_ById(
             [FromBody] AjaxByIdForIdRequest model,
-            User _,
             [FromServices] IServiceSpeciesBreedManager speciesBreeds,
             [FromServices] IServiceCharacteristicManager characteristics
         )
@@ -591,8 +573,7 @@ namespace FarmMaster.Controllers
         [HttpPost]
         [FarmAjaxReturnsMessage(BusinessConstants.Permissions.EDIT_SPECIES_BREEDS)]
         public IActionResult Species_ById_Characteristic_Add(
-            [FromBody] AjaxCharacteristicsAddRequest model, 
-            User _,
+            [FromBody] AjaxCharacteristicsAddRequest model,
             [FromServices] IServiceSpeciesBreedManager speciesBreeds,
             [FromServices] IServiceCharacteristicManager characteristics
         )
@@ -617,7 +598,6 @@ namespace FarmMaster.Controllers
         [FarmAjaxReturnsMessageAndValue(permsAND: BusinessConstants.Permissions.VIEW_SPECIES_BREEDS)]
         public IActionResult Breed_ById_Characteristic_AsNameTypeValueInheritedId_All(
             [FromBody] AjaxByIdRequest model,
-            User _,
             [FromServices] IServiceSpeciesBreedManager speciesBreeds
         )
         {
@@ -641,7 +621,6 @@ namespace FarmMaster.Controllers
         [FarmAjaxReturnsMessage(permsAND: BusinessConstants.Permissions.EDIT_SPECIES_BREEDS)]
         public IActionResult Breed_ById_Characteristic_Delete_ById(
             [FromBody] AjaxByIdForIdRequest model,
-            User _,
             [FromServices] IServiceSpeciesBreedManager speciesBreeds,
             [FromServices] IServiceCharacteristicManager characteristics
         )
@@ -655,7 +634,6 @@ namespace FarmMaster.Controllers
         [FarmAjaxReturnsMessage(BusinessConstants.Permissions.EDIT_SPECIES_BREEDS)]
         public IActionResult Breed_ById_Characteristic_Add(
             [FromBody] AjaxCharacteristicsAddRequest model,
-            User _,
             [FromServices] IServiceSpeciesBreedManager speciesBreeds,
             [FromServices] IServiceCharacteristicManager characteristics
         )
@@ -685,8 +663,7 @@ namespace FarmMaster.Controllers
         [HttpPost]
         [FarmAjaxReturnsMessage(BusinessConstants.Permissions.EDIT_LIFE_EVENTS)]
         public IActionResult LifeEvent_ById_Field_Add(
-            [FromBody] AjaxByIdWithNameValueTypeAsTRequest<DynamicField.Type> model, // 'Value' is the event's description 
-            User _,
+            [FromBody] AjaxByIdWithNameValueTypeAsTRequest<DynamicField.Type> model, // 'Value' is the event's description
             [FromServices] IServiceLifeEventManager lifeEvents
         )
         {
@@ -704,8 +681,7 @@ namespace FarmMaster.Controllers
         [HttpPost]
         [FarmAjaxReturnsMessage(BusinessConstants.Permissions.EDIT_LIFE_EVENTS)]
         public IActionResult LifeEvent_ById_Field_Delete_ByName(
-            [FromBody] AjaxByIdWithNameRequest model, 
-            User _,
+            [FromBody] AjaxByIdWithNameRequest model,
             [FromServices] IServiceLifeEventManager lifeEvents
         )
         {

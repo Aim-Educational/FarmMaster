@@ -177,7 +177,7 @@ namespace FarmMaster.Filters
         {
             var userKvp = context.ActionArguments.FirstOrDefault(kvp => kvp.Value as User != null);
             if (userKvp.Key == null)
-                throw new InvalidOperationException("No parameter of type User was found.");
+                return;
 
             context.ActionArguments[userKvp.Key] = user;
         }
