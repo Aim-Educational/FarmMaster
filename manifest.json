@@ -1437,7 +1437,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FarmMaster.Controllers.ContactController.html",
-          "hash": "qs9wcfqDLWD9rCTABkbFcA=="
+          "hash": "NNgHTdXvwALJvlDEwGQFsQ=="
         }
       },
       "is_incremental": false,
@@ -2421,7 +2421,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FarmMaster.Models.AnimalCreateEditViewModel.html",
-          "hash": "GQy2wetmW5XBsy+u32Kegw=="
+          "hash": "tQ6ukBpHgf1UEmZ/vEOi9A=="
         }
       },
       "is_incremental": false,
@@ -3425,6 +3425,42 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/FarmMaster.ViewComponents.DropdownViewComponent.Model.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FarmMaster.ViewComponents.DropdownViewComponent.Model.html",
+          "hash": "rroC5nKAYvhfmyblQ/jrXA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FarmMaster.ViewComponents.DropdownViewComponent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FarmMaster.ViewComponents.DropdownViewComponent.html",
+          "hash": "0g5xlJJ4ka6euq4qRtAtKg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FarmMaster.ViewComponents.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FarmMaster.ViewComponents.html",
+          "hash": "9icN/w9CickuMb+z9keiUg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/FarmMaster.yml",
       "output": {
         ".html": {
@@ -3669,7 +3705,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "mOqQR+oDhj/JFovU8dMWAQ=="
+          "hash": "I7eZ0SiS0FcjyvTwvnne4w=="
         }
       },
       "is_incremental": false,
@@ -3816,7 +3852,7 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 304,
+          "total_file_count": 307,
           "skipped_file_count": 0
         },
         "TocDocumentProcessor": {

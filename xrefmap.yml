@@ -8107,19 +8107,6 @@ references:
   isSpec: "True"
   fullName: FarmMaster.Controllers.ContactController.ContactController
   nameWithType: ContactController.ContactController
-- uid: FarmMaster.Controllers.ContactController.AjaxGetNameAndValueAll(FarmMaster.Models.AjaxRequestModel,Business.Model.User)
-  name: AjaxGetNameAndValueAll(AjaxRequestModel, User)
-  href: api/FarmMaster.Controllers.ContactController.html#FarmMaster_Controllers_ContactController_AjaxGetNameAndValueAll_FarmMaster_Models_AjaxRequestModel_Business_Model_User_
-  commentId: M:FarmMaster.Controllers.ContactController.AjaxGetNameAndValueAll(FarmMaster.Models.AjaxRequestModel,Business.Model.User)
-  fullName: FarmMaster.Controllers.ContactController.AjaxGetNameAndValueAll(FarmMaster.Models.AjaxRequestModel, Business.Model.User)
-  nameWithType: ContactController.AjaxGetNameAndValueAll(AjaxRequestModel, User)
-- uid: FarmMaster.Controllers.ContactController.AjaxGetNameAndValueAll*
-  name: AjaxGetNameAndValueAll
-  href: api/FarmMaster.Controllers.ContactController.html#FarmMaster_Controllers_ContactController_AjaxGetNameAndValueAll_
-  commentId: Overload:FarmMaster.Controllers.ContactController.AjaxGetNameAndValueAll
-  isSpec: "True"
-  fullName: FarmMaster.Controllers.ContactController.AjaxGetNameAndValueAll
-  nameWithType: ContactController.AjaxGetNameAndValueAll
 - uid: FarmMaster.Controllers.ContactController.AjaxGetTablePageCount(FarmMaster.Controllers.AjaxPagingControllerRequestModel,Business.Model.User)
   name: AjaxGetTablePageCount(AjaxPagingControllerRequestModel, User)
   href: api/FarmMaster.Controllers.ContactController.html#FarmMaster_Controllers_ContactController_AjaxGetTablePageCount_FarmMaster_Controllers_AjaxPagingControllerRequestModel_Business_Model_User_
@@ -10812,6 +10799,19 @@ references:
   isSpec: "True"
   fullName: FarmMaster.Models.AnimalCreateEditViewModel.DadId
   nameWithType: AnimalCreateEditViewModel.DadId
+- uid: FarmMaster.Models.AnimalCreateEditViewModel.DUMMY_VALUE
+  name: DUMMY_VALUE
+  href: api/FarmMaster.Models.AnimalCreateEditViewModel.html#FarmMaster_Models_AnimalCreateEditViewModel_DUMMY_VALUE
+  commentId: P:FarmMaster.Models.AnimalCreateEditViewModel.DUMMY_VALUE
+  fullName: FarmMaster.Models.AnimalCreateEditViewModel.DUMMY_VALUE
+  nameWithType: AnimalCreateEditViewModel.DUMMY_VALUE
+- uid: FarmMaster.Models.AnimalCreateEditViewModel.DUMMY_VALUE*
+  name: DUMMY_VALUE
+  href: api/FarmMaster.Models.AnimalCreateEditViewModel.html#FarmMaster_Models_AnimalCreateEditViewModel_DUMMY_VALUE_
+  commentId: Overload:FarmMaster.Models.AnimalCreateEditViewModel.DUMMY_VALUE
+  isSpec: "True"
+  fullName: FarmMaster.Models.AnimalCreateEditViewModel.DUMMY_VALUE
+  nameWithType: AnimalCreateEditViewModel.DUMMY_VALUE
 - uid: FarmMaster.Models.AnimalCreateEditViewModel.HoldingId
   name: HoldingId
   href: api/FarmMaster.Models.AnimalCreateEditViewModel.html#FarmMaster_Models_AnimalCreateEditViewModel_HoldingId
@@ -16432,6 +16432,128 @@ references:
   isSpec: "True"
   fullName: FarmMaster.Startup.ConfigureServices
   nameWithType: Startup.ConfigureServices
+- uid: FarmMaster.ViewComponents
+  name: FarmMaster.ViewComponents
+  href: api/FarmMaster.ViewComponents.html
+  commentId: N:FarmMaster.ViewComponents
+  fullName: FarmMaster.ViewComponents
+  nameWithType: FarmMaster.ViewComponents
+- uid: FarmMaster.ViewComponents.DropdownViewComponent
+  name: DropdownViewComponent
+  href: api/FarmMaster.ViewComponents.DropdownViewComponent.html
+  commentId: T:FarmMaster.ViewComponents.DropdownViewComponent
+  fullName: FarmMaster.ViewComponents.DropdownViewComponent
+  nameWithType: DropdownViewComponent
+- uid: FarmMaster.ViewComponents.DropdownViewComponent.Invoke(ModelExpression,System.String,System.String,System.String,System.String,System.String,System.Boolean)
+  name: Invoke(ModelExpression, String, String, String, String, String, Boolean)
+  href: api/FarmMaster.ViewComponents.DropdownViewComponent.html#FarmMaster_ViewComponents_DropdownViewComponent_Invoke_ModelExpression_System_String_System_String_System_String_System_String_System_String_System_Boolean_
+  commentId: M:FarmMaster.ViewComponents.DropdownViewComponent.Invoke(ModelExpression,System.String,System.String,System.String,System.String,System.String,System.Boolean)
+  fullName: FarmMaster.ViewComponents.DropdownViewComponent.Invoke(ModelExpression, System.String, System.String, System.String, System.String, System.String, System.Boolean)
+  nameWithType: DropdownViewComponent.Invoke(ModelExpression, String, String, String, String, String, Boolean)
+- uid: FarmMaster.ViewComponents.DropdownViewComponent.Invoke*
+  name: Invoke
+  href: api/FarmMaster.ViewComponents.DropdownViewComponent.html#FarmMaster_ViewComponents_DropdownViewComponent_Invoke_
+  commentId: Overload:FarmMaster.ViewComponents.DropdownViewComponent.Invoke
+  isSpec: "True"
+  fullName: FarmMaster.ViewComponents.DropdownViewComponent.Invoke
+  nameWithType: DropdownViewComponent.Invoke
+- uid: FarmMaster.ViewComponents.DropdownViewComponent.Model
+  name: DropdownViewComponent.Model
+  href: api/FarmMaster.ViewComponents.DropdownViewComponent.Model.html
+  commentId: T:FarmMaster.ViewComponents.DropdownViewComponent.Model
+  fullName: FarmMaster.ViewComponents.DropdownViewComponent.Model
+  nameWithType: DropdownViewComponent.Model
+- uid: FarmMaster.ViewComponents.DropdownViewComponent.Model.AspFor
+  name: AspFor
+  href: api/FarmMaster.ViewComponents.DropdownViewComponent.Model.html#FarmMaster_ViewComponents_DropdownViewComponent_Model_AspFor
+  commentId: P:FarmMaster.ViewComponents.DropdownViewComponent.Model.AspFor
+  fullName: FarmMaster.ViewComponents.DropdownViewComponent.Model.AspFor
+  nameWithType: DropdownViewComponent.Model.AspFor
+- uid: FarmMaster.ViewComponents.DropdownViewComponent.Model.AspFor*
+  name: AspFor
+  href: api/FarmMaster.ViewComponents.DropdownViewComponent.Model.html#FarmMaster_ViewComponents_DropdownViewComponent_Model_AspFor_
+  commentId: Overload:FarmMaster.ViewComponents.DropdownViewComponent.Model.AspFor
+  isSpec: "True"
+  fullName: FarmMaster.ViewComponents.DropdownViewComponent.Model.AspFor
+  nameWithType: DropdownViewComponent.Model.AspFor
+- uid: FarmMaster.ViewComponents.DropdownViewComponent.Model.DefaultValue
+  name: DefaultValue
+  href: api/FarmMaster.ViewComponents.DropdownViewComponent.Model.html#FarmMaster_ViewComponents_DropdownViewComponent_Model_DefaultValue
+  commentId: P:FarmMaster.ViewComponents.DropdownViewComponent.Model.DefaultValue
+  fullName: FarmMaster.ViewComponents.DropdownViewComponent.Model.DefaultValue
+  nameWithType: DropdownViewComponent.Model.DefaultValue
+- uid: FarmMaster.ViewComponents.DropdownViewComponent.Model.DefaultValue*
+  name: DefaultValue
+  href: api/FarmMaster.ViewComponents.DropdownViewComponent.Model.html#FarmMaster_ViewComponents_DropdownViewComponent_Model_DefaultValue_
+  commentId: Overload:FarmMaster.ViewComponents.DropdownViewComponent.Model.DefaultValue
+  isSpec: "True"
+  fullName: FarmMaster.ViewComponents.DropdownViewComponent.Model.DefaultValue
+  nameWithType: DropdownViewComponent.Model.DefaultValue
+- uid: FarmMaster.ViewComponents.DropdownViewComponent.Model.DropdownId
+  name: DropdownId
+  href: api/FarmMaster.ViewComponents.DropdownViewComponent.Model.html#FarmMaster_ViewComponents_DropdownViewComponent_Model_DropdownId
+  commentId: P:FarmMaster.ViewComponents.DropdownViewComponent.Model.DropdownId
+  fullName: FarmMaster.ViewComponents.DropdownViewComponent.Model.DropdownId
+  nameWithType: DropdownViewComponent.Model.DropdownId
+- uid: FarmMaster.ViewComponents.DropdownViewComponent.Model.DropdownId*
+  name: DropdownId
+  href: api/FarmMaster.ViewComponents.DropdownViewComponent.Model.html#FarmMaster_ViewComponents_DropdownViewComponent_Model_DropdownId_
+  commentId: Overload:FarmMaster.ViewComponents.DropdownViewComponent.Model.DropdownId
+  isSpec: "True"
+  fullName: FarmMaster.ViewComponents.DropdownViewComponent.Model.DropdownId
+  nameWithType: DropdownViewComponent.Model.DropdownId
+- uid: FarmMaster.ViewComponents.DropdownViewComponent.Model.GotoAction
+  name: GotoAction
+  href: api/FarmMaster.ViewComponents.DropdownViewComponent.Model.html#FarmMaster_ViewComponents_DropdownViewComponent_Model_GotoAction
+  commentId: P:FarmMaster.ViewComponents.DropdownViewComponent.Model.GotoAction
+  fullName: FarmMaster.ViewComponents.DropdownViewComponent.Model.GotoAction
+  nameWithType: DropdownViewComponent.Model.GotoAction
+- uid: FarmMaster.ViewComponents.DropdownViewComponent.Model.GotoAction*
+  name: GotoAction
+  href: api/FarmMaster.ViewComponents.DropdownViewComponent.Model.html#FarmMaster_ViewComponents_DropdownViewComponent_Model_GotoAction_
+  commentId: Overload:FarmMaster.ViewComponents.DropdownViewComponent.Model.GotoAction
+  isSpec: "True"
+  fullName: FarmMaster.ViewComponents.DropdownViewComponent.Model.GotoAction
+  nameWithType: DropdownViewComponent.Model.GotoAction
+- uid: FarmMaster.ViewComponents.DropdownViewComponent.Model.GotoController
+  name: GotoController
+  href: api/FarmMaster.ViewComponents.DropdownViewComponent.Model.html#FarmMaster_ViewComponents_DropdownViewComponent_Model_GotoController
+  commentId: P:FarmMaster.ViewComponents.DropdownViewComponent.Model.GotoController
+  fullName: FarmMaster.ViewComponents.DropdownViewComponent.Model.GotoController
+  nameWithType: DropdownViewComponent.Model.GotoController
+- uid: FarmMaster.ViewComponents.DropdownViewComponent.Model.GotoController*
+  name: GotoController
+  href: api/FarmMaster.ViewComponents.DropdownViewComponent.Model.html#FarmMaster_ViewComponents_DropdownViewComponent_Model_GotoController_
+  commentId: Overload:FarmMaster.ViewComponents.DropdownViewComponent.Model.GotoController
+  isSpec: "True"
+  fullName: FarmMaster.ViewComponents.DropdownViewComponent.Model.GotoController
+  nameWithType: DropdownViewComponent.Model.GotoController
+- uid: FarmMaster.ViewComponents.DropdownViewComponent.Model.IsMultipleSelect
+  name: IsMultipleSelect
+  href: api/FarmMaster.ViewComponents.DropdownViewComponent.Model.html#FarmMaster_ViewComponents_DropdownViewComponent_Model_IsMultipleSelect
+  commentId: P:FarmMaster.ViewComponents.DropdownViewComponent.Model.IsMultipleSelect
+  fullName: FarmMaster.ViewComponents.DropdownViewComponent.Model.IsMultipleSelect
+  nameWithType: DropdownViewComponent.Model.IsMultipleSelect
+- uid: FarmMaster.ViewComponents.DropdownViewComponent.Model.IsMultipleSelect*
+  name: IsMultipleSelect
+  href: api/FarmMaster.ViewComponents.DropdownViewComponent.Model.html#FarmMaster_ViewComponents_DropdownViewComponent_Model_IsMultipleSelect_
+  commentId: Overload:FarmMaster.ViewComponents.DropdownViewComponent.Model.IsMultipleSelect
+  isSpec: "True"
+  fullName: FarmMaster.ViewComponents.DropdownViewComponent.Model.IsMultipleSelect
+  nameWithType: DropdownViewComponent.Model.IsMultipleSelect
+- uid: FarmMaster.ViewComponents.DropdownViewComponent.Model.Label
+  name: Label
+  href: api/FarmMaster.ViewComponents.DropdownViewComponent.Model.html#FarmMaster_ViewComponents_DropdownViewComponent_Model_Label
+  commentId: P:FarmMaster.ViewComponents.DropdownViewComponent.Model.Label
+  fullName: FarmMaster.ViewComponents.DropdownViewComponent.Model.Label
+  nameWithType: DropdownViewComponent.Model.Label
+- uid: FarmMaster.ViewComponents.DropdownViewComponent.Model.Label*
+  name: Label
+  href: api/FarmMaster.ViewComponents.DropdownViewComponent.Model.html#FarmMaster_ViewComponents_DropdownViewComponent_Model_Label_
+  commentId: Overload:FarmMaster.ViewComponents.DropdownViewComponent.Model.Label
+  isSpec: "True"
+  fullName: FarmMaster.ViewComponents.DropdownViewComponent.Model.Label
+  nameWithType: DropdownViewComponent.Model.Label
 - uid: GroupScript
   name: GroupScript
   href: api/GroupScript.html
