@@ -30,7 +30,8 @@ namespace FarmMaster.Models
 
         [Required]
         [DataType(DataType.Password)]
-        [StringLength(255)]
+        [MinLength(8)]
+        [MaxLength(2048)]
         public string Password { get; set; }
 
         [Required]

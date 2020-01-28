@@ -70,6 +70,15 @@ namespace FarmMaster.Services
 
             if(!privacyConsent)
                 throw new InvalidOperationException($"The user must give consent to the Privacy Policy.");
+
+            if(password.Length < 8)
+                throw new InvalidOperationException($"Your password must be at least 8 characters long.");
+
+            if(password.Length > 2048)
+                throw new InvalidOperationException($"Your password cannot be longer than 2048 characters (how is it even that long).");
+
+            if(!password.Any(c => Char.IsUpper(c)) && !password.Any(c => Char.IsLower(c)) && !password.Any(c => Char.IsDigit(c)))
+                throw new InvalidOperationException("Your password must contain one digit, one upper-case & one lower-case character.");
             
             var contact = this._contacts.Create(Contact.Type.User, fullName, SaveChanges.No);
             var salt = BCrypt.Net.BCrypt.GenerateSalt();
