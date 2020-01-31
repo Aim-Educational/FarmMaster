@@ -669,6 +669,48 @@
   </table>
   
   
+  <a id="FarmMaster_Services_ServiceContactManager_HandleUnsubscribeFromTokenString_" data-uid="FarmMaster.Services.ServiceContactManager.HandleUnsubscribeFromTokenString*"></a>
+  <h4 id="FarmMaster_Services_ServiceContactManager_HandleUnsubscribeFromTokenString_System_String_" data-uid="FarmMaster.Services.ServiceContactManager.HandleUnsubscribeFromTokenString(System.String)">HandleUnsubscribeFromTokenString(String)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TokenActionResult HandleUnsubscribeFromTokenString(string token)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">token</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FarmMaster.Misc.TokenActionResult.html">TokenActionResult</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
   <a id="FarmMaster_Services_ServiceContactManager_LogAction_" data-uid="FarmMaster.Services.ServiceContactManager.LogAction*"></a>
   <h4 id="FarmMaster_Services_ServiceContactManager_LogAction_Business_Model_Contact_Business_Model_User_Business_Model_ActionAgainstContactInfo_Type_System_String_System_String_" data-uid="FarmMaster.Services.ServiceContactManager.LogAction(Business.Model.Contact,Business.Model.User,Business.Model.ActionAgainstContactInfo.Type,System.String,System.String)">LogAction(Contact, User, ActionAgainstContactInfo.Type, String, String)</h4>
   <div class="markdown level1 summary"></div>
@@ -1072,6 +1114,55 @@
       <tr>
         <td><a class="xref" href="Business.Model.Contact.html">Contact</a></td>
         <td><span class="parametername">entity</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="eii">Explicit Interface Implementations
+  </h3>
+  
+  
+  <a id="FarmMaster_Services_ServiceContactManager_FarmMaster_Services_IServiceContactManager_GenerateUnsubscribeToken_" data-uid="FarmMaster.Services.ServiceContactManager.FarmMaster#Services#IServiceContactManager#GenerateUnsubscribeToken*"></a>
+  <h4 id="FarmMaster_Services_ServiceContactManager_FarmMaster_Services_IServiceContactManager_GenerateUnsubscribeToken_System_String_DateTimeOffset_" data-uid="FarmMaster.Services.ServiceContactManager.FarmMaster#Services#IServiceContactManager#GenerateUnsubscribeToken(System.String,DateTimeOffset)">IServiceContactManager.GenerateUnsubscribeToken(String, DateTimeOffset)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">ContactUnsubscribeToken IServiceContactManager.GenerateUnsubscribeToken(string email, DateTimeOffset expires)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">email</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">DateTimeOffset</span></td>
+        <td><span class="parametername">expires</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Business.Model.ContactUnsubscribeToken.html">ContactUnsubscribeToken</a></td>
         <td></td>
       </tr>
     </tbody>

@@ -209,6 +209,18 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Business.Migrations.EmailUnsubscription.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Business.Migrations.EmailUnsubscription.html",
+          "hash": "TeK5oxJtCKWHdYXeJTCmZQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Business.Migrations.GroupScriptFilter_SpeciesIs.yml",
       "output": {
         ".html": {
@@ -633,7 +645,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Business.Migrations.html",
-          "hash": "EUGMKJACcZM0Ef11QB4Rjw=="
+          "hash": "rutcsbzOf2JaSUIvFXbD8Q=="
         }
       },
       "is_incremental": false,
@@ -825,7 +837,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Business.Model.Contact.html",
-          "hash": "xaHAUzwk7AkMLfZPx5XneA=="
+          "hash": "7u5LDM/P5fQB/N7mAx8guQ=="
         }
       },
       "is_incremental": false,
@@ -850,6 +862,30 @@
         ".html": {
           "relative_path": "api/Business.Model.ContactToken.html",
           "hash": "LM0lEJ/aS3dm/l/OZHcXmg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Business.Model.ContactUnsubscribeEntry.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Business.Model.ContactUnsubscribeEntry.html",
+          "hash": "zOOa6vCigW01XCEpD6f86w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Business.Model.ContactUnsubscribeToken.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Business.Model.ContactUnsubscribeToken.html",
+          "hash": "4VshLiVam+y2DgqN64Kf/A=="
         }
       },
       "is_incremental": false,
@@ -981,7 +1017,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Business.Model.FarmMasterContext.html",
-          "hash": "tgB+7K+rIjVLCR93SSeQ+w=="
+          "hash": "NQX7zWNtP5IxbXHyK8rGaQ=="
         }
       },
       "is_incremental": false,
@@ -1281,7 +1317,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Business.Model.html",
-          "hash": "pflqkgoW+TFZtnM/PwzInw=="
+          "hash": "QDYksfYPm1TNTjIbfgDe7A=="
         }
       },
       "is_incremental": false,
@@ -1305,7 +1341,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FarmMaster.BackgroundServices.BackgroundServiceUserActionEmailer.html",
-          "hash": "7rLXsno9II4viEWzjqwUmw=="
+          "hash": "RuQaAfjNH0G0VTgxT7bHOA=="
         }
       },
       "is_incremental": false,
@@ -1449,7 +1485,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FarmMaster.Controllers.ContactController.html",
-          "hash": "NNgHTdXvwALJvlDEwGQFsQ=="
+          "hash": "eygk0L9ysJ/OsJkO0E6CLg=="
         }
       },
       "is_incremental": false,
@@ -2045,11 +2081,23 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/FarmMaster.Misc.TokenActionResult.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FarmMaster.Misc.TokenActionResult.html",
+          "hash": "IhuxG32iC8kim/mxTbV4Vg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/FarmMaster.Misc.yml",
       "output": {
         ".html": {
           "relative_path": "api/FarmMaster.Misc.html",
-          "hash": "JJBmN3PKnWBGsK/qdqdLJA=="
+          "hash": "loHwOFdoetoGz85g8pC0cw=="
         }
       },
       "is_incremental": false,
@@ -2673,7 +2721,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FarmMaster.Models.EmailContactInfoAuditViewModel.html",
-          "hash": "VdvyHWfYbBObPI9vZgkrow=="
+          "hash": "CBWrAEFy5wPkf5vK4OCkWA=="
         }
       },
       "is_incremental": false,
@@ -2997,7 +3045,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FarmMaster.Services.IServiceContactManager.html",
-          "hash": "aqGKx39M/iFgDH6MkF2gyA=="
+          "hash": "y0/nfU6IsIE1EBvEjtmWtw=="
         }
       },
       "is_incremental": false,
@@ -3165,7 +3213,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FarmMaster.Services.IServiceSmtpDomainConfig.html",
-          "hash": "6787kDPU0cgqCGUk1hYwQw=="
+          "hash": "mre1AcOpJ9jpNQwkJwJsRA=="
         }
       },
       "is_incremental": false,
@@ -3285,7 +3333,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FarmMaster.Services.ServiceContactManager.html",
-          "hash": "HJOgdmJhwYEZ83r2RaaqYA=="
+          "hash": "NGKWzy3aNxg9YSRRT39Cyw=="
         }
       },
       "is_incremental": false,
@@ -3741,7 +3789,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "bjtMCU35MbfqZOTmxLOkmA=="
+          "hash": "PheF//eZfXoQgxdapgW1dw=="
         }
       },
       "is_incremental": false,
@@ -3888,7 +3936,7 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 310,
+          "total_file_count": 314,
           "skipped_file_count": 0
         },
         "TocDocumentProcessor": {

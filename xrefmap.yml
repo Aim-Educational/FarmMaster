@@ -772,6 +772,51 @@ references:
   isSpec: "True"
   fullName: Business.Migrations.Derp.Up
   nameWithType: Derp.Up
+- uid: Business.Migrations.EmailUnsubscription
+  name: EmailUnsubscription
+  href: api/Business.Migrations.EmailUnsubscription.html
+  commentId: T:Business.Migrations.EmailUnsubscription
+  fullName: Business.Migrations.EmailUnsubscription
+  nameWithType: EmailUnsubscription
+- uid: Business.Migrations.EmailUnsubscription.BuildTargetModel(ModelBuilder)
+  name: BuildTargetModel(ModelBuilder)
+  href: api/Business.Migrations.EmailUnsubscription.html#Business_Migrations_EmailUnsubscription_BuildTargetModel_ModelBuilder_
+  commentId: M:Business.Migrations.EmailUnsubscription.BuildTargetModel(ModelBuilder)
+  fullName: Business.Migrations.EmailUnsubscription.BuildTargetModel(ModelBuilder)
+  nameWithType: EmailUnsubscription.BuildTargetModel(ModelBuilder)
+- uid: Business.Migrations.EmailUnsubscription.BuildTargetModel*
+  name: BuildTargetModel
+  href: api/Business.Migrations.EmailUnsubscription.html#Business_Migrations_EmailUnsubscription_BuildTargetModel_
+  commentId: Overload:Business.Migrations.EmailUnsubscription.BuildTargetModel
+  isSpec: "True"
+  fullName: Business.Migrations.EmailUnsubscription.BuildTargetModel
+  nameWithType: EmailUnsubscription.BuildTargetModel
+- uid: Business.Migrations.EmailUnsubscription.Down(MigrationBuilder)
+  name: Down(MigrationBuilder)
+  href: api/Business.Migrations.EmailUnsubscription.html#Business_Migrations_EmailUnsubscription_Down_MigrationBuilder_
+  commentId: M:Business.Migrations.EmailUnsubscription.Down(MigrationBuilder)
+  fullName: Business.Migrations.EmailUnsubscription.Down(MigrationBuilder)
+  nameWithType: EmailUnsubscription.Down(MigrationBuilder)
+- uid: Business.Migrations.EmailUnsubscription.Down*
+  name: Down
+  href: api/Business.Migrations.EmailUnsubscription.html#Business_Migrations_EmailUnsubscription_Down_
+  commentId: Overload:Business.Migrations.EmailUnsubscription.Down
+  isSpec: "True"
+  fullName: Business.Migrations.EmailUnsubscription.Down
+  nameWithType: EmailUnsubscription.Down
+- uid: Business.Migrations.EmailUnsubscription.Up(MigrationBuilder)
+  name: Up(MigrationBuilder)
+  href: api/Business.Migrations.EmailUnsubscription.html#Business_Migrations_EmailUnsubscription_Up_MigrationBuilder_
+  commentId: M:Business.Migrations.EmailUnsubscription.Up(MigrationBuilder)
+  fullName: Business.Migrations.EmailUnsubscription.Up(MigrationBuilder)
+  nameWithType: EmailUnsubscription.Up(MigrationBuilder)
+- uid: Business.Migrations.EmailUnsubscription.Up*
+  name: Up
+  href: api/Business.Migrations.EmailUnsubscription.html#Business_Migrations_EmailUnsubscription_Up_
+  commentId: Overload:Business.Migrations.EmailUnsubscription.Up
+  isSpec: "True"
+  fullName: Business.Migrations.EmailUnsubscription.Up
+  nameWithType: EmailUnsubscription.Up
 - uid: Business.Migrations.GroupScript_NOT_and_BREEDIS
   name: GroupScript_NOT_and_BREEDIS
   href: api/Business.Migrations.GroupScript_NOT_and_BREEDIS.html
@@ -3786,6 +3831,19 @@ references:
   commentId: F:Business.Model.Contact.Type.User
   fullName: Business.Model.Contact.Type.User
   nameWithType: Contact.Type.User
+- uid: Business.Model.Contact.UnsubscribedAddresses
+  name: UnsubscribedAddresses
+  href: api/Business.Model.Contact.html#Business_Model_Contact_UnsubscribedAddresses
+  commentId: P:Business.Model.Contact.UnsubscribedAddresses
+  fullName: Business.Model.Contact.UnsubscribedAddresses
+  nameWithType: Contact.UnsubscribedAddresses
+- uid: Business.Model.Contact.UnsubscribedAddresses*
+  name: UnsubscribedAddresses
+  href: api/Business.Model.Contact.html#Business_Model_Contact_UnsubscribedAddresses_
+  commentId: Overload:Business.Model.Contact.UnsubscribedAddresses
+  isSpec: "True"
+  fullName: Business.Model.Contact.UnsubscribedAddresses
+  nameWithType: Contact.UnsubscribedAddresses
 - uid: Business.Model.ContactToken
   name: ContactToken
   href: api/Business.Model.ContactToken.html
@@ -3907,6 +3965,122 @@ references:
   isSpec: "True"
   fullName: Business.Model.ContactToken.UsageType
   nameWithType: ContactToken.UsageType
+- uid: Business.Model.ContactUnsubscribeEntry
+  name: ContactUnsubscribeEntry
+  href: api/Business.Model.ContactUnsubscribeEntry.html
+  commentId: T:Business.Model.ContactUnsubscribeEntry
+  fullName: Business.Model.ContactUnsubscribeEntry
+  nameWithType: ContactUnsubscribeEntry
+- uid: Business.Model.ContactUnsubscribeEntry.Address
+  name: Address
+  href: api/Business.Model.ContactUnsubscribeEntry.html#Business_Model_ContactUnsubscribeEntry_Address
+  commentId: P:Business.Model.ContactUnsubscribeEntry.Address
+  fullName: Business.Model.ContactUnsubscribeEntry.Address
+  nameWithType: ContactUnsubscribeEntry.Address
+- uid: Business.Model.ContactUnsubscribeEntry.Address*
+  name: Address
+  href: api/Business.Model.ContactUnsubscribeEntry.html#Business_Model_ContactUnsubscribeEntry_Address_
+  commentId: Overload:Business.Model.ContactUnsubscribeEntry.Address
+  isSpec: "True"
+  fullName: Business.Model.ContactUnsubscribeEntry.Address
+  nameWithType: ContactUnsubscribeEntry.Address
+- uid: Business.Model.ContactUnsubscribeEntry.Contact
+  name: Contact
+  href: api/Business.Model.ContactUnsubscribeEntry.html#Business_Model_ContactUnsubscribeEntry_Contact
+  commentId: P:Business.Model.ContactUnsubscribeEntry.Contact
+  fullName: Business.Model.ContactUnsubscribeEntry.Contact
+  nameWithType: ContactUnsubscribeEntry.Contact
+- uid: Business.Model.ContactUnsubscribeEntry.Contact*
+  name: Contact
+  href: api/Business.Model.ContactUnsubscribeEntry.html#Business_Model_ContactUnsubscribeEntry_Contact_
+  commentId: Overload:Business.Model.ContactUnsubscribeEntry.Contact
+  isSpec: "True"
+  fullName: Business.Model.ContactUnsubscribeEntry.Contact
+  nameWithType: ContactUnsubscribeEntry.Contact
+- uid: Business.Model.ContactUnsubscribeEntry.ContactId
+  name: ContactId
+  href: api/Business.Model.ContactUnsubscribeEntry.html#Business_Model_ContactUnsubscribeEntry_ContactId
+  commentId: P:Business.Model.ContactUnsubscribeEntry.ContactId
+  fullName: Business.Model.ContactUnsubscribeEntry.ContactId
+  nameWithType: ContactUnsubscribeEntry.ContactId
+- uid: Business.Model.ContactUnsubscribeEntry.ContactId*
+  name: ContactId
+  href: api/Business.Model.ContactUnsubscribeEntry.html#Business_Model_ContactUnsubscribeEntry_ContactId_
+  commentId: Overload:Business.Model.ContactUnsubscribeEntry.ContactId
+  isSpec: "True"
+  fullName: Business.Model.ContactUnsubscribeEntry.ContactId
+  nameWithType: ContactUnsubscribeEntry.ContactId
+- uid: Business.Model.ContactUnsubscribeEntry.ContactUnsubscribeEntryId
+  name: ContactUnsubscribeEntryId
+  href: api/Business.Model.ContactUnsubscribeEntry.html#Business_Model_ContactUnsubscribeEntry_ContactUnsubscribeEntryId
+  commentId: P:Business.Model.ContactUnsubscribeEntry.ContactUnsubscribeEntryId
+  fullName: Business.Model.ContactUnsubscribeEntry.ContactUnsubscribeEntryId
+  nameWithType: ContactUnsubscribeEntry.ContactUnsubscribeEntryId
+- uid: Business.Model.ContactUnsubscribeEntry.ContactUnsubscribeEntryId*
+  name: ContactUnsubscribeEntryId
+  href: api/Business.Model.ContactUnsubscribeEntry.html#Business_Model_ContactUnsubscribeEntry_ContactUnsubscribeEntryId_
+  commentId: Overload:Business.Model.ContactUnsubscribeEntry.ContactUnsubscribeEntryId
+  isSpec: "True"
+  fullName: Business.Model.ContactUnsubscribeEntry.ContactUnsubscribeEntryId
+  nameWithType: ContactUnsubscribeEntry.ContactUnsubscribeEntryId
+- uid: Business.Model.ContactUnsubscribeToken
+  name: ContactUnsubscribeToken
+  href: api/Business.Model.ContactUnsubscribeToken.html
+  commentId: T:Business.Model.ContactUnsubscribeToken
+  fullName: Business.Model.ContactUnsubscribeToken
+  nameWithType: ContactUnsubscribeToken
+- uid: Business.Model.ContactUnsubscribeToken.Address
+  name: Address
+  href: api/Business.Model.ContactUnsubscribeToken.html#Business_Model_ContactUnsubscribeToken_Address
+  commentId: P:Business.Model.ContactUnsubscribeToken.Address
+  fullName: Business.Model.ContactUnsubscribeToken.Address
+  nameWithType: ContactUnsubscribeToken.Address
+- uid: Business.Model.ContactUnsubscribeToken.Address*
+  name: Address
+  href: api/Business.Model.ContactUnsubscribeToken.html#Business_Model_ContactUnsubscribeToken_Address_
+  commentId: Overload:Business.Model.ContactUnsubscribeToken.Address
+  isSpec: "True"
+  fullName: Business.Model.ContactUnsubscribeToken.Address
+  nameWithType: ContactUnsubscribeToken.Address
+- uid: Business.Model.ContactUnsubscribeToken.ContactUnsubscribeTokenId
+  name: ContactUnsubscribeTokenId
+  href: api/Business.Model.ContactUnsubscribeToken.html#Business_Model_ContactUnsubscribeToken_ContactUnsubscribeTokenId
+  commentId: P:Business.Model.ContactUnsubscribeToken.ContactUnsubscribeTokenId
+  fullName: Business.Model.ContactUnsubscribeToken.ContactUnsubscribeTokenId
+  nameWithType: ContactUnsubscribeToken.ContactUnsubscribeTokenId
+- uid: Business.Model.ContactUnsubscribeToken.ContactUnsubscribeTokenId*
+  name: ContactUnsubscribeTokenId
+  href: api/Business.Model.ContactUnsubscribeToken.html#Business_Model_ContactUnsubscribeToken_ContactUnsubscribeTokenId_
+  commentId: Overload:Business.Model.ContactUnsubscribeToken.ContactUnsubscribeTokenId
+  isSpec: "True"
+  fullName: Business.Model.ContactUnsubscribeToken.ContactUnsubscribeTokenId
+  nameWithType: ContactUnsubscribeToken.ContactUnsubscribeTokenId
+- uid: Business.Model.ContactUnsubscribeToken.ExpiresUtc
+  name: ExpiresUtc
+  href: api/Business.Model.ContactUnsubscribeToken.html#Business_Model_ContactUnsubscribeToken_ExpiresUtc
+  commentId: P:Business.Model.ContactUnsubscribeToken.ExpiresUtc
+  fullName: Business.Model.ContactUnsubscribeToken.ExpiresUtc
+  nameWithType: ContactUnsubscribeToken.ExpiresUtc
+- uid: Business.Model.ContactUnsubscribeToken.ExpiresUtc*
+  name: ExpiresUtc
+  href: api/Business.Model.ContactUnsubscribeToken.html#Business_Model_ContactUnsubscribeToken_ExpiresUtc_
+  commentId: Overload:Business.Model.ContactUnsubscribeToken.ExpiresUtc
+  isSpec: "True"
+  fullName: Business.Model.ContactUnsubscribeToken.ExpiresUtc
+  nameWithType: ContactUnsubscribeToken.ExpiresUtc
+- uid: Business.Model.ContactUnsubscribeToken.Token
+  name: Token
+  href: api/Business.Model.ContactUnsubscribeToken.html#Business_Model_ContactUnsubscribeToken_Token
+  commentId: P:Business.Model.ContactUnsubscribeToken.Token
+  fullName: Business.Model.ContactUnsubscribeToken.Token
+  nameWithType: ContactUnsubscribeToken.Token
+- uid: Business.Model.ContactUnsubscribeToken.Token*
+  name: Token
+  href: api/Business.Model.ContactUnsubscribeToken.html#Business_Model_ContactUnsubscribeToken_Token_
+  commentId: Overload:Business.Model.ContactUnsubscribeToken.Token
+  isSpec: "True"
+  fullName: Business.Model.ContactUnsubscribeToken.Token
+  nameWithType: ContactUnsubscribeToken.Token
 - uid: Business.Model.DynamicField
   name: DynamicField
   href: api/Business.Model.DynamicField.html
@@ -4675,6 +4849,32 @@ references:
   isSpec: "True"
   fullName: Business.Model.FarmMasterContext.ContactTokens
   nameWithType: FarmMasterContext.ContactTokens
+- uid: Business.Model.FarmMasterContext.ContactUnsubscribeEntries
+  name: ContactUnsubscribeEntries
+  href: api/Business.Model.FarmMasterContext.html#Business_Model_FarmMasterContext_ContactUnsubscribeEntries
+  commentId: P:Business.Model.FarmMasterContext.ContactUnsubscribeEntries
+  fullName: Business.Model.FarmMasterContext.ContactUnsubscribeEntries
+  nameWithType: FarmMasterContext.ContactUnsubscribeEntries
+- uid: Business.Model.FarmMasterContext.ContactUnsubscribeEntries*
+  name: ContactUnsubscribeEntries
+  href: api/Business.Model.FarmMasterContext.html#Business_Model_FarmMasterContext_ContactUnsubscribeEntries_
+  commentId: Overload:Business.Model.FarmMasterContext.ContactUnsubscribeEntries
+  isSpec: "True"
+  fullName: Business.Model.FarmMasterContext.ContactUnsubscribeEntries
+  nameWithType: FarmMasterContext.ContactUnsubscribeEntries
+- uid: Business.Model.FarmMasterContext.ContactUnsubscribeTokens
+  name: ContactUnsubscribeTokens
+  href: api/Business.Model.FarmMasterContext.html#Business_Model_FarmMasterContext_ContactUnsubscribeTokens
+  commentId: P:Business.Model.FarmMasterContext.ContactUnsubscribeTokens
+  fullName: Business.Model.FarmMasterContext.ContactUnsubscribeTokens
+  nameWithType: FarmMasterContext.ContactUnsubscribeTokens
+- uid: Business.Model.FarmMasterContext.ContactUnsubscribeTokens*
+  name: ContactUnsubscribeTokens
+  href: api/Business.Model.FarmMasterContext.html#Business_Model_FarmMasterContext_ContactUnsubscribeTokens_
+  commentId: Overload:Business.Model.FarmMasterContext.ContactUnsubscribeTokens
+  isSpec: "True"
+  fullName: Business.Model.FarmMasterContext.ContactUnsubscribeTokens
+  nameWithType: FarmMasterContext.ContactUnsubscribeTokens
 - uid: Business.Model.FarmMasterContext.Emails
   name: Emails
   href: api/Business.Model.FarmMasterContext.html#Business_Model_FarmMasterContext_Emails
@@ -7118,12 +7318,15 @@ references:
   commentId: T:FarmMaster.BackgroundServices.BackgroundServiceUserActionEmailer
   fullName: FarmMaster.BackgroundServices.BackgroundServiceUserActionEmailer
   nameWithType: BackgroundServiceUserActionEmailer
-- uid: FarmMaster.BackgroundServices.BackgroundServiceUserActionEmailer.#ctor(Business.Model.FarmMasterContext,FarmMaster.Services.IServiceSmtpClient)
-  name: BackgroundServiceUserActionEmailer(FarmMasterContext, IServiceSmtpClient)
-  href: api/FarmMaster.BackgroundServices.BackgroundServiceUserActionEmailer.html#FarmMaster_BackgroundServices_BackgroundServiceUserActionEmailer__ctor_Business_Model_FarmMasterContext_FarmMaster_Services_IServiceSmtpClient_
-  commentId: M:FarmMaster.BackgroundServices.BackgroundServiceUserActionEmailer.#ctor(Business.Model.FarmMasterContext,FarmMaster.Services.IServiceSmtpClient)
-  fullName: FarmMaster.BackgroundServices.BackgroundServiceUserActionEmailer.BackgroundServiceUserActionEmailer(Business.Model.FarmMasterContext, FarmMaster.Services.IServiceSmtpClient)
-  nameWithType: BackgroundServiceUserActionEmailer.BackgroundServiceUserActionEmailer(FarmMasterContext, IServiceSmtpClient)
+- uid: FarmMaster.BackgroundServices.BackgroundServiceUserActionEmailer.#ctor(Business.Model.FarmMasterContext,FarmMaster.Services.IServiceSmtpClient,IOptions{FarmMaster.Services.IServiceSmtpDomainConfig},FarmMaster.Services.IServiceContactManager)
+  name: BackgroundServiceUserActionEmailer(FarmMasterContext, IServiceSmtpClient, IOptions<IServiceSmtpDomainConfig>, IServiceContactManager)
+  href: api/FarmMaster.BackgroundServices.BackgroundServiceUserActionEmailer.html#FarmMaster_BackgroundServices_BackgroundServiceUserActionEmailer__ctor_Business_Model_FarmMasterContext_FarmMaster_Services_IServiceSmtpClient_IOptions_FarmMaster_Services_IServiceSmtpDomainConfig__FarmMaster_Services_IServiceContactManager_
+  commentId: M:FarmMaster.BackgroundServices.BackgroundServiceUserActionEmailer.#ctor(Business.Model.FarmMasterContext,FarmMaster.Services.IServiceSmtpClient,IOptions{FarmMaster.Services.IServiceSmtpDomainConfig},FarmMaster.Services.IServiceContactManager)
+  name.vb: BackgroundServiceUserActionEmailer(FarmMasterContext, IServiceSmtpClient, IOptions(Of IServiceSmtpDomainConfig), IServiceContactManager)
+  fullName: FarmMaster.BackgroundServices.BackgroundServiceUserActionEmailer.BackgroundServiceUserActionEmailer(Business.Model.FarmMasterContext, FarmMaster.Services.IServiceSmtpClient, IOptions<FarmMaster.Services.IServiceSmtpDomainConfig>, FarmMaster.Services.IServiceContactManager)
+  fullName.vb: FarmMaster.BackgroundServices.BackgroundServiceUserActionEmailer.BackgroundServiceUserActionEmailer(Business.Model.FarmMasterContext, FarmMaster.Services.IServiceSmtpClient, IOptions(Of FarmMaster.Services.IServiceSmtpDomainConfig), FarmMaster.Services.IServiceContactManager)
+  nameWithType: BackgroundServiceUserActionEmailer.BackgroundServiceUserActionEmailer(FarmMasterContext, IServiceSmtpClient, IOptions<IServiceSmtpDomainConfig>, IServiceContactManager)
+  nameWithType.vb: BackgroundServiceUserActionEmailer.BackgroundServiceUserActionEmailer(FarmMasterContext, IServiceSmtpClient, IOptions(Of IServiceSmtpDomainConfig), IServiceContactManager)
 - uid: FarmMaster.BackgroundServices.BackgroundServiceUserActionEmailer.#ctor*
   name: BackgroundServiceUserActionEmailer
   href: api/FarmMaster.BackgroundServices.BackgroundServiceUserActionEmailer.html#FarmMaster_BackgroundServices_BackgroundServiceUserActionEmailer__ctor_
@@ -8242,6 +8445,19 @@ references:
   isSpec: "True"
   fullName: FarmMaster.Controllers.ContactController.Index
   nameWithType: ContactController.Index
+- uid: FarmMaster.Controllers.ContactController.Unsubscribe(System.String)
+  name: Unsubscribe(String)
+  href: api/FarmMaster.Controllers.ContactController.html#FarmMaster_Controllers_ContactController_Unsubscribe_System_String_
+  commentId: M:FarmMaster.Controllers.ContactController.Unsubscribe(System.String)
+  fullName: FarmMaster.Controllers.ContactController.Unsubscribe(System.String)
+  nameWithType: ContactController.Unsubscribe(String)
+- uid: FarmMaster.Controllers.ContactController.Unsubscribe*
+  name: Unsubscribe
+  href: api/FarmMaster.Controllers.ContactController.html#FarmMaster_Controllers_ContactController_Unsubscribe_
+  commentId: Overload:FarmMaster.Controllers.ContactController.Unsubscribe
+  isSpec: "True"
+  fullName: FarmMaster.Controllers.ContactController.Unsubscribe
+  nameWithType: ContactController.Unsubscribe
 - uid: FarmMaster.Controllers.GroupScriptController
   name: GroupScriptController
   href: api/FarmMaster.Controllers.GroupScriptController.html
@@ -9839,6 +10055,30 @@ references:
   commentId: F:FarmMaster.Misc.SaveChanges.Yes
   fullName: FarmMaster.Misc.SaveChanges.Yes
   nameWithType: SaveChanges.Yes
+- uid: FarmMaster.Misc.TokenActionResult
+  name: TokenActionResult
+  href: api/FarmMaster.Misc.TokenActionResult.html
+  commentId: T:FarmMaster.Misc.TokenActionResult
+  fullName: FarmMaster.Misc.TokenActionResult
+  nameWithType: TokenActionResult
+- uid: FarmMaster.Misc.TokenActionResult.Expired
+  name: Expired
+  href: api/FarmMaster.Misc.TokenActionResult.html#FarmMaster_Misc_TokenActionResult_Expired
+  commentId: F:FarmMaster.Misc.TokenActionResult.Expired
+  fullName: FarmMaster.Misc.TokenActionResult.Expired
+  nameWithType: TokenActionResult.Expired
+- uid: FarmMaster.Misc.TokenActionResult.Failed
+  name: Failed
+  href: api/FarmMaster.Misc.TokenActionResult.html#FarmMaster_Misc_TokenActionResult_Failed
+  commentId: F:FarmMaster.Misc.TokenActionResult.Failed
+  fullName: FarmMaster.Misc.TokenActionResult.Failed
+  nameWithType: TokenActionResult.Failed
+- uid: FarmMaster.Misc.TokenActionResult.Success
+  name: Success
+  href: api/FarmMaster.Misc.TokenActionResult.html#FarmMaster_Misc_TokenActionResult_Success
+  commentId: F:FarmMaster.Misc.TokenActionResult.Success
+  fullName: FarmMaster.Misc.TokenActionResult.Success
+  nameWithType: TokenActionResult.Success
 - uid: FarmMaster.Models
   name: FarmMaster.Models
   href: api/FarmMaster.Models.html
@@ -11682,6 +11922,12 @@ references:
   commentId: F:FarmMaster.Models.EmailContactInfoAuditViewModel.Data.Why
   fullName: FarmMaster.Models.EmailContactInfoAuditViewModel.Data.Why
   nameWithType: EmailContactInfoAuditViewModel.Data.Why
+- uid: FarmMaster.Models.EmailContactInfoAuditViewModel.UnsubscribeUrl
+  name: UnsubscribeUrl
+  href: api/FarmMaster.Models.EmailContactInfoAuditViewModel.html#FarmMaster_Models_EmailContactInfoAuditViewModel_UnsubscribeUrl
+  commentId: F:FarmMaster.Models.EmailContactInfoAuditViewModel.UnsubscribeUrl
+  fullName: FarmMaster.Models.EmailContactInfoAuditViewModel.UnsubscribeUrl
+  nameWithType: EmailContactInfoAuditViewModel.UnsubscribeUrl
 - uid: FarmMaster.Models.EmptyViewModelWithMessage
   name: EmptyViewModelWithMessage
   href: api/FarmMaster.Models.EmptyViewModelWithMessage.html
@@ -12918,6 +13164,19 @@ references:
   isSpec: "True"
   fullName: FarmMaster.Services.IServiceContactManager.GenerateToken
   nameWithType: IServiceContactManager.GenerateToken
+- uid: FarmMaster.Services.IServiceContactManager.GenerateUnsubscribeToken(System.String,DateTimeOffset)
+  name: GenerateUnsubscribeToken(String, DateTimeOffset)
+  href: api/FarmMaster.Services.IServiceContactManager.html#FarmMaster_Services_IServiceContactManager_GenerateUnsubscribeToken_System_String_DateTimeOffset_
+  commentId: M:FarmMaster.Services.IServiceContactManager.GenerateUnsubscribeToken(System.String,DateTimeOffset)
+  fullName: FarmMaster.Services.IServiceContactManager.GenerateUnsubscribeToken(System.String, DateTimeOffset)
+  nameWithType: IServiceContactManager.GenerateUnsubscribeToken(String, DateTimeOffset)
+- uid: FarmMaster.Services.IServiceContactManager.GenerateUnsubscribeToken*
+  name: GenerateUnsubscribeToken
+  href: api/FarmMaster.Services.IServiceContactManager.html#FarmMaster_Services_IServiceContactManager_GenerateUnsubscribeToken_
+  commentId: Overload:FarmMaster.Services.IServiceContactManager.GenerateUnsubscribeToken
+  isSpec: "True"
+  fullName: FarmMaster.Services.IServiceContactManager.GenerateUnsubscribeToken
+  nameWithType: IServiceContactManager.GenerateUnsubscribeToken
 - uid: FarmMaster.Services.IServiceContactManager.GetContactFromTokenString(System.String)
   name: GetContactFromTokenString(String)
   href: api/FarmMaster.Services.IServiceContactManager.html#FarmMaster_Services_IServiceContactManager_GetContactFromTokenString_System_String_
@@ -12931,6 +13190,19 @@ references:
   isSpec: "True"
   fullName: FarmMaster.Services.IServiceContactManager.GetContactFromTokenString
   nameWithType: IServiceContactManager.GetContactFromTokenString
+- uid: FarmMaster.Services.IServiceContactManager.HandleUnsubscribeFromTokenString(System.String)
+  name: HandleUnsubscribeFromTokenString(String)
+  href: api/FarmMaster.Services.IServiceContactManager.html#FarmMaster_Services_IServiceContactManager_HandleUnsubscribeFromTokenString_System_String_
+  commentId: M:FarmMaster.Services.IServiceContactManager.HandleUnsubscribeFromTokenString(System.String)
+  fullName: FarmMaster.Services.IServiceContactManager.HandleUnsubscribeFromTokenString(System.String)
+  nameWithType: IServiceContactManager.HandleUnsubscribeFromTokenString(String)
+- uid: FarmMaster.Services.IServiceContactManager.HandleUnsubscribeFromTokenString*
+  name: HandleUnsubscribeFromTokenString
+  href: api/FarmMaster.Services.IServiceContactManager.html#FarmMaster_Services_IServiceContactManager_HandleUnsubscribeFromTokenString_
+  commentId: Overload:FarmMaster.Services.IServiceContactManager.HandleUnsubscribeFromTokenString
+  isSpec: "True"
+  fullName: FarmMaster.Services.IServiceContactManager.HandleUnsubscribeFromTokenString
+  nameWithType: IServiceContactManager.HandleUnsubscribeFromTokenString
 - uid: FarmMaster.Services.IServiceContactManager.LogAction(Business.Model.Contact,Business.Model.User,Business.Model.ActionAgainstContactInfo.Type,System.String,System.String)
   name: LogAction(Contact, User, ActionAgainstContactInfo.Type, String, String)
   href: api/FarmMaster.Services.IServiceContactManager.html#FarmMaster_Services_IServiceContactManager_LogAction_Business_Model_Contact_Business_Model_User_Business_Model_ActionAgainstContactInfo_Type_System_String_System_String_
@@ -13765,6 +14037,19 @@ references:
   isSpec: "True"
   fullName: FarmMaster.Services.IServiceSmtpDomainConfig.AnonRequest
   nameWithType: IServiceSmtpDomainConfig.AnonRequest
+- uid: FarmMaster.Services.IServiceSmtpDomainConfig.ContactUnsubscribe
+  name: ContactUnsubscribe
+  href: api/FarmMaster.Services.IServiceSmtpDomainConfig.html#FarmMaster_Services_IServiceSmtpDomainConfig_ContactUnsubscribe
+  commentId: P:FarmMaster.Services.IServiceSmtpDomainConfig.ContactUnsubscribe
+  fullName: FarmMaster.Services.IServiceSmtpDomainConfig.ContactUnsubscribe
+  nameWithType: IServiceSmtpDomainConfig.ContactUnsubscribe
+- uid: FarmMaster.Services.IServiceSmtpDomainConfig.ContactUnsubscribe*
+  name: ContactUnsubscribe
+  href: api/FarmMaster.Services.IServiceSmtpDomainConfig.html#FarmMaster_Services_IServiceSmtpDomainConfig_ContactUnsubscribe_
+  commentId: Overload:FarmMaster.Services.IServiceSmtpDomainConfig.ContactUnsubscribe
+  isSpec: "True"
+  fullName: FarmMaster.Services.IServiceSmtpDomainConfig.ContactUnsubscribe
+  nameWithType: IServiceSmtpDomainConfig.ContactUnsubscribe
 - uid: FarmMaster.Services.IServiceSmtpDomainConfig.ResetPassword
   name: ResetPassword
   href: api/FarmMaster.Services.IServiceSmtpDomainConfig.html#FarmMaster_Services_IServiceSmtpDomainConfig_ResetPassword
@@ -14733,6 +15018,23 @@ references:
   isSpec: "True"
   fullName: FarmMaster.Services.ServiceContactManager.ExpireTokenByTokenString
   nameWithType: ServiceContactManager.ExpireTokenByTokenString
+- uid: FarmMaster.Services.ServiceContactManager.FarmMaster#Services#IServiceContactManager#GenerateUnsubscribeToken(System.String,DateTimeOffset)
+  name: IServiceContactManager.GenerateUnsubscribeToken(String, DateTimeOffset)
+  href: api/FarmMaster.Services.ServiceContactManager.html#FarmMaster_Services_ServiceContactManager_FarmMaster_Services_IServiceContactManager_GenerateUnsubscribeToken_System_String_DateTimeOffset_
+  commentId: M:FarmMaster.Services.ServiceContactManager.FarmMaster#Services#IServiceContactManager#GenerateUnsubscribeToken(System.String,DateTimeOffset)
+  name.vb: FarmMaster.Services.IServiceContactManager.GenerateUnsubscribeToken(String, DateTimeOffset)
+  fullName: FarmMaster.Services.ServiceContactManager.FarmMaster.Services.IServiceContactManager.GenerateUnsubscribeToken(System.String, DateTimeOffset)
+  nameWithType: ServiceContactManager.IServiceContactManager.GenerateUnsubscribeToken(String, DateTimeOffset)
+  nameWithType.vb: ServiceContactManager.FarmMaster.Services.IServiceContactManager.GenerateUnsubscribeToken(String, DateTimeOffset)
+- uid: FarmMaster.Services.ServiceContactManager.FarmMaster#Services#IServiceContactManager#GenerateUnsubscribeToken*
+  name: IServiceContactManager.GenerateUnsubscribeToken
+  href: api/FarmMaster.Services.ServiceContactManager.html#FarmMaster_Services_ServiceContactManager_FarmMaster_Services_IServiceContactManager_GenerateUnsubscribeToken_
+  commentId: Overload:FarmMaster.Services.ServiceContactManager.FarmMaster#Services#IServiceContactManager#GenerateUnsubscribeToken
+  isSpec: "True"
+  name.vb: FarmMaster.Services.IServiceContactManager.GenerateUnsubscribeToken
+  fullName: FarmMaster.Services.ServiceContactManager.FarmMaster.Services.IServiceContactManager.GenerateUnsubscribeToken
+  nameWithType: ServiceContactManager.IServiceContactManager.GenerateUnsubscribeToken
+  nameWithType.vb: ServiceContactManager.FarmMaster.Services.IServiceContactManager.GenerateUnsubscribeToken
 - uid: FarmMaster.Services.ServiceContactManager.GenerateToken(Business.Model.Contact,Business.Model.ContactToken.Type,DateTimeOffset,FarmMaster.Misc.IsUnique)
   name: GenerateToken(Contact, ContactToken.Type, DateTimeOffset, IsUnique)
   href: api/FarmMaster.Services.ServiceContactManager.html#FarmMaster_Services_ServiceContactManager_GenerateToken_Business_Model_Contact_Business_Model_ContactToken_Type_DateTimeOffset_FarmMaster_Misc_IsUnique_
@@ -14798,6 +15100,19 @@ references:
   isSpec: "True"
   fullName: FarmMaster.Services.ServiceContactManager.GetUserGdprData
   nameWithType: ServiceContactManager.GetUserGdprData
+- uid: FarmMaster.Services.ServiceContactManager.HandleUnsubscribeFromTokenString(System.String)
+  name: HandleUnsubscribeFromTokenString(String)
+  href: api/FarmMaster.Services.ServiceContactManager.html#FarmMaster_Services_ServiceContactManager_HandleUnsubscribeFromTokenString_System_String_
+  commentId: M:FarmMaster.Services.ServiceContactManager.HandleUnsubscribeFromTokenString(System.String)
+  fullName: FarmMaster.Services.ServiceContactManager.HandleUnsubscribeFromTokenString(System.String)
+  nameWithType: ServiceContactManager.HandleUnsubscribeFromTokenString(String)
+- uid: FarmMaster.Services.ServiceContactManager.HandleUnsubscribeFromTokenString*
+  name: HandleUnsubscribeFromTokenString
+  href: api/FarmMaster.Services.ServiceContactManager.html#FarmMaster_Services_ServiceContactManager_HandleUnsubscribeFromTokenString_
+  commentId: Overload:FarmMaster.Services.ServiceContactManager.HandleUnsubscribeFromTokenString
+  isSpec: "True"
+  fullName: FarmMaster.Services.ServiceContactManager.HandleUnsubscribeFromTokenString
+  nameWithType: ServiceContactManager.HandleUnsubscribeFromTokenString
 - uid: FarmMaster.Services.ServiceContactManager.LogAction(Business.Model.Contact,Business.Model.User,Business.Model.ActionAgainstContactInfo.Type,System.String,System.String)
   name: LogAction(Contact, User, ActionAgainstContactInfo.Type, String, String)
   href: api/FarmMaster.Services.ServiceContactManager.html#FarmMaster_Services_ServiceContactManager_LogAction_Business_Model_Contact_Business_Model_User_Business_Model_ActionAgainstContactInfo_Type_System_String_System_String_

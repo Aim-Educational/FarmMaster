@@ -111,6 +111,16 @@ I don't know either. Run from the madness while you can.</p>
 It's easier to just extend them for both contacts and users (via their contacts), and just check to make sure the
 referenced contact is for a user for user-specific tokens.</p>
 </section>
+      <h4><a class="xref" href="Business.Model.ContactUnsubscribeEntry.html">ContactUnsubscribeEntry</a></h4>
+      <section><p>Created to detail that a certain email address should no longer be send information
+about a certain contact.</p>
+</section>
+      <h4><a class="xref" href="Business.Model.ContactUnsubscribeToken.html">ContactUnsubscribeToken</a></h4>
+      <section><p>The normal contact tokens apply to the entire contact/user, not just a specific email.</p>
+<p>Hence the need to create a special token just for this.</p>
+<p>And since emails can be shared between contacts, unsub tokens can't be bound to singular contacts like a normal
+token can.</p>
+</section>
       <h4><a class="xref" href="Business.Model.DynamicField.html">DynamicField</a></h4>
       <section></section>
       <h4><a class="xref" href="Business.Model.DynamicFieldDateTime.html">DynamicFieldDateTime</a></h4>

@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class IServiceSmtpDomainConfig
+    <title>Class EmailUnsubscription
    </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class IServiceSmtpDomainConfig
+    <meta name="title" content="Class EmailUnsubscription
    ">
     <meta name="generator" content="docfx 2.43.3.0">
     
@@ -68,129 +68,103 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="FarmMaster.Services.IServiceSmtpDomainConfig">
+            <article class="content wrap" id="_content" data-uid="Business.Migrations.EmailUnsubscription">
   
   
-  <h1 id="FarmMaster_Services_IServiceSmtpDomainConfig" data-uid="FarmMaster.Services.IServiceSmtpDomainConfig" class="text-break">Class IServiceSmtpDomainConfig
+  <h1 id="Business_Migrations_EmailUnsubscription" data-uid="Business.Migrations.EmailUnsubscription" class="text-break">Class EmailUnsubscription
   </h1>
-  <div class="markdown level0 summary"><p>Configuration of the various callbacks that certain parts of AimLogin is required to send.</p>
-</div>
+  <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><span class="xref">IServiceSmtpDomainConfig</span></div>
+    <div class="level1"><span class="xref">EmailUnsubscription</span></div>
   </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="FarmMaster.Services.html">FarmMaster.Services</a></h6>
-  <h6><strong>Assembly</strong>: FarmMaster.dll</h6>
-  <h5 id="FarmMaster_Services_IServiceSmtpDomainConfig_syntax">Syntax</h5>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Business.Migrations.html">Business.Migrations</a></h6>
+  <h6><strong>Assembly</strong>: Business.dll</h6>
+  <h5 id="Business_Migrations_EmailUnsubscription_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class IServiceSmtpDomainConfig : object</code></pre>
+    <pre><code class="lang-csharp hljs">public class EmailUnsubscription : Migration</code></pre>
   </div>
-  <h3 id="fields">Fields
+  <h3 id="methods">Methods
   </h3>
   
   
-  <h4 id="FarmMaster_Services_IServiceSmtpDomainConfig_VerifyEmail" data-uid="FarmMaster.Services.IServiceSmtpDomainConfig.VerifyEmail">VerifyEmail</h4>
-  <div class="markdown level1 summary"><p>NOTE: The verify token for the UserEmail to be verified will be appended onto the end, so the domain should
-end with an incomplete query value, .e.g &quot;?token=&quot;</p>
-</div>
+  <a id="Business_Migrations_EmailUnsubscription_BuildTargetModel_" data-uid="Business.Migrations.EmailUnsubscription.BuildTargetModel*"></a>
+  <h4 id="Business_Migrations_EmailUnsubscription_BuildTargetModel_ModelBuilder_" data-uid="Business.Migrations.EmailUnsubscription.BuildTargetModel(ModelBuilder)">BuildTargetModel(ModelBuilder)</h4>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string VerifyEmail</code></pre>
+    <pre><code class="lang-csharp hljs">protected override void BuildTargetModel(ModelBuilder modelBuilder)</code></pre>
   </div>
-  <h5 class="fieldValue">Field Value</h5>
+  <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
+        <th>Name</th>
         <th>Description</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h3 id="properties">Properties
-  </h3>
-  
-  
-  <a id="FarmMaster_Services_IServiceSmtpDomainConfig_AnonRequest_" data-uid="FarmMaster.Services.IServiceSmtpDomainConfig.AnonRequest*"></a>
-  <h4 id="FarmMaster_Services_IServiceSmtpDomainConfig_AnonRequest" data-uid="FarmMaster.Services.IServiceSmtpDomainConfig.AnonRequest">AnonRequest</h4>
-  <div class="markdown level1 summary"><p>Ditto</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string AnonRequest { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">ModelBuilder</span></td>
+        <td><span class="parametername">modelBuilder</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   
   
-  <a id="FarmMaster_Services_IServiceSmtpDomainConfig_ContactUnsubscribe_" data-uid="FarmMaster.Services.IServiceSmtpDomainConfig.ContactUnsubscribe*"></a>
-  <h4 id="FarmMaster_Services_IServiceSmtpDomainConfig_ContactUnsubscribe" data-uid="FarmMaster.Services.IServiceSmtpDomainConfig.ContactUnsubscribe">ContactUnsubscribe</h4>
-  <div class="markdown level1 summary"><p>Ditto</p>
-</div>
+  <a id="Business_Migrations_EmailUnsubscription_Down_" data-uid="Business.Migrations.EmailUnsubscription.Down*"></a>
+  <h4 id="Business_Migrations_EmailUnsubscription_Down_MigrationBuilder_" data-uid="Business.Migrations.EmailUnsubscription.Down(MigrationBuilder)">Down(MigrationBuilder)</h4>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string ContactUnsubscribe { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">protected override void Down(MigrationBuilder migrationBuilder)</code></pre>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
+  <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
+        <th>Name</th>
         <th>Description</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">MigrationBuilder</span></td>
+        <td><span class="parametername">migrationBuilder</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   
   
-  <a id="FarmMaster_Services_IServiceSmtpDomainConfig_ResetPassword_" data-uid="FarmMaster.Services.IServiceSmtpDomainConfig.ResetPassword*"></a>
-  <h4 id="FarmMaster_Services_IServiceSmtpDomainConfig_ResetPassword" data-uid="FarmMaster.Services.IServiceSmtpDomainConfig.ResetPassword">ResetPassword</h4>
-  <div class="markdown level1 summary"><p>Ditto</p>
-</div>
+  <a id="Business_Migrations_EmailUnsubscription_Up_" data-uid="Business.Migrations.EmailUnsubscription.Up*"></a>
+  <h4 id="Business_Migrations_EmailUnsubscription_Up_MigrationBuilder_" data-uid="Business.Migrations.EmailUnsubscription.Up(MigrationBuilder)">Up(MigrationBuilder)</h4>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string ResetPassword { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">protected override void Up(MigrationBuilder migrationBuilder)</code></pre>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
+  <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
+        <th>Name</th>
         <th>Description</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">MigrationBuilder</span></td>
+        <td><span class="parametername">migrationBuilder</span></td>
         <td></td>
       </tr>
     </tbody>
