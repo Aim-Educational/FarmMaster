@@ -772,6 +772,51 @@ references:
   isSpec: "True"
   fullName: Business.Migrations.Derp.Up
   nameWithType: Derp.Up
+- uid: Business.Migrations.GroupScript_NOT_and_BREEDIS
+  name: GroupScript_NOT_and_BREEDIS
+  href: api/Business.Migrations.GroupScript_NOT_and_BREEDIS.html
+  commentId: T:Business.Migrations.GroupScript_NOT_and_BREEDIS
+  fullName: Business.Migrations.GroupScript_NOT_and_BREEDIS
+  nameWithType: GroupScript_NOT_and_BREEDIS
+- uid: Business.Migrations.GroupScript_NOT_and_BREEDIS.BuildTargetModel(ModelBuilder)
+  name: BuildTargetModel(ModelBuilder)
+  href: api/Business.Migrations.GroupScript_NOT_and_BREEDIS.html#Business_Migrations_GroupScript_NOT_and_BREEDIS_BuildTargetModel_ModelBuilder_
+  commentId: M:Business.Migrations.GroupScript_NOT_and_BREEDIS.BuildTargetModel(ModelBuilder)
+  fullName: Business.Migrations.GroupScript_NOT_and_BREEDIS.BuildTargetModel(ModelBuilder)
+  nameWithType: GroupScript_NOT_and_BREEDIS.BuildTargetModel(ModelBuilder)
+- uid: Business.Migrations.GroupScript_NOT_and_BREEDIS.BuildTargetModel*
+  name: BuildTargetModel
+  href: api/Business.Migrations.GroupScript_NOT_and_BREEDIS.html#Business_Migrations_GroupScript_NOT_and_BREEDIS_BuildTargetModel_
+  commentId: Overload:Business.Migrations.GroupScript_NOT_and_BREEDIS.BuildTargetModel
+  isSpec: "True"
+  fullName: Business.Migrations.GroupScript_NOT_and_BREEDIS.BuildTargetModel
+  nameWithType: GroupScript_NOT_and_BREEDIS.BuildTargetModel
+- uid: Business.Migrations.GroupScript_NOT_and_BREEDIS.Down(MigrationBuilder)
+  name: Down(MigrationBuilder)
+  href: api/Business.Migrations.GroupScript_NOT_and_BREEDIS.html#Business_Migrations_GroupScript_NOT_and_BREEDIS_Down_MigrationBuilder_
+  commentId: M:Business.Migrations.GroupScript_NOT_and_BREEDIS.Down(MigrationBuilder)
+  fullName: Business.Migrations.GroupScript_NOT_and_BREEDIS.Down(MigrationBuilder)
+  nameWithType: GroupScript_NOT_and_BREEDIS.Down(MigrationBuilder)
+- uid: Business.Migrations.GroupScript_NOT_and_BREEDIS.Down*
+  name: Down
+  href: api/Business.Migrations.GroupScript_NOT_and_BREEDIS.html#Business_Migrations_GroupScript_NOT_and_BREEDIS_Down_
+  commentId: Overload:Business.Migrations.GroupScript_NOT_and_BREEDIS.Down
+  isSpec: "True"
+  fullName: Business.Migrations.GroupScript_NOT_and_BREEDIS.Down
+  nameWithType: GroupScript_NOT_and_BREEDIS.Down
+- uid: Business.Migrations.GroupScript_NOT_and_BREEDIS.Up(MigrationBuilder)
+  name: Up(MigrationBuilder)
+  href: api/Business.Migrations.GroupScript_NOT_and_BREEDIS.html#Business_Migrations_GroupScript_NOT_and_BREEDIS_Up_MigrationBuilder_
+  commentId: M:Business.Migrations.GroupScript_NOT_and_BREEDIS.Up(MigrationBuilder)
+  fullName: Business.Migrations.GroupScript_NOT_and_BREEDIS.Up(MigrationBuilder)
+  nameWithType: GroupScript_NOT_and_BREEDIS.Up(MigrationBuilder)
+- uid: Business.Migrations.GroupScript_NOT_and_BREEDIS.Up*
+  name: Up
+  href: api/Business.Migrations.GroupScript_NOT_and_BREEDIS.html#Business_Migrations_GroupScript_NOT_and_BREEDIS_Up_
+  commentId: Overload:Business.Migrations.GroupScript_NOT_and_BREEDIS.Up
+  isSpec: "True"
+  fullName: Business.Migrations.GroupScript_NOT_and_BREEDIS.Up
+  nameWithType: GroupScript_NOT_and_BREEDIS.Up
 - uid: Business.Migrations.GroupScriptFilter_SpeciesIs
   name: GroupScriptFilter_SpeciesIs
   href: api/Business.Migrations.GroupScriptFilter_SpeciesIs.html
@@ -16604,6 +16649,25 @@ references:
   isSpec: "True"
   fullName: GroupScript.GroupScriptBornBeforeActionNode.Date
   nameWithType: GroupScriptBornBeforeActionNode.Date
+- uid: GroupScript.GroupScriptBreedIsActionNode
+  name: GroupScriptBreedIsActionNode
+  href: api/GroupScript.GroupScriptBreedIsActionNode.html
+  commentId: T:GroupScript.GroupScriptBreedIsActionNode
+  fullName: GroupScript.GroupScriptBreedIsActionNode
+  nameWithType: GroupScriptBreedIsActionNode
+- uid: GroupScript.GroupScriptBreedIsActionNode.BreedId
+  name: BreedId
+  href: api/GroupScript.GroupScriptBreedIsActionNode.html#GroupScript_GroupScriptBreedIsActionNode_BreedId
+  commentId: P:GroupScript.GroupScriptBreedIsActionNode.BreedId
+  fullName: GroupScript.GroupScriptBreedIsActionNode.BreedId
+  nameWithType: GroupScriptBreedIsActionNode.BreedId
+- uid: GroupScript.GroupScriptBreedIsActionNode.BreedId*
+  name: BreedId
+  href: api/GroupScript.GroupScriptBreedIsActionNode.html#GroupScript_GroupScriptBreedIsActionNode_BreedId_
+  commentId: Overload:GroupScript.GroupScriptBreedIsActionNode.BreedId
+  isSpec: "True"
+  fullName: GroupScript.GroupScriptBreedIsActionNode.BreedId
+  nameWithType: GroupScriptBreedIsActionNode.BreedId
 - uid: GroupScript.GroupScriptCompiler
   name: GroupScriptCompiler
   href: api/GroupScript.GroupScriptCompiler.html
@@ -16687,6 +16751,12 @@ references:
   isSpec: "True"
   fullName: GroupScript.GroupScriptNodeTree.ScriptName
   nameWithType: GroupScriptNodeTree.ScriptName
+- uid: GroupScript.GroupScriptOrActionNode
+  name: GroupScriptOrActionNode
+  href: api/GroupScript.GroupScriptOrActionNode.html
+  commentId: T:GroupScript.GroupScriptOrActionNode
+  fullName: GroupScript.GroupScriptOrActionNode
+  nameWithType: GroupScriptOrActionNode
 - uid: GroupScript.GroupScriptParameterDeclarationNode
   name: GroupScriptParameterDeclarationNode
   href: api/GroupScript.GroupScriptParameterDeclarationNode.html
@@ -16827,6 +16897,19 @@ references:
   commentId: T:GroupScript.GroupScriptRoutineActionNode
   fullName: GroupScript.GroupScriptRoutineActionNode
   nameWithType: GroupScriptRoutineActionNode
+- uid: GroupScript.GroupScriptRoutineActionNode.IsInverse
+  name: IsInverse
+  href: api/GroupScript.GroupScriptRoutineActionNode.html#GroupScript_GroupScriptRoutineActionNode_IsInverse
+  commentId: P:GroupScript.GroupScriptRoutineActionNode.IsInverse
+  fullName: GroupScript.GroupScriptRoutineActionNode.IsInverse
+  nameWithType: GroupScriptRoutineActionNode.IsInverse
+- uid: GroupScript.GroupScriptRoutineActionNode.IsInverse*
+  name: IsInverse
+  href: api/GroupScript.GroupScriptRoutineActionNode.html#GroupScript_GroupScriptRoutineActionNode_IsInverse_
+  commentId: Overload:GroupScript.GroupScriptRoutineActionNode.IsInverse
+  isSpec: "True"
+  fullName: GroupScript.GroupScriptRoutineActionNode.IsInverse
+  nameWithType: GroupScriptRoutineActionNode.IsInverse
 - uid: GroupScript.GroupScriptSpeciesIsActionNode
   name: GroupScriptSpeciesIsActionNode
   href: api/GroupScript.GroupScriptSpeciesIsActionNode.html
@@ -16968,6 +17051,12 @@ references:
   commentId: F:GroupScript.GroupScriptTokenType.Keyword_Born
   fullName: GroupScript.GroupScriptTokenType.Keyword_Born
   nameWithType: GroupScriptTokenType.Keyword_Born
+- uid: GroupScript.GroupScriptTokenType.Keyword_Breed
+  name: Keyword_Breed
+  href: api/GroupScript.GroupScriptTokenType.html#GroupScript_GroupScriptTokenType_Keyword_Breed
+  commentId: F:GroupScript.GroupScriptTokenType.Keyword_Breed
+  fullName: GroupScript.GroupScriptTokenType.Keyword_Breed
+  nameWithType: GroupScriptTokenType.Keyword_Breed
 - uid: GroupScript.GroupScriptTokenType.Keyword_Date
   name: Keyword_Date
   href: api/GroupScript.GroupScriptTokenType.html#GroupScript_GroupScriptTokenType_Keyword_Date
@@ -16980,6 +17069,12 @@ references:
   commentId: F:GroupScript.GroupScriptTokenType.Keyword_End
   fullName: GroupScript.GroupScriptTokenType.Keyword_End
   nameWithType: GroupScriptTokenType.Keyword_End
+- uid: GroupScript.GroupScriptTokenType.Keyword_Int
+  name: Keyword_Int
+  href: api/GroupScript.GroupScriptTokenType.html#GroupScript_GroupScriptTokenType_Keyword_Int
+  commentId: F:GroupScript.GroupScriptTokenType.Keyword_Int
+  fullName: GroupScript.GroupScriptTokenType.Keyword_Int
+  nameWithType: GroupScriptTokenType.Keyword_Int
 - uid: GroupScript.GroupScriptTokenType.Keyword_Is
   name: Keyword_Is
   href: api/GroupScript.GroupScriptTokenType.html#GroupScript_GroupScriptTokenType_Keyword_Is
@@ -16992,6 +17087,18 @@ references:
   commentId: F:GroupScript.GroupScriptTokenType.Keyword_Name
   fullName: GroupScript.GroupScriptTokenType.Keyword_Name
   nameWithType: GroupScriptTokenType.Keyword_Name
+- uid: GroupScript.GroupScriptTokenType.Keyword_Not
+  name: Keyword_Not
+  href: api/GroupScript.GroupScriptTokenType.html#GroupScript_GroupScriptTokenType_Keyword_Not
+  commentId: F:GroupScript.GroupScriptTokenType.Keyword_Not
+  fullName: GroupScript.GroupScriptTokenType.Keyword_Not
+  nameWithType: GroupScriptTokenType.Keyword_Not
+- uid: GroupScript.GroupScriptTokenType.Keyword_Or
+  name: Keyword_Or
+  href: api/GroupScript.GroupScriptTokenType.html#GroupScript_GroupScriptTokenType_Keyword_Or
+  commentId: F:GroupScript.GroupScriptTokenType.Keyword_Or
+  fullName: GroupScript.GroupScriptTokenType.Keyword_Or
+  nameWithType: GroupScriptTokenType.Keyword_Or
 - uid: GroupScript.GroupScriptTokenType.Keyword_Param
   name: Keyword_Param
   href: api/GroupScript.GroupScriptTokenType.html#GroupScript_GroupScriptTokenType_Keyword_Param
@@ -17022,6 +17129,12 @@ references:
   commentId: F:GroupScript.GroupScriptTokenType.Literal_Date
   fullName: GroupScript.GroupScriptTokenType.Literal_Date
   nameWithType: GroupScriptTokenType.Literal_Date
+- uid: GroupScript.GroupScriptTokenType.Literal_Number
+  name: Literal_Number
+  href: api/GroupScript.GroupScriptTokenType.html#GroupScript_GroupScriptTokenType_Literal_Number
+  commentId: F:GroupScript.GroupScriptTokenType.Literal_Number
+  fullName: GroupScript.GroupScriptTokenType.Literal_Number
+  nameWithType: GroupScriptTokenType.Literal_Number
 - uid: GroupScript.GroupScriptTokenType.Operator_BracketL
   name: Operator_BracketL
   href: api/GroupScript.GroupScriptTokenType.html#GroupScript_GroupScriptTokenType_Operator_BracketL
