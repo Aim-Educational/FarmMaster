@@ -26,6 +26,7 @@ namespace GroupScript.Tests
 		                BORN AFTER  PARAM:after;
 		                BORN BEFORE DATE:01/01/2020;
 		                SPECIES IS  PARAM:species;
+                        NOT BORN BEFORE DATE:01/01/2019;
 	                }
                 END"
             );
@@ -37,8 +38,9 @@ namespace GroupScript.Tests
                 { "species", 1 }
             });
 
+            var expectedString = "AND~BORN_AFTER 2019-01-01T00:00:00.0000000+00:00~BORN_BEFORE 2020-01-01T00:00:00.0000000+00:00~SPECIES_IS 1~NOT~BORN_BEFORE 2019-01-01T00:00:00.0000000+00:00~END~";
             Assert.AreEqual(
-                "AND~BORN_AFTER 2019-01-01T00:00:00.0000000+00:00~BORN_BEFORE 2020-01-01T00:00:00.0000000+00:00~SPECIES_IS 1~END~", 
+                expectedString, 
                 result
             );
 
@@ -50,7 +52,7 @@ namespace GroupScript.Tests
             });
 
             Assert.AreEqual(
-                "AND~BORN_AFTER 2019-01-01T00:00:00.0000000+00:00~BORN_BEFORE 2020-01-01T00:00:00.0000000+00:00~SPECIES_IS 1~END~",
+                expectedString,
                 result
             );
         }

@@ -26,6 +26,12 @@ namespace GroupScript
 
         private static void CompileNode(GroupScriptRoutineActionNode action, StringBuilder output, IDictionary<string, object> parameters)
         {
+            if(action.IsInverse)
+            {
+                output.Append("NOT");
+                output.Append(COMMAND_DELIM);
+            }
+
             // Pfft, "performance"?
             if(action is GroupScriptAndActionNode andAction)
             {

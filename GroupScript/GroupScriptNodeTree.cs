@@ -115,8 +115,12 @@ namespace GroupScript
             tokens.MoveNext();
 
             var blocks = new Stack<GroupScriptRoutineActionBlockNode>();
+            var isInverse = false; // A.k.a, was "NOT" used
             var addOrPushAction = new Action<GroupScriptRoutineActionNode>(action => 
             {
+                action.IsInverse = isInverse;
+                isInverse = false;
+
                 if (blocks.Count > 0)
                     blocks.Peek().Actions.Add(action);
                 else
@@ -135,7 +139,8 @@ namespace GroupScript
                     GroupScriptTokenType.Keyword_And,
                     GroupScriptTokenType.Keyword_Born,
                     GroupScriptTokenType.Keyword_Species,
-                    GroupScriptTokenType.Operator_BracketR
+                    GroupScriptTokenType.Operator_BracketR,
+                    GroupScriptTokenType.Keyword_Not
                 );
 
                 if (tokens.Current.Type == GroupScriptTokenType.Keyword_End)
@@ -146,6 +151,11 @@ namespace GroupScript
 
                 switch(tokens.Current.Type)
                 {
+                    case GroupScriptTokenType.Keyword_Not:
+                        isInverse = !isInverse; // Just because the idea of "NOT NOT NOT NOT NOT NOT SPECIES_IS 8" amuses me.
+                        tokens.MoveNext();
+                        break;
+
                     case GroupScriptTokenType.Operator_BracketR:
                         if(blocks.Count == 0)
                             throw new Exception($"Stray right bracket ('}}') around line {tokens.Current.Line} column {tokens.Current.Column}");
@@ -155,6 +165,9 @@ namespace GroupScript
                         break;
 
                     case GroupScriptTokenType.Keyword_And:
+                        if(isInverse)
+                            throw new Exception($"Cannot use 'NOT' before 'AND' around line {tokens.Current.Line} column {tokens.Current.Column}");
+
                         tokens.MoveNext();
                         tokens.Current.EnforceTokenTypeIsAnyOf(GroupScriptTokenType.Operator_BracketL);
                         tokens.MoveNext();
@@ -220,6 +233,7 @@ namespace GroupScript
 
     public abstract class GroupScriptRoutineActionNode
     {
+        public bool IsInverse { get; set; }
     }
 
     public abstract class GroupScriptRoutineActionBlockNode : GroupScriptRoutineActionNode
