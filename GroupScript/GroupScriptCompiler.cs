@@ -121,9 +121,10 @@ namespace GroupScript
 
                 switch(param.DataType)
                 {
+                    case GroupScriptTokenType.Keyword_Int:
                     case GroupScriptTokenType.Keyword_Species:
                         if (paramValueType != typeof(int) && paramValueType != typeof(long))
-                            throw new Exception($"For SPECIES parameter '{param.Name}' expected value of type int not {paramValueType}");
+                            throw new Exception($"For SPECIES or INT parameter '{param.Name}' expected value of type int not {paramValueType}");
                         break;
 
                     case GroupScriptTokenType.Keyword_Date:
