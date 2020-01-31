@@ -52,7 +52,8 @@ namespace GroupScript
                     GroupScriptTokenType.Keyword_End,
                     GroupScriptTokenType.Keyword_Species,
                     GroupScriptTokenType.Keyword_Date,
-                    GroupScriptTokenType.Keyword_Int
+                    GroupScriptTokenType.Keyword_Int,
+                    GroupScriptTokenType.Keyword_Breed
                 );
 
                 if(tokens.Current.Type == GroupScriptTokenType.Keyword_End)
@@ -82,7 +83,8 @@ namespace GroupScript
                 GroupScriptTokenType.Keyword_Date,
                 GroupScriptTokenType.Keyword_Param,
                 GroupScriptTokenType.Keyword_Species,
-                GroupScriptTokenType.Keyword_Int
+                GroupScriptTokenType.Keyword_Int,
+                GroupScriptTokenType.Keyword_Breed
             );
 
             var type = tokens.Current.Type;
@@ -102,6 +104,7 @@ namespace GroupScript
                     break;
 
                 case GroupScriptTokenType.Keyword_Int:
+                case GroupScriptTokenType.Keyword_Breed:
                 case GroupScriptTokenType.Keyword_Species:
                     tokens.Current.EnforceTokenTypeIsAnyOf(GroupScriptTokenType.Literal_Number);
                     break;
@@ -149,7 +152,8 @@ namespace GroupScript
                     GroupScriptTokenType.Keyword_Species,
                     GroupScriptTokenType.Operator_BracketR,
                     GroupScriptTokenType.Keyword_Not,
-                    GroupScriptTokenType.Keyword_Or
+                    GroupScriptTokenType.Keyword_Or,
+                    GroupScriptTokenType.Keyword_Breed
                 );
 
                 if (tokens.Current.Type == GroupScriptTokenType.Keyword_End)
@@ -190,15 +194,28 @@ namespace GroupScript
                         blocks.Push(block);
                         break;
 
+                    case GroupScriptTokenType.Keyword_Breed:
                     case GroupScriptTokenType.Keyword_Species:
+                        var breedOrSpeciesType = tokens.Current.Type;
+
                         tokens.MoveNext();
                         tokens.Current.EnforceTokenTypeIsAnyOf(GroupScriptTokenType.Keyword_Is);
                         tokens.MoveNext();
 
-                        addOrPushAction(new GroupScriptSpeciesIsActionNode
+                        if(breedOrSpeciesType == GroupScriptTokenType.Keyword_Breed)
                         {
-                            SpeciesId = this.ParseParameterValue(tokens)
-                        });
+                            addOrPushAction(new GroupScriptBreedIsActionNode
+                            {
+                                BreedId = this.ParseParameterValue(tokens)
+                            });
+                        }
+                        else
+                        {
+                            addOrPushAction(new GroupScriptSpeciesIsActionNode
+                            {
+                                SpeciesId = this.ParseParameterValue(tokens)
+                            });
+                        }
 
                         tokens.Current.EnforceTokenTypeIsAnyOf(GroupScriptTokenType.Operator_Semicolon);
                         tokens.MoveNext();
@@ -280,5 +297,10 @@ namespace GroupScript
     public class GroupScriptSpeciesIsActionNode : GroupScriptRoutineActionNode
     {
         public GroupScriptParameterValueNode SpeciesId { get; set; }
+    }
+
+    public class GroupScriptBreedIsActionNode : GroupScriptRoutineActionNode
+    {
+        public GroupScriptParameterValueNode BreedId { get; set; }
     }
 }

@@ -73,13 +73,21 @@ namespace GroupScript
                 output.Append(GroupScriptCompiler.GetInt(speciesIsNode.SpeciesId, parameters));
                 output.Append(COMMAND_DELIM);
             }
+            else if(action is GroupScriptBreedIsActionNode breedIsNode)
+            {
+                output.Append("BREED_IS ");
+                output.Append(GroupScriptCompiler.GetInt(breedIsNode.BreedId, parameters));
+                output.Append(COMMAND_DELIM);
+            }
             else
                 throw new NotImplementedException($"Action node {action.GetType()} doesn't have a handler yet.");
         }
 
         private static int GetInt(GroupScriptParameterValueNode param, IDictionary<string, object> parameters)
         {
-            if (param.DataType == GroupScriptTokenType.Keyword_Species || param.DataType == GroupScriptTokenType.Keyword_Int)
+            if (param.DataType == GroupScriptTokenType.Keyword_Species 
+             || param.DataType == GroupScriptTokenType.Keyword_Int
+             || param.DataType == GroupScriptTokenType.Keyword_Breed)
                 return Convert.ToInt32(param.Value);
             else if (param.DataType == GroupScriptTokenType.Keyword_Param)
                 return Convert.ToInt32(parameters[param.Value]);
@@ -123,6 +131,7 @@ namespace GroupScript
                 {
                     case GroupScriptTokenType.Keyword_Int:
                     case GroupScriptTokenType.Keyword_Species:
+                    case GroupScriptTokenType.Keyword_Breed:
                         if (paramValueType != typeof(int) && paramValueType != typeof(long))
                             throw new Exception($"For SPECIES or INT parameter '{param.Name}' expected value of type int not {paramValueType}");
                         break;

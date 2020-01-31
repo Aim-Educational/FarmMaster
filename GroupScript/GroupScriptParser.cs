@@ -35,6 +35,7 @@ namespace GroupScript
         Keyword_Not,
         Keyword_Or,
         Keyword_Int,
+        Keyword_Breed,
 
         EoF = 255
     }
@@ -109,7 +110,8 @@ namespace GroupScript
             { "IS",         GroupScriptTokenType.Keyword_Is         },
             { "NOT",        GroupScriptTokenType.Keyword_Not        },
             { "OR",         GroupScriptTokenType.Keyword_Or         },
-            { "INT",        GroupScriptTokenType.Keyword_Int        }
+            { "INT",        GroupScriptTokenType.Keyword_Int        },
+            { "BREED",      GroupScriptTokenType.Keyword_Breed      }
         };
 
         public GroupScriptToken Current { get; private set; }

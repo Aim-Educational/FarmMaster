@@ -29,6 +29,7 @@ namespace GroupScript.Tests
                         NOT BORN BEFORE DATE:01/01/2019;
                         OR {}
                         SPECIES IS  INT:20;
+                        BREED IS BREED:20;
 	                }
                 END"
             );
@@ -92,13 +93,20 @@ namespace GroupScript.Tests
                 new GroupScriptToken{ Line = 14, Type = GroupScriptTokenType.Keyword_Is                                     },
                 new GroupScriptToken{ Line = 14, Type = GroupScriptTokenType.Keyword_Int                                    },
                 new GroupScriptToken{ Line = 14, Type = GroupScriptTokenType.Operator_Colon                                 },
-                new GroupScriptToken{ Line = 14, Type = GroupScriptTokenType.Literal_Number,   Text = "20"                  },
+                new GroupScriptToken{ Line = 14, Type = GroupScriptTokenType.Literal_Number,    Text = "20"                 },
                 new GroupScriptToken{ Line = 14, Type = GroupScriptTokenType.Operator_Semicolon                             },
 
-                new GroupScriptToken{ Line = 15, Type = GroupScriptTokenType.Operator_BracketR                              },
+                new GroupScriptToken{ Line = 15, Type = GroupScriptTokenType.Keyword_Breed                                  },
+                new GroupScriptToken{ Line = 15, Type = GroupScriptTokenType.Keyword_Is                                     },
+                new GroupScriptToken{ Line = 15, Type = GroupScriptTokenType.Keyword_Breed                                  },
+                new GroupScriptToken{ Line = 15, Type = GroupScriptTokenType.Operator_Colon                                 },
+                new GroupScriptToken{ Line = 15, Type = GroupScriptTokenType.Literal_Number,    Text = "20"                 },
+                new GroupScriptToken{ Line = 15, Type = GroupScriptTokenType.Operator_Semicolon                             },
 
-                new GroupScriptToken{ Line = 16, Type = GroupScriptTokenType.Keyword_End                                    },
-                new GroupScriptToken{ Line = 16, Type = GroupScriptTokenType.EoF                                            },
+                new GroupScriptToken{ Line = 16, Type = GroupScriptTokenType.Operator_BracketR                              },
+
+                new GroupScriptToken{ Line = 17, Type = GroupScriptTokenType.Keyword_End                                    },
+                new GroupScriptToken{ Line = 17, Type = GroupScriptTokenType.EoF                                            },
             };
 
             var got = tokens.GetEnumerator();
