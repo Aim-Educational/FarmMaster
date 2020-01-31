@@ -79,7 +79,7 @@ namespace GroupScript
 
         private static int GetInt(GroupScriptParameterValueNode param, IDictionary<string, object> parameters)
         {
-            if (param.DataType == GroupScriptTokenType.Keyword_Species)
+            if (param.DataType == GroupScriptTokenType.Keyword_Species || param.DataType == GroupScriptTokenType.Keyword_Int)
                 return Convert.ToInt32(param.Value);
             else if (param.DataType == GroupScriptTokenType.Keyword_Param)
                 return Convert.ToInt32(parameters[param.Value]);

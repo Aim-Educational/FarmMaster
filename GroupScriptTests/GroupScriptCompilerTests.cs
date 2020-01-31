@@ -28,6 +28,7 @@ namespace GroupScript.Tests
 		                SPECIES IS  PARAM:species;
                         NOT BORN BEFORE DATE:01/01/2019;
                         OR{}
+                        NOT NOT SPECIES IS SPECIES:20;
 	                }
                 END"
             );
@@ -40,7 +41,7 @@ namespace GroupScript.Tests
             });
 
             var expectedString = "AND~BORN_AFTER 2019-01-01T00:00:00.0000000+00:00~BORN_BEFORE 2020-01-01T00:00:00.0000000+00:00~" +
-                                 "SPECIES_IS 1~NOT~BORN_BEFORE 2019-01-01T00:00:00.0000000+00:00~OR~END~END~";
+                                 "SPECIES_IS 1~NOT~BORN_BEFORE 2019-01-01T00:00:00.0000000+00:00~OR~END~SPECIES_IS 20~END~";
             Assert.AreEqual(
                 expectedString, 
                 result

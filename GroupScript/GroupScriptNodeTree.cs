@@ -51,7 +51,8 @@ namespace GroupScript
                 tokens.Current.EnforceTokenTypeIsAnyOf(
                     GroupScriptTokenType.Keyword_End,
                     GroupScriptTokenType.Keyword_Species,
-                    GroupScriptTokenType.Keyword_Date
+                    GroupScriptTokenType.Keyword_Date,
+                    GroupScriptTokenType.Keyword_Int
                 );
 
                 if(tokens.Current.Type == GroupScriptTokenType.Keyword_End)
@@ -79,7 +80,9 @@ namespace GroupScript
         {
             tokens.Current.EnforceTokenTypeIsAnyOf(
                 GroupScriptTokenType.Keyword_Date,
-                GroupScriptTokenType.Keyword_Param
+                GroupScriptTokenType.Keyword_Param,
+                GroupScriptTokenType.Keyword_Species,
+                GroupScriptTokenType.Keyword_Int
             );
 
             var type = tokens.Current.Type;
@@ -96,6 +99,11 @@ namespace GroupScript
 
                 case GroupScriptTokenType.Keyword_Param:
                     tokens.Current.EnforceTokenTypeIsAnyOf(GroupScriptTokenType.Identifier);
+                    break;
+
+                case GroupScriptTokenType.Keyword_Int:
+                case GroupScriptTokenType.Keyword_Species:
+                    tokens.Current.EnforceTokenTypeIsAnyOf(GroupScriptTokenType.Literal_Number);
                     break;
             }
 

@@ -13,6 +13,7 @@ namespace GroupScript
 
         Identifier,
         Literal_Date,
+        Literal_Number,
 
         Operator_BracketL,
         Operator_BracketR,
@@ -33,6 +34,7 @@ namespace GroupScript
         Keyword_Is,
         Keyword_Not,
         Keyword_Or,
+        Keyword_Int,
 
         EoF = 255
     }
@@ -106,7 +108,8 @@ namespace GroupScript
             { "AND",        GroupScriptTokenType.Keyword_And        },
             { "IS",         GroupScriptTokenType.Keyword_Is         },
             { "NOT",        GroupScriptTokenType.Keyword_Not        },
-            { "OR",         GroupScriptTokenType.Keyword_Or         }
+            { "OR",         GroupScriptTokenType.Keyword_Or         },
+            { "INT",        GroupScriptTokenType.Keyword_Int        }
         };
 
         public GroupScriptToken Current { get; private set; }
@@ -153,6 +156,13 @@ namespace GroupScript
             if(Regex.IsMatch(textString, @"^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[012])\/\d\d\d\d$"))
             {
                 this.CreateToken(GroupScriptTokenType.Literal_Date, textString);
+                return true;
+            }
+
+            // Check if it's a number.
+            if(Regex.IsMatch(textString, @"^\d+$"))
+            {
+                this.CreateToken(GroupScriptTokenType.Literal_Number, textString);
                 return true;
             }
 
