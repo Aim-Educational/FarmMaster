@@ -140,7 +140,8 @@ namespace GroupScript
                     GroupScriptTokenType.Keyword_Born,
                     GroupScriptTokenType.Keyword_Species,
                     GroupScriptTokenType.Operator_BracketR,
-                    GroupScriptTokenType.Keyword_Not
+                    GroupScriptTokenType.Keyword_Not,
+                    GroupScriptTokenType.Keyword_Or
                 );
 
                 if (tokens.Current.Type == GroupScriptTokenType.Keyword_End)
@@ -164,17 +165,21 @@ namespace GroupScript
                         tokens.MoveNext();
                         break;
 
+                    case GroupScriptTokenType.Keyword_Or:
                     case GroupScriptTokenType.Keyword_And:
                         if(isInverse)
-                            throw new Exception($"Cannot use 'NOT' before 'AND' around line {tokens.Current.Line} column {tokens.Current.Column}");
+                            throw new Exception($"Cannot use 'NOT' before 'AND'/'OR' around line {tokens.Current.Line} column {tokens.Current.Column}");
+
+                        var block = (tokens.Current.Type == GroupScriptTokenType.Keyword_Or)
+                                    ? new GroupScriptOrActionNode() as GroupScriptRoutineActionBlockNode
+                                    : new GroupScriptAndActionNode();
 
                         tokens.MoveNext();
                         tokens.Current.EnforceTokenTypeIsAnyOf(GroupScriptTokenType.Operator_BracketL);
                         tokens.MoveNext();
 
-                        var andBlock = new GroupScriptAndActionNode();
-                        addOrPushAction(andBlock);
-                        blocks.Push(andBlock);
+                        addOrPushAction(block);
+                        blocks.Push(block);
                         break;
 
                     case GroupScriptTokenType.Keyword_Species:
@@ -247,6 +252,10 @@ namespace GroupScript
     }
 
     public class GroupScriptAndActionNode : GroupScriptRoutineActionBlockNode
+    {
+    }
+
+    public class GroupScriptOrActionNode : GroupScriptRoutineActionBlockNode
     {
     }
 

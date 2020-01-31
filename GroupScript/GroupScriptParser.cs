@@ -32,6 +32,7 @@ namespace GroupScript
         Keyword_And,
         Keyword_Is,
         Keyword_Not,
+        Keyword_Or,
 
         EoF = 255
     }
@@ -104,7 +105,8 @@ namespace GroupScript
             { "PARAM",      GroupScriptTokenType.Keyword_Param      },
             { "AND",        GroupScriptTokenType.Keyword_And        },
             { "IS",         GroupScriptTokenType.Keyword_Is         },
-            { "NOT",        GroupScriptTokenType.Keyword_Not        }
+            { "NOT",        GroupScriptTokenType.Keyword_Not        },
+            { "OR",         GroupScriptTokenType.Keyword_Or         }
         };
 
         public GroupScriptToken Current { get; private set; }

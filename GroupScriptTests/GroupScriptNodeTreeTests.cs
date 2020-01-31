@@ -26,6 +26,7 @@ namespace GroupScript.Tests
 		                BORN BEFORE DATE:01/01/2020;
 		                SPECIES IS  PARAM:species;
                         NOT BORN BEFORE DATE:01/01/2019;
+                        OR {}
 	                }
                 END"
             );
@@ -40,7 +41,7 @@ namespace GroupScript.Tests
             Assert.IsInstanceOfType(ast.RoutineHeadNode, typeof(GroupScriptAndActionNode));
             var andNode = ast.RoutineHeadNode as GroupScriptAndActionNode;
 
-            Assert.AreEqual(4, andNode.Actions.Count);
+            Assert.AreEqual(5, andNode.Actions.Count);
             Assert.IsFalse(andNode.IsInverse);
 
             Assert.IsInstanceOfType(andNode.Actions[0], typeof(GroupScriptBornAfterActionNode));
@@ -70,6 +71,11 @@ namespace GroupScript.Tests
             Assert.IsTrue(notBornBefore.IsInverse);
             Assert.AreEqual(GroupScriptTokenType.Keyword_Date, notBornBefore.Date.DataType);
             Assert.AreEqual("01/01/2019",                      notBornBefore.Date.Value);
+
+            Assert.IsInstanceOfType(andNode.Actions[4], typeof(GroupScriptOrActionNode));
+            var orNode = andNode.Actions[4] as GroupScriptOrActionNode;
+            Assert.AreEqual(0, orNode.Actions.Count);
+            Assert.IsFalse(orNode.IsInverse);
         }
     }
 }

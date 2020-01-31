@@ -27,6 +27,7 @@ namespace GroupScript.Tests
 		                BORN BEFORE DATE:01/01/2020;
 		                SPECIES IS  PARAM:species;
                         NOT BORN BEFORE DATE:01/01/2019;
+                        OR {}
 	                }
                 END"
             );
@@ -82,10 +83,14 @@ namespace GroupScript.Tests
                 new GroupScriptToken{ Line = 12, Type = GroupScriptTokenType.Literal_Date,      Text = "01/01/2019"         },
                 new GroupScriptToken{ Line = 12, Type = GroupScriptTokenType.Operator_Semicolon                             },
 
+                new GroupScriptToken{ Line = 13, Type = GroupScriptTokenType.Keyword_Or                                     },
+                new GroupScriptToken{ Line = 13, Type = GroupScriptTokenType.Operator_BracketL                              },
                 new GroupScriptToken{ Line = 13, Type = GroupScriptTokenType.Operator_BracketR                              },
 
-                new GroupScriptToken{ Line = 14, Type = GroupScriptTokenType.Keyword_End                                    },
-                new GroupScriptToken{ Line = 14, Type = GroupScriptTokenType.EoF                                            },
+                new GroupScriptToken{ Line = 14, Type = GroupScriptTokenType.Operator_BracketR                              },
+
+                new GroupScriptToken{ Line = 15, Type = GroupScriptTokenType.Keyword_End                                    },
+                new GroupScriptToken{ Line = 15, Type = GroupScriptTokenType.EoF                                            },
             };
 
             var got = tokens.GetEnumerator();

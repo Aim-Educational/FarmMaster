@@ -44,6 +44,17 @@ namespace GroupScript
                 output.Append("END");
                 output.Append(COMMAND_DELIM);
             }
+            else if (action is GroupScriptOrActionNode orAction) // Inline "is" variables don't mesh with "||" well, so we duplicate the code.
+            {
+                output.Append("OR");
+                output.Append(COMMAND_DELIM);
+
+                foreach (var subAction in orAction.Actions)
+                    GroupScriptCompiler.CompileNode(subAction, output, parameters);
+
+                output.Append("END");
+                output.Append(COMMAND_DELIM);
+            }
             else if(action is GroupScriptBornAfterActionNode bornAfterNode)
             {
                 output.Append("BORN_AFTER ");
