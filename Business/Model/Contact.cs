@@ -37,6 +37,7 @@ namespace Business.Model
         public IEnumerable<Telephone> PhoneNumbers { get; set; }
         public IEnumerable<Email> EmailAddresses{ get; set; }
         public IEnumerable<ContactToken> Tokens { get; set; }
+        public IEnumerable<ContactUnsubscribeEntry> UnsubscribedAddresses { get; set; }
 
         // Relationships have two references to Contact, and I don't trust/know how to make EF handle this properly on its own.
         public IQueryable<MapContactRelationship> GetRelationships(FarmMasterContext context)

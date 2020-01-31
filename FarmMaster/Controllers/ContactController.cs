@@ -17,12 +17,12 @@ namespace FarmMaster.Controllers
     [FarmAuthorise(PermsOR: new[]{ BusinessConstants.Permissions.VIEW_CONTACTS })]
     public class ContactController : Controller, IPagingController<Contact>
     {
-        readonly FarmMasterContext _context;
-        readonly IServiceSmtpClient _mail;
-        readonly IServiceUserManager _users;
+        readonly FarmMasterContext      _context;
+        readonly IServiceSmtpClient     _mail;
+        readonly IServiceUserManager    _users;
         readonly IServiceContactManager _contacts;
-        readonly IServiceRoleManager _roles;
-        readonly IViewRenderService _viewRenderer;
+        readonly IServiceRoleManager    _roles;
+        readonly IViewRenderService     _viewRenderer;
 
         public ContactController(
             FarmMasterContext context,
@@ -33,12 +33,12 @@ namespace FarmMaster.Controllers
             IViewRenderService viewRender
         )
         {
-            this._context = context;
-            this._mail = mail;
-            this._users = users;
-            this._contacts = contacts;
-            this._roles = roles;
-            this._viewRenderer = viewRender;
+            this._context       = context;
+            this._mail          = mail;
+            this._users         = users;
+            this._contacts      = contacts;
+            this._roles         = roles;
+            this._viewRenderer  = viewRender;
         }
 
         public IActionResult Index([FromQuery] string message)
@@ -162,6 +162,17 @@ namespace FarmMaster.Controllers
             );
 
             return RedirectToAction(nameof(Index));
+        }
+        #endregion
+
+        #region Email callbacks
+        [AllowAnonymous]
+        public IActionResult Unsubscribe(string token)
+        {
+            var result = this._contacts.HandleUnsubscribeFromTokenString(token);
+
+            // TODO: At some point make a dedicated page(s) for the result type.
+            return RedirectPermanent("/");
         }
         #endregion
 

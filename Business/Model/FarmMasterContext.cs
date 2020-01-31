@@ -190,6 +190,8 @@ namespace Business.Model
         public DbSet<AnimalGroup>                       AnimalGroups                     { get; set; }
         public DbSet<MapAnimalToAnimalGroup>            MapAnimalToAnimalGroups          { get; set; }
         public DbSet<AnimalGroupScript>                 AnimalGroupScripts               { get; set; }
+        public DbSet<ContactUnsubscribeToken>           ContactUnsubscribeTokens         { get; set; }
+        public DbSet<ContactUnsubscribeEntry>           ContactUnsubscribeEntries        { get; set; }
         #endregion
 
         #region Data seeding

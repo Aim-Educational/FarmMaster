@@ -19,6 +19,7 @@ namespace FarmMaster.Services
         Email AddEmailAddress(Contact contact, User responsible, string reason, string name, string value);
         MapContactRelationship AddRelationship(Contact first, Contact second, User responsible, string reason, string description);
         ContactToken GenerateToken(Contact contact, ContactToken.Type type, DateTimeOffset expires, IsUnique isUnique = IsUnique.Yes);
+        ContactUnsubscribeToken GenerateUnsubscribeToken(string email, DateTimeOffset expires);
 
         bool RemoveTelephoneNumberByName(Contact contact, User responsible, string reason, string name);
         bool RemoveTelephoneNumberById(Contact contact, User responsible, string reason, int id);
@@ -28,6 +29,7 @@ namespace FarmMaster.Services
         CouldDelete ExpireTokenByTokenString(Contact contact, string token);
 
         void LogAction(Contact affected, User responsible, ActionAgainstContactInfo.Type type, string reason, string additionalInfo = null);
+        TokenActionResult HandleUnsubscribeFromTokenString(string token);
     }
     
     public class ServiceContactManager : IServiceContactManager
@@ -363,6 +365,20 @@ namespace FarmMaster.Services
             return token;
         }
 
+        ContactUnsubscribeToken IServiceContactManager.GenerateUnsubscribeToken(string email, DateTimeOffset expires)
+        {
+            var token = new ContactUnsubscribeToken 
+            {
+                Address      = email,
+                ExpiresUtc = expires,
+                Token      = Guid.NewGuid().ToString()
+            };
+
+            this._context.Add(token);
+            this._context.SaveChanges();
+            return token;
+        }
+
         public CouldDelete ExpireTokenByTokenString(Contact contact, string tokenString)
         {
             Contract.Assert(contact != null);
@@ -383,6 +399,33 @@ namespace FarmMaster.Services
                 return null;
 
             return this.FromIdAllIncluded(token.ContactId);
+        }
+
+        public TokenActionResult HandleUnsubscribeFromTokenString(string token)
+        {
+            var dbToken = this._context.ContactUnsubscribeTokens.FirstOrDefault(t => t.Token == token);
+            if(dbToken == null)
+                return TokenActionResult.Failed;
+
+            if(dbToken.ExpiresUtc >= DateTimeOffset.UtcNow)
+                return TokenActionResult.Expired;
+
+            foreach(var contact in this.Query()
+                                       .Include(c => c.EmailAddresses)
+                                       .Where(c => c.EmailAddresses.Any(a => a.Address == dbToken.Address))
+            )
+            {
+                this._context.Add(new ContactUnsubscribeEntry
+                {
+                    Address = dbToken.Address,
+                    Contact = contact
+                });
+            }
+
+            this._context.Remove(dbToken);
+            this._context.SaveChanges();
+
+            return TokenActionResult.Success;
         }
     }
 }

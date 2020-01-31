@@ -117,9 +117,10 @@ namespace FarmMaster
             services.Configure<IServiceSmtpDomainConfig>(o =>
             {
                 var domain = Configuration.GetValue<string>("AIMDEPLOY:DOMAIN");
-                o.VerifyEmail = $"https://{domain}/Account/VerifyEmail?token=";
-                o.AnonRequest = $"https://{domain}/Account/AnonymiseRequest?token=";
-                o.ResetPassword = $"https://{domain}/Account/ResetPassword?token=";
+                o.VerifyEmail        = $"https://{domain}/Account/VerifyEmail?token=";
+                o.AnonRequest        = $"https://{domain}/Account/AnonymiseRequest?token=";
+                o.ResetPassword      = $"https://{domain}/Account/ResetPassword?token=";
+                o.ContactUnsubscribe = $"https://{domain}/Contact/Unsubscribe?token=";
             });
 
             services.Configure<IServiceSmtpTemplateConfig>(o =>

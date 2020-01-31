@@ -51,6 +51,11 @@ namespace FarmMaster.Services
         /// Ditto
         /// </summary>
         public string ResetPassword { get; set; }
+
+        /// <summary>
+        /// Ditto
+        /// </summary>
+        public string ContactUnsubscribe { get; set; }
     }
 
     /// <summary>

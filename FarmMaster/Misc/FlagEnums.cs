@@ -29,4 +29,11 @@ namespace FarmMaster.Misc
         Yes,
         No
     }
+
+    public enum TokenActionResult
+    {
+        Success,
+        Expired,
+        Failed
+    }
 }
