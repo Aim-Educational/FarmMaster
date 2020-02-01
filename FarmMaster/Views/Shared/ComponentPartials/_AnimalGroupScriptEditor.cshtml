@@ -50,7 +50,7 @@
                     image.classList.add("image");
                     {
                         const img = image.appendChild(document.createElement("img"));
-                        img.src = "/Image/Get?imageId=" + idNameImageId.imageId + "&width=664&height=700";
+                        img.src = "/Image/Get?imageId=" + (idNameImageId.imageId || -1) + "&width=664&height=700";
                     }
 
                     const content = uiCard.appendChild(document.createElement("div"));

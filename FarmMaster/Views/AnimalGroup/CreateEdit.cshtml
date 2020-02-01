@@ -62,7 +62,7 @@
                             <a href="/Animal/Edit/@animal.Id" target="_blank">
                                 <div class="ui card">
                                     <div class="image">
-                                        <img src="/Image/Get?imageId=@animal.ImageId&width=664&height=700" />
+                                        <img src="/Image/Get?imageId=@(animal.ImageId ?? -1)&width=664&height=700" />
                                     </div>
                                     <div class="content">
                                         <div class="header">
