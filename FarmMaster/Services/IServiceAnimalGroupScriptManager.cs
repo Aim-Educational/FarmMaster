@@ -22,6 +22,7 @@ namespace FarmMaster.Services
         IQueryable<Animal> ExecuteScriptByName(string name, IDictionary<string, object> parameters = null);
         IQueryable<Animal> ExecuteSingleUseScript(string code, IDictionary<string, object> parameters = null);
         AnimalGroupScriptAutoEntry CreateAutomatedScript(AnimalGroup group, AnimalGroupScript script, IDictionary<string, object> parameters);
+        void ProcessAutomatedScriptsOnAnimal(Animal animal);
     }
 
     public class ServiceAnimalGroupScriptManager : IServiceAnimalGroupScriptManager
@@ -192,36 +193,41 @@ namespace FarmMaster.Services
 
         public void ConsumeHook(HookAnimalCreated hookData)
         {
+            this.ProcessAutomatedScriptsOnAnimal(hookData.animal);
+        }
+
+        public void ProcessAutomatedScriptsOnAnimal(Animal animal)
+        {
             var query = this._groups.Query()
-                                    .Include(g => g.Animals)
-                                    .Include(g => g.AutomatedScripts)
-                                     .ThenInclude(g => g.AnimalGroupScript)
-                                    .Where(g => g.AutomatedScripts.Any());
-            foreach(var group in query)
+                        .Include(g => g.Animals)
+                        .Include(g => g.AutomatedScripts)
+                         .ThenInclude(g => g.AnimalGroupScript)
+                        .Where(g => g.AutomatedScripts.Any());
+            foreach (var group in query)
             {
-                foreach(var script in group.AutomatedScripts)
+                foreach (var script in group.AutomatedScripts)
                 {
                     // I could *technically* construct a massive SQL query so we only use one request.
                     // Buuuut, I really, really don't think such a thing is worth it at the moment.
                     // So a million seperate queries it is!
                     var animals = this.ExecuteSingleUseScript(
-                        script.AnimalGroupScript.Code, 
+                        script.AnimalGroupScript.Code,
                         script.Parameters.ToObject<Dictionary<string, object>>()
                     );
 
-                    if(animals.Any(a => a.AnimalId == hookData.animal.AnimalId))
+                    if (animals.Any(a => a.AnimalId == animal.AnimalId))
                     {
                         this._logger.LogInformation(
-                            FarmConstants.LoggingEvents.AssignByAutoScript, 
+                            FarmConstants.LoggingEvents.AssignByAutoScript,
                             "Assigning animal #{AnimalId} ({AnimalName}) to group #{GroupId} ({GroupName}) via " +
                             "automated script #{ScriptId}.",
-                            hookData.animal.AnimalId,
-                            $"[{hookData.animal.Tag}] {hookData.animal.Name}",
+                            animal.AnimalId,
+                            $"[{animal.Tag}] {animal.Name}",
                             group.AnimalGroupId,
                             group.Name,
                             script.AnimalGroupScriptAutoEntryId
                         );
-                        this._groups.AssignAnimal(group, hookData.animal);
+                        this._groups.AssignAnimal(group, animal);
                     }
                 }
             }
