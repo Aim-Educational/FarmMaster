@@ -246,7 +246,9 @@ namespace FarmMaster.Controllers
             if (script == null)
                 throw new KeyNotFoundException($"No script called '{model.ScriptName}' exists.");
 
-            var group = groups.Query().FirstOrDefault(g => g.AnimalGroupId == model.AnimalGroupId);
+            var group = groups.Query()
+                              .Include(g => g.Animals)
+                              .FirstOrDefault(g => g.AnimalGroupId == model.AnimalGroupId);
             if(group == null)
                 throw new KeyNotFoundException($"No group with ID #{model.AnimalGroupId}.");
 

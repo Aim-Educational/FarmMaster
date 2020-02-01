@@ -193,6 +193,7 @@ namespace FarmMaster.Services
         public void ConsumeHook(HookAnimalCreated hookData)
         {
             var query = this._groups.Query()
+                                    .Include(g => g.Animals)
                                     .Include(g => g.AutomatedScripts)
                                      .ThenInclude(g => g.AnimalGroupScript)
                                     .Where(g => g.AutomatedScripts.Any());
