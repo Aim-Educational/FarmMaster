@@ -1,5 +1,6 @@
 ﻿using FarmMaster.Filters;
 using FarmMaster.Services;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -14,10 +15,12 @@ namespace FarmMaster.Controllers
     public class ImageController
     {
         readonly IServiceImageManager _images;
+        readonly IHostingEnvironment _environment;
 
-        public ImageController(IServiceImageManager images)
+        public ImageController(IServiceImageManager images, IHostingEnvironment environment)
         {
             this._images = images;
+            this._environment = environment;
         }
 
         [HttpGet]
@@ -33,7 +36,12 @@ namespace FarmMaster.Controllers
 
             var image = await this._images.Query().FirstOrDefaultAsync(i => i.ImageId == imageId);
             if(image == null)
-                return new BadRequestResult();
+            {
+                return new PhysicalFileResult(
+                    this._environment.WebRootFileProvider.GetFileInfo("/images/icons/default.png").PhysicalPath, 
+                    "image/jpeg"
+                );
+            }
 
             var path = await this._images.ResizeToPhysicalFile(image, width ?? 0, height ?? 0);
             if(path == null)
