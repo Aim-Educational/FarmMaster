@@ -85,24 +85,26 @@
     <div><a class="xref" href="FarmMaster.Services.IServiceAnimalGroupScriptManager.html">IServiceAnimalGroupScriptManager</a></div>
     <div><a class="xref" href="FarmMaster.Services.IServiceEntityManager-1.html">IServiceEntityManager</a>&lt;<a class="xref" href="Business.Model.AnimalGroupScript.html">AnimalGroupScript</a>&gt;</div>
     <div><a class="xref" href="FarmMaster.Services.IServiceEntityManagerFullDeletion-1.html">IServiceEntityManagerFullDeletion</a>&lt;<a class="xref" href="Business.Model.AnimalGroupScript.html">AnimalGroupScript</a>&gt;</div>
+    <div><a class="xref" href="FarmMaster.Services.IServiceHookConsumer-1.html">IServiceHookConsumer</a>&lt;<a class="xref" href="FarmMaster.Services.HookAnimalCreated.html">HookAnimalCreated</a>&gt;</div>
+    <div><a class="xref" href="FarmMaster.Services.IServiceHookConsumerBase.html">IServiceHookConsumerBase</a></div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="FarmMaster.Services.html">FarmMaster.Services</a></h6>
   <h6><strong>Assembly</strong>: FarmMaster.dll</h6>
   <h5 id="FarmMaster_Services_ServiceAnimalGroupScriptManager_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class ServiceAnimalGroupScriptManager : object, IServiceAnimalGroupScriptManager, IServiceEntityManager&lt;AnimalGroupScript&gt;, IServiceEntityManagerFullDeletion&lt;AnimalGroupScript&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">public class ServiceAnimalGroupScriptManager : object, IServiceAnimalGroupScriptManager, IServiceEntityManager&lt;AnimalGroupScript&gt;, IServiceEntityManagerFullDeletion&lt;AnimalGroupScript&gt;, IServiceHookConsumer&lt;HookAnimalCreated&gt;, IServiceHookConsumerBase</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
   
   
   <a id="FarmMaster_Services_ServiceAnimalGroupScriptManager__ctor_" data-uid="FarmMaster.Services.ServiceAnimalGroupScriptManager.#ctor*"></a>
-  <h4 id="FarmMaster_Services_ServiceAnimalGroupScriptManager__ctor_Business_Model_FarmMasterContext_" data-uid="FarmMaster.Services.ServiceAnimalGroupScriptManager.#ctor(Business.Model.FarmMasterContext)">ServiceAnimalGroupScriptManager(FarmMasterContext)</h4>
+  <h4 id="FarmMaster_Services_ServiceAnimalGroupScriptManager__ctor_Business_Model_FarmMasterContext_FarmMaster_Services_IServiceAnimalGroupManager_ILogger_FarmMaster_Services_ServiceAnimalGroupScriptManager__" data-uid="FarmMaster.Services.ServiceAnimalGroupScriptManager.#ctor(Business.Model.FarmMasterContext,FarmMaster.Services.IServiceAnimalGroupManager,ILogger{FarmMaster.Services.ServiceAnimalGroupScriptManager})">ServiceAnimalGroupScriptManager(FarmMasterContext, IServiceAnimalGroupManager, ILogger&lt;ServiceAnimalGroupScriptManager&gt;)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ServiceAnimalGroupScriptManager(FarmMasterContext db)</code></pre>
+    <pre><code class="lang-csharp hljs">public ServiceAnimalGroupScriptManager(FarmMasterContext db, IServiceAnimalGroupManager groups, ILogger&lt;ServiceAnimalGroupScriptManager&gt; logger)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -117,6 +119,16 @@
       <tr>
         <td><a class="xref" href="Business.Model.FarmMasterContext.html">FarmMasterContext</a></td>
         <td><span class="parametername">db</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="FarmMaster.Services.IServiceAnimalGroupManager.html">IServiceAnimalGroupManager</a></td>
+        <td><span class="parametername">groups</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">ILogger</span>&lt;<a class="xref" href="FarmMaster.Services.ServiceAnimalGroupScriptManager.html">ServiceAnimalGroupScriptManager</a>&gt;</td>
+        <td><span class="parametername">logger</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -161,6 +173,85 @@
     <tbody>
       <tr>
         <td><a class="xref" href="Business.Model.AnimalGroupScript.html">AnimalGroupScript</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FarmMaster_Services_ServiceAnimalGroupScriptManager_ConsumeHook_" data-uid="FarmMaster.Services.ServiceAnimalGroupScriptManager.ConsumeHook*"></a>
+  <h4 id="FarmMaster_Services_ServiceAnimalGroupScriptManager_ConsumeHook_FarmMaster_Services_HookAnimalCreated_" data-uid="FarmMaster.Services.ServiceAnimalGroupScriptManager.ConsumeHook(FarmMaster.Services.HookAnimalCreated)">ConsumeHook(HookAnimalCreated)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ConsumeHook(HookAnimalCreated hookData)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FarmMaster.Services.HookAnimalCreated.html">HookAnimalCreated</a></td>
+        <td><span class="parametername">hookData</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FarmMaster_Services_ServiceAnimalGroupScriptManager_CreateAutomatedScript_" data-uid="FarmMaster.Services.ServiceAnimalGroupScriptManager.CreateAutomatedScript*"></a>
+  <h4 id="FarmMaster_Services_ServiceAnimalGroupScriptManager_CreateAutomatedScript_Business_Model_AnimalGroup_Business_Model_AnimalGroupScript_IDictionary_System_String_System_Object__" data-uid="FarmMaster.Services.ServiceAnimalGroupScriptManager.CreateAutomatedScript(Business.Model.AnimalGroup,Business.Model.AnimalGroupScript,IDictionary{System.String,System.Object})">CreateAutomatedScript(AnimalGroup, AnimalGroupScript, IDictionary&lt;String, Object&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AnimalGroupScriptAutoEntry CreateAutomatedScript(AnimalGroup group, AnimalGroupScript script, IDictionary&lt;string, object&gt; parameters)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Business.Model.AnimalGroup.html">AnimalGroup</a></td>
+        <td><span class="parametername">group</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Business.Model.AnimalGroupScript.html">AnimalGroupScript</a></td>
+        <td><span class="parametername">script</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">IDictionary</span>&lt;<span class="xref">System.String</span>, <span class="xref">System.Object</span>&gt;</td>
+        <td><span class="parametername">parameters</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Business.Model.AnimalGroupScriptAutoEntry.html">AnimalGroupScriptAutoEntry</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -362,6 +453,33 @@
   </table>
   
   
+  <a id="FarmMaster_Services_ServiceAnimalGroupScriptManager_ProcessAutomatedScriptsOnAnimal_" data-uid="FarmMaster.Services.ServiceAnimalGroupScriptManager.ProcessAutomatedScriptsOnAnimal*"></a>
+  <h4 id="FarmMaster_Services_ServiceAnimalGroupScriptManager_ProcessAutomatedScriptsOnAnimal_Business_Model_Animal_" data-uid="FarmMaster.Services.ServiceAnimalGroupScriptManager.ProcessAutomatedScriptsOnAnimal(Business.Model.Animal)">ProcessAutomatedScriptsOnAnimal(Animal)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ProcessAutomatedScriptsOnAnimal(Animal animal)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Business.Model.Animal.html">Animal</a></td>
+        <td><span class="parametername">animal</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
   <a id="FarmMaster_Services_ServiceAnimalGroupScriptManager_Query_" data-uid="FarmMaster.Services.ServiceAnimalGroupScriptManager.Query*"></a>
   <h4 id="FarmMaster_Services_ServiceAnimalGroupScriptManager_Query" data-uid="FarmMaster.Services.ServiceAnimalGroupScriptManager.Query">Query()</h4>
   <div class="markdown level1 summary"></div>
@@ -446,6 +564,12 @@
   </div>
   <div>
       <a class="xref" href="FarmMaster.Services.IServiceEntityManagerFullDeletion-1.html">IServiceEntityManagerFullDeletion&lt;T&gt;</a>
+  </div>
+  <div>
+      <a class="xref" href="FarmMaster.Services.IServiceHookConsumer-1.html">IServiceHookConsumer&lt;T&gt;</a>
+  </div>
+  <div>
+      <a class="xref" href="FarmMaster.Services.IServiceHookConsumerBase.html">IServiceHookConsumerBase</a>
   </div>
 </article>
           </div>

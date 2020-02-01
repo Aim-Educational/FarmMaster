@@ -89,6 +89,18 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Business.Migrations.AutomatedScripts.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Business.Migrations.AutomatedScripts.html",
+          "hash": "ILZsnfZ5cskA0AVfOEnvnQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Business.Migrations.BreedMisc.yml",
       "output": {
         ".html": {
@@ -226,6 +238,18 @@
         ".html": {
           "relative_path": "api/Business.Migrations.GroupScriptFilter_SpeciesIs.html",
           "hash": "pQqBMf0Ii6tf5VFqgoc2YA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Business.Migrations.GroupScriptSQLBaseStringFix.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Business.Migrations.GroupScriptSQLBaseStringFix.html",
+          "hash": "6hqDXaiBtXPto1T4jwIrXA=="
         }
       },
       "is_incremental": false,
@@ -645,7 +669,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Business.Migrations.html",
-          "hash": "rutcsbzOf2JaSUIvFXbD8Q=="
+          "hash": "oJO0PW+g+7tqpmPhSYAJqw=="
         }
       },
       "is_incremental": false,
@@ -729,7 +753,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Business.Model.AnimalGroup.html",
-          "hash": "C5skG0dJ0OclZOf4fW/reQ=="
+          "hash": "QVEDA12oUtMOQyodn3JLGw=="
         }
       },
       "is_incremental": false,
@@ -741,7 +765,19 @@
       "output": {
         ".html": {
           "relative_path": "api/Business.Model.AnimalGroupScript.html",
-          "hash": "8aqdDKO9H4517xjGk6UWBg=="
+          "hash": "3861fWUi+0FsqGldajmtWw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Business.Model.AnimalGroupScriptAutoEntry.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Business.Model.AnimalGroupScriptAutoEntry.html",
+          "hash": "Y24e0zkyYLttTpXoFclPpA=="
         }
       },
       "is_incremental": false,
@@ -1017,7 +1053,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Business.Model.FarmMasterContext.html",
-          "hash": "NQX7zWNtP5IxbXHyK8rGaQ=="
+          "hash": "T2X68ycdRPO71Pni34u9NQ=="
         }
       },
       "is_incremental": false,
@@ -1317,7 +1353,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Business.Model.html",
-          "hash": "QDYksfYPm1TNTjIbfgDe7A=="
+          "hash": "c26jQXLhLy+SrJN0+6HX1g=="
         }
       },
       "is_incremental": false,
@@ -1413,7 +1449,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FarmMaster.Controllers.AjaxController.html",
-          "hash": "FK0Eots6KfYaGVU4WyQ4Ng=="
+          "hash": "D2eO1T3s6r5rNovO3FODcw=="
         }
       },
       "is_incremental": false,
@@ -1545,7 +1581,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FarmMaster.Controllers.ImageController.html",
-          "hash": "G1ZscJ80g3K5On8vznLRDA=="
+          "hash": "Jj1KJhH2d2ZFFa1fRqnlvA=="
         }
       },
       "is_incremental": false,
@@ -1745,6 +1781,18 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/FarmMaster.GraphQL.AnimalGroupScriptAutoScriptGraphType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FarmMaster.GraphQL.AnimalGroupScriptAutoScriptGraphType.html",
+          "hash": "CNDb7f+ZyCWYKCt6vb2LMw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/FarmMaster.GraphQL.AnimalGroupScriptGraphType.yml",
       "output": {
         ".html": {
@@ -1893,7 +1941,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FarmMaster.GraphQL.html",
-          "hash": "DlyCNtZTr6yawbP4FdoGdw=="
+          "hash": "9mCShC3T34FFDc7VLK+5Xg=="
         }
       },
       "is_incremental": false,
@@ -2009,6 +2057,18 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/FarmMaster.Misc.FarmConstants.LoggingEvents.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FarmMaster.Misc.FarmConstants.LoggingEvents.html",
+          "hash": "/BU1UbuNKjl7bjL/BtaEog=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/FarmMaster.Misc.FarmConstants.Regexes.yml",
       "output": {
         ".html": {
@@ -2097,7 +2157,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FarmMaster.Misc.html",
-          "hash": "loHwOFdoetoGz85g8pC0cw=="
+          "hash": "D9kM+fu238p/V2falWa8gQ=="
         }
       },
       "is_incremental": false,
@@ -2993,6 +3053,18 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/FarmMaster.Services.HookAnimalCreated.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FarmMaster.Services.HookAnimalCreated.html",
+          "hash": "rAa8PPQ6ACDa6EKg7dvqsA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/FarmMaster.Services.IServiceAnimalGroupManager.yml",
       "output": {
         ".html": {
@@ -3009,7 +3081,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FarmMaster.Services.IServiceAnimalGroupScriptManager.html",
-          "hash": "gz2el5bXowPs1xpuFbRIcw=="
+          "hash": "fXQGmfqOwkdusEzPaWYF7Q=="
         }
       },
       "is_incremental": false,
@@ -3130,6 +3202,42 @@
         ".html": {
           "relative_path": "api/FarmMaster.Services.IServiceHoldingManager.html",
           "hash": "pnmegaOhV0+NwBeUdNJIaw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FarmMaster.Services.IServiceHookConsumer-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FarmMaster.Services.IServiceHookConsumer-1.html",
+          "hash": "MvG8BArw/yF/I28WKGGJVQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FarmMaster.Services.IServiceHookConsumerBase.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FarmMaster.Services.IServiceHookConsumerBase.html",
+          "hash": "hSomx5UYfe6WJRvOtGi1bw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FarmMaster.Services.IServiceHookEmitter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FarmMaster.Services.IServiceHookEmitter.html",
+          "hash": "B0ZfbiG2gKIgl/mrSQCkGQ=="
         }
       },
       "is_incremental": false,
@@ -3297,7 +3405,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FarmMaster.Services.ServiceAnimalGroupScriptManager.html",
-          "hash": "wtpTs5YKzBJV4imaDron/w=="
+          "hash": "p/jtj09eKQ8DW+lD9rfyxA=="
         }
       },
       "is_incremental": false,
@@ -3309,7 +3417,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FarmMaster.Services.ServiceAnimalManager.html",
-          "hash": "70yWy5qXUsyqKpa0H/euOA=="
+          "hash": "eS3JhMzOIg4nTkiazU8mqQ=="
         }
       },
       "is_incremental": false,
@@ -3358,6 +3466,18 @@
         ".html": {
           "relative_path": "api/FarmMaster.Services.ServiceHoldingManager.html",
           "hash": "kw2z+eUdLCTDvPJuqNKxjA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/FarmMaster.Services.ServiceHookEmitter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FarmMaster.Services.ServiceHookEmitter.html",
+          "hash": "4elyoStzFsqG20SPVJxj2Q=="
         }
       },
       "is_incremental": false,
@@ -3465,7 +3585,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FarmMaster.Services.html",
-          "hash": "xFECIklOLr/HjQQNOtAJQw=="
+          "hash": "NTUXBHWuHyxk2sx1cC5XNg=="
         }
       },
       "is_incremental": false,
@@ -3789,7 +3909,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "PheF//eZfXoQgxdapgW1dw=="
+          "hash": "RMEsnSLgave9B8zDtNnQSQ=="
         }
       },
       "is_incremental": false,
@@ -3936,7 +4056,7 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 314,
+          "total_file_count": 324,
           "skipped_file_count": 0
         },
         "TocDocumentProcessor": {

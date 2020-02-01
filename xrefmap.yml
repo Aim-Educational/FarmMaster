@@ -322,6 +322,51 @@ references:
   isSpec: "True"
   fullName: Business.Migrations.AnimalsKnowSpecies.Up
   nameWithType: AnimalsKnowSpecies.Up
+- uid: Business.Migrations.AutomatedScripts
+  name: AutomatedScripts
+  href: api/Business.Migrations.AutomatedScripts.html
+  commentId: T:Business.Migrations.AutomatedScripts
+  fullName: Business.Migrations.AutomatedScripts
+  nameWithType: AutomatedScripts
+- uid: Business.Migrations.AutomatedScripts.BuildTargetModel(ModelBuilder)
+  name: BuildTargetModel(ModelBuilder)
+  href: api/Business.Migrations.AutomatedScripts.html#Business_Migrations_AutomatedScripts_BuildTargetModel_ModelBuilder_
+  commentId: M:Business.Migrations.AutomatedScripts.BuildTargetModel(ModelBuilder)
+  fullName: Business.Migrations.AutomatedScripts.BuildTargetModel(ModelBuilder)
+  nameWithType: AutomatedScripts.BuildTargetModel(ModelBuilder)
+- uid: Business.Migrations.AutomatedScripts.BuildTargetModel*
+  name: BuildTargetModel
+  href: api/Business.Migrations.AutomatedScripts.html#Business_Migrations_AutomatedScripts_BuildTargetModel_
+  commentId: Overload:Business.Migrations.AutomatedScripts.BuildTargetModel
+  isSpec: "True"
+  fullName: Business.Migrations.AutomatedScripts.BuildTargetModel
+  nameWithType: AutomatedScripts.BuildTargetModel
+- uid: Business.Migrations.AutomatedScripts.Down(MigrationBuilder)
+  name: Down(MigrationBuilder)
+  href: api/Business.Migrations.AutomatedScripts.html#Business_Migrations_AutomatedScripts_Down_MigrationBuilder_
+  commentId: M:Business.Migrations.AutomatedScripts.Down(MigrationBuilder)
+  fullName: Business.Migrations.AutomatedScripts.Down(MigrationBuilder)
+  nameWithType: AutomatedScripts.Down(MigrationBuilder)
+- uid: Business.Migrations.AutomatedScripts.Down*
+  name: Down
+  href: api/Business.Migrations.AutomatedScripts.html#Business_Migrations_AutomatedScripts_Down_
+  commentId: Overload:Business.Migrations.AutomatedScripts.Down
+  isSpec: "True"
+  fullName: Business.Migrations.AutomatedScripts.Down
+  nameWithType: AutomatedScripts.Down
+- uid: Business.Migrations.AutomatedScripts.Up(MigrationBuilder)
+  name: Up(MigrationBuilder)
+  href: api/Business.Migrations.AutomatedScripts.html#Business_Migrations_AutomatedScripts_Up_MigrationBuilder_
+  commentId: M:Business.Migrations.AutomatedScripts.Up(MigrationBuilder)
+  fullName: Business.Migrations.AutomatedScripts.Up(MigrationBuilder)
+  nameWithType: AutomatedScripts.Up(MigrationBuilder)
+- uid: Business.Migrations.AutomatedScripts.Up*
+  name: Up
+  href: api/Business.Migrations.AutomatedScripts.html#Business_Migrations_AutomatedScripts_Up_
+  commentId: Overload:Business.Migrations.AutomatedScripts.Up
+  isSpec: "True"
+  fullName: Business.Migrations.AutomatedScripts.Up
+  nameWithType: AutomatedScripts.Up
 - uid: Business.Migrations.BreedMisc
   name: BreedMisc
   href: api/Business.Migrations.BreedMisc.html
@@ -907,6 +952,51 @@ references:
   isSpec: "True"
   fullName: Business.Migrations.GroupScriptFilter_SpeciesIs.Up
   nameWithType: GroupScriptFilter_SpeciesIs.Up
+- uid: Business.Migrations.GroupScriptSQLBaseStringFix
+  name: GroupScriptSQLBaseStringFix
+  href: api/Business.Migrations.GroupScriptSQLBaseStringFix.html
+  commentId: T:Business.Migrations.GroupScriptSQLBaseStringFix
+  fullName: Business.Migrations.GroupScriptSQLBaseStringFix
+  nameWithType: GroupScriptSQLBaseStringFix
+- uid: Business.Migrations.GroupScriptSQLBaseStringFix.BuildTargetModel(ModelBuilder)
+  name: BuildTargetModel(ModelBuilder)
+  href: api/Business.Migrations.GroupScriptSQLBaseStringFix.html#Business_Migrations_GroupScriptSQLBaseStringFix_BuildTargetModel_ModelBuilder_
+  commentId: M:Business.Migrations.GroupScriptSQLBaseStringFix.BuildTargetModel(ModelBuilder)
+  fullName: Business.Migrations.GroupScriptSQLBaseStringFix.BuildTargetModel(ModelBuilder)
+  nameWithType: GroupScriptSQLBaseStringFix.BuildTargetModel(ModelBuilder)
+- uid: Business.Migrations.GroupScriptSQLBaseStringFix.BuildTargetModel*
+  name: BuildTargetModel
+  href: api/Business.Migrations.GroupScriptSQLBaseStringFix.html#Business_Migrations_GroupScriptSQLBaseStringFix_BuildTargetModel_
+  commentId: Overload:Business.Migrations.GroupScriptSQLBaseStringFix.BuildTargetModel
+  isSpec: "True"
+  fullName: Business.Migrations.GroupScriptSQLBaseStringFix.BuildTargetModel
+  nameWithType: GroupScriptSQLBaseStringFix.BuildTargetModel
+- uid: Business.Migrations.GroupScriptSQLBaseStringFix.Down(MigrationBuilder)
+  name: Down(MigrationBuilder)
+  href: api/Business.Migrations.GroupScriptSQLBaseStringFix.html#Business_Migrations_GroupScriptSQLBaseStringFix_Down_MigrationBuilder_
+  commentId: M:Business.Migrations.GroupScriptSQLBaseStringFix.Down(MigrationBuilder)
+  fullName: Business.Migrations.GroupScriptSQLBaseStringFix.Down(MigrationBuilder)
+  nameWithType: GroupScriptSQLBaseStringFix.Down(MigrationBuilder)
+- uid: Business.Migrations.GroupScriptSQLBaseStringFix.Down*
+  name: Down
+  href: api/Business.Migrations.GroupScriptSQLBaseStringFix.html#Business_Migrations_GroupScriptSQLBaseStringFix_Down_
+  commentId: Overload:Business.Migrations.GroupScriptSQLBaseStringFix.Down
+  isSpec: "True"
+  fullName: Business.Migrations.GroupScriptSQLBaseStringFix.Down
+  nameWithType: GroupScriptSQLBaseStringFix.Down
+- uid: Business.Migrations.GroupScriptSQLBaseStringFix.Up(MigrationBuilder)
+  name: Up(MigrationBuilder)
+  href: api/Business.Migrations.GroupScriptSQLBaseStringFix.html#Business_Migrations_GroupScriptSQLBaseStringFix_Up_MigrationBuilder_
+  commentId: M:Business.Migrations.GroupScriptSQLBaseStringFix.Up(MigrationBuilder)
+  fullName: Business.Migrations.GroupScriptSQLBaseStringFix.Up(MigrationBuilder)
+  nameWithType: GroupScriptSQLBaseStringFix.Up(MigrationBuilder)
+- uid: Business.Migrations.GroupScriptSQLBaseStringFix.Up*
+  name: Up
+  href: api/Business.Migrations.GroupScriptSQLBaseStringFix.html#Business_Migrations_GroupScriptSQLBaseStringFix_Up_
+  commentId: Overload:Business.Migrations.GroupScriptSQLBaseStringFix.Up
+  isSpec: "True"
+  fullName: Business.Migrations.GroupScriptSQLBaseStringFix.Up
+  nameWithType: GroupScriptSQLBaseStringFix.Up
 - uid: Business.Migrations.GroupScriptStoredProcedures
   name: GroupScriptStoredProcedures
   href: api/Business.Migrations.GroupScriptStoredProcedures.html
@@ -3097,6 +3187,19 @@ references:
   isSpec: "True"
   fullName: Business.Model.AnimalGroup.Animals
   nameWithType: AnimalGroup.Animals
+- uid: Business.Model.AnimalGroup.AutomatedScripts
+  name: AutomatedScripts
+  href: api/Business.Model.AnimalGroup.html#Business_Model_AnimalGroup_AutomatedScripts
+  commentId: P:Business.Model.AnimalGroup.AutomatedScripts
+  fullName: Business.Model.AnimalGroup.AutomatedScripts
+  nameWithType: AnimalGroup.AutomatedScripts
+- uid: Business.Model.AnimalGroup.AutomatedScripts*
+  name: AutomatedScripts
+  href: api/Business.Model.AnimalGroup.html#Business_Model_AnimalGroup_AutomatedScripts_
+  commentId: Overload:Business.Model.AnimalGroup.AutomatedScripts
+  isSpec: "True"
+  fullName: Business.Model.AnimalGroup.AutomatedScripts
+  nameWithType: AnimalGroup.AutomatedScripts
 - uid: Business.Model.AnimalGroup.Description
   name: Description
   href: api/Business.Model.AnimalGroup.html#Business_Model_AnimalGroup_Description
@@ -3155,6 +3258,19 @@ references:
   isSpec: "True"
   fullName: Business.Model.AnimalGroupScript.AnimalGroupScriptId
   nameWithType: AnimalGroupScript.AnimalGroupScriptId
+- uid: Business.Model.AnimalGroupScript.AutomatedScripts
+  name: AutomatedScripts
+  href: api/Business.Model.AnimalGroupScript.html#Business_Model_AnimalGroupScript_AutomatedScripts
+  commentId: P:Business.Model.AnimalGroupScript.AutomatedScripts
+  fullName: Business.Model.AnimalGroupScript.AutomatedScripts
+  nameWithType: AnimalGroupScript.AutomatedScripts
+- uid: Business.Model.AnimalGroupScript.AutomatedScripts*
+  name: AutomatedScripts
+  href: api/Business.Model.AnimalGroupScript.html#Business_Model_AnimalGroupScript_AutomatedScripts_
+  commentId: Overload:Business.Model.AnimalGroupScript.AutomatedScripts
+  isSpec: "True"
+  fullName: Business.Model.AnimalGroupScript.AutomatedScripts
+  nameWithType: AnimalGroupScript.AutomatedScripts
 - uid: Business.Model.AnimalGroupScript.Code
   name: Code
   href: api/Business.Model.AnimalGroupScript.html#Business_Model_AnimalGroupScript_Code
@@ -3200,6 +3316,103 @@ references:
   isSpec: "True"
   fullName: Business.Model.AnimalGroupScript.Timestamp
   nameWithType: AnimalGroupScript.Timestamp
+- uid: Business.Model.AnimalGroupScriptAutoEntry
+  name: AnimalGroupScriptAutoEntry
+  href: api/Business.Model.AnimalGroupScriptAutoEntry.html
+  commentId: T:Business.Model.AnimalGroupScriptAutoEntry
+  fullName: Business.Model.AnimalGroupScriptAutoEntry
+  nameWithType: AnimalGroupScriptAutoEntry
+- uid: Business.Model.AnimalGroupScriptAutoEntry.AnimalGroup
+  name: AnimalGroup
+  href: api/Business.Model.AnimalGroupScriptAutoEntry.html#Business_Model_AnimalGroupScriptAutoEntry_AnimalGroup
+  commentId: P:Business.Model.AnimalGroupScriptAutoEntry.AnimalGroup
+  fullName: Business.Model.AnimalGroupScriptAutoEntry.AnimalGroup
+  nameWithType: AnimalGroupScriptAutoEntry.AnimalGroup
+- uid: Business.Model.AnimalGroupScriptAutoEntry.AnimalGroup*
+  name: AnimalGroup
+  href: api/Business.Model.AnimalGroupScriptAutoEntry.html#Business_Model_AnimalGroupScriptAutoEntry_AnimalGroup_
+  commentId: Overload:Business.Model.AnimalGroupScriptAutoEntry.AnimalGroup
+  isSpec: "True"
+  fullName: Business.Model.AnimalGroupScriptAutoEntry.AnimalGroup
+  nameWithType: AnimalGroupScriptAutoEntry.AnimalGroup
+- uid: Business.Model.AnimalGroupScriptAutoEntry.AnimalGroupId
+  name: AnimalGroupId
+  href: api/Business.Model.AnimalGroupScriptAutoEntry.html#Business_Model_AnimalGroupScriptAutoEntry_AnimalGroupId
+  commentId: P:Business.Model.AnimalGroupScriptAutoEntry.AnimalGroupId
+  fullName: Business.Model.AnimalGroupScriptAutoEntry.AnimalGroupId
+  nameWithType: AnimalGroupScriptAutoEntry.AnimalGroupId
+- uid: Business.Model.AnimalGroupScriptAutoEntry.AnimalGroupId*
+  name: AnimalGroupId
+  href: api/Business.Model.AnimalGroupScriptAutoEntry.html#Business_Model_AnimalGroupScriptAutoEntry_AnimalGroupId_
+  commentId: Overload:Business.Model.AnimalGroupScriptAutoEntry.AnimalGroupId
+  isSpec: "True"
+  fullName: Business.Model.AnimalGroupScriptAutoEntry.AnimalGroupId
+  nameWithType: AnimalGroupScriptAutoEntry.AnimalGroupId
+- uid: Business.Model.AnimalGroupScriptAutoEntry.AnimalGroupScript
+  name: AnimalGroupScript
+  href: api/Business.Model.AnimalGroupScriptAutoEntry.html#Business_Model_AnimalGroupScriptAutoEntry_AnimalGroupScript
+  commentId: P:Business.Model.AnimalGroupScriptAutoEntry.AnimalGroupScript
+  fullName: Business.Model.AnimalGroupScriptAutoEntry.AnimalGroupScript
+  nameWithType: AnimalGroupScriptAutoEntry.AnimalGroupScript
+- uid: Business.Model.AnimalGroupScriptAutoEntry.AnimalGroupScript*
+  name: AnimalGroupScript
+  href: api/Business.Model.AnimalGroupScriptAutoEntry.html#Business_Model_AnimalGroupScriptAutoEntry_AnimalGroupScript_
+  commentId: Overload:Business.Model.AnimalGroupScriptAutoEntry.AnimalGroupScript
+  isSpec: "True"
+  fullName: Business.Model.AnimalGroupScriptAutoEntry.AnimalGroupScript
+  nameWithType: AnimalGroupScriptAutoEntry.AnimalGroupScript
+- uid: Business.Model.AnimalGroupScriptAutoEntry.AnimalGroupScriptAutoEntryId
+  name: AnimalGroupScriptAutoEntryId
+  href: api/Business.Model.AnimalGroupScriptAutoEntry.html#Business_Model_AnimalGroupScriptAutoEntry_AnimalGroupScriptAutoEntryId
+  commentId: P:Business.Model.AnimalGroupScriptAutoEntry.AnimalGroupScriptAutoEntryId
+  fullName: Business.Model.AnimalGroupScriptAutoEntry.AnimalGroupScriptAutoEntryId
+  nameWithType: AnimalGroupScriptAutoEntry.AnimalGroupScriptAutoEntryId
+- uid: Business.Model.AnimalGroupScriptAutoEntry.AnimalGroupScriptAutoEntryId*
+  name: AnimalGroupScriptAutoEntryId
+  href: api/Business.Model.AnimalGroupScriptAutoEntry.html#Business_Model_AnimalGroupScriptAutoEntry_AnimalGroupScriptAutoEntryId_
+  commentId: Overload:Business.Model.AnimalGroupScriptAutoEntry.AnimalGroupScriptAutoEntryId
+  isSpec: "True"
+  fullName: Business.Model.AnimalGroupScriptAutoEntry.AnimalGroupScriptAutoEntryId
+  nameWithType: AnimalGroupScriptAutoEntry.AnimalGroupScriptAutoEntryId
+- uid: Business.Model.AnimalGroupScriptAutoEntry.AnimalGroupScriptId
+  name: AnimalGroupScriptId
+  href: api/Business.Model.AnimalGroupScriptAutoEntry.html#Business_Model_AnimalGroupScriptAutoEntry_AnimalGroupScriptId
+  commentId: P:Business.Model.AnimalGroupScriptAutoEntry.AnimalGroupScriptId
+  fullName: Business.Model.AnimalGroupScriptAutoEntry.AnimalGroupScriptId
+  nameWithType: AnimalGroupScriptAutoEntry.AnimalGroupScriptId
+- uid: Business.Model.AnimalGroupScriptAutoEntry.AnimalGroupScriptId*
+  name: AnimalGroupScriptId
+  href: api/Business.Model.AnimalGroupScriptAutoEntry.html#Business_Model_AnimalGroupScriptAutoEntry_AnimalGroupScriptId_
+  commentId: Overload:Business.Model.AnimalGroupScriptAutoEntry.AnimalGroupScriptId
+  isSpec: "True"
+  fullName: Business.Model.AnimalGroupScriptAutoEntry.AnimalGroupScriptId
+  nameWithType: AnimalGroupScriptAutoEntry.AnimalGroupScriptId
+- uid: Business.Model.AnimalGroupScriptAutoEntry.Parameters
+  name: Parameters
+  href: api/Business.Model.AnimalGroupScriptAutoEntry.html#Business_Model_AnimalGroupScriptAutoEntry_Parameters
+  commentId: P:Business.Model.AnimalGroupScriptAutoEntry.Parameters
+  fullName: Business.Model.AnimalGroupScriptAutoEntry.Parameters
+  nameWithType: AnimalGroupScriptAutoEntry.Parameters
+- uid: Business.Model.AnimalGroupScriptAutoEntry.Parameters*
+  name: Parameters
+  href: api/Business.Model.AnimalGroupScriptAutoEntry.html#Business_Model_AnimalGroupScriptAutoEntry_Parameters_
+  commentId: Overload:Business.Model.AnimalGroupScriptAutoEntry.Parameters
+  isSpec: "True"
+  fullName: Business.Model.AnimalGroupScriptAutoEntry.Parameters
+  nameWithType: AnimalGroupScriptAutoEntry.Parameters
+- uid: Business.Model.AnimalGroupScriptAutoEntry.Timestamp
+  name: Timestamp
+  href: api/Business.Model.AnimalGroupScriptAutoEntry.html#Business_Model_AnimalGroupScriptAutoEntry_Timestamp
+  commentId: P:Business.Model.AnimalGroupScriptAutoEntry.Timestamp
+  fullName: Business.Model.AnimalGroupScriptAutoEntry.Timestamp
+  nameWithType: AnimalGroupScriptAutoEntry.Timestamp
+- uid: Business.Model.AnimalGroupScriptAutoEntry.Timestamp*
+  name: Timestamp
+  href: api/Business.Model.AnimalGroupScriptAutoEntry.html#Business_Model_AnimalGroupScriptAutoEntry_Timestamp_
+  commentId: Overload:Business.Model.AnimalGroupScriptAutoEntry.Timestamp
+  isSpec: "True"
+  fullName: Business.Model.AnimalGroupScriptAutoEntry.Timestamp
+  nameWithType: AnimalGroupScriptAutoEntry.Timestamp
 - uid: Business.Model.Breed
   name: Breed
   href: api/Business.Model.Breed.html
@@ -4784,6 +4997,19 @@ references:
   isSpec: "True"
   fullName: Business.Model.FarmMasterContext.AnimalGroups
   nameWithType: FarmMasterContext.AnimalGroups
+- uid: Business.Model.FarmMasterContext.AnimalGroupScriptAutoEntries
+  name: AnimalGroupScriptAutoEntries
+  href: api/Business.Model.FarmMasterContext.html#Business_Model_FarmMasterContext_AnimalGroupScriptAutoEntries
+  commentId: P:Business.Model.FarmMasterContext.AnimalGroupScriptAutoEntries
+  fullName: Business.Model.FarmMasterContext.AnimalGroupScriptAutoEntries
+  nameWithType: FarmMasterContext.AnimalGroupScriptAutoEntries
+- uid: Business.Model.FarmMasterContext.AnimalGroupScriptAutoEntries*
+  name: AnimalGroupScriptAutoEntries
+  href: api/Business.Model.FarmMasterContext.html#Business_Model_FarmMasterContext_AnimalGroupScriptAutoEntries_
+  commentId: Overload:Business.Model.FarmMasterContext.AnimalGroupScriptAutoEntries
+  isSpec: "True"
+  fullName: Business.Model.FarmMasterContext.AnimalGroupScriptAutoEntries
+  nameWithType: FarmMasterContext.AnimalGroupScriptAutoEntries
 - uid: Business.Model.FarmMasterContext.AnimalGroupScripts
   name: AnimalGroupScripts
   href: api/Business.Model.FarmMasterContext.html#Business_Model_FarmMasterContext_AnimalGroupScripts
@@ -7794,6 +8020,19 @@ references:
   isSpec: "True"
   fullName: FarmMaster.Controllers.AjaxController.AnimalGroup_ById_Script_AddAllAnimals_ById
   nameWithType: AjaxController.AnimalGroup_ById_Script_AddAllAnimals_ById
+- uid: FarmMaster.Controllers.AjaxController.AnimalGroup_ById_Script_ByName_MakeAutomated_AsId(FarmMaster.Models.AjaxGroupScriptByNameExecuteRequest,FarmMaster.Services.IServiceAnimalGroupScriptManager,FarmMaster.Services.IServiceAnimalGroupManager)
+  name: AnimalGroup_ById_Script_ByName_MakeAutomated_AsId(AjaxGroupScriptByNameExecuteRequest, IServiceAnimalGroupScriptManager, IServiceAnimalGroupManager)
+  href: api/FarmMaster.Controllers.AjaxController.html#FarmMaster_Controllers_AjaxController_AnimalGroup_ById_Script_ByName_MakeAutomated_AsId_FarmMaster_Models_AjaxGroupScriptByNameExecuteRequest_FarmMaster_Services_IServiceAnimalGroupScriptManager_FarmMaster_Services_IServiceAnimalGroupManager_
+  commentId: M:FarmMaster.Controllers.AjaxController.AnimalGroup_ById_Script_ByName_MakeAutomated_AsId(FarmMaster.Models.AjaxGroupScriptByNameExecuteRequest,FarmMaster.Services.IServiceAnimalGroupScriptManager,FarmMaster.Services.IServiceAnimalGroupManager)
+  fullName: FarmMaster.Controllers.AjaxController.AnimalGroup_ById_Script_ByName_MakeAutomated_AsId(FarmMaster.Models.AjaxGroupScriptByNameExecuteRequest, FarmMaster.Services.IServiceAnimalGroupScriptManager, FarmMaster.Services.IServiceAnimalGroupManager)
+  nameWithType: AjaxController.AnimalGroup_ById_Script_ByName_MakeAutomated_AsId(AjaxGroupScriptByNameExecuteRequest, IServiceAnimalGroupScriptManager, IServiceAnimalGroupManager)
+- uid: FarmMaster.Controllers.AjaxController.AnimalGroup_ById_Script_ByName_MakeAutomated_AsId*
+  name: AnimalGroup_ById_Script_ByName_MakeAutomated_AsId
+  href: api/FarmMaster.Controllers.AjaxController.html#FarmMaster_Controllers_AjaxController_AnimalGroup_ById_Script_ByName_MakeAutomated_AsId_
+  commentId: Overload:FarmMaster.Controllers.AjaxController.AnimalGroup_ById_Script_ByName_MakeAutomated_AsId
+  isSpec: "True"
+  fullName: FarmMaster.Controllers.AjaxController.AnimalGroup_ById_Script_ByName_MakeAutomated_AsId
+  nameWithType: AjaxController.AnimalGroup_ById_Script_ByName_MakeAutomated_AsId
 - uid: FarmMaster.Controllers.AjaxController.AnimalGroup_ById_Script_ExecuteSingleUse_AsNameIdImageId(FarmMaster.Models.AjaxByIdWithLargeValueRequest,FarmMaster.Services.IServiceAnimalGroupManager,FarmMaster.Services.IServiceAnimalGroupScriptManager)
   name: AnimalGroup_ById_Script_ExecuteSingleUse_AsNameIdImageId(AjaxByIdWithLargeValueRequest, IServiceAnimalGroupManager, IServiceAnimalGroupScriptManager)
   href: api/FarmMaster.Controllers.AjaxController.html#FarmMaster_Controllers_AjaxController_AnimalGroup_ById_Script_ExecuteSingleUse_AsNameIdImageId_FarmMaster_Models_AjaxByIdWithLargeValueRequest_FarmMaster_Services_IServiceAnimalGroupManager_FarmMaster_Services_IServiceAnimalGroupScriptManager_
@@ -8598,12 +8837,12 @@ references:
   commentId: T:FarmMaster.Controllers.ImageController
   fullName: FarmMaster.Controllers.ImageController
   nameWithType: ImageController
-- uid: FarmMaster.Controllers.ImageController.#ctor(FarmMaster.Services.IServiceImageManager)
-  name: ImageController(IServiceImageManager)
-  href: api/FarmMaster.Controllers.ImageController.html#FarmMaster_Controllers_ImageController__ctor_FarmMaster_Services_IServiceImageManager_
-  commentId: M:FarmMaster.Controllers.ImageController.#ctor(FarmMaster.Services.IServiceImageManager)
-  fullName: FarmMaster.Controllers.ImageController.ImageController(FarmMaster.Services.IServiceImageManager)
-  nameWithType: ImageController.ImageController(IServiceImageManager)
+- uid: FarmMaster.Controllers.ImageController.#ctor(FarmMaster.Services.IServiceImageManager,IHostingEnvironment)
+  name: ImageController(IServiceImageManager, IHostingEnvironment)
+  href: api/FarmMaster.Controllers.ImageController.html#FarmMaster_Controllers_ImageController__ctor_FarmMaster_Services_IServiceImageManager_IHostingEnvironment_
+  commentId: M:FarmMaster.Controllers.ImageController.#ctor(FarmMaster.Services.IServiceImageManager,IHostingEnvironment)
+  fullName: FarmMaster.Controllers.ImageController.ImageController(FarmMaster.Services.IServiceImageManager, IHostingEnvironment)
+  nameWithType: ImageController.ImageController(IServiceImageManager, IHostingEnvironment)
 - uid: FarmMaster.Controllers.ImageController.#ctor*
   name: ImageController
   href: api/FarmMaster.Controllers.ImageController.html#FarmMaster_Controllers_ImageController__ctor_
@@ -9501,6 +9740,25 @@ references:
   isSpec: "True"
   fullName: FarmMaster.GraphQL.AnimalGroupGraphType.AnimalGroupGraphType
   nameWithType: AnimalGroupGraphType.AnimalGroupGraphType
+- uid: FarmMaster.GraphQL.AnimalGroupScriptAutoScriptGraphType
+  name: AnimalGroupScriptAutoScriptGraphType
+  href: api/FarmMaster.GraphQL.AnimalGroupScriptAutoScriptGraphType.html
+  commentId: T:FarmMaster.GraphQL.AnimalGroupScriptAutoScriptGraphType
+  fullName: FarmMaster.GraphQL.AnimalGroupScriptAutoScriptGraphType
+  nameWithType: AnimalGroupScriptAutoScriptGraphType
+- uid: FarmMaster.GraphQL.AnimalGroupScriptAutoScriptGraphType.#ctor
+  name: AnimalGroupScriptAutoScriptGraphType()
+  href: api/FarmMaster.GraphQL.AnimalGroupScriptAutoScriptGraphType.html#FarmMaster_GraphQL_AnimalGroupScriptAutoScriptGraphType__ctor
+  commentId: M:FarmMaster.GraphQL.AnimalGroupScriptAutoScriptGraphType.#ctor
+  fullName: FarmMaster.GraphQL.AnimalGroupScriptAutoScriptGraphType.AnimalGroupScriptAutoScriptGraphType()
+  nameWithType: AnimalGroupScriptAutoScriptGraphType.AnimalGroupScriptAutoScriptGraphType()
+- uid: FarmMaster.GraphQL.AnimalGroupScriptAutoScriptGraphType.#ctor*
+  name: AnimalGroupScriptAutoScriptGraphType
+  href: api/FarmMaster.GraphQL.AnimalGroupScriptAutoScriptGraphType.html#FarmMaster_GraphQL_AnimalGroupScriptAutoScriptGraphType__ctor_
+  commentId: Overload:FarmMaster.GraphQL.AnimalGroupScriptAutoScriptGraphType.#ctor
+  isSpec: "True"
+  fullName: FarmMaster.GraphQL.AnimalGroupScriptAutoScriptGraphType.AnimalGroupScriptAutoScriptGraphType
+  nameWithType: AnimalGroupScriptAutoScriptGraphType.AnimalGroupScriptAutoScriptGraphType
 - uid: FarmMaster.GraphQL.AnimalGroupScriptGraphType
   name: AnimalGroupScriptGraphType
   href: api/FarmMaster.GraphQL.AnimalGroupScriptGraphType.html
@@ -9959,6 +10217,18 @@ references:
   commentId: F:FarmMaster.Misc.FarmConstants.EmailTemplateNames.ResetPasswordRequest
   fullName: FarmMaster.Misc.FarmConstants.EmailTemplateNames.ResetPasswordRequest
   nameWithType: FarmConstants.EmailTemplateNames.ResetPasswordRequest
+- uid: FarmMaster.Misc.FarmConstants.LoggingEvents
+  name: FarmConstants.LoggingEvents
+  href: api/FarmMaster.Misc.FarmConstants.LoggingEvents.html
+  commentId: T:FarmMaster.Misc.FarmConstants.LoggingEvents
+  fullName: FarmMaster.Misc.FarmConstants.LoggingEvents
+  nameWithType: FarmConstants.LoggingEvents
+- uid: FarmMaster.Misc.FarmConstants.LoggingEvents.AssignByAutoScript
+  name: AssignByAutoScript
+  href: api/FarmMaster.Misc.FarmConstants.LoggingEvents.html#FarmMaster_Misc_FarmConstants_LoggingEvents_AssignByAutoScript
+  commentId: F:FarmMaster.Misc.FarmConstants.LoggingEvents.AssignByAutoScript
+  fullName: FarmMaster.Misc.FarmConstants.LoggingEvents.AssignByAutoScript
+  nameWithType: FarmConstants.LoggingEvents.AssignByAutoScript
 - uid: FarmMaster.Misc.FarmConstants.Regexes
   name: FarmConstants.Regexes
   href: api/FarmMaster.Misc.FarmConstants.Regexes.html
@@ -12829,6 +13099,25 @@ references:
   commentId: N:FarmMaster.Services
   fullName: FarmMaster.Services
   nameWithType: FarmMaster.Services
+- uid: FarmMaster.Services.HookAnimalCreated
+  name: HookAnimalCreated
+  href: api/FarmMaster.Services.HookAnimalCreated.html
+  commentId: T:FarmMaster.Services.HookAnimalCreated
+  fullName: FarmMaster.Services.HookAnimalCreated
+  nameWithType: HookAnimalCreated
+- uid: FarmMaster.Services.HookAnimalCreated.animal
+  name: animal
+  href: api/FarmMaster.Services.HookAnimalCreated.html#FarmMaster_Services_HookAnimalCreated_animal
+  commentId: P:FarmMaster.Services.HookAnimalCreated.animal
+  fullName: FarmMaster.Services.HookAnimalCreated.animal
+  nameWithType: HookAnimalCreated.animal
+- uid: FarmMaster.Services.HookAnimalCreated.animal*
+  name: animal
+  href: api/FarmMaster.Services.HookAnimalCreated.html#FarmMaster_Services_HookAnimalCreated_animal_
+  commentId: Overload:FarmMaster.Services.HookAnimalCreated.animal
+  isSpec: "True"
+  fullName: FarmMaster.Services.HookAnimalCreated.animal
+  nameWithType: HookAnimalCreated.animal
 - uid: FarmMaster.Services.IServiceAnimalGroupManager
   name: IServiceAnimalGroupManager
   href: api/FarmMaster.Services.IServiceAnimalGroupManager.html
@@ -12893,6 +13182,22 @@ references:
   isSpec: "True"
   fullName: FarmMaster.Services.IServiceAnimalGroupScriptManager.CompileAndCreate
   nameWithType: IServiceAnimalGroupScriptManager.CompileAndCreate
+- uid: FarmMaster.Services.IServiceAnimalGroupScriptManager.CreateAutomatedScript(Business.Model.AnimalGroup,Business.Model.AnimalGroupScript,IDictionary{System.String,System.Object})
+  name: CreateAutomatedScript(AnimalGroup, AnimalGroupScript, IDictionary<String, Object>)
+  href: api/FarmMaster.Services.IServiceAnimalGroupScriptManager.html#FarmMaster_Services_IServiceAnimalGroupScriptManager_CreateAutomatedScript_Business_Model_AnimalGroup_Business_Model_AnimalGroupScript_IDictionary_System_String_System_Object__
+  commentId: M:FarmMaster.Services.IServiceAnimalGroupScriptManager.CreateAutomatedScript(Business.Model.AnimalGroup,Business.Model.AnimalGroupScript,IDictionary{System.String,System.Object})
+  name.vb: CreateAutomatedScript(AnimalGroup, AnimalGroupScript, IDictionary(Of String, Object))
+  fullName: FarmMaster.Services.IServiceAnimalGroupScriptManager.CreateAutomatedScript(Business.Model.AnimalGroup, Business.Model.AnimalGroupScript, IDictionary<System.String, System.Object>)
+  fullName.vb: FarmMaster.Services.IServiceAnimalGroupScriptManager.CreateAutomatedScript(Business.Model.AnimalGroup, Business.Model.AnimalGroupScript, IDictionary(Of System.String, System.Object))
+  nameWithType: IServiceAnimalGroupScriptManager.CreateAutomatedScript(AnimalGroup, AnimalGroupScript, IDictionary<String, Object>)
+  nameWithType.vb: IServiceAnimalGroupScriptManager.CreateAutomatedScript(AnimalGroup, AnimalGroupScript, IDictionary(Of String, Object))
+- uid: FarmMaster.Services.IServiceAnimalGroupScriptManager.CreateAutomatedScript*
+  name: CreateAutomatedScript
+  href: api/FarmMaster.Services.IServiceAnimalGroupScriptManager.html#FarmMaster_Services_IServiceAnimalGroupScriptManager_CreateAutomatedScript_
+  commentId: Overload:FarmMaster.Services.IServiceAnimalGroupScriptManager.CreateAutomatedScript
+  isSpec: "True"
+  fullName: FarmMaster.Services.IServiceAnimalGroupScriptManager.CreateAutomatedScript
+  nameWithType: IServiceAnimalGroupScriptManager.CreateAutomatedScript
 - uid: FarmMaster.Services.IServiceAnimalGroupScriptManager.EditCodeByName(System.String,System.String)
   name: EditCodeByName(String, String)
   href: api/FarmMaster.Services.IServiceAnimalGroupScriptManager.html#FarmMaster_Services_IServiceAnimalGroupScriptManager_EditCodeByName_System_String_System_String_
@@ -12938,6 +13243,19 @@ references:
   isSpec: "True"
   fullName: FarmMaster.Services.IServiceAnimalGroupScriptManager.ExecuteSingleUseScript
   nameWithType: IServiceAnimalGroupScriptManager.ExecuteSingleUseScript
+- uid: FarmMaster.Services.IServiceAnimalGroupScriptManager.ProcessAutomatedScriptsOnAnimal(Business.Model.Animal)
+  name: ProcessAutomatedScriptsOnAnimal(Animal)
+  href: api/FarmMaster.Services.IServiceAnimalGroupScriptManager.html#FarmMaster_Services_IServiceAnimalGroupScriptManager_ProcessAutomatedScriptsOnAnimal_Business_Model_Animal_
+  commentId: M:FarmMaster.Services.IServiceAnimalGroupScriptManager.ProcessAutomatedScriptsOnAnimal(Business.Model.Animal)
+  fullName: FarmMaster.Services.IServiceAnimalGroupScriptManager.ProcessAutomatedScriptsOnAnimal(Business.Model.Animal)
+  nameWithType: IServiceAnimalGroupScriptManager.ProcessAutomatedScriptsOnAnimal(Animal)
+- uid: FarmMaster.Services.IServiceAnimalGroupScriptManager.ProcessAutomatedScriptsOnAnimal*
+  name: ProcessAutomatedScriptsOnAnimal
+  href: api/FarmMaster.Services.IServiceAnimalGroupScriptManager.html#FarmMaster_Services_IServiceAnimalGroupScriptManager_ProcessAutomatedScriptsOnAnimal_
+  commentId: Overload:FarmMaster.Services.IServiceAnimalGroupScriptManager.ProcessAutomatedScriptsOnAnimal
+  isSpec: "True"
+  fullName: FarmMaster.Services.IServiceAnimalGroupScriptManager.ProcessAutomatedScriptsOnAnimal
+  nameWithType: IServiceAnimalGroupScriptManager.ProcessAutomatedScriptsOnAnimal
 - uid: FarmMaster.Services.IServiceAnimalManager
   name: IServiceAnimalManager
   href: api/FarmMaster.Services.IServiceAnimalManager.html
@@ -13625,6 +13943,60 @@ references:
   isSpec: "True"
   fullName: FarmMaster.Services.IServiceHoldingManager.RemoveRegistrationByName
   nameWithType: IServiceHoldingManager.RemoveRegistrationByName
+- uid: FarmMaster.Services.IServiceHookConsumer`1
+  name: IServiceHookConsumer<T>
+  href: api/FarmMaster.Services.IServiceHookConsumer-1.html
+  commentId: T:FarmMaster.Services.IServiceHookConsumer`1
+  name.vb: IServiceHookConsumer(Of T)
+  fullName: FarmMaster.Services.IServiceHookConsumer<T>
+  fullName.vb: FarmMaster.Services.IServiceHookConsumer(Of T)
+  nameWithType: IServiceHookConsumer<T>
+  nameWithType.vb: IServiceHookConsumer(Of T)
+- uid: FarmMaster.Services.IServiceHookConsumer`1.ConsumeHook(`0)
+  name: ConsumeHook(T)
+  href: api/FarmMaster.Services.IServiceHookConsumer-1.html#FarmMaster_Services_IServiceHookConsumer_1_ConsumeHook__0_
+  commentId: M:FarmMaster.Services.IServiceHookConsumer`1.ConsumeHook(`0)
+  fullName: FarmMaster.Services.IServiceHookConsumer<T>.ConsumeHook(T)
+  fullName.vb: FarmMaster.Services.IServiceHookConsumer(Of T).ConsumeHook(T)
+  nameWithType: IServiceHookConsumer<T>.ConsumeHook(T)
+  nameWithType.vb: IServiceHookConsumer(Of T).ConsumeHook(T)
+- uid: FarmMaster.Services.IServiceHookConsumer`1.ConsumeHook*
+  name: ConsumeHook
+  href: api/FarmMaster.Services.IServiceHookConsumer-1.html#FarmMaster_Services_IServiceHookConsumer_1_ConsumeHook_
+  commentId: Overload:FarmMaster.Services.IServiceHookConsumer`1.ConsumeHook
+  isSpec: "True"
+  fullName: FarmMaster.Services.IServiceHookConsumer<T>.ConsumeHook
+  fullName.vb: FarmMaster.Services.IServiceHookConsumer(Of T).ConsumeHook
+  nameWithType: IServiceHookConsumer<T>.ConsumeHook
+  nameWithType.vb: IServiceHookConsumer(Of T).ConsumeHook
+- uid: FarmMaster.Services.IServiceHookConsumerBase
+  name: IServiceHookConsumerBase
+  href: api/FarmMaster.Services.IServiceHookConsumerBase.html
+  commentId: T:FarmMaster.Services.IServiceHookConsumerBase
+  fullName: FarmMaster.Services.IServiceHookConsumerBase
+  nameWithType: IServiceHookConsumerBase
+- uid: FarmMaster.Services.IServiceHookEmitter
+  name: IServiceHookEmitter
+  href: api/FarmMaster.Services.IServiceHookEmitter.html
+  commentId: T:FarmMaster.Services.IServiceHookEmitter
+  fullName: FarmMaster.Services.IServiceHookEmitter
+  nameWithType: IServiceHookEmitter
+- uid: FarmMaster.Services.IServiceHookEmitter.Emit*
+  name: Emit
+  href: api/FarmMaster.Services.IServiceHookEmitter.html#FarmMaster_Services_IServiceHookEmitter_Emit_
+  commentId: Overload:FarmMaster.Services.IServiceHookEmitter.Emit
+  isSpec: "True"
+  fullName: FarmMaster.Services.IServiceHookEmitter.Emit
+  nameWithType: IServiceHookEmitter.Emit
+- uid: FarmMaster.Services.IServiceHookEmitter.Emit``1(``0)
+  name: Emit<T>(T)
+  href: api/FarmMaster.Services.IServiceHookEmitter.html#FarmMaster_Services_IServiceHookEmitter_Emit__1___0_
+  commentId: M:FarmMaster.Services.IServiceHookEmitter.Emit``1(``0)
+  name.vb: Emit(Of T)(T)
+  fullName: FarmMaster.Services.IServiceHookEmitter.Emit<T>(T)
+  fullName.vb: FarmMaster.Services.IServiceHookEmitter.Emit(Of T)(T)
+  nameWithType: IServiceHookEmitter.Emit<T>(T)
+  nameWithType.vb: IServiceHookEmitter.Emit(Of T)(T)
 - uid: FarmMaster.Services.IServiceImageManager
   name: IServiceImageManager
   href: api/FarmMaster.Services.IServiceImageManager.html
@@ -14435,12 +14807,15 @@ references:
   commentId: T:FarmMaster.Services.ServiceAnimalGroupScriptManager
   fullName: FarmMaster.Services.ServiceAnimalGroupScriptManager
   nameWithType: ServiceAnimalGroupScriptManager
-- uid: FarmMaster.Services.ServiceAnimalGroupScriptManager.#ctor(Business.Model.FarmMasterContext)
-  name: ServiceAnimalGroupScriptManager(FarmMasterContext)
-  href: api/FarmMaster.Services.ServiceAnimalGroupScriptManager.html#FarmMaster_Services_ServiceAnimalGroupScriptManager__ctor_Business_Model_FarmMasterContext_
-  commentId: M:FarmMaster.Services.ServiceAnimalGroupScriptManager.#ctor(Business.Model.FarmMasterContext)
-  fullName: FarmMaster.Services.ServiceAnimalGroupScriptManager.ServiceAnimalGroupScriptManager(Business.Model.FarmMasterContext)
-  nameWithType: ServiceAnimalGroupScriptManager.ServiceAnimalGroupScriptManager(FarmMasterContext)
+- uid: FarmMaster.Services.ServiceAnimalGroupScriptManager.#ctor(Business.Model.FarmMasterContext,FarmMaster.Services.IServiceAnimalGroupManager,ILogger{FarmMaster.Services.ServiceAnimalGroupScriptManager})
+  name: ServiceAnimalGroupScriptManager(FarmMasterContext, IServiceAnimalGroupManager, ILogger<ServiceAnimalGroupScriptManager>)
+  href: api/FarmMaster.Services.ServiceAnimalGroupScriptManager.html#FarmMaster_Services_ServiceAnimalGroupScriptManager__ctor_Business_Model_FarmMasterContext_FarmMaster_Services_IServiceAnimalGroupManager_ILogger_FarmMaster_Services_ServiceAnimalGroupScriptManager__
+  commentId: M:FarmMaster.Services.ServiceAnimalGroupScriptManager.#ctor(Business.Model.FarmMasterContext,FarmMaster.Services.IServiceAnimalGroupManager,ILogger{FarmMaster.Services.ServiceAnimalGroupScriptManager})
+  name.vb: ServiceAnimalGroupScriptManager(FarmMasterContext, IServiceAnimalGroupManager, ILogger(Of ServiceAnimalGroupScriptManager))
+  fullName: FarmMaster.Services.ServiceAnimalGroupScriptManager.ServiceAnimalGroupScriptManager(Business.Model.FarmMasterContext, FarmMaster.Services.IServiceAnimalGroupManager, ILogger<FarmMaster.Services.ServiceAnimalGroupScriptManager>)
+  fullName.vb: FarmMaster.Services.ServiceAnimalGroupScriptManager.ServiceAnimalGroupScriptManager(Business.Model.FarmMasterContext, FarmMaster.Services.IServiceAnimalGroupManager, ILogger(Of FarmMaster.Services.ServiceAnimalGroupScriptManager))
+  nameWithType: ServiceAnimalGroupScriptManager.ServiceAnimalGroupScriptManager(FarmMasterContext, IServiceAnimalGroupManager, ILogger<ServiceAnimalGroupScriptManager>)
+  nameWithType.vb: ServiceAnimalGroupScriptManager.ServiceAnimalGroupScriptManager(FarmMasterContext, IServiceAnimalGroupManager, ILogger(Of ServiceAnimalGroupScriptManager))
 - uid: FarmMaster.Services.ServiceAnimalGroupScriptManager.#ctor*
   name: ServiceAnimalGroupScriptManager
   href: api/FarmMaster.Services.ServiceAnimalGroupScriptManager.html#FarmMaster_Services_ServiceAnimalGroupScriptManager__ctor_
@@ -14461,6 +14836,35 @@ references:
   isSpec: "True"
   fullName: FarmMaster.Services.ServiceAnimalGroupScriptManager.CompileAndCreate
   nameWithType: ServiceAnimalGroupScriptManager.CompileAndCreate
+- uid: FarmMaster.Services.ServiceAnimalGroupScriptManager.ConsumeHook(FarmMaster.Services.HookAnimalCreated)
+  name: ConsumeHook(HookAnimalCreated)
+  href: api/FarmMaster.Services.ServiceAnimalGroupScriptManager.html#FarmMaster_Services_ServiceAnimalGroupScriptManager_ConsumeHook_FarmMaster_Services_HookAnimalCreated_
+  commentId: M:FarmMaster.Services.ServiceAnimalGroupScriptManager.ConsumeHook(FarmMaster.Services.HookAnimalCreated)
+  fullName: FarmMaster.Services.ServiceAnimalGroupScriptManager.ConsumeHook(FarmMaster.Services.HookAnimalCreated)
+  nameWithType: ServiceAnimalGroupScriptManager.ConsumeHook(HookAnimalCreated)
+- uid: FarmMaster.Services.ServiceAnimalGroupScriptManager.ConsumeHook*
+  name: ConsumeHook
+  href: api/FarmMaster.Services.ServiceAnimalGroupScriptManager.html#FarmMaster_Services_ServiceAnimalGroupScriptManager_ConsumeHook_
+  commentId: Overload:FarmMaster.Services.ServiceAnimalGroupScriptManager.ConsumeHook
+  isSpec: "True"
+  fullName: FarmMaster.Services.ServiceAnimalGroupScriptManager.ConsumeHook
+  nameWithType: ServiceAnimalGroupScriptManager.ConsumeHook
+- uid: FarmMaster.Services.ServiceAnimalGroupScriptManager.CreateAutomatedScript(Business.Model.AnimalGroup,Business.Model.AnimalGroupScript,IDictionary{System.String,System.Object})
+  name: CreateAutomatedScript(AnimalGroup, AnimalGroupScript, IDictionary<String, Object>)
+  href: api/FarmMaster.Services.ServiceAnimalGroupScriptManager.html#FarmMaster_Services_ServiceAnimalGroupScriptManager_CreateAutomatedScript_Business_Model_AnimalGroup_Business_Model_AnimalGroupScript_IDictionary_System_String_System_Object__
+  commentId: M:FarmMaster.Services.ServiceAnimalGroupScriptManager.CreateAutomatedScript(Business.Model.AnimalGroup,Business.Model.AnimalGroupScript,IDictionary{System.String,System.Object})
+  name.vb: CreateAutomatedScript(AnimalGroup, AnimalGroupScript, IDictionary(Of String, Object))
+  fullName: FarmMaster.Services.ServiceAnimalGroupScriptManager.CreateAutomatedScript(Business.Model.AnimalGroup, Business.Model.AnimalGroupScript, IDictionary<System.String, System.Object>)
+  fullName.vb: FarmMaster.Services.ServiceAnimalGroupScriptManager.CreateAutomatedScript(Business.Model.AnimalGroup, Business.Model.AnimalGroupScript, IDictionary(Of System.String, System.Object))
+  nameWithType: ServiceAnimalGroupScriptManager.CreateAutomatedScript(AnimalGroup, AnimalGroupScript, IDictionary<String, Object>)
+  nameWithType.vb: ServiceAnimalGroupScriptManager.CreateAutomatedScript(AnimalGroup, AnimalGroupScript, IDictionary(Of String, Object))
+- uid: FarmMaster.Services.ServiceAnimalGroupScriptManager.CreateAutomatedScript*
+  name: CreateAutomatedScript
+  href: api/FarmMaster.Services.ServiceAnimalGroupScriptManager.html#FarmMaster_Services_ServiceAnimalGroupScriptManager_CreateAutomatedScript_
+  commentId: Overload:FarmMaster.Services.ServiceAnimalGroupScriptManager.CreateAutomatedScript
+  isSpec: "True"
+  fullName: FarmMaster.Services.ServiceAnimalGroupScriptManager.CreateAutomatedScript
+  nameWithType: ServiceAnimalGroupScriptManager.CreateAutomatedScript
 - uid: FarmMaster.Services.ServiceAnimalGroupScriptManager.EditCodeByName(System.String,System.String)
   name: EditCodeByName(String, String)
   href: api/FarmMaster.Services.ServiceAnimalGroupScriptManager.html#FarmMaster_Services_ServiceAnimalGroupScriptManager_EditCodeByName_System_String_System_String_
@@ -14532,6 +14936,19 @@ references:
   isSpec: "True"
   fullName: FarmMaster.Services.ServiceAnimalGroupScriptManager.GetIdFor
   nameWithType: ServiceAnimalGroupScriptManager.GetIdFor
+- uid: FarmMaster.Services.ServiceAnimalGroupScriptManager.ProcessAutomatedScriptsOnAnimal(Business.Model.Animal)
+  name: ProcessAutomatedScriptsOnAnimal(Animal)
+  href: api/FarmMaster.Services.ServiceAnimalGroupScriptManager.html#FarmMaster_Services_ServiceAnimalGroupScriptManager_ProcessAutomatedScriptsOnAnimal_Business_Model_Animal_
+  commentId: M:FarmMaster.Services.ServiceAnimalGroupScriptManager.ProcessAutomatedScriptsOnAnimal(Business.Model.Animal)
+  fullName: FarmMaster.Services.ServiceAnimalGroupScriptManager.ProcessAutomatedScriptsOnAnimal(Business.Model.Animal)
+  nameWithType: ServiceAnimalGroupScriptManager.ProcessAutomatedScriptsOnAnimal(Animal)
+- uid: FarmMaster.Services.ServiceAnimalGroupScriptManager.ProcessAutomatedScriptsOnAnimal*
+  name: ProcessAutomatedScriptsOnAnimal
+  href: api/FarmMaster.Services.ServiceAnimalGroupScriptManager.html#FarmMaster_Services_ServiceAnimalGroupScriptManager_ProcessAutomatedScriptsOnAnimal_
+  commentId: Overload:FarmMaster.Services.ServiceAnimalGroupScriptManager.ProcessAutomatedScriptsOnAnimal
+  isSpec: "True"
+  fullName: FarmMaster.Services.ServiceAnimalGroupScriptManager.ProcessAutomatedScriptsOnAnimal
+  nameWithType: ServiceAnimalGroupScriptManager.ProcessAutomatedScriptsOnAnimal
 - uid: FarmMaster.Services.ServiceAnimalGroupScriptManager.Query
   name: Query()
   href: api/FarmMaster.Services.ServiceAnimalGroupScriptManager.html#FarmMaster_Services_ServiceAnimalGroupScriptManager_Query
@@ -14577,12 +14994,12 @@ references:
   commentId: T:FarmMaster.Services.ServiceAnimalManager
   fullName: FarmMaster.Services.ServiceAnimalManager
   nameWithType: ServiceAnimalManager
-- uid: FarmMaster.Services.ServiceAnimalManager.#ctor(Business.Model.FarmMasterContext,FarmMaster.Services.IServiceLifeEventManager,FarmMaster.Services.IServiceImageManager)
-  name: ServiceAnimalManager(FarmMasterContext, IServiceLifeEventManager, IServiceImageManager)
-  href: api/FarmMaster.Services.ServiceAnimalManager.html#FarmMaster_Services_ServiceAnimalManager__ctor_Business_Model_FarmMasterContext_FarmMaster_Services_IServiceLifeEventManager_FarmMaster_Services_IServiceImageManager_
-  commentId: M:FarmMaster.Services.ServiceAnimalManager.#ctor(Business.Model.FarmMasterContext,FarmMaster.Services.IServiceLifeEventManager,FarmMaster.Services.IServiceImageManager)
-  fullName: FarmMaster.Services.ServiceAnimalManager.ServiceAnimalManager(Business.Model.FarmMasterContext, FarmMaster.Services.IServiceLifeEventManager, FarmMaster.Services.IServiceImageManager)
-  nameWithType: ServiceAnimalManager.ServiceAnimalManager(FarmMasterContext, IServiceLifeEventManager, IServiceImageManager)
+- uid: FarmMaster.Services.ServiceAnimalManager.#ctor(Business.Model.FarmMasterContext,FarmMaster.Services.IServiceLifeEventManager,FarmMaster.Services.IServiceImageManager,FarmMaster.Services.IServiceHookEmitter)
+  name: ServiceAnimalManager(FarmMasterContext, IServiceLifeEventManager, IServiceImageManager, IServiceHookEmitter)
+  href: api/FarmMaster.Services.ServiceAnimalManager.html#FarmMaster_Services_ServiceAnimalManager__ctor_Business_Model_FarmMasterContext_FarmMaster_Services_IServiceLifeEventManager_FarmMaster_Services_IServiceImageManager_FarmMaster_Services_IServiceHookEmitter_
+  commentId: M:FarmMaster.Services.ServiceAnimalManager.#ctor(Business.Model.FarmMasterContext,FarmMaster.Services.IServiceLifeEventManager,FarmMaster.Services.IServiceImageManager,FarmMaster.Services.IServiceHookEmitter)
+  fullName: FarmMaster.Services.ServiceAnimalManager.ServiceAnimalManager(Business.Model.FarmMasterContext, FarmMaster.Services.IServiceLifeEventManager, FarmMaster.Services.IServiceImageManager, FarmMaster.Services.IServiceHookEmitter)
+  nameWithType: ServiceAnimalManager.ServiceAnimalManager(FarmMasterContext, IServiceLifeEventManager, IServiceImageManager, IServiceHookEmitter)
 - uid: FarmMaster.Services.ServiceAnimalManager.#ctor*
   name: ServiceAnimalManager
   href: api/FarmMaster.Services.ServiceAnimalManager.html#FarmMaster_Services_ServiceAnimalManager__ctor_
@@ -15463,6 +15880,41 @@ references:
   isSpec: "True"
   fullName: FarmMaster.Services.ServiceHoldingManager.Update
   nameWithType: ServiceHoldingManager.Update
+- uid: FarmMaster.Services.ServiceHookEmitter
+  name: ServiceHookEmitter
+  href: api/FarmMaster.Services.ServiceHookEmitter.html
+  commentId: T:FarmMaster.Services.ServiceHookEmitter
+  fullName: FarmMaster.Services.ServiceHookEmitter
+  nameWithType: ServiceHookEmitter
+- uid: FarmMaster.Services.ServiceHookEmitter.#ctor(IHttpContextAccessor)
+  name: ServiceHookEmitter(IHttpContextAccessor)
+  href: api/FarmMaster.Services.ServiceHookEmitter.html#FarmMaster_Services_ServiceHookEmitter__ctor_IHttpContextAccessor_
+  commentId: M:FarmMaster.Services.ServiceHookEmitter.#ctor(IHttpContextAccessor)
+  fullName: FarmMaster.Services.ServiceHookEmitter.ServiceHookEmitter(IHttpContextAccessor)
+  nameWithType: ServiceHookEmitter.ServiceHookEmitter(IHttpContextAccessor)
+- uid: FarmMaster.Services.ServiceHookEmitter.#ctor*
+  name: ServiceHookEmitter
+  href: api/FarmMaster.Services.ServiceHookEmitter.html#FarmMaster_Services_ServiceHookEmitter__ctor_
+  commentId: Overload:FarmMaster.Services.ServiceHookEmitter.#ctor
+  isSpec: "True"
+  fullName: FarmMaster.Services.ServiceHookEmitter.ServiceHookEmitter
+  nameWithType: ServiceHookEmitter.ServiceHookEmitter
+- uid: FarmMaster.Services.ServiceHookEmitter.Emit*
+  name: Emit
+  href: api/FarmMaster.Services.ServiceHookEmitter.html#FarmMaster_Services_ServiceHookEmitter_Emit_
+  commentId: Overload:FarmMaster.Services.ServiceHookEmitter.Emit
+  isSpec: "True"
+  fullName: FarmMaster.Services.ServiceHookEmitter.Emit
+  nameWithType: ServiceHookEmitter.Emit
+- uid: FarmMaster.Services.ServiceHookEmitter.Emit``1(``0)
+  name: Emit<T>(T)
+  href: api/FarmMaster.Services.ServiceHookEmitter.html#FarmMaster_Services_ServiceHookEmitter_Emit__1___0_
+  commentId: M:FarmMaster.Services.ServiceHookEmitter.Emit``1(``0)
+  name.vb: Emit(Of T)(T)
+  fullName: FarmMaster.Services.ServiceHookEmitter.Emit<T>(T)
+  fullName.vb: FarmMaster.Services.ServiceHookEmitter.Emit(Of T)(T)
+  nameWithType: ServiceHookEmitter.Emit<T>(T)
+  nameWithType.vb: ServiceHookEmitter.Emit(Of T)(T)
 - uid: FarmMaster.Services.ServiceImageManager
   name: ServiceImageManager
   href: api/FarmMaster.Services.ServiceImageManager.html
