@@ -233,6 +233,29 @@ namespace FarmMaster.Controllers
                        })
             );
         }
+        
+        [HttpPost]
+        [FarmAjaxReturnsMessageAndValue(BusinessConstants.Permissions.USE_GROUP_SCRIPTS)]
+        public IActionResult AnimalGroup_ById_Script_ByName_MakeAutomated_AsId(
+            [FromBody] AjaxGroupScriptByNameExecuteRequest model,
+            [FromServices] IServiceAnimalGroupScriptManager scripts,
+            [FromServices] IServiceAnimalGroupManager groups
+        )
+        {
+            var script = scripts.Query().FirstOrDefault(s => s.Name == model.ScriptName);
+            if (script == null)
+                throw new KeyNotFoundException($"No script called '{model.ScriptName}' exists.");
+
+            var group = groups.Query().FirstOrDefault(g => g.AnimalGroupId == model.AnimalGroupId);
+            if(group == null)
+                throw new KeyNotFoundException($"No group with ID #{model.AnimalGroupId}.");
+
+            var entry = scripts.CreateAutomatedScript(group, script, model.Parameters);
+            return new AjaxValueResult(new
+            {
+                id = entry.AnimalGroupScriptAutoEntryId 
+            });
+        }
 
         [HttpPost]
         [FarmAjaxReturnsMessage(BusinessConstants.Permissions.USE_GROUP_SCRIPTS)]

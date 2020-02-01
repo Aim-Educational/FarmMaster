@@ -25,6 +25,8 @@ namespace Business.Model
         [StringLength(MAX_BYTECODE_LENGTH)]
         public string Code { get; set; }
 
+        public IEnumerable<AnimalGroupScriptAutoEntry> AutomatedScripts { get; set; }
+
         [Timestamp]
         public byte[] Timestamp { get; set; }
     }

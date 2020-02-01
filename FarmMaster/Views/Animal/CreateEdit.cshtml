@@ -56,7 +56,7 @@
                 </div>
                 <div class="field">
                     <label>Gender</label>
-                    <div class="ui search selection dropdown">
+                    <div class="ui search selection dropdown normie">
                         <input type="hidden" asp-for="Sex" value="@($"{Model.Sex}".ToLower())" />
                         <i class="dropdown icon"></i>
                         <div class="text"></div>
@@ -124,35 +124,26 @@
     </section>
     <section>
         <h4>Groups</h4>
-        @if (!Model.IsCreate)
-        {
-            <div id="contentGroup" class="content">
-                <div class="ui fluid styled accordion">
-                    <div class="title">
-                        <i class="dropdown icon"></i>
-                        Add to group
-                    </div>
-                    <div class="content ui form">
-                        <vc:dropdown label="Group"
-                                     asp-for="DUMMY_VALUE"
-                                     default-value=""
-                                     dropdown-id="selectGroup"
-                                     goto-action="Index"
-                                     goto-controller="AnimalGroup"
-                                     is-multiple-select="false" />
-                        <button id="buttonAddToGroup" class="ui button">Add to group</button>
-                    </div>
+        <div id="contentGroup" class="content">
+            <div class="ui fluid styled accordion">
+                <div class="title">
+                    <i class="dropdown icon"></i>
+                    Add to group
                 </div>
-                <div id="errorGroup" class="ui error message transition hidden"></div>
-                <div class="top padded items"></div>
+                <div class="content ui form">
+                    <vc:dropdown label="Group"
+                                    asp-for="DUMMY_VALUE"
+                                    default-value=""
+                                    dropdown-id="selectGroup"
+                                    goto-action="Index"
+                                    goto-controller="AnimalGroup"
+                                    is-multiple-select="false" />
+                    <button id="buttonAddToGroup" class="ui button">Add to group</button>
+                </div>
             </div>
-        }
-        else
-        {
-            <div class="ui info message transition visible">
-                Groups can only be modified once the animal has been created.
-            </div>
-        }
+            <div id="errorGroup" class="ui error message transition hidden"></div>
+            <div class="top padded items"></div>
+        </div>
     </section>
     <section>
         <h4>Characteristics</h4>
@@ -168,61 +159,47 @@
                 }' />
             </div>
         }
-        else
-        {
-            <div class="ui info message transition visible">
-                Characteristics can only be modified once the animal has been created.
-            </div>
-        }
     </section>
 
     <section>
         <h4>Life Events</h4>
-        @if(!Model.IsCreate)
-        {
-            <div class="content">
-                <div class="ui fluid styled accordion">
-                    <div class="title">
-                        <i class="dropdown icon"></i>
-                        Add a life event
-                    </div>
-                    <div class="content ui form">
-                        <vc:dropdown label="Life Event"
-                                     asp-for="DUMMY_VALUE"
-                                     default-value=""
-                                     dropdown-id="selectLifeEvent"
-                                     goto-action="Index"
-                                     goto-controller="LifeEvent"
-                                     is-multiple-select="false" />
-                        <button id="buttonCreateEvent" class="ui button">Goto Event Creation Editor</button>
-                    </div>
+        <div class="content">
+            <div class="ui fluid styled accordion">
+                <div class="title">
+                    <i class="dropdown icon"></i>
+                    Add a life event
                 </div>
-                <div id="errorLifeEvents" class="ui error message transition hidden"></div>
-                <table id="tableLifeEvents" class="ui striped table">
-                    <thead>
-                        <tr class="three columns">
-                            <th class="editor action"></th>
-                            <th>Name</th>
-                            <th>Date created</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
+                <div class="content ui form">
+                    <vc:dropdown label="Life Event"
+                                    asp-for="DUMMY_VALUE"
+                                    default-value=""
+                                    dropdown-id="selectLifeEvent"
+                                    goto-action="Index"
+                                    goto-controller="LifeEvent"
+                                    is-multiple-select="false" />
+                    <button id="buttonCreateEvent" class="ui button">Goto Event Creation Editor</button>
+                </div>
             </div>
-        }
-        else
-        {
-            <div class="ui info message transition visible">
-                Life events can only be modified once the animal has been created.
-            </div>
-        }
+            <div id="errorLifeEvents" class="ui error message transition hidden"></div>
+            <table id="tableLifeEvents" class="ui striped table">
+                <thead>
+                    <tr class="three columns">
+                        <th class="editor action"></th>
+                        <th>Name</th>
+                        <th>Date created</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
     </section>
 </section>
 
 @section Scripts {
     <!--GraphQL related code. Covers the entire 'Information' section, as well as populating the Life Event section and group dropdown.-->
+    <!--All the "AnimalId ?? -1" parts of the code are to handle if we're in create mode, where AnimalId will be null-->
     <script type="module">
         import { GraphQL, FarmAjax, FarmAjaxMessageType, Modal, Dropdown } from "/js/index.js";
 
@@ -253,7 +230,7 @@
             if (dropdown.classList.contains("disabled"))
                 dropdown.classList.remove("disabled");
             for (const idName of idNameList) {
-                if (ignoreIfAnimalId && idName.id == @Model.AnimalId)
+                if (ignoreIfAnimalId && idName.id == @(Model.AnimalId ?? -1))
                     continue;
 
                 addItemToDropdown(
@@ -305,7 +282,7 @@
                             FarmAjax.postWithMessageResponse(
                                 "/Ajax/Animal_ById_RemoveFromGroup_ById",
                                 {
-                                    byId: @Model.AnimalId,
+                                    byId: @(Model.AnimalId ?? -1),
                                     forId: id
                                 },
                                 r => {
@@ -351,7 +328,7 @@
 
         function handleMums(mums) {
             for (let i = 0; i < mums.length; i++) {
-                if (mums[i].id === "@Model.AnimalId") {
+                if (mums[i].id === "@(Model.AnimalId ?? -1)") {
                     mums.splice(i, 1);
                     break;
                 }
@@ -362,7 +339,7 @@
 
         function handleDads(dads) {
             for (let i = 0; i < dads.length; i++) {
-                if (dads[i].id === "@Model.AnimalId") {
+                if (dads[i].id === "@(Model.AnimalId ?? -1)") {
                     dads.splice(i, 1);
                     break;
                 }
@@ -380,20 +357,10 @@
         }
 
         function handleLifeEventTypes(lifeEvent) {
-            @if(Model.IsCreate)
-            {
-                @:return;
-            }
-
             fromIdName(selectLifeEvent, lifeEvent);
         }
 
         function handleLifeEventEntries(entries) {
-            @if(Model.IsCreate)
-            {
-                @:return;
-            }
-
             const table = document.getElementById("tableLifeEvents");
             const tbody = table.querySelector("tbody");
 
@@ -414,7 +381,7 @@
                                     FarmAjax.postWithMessageResponse(
                                         "/Ajax/Animal_ById_LifeEventEntry_Delete_ById",
                                         {
-                                            byId: @Model.AnimalId,
+                                            byId: @(Model.AnimalId ?? -1),
                                             forId: entry.id
                                         },
                                         r => {
@@ -454,7 +421,7 @@
                                     + "?lifeEventId=" + entry.lifeEvent.id
                                     + "&lifeEventEntryId=" + entry.id
                                     + "&breadcrumb=@Html.Raw(lifeEventEditBreadcrumb)"
-                                    + "&redirectEntityId=@Model.AnimalId";
+                                    + "&redirectEntityId=@(Model.AnimalId ?? -1)";
                                 window.open(url, "_blank");
                             });
                         }
@@ -464,11 +431,6 @@
         }
 
         function handleGroups(groupsIn, groupsNotIn) {
-            @if(Model.IsCreate)
-            {
-                @:return;
-            }
-
             for (const group of groupsNotIn)
                 group.name = group.name + " - " + group.description;
 
@@ -542,14 +504,16 @@
                     name
                     description
                 }
-            }`, { animalId: @Model.AnimalId })
+            }`, { animalId: @(Model.AnimalId ?? -1) })
                 .then(data => {
                     handleContacts(data.contacts);
                     handleSpecies(data.species);
                     handleLifeEventTypes(data.lifeEvents);
-                    handleLifeEventEntries(data.animals[0].lifeEventEntries);
                     handleHoldings(data.holdings);
                     handleGroups(data.groupsAssignedTo, data.groupsNotAssignedTo);
+
+                    if(data.animals.length > 0)
+                        handleLifeEventEntries(data.animals[0].lifeEventEntries);
                 })
                 .catch(errors => onError(errors));
         }
@@ -558,17 +522,13 @@
         doInitialLoad();
 
         $(".accordion").accordion();
+        $(".normie.dropdown").dropdown();
     </script>
 
     <!--Code for the life event section. Does not cover populating the Life Event stuff, as that's done during the
         "InitialLoad" query in the script tag above.
     -->
     <script type="module">
-        @if(Model.IsCreate)
-        {
-            @:return;
-        }
-
         document.getElementById("buttonCreateEvent").addEventListener("click", () => {
             @{
                 var lifeEventCreateBreadcrumb = lifeEventBreadcrumb + ">Create Entry:#";
@@ -579,7 +539,7 @@
                 + "?lifeEventId=" + lifeEventId
                 + "&redirectController=Animal"
                 + "&redirectAction=OnCreateLifeEvent"
-                + "&redirectEntityId=" + @Model.AnimalId
+                + "&redirectEntityId=" + @(Model.AnimalId ?? -1)
                 + "&breadcrumb=@Html.Raw(lifeEventCreateBreadcrumb)";
             window.open(url, "_self");
         });
@@ -589,16 +549,11 @@
     <script type="module">
         import { GraphQL, FarmAjax, FarmAjaxMessageType, Modal } from "/js/index.js";
 
-        @if(Model.IsCreate)
-        {
-            @:return;
-        }
-
         document.getElementById("buttonAddToGroup").addEventListener("click", () => {
             FarmAjax.postWithMessageResponse(
                 "/Ajax/Animal_ById_AssignGroup_ById",
                 {
-                    byId: @Model.AnimalId,
+                    byId: @(Model.AnimalId ?? -1),
                     forId: selectGroup.inputNode.value
                 },
                 r => {

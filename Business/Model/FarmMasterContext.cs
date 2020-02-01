@@ -153,6 +153,13 @@ namespace Business.Model
              .HasIndex(s => s.Name)
              .IsUnique();
 
+            b.Entity<AnimalGroupScriptAutoEntry>()
+             .Property(e => e.Parameters)
+             .HasConversion(
+                json => json.ToString(Formatting.None),
+                s => JObject.Parse(s)
+             );
+
             this.SeedRolePermissions(b);
             this.SeedHoldingRegistrations(b);
             this.SeedLifeEvents(b);
@@ -192,6 +199,7 @@ namespace Business.Model
         public DbSet<AnimalGroupScript>                 AnimalGroupScripts               { get; set; }
         public DbSet<ContactUnsubscribeToken>           ContactUnsubscribeTokens         { get; set; }
         public DbSet<ContactUnsubscribeEntry>           ContactUnsubscribeEntries        { get; set; }
+        public DbSet<AnimalGroupScriptAutoEntry>        AnimalGroupScriptAutoEntries     { get; set; }
         #endregion
 
         #region Data seeding

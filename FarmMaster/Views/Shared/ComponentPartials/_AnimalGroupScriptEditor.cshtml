@@ -118,7 +118,7 @@
                     type = _gs_ParamType.SPECIES;
                     break;
 
-                default: alert(list[i]);
+                default: alert(list[i] + " has no interface handler.");
             }
 
             toReturn.push({
@@ -205,6 +205,7 @@
                 <button id="buttonGroupScriptResults" class="ui button">Results</button>
             </div>
             <div class="tab">
+                <button id="buttonGroupScriptAutomation" class="ui button">Automation</button>
             </div>
         </div>
         <div id="tabGroupScriptCode" class="tab container">
@@ -229,8 +230,10 @@
                         </div>
                     </div>
                 </div>
-
+            </div>
+            <div class="top padded items">
                 <button id="buttonGroupScriptExecute" class="ui primary button">Execute</button>
+                <button id="buttonGroupScriptNewAutoScript" class="ui primary button">Create automated script</button>
             </div>
         </div>
         <div id="tabGroupScriptResults" class="tab container hidden">
@@ -240,6 +243,8 @@
 
             </div>
         </div>
+        <div id="tabGroupScriptAutomation" class="tab container hidden">
+        </div>
     </section>
 
     <!--Tab controls-->
@@ -247,6 +252,7 @@
         _gs_setupTabButton("buttonGroupScriptCode", "tabGroupScriptCode");
         _gs_setupTabButton("buttonGroupScriptExecuteTab", "tabGroupScriptExecute");
         _gs_setupTabButton("buttonGroupScriptResults", "tabGroupScriptResults");
+        _gs_setupTabButton("buttonGroupScriptAutomation", "tabGroupScriptAutomation");
     </script>
 
     <!--Execution-->
@@ -259,6 +265,29 @@
 
             return code;
         }
+
+        document.getElementById("buttonGroupScriptNewAutoScript").onclick = () => {
+            const params = {}
+            for (const func of _gs_paramAggregators)
+                func(params);
+
+            FarmAjax.postWithMessageAndValueResponse(
+                "/Ajax/AnimalGroup_ById_Script_ByName_MakeAutomated_AsId",
+                {
+                    scriptName: $(document.getElementById("selectGroupScriptToExecute").parentNode).dropdown("get text"),
+                    parameters: params,
+                    animalGroupId: @singleUseModel.GroupId
+                },
+                rv => {
+                    if (rv.messageType !== FarmAjaxMessageType.Information) {
+                        rv.populateMessageBox(document.getElementById("errorGroupScript"));
+                        return;
+                    }
+
+                    alert("TEMP: " + rv.value);
+                }
+            );
+        };
 
         document.getElementById("buttonExecuteGroupScript").onclick = () => {
             document.getElementById("errorGroupScript").classList.remove("visible");
@@ -317,6 +346,32 @@
                 }
             );
         });
+    </script>
+
+    <!--Automation-->
+    <script type="module">
+        import { FarmAjax, FarmAjaxMessageType, GraphQL } from "/js/index.js";
+
+        GraphQL
+            .query(`query FetchAutomatedScripts($animalGroupId: ID) {
+                animalGroups(id: $animalGroupId) {
+                    autoScripts {
+                        parameters
+                        animalGroupScript {
+                            name
+                        }
+                    }
+                }
+            }`)
+            .then(data => {
+                for (const script of data.animalGroups[0].autoScripts) {
+                    const p = document.createElement("p");
+                    p.innerText = `${script.animalGroupScript.name} - ${script.parameters}`;
+
+                    document.getElementById("tabGroupScriptAutomation").appendChild(p);
+                }
+            })
+            .catch(e => alert(JSON.stringify(e)));
     </script>
 }
 else if (Model is AnimalGroupScriptEditorCreateEditViewModel createEditModel)

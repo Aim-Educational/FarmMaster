@@ -141,7 +141,6 @@ namespace FarmMaster.Models
     #endregion
 
     #region Specific
-
     public class AjaxGroupScriptByNameExecuteRequest : AjaxRequestModel
     {
         public string ScriptName { get; set; }

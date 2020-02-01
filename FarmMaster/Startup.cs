@@ -95,8 +95,9 @@ namespace FarmMaster
             services.AddScoped<IServiceAnimalGroupScriptManager,    ServiceAnimalGroupScriptManager>();
 
             // Other services
-            services.AddScoped<IServiceGdpr, ServiceGdprAggregator>();
+            services.AddScoped   <IServiceGdpr,             ServiceGdprAggregator>();
             services.AddSingleton<IServiceMetricAggregator, ServiceMetricAggregator>();
+            services.AddSingleton<IServiceHookEmitter,      ServiceHookEmitter>();
             services.AddHttpContextAccessor();
 
             // Background services

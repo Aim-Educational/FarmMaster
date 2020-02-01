@@ -141,6 +141,9 @@ namespace FarmMaster.GraphQL
             Field(g => g.Name)
                 .Name("Name")
                 .Description("The group's name.");
+            Field(g => g.AutomatedScripts, type: typeof(ListGraphType<AnimalGroupScriptAutoScriptGraphType>))
+                .Name("autoScripts")
+                .Description("All automated scripts assigned to this group.");
         }
     }
 
@@ -186,6 +189,21 @@ namespace FarmMaster.GraphQL
             Field(p => p.TypeName)
                 .Name("TypeName")
                 .Description("The name of the parameter's type.");
+        }
+    }
+
+    public class AnimalGroupScriptAutoScriptGraphType : ObjectGraphType<AnimalGroupScriptAutoEntry>
+    {
+        public AnimalGroupScriptAutoScriptGraphType()
+        {
+            Field(s => s.AnimalGroupScriptAutoEntryId, type: typeof(IdGraphType))
+                .Name("Id")
+                .Description("The ID of this automatic script entry.");
+            Field(s => s.AnimalGroupScript, type: typeof(AnimalGroupScriptGraphType))
+                .Name("AnimalGroupScript")
+                .Description("The group script that is executed.");
+            Field("parameters", s => s.Parameters.ToString(Newtonsoft.Json.Formatting.None))
+                .Description("JSON containing all of the parameters that are passed to the script during execution.");
         }
     }
 }

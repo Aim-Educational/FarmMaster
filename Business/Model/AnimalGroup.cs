@@ -20,6 +20,7 @@ namespace Business.Model
         public string Description { get; set; }
 
         public IEnumerable<MapAnimalToAnimalGroup> Animals { get; set; }
+        public IEnumerable<AnimalGroupScriptAutoEntry> AutomatedScripts { get; set; }
 
         [Timestamp]
         public byte[] Timestamp { get; set; }

@@ -21,20 +21,28 @@ namespace FarmMaster.Services
         DateTimeOffset? GetBornEventEntry(Animal animal);
     }
 
+    public class HookAnimalCreated
+    {
+        public Animal animal { get; set; }
+    }
+
     public class ServiceAnimalManager : IServiceAnimalManager
     {
-        readonly FarmMasterContext _context;
+        readonly FarmMasterContext        _context;
         readonly IServiceLifeEventManager _lifeEvents;
-        readonly IServiceImageManager _images;
+        readonly IServiceImageManager     _images;
+        readonly IServiceHookEmitter      _hooks;
 
         public ServiceAnimalManager(
-            FarmMasterContext context, 
+            FarmMasterContext        context, 
             IServiceLifeEventManager lifeEvents,
-            IServiceImageManager images)
+            IServiceImageManager     images,
+            IServiceHookEmitter      hooks)
         {
-            this._context = context;
+            this._context    = context;
             this._lifeEvents = lifeEvents;
-            this._images = images;
+            this._images     = images;
+            this._hooks      = hooks;
         }
 
         public Animal Create(string name, string tag, Animal.Gender sex, Contact owner, Species species, Animal mum, Animal dad, Holding holding)
@@ -62,6 +70,8 @@ namespace FarmMaster.Services
             this._context.Add(characteristicList);
             this._context.Add(animal);
             this._context.SaveChanges();
+
+            this._hooks.Emit(new HookAnimalCreated { animal = animal });
 
             return animal;
         }

@@ -203,18 +203,28 @@ namespace FarmMaster.GraphQL
                     Name = "hasNotAnimalId",
                     Description = "Whether the group does not have the specific animal assigned to it.",
                     DefaultValue = null
+                },
+                new QueryArgument<IdGraphType>
+                {
+                    Name = "id",
+                    Description = "Filter by a specific animal group's ID",
+                    DefaultValue = null
                 }),
                 resolve: graphql =>
                 {
                     // Arguments
                     var hasAnimalId    = graphql.GetValueOrNull<int>("hasAnimalId");
                     var hasNotAnimalId = graphql.GetValueOrNull<int>("hasNotAnimalId");
+                    var id             = graphql.GetValueOrNull<int>("id");
 
                     var groups = context.GetRequiredService<IServiceAnimalGroupManager>();
                     return groups.Query()
                                  .Include(g => g.Animals)
+                                 .Include(g => g.AutomatedScripts)
+                                  .ThenInclude(g => g.AnimalGroupScript)
                                  .Where(g => hasAnimalId    == null || g.Animals.Any(m => m.AnimalId == hasAnimalId))
                                  .Where(g => hasNotAnimalId == null || g.Animals.All(m => m.AnimalId != hasNotAnimalId))
+                                 .Where(g => id             == null || g.AnimalGroupId == id)
                                  .OrderBy(g => g.Name);
                 }
             );
@@ -257,6 +267,7 @@ namespace FarmMaster.GraphQL
             services.AddSingleton<AnimalGroupGraphType>();
             services.AddSingleton<AnimalGroupScriptGraphType>();
             services.AddSingleton<AnimalGroupScriptParameterGraphType>();
+            services.AddSingleton<AnimalGroupScriptAutoScriptGraphType>();
             services.AddSingleton<ListGraphType<LifeEventEntryGraphType>>();
             services.AddSingleton<ListGraphType<AnimalGroupScriptParameterGraphType>>();
             services.AddSingleton<EnumerationGraphType<Animal.Gender>>();

@@ -18,6 +18,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="TagHelpers\**" />
+    <Content Remove="TagHelpers\**" />
+    <EmbeddedResource Remove="TagHelpers\**" />
+    <None Remove="TagHelpers\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove=".gitignore" />
     <None Remove="log.txt" />
     <None Remove="Scripts\characteristic_helper.ts" />
@@ -52,11 +59,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Business\Business.csproj" />
     <ProjectReference Include="..\GroupScript\GroupScript.csproj" />
-  </ItemGroup>
-
-
-  <ItemGroup>
-    <Folder Include="TagHelpers\" />
   </ItemGroup>
 
 

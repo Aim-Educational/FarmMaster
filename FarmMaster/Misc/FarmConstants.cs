@@ -32,6 +32,13 @@ namespace FarmMaster.Misc
             public const string AnonymisationRequest    = "anon_request";
             public const string ResetPasswordRequest    = "reset_password";
         }
+
+        public static class LoggingEvents
+        {
+            #region Automated scripts (1000-1100)
+            public const int AssignByAutoScript = 1000;
+            #endregion
+        }
     }
 
     // THESE WILL BE MOVED/REMOVED SOON(TM)
