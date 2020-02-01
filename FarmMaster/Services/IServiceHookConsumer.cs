@@ -44,8 +44,8 @@ namespace FarmMaster.Services
             var services  = this._httpContext.HttpContext.RequestServices;
             var consumers = this.GetAndCacheConsumerTypes<T>(services);
             foreach(var consumer in consumers.Select(c => services.GetRequiredService(c))
-                                                .Select(c => c as IServiceHookConsumer<T>)
-                                                .Where(c => c != null)
+                                             .Select(c => c as IServiceHookConsumer<T>)
+                                             .Where(c => c != null)
             )
             {
                 consumer.ConsumeHook(hookData);
