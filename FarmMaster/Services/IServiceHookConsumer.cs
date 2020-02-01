@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,28 +29,26 @@ namespace FarmMaster.Services
 
     public class ServiceHookEmitter : IServiceHookEmitter
     {
-        readonly IServiceScopeFactory _scopeFactory;
+        readonly IHttpContextAccessor _httpContext;
 
         static IDictionary<Type, IEnumerable<Type>> _consumerCache;
 
-        public ServiceHookEmitter(IServiceScopeFactory scopeFactory)
+        public ServiceHookEmitter(IHttpContextAccessor httpContext)
         {
-            this._scopeFactory = scopeFactory;
+            this._httpContext = httpContext;
             _consumerCache = new Dictionary<Type, IEnumerable<Type>>();
         }
 
         public void Emit<T>(T hookData) where T : class
-        {            
-            using(var scope = this._scopeFactory.CreateScope())
+        {
+            var services  = this._httpContext.HttpContext.RequestServices;
+            var consumers = this.GetAndCacheConsumerTypes<T>(services);
+            foreach(var consumer in consumers.Select(c => services.GetRequiredService(c))
+                                                .Select(c => c as IServiceHookConsumer<T>)
+                                                .Where(c => c != null)
+            )
             {
-                var consumers = this.GetAndCacheConsumerTypes<T>(scope.ServiceProvider);
-                foreach(var consumer in consumers.Select(c => scope.ServiceProvider.GetRequiredService(c))
-                                                 .Select(c => c as IServiceHookConsumer<T>)
-                                                 .Where(c => c != null)
-                )
-                {
-                    consumer.ConsumeHook(hookData);
-                }
+                consumer.ConsumeHook(hookData);
             }
         }
 
