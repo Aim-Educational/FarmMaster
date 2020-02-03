@@ -136,6 +136,18 @@ namespace FarmMaster.Controllers
                     value.ValidationState = ModelValidationState.Valid;
             }
 
+            foreach(var parentId in new [] { model.DadId, model.MumId }.Where(id => id != null))
+            {
+                var parent = this._animals.Query().First(a => a.AnimalId == parentId);
+                if(parent.SpeciesId != model.SpeciesId)
+                {
+                    ModelState.AddModelError(
+                        nameof(model.SpeciesId),
+                        $"Parent '[{parent.Tag}] {parent.Name}' is the wrong species."
+                    );
+                }
+            }
+
             return (model.IsCreate) ? this.Create(model, species, breeds) : this.Edit(model, species, breeds);
         }
 
