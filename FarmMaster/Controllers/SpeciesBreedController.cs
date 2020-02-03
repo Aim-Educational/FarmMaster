@@ -258,36 +258,6 @@ namespace FarmMaster.Controllers
 
             return new AjaxValueResult(result);
         }
-        
-#pragma warning disable CA1801 // Unused parameter. 'model' *has* to be there otherwise the AJAX attributes throw an exception.
-        [HttpPost]
-        [AllowAnonymous]
-        [FarmAjaxReturnsMessageAndValue(BusinessConstants.Permissions.VIEW_SPECIES_BREEDS)]
-        public IActionResult AjaxGetAllSpecies([FromBody] AjaxRequestModel model, User _)
-        {
-            return new AjaxValueResult(
-                this._speciesBreeds
-                    .For<Species>()
-                    .Query()
-                    .OrderBy(s => s.Name)
-                    .Select(s => new ComponentSelectOption { Description = s.Name, Value = $"{s.SpeciesId}" })
-            );
-        }
-
-        [HttpPost]
-        [AllowAnonymous]
-        [FarmAjaxReturnsMessageAndValue(BusinessConstants.Permissions.VIEW_SPECIES_BREEDS)]
-        public IActionResult AjaxGetAllBreeds([FromBody] AjaxRequestModel model, User _)
-        {
-            return new AjaxValueResult(
-                this._speciesBreeds
-                    .For<Breed>()
-                    .Query()
-                    .OrderBy(s => s.Name)
-                    .Select(s => new ComponentSelectOption { Description = s.Name, Value = $"{s.BreedId}" })
-            );
-        }
-#pragma warning restore CA1801
         #endregion
     }
 }
