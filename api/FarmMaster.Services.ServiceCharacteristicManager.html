@@ -85,12 +85,13 @@
     <div><a class="xref" href="FarmMaster.Services.IServiceCharacteristicManager.html">IServiceCharacteristicManager</a></div>
     <div><a class="xref" href="FarmMaster.Services.IServiceEntityManager-1.html">IServiceEntityManager</a>&lt;<a class="xref" href="Business.Model.AnimalCharacteristic.html">AnimalCharacteristic</a>&gt;</div>
     <div><a class="xref" href="FarmMaster.Services.IServiceEntityManagerFullDeletion-1.html">IServiceEntityManagerFullDeletion</a>&lt;<a class="xref" href="Business.Model.AnimalCharacteristic.html">AnimalCharacteristic</a>&gt;</div>
+    <div><a class="xref" href="FarmMaster.Services.IServiceEntityManagerFullDeletion-1.html">IServiceEntityManagerFullDeletion</a>&lt;<a class="xref" href="Business.Model.AnimalCharacteristicList.html">AnimalCharacteristicList</a>&gt;</div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="FarmMaster.Services.html">FarmMaster.Services</a></h6>
   <h6><strong>Assembly</strong>: FarmMaster.dll</h6>
   <h5 id="FarmMaster_Services_ServiceCharacteristicManager_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class ServiceCharacteristicManager : object, IServiceCharacteristicManager, IServiceEntityManager&lt;AnimalCharacteristic&gt;, IServiceEntityManagerFullDeletion&lt;AnimalCharacteristic&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">public class ServiceCharacteristicManager : object, IServiceCharacteristicManager, IServiceEntityManager&lt;AnimalCharacteristic&gt;, IServiceEntityManagerFullDeletion&lt;AnimalCharacteristic&gt;, IServiceEntityManagerFullDeletion&lt;AnimalCharacteristicList&gt;</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
@@ -202,6 +203,33 @@
     <tbody>
       <tr>
         <td><a class="xref" href="Business.Model.AnimalCharacteristic.html">AnimalCharacteristic</a></td>
+        <td><span class="parametername">entity</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FarmMaster_Services_ServiceCharacteristicManager_FullDelete_" data-uid="FarmMaster.Services.ServiceCharacteristicManager.FullDelete*"></a>
+  <h4 id="FarmMaster_Services_ServiceCharacteristicManager_FullDelete_Business_Model_AnimalCharacteristicList_" data-uid="FarmMaster.Services.ServiceCharacteristicManager.FullDelete(Business.Model.AnimalCharacteristicList)">FullDelete(AnimalCharacteristicList)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void FullDelete(AnimalCharacteristicList entity)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Business.Model.AnimalCharacteristicList.html">AnimalCharacteristicList</a></td>
         <td><span class="parametername">entity</span></td>
         <td></td>
       </tr>
@@ -364,6 +392,9 @@
   </div>
   <div>
       <a class="xref" href="FarmMaster.Services.IServiceEntityManager-1.html">IServiceEntityManager&lt;T&gt;</a>
+  </div>
+  <div>
+      <a class="xref" href="FarmMaster.Services.IServiceEntityManagerFullDeletion-1.html">IServiceEntityManagerFullDeletion&lt;T&gt;</a>
   </div>
   <div>
       <a class="xref" href="FarmMaster.Services.IServiceEntityManagerFullDeletion-1.html">IServiceEntityManagerFullDeletion&lt;T&gt;</a>

@@ -84,12 +84,13 @@
     <h5>Implements</h5>
     <div><a class="xref" href="FarmMaster.Services.IServiceImageManager.html">IServiceImageManager</a></div>
     <div><a class="xref" href="FarmMaster.Services.IServiceEntityManager-1.html">IServiceEntityManager</a>&lt;<a class="xref" href="Business.Model.Image.html">Image</a>&gt;</div>
+    <div><a class="xref" href="FarmMaster.Services.IServiceEntityManagerFullDeletion-1.html">IServiceEntityManagerFullDeletion</a>&lt;<a class="xref" href="Business.Model.Image.html">Image</a>&gt;</div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="FarmMaster.Services.html">FarmMaster.Services</a></h6>
   <h6><strong>Assembly</strong>: FarmMaster.dll</h6>
   <h5 id="FarmMaster_Services_ServiceImageManager_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class ServiceImageManager : object, IServiceImageManager, IServiceEntityManager&lt;Image&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">public class ServiceImageManager : object, IServiceImageManager, IServiceEntityManager&lt;Image&gt;, IServiceEntityManagerFullDeletion&lt;Image&gt;</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
@@ -127,6 +128,33 @@
   </table>
   <h3 id="methods">Methods
   </h3>
+  
+  
+  <a id="FarmMaster_Services_ServiceImageManager_FullDelete_" data-uid="FarmMaster.Services.ServiceImageManager.FullDelete*"></a>
+  <h4 id="FarmMaster_Services_ServiceImageManager_FullDelete_Business_Model_Image_" data-uid="FarmMaster.Services.ServiceImageManager.FullDelete(Business.Model.Image)">FullDelete(Image)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void FullDelete(Image entity)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Business.Model.Image.html">Image</a></td>
+        <td><span class="parametername">entity</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   
   
   <a id="FarmMaster_Services_ServiceImageManager_GetFileNameForImageAndSize_" data-uid="FarmMaster.Services.ServiceImageManager.GetFileNameForImageAndSize*"></a>
@@ -398,6 +426,9 @@
   </div>
   <div>
       <a class="xref" href="FarmMaster.Services.IServiceEntityManager-1.html">IServiceEntityManager&lt;T&gt;</a>
+  </div>
+  <div>
+      <a class="xref" href="FarmMaster.Services.IServiceEntityManagerFullDeletion-1.html">IServiceEntityManagerFullDeletion&lt;T&gt;</a>
   </div>
 </article>
           </div>

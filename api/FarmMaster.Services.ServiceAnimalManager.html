@@ -85,24 +85,25 @@
     <div><a class="xref" href="FarmMaster.Services.IServiceAnimalManager.html">IServiceAnimalManager</a></div>
     <div><a class="xref" href="FarmMaster.Services.IServiceEntityManager-1.html">IServiceEntityManager</a>&lt;<a class="xref" href="Business.Model.Animal.html">Animal</a>&gt;</div>
     <div><a class="xref" href="FarmMaster.Services.IServiceGdprData.html">IServiceGdprData</a></div>
+    <div><a class="xref" href="FarmMaster.Services.IServiceEntityManagerFullDeletion-1.html">IServiceEntityManagerFullDeletion</a>&lt;<a class="xref" href="Business.Model.Animal.html">Animal</a>&gt;</div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="FarmMaster.Services.html">FarmMaster.Services</a></h6>
   <h6><strong>Assembly</strong>: FarmMaster.dll</h6>
   <h5 id="FarmMaster_Services_ServiceAnimalManager_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class ServiceAnimalManager : object, IServiceAnimalManager, IServiceEntityManager&lt;Animal&gt;, IServiceGdprData</code></pre>
+    <pre><code class="lang-csharp hljs">public class ServiceAnimalManager : object, IServiceAnimalManager, IServiceEntityManager&lt;Animal&gt;, IServiceGdprData, IServiceEntityManagerFullDeletion&lt;Animal&gt;</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
   
   
   <a id="FarmMaster_Services_ServiceAnimalManager__ctor_" data-uid="FarmMaster.Services.ServiceAnimalManager.#ctor*"></a>
-  <h4 id="FarmMaster_Services_ServiceAnimalManager__ctor_Business_Model_FarmMasterContext_FarmMaster_Services_IServiceLifeEventManager_FarmMaster_Services_IServiceImageManager_FarmMaster_Services_IServiceHookEmitter_" data-uid="FarmMaster.Services.ServiceAnimalManager.#ctor(Business.Model.FarmMasterContext,FarmMaster.Services.IServiceLifeEventManager,FarmMaster.Services.IServiceImageManager,FarmMaster.Services.IServiceHookEmitter)">ServiceAnimalManager(FarmMasterContext, IServiceLifeEventManager, IServiceImageManager, IServiceHookEmitter)</h4>
+  <h4 id="FarmMaster_Services_ServiceAnimalManager__ctor_Business_Model_FarmMasterContext_FarmMaster_Services_IServiceLifeEventManager_FarmMaster_Services_IServiceImageManager_FarmMaster_Services_IServiceHookEmitter_FarmMaster_Services_IServiceAnimalGroupManager_FarmMaster_Services_IServiceCharacteristicManager_" data-uid="FarmMaster.Services.ServiceAnimalManager.#ctor(Business.Model.FarmMasterContext,FarmMaster.Services.IServiceLifeEventManager,FarmMaster.Services.IServiceImageManager,FarmMaster.Services.IServiceHookEmitter,FarmMaster.Services.IServiceAnimalGroupManager,FarmMaster.Services.IServiceCharacteristicManager)">ServiceAnimalManager(FarmMasterContext, IServiceLifeEventManager, IServiceImageManager, IServiceHookEmitter, IServiceAnimalGroupManager, IServiceCharacteristicManager)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ServiceAnimalManager(FarmMasterContext context, IServiceLifeEventManager lifeEvents, IServiceImageManager images, IServiceHookEmitter hooks)</code></pre>
+    <pre><code class="lang-csharp hljs">public ServiceAnimalManager(FarmMasterContext context, IServiceLifeEventManager lifeEvents, IServiceImageManager images, IServiceHookEmitter hooks, IServiceAnimalGroupManager groups, IServiceCharacteristicManager characteristics)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -132,6 +133,16 @@
       <tr>
         <td><a class="xref" href="FarmMaster.Services.IServiceHookEmitter.html">IServiceHookEmitter</a></td>
         <td><span class="parametername">hooks</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="FarmMaster.Services.IServiceAnimalGroupManager.html">IServiceAnimalGroupManager</a></td>
+        <td><span class="parametername">groups</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="FarmMaster.Services.IServiceCharacteristicManager.html">IServiceCharacteristicManager</a></td>
+        <td><span class="parametername">characteristics</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -329,6 +340,33 @@
     <tbody>
       <tr>
         <td><a class="xref" href="Business.Model.Animal.html">Animal</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FarmMaster_Services_ServiceAnimalManager_FullDelete_" data-uid="FarmMaster.Services.ServiceAnimalManager.FullDelete*"></a>
+  <h4 id="FarmMaster_Services_ServiceAnimalManager_FullDelete_Business_Model_Animal_" data-uid="FarmMaster.Services.ServiceAnimalManager.FullDelete(Business.Model.Animal)">FullDelete(Animal)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void FullDelete(Animal animal)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Business.Model.Animal.html">Animal</a></td>
+        <td><span class="parametername">animal</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -730,6 +768,9 @@
   </div>
   <div>
       <a class="xref" href="FarmMaster.Services.IServiceGdprData.html">IServiceGdprData</a>
+  </div>
+  <div>
+      <a class="xref" href="FarmMaster.Services.IServiceEntityManagerFullDeletion-1.html">IServiceEntityManagerFullDeletion&lt;T&gt;</a>
   </div>
 </article>
           </div>

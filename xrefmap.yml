@@ -1852,6 +1852,51 @@ references:
   isSpec: "True"
   fullName: Business.Migrations.Postgres.Up
   nameWithType: Postgres.Up
+- uid: Business.Migrations.PreventCascadeDeleteOnAnimals
+  name: PreventCascadeDeleteOnAnimals
+  href: api/Business.Migrations.PreventCascadeDeleteOnAnimals.html
+  commentId: T:Business.Migrations.PreventCascadeDeleteOnAnimals
+  fullName: Business.Migrations.PreventCascadeDeleteOnAnimals
+  nameWithType: PreventCascadeDeleteOnAnimals
+- uid: Business.Migrations.PreventCascadeDeleteOnAnimals.BuildTargetModel(ModelBuilder)
+  name: BuildTargetModel(ModelBuilder)
+  href: api/Business.Migrations.PreventCascadeDeleteOnAnimals.html#Business_Migrations_PreventCascadeDeleteOnAnimals_BuildTargetModel_ModelBuilder_
+  commentId: M:Business.Migrations.PreventCascadeDeleteOnAnimals.BuildTargetModel(ModelBuilder)
+  fullName: Business.Migrations.PreventCascadeDeleteOnAnimals.BuildTargetModel(ModelBuilder)
+  nameWithType: PreventCascadeDeleteOnAnimals.BuildTargetModel(ModelBuilder)
+- uid: Business.Migrations.PreventCascadeDeleteOnAnimals.BuildTargetModel*
+  name: BuildTargetModel
+  href: api/Business.Migrations.PreventCascadeDeleteOnAnimals.html#Business_Migrations_PreventCascadeDeleteOnAnimals_BuildTargetModel_
+  commentId: Overload:Business.Migrations.PreventCascadeDeleteOnAnimals.BuildTargetModel
+  isSpec: "True"
+  fullName: Business.Migrations.PreventCascadeDeleteOnAnimals.BuildTargetModel
+  nameWithType: PreventCascadeDeleteOnAnimals.BuildTargetModel
+- uid: Business.Migrations.PreventCascadeDeleteOnAnimals.Down(MigrationBuilder)
+  name: Down(MigrationBuilder)
+  href: api/Business.Migrations.PreventCascadeDeleteOnAnimals.html#Business_Migrations_PreventCascadeDeleteOnAnimals_Down_MigrationBuilder_
+  commentId: M:Business.Migrations.PreventCascadeDeleteOnAnimals.Down(MigrationBuilder)
+  fullName: Business.Migrations.PreventCascadeDeleteOnAnimals.Down(MigrationBuilder)
+  nameWithType: PreventCascadeDeleteOnAnimals.Down(MigrationBuilder)
+- uid: Business.Migrations.PreventCascadeDeleteOnAnimals.Down*
+  name: Down
+  href: api/Business.Migrations.PreventCascadeDeleteOnAnimals.html#Business_Migrations_PreventCascadeDeleteOnAnimals_Down_
+  commentId: Overload:Business.Migrations.PreventCascadeDeleteOnAnimals.Down
+  isSpec: "True"
+  fullName: Business.Migrations.PreventCascadeDeleteOnAnimals.Down
+  nameWithType: PreventCascadeDeleteOnAnimals.Down
+- uid: Business.Migrations.PreventCascadeDeleteOnAnimals.Up(MigrationBuilder)
+  name: Up(MigrationBuilder)
+  href: api/Business.Migrations.PreventCascadeDeleteOnAnimals.html#Business_Migrations_PreventCascadeDeleteOnAnimals_Up_MigrationBuilder_
+  commentId: M:Business.Migrations.PreventCascadeDeleteOnAnimals.Up(MigrationBuilder)
+  fullName: Business.Migrations.PreventCascadeDeleteOnAnimals.Up(MigrationBuilder)
+  nameWithType: PreventCascadeDeleteOnAnimals.Up(MigrationBuilder)
+- uid: Business.Migrations.PreventCascadeDeleteOnAnimals.Up*
+  name: Up
+  href: api/Business.Migrations.PreventCascadeDeleteOnAnimals.html#Business_Migrations_PreventCascadeDeleteOnAnimals_Up_
+  commentId: Overload:Business.Migrations.PreventCascadeDeleteOnAnimals.Up
+  isSpec: "True"
+  fullName: Business.Migrations.PreventCascadeDeleteOnAnimals.Up
+  nameWithType: PreventCascadeDeleteOnAnimals.Up
 - uid: Business.Migrations.RemoveGestrationPeriod
   name: RemoveGestrationPeriod
   href: api/Business.Migrations.RemoveGestrationPeriod.html
@@ -8046,6 +8091,19 @@ references:
   isSpec: "True"
   fullName: FarmMaster.Controllers.AjaxController.AnimalGroup_ById_Script_ExecuteSingleUse_AsNameIdImageId
   nameWithType: AjaxController.AnimalGroup_ById_Script_ExecuteSingleUse_AsNameIdImageId
+- uid: FarmMaster.Controllers.AjaxController.AnimalGroup_ById_Script_RemoveAutomated_ById(FarmMaster.Models.AjaxByIdForIdRequest,FarmMaster.Services.IServiceAnimalGroupScriptManager,FarmMaster.Services.IServiceAnimalGroupManager)
+  name: AnimalGroup_ById_Script_RemoveAutomated_ById(AjaxByIdForIdRequest, IServiceAnimalGroupScriptManager, IServiceAnimalGroupManager)
+  href: api/FarmMaster.Controllers.AjaxController.html#FarmMaster_Controllers_AjaxController_AnimalGroup_ById_Script_RemoveAutomated_ById_FarmMaster_Models_AjaxByIdForIdRequest_FarmMaster_Services_IServiceAnimalGroupScriptManager_FarmMaster_Services_IServiceAnimalGroupManager_
+  commentId: M:FarmMaster.Controllers.AjaxController.AnimalGroup_ById_Script_RemoveAutomated_ById(FarmMaster.Models.AjaxByIdForIdRequest,FarmMaster.Services.IServiceAnimalGroupScriptManager,FarmMaster.Services.IServiceAnimalGroupManager)
+  fullName: FarmMaster.Controllers.AjaxController.AnimalGroup_ById_Script_RemoveAutomated_ById(FarmMaster.Models.AjaxByIdForIdRequest, FarmMaster.Services.IServiceAnimalGroupScriptManager, FarmMaster.Services.IServiceAnimalGroupManager)
+  nameWithType: AjaxController.AnimalGroup_ById_Script_RemoveAutomated_ById(AjaxByIdForIdRequest, IServiceAnimalGroupScriptManager, IServiceAnimalGroupManager)
+- uid: FarmMaster.Controllers.AjaxController.AnimalGroup_ById_Script_RemoveAutomated_ById*
+  name: AnimalGroup_ById_Script_RemoveAutomated_ById
+  href: api/FarmMaster.Controllers.AjaxController.html#FarmMaster_Controllers_AjaxController_AnimalGroup_ById_Script_RemoveAutomated_ById_
+  commentId: Overload:FarmMaster.Controllers.AjaxController.AnimalGroup_ById_Script_RemoveAutomated_ById
+  isSpec: "True"
+  fullName: FarmMaster.Controllers.AjaxController.AnimalGroup_ById_Script_RemoveAutomated_ById
+  nameWithType: AjaxController.AnimalGroup_ById_Script_RemoveAutomated_ById
 - uid: FarmMaster.Controllers.AjaxController.AnimalGroup_Script_ByName_Delete(FarmMaster.Models.AjaxByNameRequest,FarmMaster.Services.IServiceAnimalGroupScriptManager)
   name: AnimalGroup_Script_ByName_Delete(AjaxByNameRequest, IServiceAnimalGroupScriptManager)
   href: api/FarmMaster.Controllers.AjaxController.html#FarmMaster_Controllers_AjaxController_AnimalGroup_Script_ByName_Delete_FarmMaster_Models_AjaxByNameRequest_FarmMaster_Services_IServiceAnimalGroupScriptManager_
@@ -8463,6 +8521,22 @@ references:
   isSpec: "True"
   fullName: FarmMaster.Controllers.AnimalController.CreateEdit
   nameWithType: AnimalController.CreateEdit
+- uid: FarmMaster.Controllers.AnimalController.Delete(System.Nullable{System.Int32})
+  name: Delete(Nullable<Int32>)
+  href: api/FarmMaster.Controllers.AnimalController.html#FarmMaster_Controllers_AnimalController_Delete_System_Nullable_System_Int32__
+  commentId: M:FarmMaster.Controllers.AnimalController.Delete(System.Nullable{System.Int32})
+  name.vb: Delete(Nullable(Of Int32))
+  fullName: FarmMaster.Controllers.AnimalController.Delete(System.Nullable<System.Int32>)
+  fullName.vb: FarmMaster.Controllers.AnimalController.Delete(System.Nullable(Of System.Int32))
+  nameWithType: AnimalController.Delete(Nullable<Int32>)
+  nameWithType.vb: AnimalController.Delete(Nullable(Of Int32))
+- uid: FarmMaster.Controllers.AnimalController.Delete*
+  name: Delete
+  href: api/FarmMaster.Controllers.AnimalController.html#FarmMaster_Controllers_AnimalController_Delete_
+  commentId: Overload:FarmMaster.Controllers.AnimalController.Delete
+  isSpec: "True"
+  fullName: FarmMaster.Controllers.AnimalController.Delete
+  nameWithType: AnimalController.Delete
 - uid: FarmMaster.Controllers.AnimalController.Edit(System.Nullable{System.Int32})
   name: Edit(Nullable<Int32>)
   href: api/FarmMaster.Controllers.AnimalController.html#FarmMaster_Controllers_AnimalController_Edit_System_Nullable_System_Int32__
@@ -13256,6 +13330,19 @@ references:
   isSpec: "True"
   fullName: FarmMaster.Services.IServiceAnimalGroupScriptManager.ProcessAutomatedScriptsOnAnimal
   nameWithType: IServiceAnimalGroupScriptManager.ProcessAutomatedScriptsOnAnimal
+- uid: FarmMaster.Services.IServiceAnimalGroupScriptManager.RemoveAutomatedScriptById(Business.Model.AnimalGroup,System.Int32)
+  name: RemoveAutomatedScriptById(AnimalGroup, Int32)
+  href: api/FarmMaster.Services.IServiceAnimalGroupScriptManager.html#FarmMaster_Services_IServiceAnimalGroupScriptManager_RemoveAutomatedScriptById_Business_Model_AnimalGroup_System_Int32_
+  commentId: M:FarmMaster.Services.IServiceAnimalGroupScriptManager.RemoveAutomatedScriptById(Business.Model.AnimalGroup,System.Int32)
+  fullName: FarmMaster.Services.IServiceAnimalGroupScriptManager.RemoveAutomatedScriptById(Business.Model.AnimalGroup, System.Int32)
+  nameWithType: IServiceAnimalGroupScriptManager.RemoveAutomatedScriptById(AnimalGroup, Int32)
+- uid: FarmMaster.Services.IServiceAnimalGroupScriptManager.RemoveAutomatedScriptById*
+  name: RemoveAutomatedScriptById
+  href: api/FarmMaster.Services.IServiceAnimalGroupScriptManager.html#FarmMaster_Services_IServiceAnimalGroupScriptManager_RemoveAutomatedScriptById_
+  commentId: Overload:FarmMaster.Services.IServiceAnimalGroupScriptManager.RemoveAutomatedScriptById
+  isSpec: "True"
+  fullName: FarmMaster.Services.IServiceAnimalGroupScriptManager.RemoveAutomatedScriptById
+  nameWithType: IServiceAnimalGroupScriptManager.RemoveAutomatedScriptById
 - uid: FarmMaster.Services.IServiceAnimalManager
   name: IServiceAnimalManager
   href: api/FarmMaster.Services.IServiceAnimalManager.html
@@ -14975,6 +15062,19 @@ references:
   isSpec: "True"
   fullName: FarmMaster.Services.ServiceAnimalGroupScriptManager.QueryAllIncluded
   nameWithType: ServiceAnimalGroupScriptManager.QueryAllIncluded
+- uid: FarmMaster.Services.ServiceAnimalGroupScriptManager.RemoveAutomatedScriptById(Business.Model.AnimalGroup,System.Int32)
+  name: RemoveAutomatedScriptById(AnimalGroup, Int32)
+  href: api/FarmMaster.Services.ServiceAnimalGroupScriptManager.html#FarmMaster_Services_ServiceAnimalGroupScriptManager_RemoveAutomatedScriptById_Business_Model_AnimalGroup_System_Int32_
+  commentId: M:FarmMaster.Services.ServiceAnimalGroupScriptManager.RemoveAutomatedScriptById(Business.Model.AnimalGroup,System.Int32)
+  fullName: FarmMaster.Services.ServiceAnimalGroupScriptManager.RemoveAutomatedScriptById(Business.Model.AnimalGroup, System.Int32)
+  nameWithType: ServiceAnimalGroupScriptManager.RemoveAutomatedScriptById(AnimalGroup, Int32)
+- uid: FarmMaster.Services.ServiceAnimalGroupScriptManager.RemoveAutomatedScriptById*
+  name: RemoveAutomatedScriptById
+  href: api/FarmMaster.Services.ServiceAnimalGroupScriptManager.html#FarmMaster_Services_ServiceAnimalGroupScriptManager_RemoveAutomatedScriptById_
+  commentId: Overload:FarmMaster.Services.ServiceAnimalGroupScriptManager.RemoveAutomatedScriptById
+  isSpec: "True"
+  fullName: FarmMaster.Services.ServiceAnimalGroupScriptManager.RemoveAutomatedScriptById
+  nameWithType: ServiceAnimalGroupScriptManager.RemoveAutomatedScriptById
 - uid: FarmMaster.Services.ServiceAnimalGroupScriptManager.Update(Business.Model.AnimalGroupScript)
   name: Update(AnimalGroupScript)
   href: api/FarmMaster.Services.ServiceAnimalGroupScriptManager.html#FarmMaster_Services_ServiceAnimalGroupScriptManager_Update_Business_Model_AnimalGroupScript_
@@ -14994,12 +15094,12 @@ references:
   commentId: T:FarmMaster.Services.ServiceAnimalManager
   fullName: FarmMaster.Services.ServiceAnimalManager
   nameWithType: ServiceAnimalManager
-- uid: FarmMaster.Services.ServiceAnimalManager.#ctor(Business.Model.FarmMasterContext,FarmMaster.Services.IServiceLifeEventManager,FarmMaster.Services.IServiceImageManager,FarmMaster.Services.IServiceHookEmitter)
-  name: ServiceAnimalManager(FarmMasterContext, IServiceLifeEventManager, IServiceImageManager, IServiceHookEmitter)
-  href: api/FarmMaster.Services.ServiceAnimalManager.html#FarmMaster_Services_ServiceAnimalManager__ctor_Business_Model_FarmMasterContext_FarmMaster_Services_IServiceLifeEventManager_FarmMaster_Services_IServiceImageManager_FarmMaster_Services_IServiceHookEmitter_
-  commentId: M:FarmMaster.Services.ServiceAnimalManager.#ctor(Business.Model.FarmMasterContext,FarmMaster.Services.IServiceLifeEventManager,FarmMaster.Services.IServiceImageManager,FarmMaster.Services.IServiceHookEmitter)
-  fullName: FarmMaster.Services.ServiceAnimalManager.ServiceAnimalManager(Business.Model.FarmMasterContext, FarmMaster.Services.IServiceLifeEventManager, FarmMaster.Services.IServiceImageManager, FarmMaster.Services.IServiceHookEmitter)
-  nameWithType: ServiceAnimalManager.ServiceAnimalManager(FarmMasterContext, IServiceLifeEventManager, IServiceImageManager, IServiceHookEmitter)
+- uid: FarmMaster.Services.ServiceAnimalManager.#ctor(Business.Model.FarmMasterContext,FarmMaster.Services.IServiceLifeEventManager,FarmMaster.Services.IServiceImageManager,FarmMaster.Services.IServiceHookEmitter,FarmMaster.Services.IServiceAnimalGroupManager,FarmMaster.Services.IServiceCharacteristicManager)
+  name: ServiceAnimalManager(FarmMasterContext, IServiceLifeEventManager, IServiceImageManager, IServiceHookEmitter, IServiceAnimalGroupManager, IServiceCharacteristicManager)
+  href: api/FarmMaster.Services.ServiceAnimalManager.html#FarmMaster_Services_ServiceAnimalManager__ctor_Business_Model_FarmMasterContext_FarmMaster_Services_IServiceLifeEventManager_FarmMaster_Services_IServiceImageManager_FarmMaster_Services_IServiceHookEmitter_FarmMaster_Services_IServiceAnimalGroupManager_FarmMaster_Services_IServiceCharacteristicManager_
+  commentId: M:FarmMaster.Services.ServiceAnimalManager.#ctor(Business.Model.FarmMasterContext,FarmMaster.Services.IServiceLifeEventManager,FarmMaster.Services.IServiceImageManager,FarmMaster.Services.IServiceHookEmitter,FarmMaster.Services.IServiceAnimalGroupManager,FarmMaster.Services.IServiceCharacteristicManager)
+  fullName: FarmMaster.Services.ServiceAnimalManager.ServiceAnimalManager(Business.Model.FarmMasterContext, FarmMaster.Services.IServiceLifeEventManager, FarmMaster.Services.IServiceImageManager, FarmMaster.Services.IServiceHookEmitter, FarmMaster.Services.IServiceAnimalGroupManager, FarmMaster.Services.IServiceCharacteristicManager)
+  nameWithType: ServiceAnimalManager.ServiceAnimalManager(FarmMasterContext, IServiceLifeEventManager, IServiceImageManager, IServiceHookEmitter, IServiceAnimalGroupManager, IServiceCharacteristicManager)
 - uid: FarmMaster.Services.ServiceAnimalManager.#ctor*
   name: ServiceAnimalManager
   href: api/FarmMaster.Services.ServiceAnimalManager.html#FarmMaster_Services_ServiceAnimalManager__ctor_
@@ -15072,6 +15172,19 @@ references:
   isSpec: "True"
   fullName: FarmMaster.Services.ServiceAnimalManager.Create
   nameWithType: ServiceAnimalManager.Create
+- uid: FarmMaster.Services.ServiceAnimalManager.FullDelete(Business.Model.Animal)
+  name: FullDelete(Animal)
+  href: api/FarmMaster.Services.ServiceAnimalManager.html#FarmMaster_Services_ServiceAnimalManager_FullDelete_Business_Model_Animal_
+  commentId: M:FarmMaster.Services.ServiceAnimalManager.FullDelete(Business.Model.Animal)
+  fullName: FarmMaster.Services.ServiceAnimalManager.FullDelete(Business.Model.Animal)
+  nameWithType: ServiceAnimalManager.FullDelete(Animal)
+- uid: FarmMaster.Services.ServiceAnimalManager.FullDelete*
+  name: FullDelete
+  href: api/FarmMaster.Services.ServiceAnimalManager.html#FarmMaster_Services_ServiceAnimalManager_FullDelete_
+  commentId: Overload:FarmMaster.Services.ServiceAnimalManager.FullDelete
+  isSpec: "True"
+  fullName: FarmMaster.Services.ServiceAnimalManager.FullDelete
+  nameWithType: ServiceAnimalManager.FullDelete
 - uid: FarmMaster.Services.ServiceAnimalManager.GetBornEventEntry(Business.Model.Animal)
   name: GetBornEventEntry(Animal)
   href: api/FarmMaster.Services.ServiceAnimalManager.html#FarmMaster_Services_ServiceAnimalManager_GetBornEventEntry_Business_Model_Animal_
@@ -15253,6 +15366,12 @@ references:
   commentId: M:FarmMaster.Services.ServiceCharacteristicManager.FullDelete(Business.Model.AnimalCharacteristic)
   fullName: FarmMaster.Services.ServiceCharacteristicManager.FullDelete(Business.Model.AnimalCharacteristic)
   nameWithType: ServiceCharacteristicManager.FullDelete(AnimalCharacteristic)
+- uid: FarmMaster.Services.ServiceCharacteristicManager.FullDelete(Business.Model.AnimalCharacteristicList)
+  name: FullDelete(AnimalCharacteristicList)
+  href: api/FarmMaster.Services.ServiceCharacteristicManager.html#FarmMaster_Services_ServiceCharacteristicManager_FullDelete_Business_Model_AnimalCharacteristicList_
+  commentId: M:FarmMaster.Services.ServiceCharacteristicManager.FullDelete(Business.Model.AnimalCharacteristicList)
+  fullName: FarmMaster.Services.ServiceCharacteristicManager.FullDelete(Business.Model.AnimalCharacteristicList)
+  nameWithType: ServiceCharacteristicManager.FullDelete(AnimalCharacteristicList)
 - uid: FarmMaster.Services.ServiceCharacteristicManager.FullDelete*
   name: FullDelete
   href: api/FarmMaster.Services.ServiceCharacteristicManager.html#FarmMaster_Services_ServiceCharacteristicManager_FullDelete_
@@ -15934,6 +16053,19 @@ references:
   isSpec: "True"
   fullName: FarmMaster.Services.ServiceImageManager.ServiceImageManager
   nameWithType: ServiceImageManager.ServiceImageManager
+- uid: FarmMaster.Services.ServiceImageManager.FullDelete(Business.Model.Image)
+  name: FullDelete(Image)
+  href: api/FarmMaster.Services.ServiceImageManager.html#FarmMaster_Services_ServiceImageManager_FullDelete_Business_Model_Image_
+  commentId: M:FarmMaster.Services.ServiceImageManager.FullDelete(Business.Model.Image)
+  fullName: FarmMaster.Services.ServiceImageManager.FullDelete(Business.Model.Image)
+  nameWithType: ServiceImageManager.FullDelete(Image)
+- uid: FarmMaster.Services.ServiceImageManager.FullDelete*
+  name: FullDelete
+  href: api/FarmMaster.Services.ServiceImageManager.html#FarmMaster_Services_ServiceImageManager_FullDelete_
+  commentId: Overload:FarmMaster.Services.ServiceImageManager.FullDelete
+  isSpec: "True"
+  fullName: FarmMaster.Services.ServiceImageManager.FullDelete
+  nameWithType: ServiceImageManager.FullDelete
 - uid: FarmMaster.Services.ServiceImageManager.GetFileNameForImageAndSize(Business.Model.Image,System.UInt16,System.UInt16)
   name: GetFileNameForImageAndSize(Image, UInt16, UInt16)
   href: api/FarmMaster.Services.ServiceImageManager.html#FarmMaster_Services_ServiceImageManager_GetFileNameForImageAndSize_Business_Model_Image_System_UInt16_System_UInt16_
