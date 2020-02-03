@@ -22,6 +22,7 @@ namespace FarmMaster.Services
         IQueryable<Animal> ExecuteScriptByName(string name, IDictionary<string, object> parameters = null);
         IQueryable<Animal> ExecuteSingleUseScript(string code, IDictionary<string, object> parameters = null);
         AnimalGroupScriptAutoEntry CreateAutomatedScript(AnimalGroup group, AnimalGroupScript script, IDictionary<string, object> parameters);
+        void RemoveAutomatedScriptById(AnimalGroup group, int autoScriptId);
         void ProcessAutomatedScriptsOnAnimal(Animal animal);
     }
 
@@ -173,7 +174,8 @@ namespace FarmMaster.Services
         {
             // This will ensure that the code and parameters are sound, while also letting us retroactively
             // apply the script.
-            var query = this.ExecuteScript(script.Code, parameters);
+            var query = this.ExecuteScript(script.Code, parameters)
+                            .Where(a => !group.Animals.Any(ga => ga.AnimalId == a.AnimalId));
 
             var entry = new AnimalGroupScriptAutoEntry 
             {
@@ -185,7 +187,7 @@ namespace FarmMaster.Services
             this._context.Add(entry);
             this._context.SaveChanges();
 
-            foreach(var animal in query)
+            foreach(var animal in query.ToList()) // Have to evaluate the first query eagerly before AssignAnimal calls SaveChanges
                 this._groups.AssignAnimal(group, animal);
 
             return entry;
@@ -231,6 +233,16 @@ namespace FarmMaster.Services
                     }
                 }
             }
+        }
+
+        public void RemoveAutomatedScriptById(AnimalGroup group, int autoScriptId)
+        {
+            var autoEntry = group.AutomatedScripts.FirstOrDefault(e => e.AnimalGroupScriptAutoEntryId == autoScriptId);
+            if(autoEntry == null)
+                throw new KeyNotFoundException($"Group #{group.AnimalGroupId} ({group.Name}) does not contain an automated script of ID #{autoScriptId}");
+
+            this._context.Remove(autoEntry);
+            this._context.SaveChanges();
         }
     }
 }

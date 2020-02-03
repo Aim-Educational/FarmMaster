@@ -261,6 +261,24 @@ namespace FarmMaster.Controllers
 
         [HttpPost]
         [FarmAjaxReturnsMessage(BusinessConstants.Permissions.USE_GROUP_SCRIPTS)]
+        public IActionResult AnimalGroup_ById_Script_RemoveAutomated_ById(
+            [FromBody] AjaxByIdForIdRequest model,
+            [FromServices] IServiceAnimalGroupScriptManager scripts,
+            [FromServices] IServiceAnimalGroupManager groups
+        ) 
+        {
+            var group = groups.Query()
+                              .Include(g => g.AutomatedScripts)
+                              .FirstOrDefault(g => g.AnimalGroupId == model.ById);
+            if (group == null)
+                throw new KeyNotFoundException($"No group with ID #{model.ById}.");
+
+            scripts.RemoveAutomatedScriptById(group, model.ForId);
+            return new EmptyResult();
+        }
+
+        [HttpPost]
+        [FarmAjaxReturnsMessage(BusinessConstants.Permissions.USE_GROUP_SCRIPTS)]
         public IActionResult AnimalGroup_Script_ByName_Delete(
             [FromBody] AjaxByNameRequest model,
             [FromServices] IServiceAnimalGroupScriptManager scripts

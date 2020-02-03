@@ -244,6 +244,18 @@
             </div>
         </div>
         <div id="tabGroupScriptAutomation" class="tab container hidden">
+            <table class="ui striped table">
+                <thead>
+                    <tr class="two columns">
+                        <th class="editor action"></th>
+                        <th>Script</th>
+                        <th>Parameters</th>
+                    </tr>
+                </thead>
+                <tbody id="groupScriptAutomationTableBody">
+
+                </tbody>
+            </table>
         </div>
     </section>
 
@@ -350,12 +362,13 @@
 
     <!--Automation-->
     <script type="module">
-        import { FarmAjax, FarmAjaxMessageType, GraphQL } from "/js/index.js";
+        import { FarmAjax, FarmAjaxMessageType, GraphQL, Modal } from "/js/index.js";
 
         GraphQL
             .query(`query FetchAutomatedScripts($animalGroupId: ID) {
                 animalGroups(id: $animalGroupId) {
                     autoScripts {
+                        id
                         parameters
                         animalGroupScript {
                             name
@@ -364,11 +377,40 @@
                 }
             }`)
             .then(data => {
+                const tbody = document.getElementById("groupScriptAutomationTableBody");
                 for (const script of data.animalGroups[0].autoScripts) {
-                    const p = document.createElement("p");
-                    p.innerText = `${script.animalGroupScript.name} - ${script.parameters}`;
+                    const tr       = tbody.appendChild(document.createElement("tr"));
+                    const tdDelete = tr.appendChild(document.createElement("td"));
+                    const tdScript = tr.appendChild(document.createElement("td"));
+                    const tdParams = tr.appendChild(document.createElement("td"));
 
-                    document.getElementById("tabGroupScriptAutomation").appendChild(p);
+                    tdScript.innerText = script.animalGroupScript.name;
+                    tdParams.innerText = script.parameters;
+
+                    const btnDelete = tdDelete.appendChild(document.createElement("button"));
+                    btnDelete.classList.add("ui", "tiny", "red", "button");
+                    btnDelete.innerText = "X";
+                    btnDelete.addEventListener("click", () => {
+                        Modal
+                            .askAreYouSure()
+                            .then(() => {
+                                FarmAjax.postWithMessageResponse(
+                                    "/Ajax/AnimalGroup_ById_Script_RemoveAutomated_ById",
+                                    {
+                                        byId:  @singleUseModel.GroupId,
+                                        forId: script.id
+                                    },
+                                    r => {
+                                        if (r.messageType !== FarmAjaxMessageType.Information) {
+                                            r.populateMessageBox(document.getElementById("errorGroupScript"));
+                                            return;
+                                        }
+
+                                        tbody.removeChild(tr);
+                                    }
+                                );
+                            });
+                    });
                 }
             })
             .catch(e => alert(JSON.stringify(e)));
