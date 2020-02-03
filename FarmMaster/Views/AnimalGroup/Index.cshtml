@@ -15,36 +15,30 @@
             <div class="top padded items">
                 <a class="ui primary button" asp-action="Create">Create New Animal Group</a>
             </div>
-
-            <table class="ui striped table">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Description</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var group in Model.Groups)
-                    {
-                        <tr>
-                            <td>@group.Name</td>
-                            <td>@group.Description</td>
-                            <td>
-                                <section class="ui two buttons">
-                                    <a class="ui inverted tiny secondary left button" href="/AnimalGroup/Edit/@group.AnimalGroupId">
-                                        Edit
-                                    </a>
-                                    <div class="or divider"></div>
-                                    <a class="ui inverted tiny secondary right button" href="/AnimalGroup/Delete/@group.AnimalGroupId">
-                                        Delete
-                                    </a>
-                                </section>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
+            <vc:paged-table table-id="tableIndex"
+                            headers="Name,Description"
+                            page-name="animalGroups"
+                            controller="AnimalGroup"
+                            action-delete="Delete"
+                            action-edit="Edit"/>
         </div>
     </section>
 </section>
+
+@section Scripts {
+    <script type="module">
+        import { PagedTable } from "/js/index.js";
+
+        new PagedTable(
+            "tableIndex",
+            `query Get($skip: Int, $take: Int) {
+                animalGroups(skip: $skip, take: $take) {
+                    id
+                    name
+                    description
+                }
+            }`,
+            data => data.animalGroups.map(g => { return { id: g.id, items: [g.name, g.description] }; })
+        );
+    </script>
+}

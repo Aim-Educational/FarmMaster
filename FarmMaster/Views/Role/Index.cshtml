@@ -3,7 +3,7 @@
     Layout = "_GenericEditorLayout";
     ViewData["Title"] = "Roles";
     ViewData["Breadcrumb"] = new Dictionary<string, string>
-    {
+{
         { "Home", "/Home/Index" },
         { "Roles", "/Role/Index" }
     };
@@ -18,38 +18,31 @@
                 <a class="ui primary button" asp-action="Create">Create New Role</a>
                 <a class="ui primary button" asp-action="Assign">Assign Roles to Users</a>
             </div>
-
-            <table class="ui striped table">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Description</th>
-                        <th>Hierarchy Order</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var role in Model.Roles.OrderBy(r => r.HierarchyOrder).ThenBy(r => r.Name))
-                    {
-                        <tr>
-                            <td>@role.Name</td>
-                            <td>@role.Description</td>
-                            <td>@role.HierarchyOrder</td>
-                            <td>
-                                <section class="ui two buttons">
-                                    <button class="ui inverted tiny secondary left button" onclick="window.location='/Role/Edit/@role.RoleId'">
-                                        Edit
-                                    </button>
-                                    <div class="or divider"></div>
-                                    <button class="ui inverted tiny secondary right button" onclick="window.location='/Role/Delete/@role.RoleId'">
-                                        Delete
-                                    </button>
-                                </section>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
+            <vc:paged-table table-id="tableIndex"
+                            headers="Name,Description,Hierarchy Order"
+                            page-name="roles"
+                            controller="Role"
+                            action-delete="Delete"
+                            action-edit="Edit" />
         </div>
     </section>
 </section>
+
+@section Scripts {
+    <script type="module">
+        import { PagedTable } from "/js/index.js"
+
+        new PagedTable(
+            "tableIndex",
+            `query GetRoles($skip: Int, $take: Int) {
+                    roles(skip: $skip, take: $take) {
+                        id
+                        name
+                        description
+                        order
+                    }
+                }`,
+            data => data.roles.map(r => { return { id: r.id, items: [r.name, r.description, r.order] }; })
+        );
+    </script>
+}

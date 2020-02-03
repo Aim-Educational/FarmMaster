@@ -163,16 +163,23 @@ namespace FarmMaster.GraphQL
                     {
                         Name = "target",
                         Description = "Filter by target"
-                    }
+                    },
+                    pagingArg_Skip,
+                    pagingArg_Take
                 ),
                 resolve: graphql =>
                 {
                     var target = graphql.GetValueOrNull<LifeEvent.TargetType>("target");
+                    var take   = graphql.GetValueOrNull<int>(pagingArg_Take.Name);
+                    var skip   = graphql.GetValueOrNull<int>(pagingArg_Skip.Name);
 
                     var lifeEvents = context.GetRequiredService<IServiceLifeEventManager>();
                     return lifeEvents.For<LifeEvent>()
                                      .Query()
                                      .Where(e => target == null || e.Target == target)
+                                     .OrderBy(e => e.LifeEventId) // Edge case regarding Skip & Take
+                                     .Skip(skip ?? 0)
+                                     .Take(take ?? int.MaxValue)
                                      .OrderBy(e => e.Name);
                 }
             );
@@ -230,29 +237,34 @@ namespace FarmMaster.GraphQL
             Field<ListGraphType<AnimalGroupGraphType>>(
                 "animalGroups",
                 arguments: new QueryArguments(
-                new QueryArgument<IdGraphType>
-                {
-                    Name = "hasAnimalId",
-                    Description = "Whether the group has the specific animal assigned to it.",
-                    DefaultValue = null
-                },
-                new QueryArgument<IdGraphType>
-                {
-                    Name = "hasNotAnimalId",
-                    Description = "Whether the group does not have the specific animal assigned to it.",
-                    DefaultValue = null
-                },
-                new QueryArgument<IdGraphType>
-                {
-                    Name = "id",
-                    Description = "Filter by a specific animal group's ID",
-                    DefaultValue = null
-                }),
+                    new QueryArgument<IdGraphType>
+                    {
+                        Name = "hasAnimalId",
+                        Description = "Whether the group has the specific animal assigned to it.",
+                        DefaultValue = null
+                    },
+                    new QueryArgument<IdGraphType>
+                    {
+                        Name = "hasNotAnimalId",
+                        Description = "Whether the group does not have the specific animal assigned to it.",
+                        DefaultValue = null
+                    },
+                    new QueryArgument<IdGraphType>
+                    {
+                        Name = "id",
+                        Description = "Filter by a specific animal group's ID",
+                        DefaultValue = null
+                    },
+                    pagingArg_Take,
+                    pagingArg_Skip
+                ),
                 resolve: graphql =>
                 {
                     // Arguments
-                    var hasAnimalId    = graphql.GetValueOrNull<int>("hasAnimalId");
                     var hasNotAnimalId = graphql.GetValueOrNull<int>("hasNotAnimalId");
+                    var hasAnimalId    = graphql.GetValueOrNull<int>("hasAnimalId");
+                    var take           = graphql.GetValueOrNull<int>(pagingArg_Take.Name);
+                    var skip           = graphql.GetValueOrNull<int>(pagingArg_Skip.Name);
                     var id             = graphql.GetValueOrNull<int>("id");
 
                     var groups = context.GetRequiredService<IServiceAnimalGroupManager>();
@@ -263,6 +275,9 @@ namespace FarmMaster.GraphQL
                                  .Where(g => hasAnimalId    == null || g.Animals.Any(m => m.AnimalId == hasAnimalId))
                                  .Where(g => hasNotAnimalId == null || g.Animals.All(m => m.AnimalId != hasNotAnimalId))
                                  .Where(g => id             == null || g.AnimalGroupId == id)
+                                 .OrderBy(g => g.AnimalGroupId) // Edge case regarding Skip & Take
+                                 .Skip(skip ?? 0)
+                                 .Take(take ?? int.MaxValue)
                                  .OrderBy(g => g.Name);
                 }
             );
@@ -287,6 +302,29 @@ namespace FarmMaster.GraphQL
                                   .OrderBy(s => s.Name);
                 }
             );
+            Field<ListGraphType<RoleGraphType>>(
+                "roles",
+                arguments: new QueryArguments(
+                    pagingArg_Skip,
+                    pagingArg_Take
+                ),
+                resolve: graphql =>
+                {
+                    // Services
+                    var roles = context.GetRequiredService<IServiceRoleManager>();
+
+                    // Arguments
+                    var take = graphql.GetValueOrNull<int>(pagingArg_Take.Name);
+                    var skip = graphql.GetValueOrNull<int>(pagingArg_Skip.Name);
+
+                    return roles.Query()
+                                .OrderBy(r => r.RoleId) // Edge case regarding Skip & Take
+                                .Skip(skip ?? 0)
+                                .Take(take ?? int.MaxValue)
+                                .OrderBy(r => r.HierarchyOrder)
+                                 .ThenBy(r => r.Name);
+                }
+            );
         }
     }
 
@@ -307,6 +345,7 @@ namespace FarmMaster.GraphQL
             services.AddSingleton<AnimalGroupScriptParameterGraphType>();
             services.AddSingleton<AnimalGroupScriptAutoScriptGraphType>();
             services.AddSingleton<PagingGraphType>();
+            services.AddSingleton<RoleGraphType>();
             services.AddSingleton<ListGraphType<LifeEventEntryGraphType>>();
             services.AddSingleton<ListGraphType<AnimalGroupScriptParameterGraphType>>();
             services.AddSingleton<EnumerationGraphType<Animal.Gender>>();

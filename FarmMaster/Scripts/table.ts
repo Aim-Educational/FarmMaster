@@ -43,7 +43,7 @@ export class PagedTable {
         this.pageItems.classList.add("ui", "center", "aligned", "pagination", "menu");
 
         // Param names are just short hand versions of the ones in the typings for configFunc above.
-        configFunc = configFunc ? configFunc : (id, c, ae, ad, be, bd) => {
+        this.configFunc = this.configFunc ? this.configFunc : (id, c, ae, ad, be, bd) => {
             be.href = `/${c}/${ae}/${id}`;
             bd.href = `/${c}/${ad}/${id}`;
         };

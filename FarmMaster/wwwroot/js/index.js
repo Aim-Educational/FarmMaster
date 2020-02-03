@@ -6,7 +6,6 @@ export * from "/js/cookies.js"
 export * from "/js/modal.js"
 export * from "/js/characteristic_helper.js";
 export * from "/js/graphql.js";
-export * from "/js/component_table.js";
 export * from "/js/dropdown.js";
 export * from "/js/table.js";
 

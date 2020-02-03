@@ -21,9 +21,12 @@ namespace FarmMaster.GraphQL
         {
             // Short name to keep lines short. s = services
             var s = accessor.HttpContext.RequestServices;
-            this.PageCount("breeds",   s.GetRequiredService<IServiceSpeciesBreedManager>().For<Breed>().Query().Count());
-            this.PageCount("species",  s.GetRequiredService<IServiceSpeciesBreedManager>().For<Species>().Query().Count());
-            this.PageCount("contacts", s.GetRequiredService<IServiceContactManager>().Query().Count());
+            this.PageCount("breeds",        s.GetRequiredService<IServiceSpeciesBreedManager>().For<Breed>().Query().Count());
+            this.PageCount("species",       s.GetRequiredService<IServiceSpeciesBreedManager>().For<Species>().Query().Count());
+            this.PageCount("contacts",      s.GetRequiredService<IServiceContactManager>().Query().Count());
+            this.PageCount("animalGroups",  s.GetRequiredService<IServiceAnimalGroupManager>().Query().Count());
+            this.PageCount("roles",         s.GetRequiredService<IServiceRoleManager>().Query().Count());
+            this.PageCount("lifeEvents",    s.GetRequiredService<IServiceLifeEventManager>().For<LifeEvent>().Query().Count());
         }
     }
 
@@ -103,6 +106,8 @@ namespace FarmMaster.GraphQL
                 .Description("The ID for the life event.");
             Field(e => e.Name)
                 .Description("The life event's name.");
+            Field(e => e.Description)
+                .Description("The life event's description.");
         }
     }
 
@@ -221,6 +226,25 @@ namespace FarmMaster.GraphQL
                 .Description("The group script that is executed.");
             Field("parameters", s => s.Parameters.ToString(Newtonsoft.Json.Formatting.None))
                 .Description("JSON containing all of the parameters that are passed to the script during execution.");
+        }
+    }
+
+    public class RoleGraphType : ObjectGraphType<Role>
+    {
+        public RoleGraphType()
+        {
+            Field(r => r.RoleId, type: typeof(IdGraphType))
+                .Name("Id")
+                .Description("The ID of this role.");
+            Field(r => r.Name)
+                .Name("name")
+                .Description("The name of this role.");
+            Field(r => r.Description)
+                .Name("description")
+                .Description("The role's discription.");
+            Field(r => r.HierarchyOrder)
+                .Name("order")
+                .Description("The role's order in the role hierarchy.");
         }
     }
 

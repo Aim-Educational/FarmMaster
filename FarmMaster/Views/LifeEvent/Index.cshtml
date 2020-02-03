@@ -20,46 +20,40 @@
                     Create New Life Event
                 </a>
             </div>
-
-            <table class="ui striped table">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Description</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var lifeEvent in Model.LifeEvents)
-                    {
-                        <tr>
-                            <td>@lifeEvent.Name</td>
-                            <td>@lifeEvent.Description</td>
-                            <td class="ui two buttons">
-                                <button class="ui inverted tiny secondary left button" onclick="window.location='/LifeEvent/Edit/@lifeEvent.LifeEventId'">
-                                    Edit
-                                </button>
-                                <div class="or divide hide mobile"></div>
-                                <button class="ui inverted tiny secondary right button" onclick="showDeleteModal(@lifeEvent.LifeEventId)">
-                                    Delete
-                                </button>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
+            <vc:paged-table table-id="tableIndex"
+                            headers="Name,Description"
+                            page-name="lifeEvents"
+                            controller="LifeEvent"
+                            action-delete="Delete"
+                            action-edit="Edit" />
         </div>
     </section>
 </section>
 
 @section Scripts {
     <script type="module">
-        import { Modal } from "/js/index.js";
+        import { Modal, PagedTable } from "/js/index.js";
 
         function showDeleteModal(id) {
             Modal.askAreYouSure()
                  .then(() => document.location = "/LifeEvent/Delete/" + id);
         }
         window.showDeleteModal = showDeleteModal;
+
+        new PagedTable(
+            "tableIndex",
+            `query Get($skip: Int, $take: Int) {
+                    lifeEvents(skip: $skip, take: $take) {
+                        id
+                        name
+                        description
+                    }
+                }`,
+            data => data.lifeEvents.map(e => { return { id: e.id, items: [e.name, e.description] }; }),
+            (id, c, actEdit, ___, buttonEdit, buttonDelete) => {
+                buttonDelete.onclick = () => showDeleteModal(id);
+                buttonEdit.href = `/${c}/${actEdit}/${id}`;
+            }
+        );
     </script>
 }
