@@ -21,7 +21,7 @@ namespace FarmMaster.Controllers
         {
             var model = new RoleIndexViewModel
             {
-                Roles = db.Roles.Include(r => r.Permissions)
+                Roles = db.Roles
             };
             model.ParseMessageQueryString(message);
 

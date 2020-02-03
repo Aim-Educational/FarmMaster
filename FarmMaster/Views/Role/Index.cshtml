@@ -24,17 +24,17 @@
                     <tr>
                         <th>Name</th>
                         <th>Description</th>
-                        <th>Permissions</th>
+                        <th>Hierarchy Order</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var role in Model.Roles)
+                    @foreach (var role in Model.Roles.OrderBy(r => r.HierarchyOrder).ThenBy(r => r.Name))
                     {
                         <tr>
                             <td>@role.Name</td>
                             <td>@role.Description</td>
-                            <td>@(role.Permissions?.Count() ?? 0)</td>
+                            <td>@role.HierarchyOrder</td>
                             <td>
                                 <section class="ui two buttons">
                                     <button class="ui inverted tiny secondary left button" onclick="window.location='/Role/Edit/@role.RoleId'">
