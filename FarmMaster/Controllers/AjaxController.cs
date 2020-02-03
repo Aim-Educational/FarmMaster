@@ -284,7 +284,7 @@ namespace FarmMaster.Controllers
             [FromServices] IServiceAnimalGroupScriptManager scripts
         )
         {
-            var script = scripts.Query().FirstOrDefault(s => s.Name == model.Name);
+            var script = scripts.Query().Include(s => s.AutomatedScripts).FirstOrDefault(s => s.Name == model.Name);
             if (script == null)
                 throw new KeyNotFoundException($"No script called '{model.Name}' exists.");
 

@@ -157,6 +157,9 @@ namespace FarmMaster.Services
 
         public void FullDelete(AnimalGroupScript entity)
         {
+            if(entity.AutomatedScripts.Any())
+                throw new Exception($"Cannot delete script '{entity.Name}' as it is being used as an automatic script.");
+
             this._context.Remove(entity);
             this._context.SaveChanges();
         }
