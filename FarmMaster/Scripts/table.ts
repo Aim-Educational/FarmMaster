@@ -16,7 +16,9 @@ export class PagedTable {
     constructor(
         tableNodeOrId: HTMLTableElement | string,
         public readonly query: string,
-        public readonly queryToList: (data: any) => { id: number, items: string[] }[]
+        public readonly queryToList: (data: any) => { id: number, items: string[] }[],
+        public readonly configFunc?: (id: number,           controller: string,            actionEdit: string,
+                                      actionDelete: string, buttonEdit: HTMLAnchorElement, buttonDelete: HTMLAnchorElement) => void
     ) {
         if (tableNodeOrId instanceof HTMLTableElement)
             this.tableNode = tableNodeOrId;
@@ -39,6 +41,12 @@ export class PagedTable {
         th.colSpan = 9999;
         this.pageItems = th.appendChild(document.createElement("div"));
         this.pageItems.classList.add("ui", "center", "aligned", "pagination", "menu");
+
+        // Param names are just short hand versions of the ones in the typings for configFunc above.
+        configFunc = configFunc ? configFunc : (id, c, ae, ad, be, bd) => {
+            be.href = `/${c}/${ae}/${id}`;
+            bd.href = `/${c}/${ad}/${id}`;
+        };
 
         this.query = query;
         this.refreshPageCount();
@@ -65,7 +73,7 @@ export class PagedTable {
                     };
                 }
             })
-            .catch(e => alert("Failed to fetch page: " + e));
+            .catch(e => alert("Failed to fetch page: " + JSON.stringify(e)));
     }
 
     public setPage(page: number) {
@@ -99,8 +107,14 @@ export class PagedTable {
                     buttonEdit.innerText = "Edit";
                     buttonDelete.innerText = "Delete";
 
-                    buttonEdit.href = `/${this.controller}/${this.actionEdit}/${itemRow.id}`;
-                    buttonDelete.href = `/${this.controller}/${this.actionDelete}/${itemRow.id}`;
+                    this.configFunc!(
+                        itemRow.id,
+                        this.controller,
+                        this.actionEdit,
+                        this.actionDelete,
+                        buttonEdit,
+                        buttonDelete
+                    );
                 }
             });
     }

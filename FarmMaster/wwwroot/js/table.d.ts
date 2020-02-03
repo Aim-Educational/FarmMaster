@@ -4,6 +4,7 @@ export declare class PagedTable {
         id: number;
         items: string[];
     }[];
+    readonly configFunc?: ((id: number, controller: string, actionEdit: string, actionDelete: string, buttonEdit: HTMLAnchorElement, buttonDelete: HTMLAnchorElement) => void) | undefined;
     readonly ITEMS_PER_PAGE: number;
     readonly tableNode: HTMLTableElement;
     readonly tbody: HTMLTableSectionElement;
@@ -16,7 +17,7 @@ export declare class PagedTable {
     constructor(tableNodeOrId: HTMLTableElement | string, query: string, queryToList: (data: any) => {
         id: number;
         items: string[];
-    }[]);
+    }[], configFunc?: ((id: number, controller: string, actionEdit: string, actionDelete: string, buttonEdit: HTMLAnchorElement, buttonDelete: HTMLAnchorElement) => void) | undefined);
     refreshPageCount(): void;
     setPage(page: number): void;
 }

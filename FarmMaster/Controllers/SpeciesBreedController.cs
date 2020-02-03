@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace FarmMaster.Controllers
 {
     [FarmAuthorise(PermsAND: new[]{ BusinessConstants.Permissions.VIEW_SPECIES_BREEDS })]
-    public class SpeciesBreedController : Controller, IPagingController<Species>, IPagingController<Breed>
+    public class SpeciesBreedController : Controller
     {
         readonly IServiceUserManager _users;
         readonly IServiceRoleManager _roles;
@@ -211,52 +211,6 @@ namespace FarmMaster.Controllers
             model.MessageType = ViewModelWithMessage.Type.Information;
             model.Message = "Success";
             return View(model);
-        }
-        #endregion
-
-        #region AJAX
-        [HttpPost]
-        [AllowAnonymous]
-        [FarmAjaxReturnsMessageAndValue(BusinessConstants.Permissions.VIEW_SPECIES_BREEDS)]
-        public IActionResult AjaxGetTablePageCount([FromBody] AjaxPagingControllerRequestModel model, User _)
-        {
-            var itemCount = (model.EntityType != null && model.EntityType.ToUpper() == "SPECIES")
-                            ? this._speciesBreeds.For<Species>().Query().Count()
-                            : this._speciesBreeds.For<Breed>().Query().Count();
-
-            return new AjaxValueResult(
-                new AjaxStructReturnValue<int>(PagingHelper.CalculatePageCount(itemCount, model.ItemsPerPage))
-            );
-        }
-
-        [HttpPost]
-        [AllowAnonymous]
-        [FarmAjaxReturnsMessageAndValue(BusinessConstants.Permissions.VIEW_SPECIES_BREEDS)]
-        public IActionResult AjaxRenderTablePage([FromBody] AjaxPagingControllerRenderRequestModel model, User _)
-        {
-            string result;
-
-            var type = (model.EntityType == null) ? "" : model.EntityType.ToUpper();
-            if (type == "SPECIES")
-            {
-                result = this._viewRenderer.RenderToStringAsync(
-                    "/Views/SpeciesBreed/_IndexTableSpeciesBodyPartial.cshtml",
-                    this._speciesBreeds.For<Species>().QueryAllIncluded()
-                ).Result;
-            }
-            else if (type == "BREED")
-            {
-                result = this._viewRenderer.RenderToStringAsync(
-                    "/Views/SpeciesBreed/_IndexTableBreedBodyPartial.cshtml",
-                    this._speciesBreeds.For<Breed>().QueryAllIncluded()
-                ).Result;
-            }
-            else
-            {
-                throw new NotImplementedException();
-            }
-
-            return new AjaxValueResult(result);
         }
         #endregion
     }

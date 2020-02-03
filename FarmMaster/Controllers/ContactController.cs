@@ -15,7 +15,7 @@ using Microsoft.Extensions.Options;
 namespace FarmMaster.Controllers
 {
     [FarmAuthorise(PermsOR: new[]{ BusinessConstants.Permissions.VIEW_CONTACTS })]
-    public class ContactController : Controller, IPagingController<Contact>
+    public class ContactController : Controller
     {
         readonly FarmMasterContext      _context;
         readonly IServiceSmtpClient     _mail;
@@ -175,28 +175,5 @@ namespace FarmMaster.Controllers
             return RedirectPermanent("/");
         }
         #endregion
-
-        [HttpPost]
-        [AllowAnonymous]
-        [FarmAjaxReturnsMessageAndValue(BusinessConstants.Permissions.VIEW_CONTACTS)]
-        public IActionResult AjaxGetTablePageCount([FromBody] AjaxPagingControllerRequestModel model, User _)
-        {
-            var pageCount = PagingHelper.CalculatePageCount(this._contacts.Query().Count(), model.ItemsPerPage);
-
-            return new AjaxValueResult(new AjaxStructReturnValue<int>(pageCount));
-        }
-
-        [HttpPost]
-        [AllowAnonymous]
-        [FarmAjaxReturnsMessageAndValue(BusinessConstants.Permissions.VIEW_CONTACTS)]
-        public IActionResult AjaxRenderTablePage([FromBody] AjaxPagingControllerRenderRequestModel model, User _)
-        {
-            return new AjaxValueResult(
-                this._viewRenderer.RenderToStringAsync(
-                    "/Views/Contact/_IndexTableBodyPartial.cshtml", 
-                    PagingHelper.GetPage(this._contacts.Query(), model.PageToRender, model.ItemsPerPage)
-                ).Result
-            );
-        }
     }
 }

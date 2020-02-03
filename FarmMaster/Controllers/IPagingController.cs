@@ -11,17 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FarmMaster.Controllers
 {
-    public interface IPagingController<T> where T : class
-    {
-        [HttpPost]
-        [AllowAnonymous]
-        IActionResult AjaxGetTablePageCount([FromBody] AjaxPagingControllerRequestModel model, User user);
-
-        [HttpPost]
-        [AllowAnonymous]
-        IActionResult AjaxRenderTablePage([FromBody] AjaxPagingControllerRenderRequestModel model, User user);
-    }
-
+    // TODO: Move this into Misc, since IPagingController doesn't exist anymore.
     public static class PagingHelper
     {
         public static int CalculatePageCount(int itemCount, int? itemsPerPage)
@@ -38,17 +28,5 @@ namespace FarmMaster.Controllers
             var pages = PagingHelper.CalculatePageCount(items.Count(), itemsPerPage) - 1; // PageCount always returns 1 or more, so take off 1.
             return items.Skip((pages - page) * itemsPerPage.Value).Take(itemsPerPage.Value);
         }
-    }
-
-    public class AjaxPagingControllerRequestModel : AjaxRequestModel
-    {
-        public int? ItemsPerPage { get; set; }
-        public string EntityType { get; set; }
-    }
-
-    public class AjaxPagingControllerRenderRequestModel : AjaxPagingControllerRequestModel
-    {
-        [Required]
-        public int PageToRender { get; set; }
     }
 }

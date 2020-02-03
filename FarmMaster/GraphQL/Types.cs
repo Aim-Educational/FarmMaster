@@ -21,8 +21,9 @@ namespace FarmMaster.GraphQL
         {
             // Short name to keep lines short. s = services
             var s = accessor.HttpContext.RequestServices;
-            this.PageCount("breeds",  s.GetRequiredService<IServiceSpeciesBreedManager>().For<Breed>().Query().Count());
-            this.PageCount("species", s.GetRequiredService<IServiceSpeciesBreedManager>().For<Species>().Query().Count());
+            this.PageCount("breeds",   s.GetRequiredService<IServiceSpeciesBreedManager>().For<Breed>().Query().Count());
+            this.PageCount("species",  s.GetRequiredService<IServiceSpeciesBreedManager>().For<Species>().Query().Count());
+            this.PageCount("contacts", s.GetRequiredService<IServiceContactManager>().Query().Count());
         }
     }
 
@@ -36,6 +37,9 @@ namespace FarmMaster.GraphQL
             Field(c => c.FirstNameWithAbbreviatedLastName)
                 .Name("Name")
                 .Description("The contact's abbreviated name.");
+            Field(c => c.ContactType, type: typeof(EnumerationGraphType<Contact.Type>))
+                .Name("Type")
+                .Description("The contact's type. e.g. Are they a business or an individual?");
         }
     }
 

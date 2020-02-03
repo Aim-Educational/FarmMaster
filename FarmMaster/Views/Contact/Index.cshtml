@@ -66,21 +66,12 @@
                 </a>
             </div>
 
-            <table id="tableIndex" class="ui striped table">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Type</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <partial name="_IndexTableBodyPartial" model="Model.Contacts.Take(GlobalConstants.DefaultPageItemCount)" />
-                </tbody>
-                <tfoot>
-
-                </tfoot>
-            </table>
+            <vc:paged-table table-id="tableIndex"
+                            headers="Name,Type"
+                            page-name="contacts"
+                            controller="Contact"
+                            action-delete="Delete"
+                            action-edit="Edit"/>
         </div>
 
         <section id="boxError" class="ui error message transition hidden">
@@ -90,7 +81,7 @@
 
 @section Scripts {
     <script type="module">
-        import { ComponentTable } from "/js/index.js"
+        import { PagedTable } from "/js/index.js"
 
         function showEditModal(contactId) {
             $("#modalReason")
@@ -102,7 +93,6 @@
                 })
                 .modal('show');
         }
-        window.showEditModal = showEditModal;
 
         function showDeleteModal(contactId) {
             $("#modalConfirm")
@@ -113,13 +103,21 @@
                 })
                 .modal('show');
         }
-        window.showDeleteModal = showDeleteModal;
 
-        ComponentTable.setupPagingTable(
-            document.getElementById("boxError"),
-            document.getElementById("tableIndex"),
-            "/Contact/AjaxGetTablePageCount",
-            "/Contact/AjaxRenderTablePage"
+        new PagedTable(
+            "tableIndex",
+            `query GetContacts($skip: Int, $take: Int) {
+                contacts(skip: $skip, take: $take) {
+                    id
+                    name
+                    type
+                }
+            }`,
+            data => data.contacts.map(c => { return { id: c.id, items: [c.name, c.type] }; }),
+            (id, _, __, ___, btnEdit, btnDelete) => {
+                btnEdit.addEventListener("click", () => showEditModal(id));
+                btnDelete.addEventListener("click", () => showDeleteModal(id));
+            }
         );
     </script>
 }

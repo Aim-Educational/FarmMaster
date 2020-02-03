@@ -45,10 +45,22 @@ namespace FarmMaster.GraphQL
 
             Field<ListGraphType<ContactGraphType>>(
                 "contacts",
-                resolve: _ =>
+                arguments: new QueryArguments(
+                    pagingArg_Skip,
+                    pagingArg_Take
+                ),
+                resolve: graphql =>
                 {
                     var contacts = context.GetRequiredService<IServiceContactManager>();
-                    return contacts.Query().OrderBy(c => c.FullName);
+
+                    var take = graphql.GetValueOrNull<int>(pagingArg_Take.Name);
+                    var skip = graphql.GetValueOrNull<int>(pagingArg_Skip.Name);
+
+                    return contacts.Query()
+                                   .OrderBy(c => c.ContactId) // Weird edge case.
+                                   .Skip(skip ?? 0)
+                                   .Take(take ?? int.MaxValue)
+                                   .OrderBy(c => c.FullName);
                 }
             );
             Field<ListGraphType<HoldingGraphType>>(
@@ -299,6 +311,7 @@ namespace FarmMaster.GraphQL
             services.AddSingleton<ListGraphType<AnimalGroupScriptParameterGraphType>>();
             services.AddSingleton<EnumerationGraphType<Animal.Gender>>();
             services.AddSingleton<EnumerationGraphType<LifeEvent.TargetType>>();
+            services.AddSingleton<EnumerationGraphType<Contact.Type>>();
             services.AddSingleton<IntGraphType>();
             return services;
         }
