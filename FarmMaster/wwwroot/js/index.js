@@ -1,7 +1,6 @@
 ﻿// TODO: In release builds, bundle all these files into one.
 export * from "/lib/dranges/dist/dranges.min.js"
 export * from "/lib/jaster-validate/dist/jaster-validate.min.js"
-export * from "/js/component_select.js"
 export * from "/js/farm_ajax.js"
 export * from "/js/cookies.js"
 export * from "/js/modal.js"
