@@ -8393,57 +8393,6 @@ references:
   isSpec: "True"
   fullName: FarmMaster.Controllers.AjaxController.Species_ById_Characteristic_Delete_ById
   nameWithType: AjaxController.Species_ById_Characteristic_Delete_ById
-- uid: FarmMaster.Controllers.AjaxPagingControllerRenderRequestModel
-  name: AjaxPagingControllerRenderRequestModel
-  href: api/FarmMaster.Controllers.AjaxPagingControllerRenderRequestModel.html
-  commentId: T:FarmMaster.Controllers.AjaxPagingControllerRenderRequestModel
-  fullName: FarmMaster.Controllers.AjaxPagingControllerRenderRequestModel
-  nameWithType: AjaxPagingControllerRenderRequestModel
-- uid: FarmMaster.Controllers.AjaxPagingControllerRenderRequestModel.PageToRender
-  name: PageToRender
-  href: api/FarmMaster.Controllers.AjaxPagingControllerRenderRequestModel.html#FarmMaster_Controllers_AjaxPagingControllerRenderRequestModel_PageToRender
-  commentId: P:FarmMaster.Controllers.AjaxPagingControllerRenderRequestModel.PageToRender
-  fullName: FarmMaster.Controllers.AjaxPagingControllerRenderRequestModel.PageToRender
-  nameWithType: AjaxPagingControllerRenderRequestModel.PageToRender
-- uid: FarmMaster.Controllers.AjaxPagingControllerRenderRequestModel.PageToRender*
-  name: PageToRender
-  href: api/FarmMaster.Controllers.AjaxPagingControllerRenderRequestModel.html#FarmMaster_Controllers_AjaxPagingControllerRenderRequestModel_PageToRender_
-  commentId: Overload:FarmMaster.Controllers.AjaxPagingControllerRenderRequestModel.PageToRender
-  isSpec: "True"
-  fullName: FarmMaster.Controllers.AjaxPagingControllerRenderRequestModel.PageToRender
-  nameWithType: AjaxPagingControllerRenderRequestModel.PageToRender
-- uid: FarmMaster.Controllers.AjaxPagingControllerRequestModel
-  name: AjaxPagingControllerRequestModel
-  href: api/FarmMaster.Controllers.AjaxPagingControllerRequestModel.html
-  commentId: T:FarmMaster.Controllers.AjaxPagingControllerRequestModel
-  fullName: FarmMaster.Controllers.AjaxPagingControllerRequestModel
-  nameWithType: AjaxPagingControllerRequestModel
-- uid: FarmMaster.Controllers.AjaxPagingControllerRequestModel.EntityType
-  name: EntityType
-  href: api/FarmMaster.Controllers.AjaxPagingControllerRequestModel.html#FarmMaster_Controllers_AjaxPagingControllerRequestModel_EntityType
-  commentId: P:FarmMaster.Controllers.AjaxPagingControllerRequestModel.EntityType
-  fullName: FarmMaster.Controllers.AjaxPagingControllerRequestModel.EntityType
-  nameWithType: AjaxPagingControllerRequestModel.EntityType
-- uid: FarmMaster.Controllers.AjaxPagingControllerRequestModel.EntityType*
-  name: EntityType
-  href: api/FarmMaster.Controllers.AjaxPagingControllerRequestModel.html#FarmMaster_Controllers_AjaxPagingControllerRequestModel_EntityType_
-  commentId: Overload:FarmMaster.Controllers.AjaxPagingControllerRequestModel.EntityType
-  isSpec: "True"
-  fullName: FarmMaster.Controllers.AjaxPagingControllerRequestModel.EntityType
-  nameWithType: AjaxPagingControllerRequestModel.EntityType
-- uid: FarmMaster.Controllers.AjaxPagingControllerRequestModel.ItemsPerPage
-  name: ItemsPerPage
-  href: api/FarmMaster.Controllers.AjaxPagingControllerRequestModel.html#FarmMaster_Controllers_AjaxPagingControllerRequestModel_ItemsPerPage
-  commentId: P:FarmMaster.Controllers.AjaxPagingControllerRequestModel.ItemsPerPage
-  fullName: FarmMaster.Controllers.AjaxPagingControllerRequestModel.ItemsPerPage
-  nameWithType: AjaxPagingControllerRequestModel.ItemsPerPage
-- uid: FarmMaster.Controllers.AjaxPagingControllerRequestModel.ItemsPerPage*
-  name: ItemsPerPage
-  href: api/FarmMaster.Controllers.AjaxPagingControllerRequestModel.html#FarmMaster_Controllers_AjaxPagingControllerRequestModel_ItemsPerPage_
-  commentId: Overload:FarmMaster.Controllers.AjaxPagingControllerRequestModel.ItemsPerPage
-  isSpec: "True"
-  fullName: FarmMaster.Controllers.AjaxPagingControllerRequestModel.ItemsPerPage
-  nameWithType: AjaxPagingControllerRequestModel.ItemsPerPage
 - uid: FarmMaster.Controllers.AjaxSetUserRoleData
   name: AjaxSetUserRoleData
   href: api/FarmMaster.Controllers.AjaxSetUserRoleData.html
@@ -8668,32 +8617,6 @@ references:
   isSpec: "True"
   fullName: FarmMaster.Controllers.ContactController.ContactController
   nameWithType: ContactController.ContactController
-- uid: FarmMaster.Controllers.ContactController.AjaxGetTablePageCount(FarmMaster.Controllers.AjaxPagingControllerRequestModel,Business.Model.User)
-  name: AjaxGetTablePageCount(AjaxPagingControllerRequestModel, User)
-  href: api/FarmMaster.Controllers.ContactController.html#FarmMaster_Controllers_ContactController_AjaxGetTablePageCount_FarmMaster_Controllers_AjaxPagingControllerRequestModel_Business_Model_User_
-  commentId: M:FarmMaster.Controllers.ContactController.AjaxGetTablePageCount(FarmMaster.Controllers.AjaxPagingControllerRequestModel,Business.Model.User)
-  fullName: FarmMaster.Controllers.ContactController.AjaxGetTablePageCount(FarmMaster.Controllers.AjaxPagingControllerRequestModel, Business.Model.User)
-  nameWithType: ContactController.AjaxGetTablePageCount(AjaxPagingControllerRequestModel, User)
-- uid: FarmMaster.Controllers.ContactController.AjaxGetTablePageCount*
-  name: AjaxGetTablePageCount
-  href: api/FarmMaster.Controllers.ContactController.html#FarmMaster_Controllers_ContactController_AjaxGetTablePageCount_
-  commentId: Overload:FarmMaster.Controllers.ContactController.AjaxGetTablePageCount
-  isSpec: "True"
-  fullName: FarmMaster.Controllers.ContactController.AjaxGetTablePageCount
-  nameWithType: ContactController.AjaxGetTablePageCount
-- uid: FarmMaster.Controllers.ContactController.AjaxRenderTablePage(FarmMaster.Controllers.AjaxPagingControllerRenderRequestModel,Business.Model.User)
-  name: AjaxRenderTablePage(AjaxPagingControllerRenderRequestModel, User)
-  href: api/FarmMaster.Controllers.ContactController.html#FarmMaster_Controllers_ContactController_AjaxRenderTablePage_FarmMaster_Controllers_AjaxPagingControllerRenderRequestModel_Business_Model_User_
-  commentId: M:FarmMaster.Controllers.ContactController.AjaxRenderTablePage(FarmMaster.Controllers.AjaxPagingControllerRenderRequestModel,Business.Model.User)
-  fullName: FarmMaster.Controllers.ContactController.AjaxRenderTablePage(FarmMaster.Controllers.AjaxPagingControllerRenderRequestModel, Business.Model.User)
-  nameWithType: ContactController.AjaxRenderTablePage(AjaxPagingControllerRenderRequestModel, User)
-- uid: FarmMaster.Controllers.ContactController.AjaxRenderTablePage*
-  name: AjaxRenderTablePage
-  href: api/FarmMaster.Controllers.ContactController.html#FarmMaster_Controllers_ContactController_AjaxRenderTablePage_
-  commentId: Overload:FarmMaster.Controllers.ContactController.AjaxRenderTablePage
-  isSpec: "True"
-  fullName: FarmMaster.Controllers.ContactController.AjaxRenderTablePage
-  nameWithType: ContactController.AjaxRenderTablePage
 - uid: FarmMaster.Controllers.ContactController.Create
   name: Create()
   href: api/FarmMaster.Controllers.ContactController.html#FarmMaster_Controllers_ContactController_Create
@@ -8940,49 +8863,6 @@ references:
   isSpec: "True"
   fullName: FarmMaster.Controllers.ImageController.Get
   nameWithType: ImageController.Get
-- uid: FarmMaster.Controllers.IPagingController`1
-  name: IPagingController<T>
-  href: api/FarmMaster.Controllers.IPagingController-1.html
-  commentId: T:FarmMaster.Controllers.IPagingController`1
-  name.vb: IPagingController(Of T)
-  fullName: FarmMaster.Controllers.IPagingController<T>
-  fullName.vb: FarmMaster.Controllers.IPagingController(Of T)
-  nameWithType: IPagingController<T>
-  nameWithType.vb: IPagingController(Of T)
-- uid: FarmMaster.Controllers.IPagingController`1.AjaxGetTablePageCount(FarmMaster.Controllers.AjaxPagingControllerRequestModel,Business.Model.User)
-  name: AjaxGetTablePageCount(AjaxPagingControllerRequestModel, User)
-  href: api/FarmMaster.Controllers.IPagingController-1.html#FarmMaster_Controllers_IPagingController_1_AjaxGetTablePageCount_FarmMaster_Controllers_AjaxPagingControllerRequestModel_Business_Model_User_
-  commentId: M:FarmMaster.Controllers.IPagingController`1.AjaxGetTablePageCount(FarmMaster.Controllers.AjaxPagingControllerRequestModel,Business.Model.User)
-  fullName: FarmMaster.Controllers.IPagingController<T>.AjaxGetTablePageCount(FarmMaster.Controllers.AjaxPagingControllerRequestModel, Business.Model.User)
-  fullName.vb: FarmMaster.Controllers.IPagingController(Of T).AjaxGetTablePageCount(FarmMaster.Controllers.AjaxPagingControllerRequestModel, Business.Model.User)
-  nameWithType: IPagingController<T>.AjaxGetTablePageCount(AjaxPagingControllerRequestModel, User)
-  nameWithType.vb: IPagingController(Of T).AjaxGetTablePageCount(AjaxPagingControllerRequestModel, User)
-- uid: FarmMaster.Controllers.IPagingController`1.AjaxGetTablePageCount*
-  name: AjaxGetTablePageCount
-  href: api/FarmMaster.Controllers.IPagingController-1.html#FarmMaster_Controllers_IPagingController_1_AjaxGetTablePageCount_
-  commentId: Overload:FarmMaster.Controllers.IPagingController`1.AjaxGetTablePageCount
-  isSpec: "True"
-  fullName: FarmMaster.Controllers.IPagingController<T>.AjaxGetTablePageCount
-  fullName.vb: FarmMaster.Controllers.IPagingController(Of T).AjaxGetTablePageCount
-  nameWithType: IPagingController<T>.AjaxGetTablePageCount
-  nameWithType.vb: IPagingController(Of T).AjaxGetTablePageCount
-- uid: FarmMaster.Controllers.IPagingController`1.AjaxRenderTablePage(FarmMaster.Controllers.AjaxPagingControllerRenderRequestModel,Business.Model.User)
-  name: AjaxRenderTablePage(AjaxPagingControllerRenderRequestModel, User)
-  href: api/FarmMaster.Controllers.IPagingController-1.html#FarmMaster_Controllers_IPagingController_1_AjaxRenderTablePage_FarmMaster_Controllers_AjaxPagingControllerRenderRequestModel_Business_Model_User_
-  commentId: M:FarmMaster.Controllers.IPagingController`1.AjaxRenderTablePage(FarmMaster.Controllers.AjaxPagingControllerRenderRequestModel,Business.Model.User)
-  fullName: FarmMaster.Controllers.IPagingController<T>.AjaxRenderTablePage(FarmMaster.Controllers.AjaxPagingControllerRenderRequestModel, Business.Model.User)
-  fullName.vb: FarmMaster.Controllers.IPagingController(Of T).AjaxRenderTablePage(FarmMaster.Controllers.AjaxPagingControllerRenderRequestModel, Business.Model.User)
-  nameWithType: IPagingController<T>.AjaxRenderTablePage(AjaxPagingControllerRenderRequestModel, User)
-  nameWithType.vb: IPagingController(Of T).AjaxRenderTablePage(AjaxPagingControllerRenderRequestModel, User)
-- uid: FarmMaster.Controllers.IPagingController`1.AjaxRenderTablePage*
-  name: AjaxRenderTablePage
-  href: api/FarmMaster.Controllers.IPagingController-1.html#FarmMaster_Controllers_IPagingController_1_AjaxRenderTablePage_
-  commentId: Overload:FarmMaster.Controllers.IPagingController`1.AjaxRenderTablePage
-  isSpec: "True"
-  fullName: FarmMaster.Controllers.IPagingController<T>.AjaxRenderTablePage
-  fullName.vb: FarmMaster.Controllers.IPagingController(Of T).AjaxRenderTablePage
-  nameWithType: IPagingController<T>.AjaxRenderTablePage
-  nameWithType.vb: IPagingController(Of T).AjaxRenderTablePage
 - uid: FarmMaster.Controllers.LifeEventController
   name: LifeEventController
   href: api/FarmMaster.Controllers.LifeEventController.html
@@ -9270,32 +9150,6 @@ references:
   isSpec: "True"
   fullName: FarmMaster.Controllers.SpeciesBreedController.SpeciesBreedController
   nameWithType: SpeciesBreedController.SpeciesBreedController
-- uid: FarmMaster.Controllers.SpeciesBreedController.AjaxGetTablePageCount(FarmMaster.Controllers.AjaxPagingControllerRequestModel,Business.Model.User)
-  name: AjaxGetTablePageCount(AjaxPagingControllerRequestModel, User)
-  href: api/FarmMaster.Controllers.SpeciesBreedController.html#FarmMaster_Controllers_SpeciesBreedController_AjaxGetTablePageCount_FarmMaster_Controllers_AjaxPagingControllerRequestModel_Business_Model_User_
-  commentId: M:FarmMaster.Controllers.SpeciesBreedController.AjaxGetTablePageCount(FarmMaster.Controllers.AjaxPagingControllerRequestModel,Business.Model.User)
-  fullName: FarmMaster.Controllers.SpeciesBreedController.AjaxGetTablePageCount(FarmMaster.Controllers.AjaxPagingControllerRequestModel, Business.Model.User)
-  nameWithType: SpeciesBreedController.AjaxGetTablePageCount(AjaxPagingControllerRequestModel, User)
-- uid: FarmMaster.Controllers.SpeciesBreedController.AjaxGetTablePageCount*
-  name: AjaxGetTablePageCount
-  href: api/FarmMaster.Controllers.SpeciesBreedController.html#FarmMaster_Controllers_SpeciesBreedController_AjaxGetTablePageCount_
-  commentId: Overload:FarmMaster.Controllers.SpeciesBreedController.AjaxGetTablePageCount
-  isSpec: "True"
-  fullName: FarmMaster.Controllers.SpeciesBreedController.AjaxGetTablePageCount
-  nameWithType: SpeciesBreedController.AjaxGetTablePageCount
-- uid: FarmMaster.Controllers.SpeciesBreedController.AjaxRenderTablePage(FarmMaster.Controllers.AjaxPagingControllerRenderRequestModel,Business.Model.User)
-  name: AjaxRenderTablePage(AjaxPagingControllerRenderRequestModel, User)
-  href: api/FarmMaster.Controllers.SpeciesBreedController.html#FarmMaster_Controllers_SpeciesBreedController_AjaxRenderTablePage_FarmMaster_Controllers_AjaxPagingControllerRenderRequestModel_Business_Model_User_
-  commentId: M:FarmMaster.Controllers.SpeciesBreedController.AjaxRenderTablePage(FarmMaster.Controllers.AjaxPagingControllerRenderRequestModel,Business.Model.User)
-  fullName: FarmMaster.Controllers.SpeciesBreedController.AjaxRenderTablePage(FarmMaster.Controllers.AjaxPagingControllerRenderRequestModel, Business.Model.User)
-  nameWithType: SpeciesBreedController.AjaxRenderTablePage(AjaxPagingControllerRenderRequestModel, User)
-- uid: FarmMaster.Controllers.SpeciesBreedController.AjaxRenderTablePage*
-  name: AjaxRenderTablePage
-  href: api/FarmMaster.Controllers.SpeciesBreedController.html#FarmMaster_Controllers_SpeciesBreedController_AjaxRenderTablePage_
-  commentId: Overload:FarmMaster.Controllers.SpeciesBreedController.AjaxRenderTablePage
-  isSpec: "True"
-  fullName: FarmMaster.Controllers.SpeciesBreedController.AjaxRenderTablePage
-  nameWithType: SpeciesBreedController.AjaxRenderTablePage
 - uid: FarmMaster.Controllers.SpeciesBreedController.CreateBreed
   name: CreateBreed()
   href: api/FarmMaster.Controllers.SpeciesBreedController.html#FarmMaster_Controllers_SpeciesBreedController_CreateBreed
@@ -10045,6 +9899,66 @@ references:
   isSpec: "True"
   fullName: FarmMaster.GraphQL.LifeEventGraphType.LifeEventGraphType
   nameWithType: LifeEventGraphType.LifeEventGraphType
+- uid: FarmMaster.GraphQL.ObjectGraphTypeExtentions
+  name: ObjectGraphTypeExtentions
+  href: api/FarmMaster.GraphQL.ObjectGraphTypeExtentions.html
+  commentId: T:FarmMaster.GraphQL.ObjectGraphTypeExtentions
+  fullName: FarmMaster.GraphQL.ObjectGraphTypeExtentions
+  nameWithType: ObjectGraphTypeExtentions
+- uid: FarmMaster.GraphQL.ObjectGraphTypeExtentions.PageCount*
+  name: PageCount
+  href: api/FarmMaster.GraphQL.ObjectGraphTypeExtentions.html#FarmMaster_GraphQL_ObjectGraphTypeExtentions_PageCount_
+  commentId: Overload:FarmMaster.GraphQL.ObjectGraphTypeExtentions.PageCount
+  isSpec: "True"
+  fullName: FarmMaster.GraphQL.ObjectGraphTypeExtentions.PageCount
+  nameWithType: ObjectGraphTypeExtentions.PageCount
+- uid: FarmMaster.GraphQL.ObjectGraphTypeExtentions.PageCount``1(ComplexGraphType{``0},System.String,System.Int32)
+  name: PageCount<T>(ComplexGraphType<T>, String, Int32)
+  href: api/FarmMaster.GraphQL.ObjectGraphTypeExtentions.html#FarmMaster_GraphQL_ObjectGraphTypeExtentions_PageCount__1_ComplexGraphType___0__System_String_System_Int32_
+  commentId: M:FarmMaster.GraphQL.ObjectGraphTypeExtentions.PageCount``1(ComplexGraphType{``0},System.String,System.Int32)
+  name.vb: PageCount(Of T)(ComplexGraphType(Of T), String, Int32)
+  fullName: FarmMaster.GraphQL.ObjectGraphTypeExtentions.PageCount<T>(ComplexGraphType<T>, System.String, System.Int32)
+  fullName.vb: FarmMaster.GraphQL.ObjectGraphTypeExtentions.PageCount(Of T)(ComplexGraphType(Of T), System.String, System.Int32)
+  nameWithType: ObjectGraphTypeExtentions.PageCount<T>(ComplexGraphType<T>, String, Int32)
+  nameWithType.vb: ObjectGraphTypeExtentions.PageCount(Of T)(ComplexGraphType(Of T), String, Int32)
+- uid: FarmMaster.GraphQL.PagingGraphType
+  name: PagingGraphType
+  href: api/FarmMaster.GraphQL.PagingGraphType.html
+  commentId: T:FarmMaster.GraphQL.PagingGraphType
+  fullName: FarmMaster.GraphQL.PagingGraphType
+  nameWithType: PagingGraphType
+- uid: FarmMaster.GraphQL.PagingGraphType.#ctor(IHttpContextAccessor)
+  name: PagingGraphType(IHttpContextAccessor)
+  href: api/FarmMaster.GraphQL.PagingGraphType.html#FarmMaster_GraphQL_PagingGraphType__ctor_IHttpContextAccessor_
+  commentId: M:FarmMaster.GraphQL.PagingGraphType.#ctor(IHttpContextAccessor)
+  fullName: FarmMaster.GraphQL.PagingGraphType.PagingGraphType(IHttpContextAccessor)
+  nameWithType: PagingGraphType.PagingGraphType(IHttpContextAccessor)
+- uid: FarmMaster.GraphQL.PagingGraphType.#ctor*
+  name: PagingGraphType
+  href: api/FarmMaster.GraphQL.PagingGraphType.html#FarmMaster_GraphQL_PagingGraphType__ctor_
+  commentId: Overload:FarmMaster.GraphQL.PagingGraphType.#ctor
+  isSpec: "True"
+  fullName: FarmMaster.GraphQL.PagingGraphType.PagingGraphType
+  nameWithType: PagingGraphType.PagingGraphType
+- uid: FarmMaster.GraphQL.RoleGraphType
+  name: RoleGraphType
+  href: api/FarmMaster.GraphQL.RoleGraphType.html
+  commentId: T:FarmMaster.GraphQL.RoleGraphType
+  fullName: FarmMaster.GraphQL.RoleGraphType
+  nameWithType: RoleGraphType
+- uid: FarmMaster.GraphQL.RoleGraphType.#ctor
+  name: RoleGraphType()
+  href: api/FarmMaster.GraphQL.RoleGraphType.html#FarmMaster_GraphQL_RoleGraphType__ctor
+  commentId: M:FarmMaster.GraphQL.RoleGraphType.#ctor
+  fullName: FarmMaster.GraphQL.RoleGraphType.RoleGraphType()
+  nameWithType: RoleGraphType.RoleGraphType()
+- uid: FarmMaster.GraphQL.RoleGraphType.#ctor*
+  name: RoleGraphType
+  href: api/FarmMaster.GraphQL.RoleGraphType.html#FarmMaster_GraphQL_RoleGraphType__ctor_
+  commentId: Overload:FarmMaster.GraphQL.RoleGraphType.#ctor
+  isSpec: "True"
+  fullName: FarmMaster.GraphQL.RoleGraphType.RoleGraphType
+  nameWithType: RoleGraphType.RoleGraphType
 - uid: FarmMaster.GraphQL.SpeciesGraphType
   name: SpeciesGraphType
   href: api/FarmMaster.GraphQL.SpeciesGraphType.html
@@ -10277,6 +10191,18 @@ references:
   commentId: F:FarmMaster.Misc.FarmConstants.LoggingEvents.AssignByAutoScript
   fullName: FarmMaster.Misc.FarmConstants.LoggingEvents.AssignByAutoScript
   nameWithType: FarmConstants.LoggingEvents.AssignByAutoScript
+- uid: FarmMaster.Misc.FarmConstants.Paging
+  name: FarmConstants.Paging
+  href: api/FarmMaster.Misc.FarmConstants.Paging.html
+  commentId: T:FarmMaster.Misc.FarmConstants.Paging
+  fullName: FarmMaster.Misc.FarmConstants.Paging
+  nameWithType: FarmConstants.Paging
+- uid: FarmMaster.Misc.FarmConstants.Paging.ItemsPerPage
+  name: ItemsPerPage
+  href: api/FarmMaster.Misc.FarmConstants.Paging.html#FarmMaster_Misc_FarmConstants_Paging_ItemsPerPage
+  commentId: F:FarmMaster.Misc.FarmConstants.Paging.ItemsPerPage
+  fullName: FarmMaster.Misc.FarmConstants.Paging.ItemsPerPage
+  nameWithType: FarmConstants.Paging.ItemsPerPage
 - uid: FarmMaster.Misc.FarmConstants.Regexes
   name: FarmConstants.Regexes
   href: api/FarmMaster.Misc.FarmConstants.Regexes.html
@@ -17472,6 +17398,109 @@ references:
   isSpec: "True"
   fullName: FarmMaster.ViewComponents.DropdownViewComponent.Model.Label
   nameWithType: DropdownViewComponent.Model.Label
+- uid: FarmMaster.ViewComponents.PagedTableViewComponent
+  name: PagedTableViewComponent
+  href: api/FarmMaster.ViewComponents.PagedTableViewComponent.html
+  commentId: T:FarmMaster.ViewComponents.PagedTableViewComponent
+  fullName: FarmMaster.ViewComponents.PagedTableViewComponent
+  nameWithType: PagedTableViewComponent
+- uid: FarmMaster.ViewComponents.PagedTableViewComponent.Invoke(System.String,System.String,System.String,System.String,System.String,System.String)
+  name: Invoke(String, String, String, String, String, String)
+  href: api/FarmMaster.ViewComponents.PagedTableViewComponent.html#FarmMaster_ViewComponents_PagedTableViewComponent_Invoke_System_String_System_String_System_String_System_String_System_String_System_String_
+  commentId: M:FarmMaster.ViewComponents.PagedTableViewComponent.Invoke(System.String,System.String,System.String,System.String,System.String,System.String)
+  fullName: FarmMaster.ViewComponents.PagedTableViewComponent.Invoke(System.String, System.String, System.String, System.String, System.String, System.String)
+  nameWithType: PagedTableViewComponent.Invoke(String, String, String, String, String, String)
+- uid: FarmMaster.ViewComponents.PagedTableViewComponent.Invoke*
+  name: Invoke
+  href: api/FarmMaster.ViewComponents.PagedTableViewComponent.html#FarmMaster_ViewComponents_PagedTableViewComponent_Invoke_
+  commentId: Overload:FarmMaster.ViewComponents.PagedTableViewComponent.Invoke
+  isSpec: "True"
+  fullName: FarmMaster.ViewComponents.PagedTableViewComponent.Invoke
+  nameWithType: PagedTableViewComponent.Invoke
+- uid: FarmMaster.ViewComponents.PagedTableViewComponent.Model
+  name: PagedTableViewComponent.Model
+  href: api/FarmMaster.ViewComponents.PagedTableViewComponent.Model.html
+  commentId: T:FarmMaster.ViewComponents.PagedTableViewComponent.Model
+  fullName: FarmMaster.ViewComponents.PagedTableViewComponent.Model
+  nameWithType: PagedTableViewComponent.Model
+- uid: FarmMaster.ViewComponents.PagedTableViewComponent.Model.ActionDelete
+  name: ActionDelete
+  href: api/FarmMaster.ViewComponents.PagedTableViewComponent.Model.html#FarmMaster_ViewComponents_PagedTableViewComponent_Model_ActionDelete
+  commentId: P:FarmMaster.ViewComponents.PagedTableViewComponent.Model.ActionDelete
+  fullName: FarmMaster.ViewComponents.PagedTableViewComponent.Model.ActionDelete
+  nameWithType: PagedTableViewComponent.Model.ActionDelete
+- uid: FarmMaster.ViewComponents.PagedTableViewComponent.Model.ActionDelete*
+  name: ActionDelete
+  href: api/FarmMaster.ViewComponents.PagedTableViewComponent.Model.html#FarmMaster_ViewComponents_PagedTableViewComponent_Model_ActionDelete_
+  commentId: Overload:FarmMaster.ViewComponents.PagedTableViewComponent.Model.ActionDelete
+  isSpec: "True"
+  fullName: FarmMaster.ViewComponents.PagedTableViewComponent.Model.ActionDelete
+  nameWithType: PagedTableViewComponent.Model.ActionDelete
+- uid: FarmMaster.ViewComponents.PagedTableViewComponent.Model.ActionEdit
+  name: ActionEdit
+  href: api/FarmMaster.ViewComponents.PagedTableViewComponent.Model.html#FarmMaster_ViewComponents_PagedTableViewComponent_Model_ActionEdit
+  commentId: P:FarmMaster.ViewComponents.PagedTableViewComponent.Model.ActionEdit
+  fullName: FarmMaster.ViewComponents.PagedTableViewComponent.Model.ActionEdit
+  nameWithType: PagedTableViewComponent.Model.ActionEdit
+- uid: FarmMaster.ViewComponents.PagedTableViewComponent.Model.ActionEdit*
+  name: ActionEdit
+  href: api/FarmMaster.ViewComponents.PagedTableViewComponent.Model.html#FarmMaster_ViewComponents_PagedTableViewComponent_Model_ActionEdit_
+  commentId: Overload:FarmMaster.ViewComponents.PagedTableViewComponent.Model.ActionEdit
+  isSpec: "True"
+  fullName: FarmMaster.ViewComponents.PagedTableViewComponent.Model.ActionEdit
+  nameWithType: PagedTableViewComponent.Model.ActionEdit
+- uid: FarmMaster.ViewComponents.PagedTableViewComponent.Model.Controller
+  name: Controller
+  href: api/FarmMaster.ViewComponents.PagedTableViewComponent.Model.html#FarmMaster_ViewComponents_PagedTableViewComponent_Model_Controller
+  commentId: P:FarmMaster.ViewComponents.PagedTableViewComponent.Model.Controller
+  fullName: FarmMaster.ViewComponents.PagedTableViewComponent.Model.Controller
+  nameWithType: PagedTableViewComponent.Model.Controller
+- uid: FarmMaster.ViewComponents.PagedTableViewComponent.Model.Controller*
+  name: Controller
+  href: api/FarmMaster.ViewComponents.PagedTableViewComponent.Model.html#FarmMaster_ViewComponents_PagedTableViewComponent_Model_Controller_
+  commentId: Overload:FarmMaster.ViewComponents.PagedTableViewComponent.Model.Controller
+  isSpec: "True"
+  fullName: FarmMaster.ViewComponents.PagedTableViewComponent.Model.Controller
+  nameWithType: PagedTableViewComponent.Model.Controller
+- uid: FarmMaster.ViewComponents.PagedTableViewComponent.Model.Headers
+  name: Headers
+  href: api/FarmMaster.ViewComponents.PagedTableViewComponent.Model.html#FarmMaster_ViewComponents_PagedTableViewComponent_Model_Headers
+  commentId: P:FarmMaster.ViewComponents.PagedTableViewComponent.Model.Headers
+  fullName: FarmMaster.ViewComponents.PagedTableViewComponent.Model.Headers
+  nameWithType: PagedTableViewComponent.Model.Headers
+- uid: FarmMaster.ViewComponents.PagedTableViewComponent.Model.Headers*
+  name: Headers
+  href: api/FarmMaster.ViewComponents.PagedTableViewComponent.Model.html#FarmMaster_ViewComponents_PagedTableViewComponent_Model_Headers_
+  commentId: Overload:FarmMaster.ViewComponents.PagedTableViewComponent.Model.Headers
+  isSpec: "True"
+  fullName: FarmMaster.ViewComponents.PagedTableViewComponent.Model.Headers
+  nameWithType: PagedTableViewComponent.Model.Headers
+- uid: FarmMaster.ViewComponents.PagedTableViewComponent.Model.PageCountName
+  name: PageCountName
+  href: api/FarmMaster.ViewComponents.PagedTableViewComponent.Model.html#FarmMaster_ViewComponents_PagedTableViewComponent_Model_PageCountName
+  commentId: P:FarmMaster.ViewComponents.PagedTableViewComponent.Model.PageCountName
+  fullName: FarmMaster.ViewComponents.PagedTableViewComponent.Model.PageCountName
+  nameWithType: PagedTableViewComponent.Model.PageCountName
+- uid: FarmMaster.ViewComponents.PagedTableViewComponent.Model.PageCountName*
+  name: PageCountName
+  href: api/FarmMaster.ViewComponents.PagedTableViewComponent.Model.html#FarmMaster_ViewComponents_PagedTableViewComponent_Model_PageCountName_
+  commentId: Overload:FarmMaster.ViewComponents.PagedTableViewComponent.Model.PageCountName
+  isSpec: "True"
+  fullName: FarmMaster.ViewComponents.PagedTableViewComponent.Model.PageCountName
+  nameWithType: PagedTableViewComponent.Model.PageCountName
+- uid: FarmMaster.ViewComponents.PagedTableViewComponent.Model.TableId
+  name: TableId
+  href: api/FarmMaster.ViewComponents.PagedTableViewComponent.Model.html#FarmMaster_ViewComponents_PagedTableViewComponent_Model_TableId
+  commentId: P:FarmMaster.ViewComponents.PagedTableViewComponent.Model.TableId
+  fullName: FarmMaster.ViewComponents.PagedTableViewComponent.Model.TableId
+  nameWithType: PagedTableViewComponent.Model.TableId
+- uid: FarmMaster.ViewComponents.PagedTableViewComponent.Model.TableId*
+  name: TableId
+  href: api/FarmMaster.ViewComponents.PagedTableViewComponent.Model.html#FarmMaster_ViewComponents_PagedTableViewComponent_Model_TableId_
+  commentId: Overload:FarmMaster.ViewComponents.PagedTableViewComponent.Model.TableId
+  isSpec: "True"
+  fullName: FarmMaster.ViewComponents.PagedTableViewComponent.Model.TableId
+  nameWithType: PagedTableViewComponent.Model.TableId
 - uid: GroupScript
   name: GroupScript
   href: api/GroupScript.html
