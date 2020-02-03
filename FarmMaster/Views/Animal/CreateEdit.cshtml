@@ -195,6 +195,15 @@
             </table>
         </div>
     </section>
+    <section>
+        <h4>Other actions</h4>
+        <div class="content">
+            <div class="ui warning message">
+                <h5>These actions are permanent.</h5>
+            </div>
+            <button id="buttonDeleteAnimal" class="ui red button">Delete animal</button>
+        </div>
+    </section>
 </section>
 
 @section Scripts {
@@ -589,6 +598,17 @@
 
         input.addEventListener("change", function () {
             image.src = URL.createObjectURL(input.files[0]);
+        });
+    </script>
+
+    <!--Delete button-->
+    <script type="module">
+        import { Modal } from "/js/index.js";
+
+        document.getElementById("buttonDeleteAnimal").addEventListener("click", () => {
+            Modal
+                .askAreYouSure()
+                .then(() => document.location = "/Animal/Delete/" + @Model.AnimalId);
         });
     </script>
 }

@@ -15,7 +15,8 @@ using SL = SixLabors.ImageSharp;
 
 namespace FarmMaster.Services
 {
-    public interface IServiceImageManager : IServiceEntityManager<Image>
+    public interface IServiceImageManager : IServiceEntityManager<Image>,
+                                            IServiceEntityManagerFullDeletion<Image>
     {
         Task<Image> UploadFromForm(IFormFile file);
 
@@ -135,6 +136,13 @@ namespace FarmMaster.Services
         public void Update(Image entity)
         {
             this._context.Update(entity);
+            this._context.SaveChanges();
+        }
+
+        public void FullDelete(Image entity)
+        {
+            // ImageData will cascade delete, so we don't have to drag the data into memory just so EF can delete it.
+            this._context.Remove(entity);
             this._context.SaveChanges();
         }
     }

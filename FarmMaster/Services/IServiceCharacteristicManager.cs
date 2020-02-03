@@ -6,7 +6,9 @@ using Business.Model;
 
 namespace FarmMaster.Services
 {
-    public interface IServiceCharacteristicManager : IServiceEntityManager<AnimalCharacteristic>, IServiceEntityManagerFullDeletion<AnimalCharacteristic>
+    public interface IServiceCharacteristicManager : IServiceEntityManager<AnimalCharacteristic>, 
+                                                     IServiceEntityManagerFullDeletion<AnimalCharacteristic>,
+                                                     IServiceEntityManagerFullDeletion<AnimalCharacteristicList>
     {
         AnimalCharacteristic CreateFromHtmlString(AnimalCharacteristicList list, string name, DynamicField.Type type, string htmlString);
         void FullDeleteById(AnimalCharacteristicList list, int id);
@@ -44,6 +46,18 @@ namespace FarmMaster.Services
 
         public void FullDelete(AnimalCharacteristic entity)
         {
+            this._context.Remove(entity);
+            this._context.SaveChanges();
+        }
+
+        public void FullDelete(AnimalCharacteristicList entity)
+        {
+            if(entity == null)
+                return;
+
+            foreach(var characteristic in entity.Characteristics.ToList())
+                this.FullDelete(characteristic);
+
             this._context.Remove(entity);
             this._context.SaveChanges();
         }

@@ -71,13 +71,35 @@ namespace FarmMaster.Controllers
                 MumId       = animal.MumId,
                 IsCreate    = false,
                 Name        = animal.Name,
-                OwnerId     = animal.OwnerId,
+                OwnerId     = animal.OwnerId ?? -1,
                 Sex         = animal.Sex,
                 SpeciesId   = animal.SpeciesId,
                 Tag         = animal.Tag,
                 ImageId     = animal.ImageId,
                 HoldingId   = animal.HoldingId
             });
+        }
+
+        [FarmAuthorise(PermsAND: new[] { BusinessConstants.Permissions.DELETE_ANIMALS })]
+        public IActionResult Delete(int? id)
+        {
+            if (id == null)
+                return RedirectToAction("Index", new { message = ViewModelWithMessage.CreateErrorQueryString("No ID was given.") });
+
+            var animal = this._animals.Query().FirstOrDefault(a => a.AnimalId == id);
+            if (animal == null)
+                return RedirectToAction("Index", new { message = ViewModelWithMessage.CreateErrorQueryString($"Animal with ID #{id} does not exist") });
+
+            try
+            { 
+                this._animals.FullDelete(animal);
+            }
+            catch(InvalidOperationException ex)
+            {
+                return RedirectToAction("Index", new { message = ViewModelWithMessage.CreateErrorQueryString(ex.Message) });
+            }
+
+            return RedirectToAction("Index", new { message = ViewModelWithMessage.CreateInfoQueryString("Succesfully deleted animal.") });
         }
         #endregion
 

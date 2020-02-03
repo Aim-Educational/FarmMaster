@@ -30,16 +30,13 @@ namespace Business.Model
         [StringLength(20)]
         public string Tag { get; set; }
 
-        [Required]
-        public int OwnerId { get; set; }
+        public int? OwnerId { get; set; }
         public Contact Owner { get; set; }
 
-        [Required]
-        public int SpeciesId { get; set; }
+        public int? SpeciesId { get; set; }
         public Species Species { get; set; }
 
-        [Required]
-        public int CharacteristicsId { get; set; }
+        public int? CharacteristicsId { get; set; }
         public AnimalCharacteristicList Characteristics { get; set; }
 
         public int? ImageId { get; set; }

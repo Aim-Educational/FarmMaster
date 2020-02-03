@@ -9,7 +9,9 @@ using System.Linq;
 
 namespace FarmMaster.Services
 {
-    public interface IServiceAnimalManager : IServiceEntityManager<Animal>, IServiceGdprData
+    public interface IServiceAnimalManager : IServiceEntityManager<Animal>, 
+                                             IServiceGdprData,
+                                             IServiceEntityManagerFullDeletion<Animal>
     {
         Animal Create(string name, string tag, Animal.Gender sex, Contact owner, Species species, Animal mum = null, Animal dad = null, Holding holding = null);
         void AddLifeEventEntry(Animal animal, LifeEventEntry entry);
@@ -28,21 +30,27 @@ namespace FarmMaster.Services
 
     public class ServiceAnimalManager : IServiceAnimalManager
     {
-        readonly FarmMasterContext        _context;
-        readonly IServiceLifeEventManager _lifeEvents;
-        readonly IServiceImageManager     _images;
-        readonly IServiceHookEmitter      _hooks;
+        readonly FarmMasterContext              _context;
+        readonly IServiceLifeEventManager       _lifeEvents;
+        readonly IServiceImageManager           _images;
+        readonly IServiceHookEmitter            _hooks;
+        readonly IServiceAnimalGroupManager     _groups;
+        readonly IServiceCharacteristicManager  _characteristics;
 
         public ServiceAnimalManager(
-            FarmMasterContext        context, 
-            IServiceLifeEventManager lifeEvents,
-            IServiceImageManager     images,
-            IServiceHookEmitter      hooks)
+            FarmMasterContext               context, 
+            IServiceLifeEventManager        lifeEvents,
+            IServiceImageManager            images,
+            IServiceHookEmitter             hooks,
+            IServiceAnimalGroupManager      groups,
+            IServiceCharacteristicManager   characteristics)
         {
-            this._context    = context;
-            this._lifeEvents = lifeEvents;
-            this._images     = images;
-            this._hooks      = hooks;
+            this._context           = context;
+            this._lifeEvents        = lifeEvents;
+            this._images            = images;
+            this._hooks             = hooks;
+            this._groups            = groups;
+            this._characteristics   = characteristics;
         }
 
         public Animal Create(string name, string tag, Animal.Gender sex, Contact owner, Species species, Animal mum, Animal dad, Holding holding)
@@ -256,5 +264,64 @@ namespace FarmMaster.Services
 
         public void AnonymiseUserData(User user)
         {}
+
+        // This function can call SaveChanges a million different times.
+        // 1. This is a design flaw. Everything that modifies the DB should have a SaveChanges param, I will enforce this after Alpha.
+        // 2. This will likely only ever be used on animals that are made by mistake, so there's probably not much to delete anyway.
+        public void FullDelete(Animal animal)
+        {
+            // Saves the callee having to do this, since this is pretty much *everything*.
+            animal = this._context
+                         .Animals
+                         .Include(a => a.Breeds)
+                         .Include(a => a.Characteristics)
+                          .ThenInclude(c => c.Characteristics)
+                         .Include(a => a.Children_DAD)
+                         .Include(a => a.Children_MUM)
+                         .Include(a => a.Groups)
+                          .ThenInclude(m => m.AnimalGroup)
+                           .ThenInclude(g => g.Animals)
+                         .Include(a => a.Image)
+                         .Include(a => a.LifeEventEntries)
+                          .ThenInclude(m => m.LifeEventEntry)
+                           .ThenInclude(e => e.Values)
+                         .Include(a => a.LifeEventEntries)
+                          .ThenInclude(m => m.LifeEventEntry)
+                           .ThenInclude(e => e.AnimalMap)
+                         .First(a => a.AnimalId == animal.AnimalId);
+
+            if(animal.Children.Any())
+                throw new InvalidOperationException($"Cannot delete {animal.Name} as they are the parent of at least one other animal.");
+
+            foreach(var breedMap in animal.Breeds.ToList()) // Modifying a collection when iterating it doesn't work, so we ToList it.
+                this._context.Remove(breedMap);
+
+            this._context.SaveChanges();                              // SaveChanges #1
+            this._characteristics.FullDelete(animal.Characteristics); // SaveChanges #2 O(n) since its a list of characteristics.
+
+            if(animal.Image != null)
+                this._images.FullDelete(animal.Image);                // SaveChanges #3
+
+            foreach (var groupMap in animal.Groups.ToList())
+                this._groups.RemoveFromGroup(groupMap.AnimalGroup, animal); // SaveChanges #4 O(n)
+
+            foreach(var entryMap in animal.LifeEventEntries.ToList())
+            {
+                var entryHasMultipleAnimals = entryMap.LifeEventEntry.AnimalMap.Count() > 1;
+                this.RemoveLifeEventEntry( // SaveChanges #5 O(n)
+                    animal, 
+                    entryMap.LifeEventEntry, 
+                    (entryHasMultipleAnimals) ? AlsoDelete.Yes : AlsoDelete.No
+                );
+            }
+
+            // Hopefully that's everything, otherwise we'd leave a few orphan records laying around, even with cascade delete.
+            // This is mostly because things like characteristics and life events can exist seperately of the entity they're attached to.
+            // So only the mappings would cascade delete, not the actual entity being mapped to the animal.
+            // Reusuability and flexibility in exchange for ease of use ;(
+            animal = this.Query().First(a => a.AnimalId == animal.AnimalId); // Otherwise EF complains it contains old data or smth.
+            this._context.Remove(animal);
+            this._context.SaveChanges(); // SaveChanges #6
+        }
     }
 }
