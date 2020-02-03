@@ -9270,32 +9270,6 @@ references:
   isSpec: "True"
   fullName: FarmMaster.Controllers.SpeciesBreedController.SpeciesBreedController
   nameWithType: SpeciesBreedController.SpeciesBreedController
-- uid: FarmMaster.Controllers.SpeciesBreedController.AjaxGetAllBreeds(FarmMaster.Models.AjaxRequestModel,Business.Model.User)
-  name: AjaxGetAllBreeds(AjaxRequestModel, User)
-  href: api/FarmMaster.Controllers.SpeciesBreedController.html#FarmMaster_Controllers_SpeciesBreedController_AjaxGetAllBreeds_FarmMaster_Models_AjaxRequestModel_Business_Model_User_
-  commentId: M:FarmMaster.Controllers.SpeciesBreedController.AjaxGetAllBreeds(FarmMaster.Models.AjaxRequestModel,Business.Model.User)
-  fullName: FarmMaster.Controllers.SpeciesBreedController.AjaxGetAllBreeds(FarmMaster.Models.AjaxRequestModel, Business.Model.User)
-  nameWithType: SpeciesBreedController.AjaxGetAllBreeds(AjaxRequestModel, User)
-- uid: FarmMaster.Controllers.SpeciesBreedController.AjaxGetAllBreeds*
-  name: AjaxGetAllBreeds
-  href: api/FarmMaster.Controllers.SpeciesBreedController.html#FarmMaster_Controllers_SpeciesBreedController_AjaxGetAllBreeds_
-  commentId: Overload:FarmMaster.Controllers.SpeciesBreedController.AjaxGetAllBreeds
-  isSpec: "True"
-  fullName: FarmMaster.Controllers.SpeciesBreedController.AjaxGetAllBreeds
-  nameWithType: SpeciesBreedController.AjaxGetAllBreeds
-- uid: FarmMaster.Controllers.SpeciesBreedController.AjaxGetAllSpecies(FarmMaster.Models.AjaxRequestModel,Business.Model.User)
-  name: AjaxGetAllSpecies(AjaxRequestModel, User)
-  href: api/FarmMaster.Controllers.SpeciesBreedController.html#FarmMaster_Controllers_SpeciesBreedController_AjaxGetAllSpecies_FarmMaster_Models_AjaxRequestModel_Business_Model_User_
-  commentId: M:FarmMaster.Controllers.SpeciesBreedController.AjaxGetAllSpecies(FarmMaster.Models.AjaxRequestModel,Business.Model.User)
-  fullName: FarmMaster.Controllers.SpeciesBreedController.AjaxGetAllSpecies(FarmMaster.Models.AjaxRequestModel, Business.Model.User)
-  nameWithType: SpeciesBreedController.AjaxGetAllSpecies(AjaxRequestModel, User)
-- uid: FarmMaster.Controllers.SpeciesBreedController.AjaxGetAllSpecies*
-  name: AjaxGetAllSpecies
-  href: api/FarmMaster.Controllers.SpeciesBreedController.html#FarmMaster_Controllers_SpeciesBreedController_AjaxGetAllSpecies_
-  commentId: Overload:FarmMaster.Controllers.SpeciesBreedController.AjaxGetAllSpecies
-  isSpec: "True"
-  fullName: FarmMaster.Controllers.SpeciesBreedController.AjaxGetAllSpecies
-  nameWithType: SpeciesBreedController.AjaxGetAllSpecies
 - uid: FarmMaster.Controllers.SpeciesBreedController.AjaxGetTablePageCount(FarmMaster.Controllers.AjaxPagingControllerRequestModel,Business.Model.User)
   name: AjaxGetTablePageCount(AjaxPagingControllerRequestModel, User)
   href: api/FarmMaster.Controllers.SpeciesBreedController.html#FarmMaster_Controllers_SpeciesBreedController_AjaxGetTablePageCount_FarmMaster_Controllers_AjaxPagingControllerRequestModel_Business_Model_User_
