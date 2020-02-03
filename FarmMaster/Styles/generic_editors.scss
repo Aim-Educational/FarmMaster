@@ -335,3 +335,13 @@ div.field.for.entity {
         }
     }
 }
+
+div.scrollable {
+    overflow: auto;
+    background-color: rgba(13, 13, 13, 0.05);
+    padding-top: 1em;
+
+    &.average {
+        height: 400px;
+    }
+}

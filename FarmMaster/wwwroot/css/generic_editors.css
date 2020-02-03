@@ -209,3 +209,10 @@ div.field.for.entity label {
       display: none; }
     div.field.for.entity label > .button > i.icon {
       margin-top: -0.5em !important; }
+
+div.scrollable {
+  overflow: auto;
+  background-color: rgba(13, 13, 13, 0.05);
+  padding-top: 1em; }
+  div.scrollable.average {
+    height: 400px; }
