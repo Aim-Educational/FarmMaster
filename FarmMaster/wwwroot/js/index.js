@@ -8,6 +8,7 @@ export * from "/js/characteristic_helper.js";
 export * from "/js/graphql.js";
 export * from "/js/component_table.js";
 export * from "/js/dropdown.js";
+export * from "/js/table.js";
 
 import { IValidationUIHandler, Validation } from "/lib/jaster-validate/dist/jaster-validate.min.js"
 import { drange } from "/lib/dranges/dist/dranges.min.js"

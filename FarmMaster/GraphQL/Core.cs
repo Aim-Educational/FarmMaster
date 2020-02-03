@@ -29,6 +29,20 @@ namespace FarmMaster.GraphQL
         {
             Contract.Requires(context != null);
 
+            var pagingArg_Skip = new QueryArgument<IntGraphType>
+            {
+                Name = "skip",
+                Description = "The number of items to skip over"
+            };
+
+            var pagingArg_Take = new QueryArgument<IntGraphType>
+            {
+                Name = "take",
+                Description = "The number of items to take"
+            };
+
+            Field<PagingGraphType>("pageCount", resolve: _ => new { });
+
             Field<ListGraphType<ContactGraphType>>(
                 "contacts",
                 resolve: _ =>
@@ -77,16 +91,6 @@ namespace FarmMaster.GraphQL
                         Description = "Filter by name using the given regex",
                         DefaultValue = null
                     },
-                    new QueryArgument<IntGraphType>
-                    {
-                        Name = "skip",
-                        Description = "The number of animals to skip over"
-                    },
-                    new QueryArgument<IntGraphType>
-                    {
-                        Name = "take",
-                        Description = "The number of animals to take"
-                    },
                     new QueryArgument<BooleanGraphType>
                     {
                         Name = "isEndOfSystem",
@@ -96,7 +100,9 @@ namespace FarmMaster.GraphQL
                     {
                         Name = "groupIds",
                         Description = "Filter by whether the animal is included in *any* of these animal groups."
-                    }
+                    },
+                    pagingArg_Skip,
+                    pagingArg_Take
                 ),
                 resolve: graphql =>
                 {
@@ -107,8 +113,8 @@ namespace FarmMaster.GraphQL
                     // Arguments
                     var gender      = graphql.GetValueOrNull<Animal.Gender>("gender");
                     var species     = graphql.GetValueOrNull<int>("speciesId");
-                    var take        = graphql.GetValueOrNull<int>("take");
-                    var skip        = graphql.GetValueOrNull<int>("skip");
+                    var take        = graphql.GetValueOrNull<int>(pagingArg_Take.Name);
+                    var skip        = graphql.GetValueOrNull<int>(pagingArg_Skip.Name);
                     var breeds      = graphql.GetArgument<List<int>>("breedIds");
                     var nameRegex   = graphql.GetArgument<string>("nameRegex");
                     var animalId    = graphql.GetValueOrNull<int>("id");
@@ -160,10 +166,23 @@ namespace FarmMaster.GraphQL
             );
             Field<ListGraphType<SpeciesGraphType>>(
                 "species",
-                resolve: _ =>
+                arguments: new QueryArguments(
+                    pagingArg_Take,
+                    pagingArg_Skip
+                ),
+                resolve: graphql =>
                 {
                     var speciesBreeds = context.GetRequiredService<IServiceSpeciesBreedManager>();
-                    return speciesBreeds.For<Species>().Query().OrderBy(s => s.Name);
+
+                    var take = graphql.GetValueOrNull<int>(pagingArg_Take.Name);
+                    var skip = graphql.GetValueOrNull<int>(pagingArg_Skip.Name);
+
+                    return speciesBreeds.For<Species>()
+                                        .Query()
+                                        .OrderBy(s => s.SpeciesId) // Edge case regarding Skip & Take
+                                        .Skip(skip ?? 0)
+                                        .Take(take ?? int.MaxValue)
+                                        .OrderBy(s => s.Name);
                 }
             );
             Field<ListGraphType<BreedGraphType>>(
@@ -173,7 +192,9 @@ namespace FarmMaster.GraphQL
                     {
                         Name = "speciesId",
                         Description = "Filter by species"
-                    }    
+                    },
+                    pagingArg_Skip,
+                    pagingArg_Take
                 ),
                 resolve: graphql =>
                 {
@@ -182,10 +203,15 @@ namespace FarmMaster.GraphQL
 
                     // Arguments
                     var species = graphql.GetValueOrNull<int>("speciesId");
+                    var take    = graphql.GetValueOrNull<int>(pagingArg_Take.Name);
+                    var skip    = graphql.GetValueOrNull<int>(pagingArg_Skip.Name);
 
                     return speciesBreeds.For<Breed>()
                                         .Query()
                                         .Where(b => species == null || b.SpeciesId == species)
+                                        .OrderBy(b => b.BreedId) // Edge case regarding Skip & Take
+                                        .Skip(skip ?? 0)
+                                        .Take(take ?? int.MaxValue)
                                         .OrderBy(b => b.Name);
                 }
             ); 
@@ -268,6 +294,7 @@ namespace FarmMaster.GraphQL
             services.AddSingleton<AnimalGroupScriptGraphType>();
             services.AddSingleton<AnimalGroupScriptParameterGraphType>();
             services.AddSingleton<AnimalGroupScriptAutoScriptGraphType>();
+            services.AddSingleton<PagingGraphType>();
             services.AddSingleton<ListGraphType<LifeEventEntryGraphType>>();
             services.AddSingleton<ListGraphType<AnimalGroupScriptParameterGraphType>>();
             services.AddSingleton<EnumerationGraphType<Animal.Gender>>();

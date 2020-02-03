@@ -39,6 +39,11 @@ namespace FarmMaster.Misc
             public const int AssignByAutoScript = 1000;
             #endregion
         }
+
+        public static class Paging
+        {
+            public const int ItemsPerPage = 25;
+        }
     }
 
     // THESE WILL BE MOVED/REMOVED SOON(TM)

@@ -26,7 +26,7 @@ namespace FarmMaster.Controllers
     {
         public static int CalculatePageCount(int itemCount, int? itemsPerPage)
         {
-            var pages = itemCount / itemsPerPage.GetValueOrDefault(GlobalConstants.DefaultPageItemCount);
+            var pages = itemCount / itemsPerPage.GetValueOrDefault(FarmConstants.Paging.ItemsPerPage);
             return (pages == 0) ? 1 : pages;
         }
 

@@ -33,6 +33,7 @@
     <None Remove="Scripts\farm_ajax.ts" />
     <None Remove="Scripts\graphql.ts" />
     <None Remove="Scripts\modal.ts" />
+    <None Remove="Scripts\table.ts" />
   </ItemGroup>
 
 
@@ -69,6 +70,7 @@
     <TypeScriptCompile Include="Scripts\farm_ajax.ts" />
     <TypeScriptCompile Include="Scripts\graphql.ts" />
     <TypeScriptCompile Include="Scripts\modal.ts" />
+    <TypeScriptCompile Include="Scripts\table.ts" />
   </ItemGroup>
 
 </Project>

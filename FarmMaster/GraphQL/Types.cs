@@ -1,4 +1,6 @@
 ﻿using Business.Model;
+using FarmMaster.Controllers;
+using FarmMaster.Misc;
 using FarmMaster.Services;
 using GraphQL;
 using GraphQL.Types;
@@ -13,6 +15,17 @@ using System.Threading.Tasks;
 
 namespace FarmMaster.GraphQL
 {
+    public class PagingGraphType : ObjectGraphType
+    {
+        public PagingGraphType(IHttpContextAccessor accessor) // GraphTypes are singletons, so we have to go through the accessor.
+        {
+            // Short name to keep lines short. s = services
+            var s = accessor.HttpContext.RequestServices;
+            this.PageCount("breeds",  s.GetRequiredService<IServiceSpeciesBreedManager>().For<Breed>().Query().Count());
+            this.PageCount("species", s.GetRequiredService<IServiceSpeciesBreedManager>().For<Species>().Query().Count());
+        }
+    }
+
     public class ContactGraphType : ObjectGraphType<Contact>
     {
         public ContactGraphType()
@@ -204,6 +217,18 @@ namespace FarmMaster.GraphQL
                 .Description("The group script that is executed.");
             Field("parameters", s => s.Parameters.ToString(Newtonsoft.Json.Formatting.None))
                 .Description("JSON containing all of the parameters that are passed to the script during execution.");
+        }
+    }
+
+    public static class ObjectGraphTypeExtentions
+    {
+        public static void PageCount<T>(this ComplexGraphType<T> obj, string name, int itemCount) where T : class
+        {
+            obj.Field(
+                typeof(IntGraphType),
+                name,
+                resolve: _ => PagingHelper.CalculatePageCount(itemCount, FarmConstants.Paging.ItemsPerPage)
+            );
         }
     }
 }

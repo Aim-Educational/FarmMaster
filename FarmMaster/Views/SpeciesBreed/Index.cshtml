@@ -18,17 +18,12 @@
                 <h2>Species</h2>
                 <a class="ui fluid primary button" asp-action="CreateSpecies">Create</a>
                 <br />
-                <table id="tableSpecies" class="ui striped table">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                    <tfoot></tfoot>
-                </table>
-                <div id="boxErrorSpecies" class="ui error message transition hidden"></div>
+                <vc:paged-table table-id="tableSpecies"
+                                headers="Name"
+                                page-name="species"
+                                controller="SpeciesBreed"
+                                action-delete="DeleteSpecies"
+                                action-edit="EditSpecies" />
             </div>
         </div>
         <div class="column">
@@ -36,18 +31,12 @@
                 <h2>Breeds</h2>
                 <a class="ui fluid primary button" asp-action="CreateBreed">Create</a>
                 <br />
-                <table id="tableBreeds" class="ui striped table">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Species</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                    <tfoot></tfoot>
-                </table>
-                <div id="boxErrorBreeds" class="ui error message transition hidden"></div>
+                <vc:paged-table table-id="tableBreed"
+                                headers="Name"
+                                page-name="breeds"
+                                controller="SpeciesBreed"
+                                action-delete="DeleteBreed"
+                                action-edit="EditBreed"/>
             </div>
         </div>
     </div>
@@ -55,21 +44,28 @@
 
 @section Scripts {
     <script type="module">
-        import { ComponentTable } from "/js/index.js"
+        import { ComponentTable, PagedTable } from "/js/index.js"
 
-        ComponentTable.setupPagingTable(
-            document.getElementById("boxErrorSpecies"),
-            document.getElementById("tableSpecies"),
-            "/SpeciesBreed/AjaxGetTablePageCount",
-            "/SpeciesBreed/AjaxRenderTablePage",
-            "Species"
+        new PagedTable(
+            "tableSpecies",
+            `query GetSpecies($skip: Int, $take: Int) {
+                species(skip: $skip, take: $take) {
+                    id
+                    name
+                }
+            }`,
+            data => data.species.map(s => { return { id: s.id, items: [s.name] }; })
         );
-        ComponentTable.setupPagingTable(
-            document.getElementById("boxErrorBreeds"),
-            document.getElementById("tableBreeds"),
-            "/SpeciesBreed/AjaxGetTablePageCount",
-            "/SpeciesBreed/AjaxRenderTablePage",
-            "Breed"
+
+        new PagedTable(
+            "tableBreed",
+            `query GetBreeds($skip: Int, $take: Int) {
+                breeds(skip: $skip, take: $take) {
+                    id
+                    name
+                }
+            }`,
+            data => data.breeds.map(b => { return { id: b.id, items: [b.name] }; })
         );
     </script>
 }

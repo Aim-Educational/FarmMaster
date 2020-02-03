@@ -204,6 +204,7 @@
             otherVars.initialQuery = initialQuery;
             GraphQL.query(`query FetchAnimals($take:Int!,        $skip:Int!,    $initialQuery: Boolean!, $endOfSystem:Boolean,
                                               $nameRegex:String, $speciesId:ID, $breedIds:[ID],          $gender:Gender){
+
                     animals(take:$take,         skip:$skip,     nameRegex:$nameRegex,      speciesId:$speciesId, 
                             breedIds:$breedIds, gender:$gender, isEndOfSystem:$endOfSystem){
                         id
