@@ -79,6 +79,26 @@
             $(dropdown).dropdown("set selected", value);
     }
     window._gs_addItemToDropdown = addItemToDropdown;
+
+    function createDropdown(div) {
+        const dropdown = div.appendChild(document.createElement("div"));
+        dropdown.classList.add("ui", "search", "selection", "dropdown");
+
+        const input = dropdown.appendChild(document.createElement("input"));
+        input.type = "hidden";
+
+        const i = dropdown.appendChild(document.createElement("i"));
+        i.classList.add("dropdown", "icon");
+
+        const text = dropdown.appendChild(document.createElement("div"));
+        text.classList.add("text");
+
+        const menu = dropdown.appendChild(document.createElement("div"));
+        menu.classList.add("menu");
+
+        return dropdown;
+    }
+    window._gs_createDropdown = createDropdown;
 </script>
 
 <!--Parameter interface generation-->
@@ -87,7 +107,9 @@
 
     // Enum of the different data types a parameter can be.
     window._gs_ParamType = {
-        SPECIES: 0
+        SPECIES: 0,
+        BREED: 1,
+        INT: 2
     };
 
     window._gs_cache = {};              // Cache data, so we don't have to perform multiple requests.
@@ -118,6 +140,14 @@
                     type = _gs_ParamType.SPECIES;
                     break;
 
+                case "Keyword_Breed":
+                    type = _gs_ParamType.BREED;
+                    break;
+
+                case "Keyword_Int":
+                    type = _gs_ParamType.INT;
+                    break;
+
                 default: alert(list[i] + " has no interface handler.");
             }
 
@@ -130,6 +160,25 @@
         return toReturn;
     };
 
+    function cacheAll() {
+        return GraphQL
+            .query(`query CacheAll {
+                species {
+                    id
+                    name
+                }
+                breeds {
+                    id
+                    name
+                }
+            }`)
+            .then(data => {
+                _gs_cache.species = data.species;
+                _gs_cache.breeds = data.breeds;
+                return data;
+            });
+    }
+
     // BUG: If a parameter has multiple species, and we haven't cached yet, then
     //      multiple requests might be sent.
     //
@@ -138,17 +187,14 @@
         if (_gs_cache.species)
             return new Promise((resolve, reject) => resolve(_gs_cache.species));
 
-        return GraphQL
-            .query(`query CacheSpecies {
-                species {
-                    name
-                    id
-                }
-            }`)
-            .then(data => {
-                _gs_cache.species = data;
-                return data;
-            });
+        return cacheAll().then(data => data.species);
+    }
+
+    function getOrCacheBreeds() {
+        if (_gs_cache.breeds)
+            return new Promise((resolve, reject) => resolve(_gs_cache.breeds));
+
+        return cacheAll().then(data => data.breeds);
     }
 
     window._gs_generateParamInputInterface = function (parentNode, nameType) {
@@ -161,29 +207,34 @@
 
         switch (nameType.type) {
             case _gs_ParamType.SPECIES:
-                const dropdown = div.appendChild(document.createElement("div"));
-                dropdown.classList.add("ui", "search", "selection", "dropdown");
-
-                const input = dropdown.appendChild(document.createElement("input"));
-                input.type = "hidden";
-
-                const i = dropdown.appendChild(document.createElement("i"));
-                i.classList.add("dropdown", "icon");
-
-                const text = dropdown.appendChild(document.createElement("div"));
-                text.classList.add("text");
-
-                const menu = dropdown.appendChild(document.createElement("div"));
-                menu.classList.add("menu");
-
                 getOrCacheSpecies().then(data => {
-                    for (const species of data.species)
+                    const dropdown = _gs_createDropdown(div);
+                    const input = dropdown.querySelector("input[type=hidden]");
+                    for (const species of data)
                         _gs_addItemToDropdown(dropdown, species.name, species.id);
 
                     $(dropdown).dropdown();
+                    _gs_paramAggregators.push((result) => result[nameType.name] = Number(input.value));
                 });
+                break;
 
-                _gs_paramAggregators.push((result) => result[nameType.name] = Number(input.value));
+            case _gs_ParamType.BREED:
+                getOrCacheBreeds().then(data => {
+                    const dropdown = _gs_createDropdown(div);
+                    const input = dropdown.querySelector("input[type=hidden]");
+                    for (const breed of data)
+                        _gs_addItemToDropdown(dropdown, breed.name, breed.id);
+
+                    $(dropdown).dropdown();
+                    _gs_paramAggregators.push((result) => result[nameType.name] = Number(input.value));
+                });
+                break;
+
+            case _gs_ParamType.INT:
+                const intInput = div.appendChild(document.createElement("input"));
+                intInput.type = "number";
+
+                _gs_paramAggregators.push((result) => result[nameType.name] = Number(intInput.value));
                 break;
 
             default: alert("Unknown type: " + nameType.type);
