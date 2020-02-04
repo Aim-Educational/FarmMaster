@@ -103,6 +103,7 @@ namespace FarmMaster
             // Background services
             services.AddHostedService<FarmBackgroundServiceHost<BackgroundServiceUserActionEmailer>>();
             services.AddHostedService<FarmBackgroundServiceHost<BackgroundServiceMetricPusher>>();
+            services.AddHostedService<FarmBackgroundServiceHost<BackgroundServiceOrphanRemover>>();
 
             // SMTP
             services.Configure<IServiceSmtpClientConfig>(o =>
