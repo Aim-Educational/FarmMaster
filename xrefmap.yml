@@ -8534,12 +8534,12 @@ references:
   commentId: T:FarmMaster.Controllers.AnimalGroupController
   fullName: FarmMaster.Controllers.AnimalGroupController
   nameWithType: AnimalGroupController
-- uid: FarmMaster.Controllers.AnimalGroupController.#ctor(FarmMaster.Services.IServiceAnimalGroupManager)
-  name: AnimalGroupController(IServiceAnimalGroupManager)
-  href: api/FarmMaster.Controllers.AnimalGroupController.html#FarmMaster_Controllers_AnimalGroupController__ctor_FarmMaster_Services_IServiceAnimalGroupManager_
-  commentId: M:FarmMaster.Controllers.AnimalGroupController.#ctor(FarmMaster.Services.IServiceAnimalGroupManager)
-  fullName: FarmMaster.Controllers.AnimalGroupController.AnimalGroupController(FarmMaster.Services.IServiceAnimalGroupManager)
-  nameWithType: AnimalGroupController.AnimalGroupController(IServiceAnimalGroupManager)
+- uid: FarmMaster.Controllers.AnimalGroupController.#ctor(FarmMaster.Services.IServiceAnimalGroupManager,FarmMaster.Services.IServiceAnimalManager,FarmMaster.Services.IServiceLifeEventManager)
+  name: AnimalGroupController(IServiceAnimalGroupManager, IServiceAnimalManager, IServiceLifeEventManager)
+  href: api/FarmMaster.Controllers.AnimalGroupController.html#FarmMaster_Controllers_AnimalGroupController__ctor_FarmMaster_Services_IServiceAnimalGroupManager_FarmMaster_Services_IServiceAnimalManager_FarmMaster_Services_IServiceLifeEventManager_
+  commentId: M:FarmMaster.Controllers.AnimalGroupController.#ctor(FarmMaster.Services.IServiceAnimalGroupManager,FarmMaster.Services.IServiceAnimalManager,FarmMaster.Services.IServiceLifeEventManager)
+  fullName: FarmMaster.Controllers.AnimalGroupController.AnimalGroupController(FarmMaster.Services.IServiceAnimalGroupManager, FarmMaster.Services.IServiceAnimalManager, FarmMaster.Services.IServiceLifeEventManager)
+  nameWithType: AnimalGroupController.AnimalGroupController(IServiceAnimalGroupManager, IServiceAnimalManager, IServiceLifeEventManager)
 - uid: FarmMaster.Controllers.AnimalGroupController.#ctor*
   name: AnimalGroupController
   href: api/FarmMaster.Controllers.AnimalGroupController.html#FarmMaster_Controllers_AnimalGroupController__ctor_
@@ -8598,6 +8598,19 @@ references:
   isSpec: "True"
   fullName: FarmMaster.Controllers.AnimalGroupController.Index
   nameWithType: AnimalGroupController.Index
+- uid: FarmMaster.Controllers.AnimalGroupController.OnCreateLifeEvent(System.Int32,System.Int32)
+  name: OnCreateLifeEvent(Int32, Int32)
+  href: api/FarmMaster.Controllers.AnimalGroupController.html#FarmMaster_Controllers_AnimalGroupController_OnCreateLifeEvent_System_Int32_System_Int32_
+  commentId: M:FarmMaster.Controllers.AnimalGroupController.OnCreateLifeEvent(System.Int32,System.Int32)
+  fullName: FarmMaster.Controllers.AnimalGroupController.OnCreateLifeEvent(System.Int32, System.Int32)
+  nameWithType: AnimalGroupController.OnCreateLifeEvent(Int32, Int32)
+- uid: FarmMaster.Controllers.AnimalGroupController.OnCreateLifeEvent*
+  name: OnCreateLifeEvent
+  href: api/FarmMaster.Controllers.AnimalGroupController.html#FarmMaster_Controllers_AnimalGroupController_OnCreateLifeEvent_
+  commentId: Overload:FarmMaster.Controllers.AnimalGroupController.OnCreateLifeEvent
+  isSpec: "True"
+  fullName: FarmMaster.Controllers.AnimalGroupController.OnCreateLifeEvent
+  nameWithType: AnimalGroupController.OnCreateLifeEvent
 - uid: FarmMaster.Controllers.ContactController
   name: ContactController
   href: api/FarmMaster.Controllers.ContactController.html
@@ -11548,6 +11561,19 @@ references:
   isSpec: "True"
   fullName: FarmMaster.Models.AnimalGroupCreateEditViewModel.Description
   nameWithType: AnimalGroupCreateEditViewModel.Description
+- uid: FarmMaster.Models.AnimalGroupCreateEditViewModel.DUMMY_VALUE
+  name: DUMMY_VALUE
+  href: api/FarmMaster.Models.AnimalGroupCreateEditViewModel.html#FarmMaster_Models_AnimalGroupCreateEditViewModel_DUMMY_VALUE
+  commentId: P:FarmMaster.Models.AnimalGroupCreateEditViewModel.DUMMY_VALUE
+  fullName: FarmMaster.Models.AnimalGroupCreateEditViewModel.DUMMY_VALUE
+  nameWithType: AnimalGroupCreateEditViewModel.DUMMY_VALUE
+- uid: FarmMaster.Models.AnimalGroupCreateEditViewModel.DUMMY_VALUE*
+  name: DUMMY_VALUE
+  href: api/FarmMaster.Models.AnimalGroupCreateEditViewModel.html#FarmMaster_Models_AnimalGroupCreateEditViewModel_DUMMY_VALUE_
+  commentId: Overload:FarmMaster.Models.AnimalGroupCreateEditViewModel.DUMMY_VALUE
+  isSpec: "True"
+  fullName: FarmMaster.Models.AnimalGroupCreateEditViewModel.DUMMY_VALUE
+  nameWithType: AnimalGroupCreateEditViewModel.DUMMY_VALUE
 - uid: FarmMaster.Models.AnimalGroupCreateEditViewModel.GroupId
   name: GroupId
   href: api/FarmMaster.Models.AnimalGroupCreateEditViewModel.html#FarmMaster_Models_AnimalGroupCreateEditViewModel_GroupId
@@ -13098,6 +13124,19 @@ references:
   commentId: T:FarmMaster.Services.IServiceAnimalGroupManager
   fullName: FarmMaster.Services.IServiceAnimalGroupManager
   nameWithType: IServiceAnimalGroupManager
+- uid: FarmMaster.Services.IServiceAnimalGroupManager.AddLifeEventEntryToAllAnimals(Business.Model.AnimalGroup,Business.Model.LifeEventEntry,FarmMaster.Services.IServiceAnimalManager)
+  name: AddLifeEventEntryToAllAnimals(AnimalGroup, LifeEventEntry, IServiceAnimalManager)
+  href: api/FarmMaster.Services.IServiceAnimalGroupManager.html#FarmMaster_Services_IServiceAnimalGroupManager_AddLifeEventEntryToAllAnimals_Business_Model_AnimalGroup_Business_Model_LifeEventEntry_FarmMaster_Services_IServiceAnimalManager_
+  commentId: M:FarmMaster.Services.IServiceAnimalGroupManager.AddLifeEventEntryToAllAnimals(Business.Model.AnimalGroup,Business.Model.LifeEventEntry,FarmMaster.Services.IServiceAnimalManager)
+  fullName: FarmMaster.Services.IServiceAnimalGroupManager.AddLifeEventEntryToAllAnimals(Business.Model.AnimalGroup, Business.Model.LifeEventEntry, FarmMaster.Services.IServiceAnimalManager)
+  nameWithType: IServiceAnimalGroupManager.AddLifeEventEntryToAllAnimals(AnimalGroup, LifeEventEntry, IServiceAnimalManager)
+- uid: FarmMaster.Services.IServiceAnimalGroupManager.AddLifeEventEntryToAllAnimals*
+  name: AddLifeEventEntryToAllAnimals
+  href: api/FarmMaster.Services.IServiceAnimalGroupManager.html#FarmMaster_Services_IServiceAnimalGroupManager_AddLifeEventEntryToAllAnimals_
+  commentId: Overload:FarmMaster.Services.IServiceAnimalGroupManager.AddLifeEventEntryToAllAnimals
+  isSpec: "True"
+  fullName: FarmMaster.Services.IServiceAnimalGroupManager.AddLifeEventEntryToAllAnimals
+  nameWithType: IServiceAnimalGroupManager.AddLifeEventEntryToAllAnimals
 - uid: FarmMaster.Services.IServiceAnimalGroupManager.AssignAnimal(Business.Model.AnimalGroup,Business.Model.Animal)
   name: AssignAnimal(AnimalGroup, Animal)
   href: api/FarmMaster.Services.IServiceAnimalGroupManager.html#FarmMaster_Services_IServiceAnimalGroupManager_AssignAnimal_Business_Model_AnimalGroup_Business_Model_Animal_
@@ -13314,12 +13353,12 @@ references:
   isSpec: "True"
   fullName: FarmMaster.Services.IServiceAnimalManager.RemoveBreed
   nameWithType: IServiceAnimalManager.RemoveBreed
-- uid: FarmMaster.Services.IServiceAnimalManager.RemoveLifeEventEntry(Business.Model.Animal,Business.Model.LifeEventEntry,FarmMaster.Misc.AlsoDelete)
-  name: RemoveLifeEventEntry(Animal, LifeEventEntry, AlsoDelete)
-  href: api/FarmMaster.Services.IServiceAnimalManager.html#FarmMaster_Services_IServiceAnimalManager_RemoveLifeEventEntry_Business_Model_Animal_Business_Model_LifeEventEntry_FarmMaster_Misc_AlsoDelete_
-  commentId: M:FarmMaster.Services.IServiceAnimalManager.RemoveLifeEventEntry(Business.Model.Animal,Business.Model.LifeEventEntry,FarmMaster.Misc.AlsoDelete)
-  fullName: FarmMaster.Services.IServiceAnimalManager.RemoveLifeEventEntry(Business.Model.Animal, Business.Model.LifeEventEntry, FarmMaster.Misc.AlsoDelete)
-  nameWithType: IServiceAnimalManager.RemoveLifeEventEntry(Animal, LifeEventEntry, AlsoDelete)
+- uid: FarmMaster.Services.IServiceAnimalManager.RemoveLifeEventEntry(Business.Model.Animal,Business.Model.LifeEventEntry)
+  name: RemoveLifeEventEntry(Animal, LifeEventEntry)
+  href: api/FarmMaster.Services.IServiceAnimalManager.html#FarmMaster_Services_IServiceAnimalManager_RemoveLifeEventEntry_Business_Model_Animal_Business_Model_LifeEventEntry_
+  commentId: M:FarmMaster.Services.IServiceAnimalManager.RemoveLifeEventEntry(Business.Model.Animal,Business.Model.LifeEventEntry)
+  fullName: FarmMaster.Services.IServiceAnimalManager.RemoveLifeEventEntry(Business.Model.Animal, Business.Model.LifeEventEntry)
+  nameWithType: IServiceAnimalManager.RemoveLifeEventEntry(Animal, LifeEventEntry)
 - uid: FarmMaster.Services.IServiceAnimalManager.RemoveLifeEventEntry*
   name: RemoveLifeEventEntry
   href: api/FarmMaster.Services.IServiceAnimalManager.html#FarmMaster_Services_IServiceAnimalManager_RemoveLifeEventEntry_
@@ -14684,6 +14723,19 @@ references:
   isSpec: "True"
   fullName: FarmMaster.Services.ServiceAnimalGroupManager.ServiceAnimalGroupManager
   nameWithType: ServiceAnimalGroupManager.ServiceAnimalGroupManager
+- uid: FarmMaster.Services.ServiceAnimalGroupManager.AddLifeEventEntryToAllAnimals(Business.Model.AnimalGroup,Business.Model.LifeEventEntry,FarmMaster.Services.IServiceAnimalManager)
+  name: AddLifeEventEntryToAllAnimals(AnimalGroup, LifeEventEntry, IServiceAnimalManager)
+  href: api/FarmMaster.Services.ServiceAnimalGroupManager.html#FarmMaster_Services_ServiceAnimalGroupManager_AddLifeEventEntryToAllAnimals_Business_Model_AnimalGroup_Business_Model_LifeEventEntry_FarmMaster_Services_IServiceAnimalManager_
+  commentId: M:FarmMaster.Services.ServiceAnimalGroupManager.AddLifeEventEntryToAllAnimals(Business.Model.AnimalGroup,Business.Model.LifeEventEntry,FarmMaster.Services.IServiceAnimalManager)
+  fullName: FarmMaster.Services.ServiceAnimalGroupManager.AddLifeEventEntryToAllAnimals(Business.Model.AnimalGroup, Business.Model.LifeEventEntry, FarmMaster.Services.IServiceAnimalManager)
+  nameWithType: ServiceAnimalGroupManager.AddLifeEventEntryToAllAnimals(AnimalGroup, LifeEventEntry, IServiceAnimalManager)
+- uid: FarmMaster.Services.ServiceAnimalGroupManager.AddLifeEventEntryToAllAnimals*
+  name: AddLifeEventEntryToAllAnimals
+  href: api/FarmMaster.Services.ServiceAnimalGroupManager.html#FarmMaster_Services_ServiceAnimalGroupManager_AddLifeEventEntryToAllAnimals_
+  commentId: Overload:FarmMaster.Services.ServiceAnimalGroupManager.AddLifeEventEntryToAllAnimals
+  isSpec: "True"
+  fullName: FarmMaster.Services.ServiceAnimalGroupManager.AddLifeEventEntryToAllAnimals
+  nameWithType: ServiceAnimalGroupManager.AddLifeEventEntryToAllAnimals
 - uid: FarmMaster.Services.ServiceAnimalGroupManager.AssignAnimal(Business.Model.AnimalGroup,Business.Model.Animal)
   name: AssignAnimal(AnimalGroup, Animal)
   href: api/FarmMaster.Services.ServiceAnimalGroupManager.html#FarmMaster_Services_ServiceAnimalGroupManager_AssignAnimal_Business_Model_AnimalGroup_Business_Model_Animal_
@@ -15176,12 +15228,12 @@ references:
   isSpec: "True"
   fullName: FarmMaster.Services.ServiceAnimalManager.RemoveBreed
   nameWithType: ServiceAnimalManager.RemoveBreed
-- uid: FarmMaster.Services.ServiceAnimalManager.RemoveLifeEventEntry(Business.Model.Animal,Business.Model.LifeEventEntry,FarmMaster.Misc.AlsoDelete)
-  name: RemoveLifeEventEntry(Animal, LifeEventEntry, AlsoDelete)
-  href: api/FarmMaster.Services.ServiceAnimalManager.html#FarmMaster_Services_ServiceAnimalManager_RemoveLifeEventEntry_Business_Model_Animal_Business_Model_LifeEventEntry_FarmMaster_Misc_AlsoDelete_
-  commentId: M:FarmMaster.Services.ServiceAnimalManager.RemoveLifeEventEntry(Business.Model.Animal,Business.Model.LifeEventEntry,FarmMaster.Misc.AlsoDelete)
-  fullName: FarmMaster.Services.ServiceAnimalManager.RemoveLifeEventEntry(Business.Model.Animal, Business.Model.LifeEventEntry, FarmMaster.Misc.AlsoDelete)
-  nameWithType: ServiceAnimalManager.RemoveLifeEventEntry(Animal, LifeEventEntry, AlsoDelete)
+- uid: FarmMaster.Services.ServiceAnimalManager.RemoveLifeEventEntry(Business.Model.Animal,Business.Model.LifeEventEntry)
+  name: RemoveLifeEventEntry(Animal, LifeEventEntry)
+  href: api/FarmMaster.Services.ServiceAnimalManager.html#FarmMaster_Services_ServiceAnimalManager_RemoveLifeEventEntry_Business_Model_Animal_Business_Model_LifeEventEntry_
+  commentId: M:FarmMaster.Services.ServiceAnimalManager.RemoveLifeEventEntry(Business.Model.Animal,Business.Model.LifeEventEntry)
+  fullName: FarmMaster.Services.ServiceAnimalManager.RemoveLifeEventEntry(Business.Model.Animal, Business.Model.LifeEventEntry)
+  nameWithType: ServiceAnimalManager.RemoveLifeEventEntry(Animal, LifeEventEntry)
 - uid: FarmMaster.Services.ServiceAnimalManager.RemoveLifeEventEntry*
   name: RemoveLifeEventEntry
   href: api/FarmMaster.Services.ServiceAnimalManager.html#FarmMaster_Services_ServiceAnimalManager_RemoveLifeEventEntry_

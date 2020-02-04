@@ -91,12 +91,12 @@
   
   
   <a id="FarmMaster_Controllers_AnimalGroupController__ctor_" data-uid="FarmMaster.Controllers.AnimalGroupController.#ctor*"></a>
-  <h4 id="FarmMaster_Controllers_AnimalGroupController__ctor_FarmMaster_Services_IServiceAnimalGroupManager_" data-uid="FarmMaster.Controllers.AnimalGroupController.#ctor(FarmMaster.Services.IServiceAnimalGroupManager)">AnimalGroupController(IServiceAnimalGroupManager)</h4>
+  <h4 id="FarmMaster_Controllers_AnimalGroupController__ctor_FarmMaster_Services_IServiceAnimalGroupManager_FarmMaster_Services_IServiceAnimalManager_FarmMaster_Services_IServiceLifeEventManager_" data-uid="FarmMaster.Controllers.AnimalGroupController.#ctor(FarmMaster.Services.IServiceAnimalGroupManager,FarmMaster.Services.IServiceAnimalManager,FarmMaster.Services.IServiceLifeEventManager)">AnimalGroupController(IServiceAnimalGroupManager, IServiceAnimalManager, IServiceLifeEventManager)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public AnimalGroupController(IServiceAnimalGroupManager groups)</code></pre>
+    <pre><code class="lang-csharp hljs">public AnimalGroupController(IServiceAnimalGroupManager groups, IServiceAnimalManager animals, IServiceLifeEventManager lifeEvents)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -111,6 +111,16 @@
       <tr>
         <td><a class="xref" href="FarmMaster.Services.IServiceAnimalGroupManager.html">IServiceAnimalGroupManager</a></td>
         <td><span class="parametername">groups</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="FarmMaster.Services.IServiceAnimalManager.html">IServiceAnimalManager</a></td>
+        <td><span class="parametername">animals</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="FarmMaster.Services.IServiceLifeEventManager.html">IServiceLifeEventManager</a></td>
+        <td><span class="parametername">lifeEvents</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -278,6 +288,53 @@
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public IActionResult Index()</code></pre>
   </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IActionResult</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <a id="FarmMaster_Controllers_AnimalGroupController_OnCreateLifeEvent_" data-uid="FarmMaster.Controllers.AnimalGroupController.OnCreateLifeEvent*"></a>
+  <h4 id="FarmMaster_Controllers_AnimalGroupController_OnCreateLifeEvent_System_Int32_System_Int32_" data-uid="FarmMaster.Controllers.AnimalGroupController.OnCreateLifeEvent(System.Int32,System.Int32)">OnCreateLifeEvent(Int32, Int32)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IActionResult OnCreateLifeEvent(int lifeEventEntryId, int redirectEntityId)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">lifeEventEntryId</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Int32</span></td>
+        <td><span class="parametername">redirectEntityId</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
