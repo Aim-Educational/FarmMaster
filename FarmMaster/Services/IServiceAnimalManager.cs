@@ -18,7 +18,7 @@ namespace FarmMaster.Services
         void AddBreed(Animal animal, Breed breed);
         void SetImageFromForm(Animal animal, IFormFile image);
         CouldDelete RemoveBreed(Animal animal, Breed breed);
-        CouldDelete RemoveLifeEventEntry(Animal animal, LifeEventEntry entry, AlsoDelete alsoDeleteEntry = AlsoDelete.No);
+        CouldDelete RemoveLifeEventEntry(Animal animal, LifeEventEntry entry);
         void SetBornEventEntry(Animal animal, DateTimeOffset dateTimeBorn);
         DateTimeOffset? GetBornEventEntry(Animal animal);
     }
@@ -129,6 +129,9 @@ namespace FarmMaster.Services
 
         public void AddLifeEventEntry(Animal animal, LifeEventEntry entry)
         {
+            if(animal == null)
+                throw new ArgumentNullException(nameof(animal));
+
             if(entry.LifeEvent.Target != LifeEvent.TargetType.Animal)
                 throw new InvalidOperationException($"Cannot apply Life Event '{entry.LifeEvent.Name}' that targets '{entry.LifeEvent.Target}' on an Animal.");
 
@@ -136,11 +139,9 @@ namespace FarmMaster.Services
                && animal.LifeEventEntries.Any(e => e.LifeEventEntry.LifeEventId == entry.LifeEventId)
             )
             {
-                // Due to how life event creation is structured, we need to handle this here, otherwise we'll have an orphaned
-                // object.
-                this._context.Remove(entry);
-                this._context.SaveChanges();
-                throw new InvalidOperationException($"Cannot create entry for life event '{entry.LifeEvent.Name}' as it is unique, and animal '{animal.Name}' already contains an entry for it.");
+                throw new InvalidOperationException(
+                    $"Cannot create entry for life event '{entry.LifeEvent.Name}' as it is unique, and animal '{animal.Name}' already contains an entry for it."
+                );
             }
 
             var map = new MapLifeEventEntryToAnimal
@@ -153,7 +154,7 @@ namespace FarmMaster.Services
             this._context.SaveChanges();
         }
 
-        public CouldDelete RemoveLifeEventEntry(Animal animal, LifeEventEntry entry, AlsoDelete alsoDeleteEntry = AlsoDelete.No)
+        public CouldDelete RemoveLifeEventEntry(Animal animal, LifeEventEntry entry)
         {
             var map = animal.LifeEventEntries
                             .FirstOrDefault(e => e.LifeEventEntryId == entry.LifeEventEntryId);
@@ -161,8 +162,6 @@ namespace FarmMaster.Services
                 return CouldDelete.No;
 
             this._context.Remove(map);
-            if(alsoDeleteEntry == AlsoDelete.Yes)
-                this._context.Remove(entry);
 
             this._context.SaveChanges();
             return CouldDelete.Yes;
@@ -307,11 +306,9 @@ namespace FarmMaster.Services
 
             foreach(var entryMap in animal.LifeEventEntries.ToList())
             {
-                var entryHasMultipleAnimals = entryMap.LifeEventEntry.AnimalMap.Count() > 1;
                 this.RemoveLifeEventEntry( // SaveChanges #5 O(n)
                     animal, 
-                    entryMap.LifeEventEntry, 
-                    (entryHasMultipleAnimals) ? AlsoDelete.Yes : AlsoDelete.No
+                    entryMap.LifeEventEntry
                 );
             }
 

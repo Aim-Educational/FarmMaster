@@ -14,10 +14,18 @@ namespace FarmMaster.Controllers
     public class AnimalGroupController : Controller
     {
         readonly IServiceAnimalGroupManager _groups;
+        readonly IServiceAnimalManager      _animals;
+        readonly IServiceLifeEventManager   _lifeEvents;
 
-        public AnimalGroupController(IServiceAnimalGroupManager groups)
+        public AnimalGroupController(
+            IServiceAnimalGroupManager groups,
+            IServiceAnimalManager      animals,
+            IServiceLifeEventManager   lifeEvents
+        )
         {
-            this._groups = groups;
+            this._groups     = groups;
+            this._animals    = animals;
+            this._lifeEvents = lifeEvents;
         }
 
         [FarmAuthorise(new[] { BusinessConstants.Permissions.VIEW_ANIMAL_GROUPS })]
@@ -109,6 +117,28 @@ namespace FarmMaster.Controllers
             });
 
             return View("CreateEdit", model);
+        }
+        #endregion
+
+        #region Callbacks
+        [FarmAuthorise(PermsAND: new[] { BusinessConstants.Permissions.USE_LIFE_EVENT_ENTRY, BusinessConstants.Permissions.EDIT_ANIMAL_GROUPS })]
+        public IActionResult OnCreateLifeEvent(int lifeEventEntryId, int redirectEntityId)
+        {
+            var group = this._groups.Query().FirstOrDefault(g => g.AnimalGroupId == redirectEntityId);
+            if (group == null)
+                return Redirect("/");
+
+            var entry = this._lifeEvents
+                            .For<LifeEventEntry>()
+                            .Query()
+                            .Include(e => e.LifeEvent)
+                            .Include(e => e.AnimalMap)
+                            .FirstOrDefault(e => e.LifeEventEntryId == lifeEventEntryId);
+            if (entry == null)
+                return RedirectToAction("Edit", new { id = redirectEntityId });
+
+            this._groups.AddLifeEventEntryToAllAnimals(group, entry, this._animals);
+            return RedirectToAction("Edit", new { id = redirectEntityId });
         }
         #endregion
     }

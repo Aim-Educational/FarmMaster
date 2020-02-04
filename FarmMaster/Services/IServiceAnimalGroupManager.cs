@@ -1,5 +1,6 @@
 ﻿using Business.Model;
 using FarmMaster.Misc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
@@ -18,13 +19,19 @@ namespace FarmMaster.Services
         AnimalGroup Create(string name, string description);
         MapAnimalToAnimalGroup AssignAnimal(AnimalGroup group, Animal animal);
         CouldDelete RemoveFromGroup(AnimalGroup group, Animal animal);
+
+        // The animal manager has to be passed via parameter instead of injected via constructor.
+        // This is because otherwise there would be a circular dependency between the two services ;(
+        void AddLifeEventEntryToAllAnimals(AnimalGroup group, LifeEventEntry entry, IServiceAnimalManager animals);
     }
 
     public class ServiceAnimalGroupManager : IServiceAnimalGroupManager
     {
         readonly FarmMasterContext _context;
 
-        public ServiceAnimalGroupManager(FarmMasterContext context)
+        public ServiceAnimalGroupManager(
+            FarmMasterContext context
+        )
         {
             this._context = context;
         }
@@ -112,6 +119,16 @@ namespace FarmMaster.Services
         {
             this._context.Update(entity);
             this._context.SaveChanges();
+        }
+
+        public void AddLifeEventEntryToAllAnimals(AnimalGroup group, LifeEventEntry entry, IServiceAnimalManager animals)
+        {
+            group = this.Query()
+                        .Include(g => g.Animals)
+                         .ThenInclude(g => g.Animal)
+                        .First(g => g.AnimalGroupId == group.AnimalGroupId);
+            foreach(var animal in group.Animals)
+                animals.AddLifeEventEntry(animal.Animal, entry);
         }
     }
 }

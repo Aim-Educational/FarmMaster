@@ -30,6 +30,8 @@ namespace FarmMaster.Models
 
         // Edit
         public IEnumerable<AnimalGroupAnimalInfoViewModel> Animals { get; set; } // Readonly
+
+        public int DUMMY_VALUE { get; set; } // For Dropdown's asp-for target
     } 
 
     public class AnimalGroupAnimalInfoViewModel

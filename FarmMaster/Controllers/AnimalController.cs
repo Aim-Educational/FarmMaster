@@ -250,6 +250,7 @@ namespace FarmMaster.Controllers
                                 .For<LifeEventEntry>()
                                 .Query()
                                 .Include(e => e.LifeEvent)
+                                .Include(e => e.AnimalMap)
                                 .FirstOrDefault(e => e.LifeEventEntryId == lifeEventEntryId);
             if(entry == null)
                 return RedirectToAction("Edit", new { id = redirectEntityId });

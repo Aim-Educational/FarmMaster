@@ -1,8 +1,6 @@
 ﻿@model AnimalGroupCreateEditViewModel
 @{
-    Layout                 = "_GenericEditorLayout";
-    ViewData["Title"]      = $"{(Model.IsCreate ? "Create" : "Edit")} an animal group";
-    ViewData["Breadcrumb"] = new Dictionary<string, string>
+    var pageBreadcrumb = new Dictionary<string, string>()
     {
         { "Home", "/" },
         { "Animal Groups", "/AnimalGroup/" },
@@ -10,7 +8,14 @@
             (Model.IsCreate) ? "Create" : "Edit",
             "#"
         }
-    };
+    }; // Stored in a variable so we can reuse it for some JS code.
+    var lifeEventBreadcrumb = pageBreadcrumb.Select(kvp => $"{kvp.Key}:{kvp.Value}")
+                                            .Aggregate((s1, s2) => $"{s1}>{s2}");
+    lifeEventBreadcrumb += $">{Model.Name}:/AnimalGroup/Edit/{Model.GroupId}";
+
+    Layout                 = "_GenericEditorLayout";
+    ViewData["Title"]      = $"{(Model.IsCreate ? "Create" : "Edit")} an animal group";
+    ViewData["Breadcrumb"] = pageBreadcrumb;
 }
 
 <partial name="_ViewModelWithMessagePartial" model="@Model" />
@@ -50,6 +55,32 @@
     else
     {
         <section>
+            <h4>Life Events</h4>
+            <div class="content">
+                <div class="ui info message">
+                    <p>
+                        From here you can create a new life event and apply it to every animal of this group.
+                        There are a few caveats with life events created like this though:
+                    </p>
+                    <ul>
+                        <li>Modifying the life event's data will apply the changes to every animal.</li>
+                        <li>Deleting the life event from one animal does not delete it from every animal.</li>
+                    </ul>
+                </div>
+
+                <div class="ui form">
+                    <vc:dropdown label="Life Event"
+                                 default-value="-1"
+                                 is-multiple-select="false"
+                                 dropdown-id="selectLifeEvent"
+                                 goto-controller="LifeEvent"
+                                 goto-action="Index"
+                                 asp-for="DUMMY_VALUE"/>
+                    <button id="buttonCreateLifeEvent" class="ui primary button">Create a new life event entry</button>
+                </div>
+            </div>
+        </section>
+        <section>
             <h4>Animals in this group</h4>
             <div class="content">
                 <div class="ui visible info message">
@@ -88,3 +119,27 @@
         </section>
     }
 </section>
+
+@section Scripts {
+    <script type="module">
+        import { Dropdown } from "/js/index.js";
+
+        const selectLifeEvent = new Dropdown("selectLifeEvent");
+        selectLifeEvent.fromLifeEventGraphQL();
+
+        document.getElementById("buttonCreateLifeEvent").addEventListener("click", () => {
+            @{
+                var lifeEventCreateBreadcrumb = lifeEventBreadcrumb + ">Create Entry:#";
+            }
+            const lifeEventId = selectLifeEvent.inputNode.value;
+            const url =
+                "/LifeEvent/CreateEntry"
+                + "?lifeEventId=" + lifeEventId
+                + "&redirectController=AnimalGroup"
+                + "&redirectAction=OnCreateLifeEvent"
+                + "&redirectEntityId=" + @Model.GroupId
+                + "&breadcrumb=@Html.Raw(lifeEventCreateBreadcrumb)";
+            window.open(url, "_self");
+        });
+    </script>
+}
