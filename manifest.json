@@ -1385,6 +1385,18 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/FarmMaster.BackgroundServices.BackgroundServiceOrphanRemover.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/FarmMaster.BackgroundServices.BackgroundServiceOrphanRemover.html",
+          "hash": "YUB8l0AECT2BPiSkEH3Ojw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/FarmMaster.BackgroundServices.BackgroundServiceUserActionEmailer.yml",
       "output": {
         ".html": {
@@ -1437,7 +1449,7 @@
       "output": {
         ".html": {
           "relative_path": "api/FarmMaster.BackgroundServices.html",
-          "hash": "ni0OOWo2UYJL+cwuTXmnBw=="
+          "hash": "f3RnV2kNiwC8RQsRBgcRlg=="
         }
       },
       "is_incremental": false,
@@ -3957,7 +3969,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "8UX26dT9LUdzksty6tCtlQ=="
+          "hash": "pjoiQRNbxUdJ6blZqR4JwA=="
         }
       },
       "is_incremental": false,
@@ -4104,7 +4116,7 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 328,
+          "total_file_count": 329,
           "skipped_file_count": 0
         },
         "TocDocumentProcessor": {

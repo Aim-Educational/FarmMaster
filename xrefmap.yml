@@ -7583,6 +7583,64 @@ references:
   isSpec: "True"
   fullName: FarmMaster.BackgroundServices.BackgroundServiceMetricPusher.OnTickAsync
   nameWithType: BackgroundServiceMetricPusher.OnTickAsync
+- uid: FarmMaster.BackgroundServices.BackgroundServiceOrphanRemover
+  name: BackgroundServiceOrphanRemover
+  href: api/FarmMaster.BackgroundServices.BackgroundServiceOrphanRemover.html
+  commentId: T:FarmMaster.BackgroundServices.BackgroundServiceOrphanRemover
+  fullName: FarmMaster.BackgroundServices.BackgroundServiceOrphanRemover
+  nameWithType: BackgroundServiceOrphanRemover
+- uid: FarmMaster.BackgroundServices.BackgroundServiceOrphanRemover.#ctor(Business.Model.FarmMasterContext)
+  name: BackgroundServiceOrphanRemover(FarmMasterContext)
+  href: api/FarmMaster.BackgroundServices.BackgroundServiceOrphanRemover.html#FarmMaster_BackgroundServices_BackgroundServiceOrphanRemover__ctor_Business_Model_FarmMasterContext_
+  commentId: M:FarmMaster.BackgroundServices.BackgroundServiceOrphanRemover.#ctor(Business.Model.FarmMasterContext)
+  fullName: FarmMaster.BackgroundServices.BackgroundServiceOrphanRemover.BackgroundServiceOrphanRemover(Business.Model.FarmMasterContext)
+  nameWithType: BackgroundServiceOrphanRemover.BackgroundServiceOrphanRemover(FarmMasterContext)
+- uid: FarmMaster.BackgroundServices.BackgroundServiceOrphanRemover.#ctor*
+  name: BackgroundServiceOrphanRemover
+  href: api/FarmMaster.BackgroundServices.BackgroundServiceOrphanRemover.html#FarmMaster_BackgroundServices_BackgroundServiceOrphanRemover__ctor_
+  commentId: Overload:FarmMaster.BackgroundServices.BackgroundServiceOrphanRemover.#ctor
+  isSpec: "True"
+  fullName: FarmMaster.BackgroundServices.BackgroundServiceOrphanRemover.BackgroundServiceOrphanRemover
+  nameWithType: BackgroundServiceOrphanRemover.BackgroundServiceOrphanRemover
+- uid: FarmMaster.BackgroundServices.BackgroundServiceOrphanRemover.Config
+  name: Config
+  href: api/FarmMaster.BackgroundServices.BackgroundServiceOrphanRemover.html#FarmMaster_BackgroundServices_BackgroundServiceOrphanRemover_Config
+  commentId: P:FarmMaster.BackgroundServices.BackgroundServiceOrphanRemover.Config
+  fullName: FarmMaster.BackgroundServices.BackgroundServiceOrphanRemover.Config
+  nameWithType: BackgroundServiceOrphanRemover.Config
+- uid: FarmMaster.BackgroundServices.BackgroundServiceOrphanRemover.Config*
+  name: Config
+  href: api/FarmMaster.BackgroundServices.BackgroundServiceOrphanRemover.html#FarmMaster_BackgroundServices_BackgroundServiceOrphanRemover_Config_
+  commentId: Overload:FarmMaster.BackgroundServices.BackgroundServiceOrphanRemover.Config
+  isSpec: "True"
+  fullName: FarmMaster.BackgroundServices.BackgroundServiceOrphanRemover.Config
+  nameWithType: BackgroundServiceOrphanRemover.Config
+- uid: FarmMaster.BackgroundServices.BackgroundServiceOrphanRemover.OnShutdown
+  name: OnShutdown()
+  href: api/FarmMaster.BackgroundServices.BackgroundServiceOrphanRemover.html#FarmMaster_BackgroundServices_BackgroundServiceOrphanRemover_OnShutdown
+  commentId: M:FarmMaster.BackgroundServices.BackgroundServiceOrphanRemover.OnShutdown
+  fullName: FarmMaster.BackgroundServices.BackgroundServiceOrphanRemover.OnShutdown()
+  nameWithType: BackgroundServiceOrphanRemover.OnShutdown()
+- uid: FarmMaster.BackgroundServices.BackgroundServiceOrphanRemover.OnShutdown*
+  name: OnShutdown
+  href: api/FarmMaster.BackgroundServices.BackgroundServiceOrphanRemover.html#FarmMaster_BackgroundServices_BackgroundServiceOrphanRemover_OnShutdown_
+  commentId: Overload:FarmMaster.BackgroundServices.BackgroundServiceOrphanRemover.OnShutdown
+  isSpec: "True"
+  fullName: FarmMaster.BackgroundServices.BackgroundServiceOrphanRemover.OnShutdown
+  nameWithType: BackgroundServiceOrphanRemover.OnShutdown
+- uid: FarmMaster.BackgroundServices.BackgroundServiceOrphanRemover.OnTickAsync(CancellationToken)
+  name: OnTickAsync(CancellationToken)
+  href: api/FarmMaster.BackgroundServices.BackgroundServiceOrphanRemover.html#FarmMaster_BackgroundServices_BackgroundServiceOrphanRemover_OnTickAsync_CancellationToken_
+  commentId: M:FarmMaster.BackgroundServices.BackgroundServiceOrphanRemover.OnTickAsync(CancellationToken)
+  fullName: FarmMaster.BackgroundServices.BackgroundServiceOrphanRemover.OnTickAsync(CancellationToken)
+  nameWithType: BackgroundServiceOrphanRemover.OnTickAsync(CancellationToken)
+- uid: FarmMaster.BackgroundServices.BackgroundServiceOrphanRemover.OnTickAsync*
+  name: OnTickAsync
+  href: api/FarmMaster.BackgroundServices.BackgroundServiceOrphanRemover.html#FarmMaster_BackgroundServices_BackgroundServiceOrphanRemover_OnTickAsync_
+  commentId: Overload:FarmMaster.BackgroundServices.BackgroundServiceOrphanRemover.OnTickAsync
+  isSpec: "True"
+  fullName: FarmMaster.BackgroundServices.BackgroundServiceOrphanRemover.OnTickAsync
+  nameWithType: BackgroundServiceOrphanRemover.OnTickAsync
 - uid: FarmMaster.BackgroundServices.BackgroundServiceUserActionEmailer
   name: BackgroundServiceUserActionEmailer
   href: api/FarmMaster.BackgroundServices.BackgroundServiceUserActionEmailer.html
