@@ -27,18 +27,51 @@ namespace FarmMaster
 
         public void ConfigureServices(IServiceCollection services)
         {
+            // Cookies
+            services.Configure<CookiePolicyOptions>(o => 
+            {
+                o.CheckConsentNeeded = c => true;
+                o.MinimumSameSitePolicy = SameSiteMode.None;
+            });
+
+            // Database
             services.AddDbContext<IdentityContext>(o => o.UseNpgsql(Configuration.GetConnectionString("Identity")));
 
+            // Identity
             services.AddIdentity<ApplicationUser, ApplicationRole>(o => 
             {
                 o.SignIn.RequireConfirmedAccount = true;
+
+                o.Password.RequiredLength = 6;
+                o.Password.RequireDigit = true;
+                o.Password.RequireLowercase = true;
+                o.Password.RequireUppercase = true;
+
+                o.Lockout.AllowedForNewUsers = true;
+                o.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+                o.Lockout.MaxFailedAccessAttempts = 5;
+
+                o.User.RequireUniqueEmail = true;
             })
             .AddEntityFrameworkStores<IdentityContext>()
             .AddDefaultTokenProviders();
 
+            services.ConfigureApplicationCookie(o => 
+            {
+                o.Cookie.HttpOnly = true;
+                o.ExpireTimeSpan = TimeSpan.FromHours(4);
+
+                o.LoginPath = "/Identity/Account/Login";
+                o.LogoutPath = "/Identity/Account/Logout";
+                o.AccessDeniedPath = "/Identity/Account/AccessDenied";
+                o.SlidingExpiration = true;
+            });
+
+            // MVC
             services.AddControllersWithViews();
             services.AddRazorPages();
 
+            // Services
             services.AddScoped<IEmailSender, EmailSender>();
         }
 
@@ -46,14 +79,18 @@ namespace FarmMaster
         {
             db.Database.Migrate();
 
+            app.UseForwardedHeaders();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseRouting();
+            app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseRouting();
             app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
