@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using DataAccess.Internal;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using System;
 using System.Collections.Generic;
@@ -41,19 +43,17 @@ namespace DataAccess
         int, 
         ApplicationUserClaim, 
         ApplicationUserRole,
-        ApplicationUserLogin, 
+        ApplicationUserLogin,
         ApplicationRoleClaim, 
         ApplicationUserToken
     >
     {
-
+        public IdentityContext(DbContextOptions<IdentityContext> context) : base(context)
+        {
+        }
     }
 
-    class IdentityContextFactory : IDesignTimeDbContextFactory<IdentityContext>
+    class IdentityContextFactory : FarmMasterContextFactory<IdentityContext>
     {
-        public IdentityContext CreateDbContext(string[] args)
-        {
-            throw new NotImplementedException("TODO:");
-        }
     }
 }
