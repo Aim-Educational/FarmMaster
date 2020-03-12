@@ -2,17 +2,46 @@
 using Microsoft.EntityFrameworkCore.Design;
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Text.Json;
+using System.IO;
 
 namespace DataAccess.Internal
 {
     internal class FarmMasterContextFactory<T> : IDesignTimeDbContextFactory<T>
         where T : DbContext
     {
+        private const string CONFIG_PATH = "context_factory.json"; // Relative to ./DataAccess/
+
+        private JsonDocument GetConfig()
+        {
+            JsonDocument json;
+
+            if(File.Exists(CONFIG_PATH))
+                json = JsonDocument.Parse(File.ReadAllText(CONFIG_PATH));
+            else
+            {
+                Console.WriteLine($"No config file detected, you can place your connection strings in '{CONFIG_PATH}' for automated use.");
+
+                json = JsonDocument.Parse("{}");
+                File.WriteAllText(CONFIG_PATH, $"{{\n\t\"{typeof(T).Name}\": null\n}}");
+            }
+
+            return json;
+        }
+
         public T CreateDbContext(string[] args)
         {
             string connectionString = null;
-            if (connectionString == null) // Supporting multiple options in the future, which is why this check seems weird on its own.
+
+            // Check the config file for the connection string.
+            var config             = this.GetConfig();
+            var configHasConString = config.RootElement.TryGetProperty(typeof(T).Name, out JsonElement jsonConnectionString);
+
+            if(configHasConString)
+                connectionString = jsonConnectionString.GetString();
+
+            // Fallback to asking the user for input.
+            if (connectionString == null)
             {
                 Console.Write("Connection String: ");
                 connectionString = Console.ReadLine();

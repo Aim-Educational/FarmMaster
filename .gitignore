@@ -7,6 +7,7 @@
 *.userosscache
 *.sln.docstates
 log.txt
+context_factory.json
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
