@@ -1,3 +1,70 @@
-﻿abc
+﻿@inject SignInManager<ApplicationUser> signIn
+@inject UserManager<ApplicationUser> users
 
-@RenderBody()
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - FarmMaster</title>
+    <link rel="stylesheet" href="~/css/bundle.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css" rel="stylesheet">
+</head>
+<body>
+    <aside id="leftMenu">
+        <h1>
+            FarmMaster
+        </h1>
+        <section>
+            <header>General</header>
+            <a href="#">
+                <div class="indicator"></div>
+                <span>Animals</span>
+                <img width="25" height="25" />
+            </a>
+        </section>
+    </aside>
+    
+    <div class="wrapper">
+        <header>
+            <div id="leftMenuToggle" class="aside toggle">
+                <i class="la la-bars"></i>
+                <script>
+                    document.getElementById("leftMenuToggle").onclick = () => document.getElementById("leftMenu").classList.toggle("collapsed");
+                </script>
+            </div>
+            <div class="breadcrumb">
+                <a class="crumb">
+                    Animals
+                </a>
+                <a class="crumb">
+                    Edit
+                </a>
+                <a class="crumb">
+                    Prada
+                </a>
+            </div>
+            <div class="profile">
+                    @if (signIn.IsSignedIn(User))
+                    {
+                        <div class="name">
+                                Logged in as
+                                <strong>@users.GetUserName(User)</strong>
+                        </div>
+                        <a href="#" class="la la-sign-out-alt"></a>
+                    }
+            </div>
+        </header>
+
+        <main role="main">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer>
+    </footer>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

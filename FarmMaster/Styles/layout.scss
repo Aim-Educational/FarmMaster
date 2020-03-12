@@ -1,0 +1,156 @@
+﻿body {
+    $ASIDE_BACKGROUND_COLOUR: #1a727b;
+
+    font-size: 18px;
+    margin: 0;
+    display: flex;
+    font-family: Lato, sans-serif;
+    height: 100%;
+
+    > aside {
+        display: flex;
+        flex-direction: column;
+        min-width: 250px;
+        width: 250px;
+        min-height: 100vh;
+        height: 100%;
+        background-color: $ASIDE_BACKGROUND_COLOUR;
+        color: white;
+
+        &.collapsed {
+            min-width: 0;
+            width: 0;
+            transition: width ease 1s;
+            transition: min-width ease 1s;
+        }
+
+        > h1 {
+            display: flex;
+            align-self: center;
+            font-size: 28px;
+        }
+
+        > section {
+            display: flex;
+            flex-direction: column;
+
+            > header {
+                padding-left: 1em;
+                margin-bottom: 1em;
+                text-transform: uppercase;
+                color: #c5c3c6;
+                font-size: 16px;
+            }
+
+            > a {
+                display: flex;
+                text-decoration: none;
+
+                > .indicator {
+                    width: 5px;
+                    height: 40px;
+                }
+
+                &:hover, &.active {
+                    background-color: #1d636a;
+
+                    > .indicator {
+                        background-color: #801414;
+                    }
+                }
+
+                > img {
+                    display: flex;
+                    flex-direction: column;
+                    align-self: center;
+                    width: 25px;
+                    height: 25px;
+                }
+
+                > span {
+                    display: flex;
+                    flex-direction: column;
+                    align-self: center;
+                    width: 100%;
+                    padding-left: 1.5em;
+                    margin-right: -5em;
+                    margin-top: 0.04em;
+                    color: #b4e5ea;
+                }
+            }
+        }
+    }
+
+    > .wrapper {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        > header {
+            display: flex;
+            width: 100%;
+            min-height: 60px;
+
+            > .aside.toggle {
+                min-width: 60px;
+                height: 100%;
+                background-color: darken($ASIDE_BACKGROUND_COLOUR, 5%);
+                cursor: pointer;
+
+                > i {
+                    margin-left: 0.2em;
+                    margin-top: 0.2em;
+                    color: white;
+                    font-size: 40px;
+                }
+            }
+
+            > .breadcrumb {
+                width: 33%;
+                height: 100%;
+                display: flex;
+                margin-left: 1em;
+                
+                > .crumb {
+                    margin: auto 0;
+                    font-size: 22px;
+                    text-decoration: none;
+                    color: inherit;
+
+                    + .crumb::before {
+                        content: ">";
+                        padding-left: 0.3em;
+                        font-size: 26px;
+                    }
+                }
+            }
+
+            > .profile {
+                width: 67%;
+                height: 100%;
+                display: flex;
+                justify-content: end;
+                font-family: Roboto, sans-serif;
+
+                > .name {
+                    margin: auto 0;
+                    margin-right: 1em;
+                }
+
+                > a {
+                    margin: auto 0;
+                    margin-right: 0.5em;
+                    font-size: 32px;
+                    text-decoration: none;
+                }
+            }
+        }
+
+        > main {
+            display: flex;
+            flex-direction: column;
+            background-color: #EEE;
+            height: 100%;
+        }
+    }
+}
