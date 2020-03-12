@@ -46,6 +46,7 @@ namespace FarmMaster
                 o.Password.RequireDigit = true;
                 o.Password.RequireLowercase = true;
                 o.Password.RequireUppercase = true;
+                o.Password.RequireNonAlphanumeric = false;
 
                 o.Lockout.AllowedForNewUsers = true;
                 o.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
@@ -70,8 +71,14 @@ namespace FarmMaster
             // MVC
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.AddRouting(o => 
+            {
+                o.LowercaseQueryStrings = false;
+                o.LowercaseUrls = false;
+            });
 
-            // Services
+            // Email
+            services.Configure<EmailSenderConfig>(c => Configuration.GetSection("Email").Bind(c));
             services.AddScoped<IEmailSender, EmailSender>();
         }
 
