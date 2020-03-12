@@ -50,8 +50,10 @@
                     @if (signIn.IsSignedIn(User))
                     {
                         <div class="name">
-                                Logged in as
+                            Logged in as
+                            <a href="/Identity/Account/Manage">
                                 <strong>@users.GetUserName(User)</strong>
+                            </a>
                         </div>
                         <a href="#" class="la la-sign-out-alt"></a>
                     }
