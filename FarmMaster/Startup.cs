@@ -103,10 +103,6 @@ namespace FarmMaster
             {
                 endpoints.MapControllers();
                 endpoints.MapRazorPages();
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
             });
         }
     }
