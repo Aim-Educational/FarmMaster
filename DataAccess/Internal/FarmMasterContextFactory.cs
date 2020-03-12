@@ -7,7 +7,7 @@ using System.IO;
 
 namespace DataAccess.Internal
 {
-    internal class FarmMasterContextFactory<T> : IDesignTimeDbContextFactory<T>
+    public class FarmMasterContextFactory<T> : IDesignTimeDbContextFactory<T>
         where T : DbContext
     {
         private const string CONFIG_PATH = "context_factory.json"; // Relative to ./DataAccess/

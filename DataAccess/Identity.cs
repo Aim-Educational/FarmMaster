@@ -9,35 +9,35 @@ using System.Text;
 
 namespace DataAccess
 {
-    class ApplicationUser : IdentityUser<int>
+    public class ApplicationUser : IdentityUser<int>
     {
     }
 
-    class ApplicationUserClaim : IdentityUserClaim<int>
+    public class ApplicationUserClaim : IdentityUserClaim<int>
     {
     }
 
-    class ApplicationUserLogin : IdentityUserLogin<int>
+    public class ApplicationUserLogin : IdentityUserLogin<int>
     {
     }
 
-    class ApplicationRole : IdentityRole<int>
+    public class ApplicationRole : IdentityRole<int>
     { 
     }
 
-    class ApplicationRoleClaim : IdentityRoleClaim<int>
+    public class ApplicationRoleClaim : IdentityRoleClaim<int>
     {
     }
 
-    class ApplicationUserRole : IdentityUserRole<int>
+    public class ApplicationUserRole : IdentityUserRole<int>
     { 
     }
 
-    class ApplicationUserToken : IdentityUserToken<int>
+    public class ApplicationUserToken : IdentityUserToken<int>
     {
     }
 
-    class IdentityContext : IdentityDbContext<
+    public class IdentityContext : IdentityDbContext<
         ApplicationUser, 
         ApplicationRole, 
         int, 
@@ -53,7 +53,7 @@ namespace DataAccess
         }
     }
 
-    class IdentityContextFactory : FarmMasterContextFactory<IdentityContext>
+    public class IdentityContextFactory : FarmMasterContextFactory<IdentityContext>
     {
     }
 }
