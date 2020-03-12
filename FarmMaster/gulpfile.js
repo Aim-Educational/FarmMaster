@@ -13,7 +13,7 @@ sass.compiler = require("sass");
 // Path configs
 const paths = {
     src: {
-        sass: "Styles/site.scss",
+        sass: "Styles/!(_)*.scss",
         sass_watch: "Styles/*.scss",
     },
 
@@ -34,7 +34,7 @@ gulp.task('compile-sass', function () {
 });
 
 gulp.task("minify-css", function () {
-    return gulp.src(paths.dest.sass + "/!(bundle.min.css)")
+    return gulp.src(paths.dest.sass + "/!(bundle.min.css|site.css)")
         .pipe(order(cssOrder))
         .pipe(concat("bundle.min.css"))
         .pipe(cleanCSS({ level: 2 }))

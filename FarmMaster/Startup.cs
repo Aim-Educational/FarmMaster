@@ -67,9 +67,13 @@ namespace FarmMaster
                 o.AccessDeniedPath = "/Identity/Account/AccessDenied";
                 o.SlidingExpiration = true;
             });
+            
+            services.AddAuthentication();
+            services.AddAuthorization();
 
             // MVC
-            services.AddControllersWithViews();
+            services.AddControllersWithViews()
+                    .AddRazorRuntimeCompilation();
             services.AddRazorPages();
             services.AddRouting(o => 
             {
@@ -101,6 +105,7 @@ namespace FarmMaster
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}");
                 endpoints.MapControllers();
                 endpoints.MapRazorPages();
             });
