@@ -14,5 +14,10 @@ namespace FarmMaster.Controllers
         {
             return View();
         }
+
+        public IActionResult ControlTest()
+        {
+            return View();
+        }
     }
 }

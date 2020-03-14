@@ -1,11 +1,15 @@
-﻿body {
+﻿html {
+    height: 100%;
+}
+
+body {
     $ASIDE_BACKGROUND_COLOUR: #1a727b;
 
     font-size: 18px;
     margin: 0;
     display: flex;
     font-family: Lato, sans-serif;
-    height: 100%;
+    min-height: 100%;
 
     > aside {
         display: flex;
@@ -13,7 +17,6 @@
         min-width: 250px;
         width: 250px;
         min-height: 100vh;
-        height: 100%;
         background-color: $ASIDE_BACKGROUND_COLOUR;
         color: white;
 
@@ -157,6 +160,13 @@
             flex-direction: column;
             background-color: #EEE;
             height: 100%;
+            width: 100%;
+
+            > .wrapper {
+                margin-top: 1.4em;
+                margin-left: 1.2em;
+                margin-right: 1.2em;
+            }
         }
     }
 }

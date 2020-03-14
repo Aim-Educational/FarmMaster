@@ -4,7 +4,8 @@ const webpack = require("webpack");
 module.exports = {
     mode: "production",
     entry : {
-        util: "./Scripts/Bundles/bundle_util.js"
+        util: "./Scripts/Bundles/bundle_util.js",
+        controls: "./Scripts/Bundles/bundle_controls.js"
     },
     devtool: false,
     output: {

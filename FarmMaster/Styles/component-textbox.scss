@@ -1,0 +1,16 @@
+input[type=text], input[type=password] {
+    height: 40px;
+    font-size: 14px;
+    padding-left: 1em;
+    border: 1px solid;
+    border-color: hsl(0, 0%, 85%);
+    border-radius: 2%;
+    transition: border-color ease 0.3s;
+    transition: color ease 0.3s;
+    color: hsl(0, 0%, 40%);
+
+    &:focus {
+        border-color: blue;
+        color: hsl(0, 0%, 10%);
+    }
+}

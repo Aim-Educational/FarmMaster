@@ -1,9 +1,13 @@
+html {
+  height: 100%;
+}
+
 body {
   font-size: 18px;
   margin: 0;
   display: flex;
   font-family: Lato, sans-serif;
-  height: 100%;
+  min-height: 100%;
 }
 body > aside {
   display: flex;
@@ -11,7 +15,6 @@ body > aside {
   min-width: 250px;
   width: 250px;
   min-height: 100vh;
-  height: 100%;
   background-color: #1a727b;
   color: white;
 }
@@ -134,4 +137,10 @@ body > .wrapper > main {
   flex-direction: column;
   background-color: #EEE;
   height: 100%;
+  width: 100%;
+}
+body > .wrapper > main > .wrapper {
+  margin-top: 1.4em;
+  margin-left: 1.2em;
+  margin-right: 1.2em;
 }

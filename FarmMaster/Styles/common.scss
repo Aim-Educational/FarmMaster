@@ -1,3 +1,46 @@
-﻿body {
+.input-wrapper {
+    display: flex;
+    width: 100%;
 
+    & + * {
+        padding-top: 1em;
+    }
+
+    label {
+        display: flex;
+        font-weight: bold;
+        font-size: 15px;
+    }
+
+    &.inline {
+        $LABEL_WIDTH: 10%;
+        $INPUT_WIDTH: 100% - $LABEL_WIDTH;
+    
+        label {
+            flex-direction: column;
+            align-self: center;
+            min-width: $LABEL_WIDTH;
+        }
+
+        label + input, label + .input {
+            display: flex;
+            flex-direction: column;
+            width: $INPUT_WIDTH;
+        }
+    }
+
+    &:not(.inline) {
+        flex-wrap: wrap;
+
+        label {
+            flex-direction: row;
+            width: 100%;
+        }
+
+        label + input, label + .input {
+            display: flex;
+            width: 100%;
+            margin-top: 1em;
+        }
+    }
 }

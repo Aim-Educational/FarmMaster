@@ -1,0 +1,56 @@
+div.alert {
+    display: none;
+    border: 1px solid;
+    border-radius: 20px;
+    width: 100%;
+
+    * + & {
+        margin-top: 1em;
+    }
+
+    &.show {
+        display: flex;
+    }
+
+    > .content {
+        display: flex;
+        flex-direction: column;
+        padding-top: 1em;
+        padding-left: 1em;
+        width: 100%;
+    }
+
+    > .close {
+        display: flex;
+        flex-direction: column;
+        min-width: 50px;
+        align-self: center;
+        font-size: 25px;
+        cursor: pointer;
+    }
+
+    header {
+        display: flex;
+        font-size: 20px;
+        font-weight: bold;
+        width: 100%;
+    }
+
+    p {
+        display: flex;
+        width: 100%;
+        font-size: 16px;
+    }
+
+    &.error {
+        background-color: rgb(236, 154, 154);
+        border-color: rgb(180, 117, 117);
+        color: rgb(88, 8, 8);
+    }
+
+    &.info {
+        background-color: rgb(149, 171, 212);
+        border-color: rgb(93, 119, 126);
+        color: rgb(27, 37, 46)
+    }
+}

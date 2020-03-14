@@ -1,0 +1,48 @@
+div.alert {
+  display: none;
+  border: 1px solid;
+  border-radius: 20px;
+  width: 100%;
+}
+* + div.alert {
+  margin-top: 1em;
+}
+div.alert.show {
+  display: flex;
+}
+div.alert > .content {
+  display: flex;
+  flex-direction: column;
+  padding-top: 1em;
+  padding-left: 1em;
+  width: 100%;
+}
+div.alert > .close {
+  display: flex;
+  flex-direction: column;
+  min-width: 50px;
+  align-self: center;
+  font-size: 25px;
+  cursor: pointer;
+}
+div.alert header {
+  display: flex;
+  font-size: 20px;
+  font-weight: bold;
+  width: 100%;
+}
+div.alert p {
+  display: flex;
+  width: 100%;
+  font-size: 16px;
+}
+div.alert.error {
+  background-color: #ec9a9a;
+  border-color: #b47575;
+  color: #580808;
+}
+div.alert.info {
+  background-color: #95abd4;
+  border-color: #5d777e;
+  color: #1b252e;
+}

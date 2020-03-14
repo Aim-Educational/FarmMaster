@@ -1,0 +1,30 @@
+div.control-window {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  margin-bottom: 2em;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+div.control-window > header {
+  display: flex;
+  width: 100%;
+  height: 50px;
+  background-color: #e3e3e3;
+}
+div.control-window > header > h1 {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  padding: 0;
+  margin: 0;
+  padding-left: 0.75em;
+  font-size: 22px;
+  color: #404040;
+}
+div.control-window > .content {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  background-color: #fafafa;
+  padding: 1em 1em 1em 1em;
+}

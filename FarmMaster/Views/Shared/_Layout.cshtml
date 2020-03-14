@@ -84,7 +84,9 @@
         </header>
 
         <main role="main">
-            @RenderBody()
+            <div class="wrapper">
+                @RenderBody()
+            </div>
         </main>
     </div>
 
@@ -93,6 +95,7 @@
 
     <!--Libraries-->
     <script src="~/js/util.js"></script>
+    <script src="~/js/controls.js"></script>
 
     <!--Navbar JS-->
     <script>
@@ -103,7 +106,8 @@
                     admin: {
                         shown: @checkPolicy(PolicyNames.IS_ADMIN),
                         items: {
-                            settings: { shown: true, icon: null, href: "#" }
+                            settings: { shown: true, icon: null, href: "#" },
+                            controls: { shown: true, icon: null, href: "/Home/ControlTest" }
                         }
                     }
                 }

@@ -1,0 +1,69 @@
+﻿@{
+    ViewData["Title"] = "[Dev] Control Test";
+}
+
+<div id="app">
+    <window title="Inline input-wrapper test">
+        <div class="input-wrapper inline">
+            <label>This is inline</label>
+            <textbox placeholder="Enter text..." />
+        </div>
+        <div class="input-wrapper inline">
+            <label>This is inline</label>
+            <textbox placeholder="Enter text..." />
+        </div>
+    </window>
+
+    <window title="Not-inline input-wrapper test">
+        <div class="input-wrapper">
+            <label>This is not inline</label>
+            <textbox placeholder="Enter text..." />
+        </div>
+        <div class="input-wrapper">
+            <label>This is not inline</label>
+            <textbox placeholder="Enter text..." />
+        </div>
+    </window>
+
+    <div style="display: flex; width: 100%;">
+        <div style="display:flex; flex-direction:column; width:50%; padding-right:5em;">
+            <window title="1st column">
+                <div class="input-wrapper">
+                    <label>This is not inline</label>
+                    <textbox placeholder="Enter text..." />
+                </div>
+            </window>
+        </div>
+        <div style="display:flex; flex-direction:column; width:50%;">
+            <window title="2nd column">
+                <div class="input-wrapper inline">
+                    <label>This is inline</label>
+                    <textbox placeholder="Enter text..." />
+                </div>
+            </window>
+        </div>
+    </div>
+
+    <window title="Alert boxes">
+        <alert type="error" show>
+            <header>Invalid password</header>
+            <p>
+                Your password is incorrect, it must contain a number.
+            </p>
+        </alert>
+        <alert type="info" show>
+            <header>Did you know?</header>
+            <p>
+                90% of headaches are caused by Andy.
+            </p>
+        </alert>
+    </window>
+</div>
+
+@section Scripts {
+    <script>
+        new Vue({
+            el: "#app"
+        });
+    </script>
+}

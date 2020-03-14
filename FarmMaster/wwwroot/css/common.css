@@ -1,0 +1,34 @@
+.input-wrapper {
+  display: flex;
+  width: 100%;
+}
+.input-wrapper + * {
+  padding-top: 1em;
+}
+.input-wrapper label {
+  display: flex;
+  font-weight: bold;
+  font-size: 15px;
+}
+.input-wrapper.inline label {
+  flex-direction: column;
+  align-self: center;
+  min-width: 10%;
+}
+.input-wrapper.inline label + input, .input-wrapper.inline label + .input {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+}
+.input-wrapper:not(.inline) {
+  flex-wrap: wrap;
+}
+.input-wrapper:not(.inline) label {
+  flex-direction: row;
+  width: 100%;
+}
+.input-wrapper:not(.inline) label + input, .input-wrapper:not(.inline) label + .input {
+  display: flex;
+  width: 100%;
+  margin-top: 1em;
+}
