@@ -76,8 +76,8 @@ namespace FarmMaster
 
             services.Configure<OpenIdConnectOptions>(AzureADDefaults.OpenIdScheme, options =>
             {
-                options.Authority = options.Authority + "/v2.0/";         // Microsoft identity platform
-                options.TokenValidationParameters.ValidateIssuer = false; // accept several tenants (here simplified)
+                options.Authority += "/v2.0/";
+                options.TokenValidationParameters.ValidateIssuer = false;
             });
 
             services.AddAuthentication(o => 
