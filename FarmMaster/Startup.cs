@@ -4,11 +4,17 @@ using System.Linq;
 using System.Threading.Tasks;
 using DataAccess;
 using FarmMaster.Areas.Identity.Services;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.AzureAD.UI;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -67,8 +73,23 @@ namespace FarmMaster
                 o.AccessDeniedPath = "/Identity/Account/AccessDenied";
                 o.SlidingExpiration = true;
             });
-            
-            services.AddAuthentication();
+
+            services.Configure<OpenIdConnectOptions>(AzureADDefaults.OpenIdScheme, options =>
+            {
+                options.Authority = options.Authority + "/v2.0/";         // Microsoft identity platform
+                options.TokenValidationParameters.ValidateIssuer = false; // accept several tenants (here simplified)
+            });
+
+            services.AddAuthentication(o => 
+            {
+                o.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            })
+            .AddAzureAD(options => 
+            { 
+                Configuration.Bind("AzureAd", options);
+                options.CookieSchemeName = IdentityConstants.ExternalScheme;
+            });
+
             services.AddAuthorization();
 
             // MVC
