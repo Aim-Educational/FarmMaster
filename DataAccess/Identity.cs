@@ -1,4 +1,5 @@
-﻿using DataAccess.Internal;
+﻿using DataAccess.Constants;
+using DataAccess.Internal;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -50,6 +51,26 @@ namespace DataAccess
     {
         public IdentityContext(DbContextOptions<IdentityContext> context) : base(context)
         {
+        }
+
+        public void Seed(RoleManager<ApplicationRole> roles)
+        {
+            this.SeedRoles(roles);
+        }
+
+        private void SeedRoles(RoleManager<ApplicationRole> roles)
+        {
+            var roleInfo = new[]
+            {
+                new ApplicationRole { Name = RoleNames.SUPER_ADMIN }
+            };
+
+            foreach(var info in roleInfo)
+            {
+                info.NormalizedName = info.Name.ToUpper();
+                if(!roles.RoleExistsAsync(info.Name).Result)
+                    roles.CreateAsync(info).Wait();
+            }
         }
     }
 

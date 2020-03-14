@@ -1,6 +1,6 @@
 ﻿@inject SignInManager<ApplicationUser> signIn
 @inject UserManager<ApplicationUser> users
-@using FarmMaster.Constants
+@using DataAccess.Constants
 
 @{
     var identityUser = await users.GetUserAsync(User);
