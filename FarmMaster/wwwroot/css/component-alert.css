@@ -7,6 +7,9 @@ div.alert {
 * + div.alert {
   margin-top: 1em;
 }
+div.alert:not(.show) + div.alert {
+  margin-top: 0;
+}
 div.alert.show {
   display: flex;
 }

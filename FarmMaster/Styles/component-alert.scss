@@ -8,6 +8,11 @@ div.alert {
         margin-top: 1em;
     }
 
+    // Don't add the margin if the previous alert isn't shown.
+    &:not(.show) + & {
+        margin-top: 0;
+    }
+
     &.show {
         display: flex;
     }

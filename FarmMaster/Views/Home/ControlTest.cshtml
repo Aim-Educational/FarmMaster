@@ -45,25 +45,50 @@
     </div>
 
     <window title="Alert boxes">
-        <alert type="error" show>
+        <alert type="error" ref="alert1" show>
             <header>Invalid password</header>
             <p>
                 Your password is incorrect, it must contain a number.
             </p>
         </alert>
-        <alert type="info" show>
+        <alert type="info" ref="alert2" show>
             <header>Did you know?</header>
             <p>
                 90% of headaches are caused by Andy.
             </p>
         </alert>
+        <button @@click="showAlerts">
+            Toggle alerts
+        </button>
+    </window>
+
+    <window title="Multiselect">
+        <a href="https://vue-multiselect.js.org/">Documentation</a>
+        <div class="input-wrapper inline">
+            <label>Single select</label>
+            <vue-multiselect v-model="singleselectData" :options="['a', 'b']"></vue-multiselect>
+        </div>
+        <div class="input-wrapper">
+            <label>Multi select</label>
+            <vue-multiselect multiple hide-selected v-model="multiselectData" :options="['Andy', 'smells']"></vue-multiselect>
+        </div>
     </window>
 </div>
 
 @section Scripts {
     <script>
         new Vue({
-            el: "#app"
+            el: "#app",
+            data: {
+                singleselectData: "",
+                multiselectData: null
+            },
+            methods: {
+                showAlerts() {
+                    this.$refs.alert1.toggle();
+                    this.$refs.alert2.toggle();
+                }
+            }
         });
     </script>
 }

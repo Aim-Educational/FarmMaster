@@ -1,5 +1,5 @@
 <template>
-    <input :name="name" :type="type" :placeholder="placeholder" />
+    <input class="farm-master" :name="name" :type="type" :placeholder="placeholder" />
 </template>
 
 <script>

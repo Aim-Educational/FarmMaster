@@ -27,8 +27,37 @@
   flex-direction: row;
   width: 100%;
 }
+.input-wrapper:not(.inline) label + * {
+  margin-top: 1em;
+}
 .input-wrapper:not(.inline) label + input, .input-wrapper:not(.inline) label + .input {
   display: flex;
   width: 100%;
+}
+
+button {
+  height: 40px;
+  padding-left: 1em;
+  padding-right: 1em;
   margin-top: 1em;
+  border: none;
+  border-radius: 5px;
+  background-color: #d9d9d9;
+  cursor: pointer;
+  transition: background-color ease 0.25s;
+  color: #404040;
+  font-weight: bold;
+  font-family: Roboto, sans-serif;
+}
+button:hover {
+  background-color: #cccccc;
+  color: #333333;
+}
+button:active {
+  background-color: #bfbfbf;
+  color: #262626;
+}
+button:focus, button::-moz-focus-inner {
+  outline: none;
+  border: 0;
 }
