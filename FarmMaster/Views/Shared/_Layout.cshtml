@@ -1,19 +1,14 @@
 ﻿@inject SignInManager<ApplicationUser> signIn
 @inject UserManager<ApplicationUser> users
-@using DataAccess.Constants
+@inject IAuthorizationService auth
 
-@{
-    var identityUser = await users.GetUserAsync(User);
+@using Microsoft.AspNetCore.Authorization
+@using FarmMaster.Constants
 
-    Func<IEnumerable<string>, bool> isInRoleImpl = roles =>
+@{ 
+    Func<string, string> checkPolicy = policy => 
     {
-        return roles.All(r => users.IsInRoleAsync(identityUser, r).Result);
-    };
-
-    Func<IEnumerable<string>, string> isInRole = roles =>
-    {
-        // ASP decides to use "False" and "True" instead of "false"/"true"
-        return isInRoleImpl(roles) ? "true" : "false";
+        return (auth.AuthorizeAsync(User, policy).Result.Succeeded) ? "true" : "false"; // Result is to be mixed into JS
     };
 }
 
@@ -106,7 +101,7 @@
             data: {
                 sections: {
                     admin: {
-                        shown: @isInRole(new[] { RoleNames.SUPER_ADMIN }),
+                        shown: @checkPolicy(PolicyNames.IS_ADMIN),
                         items: {
                             settings: { shown: true, icon: null, href: "#" }
                         }

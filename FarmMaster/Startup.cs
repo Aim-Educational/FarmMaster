@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DataAccess;
+using DataAccess.Constants;
 using FarmMaster.Areas.Identity.Services;
+using FarmMaster.Constants;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.AzureAD.UI;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -43,7 +45,7 @@ namespace FarmMaster
             // Database
             services.AddDbContext<IdentityContext>(o => o.UseNpgsql(Configuration.GetConnectionString("Identity")));
 
-            // Identity
+            // Identity + All login providers
             services.AddIdentity<ApplicationUser, ApplicationRole>(o => 
             {
                 o.SignIn.RequireConfirmedAccount = true;
@@ -90,7 +92,10 @@ namespace FarmMaster
                 options.CookieSchemeName = IdentityConstants.ExternalScheme;
             });
 
-            services.AddAuthorization();
+            services.AddAuthorization(o => 
+            {
+                o.AddPolicy(PolicyNames.IS_ADMIN, p => p.RequireRole(RoleNames.SUPER_ADMIN));
+            });
 
             // MVC
             services.AddControllersWithViews()
