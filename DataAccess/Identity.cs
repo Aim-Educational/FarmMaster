@@ -53,9 +53,10 @@ namespace DataAccess
         {
         }
 
-        public void Seed(RoleManager<ApplicationRole> roles)
+        public void Seed(RoleManager<ApplicationRole> roles, UserManager<ApplicationUser> users)
         {
             this.SeedRoles(roles);
+            this.SeedUsers(users);
         }
 
         private void SeedRoles(RoleManager<ApplicationRole> roles)
@@ -71,6 +72,28 @@ namespace DataAccess
                 if(!roles.RoleExistsAsync(info.Name).Result)
                     roles.CreateAsync(info).Wait();
             }
+        }
+
+        private void SeedUsers(UserManager<ApplicationUser> users)
+        {
+            var existingUser = users.FindByEmailAsync("admin@example.com").Result;
+            if (existingUser != null)
+                return;
+
+            var user = new ApplicationUser
+            {
+                Email              = "admin@example.com",
+                EmailConfirmed     = true,
+                NormalizedEmail    = "ADMIN@EXAMPLE.COM",
+                NormalizedUserName = "ADMIN@EXAMPLE.COM",
+                UserName           = "admin@example.com"
+            };
+
+            user.PasswordHash = new PasswordHasher<ApplicationUser>().HashPassword(user, "password");
+
+            // Create default superadmin
+            users.CreateAsync(user).Wait();
+            users.AddToRoleAsync(user, RoleNames.SUPER_ADMIN).Wait();
         }
     }
 

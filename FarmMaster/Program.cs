@@ -23,8 +23,9 @@ namespace FarmMaster
             {
                 var db    = scope.ServiceProvider.GetRequiredService<IdentityContext>();
                 var roles = scope.ServiceProvider.GetRequiredService<RoleManager<ApplicationRole>>();
+                var users = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
 
-                db.Seed(roles);
+                db.Seed(roles, users);
             }
 
             host.Run();

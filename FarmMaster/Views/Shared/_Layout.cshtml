@@ -106,7 +106,7 @@
             data: {
                 sections: {
                     admin: {
-                        shown: true, //@isInRole(new[] { RoleNames.SUPER_ADMIN }),
+                        shown: @isInRole(new[] { RoleNames.SUPER_ADMIN }),
                         items: {
                             settings: { shown: true, icon: null, href: "#" }
                         }
