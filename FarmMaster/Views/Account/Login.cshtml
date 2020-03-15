@@ -14,13 +14,16 @@
                 <label>Password</label>
                 <textbox fm-model="Password" type="password" placeholder="Password"></textbox>
             </div>
-            <div class="top margined">
+            <div class="top margined flex-wrapper">
                 <label>Remember me</label>
                 <input type="checkbox" asp-for="RememberMe" />
             </div>
             <alert fm-model-error="true">
                 <header>Error logging in</header>
             </alert>
+            <a class="top padded" href="/Identity/Account/ForgotPassword">
+                Forgotten your password?
+            </a>
             <button class="top margined fluid blue" type="submit">Login</button>
         </form>
     </window>

@@ -97,6 +97,14 @@ button {
     }
 }
 
+.flex-wrapper {
+    display: flex;
+}
+
+.top.padded {
+    padding-top: 1em;
+}
+
 .top.margined {
     margin-top: 1em;
 }

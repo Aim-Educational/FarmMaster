@@ -84,6 +84,14 @@ button.blue:disabled {
   color: #3d72c2;
 }
 
+.flex-wrapper {
+  display: flex;
+}
+
+.top.padded {
+  padding-top: 1em;
+}
+
 .top.margined {
   margin-top: 1em;
 }
