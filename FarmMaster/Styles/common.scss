@@ -76,6 +76,12 @@ button {
         outline: none;
         border: 0;
     }
+
+    &:disabled {
+        background-color: hsl(0, 0%, 88%);
+        color: hsl(0, 0%, 50%);
+        cursor: auto;
+    }
 }
 
 .top.margined {

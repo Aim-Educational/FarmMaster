@@ -68,7 +68,7 @@ const ROWT_EXAMPLE = {
  *   'selected': {
  *      Emitted whenever a checkbox is checked. Payload is the following object.
  *      
- *      triggerValue:   Object   # The value from `props.values` that was selected. THIS IS NULL if the 'selectAll' checkbox was checked.
+ *      triggerValue:   Object   # The value from `props.values` that was selected. THIS IS NULL if the 'selectAll' checkbox was checked. THIS IS NULL if the trigger was caused a column being sorted
  *      selectedValues: Object[] # All values from `props.values` that are currently selected, including the `triggerValue`.
  *   }
  */
@@ -172,9 +172,13 @@ export default {
                 this.sortedRow.row = null;
 
             // If selectAll is already false, then the watcher won't trigger, so we need to deselect stuff anyway just in case.
-            this.selectAll = false;
             for(let i = 0; i < this.selectedValueIndicies.length; i++)
                 this.selectedValueIndicies[i] = false;
+
+            this.ignoreNextSelectAll = true;
+            this.selectAll = false;
+
+            this.$emit("selected", { triggerValue: null, selectedValues: [] });
         },
 
         onValueChecked(index) {

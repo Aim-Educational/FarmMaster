@@ -79,9 +79,10 @@
         <farm-table selection="multiple"
                     :rows="[{name: 'Username', bind: 'username', sort: true}, {name: 'Age', bind: 'age', sort:true}]"
                     :values="[{ username: { href: '#', value: 'Bradley' }, age: 20 }, { username: 'Andy', age: 200 }, { username: 'Debby', age: 120 }]"
-                    ref="table">
+                    ref="table"
+                    @@selected="onTableSelectionChange">
             <template v-slot:tfoot>
-                <button @@click="freeGoat">Click me for a free goat</button>
+                <button :disabled="tableButtonDisabled" @@click="freeGoat">Click me for a free goat</button>
             </template>
         </farm-table>
     </window>
@@ -93,7 +94,8 @@
             el: "#app",
             data: {
                 singleselectData: "",
-                multiselectData: null
+                multiselectData: null,
+                tableButtonDisabled: true
             },
             methods: {
                 showAlerts() {
@@ -102,7 +104,11 @@
                 },
 
                 freeGoat() {
-                    alert("Selected row: " + JSON.stringify(this.$refs.table.sortedRow));
+                    alert("Row being sorted " + JSON.stringify(this.$refs.table.sortedRow));
+                },
+
+                onTableSelectionChange(event) {
+                    this.tableButtonDisabled = event.selectedValues.length === 0;
                 }
             }
         });
