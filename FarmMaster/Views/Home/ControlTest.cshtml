@@ -91,11 +91,11 @@
         <a href="https://vcalendar.io/">Documentation</a>
         <div class="input-wrapper inline">
             <label>Inline Calendar</label>
-            <vue-calendar locale="en-GB" :attributes="[{key:'today', highlight: true, dates: date, popover:{ label:'Today!' }}]"></vue-calendar>
+            <vue-calendar locale="en-GB" :attributes="[{key:'today', highlight: true, dates: date, popover:{ label:eventName }}]"></vue-calendar>
         </div>
         <div class="input-wrapper">
             <label>Calendar</label>
-            <vue-calendar locale="en-GB" :attributes="[{key:'today', dot: true, dates: date, popover:{ label:'Today!' }}]"></vue-calendar>
+            <vue-calendar locale="en-GB" :attributes="[{key:'today', dot: true, dates: date, popover:{ label:eventName }}]"></vue-calendar>
         </div>
     </window>
 
@@ -109,6 +109,10 @@
             <label>Picker</label>
             <vue-date-picker locale="en-GB" v-model="date"></vue-date-picker>
         </div>
+        <div class="input-wrapper">
+            <label>Event name</label>
+            <textbox v-model="eventName" placeholder="What should the calendar show?"></textbox>
+        </div>
     </window>
 </div>
 
@@ -120,7 +124,8 @@
                 singleselectData: "",
                 multiselectData: null,
                 tableButtonDisabled: true,
-                date: null
+                date: null,
+                eventName: ""
             },
             methods: {
                 showAlerts() {
