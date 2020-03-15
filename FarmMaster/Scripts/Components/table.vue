@@ -68,7 +68,7 @@ const ROWT_EXAMPLE = {
  *   'selected': {
  *      Emitted whenever a checkbox is checked. Payload is the following object.
  *      
- *      triggerValue:   Object   # The value from `props.values` that was selected. THIS IS NULL if the 'selectAll' checkbox was checked. THIS IS NULL if the trigger was caused a column being sorted
+ *      triggerValue:   Object   # The value from `props.values` that was selected. THIS IS NULL if the 'selectAll' checkbox was used. THIS IS NULL if the trigger was caused a column being sorted
  *      selectedValues: Object[] # All values from `props.values` that are currently selected, including the `triggerValue`.
  *   }
  */
@@ -110,7 +110,7 @@ export default {
             for(let i = 0; i < this.values.length; i++)
                 this.selectedValueIndicies[i] = newValue;
 
-            this.onValueChecked(-1);
+            this.$emit("selected", { triggerValue: null, selectedValues: newValue ? this.values : [] });
         }
     },
 
