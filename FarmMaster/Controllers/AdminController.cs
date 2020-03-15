@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DataAccess;
 using DataAccessLogic;
 using FarmMaster.Areas.Identity.Services;
 using FarmMaster.Constants;
 using FarmMaster.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 
@@ -26,6 +29,16 @@ namespace FarmMaster.Controllers
             { 
                 Email = emailConf.Value
             });
+        }
+
+        public async Task<IActionResult> TestEmail([FromServices] IEmailSender email, [FromServices] UserManager<ApplicationUser> users)
+        {
+            var user    = await users.GetUserAsync(User);
+            var address = await users.GetEmailAsync(user);
+
+            await email.SendEmailAsync(address, "This is a test", "<h1>Lalafells are demons, change my mind</h1>");
+
+            return RedirectToAction("Settings");
         }
 
         [HttpPost]

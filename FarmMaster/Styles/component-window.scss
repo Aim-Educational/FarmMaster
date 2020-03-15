@@ -29,5 +29,13 @@ div.control-window {
         width: 100%;
         background-color: hsl(0, 0%, 98%);
         padding: 1em 1em 1em 1em;
+
+        > p {
+            display: flex;
+            width: 100%;
+            &:nth-child(1) {
+                margin-top: 0;
+            }
+        }
     }
 }
