@@ -1,6 +1,18 @@
 export function post(url: string, data: object) {
+    return ajax(url, "POST", data);
+}
+
+export function get(url: string) {
+    return ajax(url, "GET", {});
+}
+
+export function graphql(query: string, variables: object) {
+    return ajax("/graphql", "POST", { query, variables });
+}
+
+function ajax(url: string, method: "GET" | "POST", data: object) {
     return fetch(url, {
-        method: "POST",
+        method: method,
         headers: {
             "Accept": "application/json",
             "Content-Type": "application/json"
@@ -9,7 +21,7 @@ export function post(url: string, data: object) {
     })
     .then(response => {
         if(!response.ok)
-            throw new Error(`POST to ${url} failed with status ${response.status}: ${response.statusText}`);
+            throw new Error(`${method} to ${url} failed with status ${response.status}: ${response.statusText}`);
 
         return response;
     })
