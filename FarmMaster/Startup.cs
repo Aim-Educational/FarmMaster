@@ -7,6 +7,7 @@ using DataAccess.Constants;
 using DataAccessGraphQL;
 using FarmMaster.Areas.Identity.Services;
 using FarmMaster.Constants;
+using FarmMaster.Services.Configuration;
 using GraphQL.Server;
 using GraphQL.Server.Ui.Playground;
 using Microsoft.AspNetCore.Authentication;
@@ -24,6 +25,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 
 namespace FarmMaster
 {
@@ -49,26 +51,9 @@ namespace FarmMaster
             services.AddDbContext<IdentityContext>(o => o.UseNpgsql(Configuration.GetConnectionString("Identity")));
             services.AddDbContext<FarmMasterContext>(o => o.UseNpgsql(Configuration.GetConnectionString("FarmMaster")));
 
-            #region Config that requires Database settings
-            #pragma warning disable ASP0000 // We're only using this to access database settings, chillllll.
-            var provider = services.BuildServiceProvider();
-            #pragma warning restore ASP0000 // Do not call 'IServiceCollection.BuildServiceProvider' in 'ConfigureServices'
-            var dbForConfig = provider.GetRequiredService<FarmMasterContext>();
-
             // Email
-            services.Configure<EmailSenderConfig>(c => 
-            {
-                var settings = dbForConfig.Settings.FirstOrDefault();
-                if(settings == null)
-                    return;
-
-                c.Server   = settings.SmtpServer;
-                c.Port     = settings.SmtpPort;
-                c.Username = settings.SmtpUsername;
-                c.Password = settings.SmtpPassword; // CURRENTLY STORED UNENCRYPTED
-            });
+            services.AddSingleton<IConfigureOptions<EmailSenderConfig>, ConfigureEmailOptions>();
             services.AddScoped<IEmailSender, EmailSender>();
-            #endregion
 
             // Identity + All login providers
             services.AddIdentity<ApplicationUser, ApplicationRole>(o => 
