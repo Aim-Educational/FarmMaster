@@ -175,9 +175,9 @@ export default {
             for(let i = 0; i < this.selectedValueIndicies.length; i++)
                 this.selectedValueIndicies[i] = false;
 
-            if(!this.selectAll)
+            if(this.selectAll)
                 this.ignoreNextSelectAll = true;
-                
+
             this.selectAll = false;
 
             this.$emit("selected", { triggerValue: null, selectedValues: [] });
