@@ -10,9 +10,13 @@ namespace DataAccessGraphQL
 {
     public class DataAccessRootQuery : ObjectGraphType<object>
     {
+        private ApplicationUser _user;
+        private UserManager<ApplicationUser> _users;
+
         public DataAccessRootQuery(IHttpContextAccessor context, UserManager<ApplicationUser> users)
         {
-            Field<StringGraphType>("myName", resolve: ctx => users.GetUserAsync(context.HttpContext.User).Result.UserName);
+            this._user = users.GetUserAsync(context.HttpContext.User).Result;
+            this._users = users;
         }
     }
 }
