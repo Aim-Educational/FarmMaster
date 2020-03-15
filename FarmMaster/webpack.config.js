@@ -5,7 +5,8 @@ module.exports = {
     mode: "production",
     entry : {
         util: "./Scripts/Bundles/bundle_util.js",
-        controls: "./Scripts/Bundles/bundle_controls.js"
+        controls: "./Scripts/Bundles/bundle_controls.js",
+        external_controls: "./Scripts/Bundles/bundle_thirdparty_controls.js"
     },
     devtool: false,
     output: {
@@ -40,5 +41,8 @@ module.exports = {
             filename: "[file].map",
             publicPath: "/js/"
         })
-    ]
+    ],
+    performance: {
+        hints: false
+    }
 };

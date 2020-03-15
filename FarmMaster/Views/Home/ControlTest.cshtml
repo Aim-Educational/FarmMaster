@@ -86,6 +86,30 @@
             </template>
         </farm-table>
     </window>
+
+    <window title="Calendar">
+        <a href="https://vcalendar.io/">Documentation</a>
+        <div class="input-wrapper inline">
+            <label>Inline Calendar</label>
+            <vue-calendar locale="en-GB" :attributes="[{key:'today', highlight: true, dates: date, popover:{ label:'Today!' }}]"></vue-calendar>
+        </div>
+        <div class="input-wrapper">
+            <label>Calendar</label>
+            <vue-calendar locale="en-GB" :attributes="[{key:'today', dot: true, dates: date, popover:{ label:'Today!' }}]"></vue-calendar>
+        </div>
+    </window>
+
+    <window title="Date picker">
+        <a href="https://vcalendar.io/datepicker.html">Documentation</a>
+        <div class="input-wrapper inline">
+            <label>Inline picker</label>
+            <vue-date-picker locale="en-GB" v-model="date"></vue-date-picker>
+        </div>
+        <div class="input-wrapper">
+            <label>Picker</label>
+            <vue-date-picker locale="en-GB" v-model="date"></vue-date-picker>
+        </div>
+    </window>
 </div>
 
 @section Scripts {
@@ -95,7 +119,8 @@
             data: {
                 singleselectData: "",
                 multiselectData: null,
-                tableButtonDisabled: true
+                tableButtonDisabled: true,
+                date: null
             },
             methods: {
                 showAlerts() {
