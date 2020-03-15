@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using DataAccess;
 using DataAccess.Constants;
 using DataAccessGraphQL;
+using DataAccessLogic;
 using FarmMaster.Areas.Identity.Services;
 using FarmMaster.Constants;
 using FarmMaster.Services.Configuration;
@@ -126,11 +127,15 @@ namespace FarmMaster
                 o.LowercaseQueryStrings = false;
                 o.LowercaseUrls = false;
             });
+
+            // Misc
+            services.AddDataAccessLogicLayer();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseForwardedHeaders();
+            app.UseStatusCodePages();
 
             if (env.IsDevelopment())
             {

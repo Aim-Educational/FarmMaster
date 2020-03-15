@@ -31,11 +31,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DataAccessGraphQL\DataAccessGraphQL.csproj" />
+    <ProjectReference Include="..\DataAccessLogic\DataAccessLogic.csproj" />
     <ProjectReference Include="..\DataAccess\DataAccess.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
     <Folder Include="Scripts\Components\" />
     <Folder Include="Scripts\Libraries\" />
   </ItemGroup>

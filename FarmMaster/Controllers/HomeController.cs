@@ -14,11 +14,5 @@ namespace FarmMaster.Controllers
         {
             return View();
         }
-
-        [Authorize(Policy = "IsAdmin")]
-        public IActionResult ControlTest()
-        {
-            return View();
-        }
     }
 }

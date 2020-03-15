@@ -1,0 +1,42 @@
+﻿@model AdminSettingsViewModel
+@{
+    ViewData["Title"] = "Settings";
+}
+
+<div id="app">
+    <window title="Email Settings">
+        <form method="post" asp-action="Email">
+            <div class="input-wrapper inline">
+                <label>Server</label>
+                <textbox fm-model="Email.Server" placeholder="smtp.gmail.com"></textbox>
+            </div>
+            <div class="input-wrapper inline">
+                <label>Port</label>
+                <textbox fm-model="Email.Port" placeholder="465"></textbox>
+            </div>
+            <div class="input-wrapper inline">
+                <label>Username</label>
+                <textbox fm-model="Email.Username" placeholder="andy@aimeducational.org"></textbox>
+            </div>
+            <div class="input-wrapper inline">
+                <label>Password</label>
+                <textbox fm-model="Email.Password" value="" type="password" placeholder="goats 'r' us"></textbox>
+            </div>
+            <alert type="info" show>
+                <header>Take note!</header>
+                <p>
+                    This particaular password is currently stored in plain text on the database.
+                </p>
+            </alert>
+            <button class="top margined fluid blue" type="submit">Update Email Settings</button>
+        </form>
+    </window>
+</div>
+
+@section Scripts {
+    <script>
+        new Vue({
+            el: "#app"
+        });
+    </script>
+}

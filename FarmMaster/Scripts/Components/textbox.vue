@@ -3,6 +3,7 @@
            :name="name" 
            :type="type" 
            :placeholder="placeholder"
+           :value="value"
            @input="$emit('input', $event.target.value)" />
 </template>
 
