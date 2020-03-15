@@ -49,27 +49,37 @@
 }
 
 button {
+    @mixin buttonColour($hue, $saturation) {
+        background-color: hsl($hue, $saturation, 85%);
+        color: hsl($hue, $saturation, 25%);
+        
+        &:not(:disabled) {
+            &:hover {
+                background-color: hsl($hue, $saturation, 80%);
+                color: hsl($hue, $saturation, 20%);
+            }
+        
+            &:active {
+                background-color: hsl($hue, $saturation, 75%);
+                color: hsl($hue, $saturation, 15%);
+            }
+        }
+    
+        &:disabled {
+            background-color: hsl($hue, $saturation, 88%);
+            color: hsl($hue, $saturation, 50%);
+        }
+    }
+
     height: 40px;
     padding-left: 1em;
     padding-right: 1em;
     border: none;
     border-radius: 5px;
-    background-color: hsl(0, 0%, 85%);
     cursor: pointer;
     transition: background-color ease .25s;
-    color: hsl(0, 0%, 25%);
     font-weight: bold;
     font-family: Roboto, sans-serif;
-
-    &:hover {
-        background-color: hsl(0, 0%, 80%);
-        color: hsl(0, 0%, 20%);
-    }
-
-    &:active {
-        background-color: hsl(0, 0%, 75%);
-        color: hsl(0, 0%, 15%);
-    }
 
     // Get rid of the dotted border Firefox decides to add.
     &:focus, &::-moz-focus-inner {
@@ -78,9 +88,12 @@ button {
     }
 
     &:disabled {
-        background-color: hsl(0, 0%, 88%);
-        color: hsl(0, 0%, 50%);
         cursor: auto;
+    }
+
+    @include buttonColour(0, 0%);
+    &.blue {
+        @include buttonColour(216, 52%);
     }
 }
 

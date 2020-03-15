@@ -41,29 +41,47 @@ button {
   padding-right: 1em;
   border: none;
   border-radius: 5px;
-  background-color: #d9d9d9;
   cursor: pointer;
   transition: background-color ease 0.25s;
-  color: #404040;
   font-weight: bold;
   font-family: Roboto, sans-serif;
-}
-button:hover {
-  background-color: #cccccc;
-  color: #333333;
-}
-button:active {
-  background-color: #bfbfbf;
-  color: #262626;
+  background-color: #d9d9d9;
+  color: #404040;
 }
 button:focus, button::-moz-focus-inner {
   outline: none;
   border: 0;
 }
 button:disabled {
+  cursor: auto;
+}
+button:not(:disabled):hover {
+  background-color: #cccccc;
+  color: #333333;
+}
+button:not(:disabled):active {
+  background-color: #bfbfbf;
+  color: #262626;
+}
+button:disabled {
   background-color: #e0e0e0;
   color: gray;
-  cursor: auto;
+}
+button.blue {
+  background-color: #c5d5ed;
+  color: #1f3961;
+}
+button.blue:not(:disabled):hover {
+  background-color: #b1c7e7;
+  color: #182e4e;
+}
+button.blue:not(:disabled):active {
+  background-color: #9eb9e0;
+  color: #12223a;
+}
+button.blue:disabled {
+  background-color: #d0ddf0;
+  color: #3d72c2;
 }
 
 .top.margined {
