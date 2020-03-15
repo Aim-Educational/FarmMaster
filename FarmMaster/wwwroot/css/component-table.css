@@ -1,0 +1,33 @@
+table {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  border: 1px solid #cccccc;
+  border-radius: 3px;
+}
+table > thead, table > tbody, table > tfoot, table tr, table td, table th {
+  display: flex;
+  width: 100%;
+}
+table tr {
+  padding-left: 1em;
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+table > thead {
+  background-color: #d9d9d9;
+  color: #1f1f1f;
+}
+table > tbody {
+  flex-wrap: wrap;
+}
+table > tbody > tr:nth-of-type(2n) {
+  background-color: #f2f2f2;
+}
+table > tfoot {
+  background-color: #e6e6e6;
+}
+table > thead .sort {
+  padding-left: 0.4em;
+  cursor: pointer;
+}

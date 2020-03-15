@@ -52,7 +52,6 @@ button {
     height: 40px;
     padding-left: 1em;
     padding-right: 1em;
-    margin-top: 1em;
     border: none;
     border-radius: 5px;
     background-color: hsl(0, 0%, 85%);
@@ -77,4 +76,8 @@ button {
         outline: none;
         border: 0;
     }
+}
+
+.top.margined {
+    margin-top: 1em;
 }

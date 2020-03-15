@@ -39,7 +39,6 @@ button {
   height: 40px;
   padding-left: 1em;
   padding-right: 1em;
-  margin-top: 1em;
   border: none;
   border-radius: 5px;
   background-color: #d9d9d9;
@@ -60,4 +59,8 @@ button:active {
 button:focus, button::-moz-focus-inner {
   outline: none;
   border: 0;
+}
+
+.top.margined {
+  margin-top: 1em;
 }

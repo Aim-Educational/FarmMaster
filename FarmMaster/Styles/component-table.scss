@@ -1,0 +1,40 @@
+table {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    border: 1px solid hsl(0, 0%, 80%);
+    border-radius: 3px;
+
+    > thead, > tbody, > tfoot, tr, td, th {
+        display: flex;
+        width: 100%;
+    }
+
+    tr {
+        padding-left: 1em;
+        padding-top: 1em;
+        padding-bottom: 1em;
+    }
+
+    > thead {
+        background-color: hsl(0, 0%, 85%);
+        color: hsl(0, 0%, 12%);
+    }
+
+    > tbody {
+        flex-wrap: wrap;
+
+        > tr:nth-of-type(2n) {
+            background-color: hsl(0, 0%, 95%);
+        }
+    }
+
+    > tfoot {
+        background-color: hsl(0, 0%, 90%)
+    }
+
+    > thead .sort {
+        padding-left: .4em;
+        cursor: pointer;
+    }
+}

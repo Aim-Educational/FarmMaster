@@ -57,7 +57,8 @@
                 90% of headaches are caused by Andy.
             </p>
         </alert>
-        <button @@click="showAlerts">
+        <button class="top margined"
+                @@click="showAlerts">
             Toggle alerts
         </button>
     </window>
@@ -72,6 +73,15 @@
             <label>Multi select</label>
             <vue-multiselect multiple hide-selected v-model="multiselectData" :options="['Andy', 'smells']"></vue-multiselect>
         </div>
+    </window>
+
+    <window title="Table">
+        <farm-table :rows="[{name: 'Username', bind: 'username', sort: true}, {name: 'Age', bind: 'age'}]"
+                    :values="[{ username: { href: '#', value: 'Bradley' }, age: 20 }, { username: 'Andy', age: 200 }, { username: 'Debby', age: 120 }]">
+            <template v-slot:tfoot>
+                <button>Click me for sex</button>
+            </template>
+        </farm-table>
     </window>
 </div>
 

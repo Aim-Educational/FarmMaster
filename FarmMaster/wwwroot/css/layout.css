@@ -2,6 +2,14 @@ html {
   height: 100%;
 }
 
+a {
+  text-decoration: none;
+  color: #393bcf;
+}
+a:hover {
+  text-decoration: underline;
+}
+
 body {
   font-size: 18px;
   margin: 0;
