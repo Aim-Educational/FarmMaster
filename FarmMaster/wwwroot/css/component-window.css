@@ -28,10 +28,11 @@ div.control-window > .content {
   background-color: #fafafa;
   padding: 1em 1em 1em 1em;
 }
+div.control-window > .content > *:nth-child(1) {
+  padding-top: 0;
+  margin-top: 0;
+}
 div.control-window > .content > p {
   display: flex;
   width: 100%;
-}
-div.control-window > .content > p:nth-child(1) {
-  margin-top: 0;
 }
