@@ -33,7 +33,7 @@ div.alert header {
   font-size: 20px;
   font-weight: bold;
   width: 100%;
-  margin-top: 0.3em;
+  margin-top: 0;
 }
 div.alert p {
   display: flex;
