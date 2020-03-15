@@ -12,9 +12,7 @@ namespace FarmMaster.Services.Configuration
     public class ConfigureEmailOptions : ConfigWithDatabaseService<EmailSenderConfig>
     {
         public ConfigureEmailOptions(IServiceScopeFactory factory) : base(factory)
-        {
-
-        }
+        {}
 
         protected override void ConfigWithDatabase(EmailSenderConfig options, FarmMasterContext db)
         {
