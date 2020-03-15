@@ -15,8 +15,8 @@
                 <textbox fm-model="Password" type="password" placeholder="Password"></textbox>
             </div>
             <div class="top margined flex-wrapper">
-                <label>Remember me</label>
                 <input type="checkbox" asp-for="RememberMe" />
+                <label for="RememberMe" >Remember me?</label>
             </div>
             <alert fm-model-error="true">
                 <header>Error logging in</header>
