@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29318.209
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FarmMaster", "FarmMaster\FarmMaster.csproj", "{2F130D66-7661-4757-B7F3-93DEAD466269}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FarmMaster", "FarmMaster\FarmMaster.csproj", "{2F130D66-7661-4757-B7F3-93DEAD466269}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{20723F4D-BBFB-46B5-BF0C-E42670E974BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "DataAccess\DataAccess.csproj", "{20723F4D-BBFB-46B5-BF0C-E42670E974BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessGraphQL", "DataAccessGraphQL\DataAccessGraphQL.csproj", "{B481CBA9-3B1B-4BBC-A97F-E18CE02B08EC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{20723F4D-BBFB-46B5-BF0C-E42670E974BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{20723F4D-BBFB-46B5-BF0C-E42670E974BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{20723F4D-BBFB-46B5-BF0C-E42670E974BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B481CBA9-3B1B-4BBC-A97F-E18CE02B08EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B481CBA9-3B1B-4BBC-A97F-E18CE02B08EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B481CBA9-3B1B-4BBC-A97F-E18CE02B08EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B481CBA9-3B1B-4BBC-A97F-E18CE02B08EC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

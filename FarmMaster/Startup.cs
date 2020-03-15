@@ -4,8 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using DataAccess;
 using DataAccess.Constants;
+using DataAccessGraphQL;
 using FarmMaster.Areas.Identity.Services;
 using FarmMaster.Constants;
+using GraphQL.Server;
+using GraphQL.Server.Ui.Playground;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.AzureAD.UI;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -97,6 +100,16 @@ namespace FarmMaster
                 o.AddPolicy(PolicyNames.IS_ADMIN, p => p.RequireRole(RoleNames.SUPER_ADMIN));
             });
 
+            // GraphQL
+            services.AddScoped<DataAccessGraphQLSchema>();
+            services.AddGraphQL(o => 
+            {
+                o.EnableMetrics = false;
+                o.ExposeExceptions = true;
+            })
+            .AddSystemTextJson()
+            .AddGraphTypes(typeof(DataAccessGraphQLSchema), ServiceLifetime.Scoped);
+
             // MVC
             services.AddControllersWithViews()
                     .AddRazorRuntimeCompilation();
@@ -126,8 +139,17 @@ namespace FarmMaster
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();
+
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseGraphQL<DataAccessGraphQLSchema>("/graphql");
+            app.UseGraphQLPlayground(new GraphQLPlaygroundOptions
+            {
+                PlaygroundSettings = new Dictionary<string, object> {
+                    { "request.credentials", "same-origin" } // Instructs the playground to send cookies, so we can validate the user.
+                }
+            });
 
             app.UseEndpoints(endpoints =>
             {
