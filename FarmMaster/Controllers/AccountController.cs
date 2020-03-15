@@ -28,6 +28,14 @@ namespace FarmMaster.Controllers
             return View();
         }
 
+        public async Task<IActionResult> Logout()
+        {
+            await this._signInManager.SignOutAsync();
+            this._logger.LogInformation("User logged out.");
+            
+            return LocalRedirect("/");
+        }
+
         [HttpPost]
         public async Task<IActionResult> Login(AccountLoginViewModel model, [FromQuery] string returnUrl)
         {
@@ -35,15 +43,15 @@ namespace FarmMaster.Controllers
 
             if (ModelState.IsValid)
             {
-                var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberMe, lockoutOnFailure: true);
+                var result = await this._signInManager.PasswordSignInAsync(model.Username, model.Password, model.RememberMe, lockoutOnFailure: true);
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("User logged in.");
+                    this._logger.LogInformation("User logged in.");
                     return LocalRedirect(returnUrl);
                 }
                 if (result.IsLockedOut)
                 {
-                    _logger.LogWarning("User account locked out.");
+                    this._logger.LogWarning("User account locked out.");
                     return LocalRedirect("/Identity/Account/Lockout");
                 }
                 else

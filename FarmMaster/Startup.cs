@@ -82,7 +82,7 @@ namespace FarmMaster
                 o.ExpireTimeSpan = TimeSpan.FromHours(4);
 
                 o.LoginPath = "/Account/Login";
-                o.LogoutPath = "/Identity/Account/Logout";
+                o.LogoutPath = "/Account/Logout";
                 o.AccessDeniedPath = "/Identity/Account/AccessDenied";
                 o.SlidingExpiration = true;
             });
