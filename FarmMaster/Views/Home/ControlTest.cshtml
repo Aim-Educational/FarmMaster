@@ -76,10 +76,12 @@
     </window>
 
     <window title="Table">
-        <farm-table :rows="[{name: 'Username', bind: 'username', sort: true}, {name: 'Age', bind: 'age'}]"
-                    :values="[{ username: { href: '#', value: 'Bradley' }, age: 20 }, { username: 'Andy', age: 200 }, { username: 'Debby', age: 120 }]">
+        <farm-table selection="multiple"
+                    :rows="[{name: 'Username', bind: 'username', sort: true}, {name: 'Age', bind: 'age', sort:true}]"
+                    :values="[{ username: { href: '#', value: 'Bradley' }, age: 20 }, { username: 'Andy', age: 200 }, { username: 'Debby', age: 120 }]"
+                    ref="table">
             <template v-slot:tfoot>
-                <button>Click me for sex</button>
+                <button @@click="freeGoat">Click me for a free goat</button>
             </template>
         </farm-table>
     </window>
@@ -97,6 +99,10 @@
                 showAlerts() {
                     this.$refs.alert1.toggle();
                     this.$refs.alert2.toggle();
+                },
+
+                freeGoat() {
+                    alert("Selected row: " + JSON.stringify(this.$refs.table.sortedRow));
                 }
             }
         });

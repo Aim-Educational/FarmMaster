@@ -2,6 +2,12 @@
     <table>
         <thead>
             <tr>
+                <th v-if="selection !== 'none'"
+                    style="max-width: 60px;">
+                    <input type="checkbox"
+                           v-model="selectAll"
+                           v-if="selection === 'multiple'">
+                </th>
                 <th v-for="row in rows"
                     :key="row.name + row.bind"
                     :style="{ 'width': rowWidth }">
@@ -22,6 +28,13 @@
         <tbody>
             <tr v-for="(obj, index) in sortedValues"
                 :key="index">
+                <!--Display a checkbox if selections are allowed-->
+                <td v-if="selection !== 'none'"
+                    style="max-width: 60px;">
+                    <input type="checkbox" 
+                           v-model="selectedValueIndicies[index]"
+                           @change="onValueChecked(index)" />
+                </td>
                 <td v-for="row in rows"
                     :key="row.name + index + row.bind">
                     <!--Allow values to contain links.-->
@@ -50,13 +63,25 @@ const ROWT_EXAMPLE = {
     sort: true, // Use 'true' for a default sort, pass a function for a custom sort. (a, b) => a > b
 };
 
+/**
+ * Events:
+ *   'selected': {
+ *      Emitted whenever a checkbox is checked. Payload is the following object.
+ *      
+ *      triggerValue:   Object   # The value from `props.values` that was selected. THIS IS NULL if the 'selectAll' checkbox was checked.
+ *      selectedValues: Object[] # All values from `props.values` that are currently selected, including the `triggerValue`.
+ *   }
+ */
 export default {
     data() {
         return {
             sortedRow: {
                 row: null,
                 asc: false
-            }
+            },
+            selectedValueIndicies: [], // [0] = false means values[0] is not selected, [1] = true means values[1] is.
+            selectAll: false,
+            ignoreNextSelectAll: false // If true, then make the watch function for selectAll return immediately. Used for UI cohesiveness
         }
     },
 
@@ -66,6 +91,27 @@ export default {
             required: true
         },
         values: Array, // Array of user defined objects
+        selection: {
+            type: String,
+            default: "none",
+            validator: function (v) {
+                return ["none", "single", "multiple"].indexOf(v) !== -1;
+            }
+        }
+    },
+
+    watch: {
+        selectAll(newValue, old) {
+            if(this.ignoreNextSelectAll) {
+                this.ignoreNextSelectAll = false;
+                return;
+            }
+
+            for(let i = 0; i < this.values.length; i++)
+                this.selectedValueIndicies[i] = newValue;
+
+            this.onValueChecked(-1);
+        }
     },
 
     computed: {
@@ -83,9 +129,9 @@ export default {
                 let bValue = b[this.sortedRow.row.bind];
 
                 // Handle values that might be objects
-                if(aValue.value)
+                if(aValue && aValue.value)
                     aValue = aValue.value;
-                if(bValue.value)
+                if(bValue && bValue.value)
                     bValue = bValue.value;
 
                 return (typeof this.sortedRow.row.sort === "function")
@@ -93,6 +139,10 @@ export default {
                        : aValue > bValue;
             });
             return (this.sortedRow.asc) ? sorted.reverse() : sorted;
+        },
+
+        selectedValues() {
+            return this.values.filter((v, index) => this.selectedValueIndicies[index]);
         }
     },
     
@@ -120,6 +170,51 @@ export default {
                 this.sortedRow.asc = true;
             else
                 this.sortedRow.row = null;
+
+            // If selectAll is already false, then the watcher won't trigger, so we need to deselect stuff anyway just in case.
+            this.selectAll = false;
+            for(let i = 0; i < this.selectedValueIndicies.length; i++)
+                this.selectedValueIndicies[i] = false;
+        },
+
+        onValueChecked(index) {
+            // In 'multiple' selection, set `selectAll` is every checkbox is checked.
+            if(this.selection == "multiple") {
+                let isAllSelected =  this.selectedValueIndicies.length === this.values.length;
+                
+                // Array.every doesn't handle undefined, and Vue.js happens to fill gaps in the array with undefined, so...
+                // Responsible Edge Case:
+                //      Select a checkbox for the first time since the table was loaded, suddenly the "selectAll" checkbox is marked.
+                //      This is due to Array.every only passing in non-undefined values, which we need to keep as they are falsey values.
+                if(isAllSelected) {
+                    for(let i = 0; i < this.selectedValueIndicies.length; i++){
+                        if(!this.selectedValueIndicies[i]) {
+                            isAllSelected = false;
+                            break;
+                        }
+                    }
+                }
+
+                // If we're triggering a change to selectAll (so by proxy, calling its watcher function), then we need
+                // to tell the watcher function not to trigger, otherwise we might unselect everything by accident.
+                // Responsible Edge Case: 
+                //      Have all checkboxes selected, deselect any value, suddenly all values will deselect.
+                if(isAllSelected !== this.selectAll) {
+                    this.ignoreNextSelectAll = true;
+                    this.selectAll = isAllSelected
+                }
+            }
+
+            // If we're on 'single' selection, uncheck all other buttons if another button is checked.
+            if(this.selection === "single") {
+                for(let i = 0; i < this.selectedValueIndicies.length; i++)
+                {
+                    if(i !== index)
+                        this.selectedValueIndicies[i] = false;
+                }
+            }
+
+            this.$emit("selected", { triggerValue: (index > 0) ? this.values[index] : null, selectedValues: this.selectedValues });
         }
     }
 }
