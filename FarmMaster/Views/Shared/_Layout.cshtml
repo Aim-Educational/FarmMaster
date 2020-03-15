@@ -42,6 +42,7 @@
             <header>{{ name }}</header>
             <a v-for="(item, itemName) in section.items"
                v-if="item.shown"
+               :class="{'active': item.active}"
                :key="itemName"
                :href="item.href">
                 <div class="indicator"></div>
@@ -113,6 +114,20 @@
                             graphql:  { shown: true, icon: null, href: "/ui/playground" }
                         }
                     }
+                }
+            },
+            beforeMount() {
+                @if(ViewData.ContainsKey("NavName"))
+                {
+                    @:for (const sectionName of Object.keys(this.sections)) {
+                        @:const section = this.sections[sectionName];
+                        @:for(const navName of Object.keys(section.items)) {
+                            @:if (navName.toUpperCase() === "@ViewData["NavName"].ToString().ToUpper()") {
+                                @:section.items[navName].active = true;
+                                @:break;
+                            @:}
+                        @:}
+                    @:}
                 }
             }
         });
