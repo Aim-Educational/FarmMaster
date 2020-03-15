@@ -7,7 +7,11 @@ export function get(url: string) {
 }
 
 export function graphql(query: string, variables: object) {
-    return ajax("/graphql", "POST", { query, variables });
+    return ajax("/graphql", "POST", { query, variables })
+    .then(json => {
+        if(json.errors)
+            throw new Error(`Query failed: ${JSON.stringify(json.errors)}`);
+    });
 }
 
 function ajax(url: string, method: "GET" | "POST", data: object) {
