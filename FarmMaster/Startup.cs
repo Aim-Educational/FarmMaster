@@ -81,7 +81,7 @@ namespace FarmMaster
                 o.Cookie.HttpOnly = true;
                 o.ExpireTimeSpan = TimeSpan.FromHours(4);
 
-                o.LoginPath = "/Identity/Account/Login";
+                o.LoginPath = "/Account/Login";
                 o.LogoutPath = "/Identity/Account/Logout";
                 o.AccessDeniedPath = "/Identity/Account/AccessDenied";
                 o.SlidingExpiration = true;

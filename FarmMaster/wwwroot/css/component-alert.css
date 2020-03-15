@@ -13,10 +13,12 @@ div.alert:not(.show) + div.alert {
 div.alert.show {
   display: flex;
 }
+div.alert > header + .content {
+  padding-top: 1em;
+}
 div.alert > .content {
   display: flex;
   flex-direction: column;
-  padding-top: 1em;
   padding-left: 1em;
   width: 100%;
 }
@@ -33,6 +35,10 @@ div.alert header {
   font-size: 20px;
   font-weight: bold;
   width: 100%;
+  margin-top: 1em;
+}
+div.alert ul {
+  font-size: 16px;
 }
 div.alert p {
   display: flex;
