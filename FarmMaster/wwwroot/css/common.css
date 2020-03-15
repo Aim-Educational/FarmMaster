@@ -2,7 +2,7 @@
   display: flex;
   width: 100%;
 }
-.input-wrapper + * {
+.input-wrapper + .input-wrapper {
   padding-top: 1em;
 }
 .input-wrapper label {
