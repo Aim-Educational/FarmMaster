@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using DataAccess;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -19,13 +20,18 @@ namespace FarmMaster
             var host = CreateHostBuilder(args).Build();
 
             // Identity doesn't really provide a place to seed data properly, so we have to do this.
+            // May as well handle FarmMasterContext here as well.
             using(var scope = host.Services.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
                 var db    = scope.ServiceProvider.GetRequiredService<IdentityContext>();
+                var fmdb  = scope.ServiceProvider.GetRequiredService<FarmMasterContext>();
                 var roles = scope.ServiceProvider.GetRequiredService<RoleManager<ApplicationRole>>();
                 var users = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
 
+                db.Database.Migrate();
                 db.Seed(roles, users);
+
+                fmdb.Database.Migrate();
             }
 
             host.Run();

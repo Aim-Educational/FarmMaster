@@ -47,6 +47,28 @@ namespace FarmMaster
 
             // Database
             services.AddDbContext<IdentityContext>(o => o.UseNpgsql(Configuration.GetConnectionString("Identity")));
+            services.AddDbContext<FarmMasterContext>(o => o.UseNpgsql(Configuration.GetConnectionString("FarmMaster")));
+
+            #region Config that requires Database settings
+            #pragma warning disable ASP0000 // We're only using this to access database settings, chillllll.
+            var provider = services.BuildServiceProvider();
+            #pragma warning restore ASP0000 // Do not call 'IServiceCollection.BuildServiceProvider' in 'ConfigureServices'
+            var dbForConfig = provider.GetRequiredService<FarmMasterContext>();
+
+            // Email
+            services.Configure<EmailSenderConfig>(c => 
+            {
+                var settings = dbForConfig.Settings.FirstOrDefault();
+                if(settings == null)
+                    return;
+
+                c.Server   = settings.SmtpServer;
+                c.Port     = settings.SmtpPort;
+                c.Username = settings.SmtpUsername;
+                c.Password = settings.SmtpPassword; // CURRENTLY STORED UNENCRYPTED
+            });
+            services.AddScoped<IEmailSender, EmailSender>();
+            #endregion
 
             // Identity + All login providers
             services.AddIdentity<ApplicationUser, ApplicationRole>(o => 
@@ -119,16 +141,10 @@ namespace FarmMaster
                 o.LowercaseQueryStrings = false;
                 o.LowercaseUrls = false;
             });
-
-            // Email
-            services.Configure<EmailSenderConfig>(c => Configuration.GetSection("Email").Bind(c));
-            services.AddScoped<IEmailSender, EmailSender>();
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IdentityContext db)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            db.Database.Migrate();
-
             app.UseForwardedHeaders();
 
             if (env.IsDevelopment())
