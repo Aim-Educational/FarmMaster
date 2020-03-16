@@ -37,6 +37,27 @@ namespace FarmMaster.Controllers
             this._emailSender = email;
         }
 
+        public async Task<IActionResult> ConfirmEmail(string userId, string token)
+        {
+            if (userId == null || token == null)
+                return RedirectToAction("Login", new { error = "Invalid query parameters" });
+
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+                return RedirectToAction("Login", new { error = $"No user with ID {userId} could be found" });
+
+            var result = await _userManager.ConfirmEmailAsync(user, token);
+            if(result.Succeeded)
+                return RedirectToAction("Login", new { success = true });
+
+            var errorMessage = "";
+            foreach(var error in result.Errors)
+                errorMessage += error.Description + "; ";
+
+            return RedirectToAction("Login", new { error = errorMessage });
+        }
+
+        #region Login, logout, and Register
         public IActionResult Login([FromQuery] bool confirmEmail, [FromQuery] string error, [FromQuery] bool success)
         {
             return View(new AccountLoginViewModel
@@ -51,123 +72,13 @@ namespace FarmMaster.Controllers
         {
             await this._signInManager.SignOutAsync();
             this._logger.LogInformation("User logged out.");
-            
+
             return LocalRedirect("/");
         }
 
         public IActionResult Register()
         {
             return View();
-        }
-
-        public async Task<IActionResult> ConfirmEmail(string userId, string token)
-        {
-            if (userId == null || token == null)
-                return RedirectToAction("Login", new { error = "Invalid query parameters" });
-
-            var user = await _userManager.FindByIdAsync(userId);
-            if (user == null)
-                return RedirectToAction("Login", new { error = $"No user with ID {userId} could be found" });
-
-            var result = await _userManager.ConfirmEmailAsync(user, token);
-            if(result.Succeeded)
-                return RedirectToAction("Login", new { success = "true" });
-
-            var errorMessage = "";
-            foreach(var error in result.Errors)
-                errorMessage += error.Description + "; ";
-
-            return RedirectToAction("Login", new { error = errorMessage });
-        }
-
-        /**
-         * The actual flow of external logins seems *very, very* poorly documented, so here it is:
-         * 
-         * - User clicks "Sign in with Azure", which calls this action where `provider` = "AzureAD" (matching the auth scheme for Azure).
-         * 
-         * - This action creates a challenge for the AzureAD scheme, providing it a redirect url (GET) for `HandleExternalLogin`.
-         * 
-         * - Before HandleExternalLogin is called, I think the authentication middleware gives the AzureAD scheme a chance
-         *   to process some info (literally 0 documentation on this that I can find).
-         *   
-         * - HandleExternalLogin will then check with the signInManager (who somehow has this info?) whether the user was logged in
-         *   or not.
-         *   
-         *   - HandleExternalLogin will then attempt to login the user, redirecting them to FinaliseExternalLogin if they don't
-         *     have an account on our end yet.
-         *     
-         * - FinaliseExternalLogin will then, somehow with access still, create a link between the user account on our end
-         *   and the user account on azure's end.
-         * **/
-        public IActionResult ExternalLogin([FromQuery] string provider, [FromQuery] string returnUrl)
-        {
-            var callbackUrl = Url.Action("HandleExternalLogin", "Account", new { returnUrl });
-            var properties  = this._signInManager.ConfigureExternalAuthenticationProperties(provider, callbackUrl);
-
-            return new ChallengeResult(provider, properties);
-        }
-
-        public async Task<IActionResult> HandleExternalLogin(
-            [FromQuery] string returnUrl, 
-            [FromQuery] string remoteError,
-            [FromServices] IdentityContext db
-        )
-        {
-            returnUrl = returnUrl ?? Url.Content("~/");
-            if (remoteError != null)
-                return RedirectToAction("Login", new { ReturnUrl = returnUrl, error = $"Error from external provider: {remoteError}" });
-
-            // It's kind of hard to follow (and very poorly documented), but I think the authentication middleware 
-            // handles part of this request prior to this action being called?
-            var info = await this._signInManager.GetExternalLoginInfoAsync();
-            if (info == null)
-                return RedirectToAction("Login", new { ReturnUrl = returnUrl, error = "Error loading external login information." });
-
-            // Sign in the user with this external login provider if the user already has a login.
-            var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false, bypassTwoFactor: true);
-            if (result.Succeeded)
-            {
-                _logger.LogInformation("{Name} logged in with {LoginProvider} provider.", info.Principal.Identity.Name, info.LoginProvider);
-                return LocalRedirect(returnUrl);
-            }
-            else if (result.IsLockedOut)
-                return LocalRedirect("/Identity/Account/Lockout");
-            else
-            {
-                // If the user exists, send them back to the login page with "Please check your email" alert
-                // P.S. There's literally no simple way of getting a user from a provider key via userManager
-                var externLogin = db.UserLogins.FirstOrDefault(l => l.ProviderKey == info.ProviderKey && l.LoginProvider == info.LoginProvider);
-
-                if(externLogin != null)
-                {
-                    // If the user needs to just confirm their email, then send them back to the login page.
-                    var user = db.Users.First(u => u.Id == externLogin.UserId);
-
-                    if(!user.EmailConfirmed)
-                        return RedirectToAction("Login", new { confirmEmail = true });
-                    else
-                        return RedirectToAction("Login", new { error = "You seem to be in a limbo, I don't know why you can't login." });
-                }
-                else
-                {
-                    // If the user needs to create an account, send them to FinaliseExternalLogin.
-                    var email    = info.Principal.FindFirst(ClaimTypes.Email)?.Value;
-
-                    var username = info.Principal.FindFirst("Name")?.Value
-                                ?? info.Principal.FindFirst(ClaimTypes.Name)?.Value;
-
-                    return RedirectToAction("FinaliseExternalLogin", new { email, username });
-                }
-            }
-        }
-
-        public IActionResult FinaliseExternalLogin([FromQuery] string username, [FromQuery] string email)
-        {
-            return View(new AccountFinaliseExternalLoginViewModel
-            {
-                Username = username,
-                Email = email
-            });
         }
 
         [HttpPost]
@@ -239,6 +150,98 @@ namespace FarmMaster.Controllers
 
             return View();
         }
+        #endregion
+
+        #region External Login
+        /**
+         * The actual flow of external logins seems *very, very* poorly documented, so here it is:
+         * 
+         * - User clicks "Sign in with Azure", which calls this action where `provider` = "AzureAD" (matching the auth scheme for Azure).
+         * 
+         * - This action creates a challenge for the AzureAD scheme, providing it a redirect url (GET) for `HandleExternalLogin`.
+         * 
+         * - Before HandleExternalLogin is called, I think the authentication middleware gives the AzureAD scheme a chance
+         *   to process some info (literally 0 documentation on this that I can find).
+         *   
+         * - HandleExternalLogin will then check with the signInManager (who somehow has this info?) whether the user was logged in
+         *   or not.
+         *   
+         *   - HandleExternalLogin will then attempt to login the user, redirecting them to FinaliseExternalLogin if they don't
+         *     have an account on our end yet.
+         *     
+         * - FinaliseExternalLogin will then, somehow with access still, create a link between the user account on our end
+         *   and the user account on azure's end.
+         * **/
+        public IActionResult ExternalLogin([FromQuery] string provider, [FromQuery] string returnUrl)
+        {
+            var callbackUrl = Url.Action("HandleExternalLogin", "Account", new { returnUrl });
+            var properties = this._signInManager.ConfigureExternalAuthenticationProperties(provider, callbackUrl);
+
+            return new ChallengeResult(provider, properties);
+        }
+
+        public async Task<IActionResult> HandleExternalLogin(
+            [FromQuery] string returnUrl,
+            [FromQuery] string remoteError,
+            [FromServices] IdentityContext db
+        )
+        {
+            returnUrl = returnUrl ?? Url.Content("~/");
+            if (remoteError != null)
+                return RedirectToAction("Login", new { ReturnUrl = returnUrl, error = $"Error from external provider: {remoteError}" });
+
+            // It's kind of hard to follow (and very poorly documented), but I think the authentication middleware 
+            // handles part of this request prior to this action being called?
+            var info = await this._signInManager.GetExternalLoginInfoAsync();
+            if (info == null)
+                return RedirectToAction("Login", new { ReturnUrl = returnUrl, error = "Error loading external login information." });
+
+            // Sign in the user with this external login provider if the user already has a login.
+            var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false, bypassTwoFactor: true);
+            if (result.Succeeded)
+            {
+                _logger.LogInformation("{Name} logged in with {LoginProvider} provider.", info.Principal.Identity.Name, info.LoginProvider);
+                return LocalRedirect(returnUrl);
+            }
+            else if (result.IsLockedOut)
+                return LocalRedirect("/Identity/Account/Lockout");
+            else
+            {
+                // If the user exists, send them back to the login page with "Please check your email" alert
+                // P.S. There's literally no simple way of getting a user from a provider key via userManager
+                var externLogin = db.UserLogins.FirstOrDefault(l => l.ProviderKey == info.ProviderKey && l.LoginProvider == info.LoginProvider);
+
+                if (externLogin != null)
+                {
+                    // If the user needs to just confirm their email, then send them back to the login page.
+                    var user = db.Users.First(u => u.Id == externLogin.UserId);
+
+                    if (!user.EmailConfirmed)
+                        return RedirectToAction("Login", new { confirmEmail = true });
+                    else
+                        return RedirectToAction("Login", new { error = "You seem to be in a limbo, I don't know why you can't login." });
+                }
+                else
+                {
+                    // If the user needs to create an account, send them to FinaliseExternalLogin.
+                    var email = info.Principal.FindFirst(ClaimTypes.Email)?.Value;
+
+                    var username = info.Principal.FindFirst("Name")?.Value
+                                ?? info.Principal.FindFirst(ClaimTypes.Name)?.Value;
+
+                    return RedirectToAction("FinaliseExternalLogin", new { email, username });
+                }
+            }
+        }
+
+        public IActionResult FinaliseExternalLogin([FromQuery] string username, [FromQuery] string email)
+        {
+            return View(new AccountFinaliseExternalLoginViewModel
+            {
+                Username = username,
+                Email = email
+            });
+        }
 
         [HttpPost]
         public async Task<IActionResult> FinaliseExternalLogin(AccountFinaliseExternalLoginViewModel model, [FromQuery] string returnUrl)
@@ -290,5 +293,6 @@ namespace FarmMaster.Controllers
 
             return View(model);
         }
+        #endregion
     }
 }
