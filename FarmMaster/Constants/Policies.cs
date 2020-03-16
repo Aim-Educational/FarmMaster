@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 
 namespace FarmMaster.Constants
 {
-    public static class PolicyNames
+    public static class Policies
     {
-        public const string IS_ADMIN = "IsAdmin";
+        public const string IsAdmin = "IsAdmin";
     }
 }

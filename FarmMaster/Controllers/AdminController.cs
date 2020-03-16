@@ -15,7 +15,7 @@ using Microsoft.Extensions.Options;
 
 namespace FarmMaster.Controllers
 {
-    [Authorize(Policy = PolicyNames.IS_ADMIN)]
+    [Authorize(Policy = Policies.IsAdmin)]
     public class AdminController : Controller
     {
         readonly UserManager<ApplicationUser> _users;
@@ -150,7 +150,7 @@ namespace FarmMaster.Controllers
 
             // Get our user principal so we can check if we're an admin
             var principal = await this._signIn.CreateUserPrincipalAsync(loggedInUser);
-            var isAdmin   = await this._auth.AuthorizeAsync(principal, PolicyNames.IS_ADMIN);
+            var isAdmin   = await this._auth.AuthorizeAsync(principal, Policies.IsAdmin);
             if(!isAdmin.Succeeded)
             {
                 if(user.Id == loggedInUser.Id)

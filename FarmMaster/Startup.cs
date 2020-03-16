@@ -105,7 +105,7 @@ namespace FarmMaster
 
             services.AddAuthorization(o => 
             {
-                o.AddPolicy(PolicyNames.IS_ADMIN, p => p.RequireRole(RoleNames.SUPER_ADMIN));
+                o.AddPolicy(Policies.IsAdmin, p => p.RequireRole(Roles.SuperAdmin));
             });
 
             // GraphQL

@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using System;
 using System.Collections.Generic;
+using System.Security.Claims;
 using System.Text;
 
 namespace DataAccess
@@ -61,16 +62,25 @@ namespace DataAccess
 
         private void SeedRoles(RoleManager<ApplicationRole> roles)
         {
-            var roleInfo = new[]
+            var roleInfo = new(string name, string[] perms)[]
             {
-                new ApplicationRole { Name = RoleNames.SUPER_ADMIN }
+                (Constants.Roles.SuperAdmin, Permissions.AllPermissions)
             };
 
             foreach(var info in roleInfo)
             {
-                info.NormalizedName = info.Name.ToUpper();
-                if(!roles.RoleExistsAsync(info.Name).Result)
-                    roles.CreateAsync(info).Wait();
+                var role = new ApplicationRole
+                {
+                    Name = info.name,
+                    NormalizedName = info.name.ToUpper()
+                };
+
+                if(!roles.RoleExistsAsync(role.Name).Result)
+                    roles.CreateAsync(role).Wait();
+
+                // Always try to add new permissions
+                foreach(var perm in info.perms)
+                    roles.AddClaimAsync(role, new Claim(Permissions.ClaimType, perm)).Wait();
             }
         }
 
@@ -93,7 +103,7 @@ namespace DataAccess
 
             // Create default superadmin
             users.CreateAsync(user).Wait();
-            users.AddToRoleAsync(user, RoleNames.SUPER_ADMIN).Wait();
+            users.AddToRoleAsync(user, Constants.Roles.SuperAdmin).Wait();
         }
     }
 

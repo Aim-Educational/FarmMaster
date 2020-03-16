@@ -15,7 +15,7 @@ namespace DataAccessGraphQL
 
         public DataAccessRootQuery(IHttpContextAccessor context, UserManager<ApplicationUser> users)
         {
-            this._user = users.GetUserAsync(context.HttpContext.User).Result;
+            this._user  = users.GetUserAsync(context.HttpContext.User).Result;
             this._users = users;
         }
     }
