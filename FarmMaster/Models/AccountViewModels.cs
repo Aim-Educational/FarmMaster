@@ -19,6 +19,8 @@ namespace FarmMaster.Models
         public bool RememberMe { get; set; }
 
         public bool ConfirmEmail { get; set; } // Set by query string to show "Please confirm your email"
+        
+        public string Error { get; set; } // ^^
     }
 
     public class AccountRegisterViewModel
@@ -39,5 +41,16 @@ namespace FarmMaster.Models
         [Required]
         [StringLength(256)]
         public string ConfirmPassword { get; set; }
+    }
+
+    public class AccountFinaliseExternalLoginViewModel
+    {
+        [Required]
+        [StringLength(256)]
+        public string Email { get; set; }
+
+        [Required]
+        [StringLength(256)]
+        public string Username { get; set; }
     }
 }

@@ -1,0 +1,31 @@
+﻿@model AccountFinaliseExternalLoginViewModel
+@{
+    ViewData["Title"] = "Finalise account";
+}
+
+<div id="app">
+    <window title="Finalise account">
+        <form method="post" asp-action="FinaliseExternalLogin">
+            <div class="input-wrapper">
+                <label>Email</label>
+                <textbox fm-model="Email" placeholder="andy@goatfarmers.co.uk"></textbox>
+            </div>
+            <div class="input-wrapper">
+                <label>Username</label>
+                <textbox fm-model="Username" placeholder="Username"></textbox>
+            </div>
+            <alert fm-model-error="true">
+                <header>Error finalising account</header>
+            </alert>
+            <button class="top margined fluid blue" type="submit">Register</button>
+        </form>
+    </window>
+</div>
+
+@section Scripts {
+    <script>
+        new Vue({
+            el: "#app"
+        });
+    </script>
+}

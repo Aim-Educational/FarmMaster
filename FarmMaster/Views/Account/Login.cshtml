@@ -16,6 +16,16 @@
             </alert>
         }
 
+        @if(Model != null && Model.Error != null)
+        {
+            <alert class="bottom margined" type="error" show>
+                <header>Error</header>
+                <p>
+                    @Model.Error
+                </p>
+            </alert>
+        }
+
         <form method="post" asp-action="Login">
             <div class="input-wrapper">
                 <label>Username</label>
