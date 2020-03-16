@@ -28,6 +28,18 @@ namespace FarmMaster.Models
         [StringLength(256)]
         public string Username { get; set; }
 
+        [Required]
+        [StringLength(256)]
+        public string CurrentPassword { get; set; }
+
+        [Required]
+        [StringLength(256)]
+        public string Password { get; set; }
+
+        [Required]
+        [StringLength(256)]
+        public string ConfirmPassword { get; set; }
+
         public string Email { get; set; } // Readonly, so we don't care about attributes
     }
 }

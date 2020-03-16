@@ -114,10 +114,26 @@ namespace FarmMaster.Controllers
 
                 results.Add(await this._users.SetUserNameAsync(user, model.Username));
 
+                if(model.Password != null || model.ConfirmPassword != null || model.CurrentPassword != null)
+                {
+                    if(model.Password != null && model.ConfirmPassword != null && model.CurrentPassword != null)
+                    {
+                        if(model.Password == model.ConfirmPassword)
+                            results.Add(await this._users.ChangePasswordAsync(user, model.CurrentPassword, model.Password));
+                        else
+                            ModelState.AddModelError(nameof(model.ConfirmPassword), "Passwords don't match.");
+                    }
+                    else
+                        ModelState.AddModelError(nameof(model.Password), "All three password fields must be provided to change the password.");
+                }
+
                 foreach(var error in results.Where(r => !r.Succeeded).SelectMany(r => r.Errors))
                     ModelState.AddModelError(string.Empty, error.Description);
             }
 
+            model.CurrentPassword = null;
+            model.Password        = null;
+            model.ConfirmPassword = null;
             return View(model);
         }
 

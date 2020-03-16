@@ -23,6 +23,21 @@
                 <textbox :mode="mode" fm-model="Email" name="ReadonlyEmail" disabled></textbox>
                 <input type="hidden" asp-for="Email" /> <!--Disabled inputs don't send their value, but we want to keep it for display reasons-->
             </div>
+            <div class="input-wrapper inline"
+                 v-if="mode === 'edit'">
+                <label>Current Password</label>
+                <textbox :mode="mode" fm-model="CurrentPassword" type="password"></textbox>
+            </div>
+            <div class="input-wrapper inline"
+                 v-if="mode === 'edit'">
+                <label>New Password</label>
+                <textbox :mode="mode" fm-model="Password" type="password"></textbox>
+            </div>
+            <div class="input-wrapper inline"
+                 v-if="mode === 'edit'">
+                <label>Confirm Password</label>
+                <textbox :mode="mode" fm-model="ConfirmPassword" type="password"></textbox>
+            </div>
             <alert fm-model-error="true">
                 <header>Error when updating user</header>
             </alert>
