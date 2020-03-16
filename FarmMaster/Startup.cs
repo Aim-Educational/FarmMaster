@@ -53,7 +53,7 @@ namespace FarmMaster
             services.AddDbContext<FarmMasterContext>(o => o.UseNpgsql(Configuration.GetConnectionString("FarmMaster")));
 
             // Email
-            services.AddSingleton<IConfigureOptions<EmailSenderConfig>, ConfigureEmailOptions>();
+            services.AddScoped<IConfigureOptions<EmailSenderConfig>, ConfigureEmailOptions>();
             services.AddScoped<IEmailSender, EmailSender>();
 
             // Identity + All login providers

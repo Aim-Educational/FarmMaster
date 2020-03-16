@@ -19,17 +19,19 @@ namespace FarmMaster.Services
 
     public class EmailSender : IEmailSender
     {
-        readonly EmailSenderConfig _config;
+        readonly IOptionsSnapshot<EmailSenderConfig> _config;
 
-        public EmailSender(IOptionsMonitor<EmailSenderConfig> config)
+        public EmailSender(IOptionsSnapshot<EmailSenderConfig> config)
         {
-            this._config = config.CurrentValue;
+            this._config = config;
         }
 
         public async Task SendEmailAsync(string email, string subject, string htmlMessage)
         {
+            var config = this._config.Value;
+
             var message = new MimeMessage();
-            message.From.Add(new MailboxAddress(this._config.Username));
+            message.From.Add(new MailboxAddress(config.Username));
             message.To.Add(new MailboxAddress(email));
             message.Subject = subject;
 
@@ -40,9 +42,9 @@ namespace FarmMaster.Services
 
             using(var client = new SmtpClient())
             {
-                await client.ConnectAsync(this._config.Server, this._config.Port, true);
+                await client.ConnectAsync(config.Server, config.Port, true);
                 client.AuthenticationMechanisms.Remove("XOAUTH2");
-                await client.AuthenticateAsync(this._config.Username, this._config.Password);
+                await client.AuthenticateAsync(config.Username, config.Password);
                 await client.SendAsync(message);
                 await client.DisconnectAsync(true);
             }
