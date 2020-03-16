@@ -41,6 +41,14 @@ namespace FarmMaster.Controllers
             return RedirectToAction("Settings");
         }
 
+        public IActionResult Users([FromServices] UserManager<ApplicationUser> users)
+        {
+            return View(new AdminUsersViewModel
+            {
+                Users = users.Users
+            });
+        }
+
         [HttpPost]
         public IActionResult Email(AdminSettingsViewModel settings, [FromServices] IFarmMasterSettingsAccessor dbSettings)
         {

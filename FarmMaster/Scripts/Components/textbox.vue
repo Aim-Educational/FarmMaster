@@ -1,10 +1,15 @@
 <template>
     <input class="farm-master" 
+           v-if="mode === 'edit'"
            :name="name" 
            :type="type" 
            :placeholder="placeholder"
            :value="value"
            @input="$emit('input', $event.target.value)" />
+    <div class="farm-master"
+         v-else>
+        {{ this.value }}
+    </div>
 </template>
 
 <script>
@@ -13,7 +18,14 @@ export default {
         isPassword: Boolean,
         name: String,
         placeholder: String,
-        value: String
+        value: String,
+        mode: {
+            type: String,
+            default: "edit",
+            validator(v) {
+                return ["edit", "view"].indexOf(v) !== -1;
+            }
+        }
     },
 
     computed: {

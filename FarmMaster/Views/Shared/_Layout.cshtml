@@ -109,9 +109,10 @@
                     admin: {
                         shown: @checkPolicy(PolicyNames.IS_ADMIN),
                         items: {
-                            settings: { shown: true, icon: null, href: "/Admin/Settings" },
                             controls: { shown: true, icon: null, href: "/Admin/ControlTest" },
-                            graphql:  { shown: true, icon: null, href: "/ui/playground" }
+                            graphql:  { shown: true, icon: null, href: "/ui/playground" },
+                            settings: { shown: true, icon: null, href: "/Admin/Settings" },
+                            users:    { shown: true, icon: null, href: "/Admin/Users" }
                         }
                     }
                 }
