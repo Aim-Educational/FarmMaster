@@ -28,7 +28,8 @@ namespace DataAccessGraphQL
             GraphQLUserContextAccessor      accessor,
             FarmMasterContext               fmDb,
             IdentityContext                 idDb,
-            IAuthorizationService           auth)
+            IAuthorizationService           auth
+        )
         {
             var user = users.GetUserAsync(context.HttpContext.User).Result;
             accessor.Context = new DataAccessUserContext(user, context.HttpContext.User, auth);
