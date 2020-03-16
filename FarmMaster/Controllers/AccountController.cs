@@ -291,7 +291,7 @@ namespace FarmMaster.Controllers
             // Get the information about the user from the external login provider
             var info = await this._signInManager.GetExternalLoginInfoAsync();
             if (info == null)
-                return RedirectToPage("./Login", new { ReturnUrl = returnUrl, error = "Error loading external login information during confirmation." });
+                return RedirectToAction("Login", new { ReturnUrl = returnUrl, error = "Error loading external login information during confirmation." });
 
             if (ModelState.IsValid)
             {
@@ -301,6 +301,7 @@ namespace FarmMaster.Controllers
                 if (result.Succeeded)
                 {
                     result = await this._userManager.AddLoginAsync(user, info);
+                    await this._userManager.AddClaimAsync(user, new Claim(ClaimTypes.AuthenticationMethod, info.LoginProvider));
 
                     if (result.Succeeded)
                     {

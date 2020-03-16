@@ -5,6 +5,12 @@
 
 <div id="app">
     <window title="Finalise account">
+        <alert class="bottom margined" type="info" show>
+            <header>Why?</header>
+            <p>
+                Not all providers pass back the information we need, so you'll have to fill in the gaps for us.
+            </p>
+        </alert>
         <form method="post" asp-action="FinaliseExternalLogin">
             <div class="input-wrapper">
                 <label>Email</label>
