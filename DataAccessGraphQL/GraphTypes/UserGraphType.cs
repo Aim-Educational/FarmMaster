@@ -1,5 +1,6 @@
 ﻿using DataAccess;
 using DataAccess.Constants;
+using GraphQL;
 using GraphQL.Types;
 using Microsoft.AspNetCore.Authorization;
 using System;
@@ -19,11 +20,7 @@ namespace DataAccessGraphQL.GraphTypes
                 resolve: async ctx => 
                 {
                     var user = ctx.Source as ApplicationUser;
-
-                    // Just to test the flow of things
-                    var result = await auth.AuthorizeAsync(context.UserPrincipal, Permissions.User.ReadPermissions);
-                    if(!result.Succeeded)
-                        throw new Exception($"Not authed");
+                    await auth.EnforceHasPolicyAsync(context.UserPrincipal, Permissions.User.ReadPermissions);
 
                     return user.UserName;
                 }
