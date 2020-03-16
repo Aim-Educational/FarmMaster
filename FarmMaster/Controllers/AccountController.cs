@@ -86,7 +86,11 @@ namespace FarmMaster.Controllers
             return new ChallengeResult(provider, properties);
         }
 
-        public async Task<IActionResult> HandleExternalLogin([FromQuery] string returnUrl, [FromQuery] string remoteError)
+        public async Task<IActionResult> HandleExternalLogin(
+            [FromQuery] string returnUrl, 
+            [FromQuery] string remoteError,
+            [FromServices] IdentityContext db
+        )
         {
             returnUrl = returnUrl ?? Url.Content("~/");
             if (remoteError != null)
@@ -109,13 +113,30 @@ namespace FarmMaster.Controllers
                 return LocalRedirect("/Identity/Account/Lockout");
             else
             {
-                // If the user needs to create an account, send them to FinaliseExternalLogin.
-                var email    = info.Principal.FindFirst(ClaimTypes.Email)?.Value;
+                // If the user exists, send them back to the login page with "Please check your email" alert
+                // P.S. There's literally no simple way of getting a user from a provider key via userManager
+                var externLogin = db.UserLogins.FirstOrDefault(l => l.ProviderKey == info.ProviderKey && l.LoginProvider == info.LoginProvider);
 
-                var username = info.Principal.FindFirst("Name")?.Value
-                            ?? info.Principal.FindFirst(ClaimTypes.Name)?.Value;
+                if(externLogin != null)
+                {
+                    // If the user needs to just confirm their email, then send them back to the login page.
+                    var user = db.Users.First(u => u.Id == externLogin.UserId);
 
-                return RedirectToAction("FinaliseExternalLogin", new { email, username });
+                    if(!user.EmailConfirmed)
+                        return RedirectToAction("Login", new { confirmEmail = true });
+                    else
+                        return RedirectToAction("Login", new { error = "You seem to be in a limbo, I don't know why you can't login." });
+                }
+                else
+                {
+                    // If the user needs to create an account, send them to FinaliseExternalLogin.
+                    var email    = info.Principal.FindFirst(ClaimTypes.Email)?.Value;
+
+                    var username = info.Principal.FindFirst("Name")?.Value
+                                ?? info.Principal.FindFirst(ClaimTypes.Name)?.Value;
+
+                    return RedirectToAction("FinaliseExternalLogin", new { email, username });
+                }
             }
         }
 
