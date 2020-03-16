@@ -121,7 +121,7 @@ namespace FarmMaster.Controllers
                         if(model.Password == model.ConfirmPassword)
                             results.Add(await this._users.ChangePasswordAsync(user, model.CurrentPassword, model.Password));
                         else
-                            ModelState.AddModelError(nameof(model.ConfirmPassword), "Passwords don't match.");
+                            ModelState.AddModelError(nameof(model.ConfirmPassword), "New Password doesn't match Confirm Password.");
                     }
                     else
                         ModelState.AddModelError(nameof(model.Password), "All three password fields must be provided to change the password.");
