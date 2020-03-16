@@ -1,8 +1,11 @@
 ﻿using DataAccess;
+using GraphQL;
+using Microsoft.AspNetCore.Authorization;
 using System;
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace DataAccessGraphQL
 {
@@ -24,11 +27,20 @@ namespace DataAccessGraphQL
     {
         public ApplicationUser UserIdentity  { get; private set; }
         public ClaimsPrincipal UserPrincipal { get; private set; }
+        public IAuthorizationService Auth { get; set; }
 
-        public DataAccessUserContext(ApplicationUser UserIdentity, ClaimsPrincipal UserPrincipal)
+        public DataAccessUserContext(ApplicationUser UserIdentity, ClaimsPrincipal UserPrincipal, IAuthorizationService Auth)
         {
             this.UserIdentity = UserIdentity;
             this.UserPrincipal = UserPrincipal;
+            this.Auth = Auth;
+        }
+
+        public async Task EnforceHasPolicyAsync(string perm)
+        {
+            var result = await this.Auth.AuthorizeAsync(this.UserPrincipal, perm);
+            if (!result.Succeeded)
+                throw new ExecutionError($"Missing permission {perm}");
         }
     }
 }
