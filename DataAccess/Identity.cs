@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Text;
+using System.Linq;
 
 namespace DataAccess
 {
@@ -77,10 +78,18 @@ namespace DataAccess
 
                 if(!roles.RoleExistsAsync(role.Name).Result)
                     roles.CreateAsync(role).Wait();
+                else
+                    role = roles.FindByNameAsync(role.Name).Result;
 
                 // Always try to add new permissions
+                var roleClaims = roles.GetClaimsAsync(role).Result;
                 foreach(var perm in info.perms)
-                    roles.AddClaimAsync(role, new Claim(Permissions.ClaimType, perm)).Wait();
+                {
+                    var claim = new Claim(Permissions.ClaimType, perm);
+
+                    if(!roleClaims.Any(c => c.Type == claim.Type && c.Value == claim.Value))
+                        roles.AddClaimAsync(role, claim).Wait();
+                }
             }
         }
 

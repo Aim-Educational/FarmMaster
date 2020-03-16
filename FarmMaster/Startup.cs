@@ -27,6 +27,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
+using FarmMaster.Middleware;
 
 namespace FarmMaster
 {
@@ -113,16 +114,13 @@ namespace FarmMaster
                 {
                     o.AddPolicy(
                         perm, 
-                        p => p.RequireAssertion(
-                            c => c.User.HasClaim(Permissions.ClaimType, perm)
-                              && c.User.HasClaim(Permissions.ClaimType, perm.Replace("read", "write"))
-                        )
+                        p => p.RequireClaim(Permissions.ClaimType, perm, perm.Replace("read", "write"))
                     );
                 }
             });
 
             // GraphQL
-            services.AddScoped<DataAccessGraphQLSchema>();
+            services.AddDataAccessGraphQLSchema();
             services.AddGraphQL(o => 
             {
                 o.EnableMetrics = false;
@@ -160,6 +158,7 @@ namespace FarmMaster
             app.UseRouting();
 
             app.UseAuthentication();
+            app.UseAddRoleClaimsToUserMiddleware();
             app.UseAuthorization();
 
             app.UseGraphQL<DataAccessGraphQLSchema>("/graphql");
