@@ -11,19 +11,13 @@ namespace DataAccessGraphQL.GraphTypes
 {
     public class UserGraphType : ObjectGraphType<ApplicationUser>
     {
-        public UserGraphType(GraphQLUserContextAccessor contextAccessor, FarmMasterContext db, IAuthorizationService auth)
+        public UserGraphType(GraphQLUserContextAccessor contextAccessor, IAuthorizationService auth)
         {
             var context = contextAccessor.Context;
 
-            FieldAsync<StringGraphType>(
+            Field<StringGraphType>(
                 "username",
-                resolve: async ctx => 
-                {
-                    var user = ctx.Source as ApplicationUser;
-                    await auth.EnforceHasPolicyAsync(context.UserPrincipal, Permissions.User.ReadPermissions);
-
-                    return user.UserName;
-                }
+                resolve: ctx => ctx.Source.UserName
             );
         }
     }

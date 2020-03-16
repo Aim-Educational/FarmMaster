@@ -8,9 +8,15 @@ export function get(url: string) {
 
 export function graphql(query: string, variables: object) {
     return ajax("/graphql", "POST", { query, variables })
-    .then(json => {
+    .then((json: { errors?: string[] }) => {
         if(json.errors)
-            throw new Error(`Query failed: ${JSON.stringify(json.errors)}`);
+        {
+            throw {
+                errors: json.errors.map(e => e.split("\r\n")[0].split('\n')[0])
+            };
+        }
+
+        return json;
     });
 }
 
