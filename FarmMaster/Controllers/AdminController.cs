@@ -18,6 +18,24 @@ namespace FarmMaster.Controllers
     [Authorize(Policy = PolicyNames.IS_ADMIN)]
     public class AdminController : Controller
     {
+        readonly UserManager<ApplicationUser> _users;
+        readonly SignInManager<ApplicationUser> _signIn;
+        readonly RoleManager<ApplicationRole> _roles;
+        readonly IAuthorizationService _auth;
+
+        public AdminController(
+            UserManager<ApplicationUser> users,
+            SignInManager<ApplicationUser> signIn,
+            RoleManager<ApplicationRole> roles,
+            IAuthorizationService auth
+        )
+        {
+            this._users = users;
+            this._signIn = signIn;
+            this._roles = roles;
+            this._auth = auth;
+        }
+
         public IActionResult ControlTest()
         {
             return View();
@@ -49,6 +67,26 @@ namespace FarmMaster.Controllers
             });
         }
 
+        [AllowAnonymous] // This action can be used by Admins, or if userId is the id of the currently logged in user
+        public async Task<IActionResult> ManageUser(
+            [FromQuery] string userId, 
+            [FromServices] UserManager<ApplicationUser> users,
+            [FromServices] SignInManager<ApplicationUser> signIn,
+            [FromServices] IAuthorizationService auth
+        )
+        {
+            var user = await users.FindByIdAsync(userId);
+            if(user == null)
+                return RedirectToAction("Users", new { error = $"No user with ID {userId} exists." });
+
+            return View(new AdminManageUserViewModel
+            {
+                Username = user.UserName,
+                Email    = user.Email,
+                Id       = Convert.ToString(user.Id)
+            });
+        }
+
         [HttpPost]
         public IActionResult Email(AdminSettingsViewModel settings, [FromServices] IFarmMasterSettingsAccessor dbSettings)
         {
@@ -63,6 +101,53 @@ namespace FarmMaster.Controllers
 
             dbSettings.Settings = mutableSettings;
             return RedirectToAction("Settings");
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<IActionResult> ManageUser(AdminManageUserViewModel model)
+        {
+            var authResult = await this.CanManageUser(model.Id);
+            if(!authResult.allowed)
+                return RedirectToAction("Login", "Account", new { authResult.error }); // TEMP REDIRECT
+
+            if(ModelState.IsValid)
+            {
+                var results = new List<IdentityResult>();
+                var user    = authResult.user;
+
+                results.Add(await this._users.SetUserNameAsync(user, model.Username));
+
+                foreach(var error in results.Where(r => !r.Succeeded).SelectMany(r => r.Errors))
+                    ModelState.AddModelError(string.Empty, error.Description);
+            }
+
+            return View(model);
+        }
+
+        private async Task<(bool allowed, string error, ApplicationUser user, bool selfManage)> CanManageUser(string userId)
+        {
+            // Get our user, and the one we're modifying.
+            var loggedInUser = await this._users.GetUserAsync(User);
+            if(loggedInUser == null)
+                return (false, "You are not logged in", null, false);
+
+            var user = await this._users.FindByIdAsync(userId);
+            if(user == null)
+                return (false, "User does not exist", null, false);
+
+            // Get our user principal so we can check if we're an admin
+            var principal = await this._signIn.CreateUserPrincipalAsync(loggedInUser);
+            var isAdmin   = await this._auth.AuthorizeAsync(principal, PolicyNames.IS_ADMIN);
+            if(!isAdmin.Succeeded)
+            {
+                if(user.Id == loggedInUser.Id)
+                    return (true, null, user, true); // ALLOW: We're editing ourself.
+
+                return (false, "User is not an admin, and is not trying to manage theirself", user, false);
+            }
+
+            return (true, null, user, false); // ALLOW: We're an admin.
         }
     }
 }

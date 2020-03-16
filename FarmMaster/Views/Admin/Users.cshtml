@@ -27,7 +27,7 @@
                     @foreach(var user in Model.Users)
                     {
                         @:{
-                            @:username: { value: "@user.UserName", href: "/Admin/ManageUser/@user.Id" }, 
+                            @:username: { value: "@user.UserName", href: "/Admin/ManageUser?userId=@user.Id" }, 
                             @:email: "@user.Email"
                         @:},
                     }

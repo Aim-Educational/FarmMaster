@@ -1,0 +1,58 @@
+﻿@model AdminManageUserViewModel
+@{
+    ViewData["Title"] = $"Manage {Model.Username}";
+    ViewData["NavName"] = "Users";
+}
+
+<div id="app">
+    <window title="User info">
+        <button class="bottom margined blue"
+                @@click="onToggleMode">
+            {{ editButton.text }}
+        </button>
+
+        <form method="post" asp-action="ManageUser">
+            <input type="hidden" asp-for="Id" />
+
+            <div class="input-wrapper inline">
+                <label>Username</label>
+                <textbox :mode="mode" fm-model="Username"></textbox>
+            </div>
+            <div class="input-wrapper inline">
+                <label>Email</label>
+                <textbox :mode="mode" fm-model="Email" name="ReadonlyEmail" disabled></textbox>
+                <input type="hidden" asp-for="Email" /> <!--Disabled inputs don't send their value, but we want to keep it for display reasons-->
+            </div>
+            <alert fm-model-error="true">
+                <header>Error when updating user</header>
+            </alert>
+            <button class="top margined fluid blue"
+                    v-if="mode === 'edit'">
+                Update user
+            </button>
+        </form>
+    </window>
+</div>
+
+@section Scripts {
+    <script>
+        new Vue({
+            el: "#app",
+
+            data: {
+                mode: "view",
+
+                editButton: {
+                    text: "Edit"
+                }
+            },
+
+            methods: {
+                onToggleMode() {
+                    this.mode = (this.mode === "view") ? "edit" : "view";
+                    this.editButton.text = (this.mode === "view") ? "Edit" : "View";
+                }
+            }
+        });
+    </script>
+}

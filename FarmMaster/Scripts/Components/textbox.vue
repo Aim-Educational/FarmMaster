@@ -6,8 +6,7 @@
            :placeholder="placeholder"
            :value="value"
            @input="$emit('input', $event.target.value)" />
-    <div class="farm-master"
-         v-else>
+    <div v-else>
         {{ this.value }}
     </div>
 </template>
