@@ -6,7 +6,7 @@ using DataAccess;
 using DataAccess.Constants;
 using DataAccessGraphQL;
 using DataAccessLogic;
-using FarmMaster.Areas.Identity.Services;
+using FarmMaster.Services;
 using FarmMaster.Constants;
 using FarmMaster.Services.Configuration;
 using GraphQL.Server;

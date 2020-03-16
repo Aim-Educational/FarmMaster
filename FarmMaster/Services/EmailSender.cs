@@ -7,7 +7,7 @@ using MailKit.Net.Smtp;
 using Microsoft.Extensions.Options;
 using MimeKit;
 
-namespace FarmMaster.Areas.Identity.Services
+namespace FarmMaster.Services
 {
     public class EmailSenderConfig
     {

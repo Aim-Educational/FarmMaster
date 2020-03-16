@@ -1,5 +1,5 @@
 ﻿using DataAccess;
-using FarmMaster.Areas.Identity.Services;
+using FarmMaster.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using System;

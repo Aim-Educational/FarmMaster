@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DataAccess;
 using DataAccessLogic;
-using FarmMaster.Areas.Identity.Services;
+using FarmMaster.Services;
 using FarmMaster.Constants;
 using FarmMaster.Models;
 using Microsoft.AspNetCore.Authorization;
