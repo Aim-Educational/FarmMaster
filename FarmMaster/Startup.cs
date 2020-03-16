@@ -106,6 +106,19 @@ namespace FarmMaster
             services.AddAuthorization(o => 
             {
                 o.AddPolicy(Policies.IsAdmin, p => p.RequireRole(Roles.SuperAdmin));
+                
+                // For ease-of-use, all permissions have their own policy.
+                // Any policy containing "read" (e.g. "read_permissions") will implicitly pass for their "write" version ("write_permissions")
+                foreach(var perm in Permissions.AllPermissions)
+                {
+                    o.AddPolicy(
+                        perm, 
+                        p => p.RequireAssertion(
+                            c => c.User.HasClaim(Permissions.ClaimType, perm)
+                              && c.User.HasClaim(Permissions.ClaimType, perm.Replace("read", "write"))
+                        )
+                    );
+                }
             });
 
             // GraphQL
