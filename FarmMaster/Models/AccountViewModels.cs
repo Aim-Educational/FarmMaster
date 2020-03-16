@@ -55,4 +55,11 @@ namespace FarmMaster.Models
         [StringLength(256)]
         public string Username { get; set; }
     }
+
+    public class AccountResendEmailViewModel
+    {
+        [Required]
+        [StringLength(256)]
+        public string Email { get; set; }
+    }
 }

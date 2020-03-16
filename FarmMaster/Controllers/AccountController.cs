@@ -37,6 +37,7 @@ namespace FarmMaster.Controllers
             this._emailSender = email;
         }
 
+        #region Confirm email. Resend confirmation.
         public async Task<IActionResult> ConfirmEmail(string userId, string token)
         {
             if (userId == null || token == null)
@@ -56,6 +57,45 @@ namespace FarmMaster.Controllers
 
             return RedirectToAction("Login", new { error = errorMessage });
         }
+
+        public IActionResult ResendEmail()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ResendEmail(AccountResendEmailViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await this._userManager.FindByEmailAsync(model.Email);
+                if(user != null)
+                {
+                    this._logger.LogInformation("Resending confirmation to User {Name}", user.UserName);
+
+                    var token = await this._userManager.GenerateEmailConfirmationTokenAsync(user);
+                    var callbackUrl = Url.Action(
+                        "ConfirmEmail",
+                        "Account",
+                        protocol: Request.Scheme,
+                        values: new { userId = user.Id, token }
+                    );
+
+                    await this._emailSender.SendEmailAsync(
+                        model.Email,
+                        "Confirm your email",
+                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>."
+                    );
+
+                    return RedirectToAction("Login", new { confirmEmail = true });
+                }
+                else
+                    ModelState.AddModelError(string.Empty, "No account with that email was found.");
+            }
+
+            return View(model);
+        }
+        #endregion
 
         #region Login, logout, and Register
         public IActionResult Login([FromQuery] bool confirmEmail, [FromQuery] string error, [FromQuery] bool success)
