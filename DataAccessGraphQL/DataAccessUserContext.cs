@@ -13,7 +13,7 @@ namespace DataAccessGraphQL
     /**
      * Basically:
      * 
-     *  - This is a service that the RootQuery populates every request.
+     *  - This is a service that the RootBase populates every request.
      *  
      *  - This allows graph types and the like to easily access the user, so they can perform auth checks.
      * */
