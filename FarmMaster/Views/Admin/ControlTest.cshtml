@@ -83,7 +83,10 @@
                     ref="table"
                     @@selected="onTableSelectionChange">
             <template v-slot:tfoot>
-                <button class="blue" :disabled="tableButtonDisabled" @@click="freeGoat">Click me for a free goat</button>
+                <button class="icon blue" :disabled="tableButtonDisabled" @@click="freeGoat">
+                    <i class="las la-horse"></i>
+                    <span>Click me for a free goat</span>
+                </button>
             </template>
         </farm-table>
     </window>

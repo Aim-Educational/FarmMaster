@@ -49,6 +49,7 @@
 }
 
 button {
+    $BORDER_RADIUS: 5px;
     @mixin buttonColour($hue, $saturation) {
         background-color: hsl($hue, $saturation, 85%);
         color: hsl($hue, $saturation, 25%);
@@ -69,13 +70,17 @@ button {
             background-color: hsl($hue, $saturation, 88%);
             color: hsl($hue, $saturation, 50%);
         }
+
+        > i {
+            background-color: hsl($hue, $saturation, 80%);
+        }
     }
 
     height: 40px;
     padding-left: 1em;
     padding-right: 1em;
     border: none;
-    border-radius: 5px;
+    border-radius: $BORDER_RADIUS;
     cursor: pointer;
     transition: background-color ease .25s;
     font-weight: bold;
@@ -89,6 +94,31 @@ button {
 
     &:disabled {
         cursor: auto;
+    }
+
+    &.icon {
+        // God I love flexbox... too much
+        display: flex;
+        padding-left: 0;
+
+        > i {
+            display: flex;
+            flex-direction: column;
+            align-self: center;
+            justify-content: center;
+            font-size: 32px;
+            margin-right: .3em;
+            width: 1.2em;
+            height: 100%;
+            border-bottom-left-radius: $BORDER_RADIUS;
+            border-top-left-radius: $BORDER_RADIUS;
+        }
+
+        > span {
+            display: flex;
+            flex-direction: column;
+            align-self: center;
+        }
     }
 
     @include buttonColour(0, 0%);
@@ -112,6 +142,10 @@ input[type=checkbox] + label {
 
 .top.margined {
     margin-top: 1em;
+}
+
+.bottom.margined {
+    margin-bottom: 1em;
 }
 
 .fluid, form {

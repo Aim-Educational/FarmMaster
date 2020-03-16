@@ -5,6 +5,17 @@
 
 <div id="app">
     <window title="Login">
+        @if(Model != null && Model.ConfirmEmail)
+        {
+            <alert class="bottom margined" type="info" show>
+                <header>Please confirm your email!</header>
+                <p>
+                    Thank you for registering your account. To complete the process, please click on the email
+                    that was sent to you.
+                </p>
+            </alert>
+        }
+
         <form method="post" asp-action="Login">
             <div class="input-wrapper">
                 <label>Username</label>
@@ -24,8 +35,18 @@
             <a class="top padded" href="/Identity/Account/ForgotPassword">
                 Forgotten your password?
             </a>
+            <a class="top padded" href="/Account/Register">
+                Register a new account
+            </a>
             <button class="top margined fluid blue" type="submit">Login</button>
         </form>
+    </window>
+
+    <window title="External Login">
+        <button class="icon button" onclick="document.location='/Account/ExternalLogin?provider=AzureAD'">
+            <i class="lab la-edge"></i>
+            <span>Azure Active Directory</span>
+        </button>
     </window>
 </div>
 

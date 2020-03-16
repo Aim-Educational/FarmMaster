@@ -1,0 +1,42 @@
+﻿@model AccountRegisterViewModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div id="app">
+    <window title="Register">
+        <form method="post" asp-action="Register">
+            <div class="input-wrapper">
+                <label>Email</label>
+                <textbox fm-model="Email" placeholder="andy@goatfarmers.co.uk"></textbox>
+            </div>
+            <div class="input-wrapper">
+                <label>Username</label>
+                <textbox fm-model="Username" placeholder="Username"></textbox>
+            </div>
+            <div class="input-wrapper">
+                <label>Password</label>
+                <textbox fm-model="Password" type="password" placeholder="Password"></textbox>
+            </div>
+            <div class="input-wrapper">
+                <label>Confirm Password</label>
+                <textbox fm-model="ConfirmPassword" type="password" placeholder="Confirm Password"></textbox>
+            </div>
+            <alert fm-model-error="true">
+                <header>Error creating account</header>
+            </alert>
+            <a class="top padded" href="/Account/Login">
+                Already have an account?
+            </a>
+            <button class="top margined fluid blue" type="submit">Register</button>
+        </form>
+    </window>
+</div>
+
+@section Scripts {
+    <script>
+        new Vue({
+            el: "#app"
+        });
+    </script>
+}
