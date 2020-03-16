@@ -6,11 +6,12 @@ using Microsoft.AspNetCore.Authorization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 
 namespace DataAccessGraphQL.GraphTypes
 {
-    public class UserGraphType : ObjectGraphType<ApplicationUser>
+    public class UserGraphType : ObjectGraphType<DataAccessUserContext>
     {
         public UserGraphType(GraphQLUserContextAccessor contextAccessor)
         {
@@ -18,7 +19,7 @@ namespace DataAccessGraphQL.GraphTypes
 
             Field<StringGraphType>(
                 "username",
-                resolve: ctx => ctx.Source.UserName
+                resolve: ctx => ctx.Source.UserIdentity.UserName
             );
 
             FieldAsync<ListGraphType<StringGraphType>>(
@@ -26,11 +27,12 @@ namespace DataAccessGraphQL.GraphTypes
                 resolve: async ctx => 
                 {
                     await context.EnforceHasPolicyAsync(Permissions.User.ReadPermissions);
-                    return context.UserPrincipal
-                                  .Claims
-                                  .Where(c => c.Type == Permissions.ClaimType)
-                                  .Select(c => c.Value)
-                                  .Distinct();
+                    return ctx.Source
+                              .UserPrincipal
+                              .Claims
+                              .Where(c => c.Type == Permissions.ClaimType)
+                              .Select(c => c.Value)
+                              .Distinct();
                 }
             );
         }

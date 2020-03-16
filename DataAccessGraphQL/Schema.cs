@@ -1,5 +1,6 @@
 ﻿using DataAccess;
 using DataAccessGraphQL.GraphTypes;
+using DataAccessGraphQL.RootResolvers;
 using GraphQL.Types;
 using GraphQL.Utilities;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,6 +14,7 @@ namespace DataAccessGraphQL
             : base(services)
         {
             this.Query = GraphQL.Utilities.ServiceProviderExtensions.GetRequiredService<DataAccessRootQuery>(services);
+            this.Mutation = GraphQL.Utilities.ServiceProviderExtensions.GetRequiredService<DataAccessRootMutation>(services);
         }
     }
 
@@ -20,7 +22,8 @@ namespace DataAccessGraphQL
     {
         public static IServiceCollection AddDataAccessGraphQLSchema(this IServiceCollection services)
         {
-            return services.AddScoped<DataAccessGraphQLSchema>()
+            return services.AddScoped<UserRootResolver>()
+                           .AddScoped<DataAccessGraphQLSchema>()
                            .AddScoped<GraphQLUserContextAccessor>();
         }
     }

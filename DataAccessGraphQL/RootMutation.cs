@@ -1,5 +1,6 @@
 ﻿using DataAccess;
 using DataAccessGraphQL.GraphTypes;
+using DataAccessGraphQL.Mutations;
 using DataAccessGraphQL.RootResolvers;
 using GraphQL;
 using GraphQL.Types;
@@ -14,11 +15,12 @@ using System.Text;
 
 namespace DataAccessGraphQL
 {
-    public class DataAccessRootQuery : RootBase
+    // Meh, code duplication between query and mutation.
+    public class DataAccessRootMutation : RootBase
     {
         readonly UserRootResolver _userResolver;
 
-        public DataAccessRootQuery(
+        public DataAccessRootMutation(
             IHttpContextAccessor         context, 
             UserManager<ApplicationUser> users,
             GraphQLUserContextAccessor   accessor,
@@ -31,14 +33,14 @@ namespace DataAccessGraphQL
         {
             this._userResolver = userResolver;
 
-            this.AddUserQuery();
+            this.AddUserMutation();
         }
 
-        private void AddUserQuery()
+        private void AddUserMutation()
         {
-            FieldAsync<UserGraphType>(
-                "user",
-                arguments: this._userResolver,
+            FieldAsync<UserRootMutation>(
+                "user", 
+                arguments: this._userResolver, 
                 resolve: ctx => this._userResolver.ResolveAsync(ctx, base.DataContext)
             );
         }
