@@ -37,12 +37,13 @@ namespace FarmMaster.Controllers
             this._emailSender = email;
         }
 
-        public IActionResult Login([FromQuery] bool confirmEmail, [FromQuery] string error)
+        public IActionResult Login([FromQuery] bool confirmEmail, [FromQuery] string error, [FromQuery] bool success)
         {
             return View(new AccountLoginViewModel
             {
                 ConfirmEmail = confirmEmail,
-                Error = error
+                Error = error,
+                Success = success
             });
         }
 
@@ -57,6 +58,26 @@ namespace FarmMaster.Controllers
         public IActionResult Register()
         {
             return View();
+        }
+
+        public async Task<IActionResult> ConfirmEmail(string userId, string token)
+        {
+            if (userId == null || token == null)
+                return RedirectToAction("Login", new { error = "Invalid query parameters" });
+
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+                return RedirectToAction("Login", new { error = $"No user with ID {userId} could be found" });
+
+            var result = await _userManager.ConfirmEmailAsync(user, token);
+            if(result.Succeeded)
+                return RedirectToAction("Login", new { success = "true" });
+
+            var errorMessage = "";
+            foreach(var error in result.Errors)
+                errorMessage += error.Description + "; ";
+
+            return RedirectToAction("Login", new { error = errorMessage });
         }
 
         /**
@@ -196,8 +217,6 @@ namespace FarmMaster.Controllers
                     _logger.LogInformation("User created a new account with password.");
 
                     var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                        token = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(token));
-
                     var callbackUrl = Url.Action(
                         "ConfirmEmail", 
                         "Account", 
@@ -247,7 +266,6 @@ namespace FarmMaster.Controllers
 
                         var userId = await this._userManager.GetUserIdAsync(user);
                         var token  = await this._userManager.GenerateEmailConfirmationTokenAsync(user);
-                            token  = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(token));
 
                         var callbackUrl = Url.Action(
                             "ConfirmEmail",

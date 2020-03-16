@@ -21,6 +21,8 @@ namespace FarmMaster.Models
         public bool ConfirmEmail { get; set; } // Set by query string to show "Please confirm your email"
         
         public string Error { get; set; } // ^^
+
+        public bool Success { get; set; } // ^^
     }
 
     public class AccountRegisterViewModel
