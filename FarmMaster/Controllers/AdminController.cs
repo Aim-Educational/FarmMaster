@@ -68,17 +68,13 @@ namespace FarmMaster.Controllers
         }
 
         [AllowAnonymous] // This action can be used by Admins, or if userId is the id of the currently logged in user
-        public async Task<IActionResult> ManageUser(
-            [FromQuery] string userId, 
-            [FromServices] UserManager<ApplicationUser> users,
-            [FromServices] SignInManager<ApplicationUser> signIn,
-            [FromServices] IAuthorizationService auth
-        )
+        public async Task<IActionResult> ManageUser([FromQuery] string userId)
         {
-            var user = await users.FindByIdAsync(userId);
-            if(user == null)
-                return RedirectToAction("Users", new { error = $"No user with ID {userId} exists." });
+            var authResult = await this.CanManageUser(userId);
+            if (!authResult.allowed) // Interesting tidbit, because IAuthorizationService fails the check, it forcefully takes the user to AccessDenied
+                return RedirectToAction(authResult.selfManage ? "Login" : "Users", new { authResult.error });
 
+            var user = authResult.user;
             return View(new AdminManageUserViewModel
             {
                 Username = user.UserName,
@@ -104,12 +100,12 @@ namespace FarmMaster.Controllers
         }
 
         [HttpPost]
-        [AllowAnonymous]
+        [AllowAnonymous] // See GET of this action
         public async Task<IActionResult> ManageUser(AdminManageUserViewModel model)
         {
             var authResult = await this.CanManageUser(model.Id);
             if(!authResult.allowed)
-                return RedirectToAction("Login", "Account", new { authResult.error }); // TEMP REDIRECT
+                return RedirectToAction(authResult.selfManage ? "Login" : "Users", new { authResult.error });
 
             if(ModelState.IsValid)
             {
