@@ -1,4 +1,5 @@
 ﻿using DataAccess;
+using DataAccess.Constants;
 using GraphQL;
 using GraphQL.Types;
 using Microsoft.AspNetCore.Identity;
@@ -40,6 +41,8 @@ namespace DataAccessGraphQL.RootResolvers
             DataAccessUserContext userContext
         )
         {
+            await userContext.EnforceHasPolicyAsync(Permissions.User.Read);
+
             // ARGS
             var username = context.GetArgument<string>("username");
 
