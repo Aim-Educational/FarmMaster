@@ -11,6 +11,7 @@ namespace DataAccess.Constants
 
         public static class User
         {
+            public const string Read             = "user.read"; // Can read users in general, but not protected data.
             public const string ReadPermissions  = "user.permissions.read";
             public const string WritePermissions = "user.permissions.write";
         }
@@ -18,7 +19,8 @@ namespace DataAccess.Constants
         public static readonly string[] AllPermissions = new[] 
         {
             User.ReadPermissions,
-            User.WritePermissions
+            User.WritePermissions,
+            User.Read
         };
     }
 }

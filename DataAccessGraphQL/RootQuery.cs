@@ -1,4 +1,5 @@
 ﻿using DataAccess;
+using DataAccess.Constants;
 using DataAccessGraphQL.Constants;
 using DataAccessGraphQL.GraphTypes;
 using DataAccessGraphQL.RootResolvers;
@@ -52,12 +53,14 @@ namespace DataAccessGraphQL
 
             this.DefineConnectionAsync<object, UserGraphType, DataAccessUserContext>(
                 "users",
-                async (first, after) => 
+                base.DataContext,
+                async (ctx, first, after) => 
                 {
-                    var users    = await base.UserManager.Users
-                                                         .Skip(after)
-                                                         .Take(first)
-                                                         .ToListAsync();
+                    await ctx.EnforceHasPolicyAsync(Permissions.User.Read);
+                    var users = await base.UserManager.Users
+                                                      .Skip(after)
+                                                      .Take(first)
+                                                      .ToListAsync();
                     var contexts = users.Select(u => new DataAccessUserContext(u, this._signIn.CreateUserPrincipalAsync(u).Result, this.DataContext.Auth));
 
                     return contexts;

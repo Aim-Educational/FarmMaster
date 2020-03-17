@@ -13,11 +13,12 @@ namespace DataAccessGraphQL.Util
 {
     internal static class ConnectionHelper
     {
-        public delegate Task<IEnumerable<TSourceType>> ConnectionNodeResolver<TSourceType>(int first, int after);
+        public delegate Task<IEnumerable<TSourceType>> ConnectionNodeResolver<TSourceType>(DataAccessUserContext ctx, int first, int after);
 
         public static void DefineConnectionAsync<TMyT, TGraphType, TSourceType>(
             this ObjectGraphType<TMyT> obj, 
             string name,
+            DataAccessUserContext userContext,
             ConnectionNodeResolver<TSourceType> nodeResolve
         ) where TGraphType : IGraphType
         {
@@ -33,7 +34,7 @@ namespace DataAccessGraphQL.Util
                     if(first >= PagingConstants.ItemsPerPage || first == 0)
                         first = PagingConstants.ItemsPerPage;
 
-                    var values = await nodeResolve(first, after);
+                    var values = await nodeResolve(userContext, first, after);
 
                     return new Connection<TSourceType>
                     {
