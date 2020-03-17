@@ -61,6 +61,7 @@ const ROWT_EXAMPLE = {
     name: "Username",
     bind: "username", // e.g. This row will bind to "values.username", where "values" is the "values" prop passed to the table.
     sort: true, // Use 'true' for a default sort, pass a function for a custom sort. (a, b) => a > b
+    sortByDefault: null // Either use 'asc' or 'desc'
 };
 
 /**
@@ -107,6 +108,17 @@ export default {
             default: "none",
             validator: function (v) {
                 return ["none", "single", "multiple"].indexOf(v) !== -1;
+            }
+        }
+    },
+
+    created() {
+        for(const row of this.rows) {
+            if(row.sortByDefault) {
+                this.sortedRow.row = row;
+                this.sortedRow.asc = !(row.sortByDefault === "asc"); // I think I have 'true' to mean desc instead of asc, whoops
+                this.$emit("sort", { row: row, asc: this.sortedRow.asc });
+                break;
             }
         }
     },
