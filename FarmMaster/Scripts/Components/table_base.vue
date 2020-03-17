@@ -116,7 +116,7 @@ export default {
         for(const row of this.rows) {
             if(row.sortByDefault) {
                 this.sortedRow.row = row;
-                this.sortedRow.asc = !(row.sortByDefault === "asc"); // I think I have 'true' to mean desc instead of asc, whoops
+                this.sortedRow.asc = (row.sortByDefault === "asc");
                 this.$emit("sort", { row: row, asc: this.sortedRow.asc });
                 break;
             }
