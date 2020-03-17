@@ -13,7 +13,7 @@
                     :style="{ 'width': rowWidth }">
                     {{ row.name }}
                     
-                    <div class="sort" v-if="row.sort" :data-name="row.name" @click="sortRow">
+                    <div class="sort" v-if="row.sort" :data-name="row.name" @click="onSortRow">
                         <i class="las"
                            :class="{
                                'la-minus':      !isRowSorted(row),
@@ -26,7 +26,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr v-for="(obj, index) in sortedValues"
+            <tr v-for="(obj, index) in values"
                 :key="index">
                 <!--Display a checkbox if selections are allowed-->
                 <td v-if="selection !== 'none'"
@@ -70,6 +70,17 @@ const ROWT_EXAMPLE = {
  *      
  *      triggerValue:   Object   # The value from `props.values` that was selected. THIS IS NULL if the 'selectAll' checkbox was used. THIS IS NULL if the trigger was caused a column being sorted
  *      selectedValues: Object[] # All values from `props.values` that are currently selected, including the `triggerValue`.
+ * 
+ *      Use this event to keep track of selected data so you can later perform actions.
+ *   },
+ * 
+ *   'sort': {
+ *      Emitted whenever a row needs to be sorted.
+ * 
+ *      row: Object  # The row from `props.rows` that needs to be sorted. THIS IS NULL if the user doesn't want any sorting anymore.
+ *      asc: Boolean # Whether to sort by ascending or descending order.
+ * 
+ *      Use this event to sort the values you pass to this component.
  *   }
  */
 export default {
@@ -119,28 +130,6 @@ export default {
             return Math.round(100 / this.rows.length) + "%";
         },
 
-        sortedValues() {
-            if(!this.sortedRow.row)
-                return this.values;
-
-            const sorted = this.values.slice(); // Copy
-            sorted.sort((a, b) => {
-                let aValue = a[this.sortedRow.row.bind];
-                let bValue = b[this.sortedRow.row.bind];
-
-                // Handle values that might be objects
-                if(aValue && aValue.value)
-                    aValue = aValue.value;
-                if(bValue && bValue.value)
-                    bValue = bValue.value;
-
-                return (typeof this.sortedRow.row.sort === "function")
-                       ? this.sortedRow.row.sort(aValue, bValue)
-                       : aValue > bValue;
-            });
-            return (this.sortedRow.asc) ? sorted.reverse() : sorted;
-        },
-
         selectedValues() {
             return this.values.filter((v, index) => this.selectedValueIndicies[index]);
         }
@@ -155,7 +144,7 @@ export default {
             return this.isRowSorted(row) && this.sortedRow.asc;
         },
 
-        sortRow(event) {
+        onSortRow(event) {
             let rowSortIcon = event.target;
             if(!rowSortIcon.dataset.name) // If they click directly on the icon, then event.target will be the <i>, so we need the parent instead
                 rowSortIcon = rowSortIcon.parentNode;
@@ -179,8 +168,8 @@ export default {
                 this.ignoreNextSelectAll = true;
 
             this.selectAll = false;
-
             this.$emit("selected", { triggerValue: null, selectedValues: [] });
+            this.$emit("sort",     { row: this.sortedRow.row, asc: this.sortedRow.asc });
         },
 
         onValueChecked(index) {
@@ -221,6 +210,33 @@ export default {
             }
 
             this.$emit("selected", { triggerValue: (index > 0) ? this.values[index] : null, selectedValues: this.selectedValues });
+        }
+    },
+
+    // Util functions for implementors
+    util: {
+        /**
+         * Given a value object (a direct child of `prop.values`) and a row, attempts to get
+         * the value for the given row.
+         * 
+         * Since values can either be given flat out (e.g. { username: "Sealab" }) or given as objects with 
+         * special properties (e.g. { username: { value: "Sealab", href: "/Account/User/0" } }) this function
+         * can be used to painlessly support both.
+         * 
+         * CAN RETURN undefined if the value doesn't exist.
+         */
+        getRowValue(valueObject, ownerRow) {
+            let value = valueObject[ownerRow.bind];
+            if(value && value.value) // Value might be a special object
+                value = value.value;
+
+            return value;
+        },
+
+        sortRowValue(a, b, row) {
+            return (typeof row.sort === "function")
+                   ? row.sort(a, b)
+                   : a < b;
         }
     }
 }

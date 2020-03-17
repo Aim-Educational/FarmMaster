@@ -48,14 +48,7 @@ namespace DataAccessGraphQL.RootResolvers
             if(user == null)
                 throw new ExecutionError($"No user called {username} was found");
 
-            // Load their role claims, since ASP so kindly 'forgets' to.
             var principal = await this._signIn.CreateUserPrincipalAsync(user);
-            var identity  = new ClaimsIdentity();
-            foreach (var role in await this._users.GetRolesAsync(user))
-            {
-                var roleObj = await this._roles.FindByNameAsync(role);
-                identity.AddClaims(await this._roles.GetClaimsAsync(roleObj));
-            }
 
             // We need access to both the Identity entity, as well as all our claims that we can't easily get because see above.
             return new DataAccessUserContext(user, principal, userContext.Auth);

@@ -88,18 +88,18 @@
     </window>
 
     <window title="Table">
-        <farm-table selection="multiple"
-                    :rows="[{name: 'Username', bind: 'username', sort: true}, {name: 'Age', bind: 'age', sort:true}]"
-                    :values="[{ username: { href: '#', value: 'Bradley' }, age: 20 }, { username: 'Andy', age: 200 }, { username: 'Debby', age: 120 }]"
-                    ref="table"
-                    @@selected="onTableSelectionChange">
+        <fm-value-table selection="multiple"
+                        :rows="[{name: 'Username', bind: 'username', sort: true}, {name: 'Age', bind: 'age', sort:true}]"
+                        :values="[{ username: { href: '#', value: 'Bradley' }, age: 20 }, { username: 'Andy', age: 200 }, { username: 'Debby', age: 120 }]"
+                        ref="table"
+                        @@selected="onTableSelectionChange">
             <template v-slot:tfoot>
                 <button class="icon blue" :disabled="tableButtonDisabled" @@click="freeGoat">
                     <i class="las la-horse"></i>
                     <span>Click me for a free goat</span>
                 </button>
             </template>
-        </farm-table>
+        </fm-value-table>
     </window>
 
     <window title="Calendar">
