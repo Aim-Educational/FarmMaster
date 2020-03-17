@@ -61,8 +61,11 @@ namespace FarmMaster.Controllers
         }
 
         [Authorize(Policy = Permissions.User.ManageUI)]
-        public IActionResult Users([FromServices] UserManager<ApplicationUser> users)
+        public IActionResult Users([FromServices] UserManager<ApplicationUser> users, [FromQuery] string error)
         {
+            if(error != null)
+                ModelState.AddModelError(string.Empty, error);
+
             return View(new AdminUsersViewModel
             {
                 Users = users.Users
@@ -159,7 +162,7 @@ namespace FarmMaster.Controllers
                 if(user.Id == loggedInUser.Id)
                     return (true, null, user, true); // ALLOW: We're editing ourself.
 
-                return (false, "User is not an admin, and is not trying to manage theirself", user, false);
+                return (false, "You do not have permission to edit other users.", user, false);
             }
 
             return (true, null, user, false); // ALLOW: We're an admin.
