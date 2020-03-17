@@ -13,6 +13,23 @@
 <script>
 import FarmTableBase from "./table_base";
 
+/**
+ * This is the simplest table to use, it simply works off of the values you pass to it.
+ * 
+ * All events from the base component are forwarded.
+ * 
+ * No new events exist.
+ * 
+ * All properties for the base component are forwarded.
+ * 
+ * The reason you'd probably want to use something more specialised like the graphql table, is due to how
+ * sorting is handled.
+ * 
+ * This table will create a shallow copy of your values, and then sort them in memory.
+ * 
+ * The GraphQL table however doesn't have access to the entire dataset, so it'd instead instruct the server
+ * to order things for us.
+ */
 export default {
     props: {
         rows: FarmTableBase.props.rows,
