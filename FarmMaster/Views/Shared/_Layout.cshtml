@@ -4,6 +4,7 @@
 
 @using Microsoft.AspNetCore.Authorization
 @using FarmMaster.Constants
+@using DataAccess.Constants
 
 @{ 
     Func<string, string> checkPolicy = policy => 
@@ -107,12 +108,12 @@
             data: {
                 sections: {
                     admin: {
-                        shown: @checkPolicy(Policies.IsAdmin),
+                        shown: @checkPolicy(Policies.SeeAdminPanel),
                         items: {
-                            controls: { shown: true, icon: null, href: "/Admin/ControlTest" },
-                            graphql:  { shown: true, icon: null, href: "/ui/playground" },
-                            settings: { shown: true, icon: null, href: "/Admin/Settings" },
-                            users:    { shown: true, icon: null, href: "/Admin/Users" }
+                            controls: { shown: @checkPolicy(Permissions.Other.DebugUI),   icon: null, href: "/Admin/ControlTest" },
+                            graphql:  { shown: @checkPolicy(Permissions.Other.GraphQLUI), icon: null, href: "/ui/playground" },
+                            settings: { shown: @checkPolicy(Permissions.Other.Settings),  icon: null, href: "/Admin/Settings" },
+                            users:    { shown: @checkPolicy(Permissions.User.ManageUI),   icon: null, href: "/Admin/Users" }
                         }
                     }
                 }

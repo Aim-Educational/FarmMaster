@@ -12,35 +12,35 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using DataAccess.Constants;
 
 namespace FarmMaster.Controllers
 {
-    [Authorize(Policy = Policies.IsAdmin)]
+    [Authorize(Policy = Policies.SeeAdminPanel)]
     public class AdminController : Controller
     {
         readonly UserManager<ApplicationUser> _users;
         readonly SignInManager<ApplicationUser> _signIn;
-        readonly RoleManager<ApplicationRole> _roles;
         readonly IAuthorizationService _auth;
 
         public AdminController(
             UserManager<ApplicationUser> users,
             SignInManager<ApplicationUser> signIn,
-            RoleManager<ApplicationRole> roles,
             IAuthorizationService auth
         )
         {
             this._users = users;
             this._signIn = signIn;
-            this._roles = roles;
             this._auth = auth;
         }
 
+        [Authorize(Policy = Permissions.Other.DebugUI)]
         public IActionResult ControlTest()
         {
             return View();
         }
 
+        [Authorize(Policy = Permissions.Other.Settings)]
         public IActionResult Settings([FromServices] IOptionsSnapshot<EmailSenderConfig> emailConf)
         {
             return View(new AdminSettingsViewModel
@@ -49,6 +49,7 @@ namespace FarmMaster.Controllers
             });
         }
 
+        [Authorize(Policy = Permissions.Other.Settings)]
         public async Task<IActionResult> TestEmail([FromServices] IEmailSender email, [FromServices] UserManager<ApplicationUser> users)
         {
             var user    = await users.GetUserAsync(User);
@@ -59,6 +60,7 @@ namespace FarmMaster.Controllers
             return RedirectToAction("Settings");
         }
 
+        [Authorize(Policy = Permissions.User.ManageUI)]
         public IActionResult Users([FromServices] UserManager<ApplicationUser> users)
         {
             return View(new AdminUsersViewModel
@@ -84,6 +86,7 @@ namespace FarmMaster.Controllers
         }
 
         [HttpPost]
+        [Authorize(Policy = Permissions.Other.Settings)]
         public IActionResult Email(AdminSettingsViewModel settings, [FromServices] IFarmMasterSettingsAccessor dbSettings)
         {
             if(!ModelState.IsValid)

@@ -107,6 +107,17 @@ namespace FarmMaster
             services.AddAuthorization(o => 
             {
                 o.AddPolicy(Policies.IsAdmin, p => p.RequireRole(Roles.SuperAdmin));
+                o.AddPolicy(
+                    Policies.SeeAdminPanel, 
+                    p => p.RequireAssertion
+                    (
+                        ctx => ctx.User.IsInRole(Roles.SuperAdmin)
+                            || ctx.User.HasClaim(Permissions.ClaimType, Permissions.Other.GraphQLUI)
+                            || ctx.User.HasClaim(Permissions.ClaimType, Permissions.Other.DebugUI)
+                            || ctx.User.HasClaim(Permissions.ClaimType, Permissions.Other.Settings)
+                            || ctx.User.HasClaim(Permissions.ClaimType, Permissions.User.ManageUI)
+                    )
+                );
                 
                 // For ease-of-use, all permissions have their own policy.
                 // Any policy containing "read" (e.g. "read_permissions") will implicitly pass for their "write" version ("write_permissions")
