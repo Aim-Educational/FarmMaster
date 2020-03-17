@@ -59,6 +59,9 @@ namespace DataAccess
         {
             this.SeedRoles(roles);
             this.SeedUsers(users);
+            
+            this.SpringCleanRoles(roles);
+            this.SpringCleanUsers(users);
         }
 
         private void SeedRoles(RoleManager<ApplicationRole> roles)
@@ -89,7 +92,19 @@ namespace DataAccess
 
                     if(!roleClaims.Any(c => c.Type == claim.Type && c.Value == claim.Value))
                         roles.AddClaimAsync(role, claim).Wait();
-                }
+                }   
+            }
+        }
+
+        private void SpringCleanRoles(RoleManager<ApplicationRole> roles)
+        {
+            foreach (var role in roles.Roles.ToList())
+            {
+                // Remove any permissions that no longer exist.
+                var roleClaims        = roles.GetClaimsAsync(role).Result;
+                var invalidPermClaims = this.GetInvalidPermissionClaims(roleClaims);
+                foreach (var claim in invalidPermClaims)
+                    roles.RemoveClaimAsync(role, claim).Wait();
             }
         }
 
@@ -113,6 +128,25 @@ namespace DataAccess
             // Create default superadmin
             users.CreateAsync(user).Wait();
             users.AddToRoleAsync(user, Constants.Roles.SuperAdmin).Wait();
+        }
+
+        private void SpringCleanUsers(UserManager<ApplicationUser> users)
+        {
+            foreach (var user in users.Users.ToList())
+            {
+                // Remove any permissions that no longer exist.
+                var userClaims        = users.GetClaimsAsync(user).Result;
+                var invalidPermClaims = this.GetInvalidPermissionClaims(userClaims);
+                foreach (var claim in invalidPermClaims)
+                    users.RemoveClaimAsync(user, claim).Wait();
+            }
+     
+        }
+
+        private IEnumerable<Claim> GetInvalidPermissionClaims(IEnumerable<Claim> claims)
+        {
+            return claims.Where(c => c.Type == Permissions.ClaimType)
+                         .Where(c => !Permissions.AllPermissions.Contains(c.Value));
         }
     }
 

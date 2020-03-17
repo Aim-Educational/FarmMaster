@@ -11,8 +11,8 @@ namespace DataAccess.Constants
 
         public static class User
         {
-            public const string ReadPermissions  = "user.read_permissions";
-            public const string WritePermissions = "user.write_permissions";
+            public const string ReadPermissions  = "user.permissions.read";
+            public const string WritePermissions = "user.permissions.write";
         }
 
         public static readonly string[] AllPermissions = new[] 
