@@ -38,7 +38,7 @@
                 <label>Confirm Password</label>
                 <textbox :mode="mode" fm-model="ConfirmPassword" type="password"></textbox>
             </div>
-            <alert fm-model-error="true">
+            <alert type="error" fm-model-error="true">
                 <header>Error when updating user</header>
             </alert>
             <button class="top margined fluid blue"
@@ -46,6 +46,13 @@
                 Update user
             </button>
         </form>
+    </window>
+
+    <window title="Permissions">
+        <editor-perms :mode="mode"
+                      username="@Model.Username"
+                      @@on-valid-update="onValidPermissionUpdate">
+        </editor-perms>
     </window>
 </div>
 
@@ -66,6 +73,10 @@
                 onToggleMode() {
                     this.mode = (this.mode === "view") ? "edit" : "view";
                     this.editButton.text = (this.mode === "view") ? "Edit" : "View";
+                },
+
+                onValidPermissionUpdate() {
+                    this.onToggleMode();
                 }
             }
         });

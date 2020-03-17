@@ -1,0 +1,16 @@
+div.editor-permissions {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+
+    > div.perm {
+        display: flex;
+        width: 100%;
+
+        padding-top: 0.8em;
+    }
+
+    .alert + div.perm {
+        padding-top: 0;
+    }
+}

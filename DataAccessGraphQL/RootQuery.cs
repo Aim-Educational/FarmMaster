@@ -41,6 +41,7 @@ namespace DataAccessGraphQL
             this._signIn = sigIn;
 
             this.AddUserQuery();
+            this.AddPermissionsQuery();
         }
 
         private void AddUserQuery()
@@ -65,6 +66,15 @@ namespace DataAccessGraphQL
 
                     return contexts;
                 }
+            );
+        }
+
+        private void AddPermissionsQuery()
+        {
+            Field<ListGraphType<StringGraphType>>(
+                "permissions",
+                "All permissions accepted by GraphQL.",
+                resolve: ctx => Permissions.AllPermissions
             );
         }
     }

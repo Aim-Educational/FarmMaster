@@ -7,16 +7,25 @@ export function get(url: string) {
 }
 
 export function graphql(query: string, variables: object) {
+    console.log({
+        _: "Sending Query",
+        variables: variables,
+        query: query
+    });
     return ajax("/graphql", "POST", { query, variables })
-    .then((json: { errors?: string[] }) => {
+    .then((json: { errors?: { message: string }[], data: any }) => {
         if(json.errors)
         {
+            console.log({
+                _: "ERROR DURING GRAPHQL QUERY",
+                errors: json.errors
+            });
             throw {
-                errors: json.errors.map(e => e.split("\r\n")[0].split('\n')[0])
+                errors: json.errors.map(e => e.message.split("\r\n")[0].split('\n')[0])
             };
         }
 
-        return json;
+        return json.data;
     });
 }
 
