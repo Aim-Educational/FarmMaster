@@ -92,7 +92,8 @@
                         :rows="[{name: 'Username', bind: 'username', sort: true}, {name: 'Age', bind: 'age', sort:true}]"
                         :values="[{ username: { href: '#', value: 'Bradley' }, age: 20 }, { username: 'Andy', age: 200 }, { username: 'Debby', age: 120 }]"
                         ref="table"
-                        @@selected="onTableSelectionChange">
+                        @@selected="onTableSelectionChange"
+                        @@sort="onTableSort">
             <template v-slot:tfoot>
                 <button class="icon blue" :disabled="tableButtonDisabled" @@click="freeGoat">
                     <i class="las la-horse"></i>
@@ -146,7 +147,8 @@
                 multiselectData: null,
                 tableButtonDisabled: true,
                 date: null,
-                eventName: ""
+                eventName: "",
+                rowBeingSorted: null
             },
             methods: {
                 showAlerts() {
@@ -155,11 +157,15 @@
                 },
 
                 freeGoat() {
-                    alert("Row being sorted " + JSON.stringify(this.$refs.table.sortedRow));
+                    alert("Row being sorted " + JSON.stringify(this.rowBeingSorted));
                 },
 
                 onTableSelectionChange(event) {
                     this.tableButtonDisabled = event.selectedValues.length === 0;
+                },
+
+                onTableSort(event) {
+                    this.rowBeingSorted = event.row;
                 }
             }
         });

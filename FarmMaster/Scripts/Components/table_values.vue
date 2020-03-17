@@ -2,8 +2,11 @@
     <fm-table :rows="rows"
               :selection="selection"
               :values="sortedValues"
-              @sort="onSort">
-
+              @sort="onSort"
+              v-on="$listeners">
+        <template v-slot:tfoot>
+            <slot name="tfoot"></slot>
+        </template>
     </fm-table>
 </template>
 
@@ -26,6 +29,9 @@ export default {
     methods: {
         onSort(event) {
             this.sortedValues = this.values.slice();
+            if(!event.row)
+                return;
+
             this.sortedValues.sort((a, b) => {
                 let aValue = FarmTableBase.util.getRowValue(a, event.row);
                 let bValue = FarmTableBase.util.getRowValue(b, event.row);
