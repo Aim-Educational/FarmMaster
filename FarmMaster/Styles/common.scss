@@ -125,6 +125,9 @@ button {
     &.blue {
         @include buttonColour(216, 52%);
     }
+    &.red {
+        @include buttonColour(6, 52%)
+    }
 }
 
 input[type=checkbox] + label {

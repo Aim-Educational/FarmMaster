@@ -136,6 +136,14 @@
             </p>
         </alert>
     </window>
+
+    <window title="Confirm button">
+        <confirm-button class="red"
+                        prompt="Delete"
+                        confirm="Are you sure?"
+                        @@click="onConfirmDelete">
+        </confirm-button>
+    </window>
 </div>
 
 @section Scripts {
@@ -166,6 +174,10 @@
 
                 onTableSort(event) {
                     this.rowBeingSorted = event.row;
+                },
+
+                onConfirmDelete() {
+                    alert("You chose to delete the universe. Congratulations!");
                 }
             }
         });
