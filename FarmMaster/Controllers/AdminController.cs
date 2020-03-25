@@ -13,6 +13,8 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using DataAccess.Constants;
+using EmailSender;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace FarmMaster.Controllers
 {
@@ -50,12 +52,25 @@ namespace FarmMaster.Controllers
         }
 
         [Authorize(Policy = Permissions.Other.Settings)]
-        public async Task<IActionResult> TestEmail([FromServices] IEmailSender email, [FromServices] UserManager<ApplicationUser> users)
+        public async Task<IActionResult> TestEmail(
+            [FromServices] ITemplatedEmailSender email, 
+            [FromServices] UserManager<ApplicationUser> users
+        )
         {
             var user    = await users.GetUserAsync(User);
             var address = await users.GetEmailAsync(user);
 
-            await email.SendEmailAsync(address, "This is a test", "<h1>Lalafells are demons, change my mind</h1>");
+            try
+            {
+                // This is so I can also test templates, as well as letting the user test their settings.
+                var template = new EmailTemplate("<h1>{{ race }} are demons, change my mind</h1>");
+                var values   = new EmailTemplateValues(){ { "race", "Lalafells" } };
+                await email.SendTemplatedEmailAsync(address, template, values);
+            }
+            catch(Exception ex)
+            {
+                return View("Settings", ex.Message);
+            }
 
             return RedirectToAction("Settings");
         }
@@ -118,18 +133,51 @@ namespace FarmMaster.Controllers
 
         [HttpPost]
         [Authorize(Policy = Permissions.Other.Settings)]
-        public IActionResult Email(AdminSettingsViewModel settings, [FromServices] IFarmMasterSettingsAccessor dbSettings)
+        public IActionResult Email(
+            AdminSettingsViewModel settings, 
+            [FromServices] IFarmMasterSettingsAccessor dbSettings,
+            [FromServices] ITemplatedEmailSender email
+        )
         {
             if(!ModelState.IsValid)
                 return RedirectToAction("Settings");
 
             var mutableSettings          = dbSettings.Settings;
-            mutableSettings.SmtpServer   = settings.Email.Server;
-            mutableSettings.SmtpPort     = settings.Email.Port;
-            mutableSettings.SmtpUsername = settings.Email.Username;
-            mutableSettings.SmtpPassword = settings.Email.Password;
+            mutableSettings.SmtpServer   = settings.Email.Smtp.Server;
+            mutableSettings.SmtpPort     = settings.Email.Smtp.Port;
+            mutableSettings.SmtpUsername = settings.Email.Smtp.Username;
+            mutableSettings.SmtpPassword = settings.Email.Smtp.Password;
 
             dbSettings.Settings = mutableSettings;
+
+            /**
+             * Just so the flow of email is documented:
+             * 
+             *  - ConfigureEmailOptions will update IOptions, IOptionsSnapshot, and IOptionsMonitor with values
+             *    from the database.
+             *    
+             *  - ITemplatedEmailSender doesn't recieve the new values automatically because ASP and its conflicting/open-ended documentation,
+             *    so we need a way to notify it of changes to the config.
+             *    
+             *  - Since this is the only place where the config can be changed, after updating the database with new settings (code above),
+             *    we construct an IOptionSnapshot for the *first time for this request*, causing it to contain up-to-date info via ConfigureEmailOptions.
+             *    
+             *  - After that, we call ReloadAsync on the ITemplatedEmailSender so it can update its connection.
+             * */
+
+            // This will cause all IConfigureOptions to be ran on the new values.
+            var upToDateConfig = HttpContext.RequestServices.GetRequiredService<IOptionsSnapshot<EmailSenderConfig>>().Value;
+
+            try
+            { 
+                email.ReloadAsync(upToDateConfig).Wait();
+            }
+            catch(Exception ex)
+            {
+                settings.EmailError = ex.Message;
+                return View("Settings", settings);
+            }
+
             return RedirectToAction("Settings");
         }
 

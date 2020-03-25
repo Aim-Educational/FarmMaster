@@ -1,4 +1,5 @@
 ﻿using DataAccess;
+using EmailSender;
 using FarmMaster.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
@@ -20,10 +21,13 @@ namespace FarmMaster.Services.Configuration
             if (settings == null)
                 return;
 
-            options.Server   = settings.SmtpServer;
-            options.Port     = settings.SmtpPort;
-            options.Username = settings.SmtpUsername;
-            options.Password = settings.SmtpPassword; // CURRENTLY STORED UNENCRYPTED
+            options.Url = "localhost"; // TODO: Don't hardcode
+            options.Layout = new EmailTemplate("{{ body }}"); // TODO: Load from file
+
+            options.Smtp.Server   = settings.SmtpServer;
+            options.Smtp.Port     = settings.SmtpPort;
+            options.Smtp.Username = settings.SmtpUsername;
+            options.Smtp.Password = settings.SmtpPassword; // CURRENTLY STORED UNENCRYPTED
         }
     }
 }

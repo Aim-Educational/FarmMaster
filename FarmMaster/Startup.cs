@@ -28,6 +28,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using FarmMaster.Middleware;
+using EmailSender;
 
 namespace FarmMaster
 {
@@ -54,8 +55,8 @@ namespace FarmMaster
             services.AddDbContext<FarmMasterContext>(o => o.UseNpgsql(Configuration.GetConnectionString("FarmMaster")));
 
             // Email
-            services.AddScoped<IConfigureOptions<EmailSenderConfig>, ConfigureEmailOptions>();
-            services.AddScoped<IEmailSender, EmailSender>();
+            services.AddSingleton<IConfigureOptions<EmailSenderConfig>, ConfigureEmailOptions>();
+            services.AddTemplatedEmailSender();
 
             // Identity + All login providers
             services.AddIdentity<ApplicationUser, ApplicationRole>(o => 

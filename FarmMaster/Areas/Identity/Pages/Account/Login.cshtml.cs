@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using EmailSender;
 
 namespace FarmMaster.Areas.Identity.Pages.Account
 {
@@ -21,12 +22,12 @@ namespace FarmMaster.Areas.Identity.Pages.Account
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
-        private readonly IEmailSender _emailSender;
+        private readonly ITemplatedEmailSender _emailSender;
 
         public LoginModel(SignInManager<ApplicationUser> signInManager, 
             ILogger<LoginModel> logger,
             UserManager<ApplicationUser> userManager,
-            IEmailSender emailSender)
+            ITemplatedEmailSender emailSender)
         {
             _userManager = userManager;
             _signInManager = signInManager;

@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using EmailSender;
 
 namespace FarmMaster.Controllers
 {
@@ -21,13 +22,13 @@ namespace FarmMaster.Controllers
     {
         readonly SignInManager<ApplicationUser> _signInManager;
         readonly UserManager<ApplicationUser> _userManager;
-        readonly IEmailSender _emailSender;
+        readonly ITemplatedEmailSender _emailSender;
         readonly ILogger _logger;
 
         public AccountController(
             SignInManager<ApplicationUser> signIn,
             UserManager<ApplicationUser> users,
-            IEmailSender email,
+            ITemplatedEmailSender email,
             ILogger<AccountController> logger
         )
         {
