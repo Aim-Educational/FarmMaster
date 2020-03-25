@@ -82,10 +82,38 @@ namespace FarmMaster.Controllers
             var user = authResult.user;
             return View(new AdminManageUserViewModel
             {
-                Username = user.UserName,
-                Email    = user.Email,
-                Id       = Convert.ToString(user.Id)
+                Username         = user.UserName,
+                Email            = user.Email,
+                Id               = Convert.ToString(user.Id),
+                ShowDeleteButton = authResult.hasDeletePerm
             });
+        }
+
+        [AllowAnonymous] // See GET of ManageUser
+        public async Task<IActionResult> DeleteUser(string userId)
+        {
+            if (userId == null)
+                return RedirectToAction("Users", new { error = "No user id was specified." });
+
+            var authResult = await this.CanManageUser(userId);
+            if (!authResult.allowed)
+                return RedirectToAction(authResult.selfManage ? "Login" : "Users", new { authResult.error });
+
+            if (!authResult.hasDeletePerm)
+                return RedirectToAction(authResult.selfManage ? "Login" : "Users", new { error = "You do not have permission to delete this user." });
+
+            if(authResult.isAdmin)
+                return RedirectToAction("Users", new { error = "Admins cannot be deleted." });
+
+            var deletingSelf = (await this._users.GetUserAsync(User)) == authResult.user;
+            if (deletingSelf)
+                await this._signIn.SignOutAsync();
+
+            var result = await this._users.DeleteAsync(authResult.user);
+            if (!result.Succeeded)
+                return RedirectToAction(authResult.selfManage ? "Login" : "Users", new { error = result.Errors.First().Description });
+
+            return RedirectToAction(deletingSelf ? "Login" : "Users", new { error = "User deleted successfully!" });
         }
 
         [HttpPost]
@@ -143,29 +171,36 @@ namespace FarmMaster.Controllers
             return View(model);
         }
 
-        private async Task<(bool allowed, string error, ApplicationUser user, bool selfManage)> CanManageUser(string userId)
+        private async Task<(bool allowed, string error, ApplicationUser user, bool selfManage, bool hasDeletePerm, bool isAdmin)> 
+        CanManageUser(string userId)
         {
             // Get our user, and the one we're modifying.
             var loggedInUser = await this._users.GetUserAsync(User);
             if(loggedInUser == null)
-                return (false, "You are not logged in", null, false);
+                return (false, "You are not logged in", null, false, false, false);
 
             var user = await this._users.FindByIdAsync(userId);
             if(user == null)
-                return (false, "User does not exist", null, false);
+                return (false, "User does not exist", null, false, false, false);
 
             // Get our user principal so we can check if we're an admin
-            var principal = await this._signIn.CreateUserPrincipalAsync(loggedInUser);
-            var isAdmin   = await this._auth.AuthorizeAsync(principal, Policies.IsAdmin);
+            var principal       = await this._signIn.CreateUserPrincipalAsync(loggedInUser);
+            var isAdmin         = await this._auth.AuthorizeAsync(principal, Policies.IsAdmin);
+            var canDeleteUsers  = await this._auth.AuthorizeAsync(principal, Permissions.User.Delete);
             if(!isAdmin.Succeeded)
             {
                 if(user.Id == loggedInUser.Id)
-                    return (true, null, user, true); // ALLOW: We're editing ourself.
+                    return (true, null, user, true, true, false); // ALLOW: We're editing ourself.
 
-                return (false, "You do not have permission to edit other users.", user, false);
+                // If we're not an admin, and if we're not managing ourself, check if we can at least read users.
+                var canReadUsers = await this._auth.AuthorizeAsync(principal, Permissions.User.Read);
+                if(canReadUsers.Succeeded)
+                    return (true, null, user, false, canDeleteUsers.Succeeded, false);
+
+                return (false, "You do not have permission to edit other users.", user, false, false, false);
             }
 
-            return (true, null, user, false); // ALLOW: We're an admin.
+            return (true, null, user, false, true, true); // ALLOW: We're an admin.
         }
     }
 }

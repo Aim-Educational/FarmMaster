@@ -38,5 +38,7 @@ namespace FarmMaster.Models
         public string ConfirmPassword { get; set; }
 
         public string Email { get; set; } // Readonly, so we don't care about attributes
+
+        public bool ShowDeleteButton { get; set; }
     }
 }

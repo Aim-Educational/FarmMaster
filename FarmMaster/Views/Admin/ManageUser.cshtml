@@ -11,7 +11,17 @@
             {{ editButton.text }}
         </button>
 
+        @if(Model.ShowDeleteButton)
+        {
+            <confirm-button class="left margined red"
+                            prompt="Delete User"
+                            confirm="Are you sure? THIS CANNOT BE UNDONE!"
+                            @@click="onDeleteUser">
+            </confirm-button>
+        }
+
         <form method="post" asp-action="ManageUser">
+            <input type="hidden" asp-for="ShowDeleteButton" />
             <input type="hidden" asp-for="Id" />
 
             <div class="input-wrapper inline">
@@ -77,6 +87,10 @@
 
                 onValidPermissionUpdate() {
                     this.onToggleMode();
+                },
+
+                onDeleteUser() {
+                    document.location = "/Admin/DeleteUser?userId=@Model.Id";
                 }
             }
         });
