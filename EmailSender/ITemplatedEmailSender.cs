@@ -12,11 +12,6 @@ namespace EmailSender
     public class EmailSenderConfig
     {
         /// <summary>
-        /// The URL of *THIS* website. This is used when generating links for users to click on.
-        /// </summary>
-        public string Url { get; set; }
-
-        /// <summary>
         /// Used as the main layout template. Value 'body' is reserved for the email body.
         /// </summary>
         public EmailTemplate Layout { get; set; }
