@@ -28,9 +28,7 @@ namespace FarmMaster.Services.Configuration
             if (settings == null)
                 return;
 
-            options.Url = "localhost"; // TODO: Don't hardcode
-            options.Layout = new EmailTemplate(this._layoutTemplate);
-
+            options.Layout        = new EmailTemplate(this._layoutTemplate);
             options.Smtp.Server   = settings.SmtpServer;
             options.Smtp.Port     = settings.SmtpPort;
             options.Smtp.Username = settings.SmtpUsername;
