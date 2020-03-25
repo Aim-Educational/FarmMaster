@@ -43,10 +43,11 @@ namespace FarmMaster.Controllers
         }
 
         [Authorize(Policy = Permissions.Other.Settings)]
-        public IActionResult Settings([FromServices] IOptionsSnapshot<EmailSenderConfig> emailConf)
+        public IActionResult Settings([FromServices] IOptionsSnapshot<EmailSenderConfig> emailConf, [FromQuery] string emailTestError)
         {
             return View(new AdminSettingsViewModel
-            { 
+            {
+                EmailError = emailTestError,
                 Email = emailConf.Value
             });
         }
@@ -60,17 +61,13 @@ namespace FarmMaster.Controllers
             var user    = await users.GetUserAsync(User);
             var address = await users.GetEmailAsync(user);
 
-            try
-            {
-                // This is so I can also test templates, as well as letting the user test their settings.
-                var template = new EmailTemplate("<h1>{{ race }} are demons, change my mind</h1>");
-                var values   = new EmailTemplateValues(){ { "race", "Lalafells" } };
-                await email.SendTemplatedEmailAsync(address, template, values);
-            }
-            catch(Exception ex)
-            {
-                return View("Settings", ex.Message);
-            }
+            // This is so I can also test templates, as well as letting the user test their settings.
+            var template = new EmailTemplate("<h1>{{ race }} are demons, change my mind</h1>");
+            var values   = new EmailTemplateValues() { { "race", "Lalafells" } };
+            var result   = await email.SendTemplatedEmailAsync(address, template, values);
+
+            if(!result.Succeeded)
+                return RedirectToAction("Settings", new { emailTestError = result.Error });
 
             return RedirectToAction("Settings");
         }
