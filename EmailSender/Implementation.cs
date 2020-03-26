@@ -47,7 +47,7 @@ namespace EmailSender
             await this._client.SendAsync(message);
         }
 
-        public async Task<EmailResult> SendTemplatedEmailAsync(string toAddress, EmailTemplate template, EmailTemplateValues values)
+        public async Task<EmailResult> SendTemplatedEmailAsync(string toAddress, string subject, EmailTemplate template, EmailTemplateValues values)
         {
             var config   = this._config;
             var contents = template.Resolve(values, this._accessor, this._generator);
@@ -56,7 +56,7 @@ namespace EmailSender
             try
             {
                 var message     = this.CreateMessage(config.Smtp, toAddress);
-                message.Subject = "TODO";
+                message.Subject = subject;
                 message.Body    = new TextPart(TextFormat.Html)
                 {
                     Text = contents

@@ -84,11 +84,12 @@ namespace EmailSender
         /// <summary>
         /// Sends an email, where its contents are provided by an <see cref="EmailTemplate"/>.
         /// </summary>
-        /// <param name="toAddress">The email address to send the email to.</param>
+        /// <param name="toAddress">The email address to send the email to</param>
+        /// <param name="subject">The subject of the email</param>
         /// <param name="template">The template containing the email's contents</param>
         /// <param name="values">The values used to resolve the given <paramref name="template"/></param>
         /// <returns>The results of trying to send the email.</returns>
-        Task<EmailResult> SendTemplatedEmailAsync(string toAddress, EmailTemplate template, EmailTemplateValues values);
+        Task<EmailResult> SendTemplatedEmailAsync(string toAddress, string subject, EmailTemplate template, EmailTemplateValues values);
 
         /// <summary>
         /// Allows the email sender to reload its client settings, based on the updated config provided.

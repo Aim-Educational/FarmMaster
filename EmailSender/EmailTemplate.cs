@@ -176,10 +176,12 @@ namespace EmailSender
 
                         if(generator != null)
                         { 
-                            var endUrl = generator.GetUriByAction(
+                            url = generator.GetUriByAction(
                                 accessor.HttpContext, 
                                 action, 
-                                controller
+                                controller,
+                                null,
+                                accessor.HttpContext.Request.Scheme
                             );
                         }
                         else

@@ -62,9 +62,9 @@ namespace FarmMaster.Controllers
             var address = await users.GetEmailAsync(user);
 
             // This is so I can also test templates, as well as letting the user test their settings.
-            var template = new EmailTemplate("<h1>{{ race }} are demons, change my mind</h1>");
+            var template = new EmailTemplate("<h1>{{ race }} are demons, change my mind. There's a link {{ @a#b?c=race }}</h1>");
             var values   = new EmailTemplateValues() { { "race", "Lalafells" } };
-            var result   = await email.SendTemplatedEmailAsync(address, template, values);
+            var result   = await email.SendTemplatedEmailAsync(address, "This is a test email", template, values);
 
             if(!result.Succeeded)
                 return RedirectToAction("Settings", new { emailTestError = result.Error });
