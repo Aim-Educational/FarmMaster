@@ -134,10 +134,10 @@ namespace EmailSender
                         // Also code duplication.
                         start = ++i;
 
-                        string controller = null;
-                        string action     = null;
-                        string query      = null;
-                        string valueKey   = null;
+                        string controller;
+                        string action;
+                        string query;
+                        string valueKey;
 
                         // Read until a #
                         while(i < this._rawText.Length && this._rawText[++i] != '#') { }
@@ -172,8 +172,7 @@ namespace EmailSender
                         i += 2; // Trusting the input too much.
                         start = i;
 
-                        string url = null;
-
+                        string url;
                         if(generator != null)
                         { 
                             url = generator.GetUriByAction(
