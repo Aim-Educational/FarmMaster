@@ -34,7 +34,7 @@ namespace DataAccessGraphQL
             var user = users.GetUserAsync(context.HttpContext.User).Result;
             accessor.Context = new DataAccessUserContext(user, context.HttpContext.User, auth);
             if (user == null)
-                throw new Exception("You are not logged in");
+                throw new ExecutionError("You are not logged in");
 
             this.DataContext  = accessor.Context;
             this.FarmMasterDb = fmDb;
