@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using Microsoft.AspNetCore.Http;
 
 namespace EmailSender.Tests
 {
@@ -35,7 +36,22 @@ namespace EmailSender.Tests
             var template = new EmailTemplate(EXAMPLE_TEMPLATE);
             Assert.AreEqual(
                 "Hello SealabJaster",
-                template.Resolve(new EmailTemplateValues{ { "username", "SealabJaster" } })
+                template.Resolve(
+                    new EmailTemplateValues{ { "username", "SealabJaster" } },
+                    null,
+                    null
+                )
+            );
+
+            // NOTE: When no link generator is passed, the URL is relative, not absolute.
+            template = new EmailTemplate("{{ @Account#ConfirmEmail?token=tok }}");
+            Assert.AreEqual(
+                "<a href='/Account/ConfirmEmail?token=andy_loves_goats'>here</a>",
+                template.Resolve(
+                    new EmailTemplateValues { { "tok", "andy_loves_goats" } },
+                    null,
+                    null
+                )
             );
         }
     }

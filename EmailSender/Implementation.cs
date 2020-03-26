@@ -8,17 +8,23 @@ using MailKit.Net.Smtp;
 using Microsoft.Extensions.Options;
 using MimeKit;
 using MimeKit.Text;
+using Microsoft.AspNetCore.Routing;
+using Microsoft.AspNetCore.Http;
 
 namespace EmailSender
 {
     public class TemplatedEmailSender : ITemplatedEmailSender
     {
         EmailSenderConfig _config;
+        readonly IHttpContextAccessor _accessor;
+        readonly LinkGenerator _generator;
         SmtpClient _client;
 
-        public TemplatedEmailSender(IOptions<EmailSenderConfig> config)
+        public TemplatedEmailSender(IOptions<EmailSenderConfig> config, IHttpContextAccessor accessor, LinkGenerator generator)
         {
             this._config = config.Value;
+            this._accessor = accessor;
+            this._generator = generator;
         }
 
         public Task ReloadAsync(EmailSenderConfig config)
@@ -44,8 +50,8 @@ namespace EmailSender
         public async Task<EmailResult> SendTemplatedEmailAsync(string toAddress, EmailTemplate template, EmailTemplateValues values)
         {
             var config   = this._config;
-            var contents = template.Resolve(values);
-                contents = config.Layout.Resolve(new EmailTemplateValues { { "body", contents } });
+            var contents = template.Resolve(values, this._accessor, this._generator);
+                contents = config.Layout.Resolve(new EmailTemplateValues { { "body", contents } }, this._accessor, this._generator);
 
             try
             {

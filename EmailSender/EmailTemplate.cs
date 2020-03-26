@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -53,8 +56,16 @@ namespace EmailSender
         {
             this._rawText = templateText;
 
-            var captures = Regex.Matches(templateText, @"{{\s*([\w_]+)\s*}}"); // example match: {{ username }} -> "username"
-            this.ValueKeys = captures.Select((Match m) => m.Groups[1].Value);
+            // example match: {{ username }} -> "username"
+            var normalValues = Regex.Matches(templateText, @"{{\s*([\w_]+)\s*}}");
+
+            // example match: {{ @Account#ConfirmEmail?token=valueKey }} -> "Account", "ConfirmEmail", "token", "valueKey"
+            var linkValues = Regex.Matches(templateText, @"{{\s*@(\w+)#(\w+)\?(\w+)=(\w+)\s*}}");
+            this.ValueKeys = normalValues
+                             .Select((Match m) => m.Groups[1].Value)
+                             .Concat(linkValues
+                                     .Select((Match m) => m.Groups[4].Value)
+                             );
         }
 
         /// <summary>
@@ -76,20 +87,126 @@ namespace EmailSender
         /// </summary>
         /// <exception cref="InvalidOperationException">If <paramref name="values"/> does not contain all required values.</exception>
         /// <param name="values">The values to use.</param>
+        /// <param name="accessor">Needed for <paramref name="generator"/>, can be null, but only recommended for testing.</param>
+        /// <param name="generator">Used to generate links, can be null, but only recommended for testing.</param>
         /// <returns>A resolved version of this template, where all placeholders are replaced with their values.</returns>
-        public string Resolve(EmailTemplateValues values)
+        public string Resolve(EmailTemplateValues values, IHttpContextAccessor accessor, LinkGenerator generator)
         {
             if(!this.AreAllValuesDefined(values))
                 throw new InvalidOperationException("Not all values have been defined for this template. TODO: List which values.");
 
-            // TODO: When I'm less lazy, this could be O(n) instead of O(n*m)
-            //       It'd also mean I can switch over to StringBuilder instead of doing this memory inefficient stuff.
-            //       Not to mention ToString and the string interpolation also doing their thing.
-            string output = this._rawText;
-            foreach(var key in values.Keys)
-                output = output.Replace($"{{{{ {key} }}}}", Convert.ToString(values[key]));
+            var output = new StringBuilder(this._rawText.Length);
+            var start  = 0;
 
-            return output;
+            Action<int> commit = endIndex => // endIndex is exclusive
+            {
+                output.Append(this._rawText.AsSpan(start, (endIndex - start)));
+            };
+
+            for(int i = 0; i < this._rawText.Length; i++)
+            {
+                var ch = this._rawText[i];
+
+                // If we reach a placeholder, commit the current selection, then begin processing.
+                if(ch == '{' && i != this._rawText.Length - 1 && this._rawText[i + 1] == '{')
+                {
+                    commit(i);
+                    i += 2; // Skip both {{
+
+                    if(i >= this._rawText.Length)
+                        break;
+
+                    // Skip spaces (not all whitespace, since that's invalid syntax in this case)
+                    while(i < this._rawText.Length && this._rawText[i] == ' ')
+                        i++;
+
+                    if(i >= this._rawText.Length)
+                        break;
+
+                    // Decide what type of placeholder it is.
+                    bool isLink = this._rawText[i] == '@';
+
+                    if(isLink) // Link placeholder. ex: @Account#ConfirmEmail?token=valueKey }}
+                    {
+                        // (This doesn't validate input enough, but honestly it's more effort than it's worth for a basic single-function parser.)
+                        // Also code duplication.
+                        start = ++i;
+
+                        string controller = null;
+                        string action     = null;
+                        string query      = null;
+                        string valueKey   = null;
+
+                        // Read until a #
+                        while(i < this._rawText.Length && this._rawText[++i] != '#') { }
+
+                        controller = this._rawText.Substring(start, i - start);
+                        i++;
+                        start = i;
+
+                        // Read until a ?
+                        while (i < this._rawText.Length && this._rawText[++i] != '?') { }
+
+                        action = this._rawText.Substring(start, i - start);
+                        i++;
+                        start = i;
+
+                        // Read until an =
+                        while (i < this._rawText.Length && this._rawText[++i] != '=') { }
+
+                        query = this._rawText.Substring(start, i - start);
+                        i++;
+                        start = i;
+
+                        // Read until whitespace or bracket
+                        while (i < this._rawText.Length && this._rawText[i] != ' ' && this._rawText[i] != '}')
+                            i++;
+
+                        valueKey = this._rawText.Substring(start, i - start);
+
+                        // Skip spaces, read past the }}, and then we're done. (Not enough validation done here, but meh)
+                        while (i < this._rawText.Length && this._rawText[i] == ' ')
+                            i++;
+                        i += 2; // Trusting the input too much.
+                        start = i;
+
+                        string url = null;
+
+                        if(generator != null)
+                        { 
+                            var endUrl = generator.GetUriByAction(
+                                accessor.HttpContext, 
+                                action, 
+                                controller
+                            );
+                        }
+                        else
+                            url = $"/{controller}/{action}";
+                        output.AppendFormat("<a href='{0}?{1}={2}'>here</a>", url, query, values[valueKey]);
+                    }
+                    else // Normal placeholder. ex: username }}
+                    {
+                        // Read until space or bracket.
+                        start = i;
+                        while(i < this._rawText.Length && this._rawText[i] != ' ' && this._rawText[i] != '}')
+                            i++;
+
+                        var key = this._rawText.Substring(start, i - start);
+                        output.Append(Convert.ToString(values[key]));
+
+                        // Skip spaces, read past the }}, and then we're done. (Not enough validation done here, but meh)
+                        while (i < this._rawText.Length && this._rawText[i] == ' ')
+                            i++;
+                        i += 2; // Trusting the input too much.
+                        start = i;
+                    }
+                }
+            }
+
+            if(start < this._rawText.Length)
+                commit(this._rawText.Length);
+
+            return output.ToString();
         }
     }
 }
