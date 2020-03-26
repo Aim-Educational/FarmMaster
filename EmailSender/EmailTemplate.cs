@@ -174,7 +174,7 @@ namespace EmailSender
 
                         string url;
                         if(generator != null)
-                        { 
+                        {
                             url = generator.GetUriByAction(
                                 accessor.HttpContext, 
                                 action, 
