@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -66,6 +67,11 @@ namespace EmailSender
                              .Concat(linkValues
                                      .Select((Match m) => m.Groups[4].Value)
                              );
+        }
+
+        public static EmailTemplate FromFile(string path)
+        {
+            return new EmailTemplate(File.ReadAllText(path));
         }
 
         /// <summary>

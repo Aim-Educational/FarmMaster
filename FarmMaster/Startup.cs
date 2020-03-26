@@ -35,10 +35,12 @@ namespace FarmMaster
     public class Startup
     {
         public IConfiguration Configuration { get; }
+        public IWebHostEnvironment WebHostEnvironment { get; }
 
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
             Configuration = configuration;
+            WebHostEnvironment = env;
         }
 
         public void ConfigureServices(IServiceCollection services)
@@ -57,6 +59,7 @@ namespace FarmMaster
             // Email
             services.AddSingleton<IConfigureOptions<EmailSenderConfig>, ConfigureEmailOptions>();
             services.AddTemplatedEmailSender();
+            FarmMaster.Constants.EmailExtensions.LoadTemplates(this.WebHostEnvironment);
 
             // Identity + All login providers
             services.AddIdentity<ApplicationUser, ApplicationRole>(o => 

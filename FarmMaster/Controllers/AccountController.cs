@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using EmailSender;
+using FarmMaster.Constants;
 
 namespace FarmMaster.Controllers
 {
@@ -82,12 +83,7 @@ namespace FarmMaster.Controllers
                         values: new { userId = user.Id, token }
                     );
 
-                    await this._emailSender.SendEmailAsync(
-                        model.Email,
-                        "Confirm your email",
-                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>."
-                    );
-
+                    await this._emailSender.SendConfirmPasswordAsync(model.Email, callbackUrl);
                     return RedirectToAction("Login", new { confirmEmail = true });
                 }
                 else
@@ -176,12 +172,7 @@ namespace FarmMaster.Controllers
                         values: new { userId = user.Id, token }
                     );
 
-                    await this._emailSender.SendEmailAsync(
-                        model.Email, 
-                        "Confirm your email",
-                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>."
-                    );
-
+                    await this._emailSender.SendConfirmPasswordAsync(model.Email, callbackUrl);
                     return RedirectToAction("Login", new { confirmEmail = true, returnUrl });
                 }
 
