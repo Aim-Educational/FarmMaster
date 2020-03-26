@@ -103,6 +103,8 @@ namespace EmailSender
                 output.Append(this._rawText.AsSpan(start, (endIndex - start)));
             };
 
+            // I'm not the greatest fan of single-function parsers, but it's *just* on the edge of what I'd
+            // consider not featureful enough to bother with a properly structured one.
             for(int i = 0; i < this._rawText.Length; i++)
             {
                 var ch = this._rawText[i];
