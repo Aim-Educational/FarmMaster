@@ -29,6 +29,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using FarmMaster.Middleware;
 using EmailSender;
+using Microsoft.Extensions.Logging;
 
 namespace FarmMaster
 {
@@ -156,10 +157,18 @@ namespace FarmMaster
 
             // Misc
             services.AddDataAccessLogicLayer();
+            services.AddSingleton<FarmLoggerProvider>();
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(
+            IApplicationBuilder app, 
+            IWebHostEnvironment env, 
+            ILoggerFactory loggerFactory,
+            FarmLoggerProvider farmProvider
+        )
         {
+            loggerFactory.AddProvider(farmProvider);
+
             app.UseForwardedHeaders();
             app.UseStatusCodePages();
 

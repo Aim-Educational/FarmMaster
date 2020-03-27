@@ -22,6 +22,7 @@ namespace DataAccess
 
         #region Tables
         public DbSet<Settings> Settings { get; set; }
+        public DbSet<LogEntry> LogEntries { get; set; }
         #endregion
     }
 

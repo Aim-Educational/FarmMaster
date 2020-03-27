@@ -3,15 +3,17 @@ using System;
 using DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(FarmMasterContext))]
-    partial class FarmMasterContextModelSnapshot : ModelSnapshot
+    [Migration("20200326234104_LogEntry2")]
+    partial class LogEntry2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -26,32 +28,23 @@ namespace DataAccess.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<string>("CategoryName")
-                        .IsRequired()
-                        .HasColumnType("character varying(75)")
-                        .HasMaxLength(75);
-
                     b.Property<DateTimeOffset>("DateLogged")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<int>("EventId")
+                    b.Property<int>("Event")
                         .HasColumnType("integer");
-
-                    b.Property<string>("EventName")
-                        .HasColumnType("character varying(75)")
-                        .HasMaxLength(75);
 
                     b.Property<int>("Level")
                         .HasColumnType("integer");
 
-                    b.Property<string>("Message")
-                        .IsRequired()
-                        .HasColumnType("character varying(512)")
-                        .HasMaxLength(512);
-
                     b.Property<string>("StateJson")
                         .HasColumnType("jsonb")
                         .HasMaxLength(2048);
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasColumnType("character varying(512)")
+                        .HasMaxLength(512);
 
                     b.HasKey("LogEntryId");
 
