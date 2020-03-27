@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessLogic", "DataAcce
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmailSender", "EmailSender\EmailSender.csproj", "{7483C6A5-1601-4D17-9700-6C57F57987DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailSenderTests", "EmailSenderTests\EmailSenderTests.csproj", "{5F6D6189-9942-4B64-88C4-9F3B89C87A48}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmailSenderTests", "EmailSenderTests\EmailSenderTests.csproj", "{5F6D6189-9942-4B64-88C4-9F3B89C87A48}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessLogicTests", "DataAccessLogicTests\DataAccessLogicTests.csproj", "{759C335A-2274-46F6-A352-404E6A977086}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{5F6D6189-9942-4B64-88C4-9F3B89C87A48}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F6D6189-9942-4B64-88C4-9F3B89C87A48}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F6D6189-9942-4B64-88C4-9F3B89C87A48}.Release|Any CPU.Build.0 = Release|Any CPU
+		{759C335A-2274-46F6-A352-404E6A977086}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{759C335A-2274-46F6-A352-404E6A977086}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{759C335A-2274-46F6-A352-404E6A977086}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{759C335A-2274-46F6-A352-404E6A977086}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
