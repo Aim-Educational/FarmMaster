@@ -66,6 +66,9 @@ namespace DataAccessLogic
         {
             this._db.Add(entry);
 
+            // I have no idea if ASP is multithreaded, and if it is I have no idea if it shares these instances
+            // between threads.
+            // ... I hope not.
             this._counter.Increment();
             if(this._counter.Count >= COUNTER_THRESHOLD)
             {
