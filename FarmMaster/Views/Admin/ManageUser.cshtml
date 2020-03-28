@@ -26,29 +26,29 @@
 
             <div class="input-wrapper inline">
                 <label>Username</label>
-                <textbox :mode="mode" fm-model="Username"></textbox>
+                <textbox :mode="mode" asp-for="Username"></textbox>
             </div>
             <div class="input-wrapper inline">
                 <label>Email</label>
-                <textbox :mode="mode" fm-model="Email" name="ReadonlyEmail" disabled></textbox>
+                <textbox :mode="mode" asp-for="Email" name="ReadonlyEmail" disabled></textbox>
                 <input type="hidden" asp-for="Email" /> <!--Disabled inputs don't send their value, but we want to keep it for display reasons-->
             </div>
             <div class="input-wrapper inline"
                  v-if="mode === 'edit'">
                 <label>Current Password</label>
-                <textbox :mode="mode" fm-model="CurrentPassword" type="password"></textbox>
+                <textbox :mode="mode" asp-for="CurrentPassword" type="password"></textbox>
             </div>
             <div class="input-wrapper inline"
                  v-if="mode === 'edit'">
                 <label>New Password</label>
-                <textbox :mode="mode" fm-model="Password" type="password"></textbox>
+                <textbox :mode="mode" asp-for="Password" type="password"></textbox>
             </div>
             <div class="input-wrapper inline"
                  v-if="mode === 'edit'">
                 <label>Confirm Password</label>
-                <textbox :mode="mode" fm-model="ConfirmPassword" type="password"></textbox>
+                <textbox :mode="mode" asp-for="ConfirmPassword" type="password"></textbox>
             </div>
-            <alert type="error" fm-model-error="true">
+            <alert type="error" asp-for-error="true">
                 <header>Error when updating user</header>
             </alert>
             <button class="top margined fluid blue"

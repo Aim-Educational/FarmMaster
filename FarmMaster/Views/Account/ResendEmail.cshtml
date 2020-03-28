@@ -8,9 +8,9 @@
         <form method="post" asp-action="ResendEmail">
             <div class="input-wrapper">
                 <label>Email</label>
-                <textbox fm-model="Email" placeholder="andy@goatfarmers.co.uk"></textbox>
+                <textbox asp-for="Email" placeholder="andy@goatfarmers.co.uk"></textbox>
             </div>
-            <alert fm-model-error="true">
+            <alert asp-for-error="true">
                 <header>Error resending email confirmation</header>
             </alert>
             <button class="top margined fluid blue" type="submit">Resend confirmation</button>

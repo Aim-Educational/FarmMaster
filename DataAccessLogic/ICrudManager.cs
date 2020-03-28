@@ -1,24 +1,25 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace DataAccessLogic
 {
-    public enum CouldDelete
-    {
-        Yes,
-        No
-    }
-
     public interface ICrudAsync<EntityT>
     where EntityT : class
     {
-        ValueTask<EntityT> CreateAsync(EntityT entity);
-        ValueTask<EntityT> GetByIdOrNullAsync(int id);
-        void Update(EntityT entity);
-        CouldDelete Delete(EntityT entity);
+        Task<ValueResultObject<EntityT>> CreateAsync(EntityT entity);
+        Task<ValueResultObject<EntityT>> GetByIdOrNullAsync(int id);
+        ResultObject Update(EntityT entity);
+        ResultObject Delete(EntityT entity);
+
+        /// <summary>
+        /// Last resort/optimised read-only function.
+        /// </summary>
+        /// <returns></returns>
+        IQueryable<EntityT> Query();
     }
 
     public abstract class DbContextCrud<EntityT, DatabaseT> : ICrudAsync<EntityT>
@@ -35,26 +36,41 @@ namespace DataAccessLogic
             this.DbContext = db;
         }
 
-        public async ValueTask<EntityT> CreateAsync(EntityT entity)
+        public async Task<ValueResultObject<EntityT>> CreateAsync(EntityT entity)
         {
             await this.DbContext.AddAsync(entity);
-            return entity;
+            return new ValueResultObject<EntityT>()
+            {
+                Succeeded = true,
+                Value = entity
+            };
         }
 
-        public ValueTask<EntityT> GetByIdOrNullAsync(int id)
+        public async Task<ValueResultObject<EntityT>> GetByIdOrNullAsync(int id)
         {
-            return this.DbContext.FindAsync<EntityT>(id);
+            var entity = await this.DbContext.FindAsync<EntityT>(id);
+            return new ValueResultObject<EntityT>()
+            {
+                Succeeded = true,
+                Value = entity
+            };
         }
 
-        public void Update(EntityT entity)
+        public ResultObject Update(EntityT entity)
         {
             this.DbContext.Update(entity);
+            return ResultObject.Ok();
         }
 
-        public CouldDelete Delete(EntityT entity)
+        public ResultObject Delete(EntityT entity)
         {
             this.DbContext.Remove(entity);
-            return CouldDelete.Yes;
+            return ResultObject.Ok();
+        }
+
+        public IQueryable<EntityT> Query()
+        {
+            return this.DbContext.Set<EntityT>();
         }
     }
 }

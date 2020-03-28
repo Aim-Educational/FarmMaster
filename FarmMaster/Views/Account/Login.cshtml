@@ -39,17 +39,17 @@
         <form method="post" asp-action="Login">
             <div class="input-wrapper">
                 <label>Username</label>
-                <textbox fm-model="Username" placeholder="Username"></textbox>
+                <textbox asp-for="Username" placeholder="Username"></textbox>
             </div>
             <div class="input-wrapper">
                 <label>Password</label>
-                <textbox fm-model="Password" type="password" placeholder="Password"></textbox>
+                <textbox asp-for="Password" type="password" placeholder="Password"></textbox>
             </div>
             <div class="top margined flex-wrapper">
                 <input type="checkbox" asp-for="RememberMe" />
                 <label for="RememberMe" >Remember me?</label>
             </div>
-            <alert fm-model-error="true">
+            <alert asp-for-error="true">
                 <header>Error logging in</header>
             </alert>
             <a class="top padded" href="/Identity/Account/ForgotPassword">

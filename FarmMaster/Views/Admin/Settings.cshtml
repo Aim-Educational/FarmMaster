@@ -18,19 +18,19 @@
         <form method="post" asp-action="Email">
             <div class="input-wrapper inline">
                 <label>Server</label>
-                <textbox fm-model="Email.Smtp.Server" placeholder="smtp.gmail.com"></textbox>
+                <textbox asp-for="Email.Smtp.Server" placeholder="smtp.gmail.com"></textbox>
             </div>
             <div class="input-wrapper inline">
                 <label>Port</label>
-                <textbox fm-model="Email.Smtp.Port" placeholder="465"></textbox>
+                <textbox asp-for="Email.Smtp.Port" placeholder="465"></textbox>
             </div>
             <div class="input-wrapper inline">
                 <label>Username</label>
-                <textbox fm-model="Email.Smtp.Username" placeholder="andy@aimeducational.org"></textbox>
+                <textbox asp-for="Email.Smtp.Username" placeholder="andy@aimeducational.org"></textbox>
             </div>
             <div class="input-wrapper inline">
                 <label>Password</label>
-                <textbox fm-model="Email.Smtp.Password" value="" type="password" placeholder="goats 'r' us"></textbox>
+                <textbox asp-for="Email.Smtp.Password" value="" type="password" placeholder="goats 'r' us"></textbox>
             </div>
             <alert type="info" show>
                 <header>Take note!</header>

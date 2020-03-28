@@ -1,0 +1,45 @@
+﻿@model ContactCreateViewModel
+@{
+    ViewData["Title"] = "Create a new contact";
+    ViewData["NavName"] = "Contacts";
+}
+
+<div id="app">
+    <window title="Create a new contact">
+        <form method="post" asp-action="Create">
+            <div class="input-wrapper inline">
+                <label>Name</label>
+                <textbox mode="edit" asp-for="Contact.Name" placeholder="Name" required />
+            </div>
+            <div class="input-wrapper inline">
+                <label>Type</label>
+                <vue-multiselect :options="['@nameof(ContactType.Individual)', '@nameof(ContactType.BusinessEntity)']"
+                                 v-model="typeValue"
+                                 required>
+                </vue-multiselect>
+                <input type="hidden" asp-for="Contact.Type" :value="typeValue" />
+            </div>
+            <div class="input-wrapper inline">
+                <label>Email</label>
+                <textbox mode="edit" asp-for="Contact.Email" placeholder="Email" />
+            </div>
+            <div class="input-wrapper inline">
+                <label>Phone</label>
+                <textbox mode="edit" asp-for="Contact.Phone" placeholder="Phone" />
+            </div>
+            <alert fm-model-error="true"></alert>
+            <button class="top margined blue fluid">Create Contact</button>
+        </form>
+    </window>
+</div>
+
+@section Scripts {
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                typeValue: ""
+            }
+        });
+    </script>
+}

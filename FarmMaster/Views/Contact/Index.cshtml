@@ -1,19 +1,15 @@
-﻿
+﻿@model ContactIndexViewModel
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Contacts";
     ViewData["NavName"] = "Contacts";
 }
 
 <div id="app">
     <window title="Contacts">
-        <a class="bottom margined icon blue button">
+        <a class="bottom margined icon blue button" asp-action="Create">
             <i class="las la-plus"></i>
             <span>Create new contact</span>
         </a>
-        <button class="bottom margined icon blue left margined">
-            <i class="las la-plus"></i>
-            <span>Create new contact</span>
-        </button>
         <fm-value-table selection="none"
                         :rows="rows"
                         :values="values">
@@ -31,6 +27,10 @@
                     { name: "Type", bind: "type", sort: true }
                 ],
                 values: [
+                    @foreach(var contact in Model.Contacts)
+                    {
+                        @:{ name: "@contact.Name", type: "@contact.Type" }
+                    }
                 ]
             }
         });

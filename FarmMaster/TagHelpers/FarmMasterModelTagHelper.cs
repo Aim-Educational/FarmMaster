@@ -11,15 +11,15 @@ namespace FarmMaster.TagHelpers
     [HtmlTargetElement("textbox")]
     public class FarmMasterModelTagHelper : TagHelper
     {
-        public ModelExpression FmModel { get; set; }
+        public ModelExpression AspFor { get; set; }
 
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
-            if(this.FmModel == null)
+            if(this.AspFor == null)
                 return;
 
-            output.Attributes.Add("name", this.FmModel.Name);
-            output.Attributes.Add("value", this.FmModel.Model);
+            output.Attributes.Add("name", this.AspFor.Name);
+            output.Attributes.Add("value", this.AspFor.Model);
         }
     }
 }
