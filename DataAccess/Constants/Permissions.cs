@@ -25,8 +25,15 @@ namespace DataAccess.Constants
             public const string ManageUI         = "user.manage.ui"; // User can access the user manage pages (but not necessarily do anything).
         }
 
+        public static class Contact
+        {
+            public const string ManageUI = "contact.manage.ui";
+        }
+
         public static readonly string[] AllPermissions = new[] 
         {
+            Contact.ManageUI,
+
             User.ReadPermissions,
             User.WritePermissions,
             User.Read,

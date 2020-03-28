@@ -31,9 +31,9 @@ body {
 
         &.collapsed {
             min-width: 0;
-                width: 0;
-                transition: width ease 1s;
-                transition: min-width ease 1s;
+            width: 0;
+            transition: width ease 1s;
+            transition: min-width ease 1s;
         }
 
         > h1 {
@@ -45,6 +45,7 @@ body {
         > section {
             display: flex;
             flex-direction: column;
+            padding-bottom: 1em;
 
             > header {
                 padding-left: 1em;

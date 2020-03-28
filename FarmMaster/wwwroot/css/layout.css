@@ -40,6 +40,7 @@ body > aside > h1 {
 body > aside > section {
   display: flex;
   flex-direction: column;
+  padding-bottom: 1em;
 }
 body > aside > section > header {
   padding-left: 1em;

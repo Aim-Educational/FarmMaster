@@ -107,6 +107,12 @@
             el: "#leftMenu",
             data: {
                 sections: {
+                    manage: {
+                        shown: true,
+                        items: {
+                            contacts: { shown: @checkPolicy(Permissions.Contact.ManageUI), icon: null, href: "/Contact" }
+                        }
+                    },
                     admin: {
                         shown: @checkPolicy(Policies.SeeAdminPanel),
                         items: {

@@ -48,7 +48,7 @@
     }
 }
 
-button {
+button, .button {
     $BORDER_RADIUS: 5px;
     @mixin buttonColour($hue, $saturation) {
         background-color: hsl($hue, $saturation, 85%);
@@ -73,9 +73,11 @@ button {
 
         > i {
             background-color: hsl($hue, $saturation, 80%);
+            text-align: center;
         }
     }
 
+    display: inline-block;
     height: 40px;
     padding-left: 1em;
     padding-right: 1em;
@@ -85,6 +87,9 @@ button {
     transition: background-color ease .25s;
     font-weight: bold;
     font-family: Roboto, sans-serif;
+    font-size: 13px;
+    text-decoration: none !important; // For <a> styled as button
+                                      // !important because <a> globally shows an underline on hover, this will override it.
 
     // Get rid of the dotted border Firefox decides to add.
     &:focus, &::-moz-focus-inner {
@@ -137,6 +142,10 @@ input[type=checkbox] + label {
 
 .flex-wrapper {
     display: flex;
+}
+
+.new-row { // To be used with .flex-wrapper
+    width: 100%;
 }
 
 .top.padded {
