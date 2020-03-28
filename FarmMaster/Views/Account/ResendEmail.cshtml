@@ -10,7 +10,7 @@
                 <label>Email</label>
                 <textbox asp-for="Email" placeholder="andy@goatfarmers.co.uk"></textbox>
             </div>
-            <alert asp-for-error="true">
+            <alert fm-model-error="true">
                 <header>Error resending email confirmation</header>
             </alert>
             <button class="top margined fluid blue" type="submit">Resend confirmation</button>

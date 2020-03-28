@@ -22,7 +22,7 @@
                 <label>Confirm Password</label>
                 <textbox asp-for="ConfirmPassword" type="password" placeholder="Confirm Password"></textbox>
             </div>
-            <alert asp-for-error="true">
+            <alert fm-model-error="true">
                 <header>Error creating account</header>
             </alert>
             <a class="top padded" href="/Account/Login">

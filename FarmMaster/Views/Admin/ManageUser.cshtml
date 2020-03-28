@@ -48,7 +48,7 @@
                 <label>Confirm Password</label>
                 <textbox :mode="mode" asp-for="ConfirmPassword" type="password"></textbox>
             </div>
-            <alert type="error" asp-for-error="true">
+            <alert type="error" fm-model-error="true">
                 <header>Error when updating user</header>
             </alert>
             <button class="top margined fluid blue"
