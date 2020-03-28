@@ -36,7 +36,6 @@
 }
 
 button, .button {
-  display: inline-block;
   height: 40px;
   padding-left: 1em;
   padding-right: 1em;
