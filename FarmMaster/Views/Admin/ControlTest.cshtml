@@ -144,6 +144,16 @@
                         @@click="onConfirmDelete">
         </confirm-button>
     </window>
+    
+    <window title="Toggle button">
+        <toggle-button v-model="toggle"
+                       untoggled-text="Untoggled"
+                       toggled-text="Toggled">
+        </toggle-button>
+        <div class="flex-wrapper new-row">
+            {{ toggle }}
+        </div>
+    </window>
 </div>
 
 @section Scripts {
@@ -156,7 +166,8 @@
                 tableButtonDisabled: true,
                 date: null,
                 eventName: "",
-                rowBeingSorted: null
+                rowBeingSorted: null,
+                toggle: true
             },
             methods: {
                 showAlerts() {
