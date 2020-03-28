@@ -29,7 +29,9 @@
                 values: [
                     @foreach(var contact in Model.Contacts)
                     {
-                        @:{ name: "@contact.Name", type: "@contact.Type" }
+                        @:{ name: { value: "@contact.Name", href: "@Url.Action("Edit", "Contact", new { contactId = contact.ContactId })" }, 
+                        @:  type: "@contact.Type"
+                        @:}
                     }
                 ]
             }
