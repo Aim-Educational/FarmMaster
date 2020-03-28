@@ -11,7 +11,7 @@ namespace DataAccessLogic
     where EntityT : class
     {
         Task<ValueResultObject<EntityT>> CreateAsync(EntityT entity);
-        Task<ValueResultObject<EntityT>> GetByIdOrNullAsync(int id);
+        Task<ValueResultObject<EntityT>> GetByIdAsync(int id);
         ResultObject Update(EntityT entity);
         ResultObject Delete(EntityT entity);
 
@@ -46,14 +46,20 @@ namespace DataAccessLogic
             };
         }
 
-        public async Task<ValueResultObject<EntityT>> GetByIdOrNullAsync(int id)
+        public async Task<ValueResultObject<EntityT>> GetByIdAsync(int id)
         {
             var entity = await this.DbContext.FindAsync<EntityT>(id);
-            return new ValueResultObject<EntityT>()
-            {
-                Succeeded = true,
-                Value = entity
-            };
+            return (entity == null)
+                ? new ValueResultObject<EntityT>()
+                  {
+                      Succeeded = false,
+                      Errors = new List<string>() { $"No {typeof(EntityT).Name} with ID of #{id} was found." }
+                  }
+                : new ValueResultObject<EntityT>()
+                  {
+                      Succeeded = true,
+                      Value = entity
+                  };
         }
 
         public ResultObject Update(EntityT entity)

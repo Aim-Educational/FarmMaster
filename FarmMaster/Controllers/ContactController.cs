@@ -42,12 +42,29 @@ namespace FarmMaster.Controllers
         [Authorize(Permissions.Contact.Write)]
         public IActionResult Create()
         {
-            return View();
+            return View("CreateEdit", new ContactCreateEditViewModel
+            {
+                IsCreate = true
+            });
+        }
+
+        [Authorize(Permissions.Contact.Read)]
+        public async Task<IActionResult> Edit(int? contactId)
+        {
+            var result = await this._contacts.GetByIdAsync(contactId ?? -1);
+            if(!result.Succeeded)
+                return RedirectToAction("Index", new { error = result.GatherErrorMessages().FirstOrDefault() });
+
+            return View("CreateEdit", new ContactCreateEditViewModel
+            {
+                Contact  = result.Value,
+                IsCreate = false
+            });
         }
 
         [HttpPost]
         [Authorize(Permissions.Contact.Write)]
-        public async Task<IActionResult> Create(ContactCreateViewModel model)
+        public async Task<IActionResult> Create(ContactCreateEditViewModel model)
         {
             if(ModelState.IsValid)
             {
@@ -69,7 +86,7 @@ namespace FarmMaster.Controllers
 
                         foreach(var error in result.GatherErrorMessages())
                             ModelState.AddModelError(string.Empty, error);
-                        return View(model);
+                        return View("CreateEdit", model);
                     }
 
                     contact = result.Value;
@@ -79,13 +96,54 @@ namespace FarmMaster.Controllers
                 this._logger.LogInformation(
                     "Contact {Contact} created by {User}",
                     contact.Name,
-                    User.FindFirstValue(ClaimTypes.Name) ?? User.FindFirstValue(ClaimTypes.NameIdentifier)
+                    User.FindFirstValue(ClaimTypes.Name)
                 );
 
                 return RedirectToAction("Edit", new { contactId = contact.ContactId });
             }
 
-            return View(model);
+            return View("CreateEdit", model);
+        }
+
+        [HttpPost]
+        [Authorize(Permissions.Contact.Write)]
+        public async Task<IActionResult> Edit(ContactCreateEditViewModel model)
+        {
+            if(ModelState.IsValid)
+            {
+                var result = await this._contacts.GetByIdAsync(model.Contact.ContactId);
+                if (!result.Succeeded)
+                    return RedirectToAction("Index", new { error = result.GatherErrorMessages().FirstOrDefault() });
+
+                var dbContact   = result.Value;
+                dbContact.Name  = model.Contact.Name;
+                dbContact.Type  = model.Contact.Type;
+                dbContact.Phone = model.Contact.Phone;
+                dbContact.Email = model.Contact.Email;
+
+                using(var workScope = this._unitOfWork.Begin("Edit Contact"))
+                {
+                    var updateResult = this._contacts.Update(dbContact);
+                    if(!updateResult.Succeeded)
+                    {
+                        workScope.Rollback("CreateAsync failed.");
+
+                        foreach (var error in result.GatherErrorMessages())
+                            ModelState.AddModelError(string.Empty, error);
+                        return View("CreateEdit", model);
+                    }
+
+                    workScope.Commit();
+                }
+
+                this._logger.LogInformation(
+                    "Contact {Contact} updated by {User}",
+                    dbContact.Name,
+                    User.FindFirstValue(ClaimTypes.Name)
+                );
+            }
+
+            return View("CreateEdit", model);
         }
     }
 }

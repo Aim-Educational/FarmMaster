@@ -11,8 +11,9 @@ namespace FarmMaster.Models
         public IEnumerable<Contact> Contacts { get; set; }
     }
 
-    public class ContactCreateViewModel
+    public class ContactCreateEditViewModel
     {
+        public bool IsCreate { get; set; }
         public Contact Contact { get; set; }
     }
 }

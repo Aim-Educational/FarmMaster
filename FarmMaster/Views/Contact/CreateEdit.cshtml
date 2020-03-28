@@ -1,19 +1,32 @@
-﻿@model ContactCreateViewModel
+﻿@model ContactCreateEditViewModel
 @{
     ViewData["Title"] = "Create a new contact";
     ViewData["NavName"] = "Contacts";
+
+    var action = (Model.IsCreate) ? "Create" : "Edit";
 }
 
 <div id="app">
     <window title="Create a new contact">
-        <form method="post" asp-action="Create">
+        @if(!Model.IsCreate)
+        {
+            <toggle-button class="bottom margined blue"
+                           v-model="isEdit"
+                           untoggled-text="Edit"
+                           toggled-text="View">
+            </toggle-button>
+        }
+        <form method="post" asp-action="@action">
+            <input type="hidden" asp-for="IsCreate" />
+            <input type="hidden" asp-for="Contact.ContactId" />
             <div class="input-wrapper inline">
                 <label>Name</label>
-                <textbox mode="edit" asp-for="Contact.Name" placeholder="Name" required />
+                <textbox :mode="mode" asp-for="Contact.Name" placeholder="Name" required />
             </div>
             <div class="input-wrapper inline">
                 <label>Type</label>
                 <vue-multiselect :options="['@nameof(ContactType.Individual)', '@nameof(ContactType.BusinessEntity)']"
+                                 :disabled="mode === 'view'"
                                  v-model="typeValue"
                                  required>
                 </vue-multiselect>
@@ -21,14 +34,17 @@
             </div>
             <div class="input-wrapper inline">
                 <label>Email</label>
-                <textbox mode="edit" asp-for="Contact.Email" placeholder="Email" />
+                <textbox :mode="mode" asp-for="Contact.Email" placeholder="Email" />
             </div>
             <div class="input-wrapper inline">
                 <label>Phone</label>
-                <textbox mode="edit" asp-for="Contact.Phone" placeholder="Phone" />
+                <textbox :mode="mode" asp-for="Contact.Phone" placeholder="Phone" />
             </div>
-            <alert fm-model-error="true"></alert>
-            <button class="top margined blue fluid">Create Contact</button>
+            <alert type="error" fm-model-error="true"></alert>
+            <button class="top margined blue fluid"
+                    v-if="mode === 'edit'">
+                @action Contact
+            </button>
         </form>
     </window>
 </div>
@@ -38,7 +54,13 @@
         new Vue({
             el: "#app",
             data: {
-                typeValue: ""
+                typeValue: "@Model.Contact.Type",
+                isEdit: @(Model.IsCreate ? "true" : "false") // Default to Edit mode when creating. Default to view mode when view/edit
+            },
+            computed: {
+                mode() {
+                    return this.isEdit ? "edit" : "view";
+                }
             }
         });
     </script>
