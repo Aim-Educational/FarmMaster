@@ -5,7 +5,7 @@
         </template>
         <template v-slot:body>
             <div style="flex-direction:column; display:flex; width:100%;">
-                <p>To delete this item, please enter DELETE into the box below.</p>
+                <p style="margin-top: 0;">To delete this item, please enter DELETE into the box below.</p>
                 <p>THIS ACTION CANNOT BE UNDONE.</p>
                 <input class="farm-master" type="text" placeholder="Please enter DELETE" v-model="deleteText" />
             </div>
