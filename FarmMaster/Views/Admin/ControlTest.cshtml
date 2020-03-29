@@ -154,6 +154,28 @@
             {{ toggle }}
         </div>
     </window>
+
+    <window title="Modal">
+        <modal ref="modal">
+            <template v-slot:header>
+                <h2>Are you sure?</h2>
+            </template>
+            <template v-slot:body>
+                Are you sure you want to commit yourself to our lord and saviour, Black Sheep?
+            </template>
+            <template v-slot:footer>
+                <div class="button-group">
+                    <button @@click="$refs.modal.hide()">
+                        Cancel
+                    </button>
+                    <button onclick="document.location = 'https://www.youtube.com/watch?v=Hhck0SLcA6I'">
+                        Confirm
+                    </button>
+                </div>
+            </template>
+        </modal>
+        <button @@click="showModal">Show Modal</button>
+    </window>
 </div>
 
 @section Scripts {
@@ -189,6 +211,10 @@
 
                 onConfirmDelete() {
                     alert("You chose to delete the universe. Congratulations!");
+                },
+
+                showModal() {
+                    this.$refs.modal.show();
                 }
             }
         });

@@ -1,0 +1,40 @@
+.modal-background {
+  position: fixed;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  width: 100vw;
+  height: 100vh;
+}
+
+.modal {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  width: 90%;
+  max-width: 800px;
+  height: auto;
+  background-color: #fafafa;
+}
+.modal .header, .modal .body {
+  display: flex;
+  padding: 1em;
+}
+.modal .header {
+  background-color: whitesmoke;
+}
+.modal .header h1, .modal .header h2, .modal .header h3, .modal .header h4, .modal .header h5, .modal .header h6 {
+  margin: 0;
+}
+.modal .footer {
+  background-color: #e6e6e6;
+}
+.modal .button-group {
+  display: flex;
+  width: 100%;
+  height: 40px;
+}
+.modal .button-group button {
+  width: 100%;
+}
