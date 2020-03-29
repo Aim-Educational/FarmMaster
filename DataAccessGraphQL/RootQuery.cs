@@ -23,9 +23,11 @@ namespace DataAccessGraphQL
     public class DataAccessRootQuery : RootBase
     {
         readonly UserRootResolver _userResolver;
+        readonly ContactRootResolver _contactResolver;
         readonly SignInManager<ApplicationUser> _signIn;
 
         public DataAccessRootQuery(
+            // Required for RootBase
             IHttpContextAccessor         context, 
             UserManager<ApplicationUser> users,
             GraphQLUserContextAccessor   accessor,
@@ -33,15 +35,19 @@ namespace DataAccessGraphQL
             IdentityContext              idDb,
             IAuthorizationService        auth,
 
+            // Custom
             UserRootResolver userResolver,
-            SignInManager<ApplicationUser> sigIn
+            ContactRootResolver contactResolver,
+            SignInManager<ApplicationUser> signIn
         ) : base(context, users, accessor, fmDb, idDb, auth)
         {
             this._userResolver = userResolver;
-            this._signIn = sigIn;
+            this._contactResolver = contactResolver;
+            this._signIn = signIn;
 
             this.AddUserQuery();
             this.AddPermissionsQuery();
+            this.AddContactQuery();
         }
 
         private void AddUserQuery()
@@ -75,6 +81,27 @@ namespace DataAccessGraphQL
                 "permissions",
                 "All permissions accepted by GraphQL.",
                 resolve: ctx => Permissions.AllPermissions
+            );
+        }
+
+        private void AddContactQuery()
+        {
+            FieldAsync<ContactGraphType>(
+                "contact",
+                arguments: this._contactResolver,
+                resolve: ctx => this._contactResolver.ResolveAsync(ctx, base.DataContext)
+            );
+
+            this.DefineConnectionAsync<object, ContactGraphType, Contact>(
+                "contacts",
+                base.DataContext,
+                async (ctx, first, after) =>
+                {
+                    await ctx.EnforceHasPolicyAsync(Permissions.Contact.Read);
+                    return await this._contactResolver
+                                     .Manager
+                                     .GetPageAsync(after, first);
+                }
             );
         }
     }
