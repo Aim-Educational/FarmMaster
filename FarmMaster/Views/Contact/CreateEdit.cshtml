@@ -18,7 +18,7 @@
         }
         <form method="post" asp-action="@action">
             <input type="hidden" asp-for="IsCreate" />
-            <input type="hidden" asp-for="Contact.ContactId" />
+            <input type="hidden" asp-for="Contact.ContactId" value="@(Model.Contact?.ContactId ?? -1)" />
             <div class="input-wrapper inline">
                 <label>Name</label>
                 <textbox :mode="mode" asp-for="Contact.Name" placeholder="Name" required />
