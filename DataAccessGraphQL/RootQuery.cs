@@ -47,19 +47,28 @@ namespace DataAccessGraphQL
             this.AddContactQuery();
         }
 
-        private void AddUserQuery()
+        private void DefineSingleAndConnection<TGraphType, TSourceType>(string name, RootResolver<TSourceType> resolver)
+        where TGraphType : GraphType
+        where TSourceType : class
         {
-            FieldAsync<UserGraphType>(
-                "user",
-                arguments: this._userResolver,
-                resolve: ctx => this._userResolver.ResolveAsync(ctx, base.DataContext)
+            var namePlural = name + "s";
+
+            FieldAsync<TGraphType>(
+                name,
+                arguments: resolver,
+                resolve: ctx => resolver.ResolveAsync(ctx, base.DataContext)
             );
 
-            this.DefineConnectionAsync<object, UserGraphType, DataAccessUserContext>(
-                "users",
+            this.DefineConnectionAsync<object, TGraphType, TSourceType>(
+                namePlural,
                 base.DataContext,
-                (ctx, first, after, order) => this._userResolver.ResolvePageAsync(ctx, first, after, order)
+                (ctx, first, after, order) => resolver.ResolvePageAsync(ctx, first, after, order)
             );
+        }
+
+        private void AddUserQuery()
+        {
+            this.DefineSingleAndConnection<UserGraphType, DataAccessUserContext>("user", this._userResolver);
         }
 
         private void AddPermissionsQuery()
@@ -73,17 +82,7 @@ namespace DataAccessGraphQL
 
         private void AddContactQuery()
         {
-            FieldAsync<ContactGraphType>(
-                "contact",
-                arguments: this._contactResolver,
-                resolve: ctx => this._contactResolver.ResolveAsync(ctx, base.DataContext)
-            );
-
-            this.DefineConnectionAsync<object, ContactGraphType, Contact>(
-                "contacts",
-                base.DataContext,
-                (ctx, first, after, order) => this._contactResolver.ResolvePageAsync(base.DataContext, first, after, order)
-            );
+            this.DefineSingleAndConnection<ContactGraphType, Contact>("contact", this._contactResolver);
         }
     }
 }
