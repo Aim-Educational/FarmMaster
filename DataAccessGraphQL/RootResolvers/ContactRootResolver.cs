@@ -14,13 +14,13 @@ using System.Threading.Tasks;
 
 namespace DataAccessGraphQL.RootResolvers
 {
-    public class ContactRootResolver : RootResolver
+    public class ContactRootResolver : RootResolver<Contact>
     {
-        public IContactManager Manager { get; private set; }
+        readonly IContactManager _contacts;
 
         public ContactRootResolver(IContactManager contacts)
         {
-            this.Manager = contacts;
+            this._contacts = contacts;
 
             base.Add(new QueryArgument<NonNullGraphType<IdGraphType>>
             {
@@ -40,11 +40,27 @@ namespace DataAccessGraphQL.RootResolvers
             var id = context.GetArgument<int>("id");
 
             // Find the contact
-            var contact = await this.Manager.GetByIdAsync(id);
-            if(contact == null)
-                throw new ExecutionError($"No contact with ID #{id} was found");
+            var contact = await this._contacts.GetByIdAsync(id);
+            if(!contact.Succeeded)
+                throw new ExecutionError(contact.GatherErrorMessages().Aggregate((a, b) => $"{a}\n{b}"));
 
-            return contact;
+            return contact.Value;
+        }
+
+        public override async Task<IEnumerable<Contact>> ResolvePageAsync(
+            DataAccessUserContext userContext, 
+            int first, 
+            int after, 
+            string order
+        )
+        {
+            // The dynamic ordering is a bit too annoying to express with Managers, so we're accessing .Query
+            var query = this._contacts.Query();
+            if(order == "id")
+                query = query.OrderBy(c => c.ContactId);
+
+            return query.Skip(after)
+                        .Take(first);
         }
     }
 }

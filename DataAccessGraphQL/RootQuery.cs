@@ -61,17 +61,7 @@ namespace DataAccessGraphQL
             this.DefineConnectionAsync<object, UserGraphType, DataAccessUserContext>(
                 "users",
                 base.DataContext,
-                async (ctx, first, after) => 
-                {
-                    await ctx.EnforceHasPolicyAsync(Permissions.User.Read);
-                    var users = await base.UserManager.Users
-                                                      .Skip(after)
-                                                      .Take(first)
-                                                      .ToListAsync();
-                    var contexts = users.Select(u => new DataAccessUserContext(u, this._signIn.CreateUserPrincipalAsync(u).Result, this.DataContext.Auth));
-
-                    return contexts;
-                }
+                (ctx, first, after, order) => this._userResolver.ResolvePageAsync(ctx, first, after, order)
             );
         }
 
@@ -95,13 +85,7 @@ namespace DataAccessGraphQL
             this.DefineConnectionAsync<object, ContactGraphType, Contact>(
                 "contacts",
                 base.DataContext,
-                async (ctx, first, after) =>
-                {
-                    await ctx.EnforceHasPolicyAsync(Permissions.Contact.Read);
-                    return await this._contactResolver
-                                     .Manager
-                                     .GetPageAsync(after, first);
-                }
+                (ctx, first, after, order) => this._contactResolver.ResolvePageAsync(base.DataContext, first, after, order)
             );
         }
     }

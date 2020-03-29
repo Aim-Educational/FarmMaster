@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessGraphQL.RootResolvers
 {
-    public class UserRootResolver : RootResolver
+    public class UserRootResolver : RootResolver<DataAccessUserContext>
     {
         readonly UserManager<ApplicationUser>   _users;
         readonly SignInManager<ApplicationUser> _signIn;
@@ -55,6 +55,30 @@ namespace DataAccessGraphQL.RootResolvers
 
             // We need access to both the Identity entity, as well as all our claims that we can't easily get because see above.
             return new DataAccessUserContext(user, principal, userContext.Auth);
+        }
+
+        public override async Task<IEnumerable<DataAccessUserContext>> ResolvePageAsync(
+            DataAccessUserContext userContext, 
+            int first, 
+            int after, 
+            string order
+        )
+        {
+            await userContext.EnforceHasPolicyAsync(Permissions.User.Read);
+
+            var query = this._users.Users;
+            if(order == "id")
+                query = query.OrderBy(u => u.Id);
+
+            var users = await query.Skip(after)
+                                   .Take(first)
+                                   .ToListAsync();
+
+            return users.Select(u => 
+                        {
+                            var principal = this._signIn.CreateUserPrincipalAsync(u).Result; // This is yuck, but .Select is being too weird.
+                            return new DataAccessUserContext(u, principal, userContext.Auth);
+                        });
         }
     }
 }
