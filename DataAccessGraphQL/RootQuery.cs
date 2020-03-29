@@ -24,7 +24,6 @@ namespace DataAccessGraphQL
     {
         readonly UserRootResolver _userResolver;
         readonly ContactRootResolver _contactResolver;
-        readonly SignInManager<ApplicationUser> _signIn;
 
         public DataAccessRootQuery(
             // Required for RootBase
@@ -37,13 +36,11 @@ namespace DataAccessGraphQL
 
             // Custom
             UserRootResolver userResolver,
-            ContactRootResolver contactResolver,
-            SignInManager<ApplicationUser> signIn
+            ContactRootResolver contactResolver
         ) : base(context, users, accessor, fmDb, idDb, auth)
         {
             this._userResolver = userResolver;
             this._contactResolver = contactResolver;
-            this._signIn = signIn;
 
             this.AddUserQuery();
             this.AddPermissionsQuery();
