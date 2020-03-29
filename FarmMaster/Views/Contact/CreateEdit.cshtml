@@ -54,7 +54,7 @@
         new Vue({
             el: "#app",
             data: {
-                typeValue: "@Model.Contact.Type",
+                typeValue: "@Model?.Contact?.Type",
                 isEdit: @(Model.IsCreate ? "true" : "false") // Default to Edit mode when creating. Default to view mode when view/edit
             },
             computed: {
