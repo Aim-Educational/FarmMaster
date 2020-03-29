@@ -17,20 +17,17 @@
     height: auto;
     background-color: hsl(0, 0, 98%);
 
-    .header, .body {
+    .header, .body { // Footers may want to take up the entire space, so we can't assume padding for them.
         display: flex;
         padding: 1em;
     }
 
     .header {
-        background-color: hsl(0, 0, 96%);
+        background-color: hsl(0, 0, 94%);
 
         h1,h2,h3,h4,h5,h6 {
             margin: 0;
         }
-    }
-
-    .body {
     }
 
     .footer {

@@ -174,7 +174,15 @@
                 </div>
             </template>
         </modal>
-        <button @@click="showModal">Show Modal</button>
+        <delete-modal ref="deleteModal" @@click="onConfirmDelete"></delete-modal>
+
+        <div class="flex-wrapper new-row bottom margined">
+            <button @@click="showModal">Show Modal</button>
+        </div>
+
+        <div class="flex-wrapper new-row">
+            <button class="red" @@click="showDeleteModal">Show Delete Modal</button>
+        </div>
     </window>
 </div>
 
@@ -215,6 +223,10 @@
 
                 showModal() {
                     this.$refs.modal.show();
+                },
+
+                showDeleteModal() {
+                    this.$refs.deleteModal.show();
                 }
             }
         });

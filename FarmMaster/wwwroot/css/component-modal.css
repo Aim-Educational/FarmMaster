@@ -22,7 +22,7 @@
   padding: 1em;
 }
 .modal .header {
-  background-color: whitesmoke;
+  background-color: #f0f0f0;
 }
 .modal .header h1, .modal .header h2, .modal .header h3, .modal .header h4, .modal .header h5, .modal .header h6 {
   margin: 0;
