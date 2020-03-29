@@ -145,5 +145,35 @@ namespace FarmMaster.Controllers
 
             return View("CreateEdit", model);
         }
+
+        [HttpPost]
+        [Authorize(Permissions.Contact.Delete)]
+        public async Task<IActionResult> Delete(int? contactId)
+        {
+            var result = await this._contacts.GetByIdAsync(contactId ?? -1);
+            if (!result.Succeeded)
+                return RedirectToAction("Edit", new { error = result.GatherErrorMessages().FirstOrDefault() });
+
+            using(var workScope = this._unitOfWork.Begin("Delete Contact"))
+            {
+                var deleteResult = this._contacts.Delete(result.Value);
+                if(!deleteResult.Succeeded)
+                {
+                    workScope.Rollback("Delete failed.");
+                    
+                    return RedirectToAction("Edit", new { error = deleteResult.Errors.First() });
+                }
+
+                workScope.Commit();
+            }
+
+            this._logger.LogInformation(
+                "Contact {Contact} deleted by {User}",
+                result.Value.Name,
+                User.FindFirstValue(ClaimTypes.Name)
+            );
+
+            return RedirectToAction("Index");
+        }
     }
 }

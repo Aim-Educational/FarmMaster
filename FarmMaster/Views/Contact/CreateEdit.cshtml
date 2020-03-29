@@ -10,11 +10,18 @@
     <window title="Create a new contact">
         @if(!Model.IsCreate)
         {
+            <form id="deleteForm" method="post" asp-action="Delete" asp-route-contactId="@Model.Contact.ContactId">
+            </form>
+
             <toggle-button class="bottom margined blue"
                            v-model="isEdit"
                            untoggled-text="Edit"
                            toggled-text="View">
             </toggle-button>
+            <button class="left margined red"
+                    @@click="showDeleteModal">
+                Delete
+            </button>
         }
         <form method="post" asp-action="@action">
             <input type="hidden" asp-for="IsCreate" />
@@ -47,6 +54,9 @@
             </button>
         </form>
     </window>
+
+    <delete-modal ref="modal" @@click="onDelete">
+    </delete-modal>
 </div>
 
 @section Scripts {
@@ -60,6 +70,15 @@
             computed: {
                 mode() {
                     return this.isEdit ? "edit" : "view";
+                }
+            },
+            methods: {
+                showDeleteModal() {
+                    this.$refs.modal.show();
+                },
+
+                onDelete() {
+                    document.getElementById("deleteForm").submit();
                 }
             }
         });
