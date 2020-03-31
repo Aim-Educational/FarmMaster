@@ -27,14 +27,18 @@ namespace DataAccess.Constants
 
         public static class Contact
         {
-            public const string ManageUI = "contact.manage.ui";
-            public const string Read     = "contact.read";
-            public const string Write    = "contact.write";
-            public const string Delete   = "contact.delete";
+            public const string ReadNotes   = "contact.notes.read";
+            public const string WriteNotes  = "contact.notes.write";
+            public const string ManageUI    = "contact.manage.ui";
+            public const string Read        = "contact.read";
+            public const string Write       = "contact.write";
+            public const string Delete      = "contact.delete";
         }
 
         public static readonly string[] AllPermissions = new[] 
         {
+            Contact.ReadNotes,
+            Contact.WriteNotes,
             Contact.ManageUI,
             Contact.Read,
             Contact.Write,

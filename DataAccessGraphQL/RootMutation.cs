@@ -19,6 +19,7 @@ namespace DataAccessGraphQL
     public class DataAccessRootMutation : RootBase
     {
         readonly UserRootResolver _userResolver;
+        readonly ContactRootResolver _contactResolver;
 
         public DataAccessRootMutation(
             IHttpContextAccessor         context, 
@@ -28,12 +29,15 @@ namespace DataAccessGraphQL
             IdentityContext              idDb,
             IAuthorizationService        auth,
 
-            UserRootResolver userResolver
+            UserRootResolver userResolver,
+            ContactRootResolver contactResolver
         ) : base(context, users, accessor, fmDb, idDb, auth)
         {
             this._userResolver = userResolver;
+            this._contactResolver = contactResolver;
 
             this.AddUserMutation();
+            this.AddContactMutation();
         }
 
         private void AddUserMutation()
@@ -42,6 +46,15 @@ namespace DataAccessGraphQL
                 "user", 
                 arguments: this._userResolver, 
                 resolve: ctx => this._userResolver.ResolveAsync(ctx, base.DataContext)
+            );
+        }
+
+        private void AddContactMutation()
+        {
+            FieldAsync<ContactRootMutation>(
+                "contact",
+                arguments: this._contactResolver,
+                resolve: ctx => this._contactResolver.ResolveAsync(ctx, base.DataContext)
             );
         }
     }

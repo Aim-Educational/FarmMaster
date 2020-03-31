@@ -16,12 +16,21 @@ namespace DataAccess
         protected override void OnModelCreating(ModelBuilder b)
         {
             base.OnModelCreating(b);
+
+            b.Entity<NoteOwner>()
+             .HasMany(o => o.NoteEntries)
+             .WithOne(e => e.NoteOwner);
+
+            b.Entity<Contact>()
+             .HasOne(c => c.NoteOwner);
         }
 
         #region Tables
-        public DbSet<Settings> Settings   { get; set; }
-        public DbSet<LogEntry> LogEntries { get; set; }
-        public DbSet<Contact>  Contacts   { get; set; }
+        public DbSet<Settings>  Settings    { get; set; }
+        public DbSet<LogEntry>  LogEntries  { get; set; }
+        public DbSet<Contact>   Contacts    { get; set; }
+        public DbSet<NoteOwner> NoteOwners  { get; set; }
+        public DbSet<NoteEntry> NoteEntries { get; set; }
         #endregion
     }
 

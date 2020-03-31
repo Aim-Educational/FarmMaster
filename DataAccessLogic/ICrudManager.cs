@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,13 +22,19 @@ namespace DataAccessLogic
         /// </summary>
         /// <returns></returns>
         IQueryable<EntityT> Query();
+
+        /// <summary>
+        /// Ditto
+        /// </summary>
+        /// <returns></returns>
+        IQueryable<EntityT> IncludeAll(IQueryable<EntityT> query);
     }
 
     public abstract class DbContextCrud<EntityT, DatabaseT> : ICrudAsync<EntityT>
     where EntityT : class
     where DatabaseT : DbContext
     {
-        protected DbContext DbContext { get; private set; } 
+        protected DatabaseT DbContext { get; private set; } 
 
         public DbContextCrud(DatabaseT db)
         {
@@ -48,7 +56,19 @@ namespace DataAccessLogic
 
         public async Task<ValueResultObject<EntityT>> GetByIdAsync(int id)
         {
-            var entity = await this.DbContext.FindAsync<EntityT>(id);
+            // Find field marked [Key]
+            var keyProp = typeof(EntityT).GetProperties()
+                                         .Single(p => p.IsDefined(typeof(KeyAttribute), true));
+
+            // Dynamically create an Expression to see if the key == id
+            var parameter   = Expression.Parameter(typeof(EntityT), "e"); // (EntityT e) =>
+            var property    = Expression.Property(parameter, keyProp);    // e => e.Id
+            var constant    = Expression.Constant(id);                    // id
+            var equals      = Expression.Equal(property, constant);       // e => e.Id == id
+            var expression  = Expression.Lambda<Func<EntityT, bool>>(equals, parameter);
+
+            var entity = await this.IncludeAll(this.Query())
+                                   .SingleOrDefaultAsync(expression);
             return (entity == null)
                 ? new ValueResultObject<EntityT>()
                   {
@@ -77,6 +97,11 @@ namespace DataAccessLogic
         public IQueryable<EntityT> Query()
         {
             return this.DbContext.Set<EntityT>();
+        }
+
+        public virtual IQueryable<EntityT> IncludeAll(IQueryable<EntityT> query)
+        {
+            return query;
         }
     }
 }

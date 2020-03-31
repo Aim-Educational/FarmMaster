@@ -17,10 +17,7 @@ namespace DataAccessGraphQL.GraphTypes
         {
             var context = contextAccessor.Context;
 
-            Field<StringGraphType>(
-                "id",
-                resolve: ctx => ctx.Source.ContactId
-            );
+            Field<StringGraphType>("id", resolve: ctx => ctx.Source.ContactId);
 
             FieldAsync<StringGraphType>(
                 "name",
@@ -28,6 +25,15 @@ namespace DataAccessGraphQL.GraphTypes
                 {
                     await context.EnforceHasPolicyAsync(Permissions.Contact.Read);
                     return ctx.Source.Name;
+                }
+            );
+
+            FieldAsync<ListGraphType<NoteGraphType>>(
+                "notes", 
+                resolve: async ctx => 
+                {
+                    await context.EnforceHasPolicyAsync(Permissions.Contact.ReadNotes);
+                    return ctx.Source.NoteOwner?.NoteEntries;
                 }
             );
         }

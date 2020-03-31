@@ -55,11 +55,13 @@ namespace DataAccessGraphQL.RootResolvers
         )
         {
             // The dynamic ordering is a bit too annoying to express with Managers, so we're accessing .Query
-            var query = this._contacts.Query();
+            var query = this._contacts.IncludeAll(this._contacts.Query());
             if(order == "id")
                 query = query.OrderBy(c => c.ContactId);
 
-            return query.Skip(after)
+            return query.Include(c => c.NoteOwner)
+                         .ThenInclude(o => o.NoteEntries)
+                        .Skip(after)
                         .Take(first);
         }
     }

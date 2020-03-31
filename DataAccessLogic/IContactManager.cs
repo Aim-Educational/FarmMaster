@@ -1,6 +1,8 @@
 ﻿using DataAccess;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace DataAccessLogic
@@ -15,6 +17,12 @@ namespace DataAccessLogic
         public ContactManager(FarmMasterContext db) : base(db)
         {
 
+        }
+
+        public override IQueryable<Contact> IncludeAll(IQueryable<Contact> query)
+        {
+            return query.Include(c => c.NoteOwner)
+                         .ThenInclude(o => o.NoteEntries);
         }
     }
 }

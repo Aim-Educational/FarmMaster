@@ -12,7 +12,8 @@ namespace DataAccessLogic
         {
             return collection.AddScoped<IFarmMasterSettingsAccessor, FarmMasterSettingsAccessor>()
                              .AddScoped<IUnitOfWork, DbContextUnitOfWork<FarmMasterContext>>()
-                             .AddScoped<IContactManager, ContactManager>();
+                             .AddScoped<IContactManager, ContactManager>()
+                             .AddScoped<INoteManager, NoteManager>();
         }
     }
 }

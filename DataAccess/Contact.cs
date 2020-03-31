@@ -50,6 +50,9 @@ namespace DataAccess
         [StringLength(MAX_GENERIC_LENGTH)]
         public string Phone { get; set; }
 
+        public int? NoteOwnerId { get; set; }
+        public NoteOwner NoteOwner { get; set; }
+
         [Timestamp]
         public byte[] Timestamp { get; set; }
     }
