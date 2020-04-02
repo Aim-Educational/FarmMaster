@@ -3,7 +3,8 @@
               :selection="selection"
               :values="sortedValues"
               @sort="onSort"
-              v-on="$listeners">
+              v-on="$listeners"
+              ref="table">
         <template v-slot:tfoot>
             <slot name="tfoot"></slot>
         </template>
@@ -39,30 +40,34 @@ export default {
 
     data: function() {
         return {
-            sortedValues: []
+            sortEvent: null
         }
     },
 
     methods: {
         onSort(event) {
-            this.sortedValues = this.values.slice();
-            if(!event.row)
-                return;
-
-            this.sortedValues.sort((a, b) => {
-                let aValue = FarmTableBase.util.getRowValue(a, event.row);
-                let bValue = FarmTableBase.util.getRowValue(b, event.row);
-
-                return FarmTableBase.util.sortRowValue(aValue, bValue, event.row);
-            });
-
-            if(!event.asc)
-                this.sortedValues.reverse();
+            this.sortEvent = event;
         }
     },
 
-    created() {
-        this.sortedValues = this.values;
+    computed: {
+        sortedValues() {
+            if(!this.sortEvent || !this.sortEvent.row)
+                return this.values;
+
+            const sorted = this.values.slice();
+            sorted.sort((a, b) => {
+                let aValue = FarmTableBase.util.getRowValue(a, this.sortEvent.row);
+                let bValue = FarmTableBase.util.getRowValue(b, this.sortEvent.row);
+
+                return FarmTableBase.util.sortRowValue(aValue, bValue, this.sortEvent.row);
+            });
+
+            if(!this.sortEvent.asc)
+                sorted.reverse();
+
+            return sorted;
+        }
     },
 
     components: {

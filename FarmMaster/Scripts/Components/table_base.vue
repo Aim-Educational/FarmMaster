@@ -134,6 +134,11 @@ export default {
                 this.selectedValueIndicies[i] = newValue;
 
             this.$emit("selected", { triggerValue: null, selectedValues: newValue ? this.values : [] });
+        },
+
+        values() {
+            this.clearSelection();
+            this.selectAll = false;
         }
     },
 
@@ -173,14 +178,12 @@ export default {
                 this.sortedRow.row = null;
 
             // If selectAll is already false, then the watcher won't trigger, so we need to deselect stuff anyway just in case.
-            for(let i = 0; i < this.selectedValueIndicies.length; i++)
-                this.selectedValueIndicies[i] = false;
+            this.clearSelection();
 
             if(this.selectAll)
                 this.ignoreNextSelectAll = true;
 
             this.selectAll = false;
-            this.$emit("selected", { triggerValue: null, selectedValues: [] });
             this.$emit("sort",     { row: this.sortedRow.row, asc: this.sortedRow.asc });
         },
 
@@ -222,6 +225,13 @@ export default {
             }
 
             this.$emit("selected", { triggerValue: (index > 0) ? this.values[index] : null, selectedValues: this.selectedValues });
+        },
+
+        clearSelection() {
+            for(let i = 0; i < this.selectedValueIndicies.length; i++)
+                this.selectedValueIndicies[i] = false;
+                
+            this.$emit("selected", { triggerValue: null, selectedValues: [] });
         }
     },
 

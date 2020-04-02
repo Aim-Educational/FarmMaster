@@ -7,6 +7,7 @@ import ConfirmButton from "../Components/confirm_button.vue";
 import ToggleButton from "../Components/toggle_button.vue";
 import Modal from "../Components/modal.vue";
 import DeleteModal from "../Components/delete_modal.vue";
+import Notes from "../Components/notes.vue";
 
 Vue.component("window", Window);
 Vue.component("textbox", Textbox);
@@ -17,3 +18,4 @@ Vue.component("confirm-button", ConfirmButton);
 Vue.component("toggle-button", ToggleButton);
 Vue.component("modal", Modal);
 Vue.component("delete-modal", DeleteModal);
+Vue.component("notes", Notes);

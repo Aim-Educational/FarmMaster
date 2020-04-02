@@ -55,6 +55,16 @@
         </form>
     </window>
 
+    @if(!Model.IsCreate)
+    { 
+        <window title="Notes">
+            <notes :mode="mode"
+                   parent-type="contact"
+                   :parent-id="Number('@Model.Contact.ContactId')">
+            </notes>
+        </window>
+    }
+
     <delete-modal ref="modal" @@click="onDelete">
     </delete-modal>
 </div>

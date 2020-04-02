@@ -74,37 +74,41 @@ namespace DataAccessGraphQL.Mutations
             );
 
             FieldAsync<BooleanGraphType>(
-                "deleteNote",
-                "Deletes a note.",
+                "deleteNotes",
+                "Deletes a set of notes.",
                 new QueryArguments(
-                    new QueryArgument<NonNullGraphType<IdGraphType>> 
+                    new QueryArgument<NonNullGraphType<ListGraphType<NonNullGraphType<IdGraphType>>>> 
                     {
-                        Name = "id"
+                        Name = "ids"
                     }
                 ),
                 async ctx =>
                 {
                     await this._context.EnforceHasPolicyAsync(Permissions.Contact.WriteNotes);
 
-                    using (var scope = this._unitOfWork.Begin("Delete note"))
+                    using (var scope = this._unitOfWork.Begin("Delete notes"))
                     {
                         ctx.Source.NoteOwner = ctx.Source.NoteOwner ?? new NoteOwner();
                         this._contacts.Update(ctx.Source);
 
-                        var note = await this._notes.GetByIdAsync(ctx.GetArgument<int>("id"));
-                        if(!note.Succeeded)
+                        foreach(var id in ctx.GetArgument<List<int>>("ids"))
                         {
-                            scope.Rollback("Note was not found");
-                            return false;
+                            var note = await this._notes.GetByIdAsync(id);
+                            if(!note.Succeeded)
+                            {
+                                scope.Rollback("Note was not found");
+                                return false;
+                            }
+
+                            if(!ctx.Source.NoteOwner.NoteEntries.Any(e => e.NoteEntryId == note.Value.NoteEntryId))
+                            {
+                                scope.Rollback("Note does not belong to contact");
+                                return false;
+                            }
+
+                            this._notes.Delete(note.Value);
                         }
 
-                        if(!ctx.Source.NoteOwner.NoteEntries.Any(e => e.NoteEntryId == note.Value.NoteEntryId))
-                        {
-                            scope.Rollback("Note does not belong to contact");
-                            return false;
-                        }
-
-                        this._notes.Delete(note.Value);
                         scope.Commit();
                     }
 
