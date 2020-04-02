@@ -52,6 +52,8 @@ namespace DataAccessGraphQL.Mutations
                 ),
                 async ctx => 
                 {
+                    await this._context.EnforceHasPolicyAsync(Permissions.Contact.WriteNotes);
+
                     using(var scope = this._unitOfWork.Begin("Add note"))
                     {
                         ctx.Source.NoteOwner = ctx.Source.NoteOwner ?? new NoteOwner();
@@ -80,9 +82,11 @@ namespace DataAccessGraphQL.Mutations
                         Name = "id"
                     }
                 ),
-                async ctx => 
+                async ctx =>
                 {
-                    using(var scope = this._unitOfWork.Begin("Delete note"))
+                    await this._context.EnforceHasPolicyAsync(Permissions.Contact.WriteNotes);
+
+                    using (var scope = this._unitOfWork.Begin("Delete note"))
                     {
                         ctx.Source.NoteOwner = ctx.Source.NoteOwner ?? new NoteOwner();
                         this._contacts.Update(ctx.Source);
