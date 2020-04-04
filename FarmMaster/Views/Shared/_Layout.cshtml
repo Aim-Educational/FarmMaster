@@ -62,15 +62,16 @@
                 </script>
             </div>
             <div class="breadcrumb">
-                <a class="crumb">
-                    Animals
-                </a>
-                <a class="crumb">
-                    Edit
-                </a>
-                <a class="crumb">
-                    Prada
-                </a>
+                @if(ViewData.ContainsKey("Breadcrumb"))
+                {
+                    // Key is crumb name. Value is href.
+                    foreach(var kvp in (Breadcrumb)ViewData["Breadcrumb"])
+                    {
+                        <a class="crumb" href="@kvp.Value">
+                            @kvp.Key
+                        </a>
+                    }
+                }
             </div>
             <div class="profile">
                 @if (signIn.IsSignedIn(User))

@@ -3,6 +3,16 @@
     ViewData["Title"] = "Create a new contact";
     ViewData["NavName"] = "Contacts";
 
+    ViewData["Breadcrumb"] = new Breadcrumb()
+                             .Add("Contacts", "/Contact")
+                             .For("Create")
+                                .Add("Create", "/Contact/Create")
+                             .For("Edit")
+                                .Add("Edit", "#")
+                                .Add(Model.Contact?.Name ?? "N/A", "#")
+                             .Use("Create", Model.IsCreate)
+                             .Use("Edit", !Model.IsCreate);
+
     var action = (Model.IsCreate) ? "Create" : "Edit";
 }
 
