@@ -11,6 +11,19 @@ namespace FarmMaster.Models
 
     }
 
+    /// <summary>
+    /// A ViewModel used to create the breadcrumbs shown on page.
+    /// </summary>
+    /// <remarks>
+    /// Breadcrumbs are shown in the same order that they are added.
+    /// 
+    /// Breadcrumbs can be grouped together using <see cref="Breadcrumb.For(string)"/>.
+    /// 
+    /// A group can be activated by using <see cref="Breadcrumb.Use(string, bool)"/>.
+    /// 
+    /// Only the active group, and any breadcrumbs added before the use of <see cref="Breadcrumb.For(string)"/>
+    /// are shown on screen.
+    /// </remarks>
     public class Breadcrumb : IEnumerable<KeyValuePair<string, string>>
     {
         const string KEY_ALWAYS_USE = "__ALWAYS_USE";
