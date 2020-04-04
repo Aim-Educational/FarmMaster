@@ -1,5 +1,6 @@
 ﻿using DataAccess;
 using DataAccess.Constants;
+using DataAccessGraphQL.Util;
 using DataAccessLogic;
 using GraphQL;
 using GraphQL.Types;
@@ -37,82 +38,15 @@ namespace DataAccessGraphQL.Mutations
 
         private void AddNoteMutations()
         {
-            FieldAsync<BooleanGraphType>(
-                "addNote",
-                "Adds a note.",
-                new QueryArguments(
-                    new QueryArgument<NonNullGraphType<StringGraphType>> 
-                    {
-                        Name = "category"
-                    },
-                    new QueryArgument<NonNullGraphType<StringGraphType>>
-                    {
-                        Name = "content"
-                    }
-                ),
-                async ctx => 
-                {
-                    await this._context.EnforceHasPolicyAsync(Permissions.Contact.WriteNotes);
-
-                    using(var scope = this._unitOfWork.Begin("Add note"))
-                    {
-                        ctx.Source.NoteOwner = ctx.Source.NoteOwner ?? new NoteOwner();
-                        this._contacts.Update(ctx.Source);
-
-                        var note = new NoteEntry 
-                        {
-                            NoteOwner = ctx.Source.NoteOwner,
-                            Category  = ctx.GetArgument<string>("category"),
-                            Content   = ctx.GetArgument<string>("content")
-                        };
-                        await this._notes.CreateAsync(note);
-                        scope.Commit();
-                    }
-
-                    return true;
-                }
-            );
-
-            FieldAsync<BooleanGraphType>(
-                "deleteNotes",
-                "Deletes a set of notes.",
-                new QueryArguments(
-                    new QueryArgument<NonNullGraphType<ListGraphType<NonNullGraphType<IdGraphType>>>> 
-                    {
-                        Name = "ids"
-                    }
-                ),
-                async ctx =>
-                {
-                    await this._context.EnforceHasPolicyAsync(Permissions.Contact.WriteNotes);
-
-                    using (var scope = this._unitOfWork.Begin("Delete notes"))
-                    {
-                        ctx.Source.NoteOwner = ctx.Source.NoteOwner ?? new NoteOwner();
-                        this._contacts.Update(ctx.Source);
-
-                        foreach(var id in ctx.GetArgument<List<int>>("ids"))
-                        {
-                            var note = await this._notes.GetByIdAsync(id);
-                            if(!note.Succeeded)
-                            {
-                                scope.Rollback("Note was not found");
-                                return false;
-                            }
-
-                            if(!ctx.Source.NoteOwner.NoteEntries.Any(e => e.NoteEntryId == note.Value.NoteEntryId))
-                            {
-                                scope.Rollback("Note does not belong to contact");
-                                return false;
-                            }
-
-                            this._notes.Delete(note.Value);
-                        }
-
-                        scope.Commit();
-                    }
-
-                    return true;
+            this.AddNoteMutationsAsync(
+                this._context,
+                this._unitOfWork,
+                this._notes,
+                ctx => {
+                    ctx.Source.NoteOwner = ctx.Source.NoteOwner ?? new NoteOwner();
+                    this._contacts.Update(ctx.Source);
+                    
+                    return ctx.Source.NoteOwner;
                 }
             );
         }
