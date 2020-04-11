@@ -22,9 +22,9 @@ namespace DataAccessGraphQL
 {
     public class DataAccessRootQuery : RootBase
     {
-        readonly UserRootResolver    _userResolver;
-        readonly ContactRootResolver _contactResolver;
-        readonly SpeciesRootResolver _speciesResolver;
+        readonly RootResolver<DataAccessUserContext> _userResolver;
+        readonly RootResolver<Contact>               _contactResolver;
+        readonly RootResolver<Species>               _speciesResolver;
 
         public DataAccessRootQuery(
             // Required for RootBase
@@ -36,12 +36,12 @@ namespace DataAccessGraphQL
             IAuthorizationService        auth,
 
             // Custom
-            UserRootResolver    userResolver,
-            ContactRootResolver contactResolver,
-            SpeciesRootResolver speciesResolver
+            RootResolver<DataAccessUserContext> userResolver,
+            RootResolver<Contact>               contactResolver,
+            RootResolver<Species>               speciesResolver
         ) : base(context, users, accessor, fmDb, idDb, auth)
         {
-            this._userResolver = userResolver;
+            this._userResolver    = userResolver;
             this._contactResolver = contactResolver;
             this._speciesResolver = speciesResolver;
 

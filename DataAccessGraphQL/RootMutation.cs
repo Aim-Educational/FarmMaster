@@ -18,9 +18,9 @@ namespace DataAccessGraphQL
     // Meh, code duplication between query and mutation.
     public class DataAccessRootMutation : RootBase
     {
-        readonly UserRootResolver    _userResolver;
-        readonly ContactRootResolver _contactResolver;
-        readonly SpeciesRootResolver _speciesResolver;
+        readonly RootResolver<DataAccessUserContext> _userResolver;
+        readonly RootResolver<Contact>               _contactResolver;
+        readonly RootResolver<Species>               _speciesResolver;
 
         public DataAccessRootMutation(
             IHttpContextAccessor         context, 
@@ -29,10 +29,10 @@ namespace DataAccessGraphQL
             FarmMasterContext            fmDb,
             IdentityContext              idDb,
             IAuthorizationService        auth,
-
-            UserRootResolver    userResolver,
-            ContactRootResolver contactResolver,
-            SpeciesRootResolver speciesResolver
+            
+            RootResolver<DataAccessUserContext> userResolver,
+            RootResolver<Contact>               contactResolver,
+            RootResolver<Species>               speciesResolver
         ) : base(context, users, accessor, fmDb, idDb, auth)
         {
             this._userResolver    = userResolver;

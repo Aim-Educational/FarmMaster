@@ -23,15 +23,27 @@ namespace DataAccessGraphQL
             var thisAssembly = typeof(DataAccessGraphQLExtensions).Assembly;
 
             //    Get all types in DataAccessGraphQL
-            // -> Find all classes that end in "RootResolver", except the actual RootResolver base class itself.
+            // -> Find all non-abstract classes that end in "RootResolver".
             var resolvers = thisAssembly
                             .DefinedTypes
                             .Where(t => t.IsClass)
-                            .Where(t => t.Name.EndsWith("RootResolver"))
-                            .Where(t => t != typeof(RootResolver<>)); // Don't want the actual base class included.
+                            .Where(t => !t.IsAbstract)
+                            .Where(t => t.Name.EndsWith("RootResolver"));
             
             foreach(var resolver in resolvers)
-                services.AddScoped(resolver);
+            {
+                // If the resolver implements RootResolver, then register it as RootResolver<Type>.
+                // Otherwise register it as the resolver's type.
+
+                var baseType = resolver.BaseType;
+                if(baseType.GetGenericTypeDefinition() != typeof(RootResolver<>))
+                {
+                    services.AddScoped(resolver);
+                    continue;
+                }
+
+                services.AddScoped(baseType, resolver);
+            }
 
             return services;
         }
