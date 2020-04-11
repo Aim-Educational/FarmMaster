@@ -44,6 +44,12 @@ namespace DataAccessLogic
             if(!this.IsEnabled(logLevel))
                 return;
 
+            // BUGFIX: This category is used whenever changes are made to the model.
+            //         This class itself makes changes to the model.
+            //         Thus, causing an infinite loop, and eventually a stack overflow.
+            if(this._categoryName.StartsWith("Microsoft.EntityFrameworkCore"))
+                return;
+
             if(formatter == null)
                 throw new ArgumentNullException(nameof(formatter));
 
@@ -55,6 +61,10 @@ namespace DataAccessLogic
             catch(InvalidOperationException)
             {
                 // Getting the weird "Method cannot be called because Type.IsGenericType" error.
+            }
+            catch(JsonException)
+            {
+                // Sometimes even a valid state will have a cycle.
             }
 
             var message = formatter(state, exception);
@@ -74,22 +84,29 @@ namespace DataAccessLogic
 
         void AddEntry(LogEntry entry)
         {
-            this._db.Add(entry);
-
-            // I have no idea if ASP is multithreaded, and if it is I have no idea if it shares these instances
-            // between threads.
-            // ... I hope not.
-            this._counter.Increment();
-            if(this._counter.Count >= COUNTER_THRESHOLD)
+            try
             {
-                this._counter.Reset();
-                this._db.SaveChanges();
+                this._db.Add(entry);
+
+                // I have no idea if ASP is multithreaded, and if it is I have no idea if it shares these instances
+                // between threads.
+                // ... I hope not.
+                this._counter.Increment();
+                if(this._counter.Count >= COUNTER_THRESHOLD)
+                {
+                    this._db.SaveChanges();
+                    this._counter.Reset();
+                }
+
+                if(DateTimeOffset.UtcNow - this._counter.LastReset > TimeSpan.FromMinutes(MINUTES_BETWEEN_PUSHES))
+                {
+                    this._db.SaveChanges();
+                    this._counter.Reset();
+                }
             }
-
-            if(DateTimeOffset.UtcNow - this._counter.LastReset > TimeSpan.FromMinutes(MINUTES_BETWEEN_PUSHES))
+            catch(Exception)
             {
-                this._counter.Reset();
-                this._db.SaveChanges();
+                // Edge case where the database doesn't exist yet.
             }
         }
     }

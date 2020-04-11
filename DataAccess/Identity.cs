@@ -51,8 +51,8 @@ namespace DataAccess
         ApplicationUserToken
     >
     {
-        public static string DEFAULT_USERNAME = "admin@example.com";
-        public static string DEFAULT_PASSWORD = "password";
+        public const string DEFAULT_USERNAME = "admin@example.com";
+        public const string DEFAULT_PASSWORD = "password";
 
         public IdentityContext(DbContextOptions<IdentityContext> context) : base(context)
         {

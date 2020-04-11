@@ -5,8 +5,12 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace FarmMasterTests.Integration
 {
@@ -27,6 +31,11 @@ namespace FarmMasterTests.Integration
             "Account:FinaliseExternalLogin:GET",
             "Account:FinaliseExternalLogin:POST"
         };
+
+        public AuthTests(ITestOutputHelper helper) : base(helper)
+        {
+
+        }
 
         /// <summary>
         /// Checks that all routes either: require authorisation, or are whitelisted to not require authorisation.
@@ -65,6 +74,28 @@ namespace FarmMasterTests.Integration
             // Make sure we don't have any orphaned routes in the whitelist
             foreach(var whitelist in ANONYMOUS_WHITELIST)
                 Assert.Contains(whitelist, routesChecked);
+        }
+
+        /// <summary>
+        /// Checks that a logged out user is redirected to the login page if they fail an auth check.
+        /// 
+        /// Purpose: Just a general sanity check.
+        /// </summary>
+        [Fact()]
+        public async Task CheckLoggedOutRedirect()
+        {
+            var response = await base.Client.GetAsync("/Admin/Users");
+            Assert.Equal(HttpStatusCode.Redirect, response.StatusCode);
+            Assert.Contains("Account/Login", response.Headers.Location.ToString());
+        }
+
+        [Fact()]
+        public async Task CanLogin()
+        {
+            await base.Client.LoginAsync();
+
+            var response = await base.Client.GetAsync("/Admin/Users");
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
         }
     }
 }

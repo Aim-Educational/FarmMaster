@@ -1,24 +1,70 @@
 ﻿using DataAccess;
+using Microsoft.AspNetCore.Hosting.Server.Features;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.TestHost;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net.Http;
 using System.Text;
+using Xunit.Abstractions;
 
 namespace FarmMasterTests.Integration
 {
+    // Used as a proxy of Console.WriteLine -> ITestOutputHelper.WriteLine.
+    // This is because *XUnit decides to gut Console.WriteLine otherwise*.
+    class Converter : TextWriter
+    {
+        ITestOutputHelper _output;
+        public Converter(ITestOutputHelper output)
+        {
+            _output = output;
+        }
+        public override Encoding Encoding
+        {
+            get { return Encoding.UTF8; }
+        }
+        public override void WriteLine(string message)
+        {
+            _output.WriteLine(message);
+        }
+        public override void WriteLine(string format, params object[] args)
+        {
+            _output.WriteLine(format, args);
+        }
+    }
+
     public abstract class IntegrationTest : IDisposable
     {
         protected TestServer Host { private set; get; }
         protected FarmMasterContext Context { private set; get; }
-        protected HttpClient Client { get; set; }
+        protected FarmClient Client { get; set; }
 
-        public IntegrationTest()
+        public IntegrationTest(ITestOutputHelper output)
         {
+            Console.SetOut(new Converter(output));
+
             this.Host    = Common.TestHost; // Creates a new one each time.
-            this.Client  = this.Host.CreateClient();
+            this.Client  = new FarmClient(this.Host);
             this.Context = this.Host.Services.GetRequiredService<FarmMasterContext>();
+
+            // Taken from Program.cs
+            // TODO: Make this reusable so we're not duplicating code.
+            using (var scope = this.Host.Services.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                var db = scope.ServiceProvider.GetRequiredService<IdentityContext>();
+                db.Database.Migrate();
+
+                var fmdb = scope.ServiceProvider.GetRequiredService<FarmMasterContext>();
+                var roles = scope.ServiceProvider.GetRequiredService<RoleManager<ApplicationRole>>();
+                var users = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+
+                db.Seed(roles, users);
+
+                fmdb.Database.Migrate();
+            }
         }
 
         public void Dispose()
@@ -28,7 +74,6 @@ namespace FarmMasterTests.Integration
                 this.Context.Database.EnsureDeleted();
             }
             catch(Exception ex) { }
-            this.Client.Dispose();
             this.Host.Dispose();
         }
     }
