@@ -28,8 +28,8 @@ namespace FarmMaster
             // May as well handle FarmMasterContext here as well.
             using (var scope = provider.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
-                var db = scope.ServiceProvider.GetRequiredService<IdentityContext>();
-                var fmdb = scope.ServiceProvider.GetRequiredService<FarmMasterContext>();
+                var db    = scope.ServiceProvider.GetRequiredService<IdentityContext>();
+                var fmdb  = scope.ServiceProvider.GetRequiredService<FarmMasterContext>();
                 var roles = scope.ServiceProvider.GetRequiredService<RoleManager<ApplicationRole>>();
                 var users = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
 
