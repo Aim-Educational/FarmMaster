@@ -51,6 +51,9 @@ namespace DataAccess
         ApplicationUserToken
     >
     {
+        public static string DEFAULT_USERNAME = "admin@example.com";
+        public static string DEFAULT_PASSWORD = "password";
+
         public IdentityContext(DbContextOptions<IdentityContext> context) : base(context)
         {
         }
@@ -120,10 +123,10 @@ namespace DataAccess
                 EmailConfirmed     = true,
                 NormalizedEmail    = "ADMIN@EXAMPLE.COM",
                 NormalizedUserName = "ADMIN@EXAMPLE.COM",
-                UserName           = "admin@example.com"
+                UserName           = DEFAULT_USERNAME
             };
 
-            user.PasswordHash = new PasswordHasher<ApplicationUser>().HashPassword(user, "password");
+            user.PasswordHash = new PasswordHasher<ApplicationUser>().HashPassword(user, DEFAULT_PASSWORD);
 
             // Create default superadmin
             users.CreateAsync(user).Wait();

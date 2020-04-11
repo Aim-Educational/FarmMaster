@@ -22,6 +22,7 @@ namespace FarmMaster.Controllers
         public string ManagePolicy { get; set; }
     }
 
+    [Authorize]
     public abstract class CrudController<EntityT, CrudT> : Controller
     where CrudT : ICrudAsync<EntityT>
     where EntityT : class
