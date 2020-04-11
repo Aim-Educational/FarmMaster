@@ -10,4 +10,4 @@ Something something Andy smells, TODO: The rest of this.
 
 Early screenshot of the Species edit page. Still missing some data though.
 
-![Early example](https://imgur.com/MOoAQUZ)
+![Early example](https://i.imgur.com/MOoAQUZ.png)
