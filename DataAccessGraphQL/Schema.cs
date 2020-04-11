@@ -17,16 +17,4 @@ namespace DataAccessGraphQL
             this.Mutation = GraphQL.Utilities.ServiceProviderExtensions.GetRequiredService<DataAccessRootMutation>(services);
         }
     }
-
-    public static class Extensions
-    {
-        public static IServiceCollection AddDataAccessGraphQLSchema(this IServiceCollection services)
-        {
-            return services.AddScoped<UserRootResolver>()
-                           .AddScoped<ContactRootResolver>()
-                           .AddScoped<SpeciesRootResolver>()
-                           .AddScoped<DataAccessGraphQLSchema>()
-                           .AddScoped<GraphQLUserContextAccessor>();
-        }
-    }
 }
