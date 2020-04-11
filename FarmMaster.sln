@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmailSender", "EmailSender\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmailSenderTests", "EmailSenderTests\EmailSenderTests.csproj", "{5F6D6189-9942-4B64-88C4-9F3B89C87A48}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessLogicTests", "DataAccessLogicTests\DataAccessLogicTests.csproj", "{759C335A-2274-46F6-A352-404E6A977086}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessLogicTests", "DataAccessLogicTests\DataAccessLogicTests.csproj", "{759C335A-2274-46F6-A352-404E6A977086}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
