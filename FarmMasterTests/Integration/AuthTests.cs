@@ -84,18 +84,20 @@ namespace FarmMasterTests.Integration
         [Fact()]
         public async Task CheckLoggedOutRedirect()
         {
-            var response = await base.Client.GetAsync("/Admin/Users");
-            Assert.Equal(HttpStatusCode.Redirect, response.StatusCode);
+            var response = await base.Client.GetEnsureStatusAsync("/Admin/Users", HttpStatusCode.Redirect);
             Assert.Contains("Account/Login", response.Headers.Location.ToString());
         }
 
+        /// <summary>
+        /// Checks that we can login.
+        /// 
+        /// Purpose: Basic foundational test required for any other tests that require authentication.
+        /// </summary>
         [Fact()]
         public async Task CanLogin()
         {
             await base.Client.LoginAsync();
-
-            var response = await base.Client.GetAsync("/Admin/Users");
-            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            await base.Client.GetEnsureStatusAsync("/Admin/Users", HttpStatusCode.OK);
         }
     }
 }

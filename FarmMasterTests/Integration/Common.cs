@@ -10,8 +10,27 @@ using System.Text;
 
 namespace FarmMasterTests.Integration
 {
+    /// <summary>
+    /// Contains common variables for all tests.
+    /// </summary>
     public static class Common
     {
+        /// <summary>
+        /// Creates and returns a new <see cref="TestServer"/> for FarmMaster.
+        /// </summary>
+        /// <remarks>
+        /// By using either appsettings.Development.json, or env vars, you can provide the following variables:
+        /// 
+        /// FmTest:Host - The url to the test server. (Default: localhost)
+        /// 
+        /// FmTest:Port - The port to use. (Default: 5432)
+        /// 
+        /// FmTest:User - The username to use. (Default: test)
+        /// 
+        /// FmTest:Pass - The password to use. (Default: test)
+        /// 
+        /// Note that the user needs permissions to create and delete their own database.
+        /// </remarks>
         public static TestServer TestHost => new TestServer(
             new WebHostBuilder()
             .UseWebRoot("../../../../FarmMaster/wwwroot/")

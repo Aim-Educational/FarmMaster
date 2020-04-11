@@ -14,6 +14,16 @@ using Xunit;
 
 namespace FarmMasterTests.Integration
 {
+    /// <summary>
+    /// A HttpClient used to interface with the <see cref="TestServer"/>.
+    /// </summary>
+    /// <remarks>
+    /// The HttpClient returned by <see cref="TestServer.CreateClient"/> is... *shit*.
+    /// 
+    /// We can't configure it in anyway, so it won't store cookies, doesn't redirect, etc.
+    /// 
+    /// So this class is used to solve all our issues.
+    /// </remarks>
     public class FarmClient
     {
         private CookieContainer _cookies  { get; set; }
@@ -35,16 +45,32 @@ namespace FarmMasterTests.Integration
                 RememberMe = true
             };
 
-            var response = await this.PostAsync(
+            await this.PostEnsureStatusAsync(
                 "/Account/Login",
                 new FormUrlEncodedContent(new Dictionary<string, string>()
                 {
                     { "Username", loginModel.Username },
                     { "Password", loginModel.Password },
                     { "RememberMe", loginModel.RememberMe ? "true" : "false" }
-                })
+                }),
+                HttpStatusCode.Redirect
             );
-            Assert.Equal(HttpStatusCode.Found, response.StatusCode);
+        }
+
+        public async Task<HttpResponseMessage> GetEnsureStatusAsync(string url, HttpStatusCode status)
+        {
+            var response = await this.GetAsync(url);
+            Assert.Equal(status, response.StatusCode);
+
+            return response;
+        }
+
+        public async Task<HttpResponseMessage> PostEnsureStatusAsync(string url, HttpContent content, HttpStatusCode status)
+        {
+            var response = await this.PostAsync(url, content);
+            Assert.Equal(status, response.StatusCode);
+
+            return response;
         }
 
         // https://stackoverflow.com/questions/48704331/setting-cookies-to-httpclient-of-asp-net-core-testserver

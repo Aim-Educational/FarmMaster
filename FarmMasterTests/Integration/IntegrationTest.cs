@@ -36,6 +36,13 @@ namespace FarmMasterTests.Integration
         }
     }
 
+    /// <summary>
+    /// The base class for every integration test.
+    /// </summary>
+    /// <remarks>
+    /// This class will handle enabling console output (because xunit disables it); setting up a new TestServer;
+    /// accessing the <see cref="FarmMasterContext"/>, and creating a <see cref="FarmClient"/>
+    /// </remarks>
     public abstract class IntegrationTest : IDisposable
     {
         protected TestServer Host { private set; get; }
@@ -59,7 +66,7 @@ namespace FarmMasterTests.Integration
             {
                 this.Context.Database.EnsureDeleted();
             }
-            catch(Exception ex) { }
+            catch(Exception) { }
             this.Host.Dispose();
         }
     }
