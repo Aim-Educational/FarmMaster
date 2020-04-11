@@ -35,5 +35,5 @@ jobs:
       run: dotnet test --no-restore --verbosity normal
       
       env:
-        POSTGRES_HOST: localhost
-        POSTGRES_PORT: ${{ job.services.postgres.ports[5432] }} # get randomly assigned published port
+        FMTEST__HOST: localhost
+        FMTEST__PORT: ${{ job.services.postgres.ports[5432] }} # get randomly assigned published port
