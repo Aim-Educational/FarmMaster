@@ -55,7 +55,9 @@ namespace DataAccessGraphQL
         where TGraphType : GraphType
         where TSourceType : class
         {
-            var namePlural = name + "s";
+            var namePlural = (name.EndsWith("s"))
+                             ? name + "es" // species -> specieses. Since we *have* to differentiate, even if not gramatically correct.
+                             : name + "s"; // contact -> contacts.
 
             FieldAsync<TGraphType>(
                 name,
