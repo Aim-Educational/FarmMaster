@@ -1,18 +1,17 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using DataAccessLogic;
+﻿using DataAccessLogic;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using DataAccessLogicTests.TestDb;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using Xunit;
 
 namespace DataAccessLogic.Tests
 {
-    [TestClass()]
     public class DbContextUnitOfWorkTests
     {
-        [TestMethod()]
+        [Fact()]
         public void SingleScopeCommitTest()
         {
             var db = UnitTestDbContext.InMemory();
@@ -21,15 +20,15 @@ namespace DataAccessLogic.Tests
             using(var scope = uow.Begin("Single Commit"))
             {
                 db.Add(new Product{ Name = "Commitment Ring" });
-                Assert.IsTrue(scope.Commit());
+                Assert.True(scope.Commit());
             }
 
             var product = db.Products.First(p => p.Name == "Commitment Ring");
-            Assert.IsNotNull(product);
-            Assert.AreEqual(EntityState.Unchanged, db.Entry(product).State); // Already saved the Added change, so should be Unchanged now.
+            Assert.NotNull(product);
+            Assert.Equal(EntityState.Unchanged, db.Entry(product).State); // Already saved the Added change, so should be Unchanged now.
         }
 
-        [TestMethod()]
+        [Fact()]
         public void SingleScopeRollbackAndNoneTest()
         {
             var db = UnitTestDbContext.InMemory();
@@ -48,14 +47,14 @@ namespace DataAccessLogic.Tests
             catch (UnitOfWorkException ex)
             {
                 thrown = true;
-                Assert.AreEqual(1, ex.ScopeResults.Count());
+                Assert.Single(ex.ScopeResults);
 
                 var result = ex.ScopeResults.First();
-                Assert.AreEqual(UnitOfWorkScopeState.Rollback, result.ScopeState);
-                Assert.AreEqual("Single Rollback", result.ScopeName);
-                Assert.IsTrue(result.RollbackReason.Length > 0);
+                Assert.Equal(UnitOfWorkScopeState.Rollback, result.ScopeState);
+                Assert.Equal("Single Rollback", result.ScopeName);
+                Assert.True(result.RollbackReason.Length > 0);
             }
-            Assert.IsTrue(thrown);
+            Assert.True(thrown);
 
             // Test not setting a state
             thrown = false;
@@ -69,19 +68,19 @@ namespace DataAccessLogic.Tests
             catch (UnitOfWorkException ex)
             {
                 thrown = true;
-                Assert.AreEqual(1, ex.ScopeResults.Count());
+                Assert.Single(ex.ScopeResults);
 
                 var result = ex.ScopeResults.First();
-                Assert.AreEqual(UnitOfWorkScopeState.None, result.ScopeState);
+                Assert.Equal(UnitOfWorkScopeState.None, result.ScopeState);
             }
-            Assert.IsTrue(thrown);
+            Assert.True(thrown);
 
             // Test that changes are in fact, not committed
-            Assert.AreEqual(0, db.ChangeTracker.Entries().Count());
-            Assert.IsNull(db.Products.FirstOrDefault(p => p.Name == "Roll-back"));
+            Assert.Empty(db.ChangeTracker.Entries());
+            Assert.Null(db.Products.FirstOrDefault(p => p.Name == "Roll-back"));
 
             db.SaveChanges();
-            Assert.IsNull(db.Products.FirstOrDefault(p => p.Name == "Void"));
+            Assert.Null(db.Products.FirstOrDefault(p => p.Name == "Void"));
         }
     }
 }

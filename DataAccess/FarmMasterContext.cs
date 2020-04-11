@@ -13,6 +13,15 @@ namespace DataAccess
         {
         }
 
+        public static FarmMasterContext InMemory(string name = "test")
+        {
+            var options = new DbContextOptionsBuilder<FarmMasterContext>()
+                .UseInMemoryDatabase(name)
+                .Options;
+
+            return new FarmMasterContext(options);
+        }
+
         protected override void OnModelCreating(ModelBuilder b)
         {
             base.OnModelCreating(b);
