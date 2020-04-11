@@ -19,6 +19,7 @@ namespace DataAccessGraphQL.Util
             DataAccessUserContext context,
             IUnitOfWork unitOfWork,
             INoteManager notes,
+            string writeNotesPerm,
             GetNoteOwnerFunc<TSourceType> getNoteOwner
         )
         where TSourceType : class
@@ -40,7 +41,7 @@ namespace DataAccessGraphQL.Util
                 ),
                 async ctx =>
                 {
-                    await context.EnforceHasPolicyAsync(Permissions.Contact.WriteNotes);
+                    await context.EnforceHasPolicyAsync(writeNotesPerm);
 
                     using (var scope = unitOfWork.Begin("Add note"))
                     {
@@ -71,7 +72,7 @@ namespace DataAccessGraphQL.Util
                 ),
                 async ctx =>
                 {
-                    await context.EnforceHasPolicyAsync(Permissions.Contact.WriteNotes);
+                    await context.EnforceHasPolicyAsync(writeNotesPerm);
 
                     using (var scope = unitOfWork.Begin("Delete notes"))
                     {

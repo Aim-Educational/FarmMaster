@@ -42,6 +42,7 @@ namespace DataAccessGraphQL.Mutations
                 this._context,
                 this._unitOfWork,
                 this._notes,
+                Permissions.Contact.WriteNotes,
                 ctx => {
                     ctx.Source.NoteOwner = ctx.Source.NoteOwner ?? new NoteOwner();
                     this._contacts.Update(ctx.Source);
