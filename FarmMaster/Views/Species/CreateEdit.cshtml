@@ -1,92 +1,31 @@
 ﻿@model CrudCreateEditViewModel<Species>
 @{
-    ViewData["Title"] = "Create a new species";
-    ViewData["NavName"] = "Species";
+    Layout = "_LayoutCrudCreateEdit";
 
-    ViewData["Breadcrumb"] = new Breadcrumb()
-                             .Add("Species", "/Species")
-                             .For("Create")
-                                .Add("Create", "/Species/Create")
-                             .For("Edit")
-                                .Add("Edit", "#")
-                                .Add(Model.Entity?.Name ?? "N/A", "#")
-                             .Use("Create", Model.IsCreate)
-                             .Use("Edit", !Model.IsCreate);
+    ViewData["EntityName"]         = "Species";
+    ViewData["EntityId"]           = Model.Entity?.SpeciesId ?? -1;
+    ViewData["EntityIdExpression"] = "Model.Entity.SpeciesId";
+    ViewData["NoteType"]           = "species";
 
     var action = (Model.IsCreate) ? "Create" : "Edit";
 }
 
-<div id="app">
-    <window title="Create a new species">
-        @if(!Model.IsCreate)
-        {
-            <form id="deleteForm" method="post" asp-action="Delete" asp-route-id="@Model.Entity.SpeciesId">
-            </form>
-
-            <toggle-button class="bottom margined blue"
-                           v-model="isEdit"
-                           untoggled-text="Edit"
-                           toggled-text="View">
-            </toggle-button>
-            <button class="left margined red"
-                    @@click="showDeleteModal">
-                Delete
-            </button>
-        }
-        <form method="post" asp-action="@action">
-            <input type="hidden" asp-for="IsCreate" />
-            <input type="hidden" asp-for="Entity.SpeciesId" value="@(Model.Entity?.SpeciesId ?? -1)" />
-            <div class="input-wrapper inline">
-                <label>Name</label>
-                <textbox :mode="mode" asp-for="Entity.Name" placeholder="Name" required />
-            </div>
-            <div class="input-wrapper inline">
-                <label>Gestration (Days)</label>
-                <textbox type="number" :mode="mode" asp-for="Entity.GestrationPeriod" timespan="Days"></textbox>
-            </div>
-            <alert type="error" fm-model-error="true"></alert>
-            <button class="top margined blue fluid"
-                    v-if="mode === 'edit'">
-                @action Species
-            </button>
-        </form>
-    </window>
-
-    @if(!Model.IsCreate)
-    { 
-        <window title="Notes">
-            <notes :mode="mode"
-                   parent-type="species"
-                   :parent-id="Number('@Model.Entity.SpeciesId')">
-            </notes>
-        </window>
-    }
-
-    <delete-modal ref="modal" @@click="onDelete">
-    </delete-modal>
-</div>
-
-@section Scripts {
-    <script>
-        new Vue({
-            el: "#app",
-            data: {
-                isEdit: @(Model.IsCreate ? "true" : "false") // Default to Edit mode when creating. Default to view mode when view/edit
-            },
-            computed: {
-                mode() {
-                    return this.isEdit ? "edit" : "view";
-                }
-            },
-            methods: {
-                showDeleteModal() {
-                    this.$refs.modal.show();
-                },
-
-                onDelete() {
-                    document.getElementById("deleteForm").submit();
-                }
-            }
-        });
-    </script>
+@section MainWindow {
+    <form method="post" asp-action="@action">
+        <input type="hidden" asp-for="IsCreate" />
+        <input type="hidden" asp-for="Entity.SpeciesId" value="@(Model.Entity?.SpeciesId ?? -1)" />
+        <div class="input-wrapper inline">
+            <label>Name</label>
+            <textbox :mode="mode" asp-for="Entity.Name" placeholder="Name" required />
+        </div>
+        <div class="input-wrapper inline">
+            <label>Gestration (Days)</label>
+            <textbox type="number" :mode="mode" asp-for="Entity.GestrationPeriod" timespan="Days"></textbox>
+        </div>
+        <alert type="error" fm-model-error="true"></alert>
+        <button class="top margined blue fluid"
+                v-if="mode === 'edit'">
+            @action Species
+        </button>
+    </form>
 }

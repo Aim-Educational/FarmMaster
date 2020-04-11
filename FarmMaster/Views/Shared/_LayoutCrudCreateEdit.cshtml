@@ -1,0 +1,100 @@
+﻿@{
+    Layout = "_Layout";
+
+    Action<string> enforceViewDataExists = (string key) => 
+    {
+        if(!ViewData.ContainsKey(key))
+            throw new KeyNotFoundException($"Expected ViewData to contain '{key}'");
+    };
+
+    enforceViewDataExists("EntityName");
+    enforceViewDataExists("EntityId");
+    enforceViewDataExists("EntityIdExpression");
+    enforceViewDataExists("NoteType");
+
+    var entityName         = (string)ViewData["EntityName"];
+    var entityId           = (int)ViewData["EntityId"];
+    var entityIdExpression = ((string)ViewData["EntityIdExpression"]).Replace(".", "_");
+    var noteType           = (string)ViewData["NoteType"];
+
+    ViewData["Title"] = $"Create a new {entityName}";
+    ViewData["NavName"] = entityName;
+
+    ViewData["Breadcrumb"] = new Breadcrumb()
+                             .Add(entityName, $"/{entityName}")
+                             .For("Create")
+                                .Add("Create", $"/{entityName}/Create")
+                             .For("Edit")
+                                .Add("Edit", "#")
+                                .Add(Model.Entity?.Name ?? "N/A", "#")
+                             .Use("Create", Model.IsCreate)
+                             .Use("Edit", !Model.IsCreate);
+
+    var action = (Model.IsCreate) ? "Create" : "Edit";
+}
+
+<div id="app">
+    <window title="Create a new @entityName">
+        @if (!Model.IsCreate)
+        {
+            <form id="deleteForm" method="post" asp-action="Delete" asp-route-id="@entityId">
+            </form>
+
+            <toggle-button class="bottom margined blue"
+                           v-model="isEdit"
+                           untoggled-text="Edit"
+                           toggled-text="View">
+            </toggle-button>
+            <button class="left margined red"
+                    @@click="showDeleteModal">
+                Delete
+            </button>
+        }
+        <form method="post" asp-action="@action">
+            <input type="hidden" name="IsCreate" value="@(Model.IsCreate ? "true" : "false")" />
+            <input type="hidden" name="@entityIdExpression" value="@entityId" />
+            
+            @RenderSection("MainWindow", true)
+        </form>
+
+        @RenderSection("PostMainWindow", false)
+    </window>
+
+    @if (!Model.IsCreate)
+    {
+        <window title="Notes">
+            <notes :mode="mode"
+                   parent-type="@noteType"
+                   :parent-id="Number('@entityId')">
+            </notes>
+        </window>
+    }
+
+    <delete-modal ref="modal" @@click="onDelete">
+    </delete-modal>
+</div>
+
+@section Scripts {
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                isEdit: @(Model.IsCreate ? "true" : "false") // Default to Edit mode when creating. Default to view mode when view/edit
+            },
+            computed: {
+                mode() {
+                    return this.isEdit ? "edit" : "view";
+                }
+            },
+            methods: {
+                showDeleteModal() {
+                    this.$refs.modal.show();
+                },
+
+                onDelete() {
+                    document.getElementById("deleteForm").submit();
+                }
+            }
+        });
+    </script>
+}
