@@ -10,12 +10,10 @@
     enforceViewDataExists("EntityName");
     enforceViewDataExists("EntityId");
     enforceViewDataExists("EntityIdExpression");
-    enforceViewDataExists("NoteType");
 
     var entityName         = (string)ViewData["EntityName"];
     var entityId           = (int)ViewData["EntityId"];
     var entityIdExpression = ((string)ViewData["EntityIdExpression"]).Replace(".", "_");
-    var noteType           = (string)ViewData["NoteType"];
 
     ViewData["Title"] = $"Create a new {entityName}";
     ViewData["NavName"] = entityName;
@@ -49,34 +47,28 @@
                     @@click="showDeleteModal">
                 Delete
             </button>
+
+            <delete-modal ref="modal" @@click="onDelete">
+            </delete-modal>
         }
         <form method="post" asp-action="@action">
             <input type="hidden" name="IsCreate" value="@(Model.IsCreate ? "true" : "false")" />
             <input type="hidden" name="@entityIdExpression" value="@entityId" />
-            
+
             @RenderSection("MainWindow", true)
         </form>
-
-        @RenderSection("PostMainWindow", false)
     </window>
 
-    @if (!Model.IsCreate)
-    {
-        <window title="Notes">
-            <notes :mode="mode"
-                   parent-type="@noteType"
-                   :parent-id="Number('@entityId')">
-            </notes>
-        </window>
-    }
-
-    <delete-modal ref="modal" @@click="onDelete">
-    </delete-modal>
+    @RenderSection("PostMainWindow", false)
 </div>
 
 @section Scripts {
     <script>
-        new Vue({
+        const userVue = {
+            @RenderSection("VueScript", false)
+        };
+
+        let baseVue = {
             el: "#app",
             data: {
                 isEdit: @(Model.IsCreate ? "true" : "false") // Default to Edit mode when creating. Default to view mode when view/edit
@@ -95,6 +87,21 @@
                     document.getElementById("deleteForm").submit();
                 }
             }
-        });
+        };
+
+        function mergeToBase(key) {
+            if (userVue[key])
+                baseVue[key] = { ...baseVue[key], ...userVue[key] };
+
+            delete userVue[key];
+        }
+        
+        mergeToBase("data");
+        mergeToBase("methods");
+        mergeToBase("computed");
+
+        baseVue = { ...baseVue, ...userVue };
+
+        new Vue(baseVue);
     </script>
 }

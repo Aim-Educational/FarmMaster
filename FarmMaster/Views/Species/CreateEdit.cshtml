@@ -5,7 +5,6 @@
     ViewData["EntityName"]         = "Species";
     ViewData["EntityId"]           = Model.Entity?.SpeciesId ?? -1;
     ViewData["EntityIdExpression"] = "Model.Entity.SpeciesId";
-    ViewData["NoteType"]           = "species";
 
     var action = (Model.IsCreate) ? "Create" : "Edit";
 }
@@ -28,4 +27,16 @@
             @action Species
         </button>
     </form>
+}
+
+@section PostMainWindow {
+    @if (!Model.IsCreate)
+    {
+        <window title="Notes">
+            <notes :mode="mode"
+                   parent-type="species"
+                   :parent-id="Number('@Model.Entity.SpeciesId')">
+            </notes>
+        </window>
+    }
 }
