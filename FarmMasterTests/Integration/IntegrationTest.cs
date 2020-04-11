@@ -50,21 +50,7 @@ namespace FarmMasterTests.Integration
             this.Client  = new FarmClient(this.Host);
             this.Context = this.Host.Services.GetRequiredService<FarmMasterContext>();
 
-            // Taken from Program.cs
-            // TODO: Make this reusable so we're not duplicating code.
-            using (var scope = this.Host.Services.GetRequiredService<IServiceScopeFactory>().CreateScope())
-            {
-                var db = scope.ServiceProvider.GetRequiredService<IdentityContext>();
-                db.Database.Migrate();
-
-                var fmdb = scope.ServiceProvider.GetRequiredService<FarmMasterContext>();
-                var roles = scope.ServiceProvider.GetRequiredService<RoleManager<ApplicationRole>>();
-                var users = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
-
-                db.Seed(roles, users);
-
-                fmdb.Database.Migrate();
-            }
+            FarmMaster.Program.SetupDatabase(this.Host.Services);
         }
 
         public void Dispose()

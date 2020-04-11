@@ -18,13 +18,18 @@ namespace FarmMaster
         public static void Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();
+            SetupDatabase(host.Services);
+            host.Run();
+        }
 
+        public static void SetupDatabase(IServiceProvider provider)
+        {
             // Identity doesn't really provide a place to seed data properly, so we have to do this.
             // May as well handle FarmMasterContext here as well.
-            using(var scope = host.Services.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            using (var scope = provider.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
-                var db    = scope.ServiceProvider.GetRequiredService<IdentityContext>();
-                var fmdb  = scope.ServiceProvider.GetRequiredService<FarmMasterContext>();
+                var db = scope.ServiceProvider.GetRequiredService<IdentityContext>();
+                var fmdb = scope.ServiceProvider.GetRequiredService<FarmMasterContext>();
                 var roles = scope.ServiceProvider.GetRequiredService<RoleManager<ApplicationRole>>();
                 var users = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
 
@@ -33,8 +38,6 @@ namespace FarmMaster
 
                 fmdb.Database.Migrate();
             }
-
-            host.Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
