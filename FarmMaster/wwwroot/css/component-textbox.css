@@ -1,4 +1,4 @@
-input[type=text].farm-master, input[type=password].farm-master {
+input.farm-master {
   height: 40px;
   font-size: 16px;
   padding-left: 1em;
@@ -9,7 +9,7 @@ input[type=text].farm-master, input[type=password].farm-master {
   transition: color ease 0.3s;
   color: #666666;
 }
-input[type=text].farm-master:focus, input[type=password].farm-master:focus {
+input.farm-master:focus {
   border-color: blue;
   color: #1a1a1a;
 }

@@ -1,0 +1,39 @@
+﻿@model CrudIndexViewModel<Species>
+@{
+    ViewData["Title"] = "Species";
+    ViewData["NavName"] = "Species";
+    ViewData["Breadcrumb"] = (new Breadcrumb()).Add("Species", "/Species").Add("Index", "/Species");
+}
+
+<div id="app">
+    <window title="Species">
+        <a class="bottom margined icon blue button" asp-action="Create">
+            <i class="las la-plus"></i>
+            <span>Create new species</span>
+        </a>
+        <fm-value-table selection="none"
+                        :rows="rows"
+                        :values="values">
+        </fm-value-table>
+    </window>
+</div>
+
+@section Scripts {
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                rows: [
+                    { name: "Name", bind: "name", sort: true }
+                ],
+                values: [
+                    @foreach(var species in Model.Entities)
+                    {
+                        @:{ name: { value: "@species.Name", href: "@Url.Action("Edit", "Species", new { id = species.SpeciesId })" }
+                        @:},
+                    }
+                ]
+            }
+        });
+    </script>
+}

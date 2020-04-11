@@ -14,7 +14,7 @@
 <script>
 export default {
     props: {
-        isPassword: Boolean,
+        type: String,
         name: String,
         placeholder: String,
         value: String,
@@ -24,12 +24,6 @@ export default {
             validator(v) {
                 return ["edit", "view"].indexOf(v) !== -1;
             }
-        }
-    },
-
-    computed: {
-        type() {
-            return this.isPassword ? "password" : "text";
         }
     }
 }

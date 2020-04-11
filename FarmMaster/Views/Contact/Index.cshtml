@@ -1,4 +1,4 @@
-﻿@model ContactIndexViewModel
+﻿@model CrudIndexViewModel<Contact>
 @{
     ViewData["Title"] = "Contacts";
     ViewData["NavName"] = "Contacts";
@@ -28,9 +28,9 @@
                     { name: "Type", bind: "type", sort: true }
                 ],
                 values: [
-                    @foreach(var contact in Model.Contacts)
+                    @foreach(var contact in Model.Entities)
                     {
-                        @:{ name: { value: "@contact.Name", href: "@Url.Action("Edit", "Contact", new { contactId = contact.ContactId })" }, 
+                        @:{ name: { value: "@contact.Name", href: "@Url.Action("Edit", "Contact", new { id = contact.ContactId })" }, 
                         @:  type: "@contact.Type"
                         @:},
                     }

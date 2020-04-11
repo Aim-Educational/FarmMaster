@@ -24,6 +24,7 @@ namespace DataAccessGraphQL
         {
             return services.AddScoped<UserRootResolver>()
                            .AddScoped<ContactRootResolver>()
+                           .AddScoped<SpeciesRootResolver>()
                            .AddScoped<DataAccessGraphQLSchema>()
                            .AddScoped<GraphQLUserContextAccessor>();
         }

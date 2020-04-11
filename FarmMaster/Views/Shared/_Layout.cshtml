@@ -111,7 +111,8 @@
                     manage: {
                         shown: true,
                         items: {
-                            contacts: { shown: @checkPolicy(Permissions.Contact.ManageUI), icon: null, href: "/Contact" }
+                            contacts: { shown: @checkPolicy(Permissions.Contact.ManageUI), icon: null, href: "/Contact" },
+                            species:  { shown: @checkPolicy(Permissions.Species.ManageUI), icon: null, href: "/Species" }
                         }
                     },
                     admin: {

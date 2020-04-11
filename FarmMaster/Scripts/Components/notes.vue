@@ -43,29 +43,47 @@
 import Textbox from "./textbox";
 import Table from "./table_values";
 
+// Generic query generators.
+// Since most of the queries will only really differ in their GraphQL type name, this saves some typing.
+function genericQuery(typeName) {
+    return `query GetNotes($id:ID!) {
+        ${typeName}(id:$id) {
+            notes {
+                id
+                category
+                content
+            }    
+        }    
+    }`;
+}
+
+function genericAdd(typeName) {
+    return `mutation AddNote($id:ID!, $category:String!, $content:String!) {
+        ${typeName}(id:$id) {
+            addNote(category:$category, content:$content)
+        }
+    }`;
+}
+
+function genericDelete(typeName) {
+    return `mutation DeleteNotes($id:ID!, $noteIds:[ID!]!) {
+        ${typeName}(id:$id) {
+            deleteNotes(ids:$noteIds)    
+        }    
+    }`;
+}
+
 const queries = {
     contact: {
-        query: `query GetContactNotes($id:ID!) {
-            contact(id:$id) {
-                notes {
-                    id
-                    category
-                    content
-                }    
-            }    
-        }`,
-
-        add: `mutation AddNoteToContact($id:ID!, $category:String!, $content:String!) {
-            contact(id:$id) {
-                addNote(category:$category, content:$content)
-            }
-        }`,
-
-        delete: `mutation DeleteNotesFromContact($id:ID!, $noteIds:[ID!]!) {
-            contact(id:$id) {
-                deleteNotes(ids:$noteIds)    
-            }    
-        }`
+        query: genericQuery("contact"),
+        add: genericAdd("contact"),
+        delete: genericDelete("contact")
+    },
+    
+    species: {
+        query: genericQuery("species"),
+        add: genericAdd("species"),
+        delete: genericDelete("species")
     }
 };
 
@@ -92,7 +110,7 @@ export default {
             type: String,
             required: true,
             validator(v) {
-                return ["contact"].indexOf(v) !== -1;
+                return Object.keys(queries).indexOf(v) !== -1;
             }
         },
 
@@ -104,6 +122,7 @@ export default {
 
     methods: {
         onError(error) {
+            console.log(error);
             alert(JSON.stringify(error));
         },
 
@@ -112,7 +131,10 @@ export default {
                 case "contact":
                     return data.contact.notes;
 
-                default: throw this.parentType;
+                case "species":
+                    return data.species.notes;
+
+                default: throw "notes.vue:methods:selectNotesFromQuery -> Can't handle type " + this.parentType;
             }
         },
         

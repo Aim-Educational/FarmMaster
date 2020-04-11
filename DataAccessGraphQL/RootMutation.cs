@@ -18,8 +18,9 @@ namespace DataAccessGraphQL
     // Meh, code duplication between query and mutation.
     public class DataAccessRootMutation : RootBase
     {
-        readonly UserRootResolver _userResolver;
+        readonly UserRootResolver    _userResolver;
         readonly ContactRootResolver _contactResolver;
+        readonly SpeciesRootResolver _speciesResolver;
 
         public DataAccessRootMutation(
             IHttpContextAccessor         context, 
@@ -29,15 +30,18 @@ namespace DataAccessGraphQL
             IdentityContext              idDb,
             IAuthorizationService        auth,
 
-            UserRootResolver userResolver,
-            ContactRootResolver contactResolver
+            UserRootResolver    userResolver,
+            ContactRootResolver contactResolver,
+            SpeciesRootResolver speciesResolver
         ) : base(context, users, accessor, fmDb, idDb, auth)
         {
-            this._userResolver = userResolver;
+            this._userResolver    = userResolver;
             this._contactResolver = contactResolver;
+            this._speciesResolver = speciesResolver;
 
             this.AddUserMutation();
             this.AddContactMutation();
+            this.AddSpeciesMutation();
         }
 
         private void AddUserMutation()
@@ -55,6 +59,15 @@ namespace DataAccessGraphQL
                 "contact",
                 arguments: this._contactResolver,
                 resolve: ctx => this._contactResolver.ResolveAsync(ctx, base.DataContext)
+            );
+        }
+
+        private void AddSpeciesMutation()
+        {
+            FieldAsync<SpeciesRootMutation>(
+                "species",
+                arguments: this._speciesResolver,
+                resolve: ctx => this._speciesResolver.ResolveAsync(ctx, base.DataContext)
             );
         }
     }

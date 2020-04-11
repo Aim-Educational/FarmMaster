@@ -3,15 +3,17 @@ using System;
 using DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(FarmMasterContext))]
-    partial class FarmMasterContextModelSnapshot : ModelSnapshot
+    [Migration("20200411002654_Species")]
+    partial class Species
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -179,7 +181,7 @@ namespace DataAccess.Migrations
                         .HasColumnType("character varying(75)")
                         .HasMaxLength(75);
 
-                    b.Property<int?>("NoteOwnerId")
+                    b.Property<int>("NoteOwnerId")
                         .HasColumnType("integer");
 
                     b.Property<byte[]>("Timestamp")
@@ -214,7 +216,9 @@ namespace DataAccess.Migrations
                 {
                     b.HasOne("DataAccess.NoteOwner", "NoteOwner")
                         .WithMany()
-                        .HasForeignKey("NoteOwnerId");
+                        .HasForeignKey("NoteOwnerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

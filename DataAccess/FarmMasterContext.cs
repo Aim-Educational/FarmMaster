@@ -23,6 +23,9 @@ namespace DataAccess
 
             b.Entity<Contact>()
              .HasOne(c => c.NoteOwner);
+
+            b.Entity<Species>()
+             .HasOne(s => s.NoteOwner);
         }
 
         #region Tables
@@ -31,6 +34,7 @@ namespace DataAccess
         public DbSet<Contact>   Contacts    { get; set; }
         public DbSet<NoteOwner> NoteOwners  { get; set; }
         public DbSet<NoteEntry> NoteEntries { get; set; }
+        public DbSet<Species>   Species     { get; set; }
         #endregion
     }
 

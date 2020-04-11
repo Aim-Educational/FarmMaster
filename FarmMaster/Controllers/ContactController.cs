@@ -13,167 +13,43 @@ using Microsoft.Extensions.Logging;
 
 namespace FarmMaster.Controllers
 {
-    public class ContactController : Controller
+    public class ContactController : CrudController<Contact, IContactManager>
     {
-        readonly IContactManager _contacts;
-        readonly IUnitOfWork     _unitOfWork;
-        readonly ILogger         _logger;
+        // So we don't constantly recreate instances.
+        static readonly CrudControllerConfig CONFIG = new CrudControllerConfig 
+        {
+            DeletePolicy = Permissions.Contact.Delete,
+            ManagePolicy = Permissions.Contact.ManageUI,
+            ReadPolicy   = Permissions.Contact.Read,
+            WritePolicy  = Permissions.Contact.Write
+        };
+
+        protected override CrudControllerConfig Config => CONFIG;
 
         public ContactController(
             IContactManager contacts, 
             IUnitOfWork unitOfWork, 
             ILogger<ContactController> logger
         )
+        : base(contacts, unitOfWork, logger)
         {
-            this._contacts   = contacts;
-            this._unitOfWork = unitOfWork;
-            this._logger     = logger;
         }
 
-        [Authorize(Permissions.Contact.ManageUI)]
-        public IActionResult Index()
+        protected override Contact CreateEntityFromModel(CrudCreateEditViewModel<Contact> model)
         {
-            return View(new ContactIndexViewModel
-            {
-                Contacts = this._contacts.Query() // Effectively a .GetAll
-            });
+            var contact = new Contact();
+            this.UpdateEntityFromModel(model, ref contact);
+
+            return contact;
         }
 
-        [Authorize(Permissions.Contact.Write)]
-        public IActionResult Create()
+        protected override void UpdateEntityFromModel(CrudCreateEditViewModel<Contact> model, ref Contact entity)
         {
-            return View("CreateEdit", new ContactCreateEditViewModel
-            {
-                IsCreate = true
-            });
-        }
-
-        [Authorize(Permissions.Contact.Read)]
-        public async Task<IActionResult> Edit(int? contactId)
-        {
-            var result = await this._contacts.GetByIdAsync(contactId ?? -1);
-            if(!result.Succeeded)
-                return RedirectToAction("Index", new { error = result.GatherErrorMessages().FirstOrDefault() });
-
-            return View("CreateEdit", new ContactCreateEditViewModel
-            {
-                Contact  = result.Value,
-                IsCreate = false
-            });
-        }
-
-        [HttpPost]
-        [Authorize(Permissions.Contact.Write)]
-        public async Task<IActionResult> Create(ContactCreateEditViewModel model)
-        {
-            if(ModelState.IsValid)
-            {
-                // Whitelisting values that the user can provide
-                var contact = new Contact 
-                {
-                    Name  = model.Contact.Name,
-                    Email = model.Contact.Email,
-                    Phone = model.Contact.Phone,
-                    Type  = model.Contact.Type
-                };
-
-                using(var workScope = this._unitOfWork.Begin("Create Contact"))
-                {
-                    var result = await this._contacts.CreateAsync(contact);
-                    if(!result.Succeeded)
-                    {
-                        workScope.Rollback("CreateAsync failed.");
-
-                        foreach(var error in result.GatherErrorMessages())
-                            ModelState.AddModelError(string.Empty, error);
-                        return View("CreateEdit", model);
-                    }
-
-                    contact = result.Value;
-                    workScope.Commit();
-                }
-
-                this._logger.LogInformation(
-                    "Contact {Contact} created by {User}",
-                    contact.Name,
-                    User.FindFirstValue(ClaimTypes.Name)
-                );
-
-                return RedirectToAction("Edit", new { contactId = contact.ContactId });
-            }
-
-            return View("CreateEdit", model);
-        }
-
-        [HttpPost]
-        [Authorize(Permissions.Contact.Write)]
-        public async Task<IActionResult> Edit(ContactCreateEditViewModel model)
-        {
-            if(ModelState.IsValid)
-            {
-                var result = await this._contacts.GetByIdAsync(model.Contact.ContactId);
-                if (!result.Succeeded)
-                    return RedirectToAction("Index", new { error = result.GatherErrorMessages().FirstOrDefault() });
-
-                var dbContact   = result.Value;
-                dbContact.Name  = model.Contact.Name;
-                dbContact.Type  = model.Contact.Type;
-                dbContact.Phone = model.Contact.Phone;
-                dbContact.Email = model.Contact.Email;
-
-                using(var workScope = this._unitOfWork.Begin("Edit Contact"))
-                {
-                    var updateResult = this._contacts.Update(dbContact);
-                    if(!updateResult.Succeeded)
-                    {
-                        workScope.Rollback("CreateAsync failed.");
-
-                        foreach (var error in result.GatherErrorMessages())
-                            ModelState.AddModelError(string.Empty, error);
-                        return View("CreateEdit", model);
-                    }
-
-                    workScope.Commit();
-                }
-
-                this._logger.LogInformation(
-                    "Contact {Contact} updated by {User}",
-                    dbContact.Name,
-                    User.FindFirstValue(ClaimTypes.Name)
-                );
-            }
-
-            return View("CreateEdit", model);
-        }
-
-        [HttpPost]
-        [Authorize(Permissions.Contact.Delete)]
-        public async Task<IActionResult> Delete(int? contactId)
-        {
-            var result = await this._contacts.GetByIdAsync(contactId ?? -1);
-            if (!result.Succeeded)
-                return RedirectToAction("Edit", new { error = result.GatherErrorMessages().FirstOrDefault() });
-
-            using(var workScope = this._unitOfWork.Begin("Delete Contact"))
-            {
-                var deleteResult = this._contacts.Delete(result.Value);
-                if(!deleteResult.Succeeded)
-                {
-                    workScope.Rollback("Delete failed.");
-                    
-                    return RedirectToAction("Edit", new { error = deleteResult.Errors.First() });
-                }
-
-                workScope.Commit();
-            }
-
-            this._logger.LogInformation(
-                "Contact {Contact} deleted by {User}",
-                result.Value.Name,
-                User.FindFirstValue(ClaimTypes.Name)
-            );
-
-            return RedirectToAction("Index");
+            // Whitelisting values that the user can provide
+            entity.Name  = model.Entity.Name;
+            entity.Email = model.Entity.Email;
+            entity.Phone = model.Entity.Phone;
+            entity.Type  = model.Entity.Type;
         }
     }
 }
