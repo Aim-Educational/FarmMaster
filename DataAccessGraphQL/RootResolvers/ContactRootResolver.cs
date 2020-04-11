@@ -29,22 +29,12 @@ namespace DataAccessGraphQL.RootResolvers
             });
         }
 
-        public override async Task<object> ResolveAsync(
+        public override Task<object> ResolveAsync(
             IResolveFieldContext<object> context,
             DataAccessUserContext userContext
         )
         {
-            await userContext.EnforceHasPolicyAsync(Permissions.Contact.Read);
-
-            // ARGS
-            var id = context.GetArgument<int>("id");
-
-            // Find the contact
-            var contact = await this._contacts.GetByIdAsync(id);
-            if(!contact.Succeeded)
-                throw new ExecutionError(contact.GatherErrorMessages().Aggregate((a, b) => $"{a}\n{b}"));
-
-            return contact.Value;
+            return base.ResolveCrudAsync(Permissions.Contact.Read, this._contacts, context, userContext);
         }
 
         public override async Task<IEnumerable<Contact>> ResolvePageAsync(
@@ -59,9 +49,7 @@ namespace DataAccessGraphQL.RootResolvers
             if(order == "id")
                 query = query.OrderBy(c => c.ContactId);
 
-            return query.Include(c => c.NoteOwner)
-                         .ThenInclude(o => o.NoteEntries)
-                        .Skip(after)
+            return query.Skip(after)
                         .Take(first);
         }
     }

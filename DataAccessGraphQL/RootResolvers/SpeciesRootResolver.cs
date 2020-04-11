@@ -29,22 +29,12 @@ namespace DataAccessGraphQL.RootResolvers
             });
         }
 
-        public override async Task<object> ResolveAsync(
+        public override Task<object> ResolveAsync(
             IResolveFieldContext<object> context,
             DataAccessUserContext userContext
         )
         {
-            await userContext.EnforceHasPolicyAsync(Permissions.Species.Read);
-
-            // ARGS
-            var id = context.GetArgument<int>("id");
-
-            // Find the species
-            var species = await this._species.GetByIdAsync(id);
-            if(!species.Succeeded)
-                throw new ExecutionError(species.GatherErrorMessages().Aggregate((a, b) => $"{a}\n{b}"));
-
-            return species.Value;
+            return base.ResolveCrudAsync(Permissions.Species.Read, this._species, context, userContext);
         }
 
         public override async Task<IEnumerable<Species>> ResolvePageAsync(
@@ -59,9 +49,7 @@ namespace DataAccessGraphQL.RootResolvers
             if(order == "id")
                 query = query.OrderBy(c => c.SpeciesId);
 
-            return query.Include(c => c.NoteOwner)
-                         .ThenInclude(o => o.NoteEntries)
-                        .Skip(after)
+            return query.Skip(after)
                         .Take(first);
         }
     }
