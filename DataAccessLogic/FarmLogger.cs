@@ -47,6 +47,16 @@ namespace DataAccessLogic
             if(formatter == null)
                 throw new ArgumentNullException(nameof(formatter));
 
+            string stateJson = "Could not serialize state.";
+            try
+            {
+                stateJson = JsonSerializer.Serialize(state);
+            }
+            catch(InvalidOperationException)
+            {
+                // Getting the weird "Method cannot be called because Type.IsGenericType" error.
+            }
+
             var message = formatter(state, exception);
             var entry = new LogEntry() 
             {
@@ -55,7 +65,7 @@ namespace DataAccessLogic
                 EventId         = eventId.Id,
                 EventName       = eventId.Name,
                 Level           = logLevel,
-                StateJson       = JsonSerializer.Serialize(state),
+                StateJson       = stateJson,
                 Message         = message
             };
 
