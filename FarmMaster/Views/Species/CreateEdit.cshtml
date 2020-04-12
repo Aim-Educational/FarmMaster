@@ -2,9 +2,12 @@
 @{
     Layout = "_LayoutCrudCreateEdit";
 
-    ViewData["EntityName"]         = "Species";
-    ViewData["EntityId"]           = Model.Entity?.SpeciesId ?? -1;
-    ViewData["EntityIdExpression"] = "Model.Entity.SpeciesId";
+    ViewData["LayoutModel"] = new CrudLayoutViewModel 
+    {
+        EntityName         = "Species",
+        EntityId           = Model.Entity?.SpeciesId,
+        EntityIdExpression = "Model.Entity.SpeciesId"
+    };
 
     var action = (Model.IsCreate) ? "Create" : "Edit";
 }

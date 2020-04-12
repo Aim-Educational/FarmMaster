@@ -1,19 +1,11 @@
 ﻿@{
     Layout = "_Layout";
 
-    Action<string> enforceViewDataExists = (string key) => 
-    {
-        if(!ViewData.ContainsKey(key))
-            throw new KeyNotFoundException($"Expected ViewData to contain '{key}'");
-    };
+    var model = (CrudLayoutViewModel)ViewData["LayoutModel"];
 
-    enforceViewDataExists("EntityName");
-    enforceViewDataExists("EntityId");
-    enforceViewDataExists("EntityIdExpression");
-
-    var entityName         = (string)ViewData["EntityName"];
-    var entityId           = (int)ViewData["EntityId"];
-    var entityIdExpression = ((string)ViewData["EntityIdExpression"]).Replace(".", "_");
+    var entityName         = model.EntityName;
+    var entityId           = model.EntityId ?? -1;
+    var entityIdExpression = model.EntityIdExpression.Replace(".", "_");
 
     ViewData["Title"] = $"Create a new {entityName}";
     ViewData["NavName"] = entityName;

@@ -17,4 +17,11 @@ namespace FarmMaster.Models
         public bool IsCreate { get; set; }
         public EntityT Entity { get; set; }
     }
+
+    public class CrudLayoutViewModel
+    {
+        public string EntityName { get; set; }
+        public int? EntityId { get; set; }
+        public string EntityIdExpression { get; set; }
+    }
 }
