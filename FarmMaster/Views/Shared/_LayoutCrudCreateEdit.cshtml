@@ -1,4 +1,26 @@
-﻿@{
+﻿@*
+A Generic layout used for the CreateEdit page for basic CRUD.
+    
+Sections:
+    [Required] MainWindowForm - Insert any additional fields, as well as the submit button here. This is for the main form (see Features).
+    PostMainWindow - Use this to add in any additional windows your CRUD might need.
+    VueScript - Use this to provide any additional data into the main Vue instance for this page.
+
+Features:
+    The toggle and delete buttons are automatically handled.
+
+    The Vue instance is automatically created.
+
+        - There is a 'mode' variable which you can reference in your vue markup to control whether we're in 'edit' or 'view' mode.
+
+    The main form will automatically point to the controller's 'Edit' POST.
+
+    The delete button will automatically point to the controller's 'Delete' POST.
+
+Requirements:
+    Provide a filled out `CrudLayoutViewModel` as `ViewData["LayoutModel"]`
+*@
+@{
     Layout = "_Layout";
 
     var model = (CrudLayoutViewModel)ViewData["LayoutModel"];
