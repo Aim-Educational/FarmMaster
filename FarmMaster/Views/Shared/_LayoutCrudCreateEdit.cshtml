@@ -5,7 +5,7 @@
 
     var entityName         = model.EntityName;
     var entityId           = model.EntityId ?? -1;
-    var entityIdExpression = model.EntityIdExpression.Replace(".", "_");
+    var entityIdExpression = model.EntityIdExpression;
 
     ViewData["Title"] = $"Create a new {entityName}";
     ViewData["NavName"] = entityName;
@@ -47,7 +47,7 @@
             <input type="hidden" name="IsCreate" value="@(Model.IsCreate ? "true" : "false")" />
             <input type="hidden" name="@entityIdExpression" value="@entityId" />
 
-            @RenderSection("MainWindow", true)
+            @RenderSection("MainWindowForm", true)
         </form>
     </window>
 

@@ -6,30 +6,27 @@
     {
         EntityName         = "Species",
         EntityId           = Model.Entity?.SpeciesId,
-        EntityIdExpression = "Model.Entity.SpeciesId"
+        EntityIdExpression = "Entity.SpeciesId"
     };
 
     var action = (Model.IsCreate) ? "Create" : "Edit";
 }
 
-@section MainWindow {
-    <form method="post" asp-action="@action">
-        <input type="hidden" asp-for="IsCreate" />
-        <input type="hidden" asp-for="Entity.SpeciesId" value="@(Model.Entity?.SpeciesId ?? -1)" />
-        <div class="input-wrapper inline">
-            <label>Name</label>
-            <textbox :mode="mode" asp-for="Entity.Name" placeholder="Name" required />
-        </div>
-        <div class="input-wrapper inline">
-            <label>Gestration (Days)</label>
-            <textbox type="number" :mode="mode" asp-for="Entity.GestrationPeriod" timespan="Days"></textbox>
-        </div>
-        <alert type="error" fm-model-error="true"></alert>
-        <button class="top margined blue fluid"
-                v-if="mode === 'edit'">
-            @action Species
-        </button>
-    </form>
+@section MainWindowForm {
+    <input type="hidden" asp-for="Entity.SpeciesId" value="@(Model.Entity?.SpeciesId ?? -1)" />
+    <div class="input-wrapper inline">
+        <label>Name</label>
+        <textbox :mode="mode" asp-for="Entity.Name" placeholder="Name" required />
+    </div>
+    <div class="input-wrapper inline">
+        <label>Gestration (Days)</label>
+        <textbox type="number" :mode="mode" asp-for="Entity.GestrationPeriod" timespan="Days"></textbox>
+    </div>
+    <alert type="error" fm-model-error="true"></alert>
+    <button class="top margined blue fluid"
+            v-if="mode === 'edit'">
+        @action Species
+    </button>
 }
 
 @section PostMainWindow {
