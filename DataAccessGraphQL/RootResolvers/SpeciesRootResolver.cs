@@ -37,7 +37,7 @@ namespace DataAccessGraphQL.RootResolvers
             return base.ResolveCrudAsync(Permissions.Species.Read, this._species, context, userContext);
         }
 
-        public override async Task<IEnumerable<Species>> ResolvePageAsync(
+        public override Task<IEnumerable<Species>> ResolvePageAsync(
             DataAccessUserContext userContext, 
             int first, 
             int after, 
@@ -49,8 +49,11 @@ namespace DataAccessGraphQL.RootResolvers
             if(order == "id")
                 query = query.OrderBy(c => c.SpeciesId);
 
-            return query.Skip(after)
-                        .Take(first);
+            return Task.FromResult(
+                        query.Skip(after)
+                             .Take(first)
+                             .AsEnumerable()
+            );
         }
     }
 }

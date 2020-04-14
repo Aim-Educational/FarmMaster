@@ -52,6 +52,7 @@ namespace FarmMaster.Controllers
             });
         }
 
+        #pragma warning disable MVC1004 // idk, It doesn't like it when I call parameters "users".
         [Authorize(Policy = Permissions.Other.Settings)]
         public async Task<IActionResult> TestEmail(
             [FromServices] ITemplatedEmailSender email, 

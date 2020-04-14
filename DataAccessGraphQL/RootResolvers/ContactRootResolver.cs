@@ -37,7 +37,7 @@ namespace DataAccessGraphQL.RootResolvers
             return base.ResolveCrudAsync(Permissions.Contact.Read, this._contacts, context, userContext);
         }
 
-        public override async Task<IEnumerable<Contact>> ResolvePageAsync(
+        public override Task<IEnumerable<Contact>> ResolvePageAsync(
             DataAccessUserContext userContext, 
             int first, 
             int after, 
@@ -49,8 +49,11 @@ namespace DataAccessGraphQL.RootResolvers
             if(order == "id")
                 query = query.OrderBy(c => c.ContactId);
 
-            return query.Skip(after)
-                        .Take(first);
+            return Task.FromResult(
+                        query.Skip(after)
+                             .Take(first)
+                             .AsEnumerable()
+            );
         }
     }
 }
