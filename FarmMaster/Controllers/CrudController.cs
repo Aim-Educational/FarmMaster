@@ -121,7 +121,7 @@ namespace FarmMaster.Controllers
 
             return View("Index", new CrudIndexViewModel<EntityT>
             {
-                Entities = this.Crud.Query() // Effectively a .GetAll
+                Entities = this.Crud.IncludeAll(this.Crud.Query()) // Effectively a .GetAll
             });
         }
 

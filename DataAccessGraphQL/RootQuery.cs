@@ -25,6 +25,7 @@ namespace DataAccessGraphQL
         readonly RootResolver<DataAccessUserContext> _userResolver;
         readonly RootResolver<Contact>               _contactResolver;
         readonly RootResolver<Species>               _speciesResolver;
+        readonly RootResolver<Breed>                 _breedResolver;
 
         public DataAccessRootQuery(
             // Required for RootBase
@@ -38,17 +39,20 @@ namespace DataAccessGraphQL
             // Custom
             RootResolver<DataAccessUserContext> userResolver,
             RootResolver<Contact>               contactResolver,
-            RootResolver<Species>               speciesResolver
+            RootResolver<Species>               speciesResolver,
+            RootResolver<Breed>                 breedResolver
         ) : base(context, users, accessor, fmDb, idDb, auth)
         {
             this._userResolver    = userResolver;
             this._contactResolver = contactResolver;
             this._speciesResolver = speciesResolver;
+            this._breedResolver   = breedResolver;
 
             this.AddUserQuery();
             this.AddPermissionsQuery();
             this.AddContactQuery();
             this.AddSpeciesQuery();
+            this.AddBreedQuery();
         }
 
         private void DefineSingleAndConnection<TGraphType, TSourceType>(string name, RootResolver<TSourceType> resolver)
@@ -94,6 +98,11 @@ namespace DataAccessGraphQL
         private void AddSpeciesQuery()
         {
             this.DefineSingleAndConnection<SpeciesGraphType, Species>("species", this._speciesResolver);
+        }
+
+        private void AddBreedQuery()
+        {
+            this.DefineSingleAndConnection<BreedGraphType, Breed>("breed", this._breedResolver);
         }
     }
 }

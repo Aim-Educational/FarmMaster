@@ -13,6 +13,18 @@ namespace DataAccessLogic
     where EntityT : class
     {
         Task<ValueResultObject<EntityT>> CreateAsync(EntityT entity);
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// Implementors should implicitly use <see cref="IncludeAll(IQueryable{EntityT})"/> for this function.
+        /// 
+        /// Either provide a specialised function(s), or direct the user to <see cref="Query"/> if the performance
+        /// hit is too much for certain cases.
+        /// </remarks>
+        /// <param name="id"></param>
+        /// <returns></returns>
         Task<ValueResultObject<EntityT>> GetByIdAsync(int id);
         ResultObject Update(EntityT entity);
         ResultObject Delete(EntityT entity);
@@ -85,13 +97,13 @@ namespace DataAccessLogic
         public ResultObject Update(EntityT entity)
         {
             this.DbContext.Update(entity);
-            return ResultObject.Ok();
+            return ResultObject.Ok;
         }
 
         public ResultObject Delete(EntityT entity)
         {
             this.DbContext.Remove(entity);
-            return ResultObject.Ok();
+            return ResultObject.Ok;
         }
 
         public IQueryable<EntityT> Query()

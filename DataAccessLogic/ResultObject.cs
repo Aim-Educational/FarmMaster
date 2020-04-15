@@ -20,17 +20,20 @@ namespace DataAccessLogic
             this.Exceptions = new List<Exception>();
         }
 
-        public static ResultObject Ok()
+        public static ResultObject Ok
         {
-            if(_okInstance == null)
+            get 
             {
-                _okInstance = new ResultObject()
+                if(_okInstance == null)
                 {
-                    Succeeded = true
-                };
-            }
+                    _okInstance = new ResultObject()
+                    {
+                        Succeeded = true
+                    };
+                }
 
-            return _okInstance;
+                return _okInstance;
+            }
         }
 
         public IEnumerable<string> GatherErrorMessages()

@@ -112,7 +112,8 @@
                         shown: true,
                         items: {
                             contacts: { shown: @checkPolicy(Permissions.Contact.ManageUI), icon: null, href: "/Contact" },
-                            species:  { shown: @checkPolicy(Permissions.Species.ManageUI), icon: null, href: "/Species" }
+                            species:  { shown: @checkPolicy(Permissions.Species.ManageUI), icon: null, href: "/Species" },
+                            breeds:   { shown: @checkPolicy(Permissions.Breed.ManageUI),   icon: null, href: "/Breed"   }
                         }
                     },
                     admin: {

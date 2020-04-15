@@ -1,0 +1,79 @@
+﻿@model CrudCreateEditViewModel<Breed>
+@{
+    Layout = "_LayoutCrudCreateEdit";
+
+    ViewData["LayoutModel"] = new CrudLayoutViewModel 
+    {
+        EntityName         = "Breed",
+        EntityId           = Model.Entity?.BreedId,
+        EntityIdExpression = "Entity.BreedId"
+    };
+
+    var action = (Model.IsCreate) ? "Create" : "Edit";
+}
+
+@section MainWindowForm {
+    <input type="hidden" asp-for="Entity.BreedId" value="@(Model.Entity?.BreedId ?? -1)" />
+    <div class="input-wrapper inline">
+        <label>Name</label>
+        <textbox :mode="mode" asp-for="Entity.Name" placeholder="Name" required />
+    </div>
+    <div class="input-wrapper inline">
+        <label>Species</label>
+        <vue-multiselect v-model="selectedSpecies"
+                         track-by="name"
+                         label="name"
+                         placeholder="Select species"
+                         :allow-empty="false"
+                         :options="speciesList"
+                         :preselect-first="true"
+                         required>
+        </vue-multiselect>
+        <input type="hidden" asp-for="Entity.SpeciesId" :value="selectedSpecies.id" />
+        <input type="hidden" asp-for="Entity.Species.Name" /> <!--Read only anyway-->
+    </div>
+    <alert type="error" fm-model-error="true"></alert>
+    <button class="top margined blue fluid"
+            v-if="mode === 'edit'">
+        @action Breed
+    </button>
+}
+
+@section PostMainWindow {
+    @if (!Model.IsCreate)
+    {
+        <window title="Notes">
+            <notes :mode="mode"
+                   parent-type="breed"
+                   :parent-id="Number('@Model.Entity.BreedId')">
+            </notes>
+        </window>
+    }
+}
+
+@section VueScript {
+    data: {
+        selectedSpecies: {
+            id: @(Model.Entity?.SpeciesId ?? -1),
+            name: "@Model.Entity?.Species.Name"
+        },
+        speciesList: []
+    },
+
+    mounted() {
+        libs.Ajax.graphql(`
+            query GetSpecies {
+                specieses {
+                    items {
+                        id
+                        name
+                    }
+                }
+            }
+      `)
+      .then(data => {
+          this.speciesList = data.specieses.items;
+      })
+      .catch(e => console.log(e));
+    }
+}

@@ -5,24 +5,22 @@ using System.Text;
 
 namespace DataAccess
 {
-    public class Species
+    public class Breed
     {
-        public const int MAX_NAME_LENGTH = 75;
+        public const int MAX_NAME_LENGTH = Species.MAX_NAME_LENGTH;
 
         [Key]
-        public int SpeciesId { get; set; }
+        public int BreedId { get; set; }
 
-        [Required]
         [StringLength(MAX_NAME_LENGTH)]
         public string Name { get; set; }
 
         [Required]
-        public TimeSpan GestrationPeriod { get; set; }
+        public int? SpeciesId { get; set; }
+        public Species Species { get; set; }
 
         public int? NoteOwnerId { get; set; }
         public NoteOwner NoteOwner { get; set; }
-
-        public ICollection<Breed> Breeds { get; set; }
 
         [Timestamp]
         public byte[] Timestamp { get; set; }

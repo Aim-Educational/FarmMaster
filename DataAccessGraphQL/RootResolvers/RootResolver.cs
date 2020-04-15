@@ -59,7 +59,7 @@ namespace DataAccessGraphQL.RootResolvers
             // ARGS
             var id = context.GetArgument<int>(idParamName);
 
-            // Find the species
+            // Find the entity
             var entity = await crud.GetByIdAsync(id);
             if (!entity.Succeeded)
                 throw new ExecutionError(entity.GatherErrorMessages().Aggregate((a, b) => $"{a}\n{b}"));

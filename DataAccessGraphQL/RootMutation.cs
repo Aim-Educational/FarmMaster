@@ -21,6 +21,7 @@ namespace DataAccessGraphQL
         readonly RootResolver<DataAccessUserContext> _userResolver;
         readonly RootResolver<Contact>               _contactResolver;
         readonly RootResolver<Species>               _speciesResolver;
+        readonly RootResolver<Breed>                 _breedResolver;
 
         public DataAccessRootMutation(
             IHttpContextAccessor         context, 
@@ -32,16 +33,19 @@ namespace DataAccessGraphQL
             
             RootResolver<DataAccessUserContext> userResolver,
             RootResolver<Contact>               contactResolver,
-            RootResolver<Species>               speciesResolver
+            RootResolver<Species>               speciesResolver,
+            RootResolver<Breed>                 breedResolver
         ) : base(context, users, accessor, fmDb, idDb, auth)
         {
             this._userResolver    = userResolver;
             this._contactResolver = contactResolver;
             this._speciesResolver = speciesResolver;
+            this._breedResolver   = breedResolver;
 
             this.AddUserMutation();
             this.AddContactMutation();
             this.AddSpeciesMutation();
+            this.AddBreedMutation();
         }
 
         private void AddUserMutation()
@@ -68,6 +72,15 @@ namespace DataAccessGraphQL
                 "species",
                 arguments: this._speciesResolver,
                 resolve: ctx => this._speciesResolver.ResolveAsync(ctx, base.DataContext)
+            );
+        }
+
+        private void AddBreedMutation()
+        {
+            FieldAsync<BreedRootMutation>(
+                "breed",
+                arguments: this._breedResolver,
+                resolve: ctx => this._breedResolver.ResolveAsync(ctx, base.DataContext)
             );
         }
     }

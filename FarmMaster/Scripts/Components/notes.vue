@@ -84,6 +84,12 @@ const queries = {
         query: genericQuery("species"),
         add: genericAdd("species"),
         delete: genericDelete("species")
+    },
+
+    breed: {
+        query: genericQuery("breed"),
+        add: genericAdd("breed"),
+        delete: genericDelete("breed")
     }
 };
 
@@ -127,15 +133,7 @@ export default {
         },
 
         selectNotesFromQuery(data) {
-            switch(this.parentType) {
-                case "contact":
-                    return data.contact.notes;
-
-                case "species":
-                    return data.species.notes;
-
-                default: throw "notes.vue:methods:selectNotesFromQuery -> Can't handle type " + this.parentType;
-            }
+            return data[this.parentType].notes;
         },
         
         onCreateNote() {

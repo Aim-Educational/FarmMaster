@@ -35,6 +35,15 @@ namespace DataAccess
 
             b.Entity<Species>()
              .HasOne(s => s.NoteOwner);
+            b.Entity<Species>()
+             .HasMany(s => s.Breeds)
+             .WithOne(br => br.Species)
+             .OnDelete(DeleteBehavior.Restrict);
+
+            b.Entity<Breed>()
+             .HasOne(br => br.NoteOwner)
+             .WithMany()
+             .OnDelete(DeleteBehavior.Cascade);
         }
 
         #region Tables
@@ -44,6 +53,7 @@ namespace DataAccess
         public DbSet<NoteOwner> NoteOwners  { get; set; }
         public DbSet<NoteEntry> NoteEntries { get; set; }
         public DbSet<Species>   Species     { get; set; }
+        public DbSet<Breed>     Breeds      { get; set; }
         #endregion
     }
 

@@ -20,9 +20,9 @@
     <div class="input-wrapper inline">
         <label>Type</label>
         <vue-multiselect :options="['@nameof(ContactType.Individual)', '@nameof(ContactType.BusinessEntity)']"
-                            :disabled="mode === 'view'"
-                            v-model="typeValue"
-                            required>
+                         :disabled="mode === 'view'"
+                         v-model="typeValue"
+                         required>
         </vue-multiselect>
         <input type="hidden" asp-for="Entity.Type" :value="typeValue" />
     </div>

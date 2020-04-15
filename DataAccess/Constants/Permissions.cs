@@ -45,6 +45,16 @@ namespace DataAccess.Constants
             public const string Delete      = "species.delete";
         }
 
+        public static class Breed
+        {
+            public const string ReadNotes   = "breed.notes.read";
+            public const string WriteNotes  = "breed.notes.write";
+            public const string ManageUI    = "breed.manage.ui";
+            public const string Read        = "breed.read";
+            public const string Write       = "breed.write";
+            public const string Delete      = "breed.delete";
+        }
+
         public static readonly string[] AllPermissions = new[] 
         {
             Contact.ReadNotes,
@@ -60,6 +70,13 @@ namespace DataAccess.Constants
             Species.Read,
             Species.Write,
             Species.Delete,
+
+            Breed.ReadNotes,
+            Breed.WriteNotes,
+            Breed.ManageUI,
+            Breed.Read,
+            Breed.Write,
+            Breed.Delete,
 
             User.ReadPermissions,
             User.WritePermissions,
