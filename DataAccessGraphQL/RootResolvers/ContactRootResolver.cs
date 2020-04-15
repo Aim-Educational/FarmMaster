@@ -14,46 +14,24 @@ using System.Threading.Tasks;
 
 namespace DataAccessGraphQL.RootResolvers
 {
-    public class ContactRootResolver : RootResolver<Contact>
+    public class ContactRootResolver : CrudRootResolver<Contact>
     {
-        readonly IContactManager _contacts;
-
-        public ContactRootResolver(IContactManager contacts)
+        static readonly CrudRootResolverConfig CONFIG_INSTANCE = new CrudRootResolverConfig
         {
-            this._contacts = contacts;
+            ReadPolicy = Permissions.Contact.Read
+        };
+        protected override CrudRootResolverConfig Config => CONFIG_INSTANCE;
 
-            base.Add(new QueryArgument<NonNullGraphType<IdGraphType>>
-            {
-                Name = "id",
-                Description = "Get a contact by their ID"
-            });
+        public ContactRootResolver(IContactManager contacts) : base(contacts)
+        {
         }
 
-        public override Task<object> ResolveAsync(
-            IResolveFieldContext<object> context,
-            DataAccessUserContext userContext
-        )
+        protected override IQueryable<Contact> OrderPageQuery(IQueryable<Contact> query, string order)
         {
-            return base.ResolveCrudAsync(Permissions.Contact.Read, this._contacts, context, userContext);
-        }
-
-        public override Task<IEnumerable<Contact>> ResolvePageAsync(
-            DataAccessUserContext userContext, 
-            int first, 
-            int after, 
-            string order
-        )
-        {
-            // The dynamic ordering is a bit too annoying to express with Managers, so we're accessing .Query
-            var query = this._contacts.IncludeAll(this._contacts.Query());
             if(order == "id")
                 query = query.OrderBy(c => c.ContactId);
 
-            return Task.FromResult(
-                        query.Skip(after)
-                             .Take(first)
-                             .AsEnumerable()
-            );
+            return query;
         }
     }
 }

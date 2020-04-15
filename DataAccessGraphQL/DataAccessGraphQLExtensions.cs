@@ -36,6 +36,11 @@ namespace DataAccessGraphQL
                 // Otherwise register it as the resolver's type.
 
                 var baseType = resolver.BaseType;
+
+                // Rewrite CrudRootResolver<T> -> RootResolver<T>
+                if(baseType.GetGenericTypeDefinition() == typeof(CrudRootResolver<>))
+                    baseType = typeof(RootResolver<>).MakeGenericType(baseType.GetGenericArguments().First());
+
                 if(baseType.GetGenericTypeDefinition() != typeof(RootResolver<>))
                 {
                     services.AddScoped(resolver);

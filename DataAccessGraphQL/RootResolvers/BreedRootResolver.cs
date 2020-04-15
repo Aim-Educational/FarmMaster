@@ -14,46 +14,24 @@ using System.Threading.Tasks;
 
 namespace DataAccessGraphQL.RootResolvers
 {
-    public class BreedRootResolver : RootResolver<Breed>
+    public class BreedRootResolver : CrudRootResolver<Breed>
     {
-        readonly IBreedManager _breeds;
-
-        public BreedRootResolver(IBreedManager breeds)
+        static readonly CrudRootResolverConfig CONFIG_INSTANCE = new CrudRootResolverConfig 
         {
-            this._breeds = breeds;
+            ReadPolicy = Permissions.Breed.Read
+        };
+        protected override CrudRootResolverConfig Config => CONFIG_INSTANCE;
 
-            base.Add(new QueryArgument<NonNullGraphType<IdGraphType>>
-            {
-                Name = "id",
-                Description = "Get a breed by their ID"
-            });
+        public BreedRootResolver(IBreedManager breeds) : base(breeds)
+        {
         }
 
-        public override Task<object> ResolveAsync(
-            IResolveFieldContext<object> context,
-            DataAccessUserContext userContext
-        )
+        protected override IQueryable<Breed> OrderPageQuery(IQueryable<Breed> query, string order)
         {
-            return base.ResolveCrudAsync(Permissions.Breed.Read, this._breeds, context, userContext);
-        }
-
-        public override Task<IEnumerable<Breed>> ResolvePageAsync(
-            DataAccessUserContext userContext, 
-            int first, 
-            int after, 
-            string order
-        )
-        {
-            // The dynamic ordering is a bit too annoying to express with Managers, so we're accessing .Query
-            var query = this._breeds.IncludeAll(this._breeds.Query());
             if(order == "id")
-                query = query.OrderBy(c => c.BreedId);
+                query = query.OrderBy(b => b.BreedId);
 
-            return Task.FromResult(
-                        query.Skip(after)
-                             .Take(first)
-                             .AsEnumerable()
-            );
+            return query;
         }
     }
 }

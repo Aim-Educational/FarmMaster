@@ -14,46 +14,25 @@ using System.Threading.Tasks;
 
 namespace DataAccessGraphQL.RootResolvers
 {
-    public class SpeciesRootResolver : RootResolver<Species>
+    public class SpeciesRootResolver : CrudRootResolver<Species>
     {
-        readonly ISpeciesManager _species;
-
-        public SpeciesRootResolver(ISpeciesManager species)
+        // So we don't constantly create the object.
+        static readonly CrudRootResolverConfig CONFIG_INSTANCE = new CrudRootResolverConfig() 
         {
-            this._species = species;
+            ReadPolicy = Permissions.Species.Read
+        };
+        protected override CrudRootResolverConfig Config => CONFIG_INSTANCE;
 
-            base.Add(new QueryArgument<NonNullGraphType<IdGraphType>>
-            {
-                Name = "id",
-                Description = "Get a species by their ID"
-            });
+        public SpeciesRootResolver(ISpeciesManager species) : base(species)
+        {
         }
 
-        public override Task<object> ResolveAsync(
-            IResolveFieldContext<object> context,
-            DataAccessUserContext userContext
-        )
+        protected override IQueryable<Species> OrderPageQuery(IQueryable<Species> query, string order)
         {
-            return base.ResolveCrudAsync(Permissions.Species.Read, this._species, context, userContext);
-        }
-
-        public override Task<IEnumerable<Species>> ResolvePageAsync(
-            DataAccessUserContext userContext, 
-            int first, 
-            int after, 
-            string order
-        )
-        {
-            // The dynamic ordering is a bit too annoying to express with Managers, so we're accessing .Query
-            var query = this._species.IncludeAll(this._species.Query());
             if(order == "id")
-                query = query.OrderBy(c => c.SpeciesId);
+                query = query.OrderBy(s => s.SpeciesId);
 
-            return Task.FromResult(
-                        query.Skip(after)
-                             .Take(first)
-                             .AsEnumerable()
-            );
+            return query;
         }
     }
 }
