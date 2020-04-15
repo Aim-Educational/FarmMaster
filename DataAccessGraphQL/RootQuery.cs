@@ -48,11 +48,12 @@ namespace DataAccessGraphQL
             this._speciesResolver = speciesResolver;
             this._breedResolver   = breedResolver;
 
-            this.AddUserQuery();
             this.AddPermissionsQuery();
-            this.AddContactQuery();
-            this.AddSpeciesQuery();
-            this.AddBreedQuery();
+            
+            this.DefineSingleAndConnection<UserGraphType,    DataAccessUserContext>("user",    this._userResolver);
+            this.DefineSingleAndConnection<ContactGraphType, Contact>              ("contact", this._contactResolver);
+            this.DefineSingleAndConnection<BreedGraphType,   Breed>                ("breed",   this._breedResolver);
+            this.DefineSingleAndConnection<SpeciesGraphType, Species>              ("species", this._speciesResolver);
         }
 
         private void DefineSingleAndConnection<TGraphType, TSourceType>(string name, RootResolver<TSourceType> resolver)
@@ -76,11 +77,6 @@ namespace DataAccessGraphQL
             );
         }
 
-        private void AddUserQuery()
-        {
-            this.DefineSingleAndConnection<UserGraphType, DataAccessUserContext>("user", this._userResolver);
-        }
-
         private void AddPermissionsQuery()
         {
             Field<ListGraphType<StringGraphType>>(
@@ -88,21 +84,6 @@ namespace DataAccessGraphQL
                 "All permissions accepted by GraphQL.",
                 resolve: ctx => Permissions.AllPermissions
             );
-        }
-
-        private void AddContactQuery()
-        {
-            this.DefineSingleAndConnection<ContactGraphType, Contact>("contact", this._contactResolver);
-        }
-
-        private void AddSpeciesQuery()
-        {
-            this.DefineSingleAndConnection<SpeciesGraphType, Species>("species", this._speciesResolver);
-        }
-
-        private void AddBreedQuery()
-        {
-            this.DefineSingleAndConnection<BreedGraphType, Breed>("breed", this._breedResolver);
         }
     }
 }
