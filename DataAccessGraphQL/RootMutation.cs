@@ -44,8 +44,8 @@ namespace DataAccessGraphQL
 
             this.AddGenericMutationAsync<UserRootMutation,    DataAccessUserContext>("user",    this._userResolver);
             this.AddGenericMutationAsync<ContactRootMutation, Contact>              ("contact", this._contactResolver);
-            this.AddGenericMutationAsync<BreedRootMutation,   Breed>                ("user",    this._breedResolver);
-            this.AddGenericMutationAsync<SpeciesRootMutation, Species>              ("user",    this._speciesResolver);
+            this.AddGenericMutationAsync<BreedRootMutation,   Breed>                ("breed",   this._breedResolver);
+            this.AddGenericMutationAsync<SpeciesRootMutation, Species>              ("species", this._speciesResolver);
         }
 
         private void AddGenericMutationAsync<TMutation, TResolverSource>(
