@@ -42,45 +42,23 @@ namespace DataAccessGraphQL
             this._speciesResolver = speciesResolver;
             this._breedResolver   = breedResolver;
 
-            this.AddUserMutation();
-            this.AddContactMutation();
-            this.AddSpeciesMutation();
-            this.AddBreedMutation();
+            this.AddGenericMutationAsync<UserRootMutation,    DataAccessUserContext>("user",    this._userResolver);
+            this.AddGenericMutationAsync<ContactRootMutation, Contact>              ("contact", this._contactResolver);
+            this.AddGenericMutationAsync<BreedRootMutation,   Breed>                ("user",    this._breedResolver);
+            this.AddGenericMutationAsync<SpeciesRootMutation, Species>              ("user",    this._speciesResolver);
         }
 
-        private void AddUserMutation()
+        private void AddGenericMutationAsync<TMutation, TResolverSource>(
+            string name,
+            RootResolver<TResolverSource> resolver
+        )
+        where TMutation : GraphType
+        where TResolverSource : class
         {
-            FieldAsync<UserRootMutation>(
-                "user", 
-                arguments: this._userResolver, 
-                resolve: ctx => this._userResolver.ResolveAsync(ctx, base.DataContext)
-            );
-        }
-
-        private void AddContactMutation()
-        {
-            FieldAsync<ContactRootMutation>(
-                "contact",
-                arguments: this._contactResolver,
-                resolve: ctx => this._contactResolver.ResolveAsync(ctx, base.DataContext)
-            );
-        }
-
-        private void AddSpeciesMutation()
-        {
-            FieldAsync<SpeciesRootMutation>(
-                "species",
-                arguments: this._speciesResolver,
-                resolve: ctx => this._speciesResolver.ResolveAsync(ctx, base.DataContext)
-            );
-        }
-
-        private void AddBreedMutation()
-        {
-            FieldAsync<BreedRootMutation>(
-                "breed",
-                arguments: this._breedResolver,
-                resolve: ctx => this._breedResolver.ResolveAsync(ctx, base.DataContext)
+            FieldAsync<TMutation>(
+                name,
+                arguments: resolver,
+                resolve: ctx => resolver.ResolveAsync(ctx, base.DataContext)
             );
         }
     }
