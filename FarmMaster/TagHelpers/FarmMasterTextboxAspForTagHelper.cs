@@ -15,7 +15,7 @@ namespace FarmMaster.TagHelpers
     }
 
     [HtmlTargetElement("textbox", Attributes = "asp-for")]
-    public class FarmMasterModelTagHelper : TagHelper
+    public class FarmMasterTextboxAspForTagHelper : TagHelper
     {
         public ModelExpression AspFor { get; set; }
 
