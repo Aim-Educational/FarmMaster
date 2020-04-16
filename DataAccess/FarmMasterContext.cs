@@ -83,7 +83,7 @@ namespace DataAccess
                 foreach(var breed in breeds)
                     breed.SpeciesId = id;
 
-                return new DataAccess.Species 
+                return new Species 
                 {
                     SpeciesId = id,
                     Name = name,
