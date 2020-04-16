@@ -31,7 +31,7 @@
                     @foreach(var breed in Model.Entities)
                     {
                         @:{ name: { value: "@breed.Name", href: "@Url.Action("Edit", "Breed", new { id = breed.BreedId})" },
-                        @:  species: "@breed.Species.Name"
+                        @:  speciesName: { value: "@breed.Species.Name", href: "@Url.Action("Edit", "Species", new { id = breed.SpeciesId })" }
                         @:},
                     }
                 ]
