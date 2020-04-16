@@ -123,15 +123,6 @@ namespace DataAccess
                 })
             };
 
-            foreach(var species in speciesList)
-            {
-                Console.WriteLine(species.SpeciesId);
-                foreach(var breed in species.Breeds)
-                {
-                    Console.WriteLine($"{species.SpeciesId} {breed.SpeciesId} {breed.BreedId}");
-                }
-            }
-
             // Ensure we don't have duplicate ids
             var speciesIndexSet = new HashSet<int>();
             var breedIndexSet   = new HashSet<int>();
