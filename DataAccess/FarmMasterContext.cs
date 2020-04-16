@@ -71,61 +71,92 @@ namespace DataAccess
 
         void SeedSpeciesBreeds(ModelBuilder b)
         {
-            // So we don't have a chance in hell to overwrite user-made species/breeds.
+            // So we have no chance in hell of overwriting user-made species/breeds.
             const int BASE_ID = int.MaxValue - 100_000;
 
-            // Id will be added onto BASE_ID
-            var speciesList = new List
-            <
-                (int id, string name, int gestrationDays, (int id, string name)[] breeds)
-            >()
+            Func<int, string, int, ICollection<Breed>, Species> makeSpecies = (id, name, gestrationDays, breeds) => 
             {
-                (1, "Cow", 283, new[]
-                { 
-                    (1,  "English Longhorn"),
-                    (2,  "Red Poll"),
-                    (3,  "White Park"),
-                    (4,  "Hereford"),
-                    (5,  "Highland"),
-                    (6,  "Aryshire"),
-                    (7,  "Aberdeen Angus"),
-                    (8,  "South Devon"),
-                    (9,  "British White"),
-                    (10, "Belted Galloway")
+                // For some very, very strange reason, if we don't use ID 1 for Species we get a weird error from ef-add-migration.
+                if(id != 1)
+                    id += BASE_ID;
+                
+                foreach(var breed in breeds)
+                    breed.SpeciesId = id;
+
+                return new DataAccess.Species 
+                {
+                    SpeciesId = id,
+                    Name = name,
+                    GestrationPeriod = TimeSpan.FromDays(gestrationDays),
+                    Breeds = breeds,
+                    NoteOwnerId = null,
+                    NoteOwner = null
+                };
+            };
+
+            Func<int, string, Breed> makeBreed = (id, name) => 
+            {
+                id += BASE_ID;
+                return new Breed 
+                {
+                    BreedId = id,
+                    Name = name,
+                    NoteOwnerId = null,
+                    NoteOwner = null
+                };
+            };
+
+            var speciesList = new List<Species>()
+            {
+                makeSpecies(1, "Cow", 283, new List<Breed>
+                {
+                    makeBreed(1,  "English Longhorn"),
+                    makeBreed(2,  "Red Poll"),
+                    makeBreed(3,  "White Park"),
+                    makeBreed(4,  "Hereford"),
+                    makeBreed(5,  "Highland"),
+                    makeBreed(6,  "Aryshire"),
+                    makeBreed(7,  "Aberdeen Angus"),
+                    makeBreed(8,  "South Devon"),
+                    makeBreed(9,  "British White"),
+                    makeBreed(10, "Belted Galloway")
                 })
             };
+
+            foreach(var species in speciesList)
+            {
+                Console.WriteLine(species.SpeciesId);
+                foreach(var breed in species.Breeds)
+                {
+                    Console.WriteLine($"{species.SpeciesId} {breed.SpeciesId} {breed.BreedId}");
+                }
+            }
 
             // Ensure we don't have duplicate ids
             var speciesIndexSet = new HashSet<int>();
             var breedIndexSet   = new HashSet<int>();
             foreach(var species in speciesList)
             {
-                foreach(var breed in species.breeds)
+                foreach(var breed in species.Breeds)
                 {
-                    if(!breedIndexSet.Add(breed.id))
-                        throw new InvalidOperationException($"Breed {breed.name} of Species {species.name} has duplicate ID of {breed.id}");
+                    if(!breedIndexSet.Add(breed.BreedId))
+                        throw new InvalidOperationException($"Breed {breed.Name} of Species {species.Name} has duplicate ID of {breed.BreedId}");
                 }
 
-                if(!speciesIndexSet.Add(species.id))
-                    throw new InvalidOperationException($"Species {species.name} has duplicate ID of {species.id}");
+                if(!speciesIndexSet.Add(species.SpeciesId))
+                    throw new InvalidOperationException($"Species {species.Name} has duplicate ID of {species.SpeciesId}");
             }
 
             // Seed all the data.
-            b.Entity<Species>()
-            .HasData(
-                speciesList
-                .Select(s => new Species { SpeciesId = s.id, Name = s.name, GestrationPeriod = TimeSpan.FromDays(s.gestrationDays) })
-            );
+            foreach(var species in speciesList)
+            {
+                // EF doesn't like us using navigation collections when seeding, so we need to set it to null first.
+                var breeds = species.Breeds;
+                species.Breeds = null;
 
-            b.Entity<Breed>()
-            .HasData(
-                speciesList
-                .SelectMany(s => 
-                    s
-                    .breeds
-                    .Select(br => new Breed { BreedId = br.id, SpeciesId = s.id, Name = br.name })
-                )
-            );
+                b.Entity<Species>().HasData(species);
+                b.Entity<Breed>().HasData(breeds);
+            }
         }
         #endregion
     }

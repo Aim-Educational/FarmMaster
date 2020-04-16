@@ -3,15 +3,17 @@ using System;
 using DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(FarmMasterContext))]
-    partial class FarmMasterContextModelSnapshot : ModelSnapshot
+    [Migration("20200416082233_SpeciesBreedSeedIdFix")]
+    partial class SpeciesBreedSeedIdFix
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -53,61 +55,61 @@ namespace DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            BreedId = 2147383648,
+                            BreedId = 2,
                             Name = "English Longhorn",
                             SpeciesId = 1
                         },
                         new
                         {
-                            BreedId = 2147383649,
+                            BreedId = 3,
                             Name = "Red Poll",
                             SpeciesId = 1
                         },
                         new
                         {
-                            BreedId = 2147383650,
+                            BreedId = 4,
                             Name = "White Park",
                             SpeciesId = 1
                         },
                         new
                         {
-                            BreedId = 2147383651,
+                            BreedId = 5,
                             Name = "Hereford",
                             SpeciesId = 1
                         },
                         new
                         {
-                            BreedId = 2147383652,
+                            BreedId = 6,
                             Name = "Highland",
                             SpeciesId = 1
                         },
                         new
                         {
-                            BreedId = 2147383653,
+                            BreedId = 7,
                             Name = "Aryshire",
                             SpeciesId = 1
                         },
                         new
                         {
-                            BreedId = 2147383654,
+                            BreedId = 8,
                             Name = "Aberdeen Angus",
                             SpeciesId = 1
                         },
                         new
                         {
-                            BreedId = 2147383655,
+                            BreedId = 9,
                             Name = "South Devon",
                             SpeciesId = 1
                         },
                         new
                         {
-                            BreedId = 2147383656,
+                            BreedId = 10,
                             Name = "British White",
                             SpeciesId = 1
                         },
                         new
                         {
-                            BreedId = 2147383657,
+                            BreedId = 11,
                             Name = "Belted Galloway",
                             SpeciesId = 1
                         });
