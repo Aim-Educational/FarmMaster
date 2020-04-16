@@ -88,9 +88,7 @@ namespace DataAccess
                     SpeciesId = id,
                     Name = name,
                     GestrationPeriod = TimeSpan.FromDays(gestrationDays),
-                    Breeds = breeds,
-                    NoteOwnerId = null,
-                    NoteOwner = null
+                    Breeds = breeds
                 };
             };
 
@@ -100,9 +98,7 @@ namespace DataAccess
                 return new Breed 
                 {
                     BreedId = id,
-                    Name = name,
-                    NoteOwnerId = null,
-                    NoteOwner = null
+                    Name = name
                 };
             };
 
