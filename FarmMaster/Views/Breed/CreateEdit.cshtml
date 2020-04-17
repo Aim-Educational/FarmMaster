@@ -20,17 +20,13 @@
     </div>
     <div class="input-wrapper inline">
         <label>Species</label>
-        <vue-multiselect v-model="selectedSpecies"
-                         track-by="name"
-                         label="name"
-                         placeholder="Select species"
-                         :allow-empty="false"
-                         :options="speciesList"
-                         :preselect-first="true"
-                         required>
-        </vue-multiselect>
+        <vue-multiselect-graphql v-model="selectedSpecies"
+                                 placeholder="Select species"
+                                 entity-type="species"
+                                 :mode="mode">
+        </vue-multiselect-graphql>
         <input type="hidden" asp-for="Entity.SpeciesId" :value="selectedSpecies.id" />
-        <input type="hidden" asp-for="Entity.Species.Name" /> <!--Read only anyway-->
+        <input type="hidden" asp-for="Entity.Species.Name" :value="selectedSpecies.name" /> <!--Read only anyway-->
     </div>
     <alert type="error" fm-model-error="true"></alert>
     <button class="top margined blue fluid"
@@ -56,24 +52,6 @@
         selectedSpecies: {
             id: @(Model.Entity?.SpeciesId ?? -1),
             name: "@Model.Entity?.Species.Name"
-        },
-        speciesList: []
-    },
-
-    mounted() {
-        libs.Ajax.graphql(`
-            query GetSpecies {
-                specieses {
-                    items {
-                        id
-                        name
-                    }
-                }
-            }
-      `)
-      .then(data => {
-          this.speciesList = data.specieses.items;
-      })
-      .catch(e => console.log(e));
+        }
     }
 }

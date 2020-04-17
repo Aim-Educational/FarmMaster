@@ -185,6 +185,14 @@
             <button class="red" @@click="showDeleteModal">Show Delete Modal</button>
         </div>
     </window>
+
+    <window title="GraphQL Multiselect">
+        <!--Supports v-model-->
+        <vue-multiselect-graphql :value="{ id: 1, name: 'Cow' }"
+                                 placeholder="Cows"
+                                 entity-type="species">
+        </vue-multiselect-graphql>
+    </window>
 </div>
 
 @section Scripts {

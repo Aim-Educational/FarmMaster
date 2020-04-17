@@ -28,7 +28,7 @@
                     { name: "Species", bind: "speciesName", sort: true }
                 ],
                 values: [
-                    @foreach(var breed in Model.Entities)
+                    @foreach(var breed in Model.Entities.OrderBy(b => b.Name))
                     {
                         @:{ name: { value: "@breed.Name", href: "@Url.Action("Edit", "Breed", new { id = breed.BreedId})" },
                         @:  speciesName: { value: "@breed.Species.Name", href: "@Url.Action("Edit", "Species", new { id = breed.SpeciesId })" }
