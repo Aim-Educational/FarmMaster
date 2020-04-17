@@ -66,6 +66,7 @@ namespace FarmMaster.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> ResendEmail(AccountResendEmailViewModel model)
         {
             if (ModelState.IsValid)
@@ -119,6 +120,7 @@ namespace FarmMaster.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(AccountLoginViewModel model, [FromQuery] string returnUrl)
         {
             returnUrl = returnUrl ?? Url.Content("~/");
@@ -148,6 +150,7 @@ namespace FarmMaster.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(AccountRegisterViewModel model, [FromQuery] string returnUrl)
         {
             returnUrl = returnUrl ?? Url.Content("~/");

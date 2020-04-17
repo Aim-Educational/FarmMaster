@@ -155,6 +155,7 @@ namespace FarmMaster.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public virtual async Task<IActionResult> Create(
             CrudCreateEditViewModel<EntityT>     model, 
             [FromServices] IAuthorizationService auth
@@ -197,6 +198,7 @@ namespace FarmMaster.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public virtual async Task<IActionResult> Edit(
             CrudCreateEditViewModel<EntityT>     model,
             [FromServices] IAuthorizationService auth
@@ -241,6 +243,7 @@ namespace FarmMaster.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public virtual async Task<IActionResult> Delete(int? id, [FromServices] IAuthorizationService auth)
         {
             var isAuthed = await auth.AuthorizeAsync(User, this.Config.DeletePolicy);

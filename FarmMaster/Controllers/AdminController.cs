@@ -131,6 +131,7 @@ namespace FarmMaster.Controllers
 
         [HttpPost]
         [Authorize(Policy = Permissions.Other.Settings)]
+        [ValidateAntiForgeryToken]
         public IActionResult Email(
             AdminSettingsViewModel settings, 
             [FromServices] IFarmMasterSettingsAccessor dbSettings,
@@ -181,6 +182,7 @@ namespace FarmMaster.Controllers
 
         [HttpPost]
         [AllowAnonymous] // See GET of this action
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> ManageUser(AdminManageUserViewModel model)
         {
             var authResult = await this.CanManageUser(model.Id);
