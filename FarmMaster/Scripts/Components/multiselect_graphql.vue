@@ -11,6 +11,8 @@
 </template>
 
 <script>
+import Common from "./_common";
+
 const queries = {
     species: {
         query: `query {
@@ -35,13 +37,7 @@ export default {
     props: {
         value: Object,
         placeholder: String,
-        mode: {
-            type: String,
-            default: "edit",
-            validator(v) {
-                return ["edit", "view"].indexOf(v) !== -1;
-            }
-        },
+        mode: Common.vueProps.viewOrEdit,
         entityType: {
             required: true,
             type: String,

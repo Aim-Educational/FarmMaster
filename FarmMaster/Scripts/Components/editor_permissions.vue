@@ -35,10 +35,11 @@
 
 <script>
 import Alert from "./alert";
+import Common from "./_common";
 
 export default {
     props: {
-        mode: String,
+        mode: Common.vueProps.viewOrEdit,
 
         username: {
             type: String,

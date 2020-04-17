@@ -42,6 +42,7 @@
 <script>
 import Textbox from "./textbox";
 import Table from "./table_values";
+import Common from "./_common";
 
 // Generic query generators.
 // Since most of the queries will only really differ in their GraphQL type name, this saves some typing.
@@ -104,13 +105,7 @@ export default {
     },
 
     props: {
-        mode: {
-            type: String,
-            default: "edit",
-            validator(v) {
-                return ["edit", "view"].indexOf(v) !== -1;
-            }
-        },
+        mode: Common.vueProps.viewOrEdit,
 
         parentType: {
             type: String,

@@ -12,19 +12,14 @@
 </template>
 
 <script>
+import Common from "./_common";
 export default {
     props: {
         type: String,
         name: String,
         placeholder: String,
         value: String,
-        mode: {
-            type: String,
-            default: "edit",
-            validator(v) {
-                return ["edit", "view"].indexOf(v) !== -1;
-            }
-        }
+        mode: Common.vueProps.viewOrEdit
     }
 }
 </script>
