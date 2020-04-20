@@ -11,10 +11,18 @@
                </ul>
         </alert>
 
-        <alert class="bottom margined" type="info" show>
+        <alert type="info" show>
             <header>Note</header>
             <p>
                 Users will have to sign out, then log back in before their new permissions take affect.
+            </p>
+        </alert>
+
+        <alert class="bottom margined" type="info" show>
+            <header>Note</header>
+            <p>
+                If a permission is unticked, then suddenly becomes ticked again, this means that the user's role is providing them
+                that permission.
             </p>
         </alert>
 
