@@ -99,5 +99,17 @@ namespace FarmMasterTests.Integration
             await base.Client.LoginAsync();
             await base.Client.GetEnsureStatusAsync("/Admin/Users", HttpStatusCode.OK);
         }
+
+        /// <summary>
+        /// Checks that we can register accounts.
+        /// 
+        /// Purpose: Basic foundational test requires for any other tests that require non-admin-level authorization.
+        /// </summary>
+        [Fact()]
+        public async Task CanRegister()
+        {
+            await base.Client.SignupAsync("Andy", "Smells123");
+            await base.Client.GetEnsureStatusAsync("/Admin/ManageUser?userId=2", HttpStatusCode.OK); // We can access our profile no matter what.
+        }
     }
 }

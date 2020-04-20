@@ -2,7 +2,9 @@
 using FarmMaster.Constants;
 using FarmMaster.Models;
 using Microsoft.AspNetCore.Hosting.Server.Features;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.TestHost;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Net.Http.Headers;
 using System;
 using System.Collections.Generic;
@@ -37,6 +39,7 @@ namespace FarmMasterTests.Integration
             this._cookies = new CookieContainer();
         }
 
+        #region ACTIONS
         public async Task LoginAsync(string username = IdentityContext.DEFAULT_USERNAME, string password = IdentityContext.DEFAULT_PASSWORD)
         {
             var loginModel = new AccountLoginViewModel 
@@ -50,14 +53,50 @@ namespace FarmMasterTests.Integration
                 "/Account/Login",
                 new FormUrlEncodedContent(new Dictionary<string, string>()
                 {
-                    { "Username", loginModel.Username },
-                    { "Password", loginModel.Password },
-                    { "RememberMe", loginModel.RememberMe ? "true" : "false" }
+                    { nameof(AccountLoginViewModel.Username),   loginModel.Username },
+                    { nameof(AccountLoginViewModel.Password),   loginModel.Password },
+                    { nameof(AccountLoginViewModel.RememberMe), loginModel.RememberMe ? "true" : "false" }
                 }),
                 HttpStatusCode.Redirect
             );
         }
 
+        public async Task SignupAsync(string username, string password)
+        {
+            var signupModel = new AccountRegisterViewModel 
+            {
+                Username        = username,
+                Password        = password,
+                Email           = "no@example.com",
+                ConfirmPassword = password
+            };
+
+            await this.PostEnsureStatusAsync(
+                "/Account/Register",
+                new FormUrlEncodedContent(new Dictionary<string, string>()
+                {
+                    { nameof(AccountRegisterViewModel.Username),        signupModel.Username },
+                    { nameof(AccountRegisterViewModel.Password),        signupModel.Password },
+                    { nameof(AccountRegisterViewModel.Email),           signupModel.Email },
+                    { nameof(AccountRegisterViewModel.ConfirmPassword), signupModel.ConfirmPassword }
+                }),
+                HttpStatusCode.Redirect
+            );
+
+            // Forcefully confirm email.
+            var userManager = this._server.Services.GetRequiredService<UserManager<ApplicationUser>>();
+            var user        = await userManager.FindByNameAsync(username);
+            var token       = await userManager.GenerateEmailConfirmationTokenAsync(user);
+            var result      = await userManager.ConfirmEmailAsync(user, token);
+
+            Assert.True(result.Succeeded);
+
+            // Log in
+            await this.LoginAsync(username, password);
+        }
+        #endregion
+
+        #region GET/POST
         public async Task<HttpResponseMessage> GetEnsureStatusAsync(string url, HttpStatusCode status)
         {
             var response = await this.GetAsync(url);
@@ -95,7 +134,9 @@ namespace FarmMasterTests.Integration
                 return response;
             }
         }
+        #endregion
 
+        #region HELPERS
         private async Task GetVerificationTokenAsync(Uri uri, RequestBuilder parentBuilder)
         {
             /**
@@ -168,5 +209,6 @@ namespace FarmMasterTests.Integration
                 }
             }
         }
+        #endregion
     }
 }

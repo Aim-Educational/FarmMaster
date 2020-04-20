@@ -51,6 +51,8 @@ namespace EmailSender
         {
             var config   = this._config;
             var contents = template.Resolve(values, this._accessor, this._generator);
+
+            if(config.Layout != null)
                 contents = config.Layout.Resolve(new EmailTemplateValues { { "body", contents } }, this._accessor, this._generator);
 
             try
