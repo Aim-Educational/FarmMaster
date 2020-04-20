@@ -14,13 +14,13 @@
 
 @section MainWindowForm {
     <input type="hidden" asp-for="Entity.SpeciesId" value="@(Model.Entity?.SpeciesId ?? -1)" />
-    <div class="input-wrapper inline">
+    <div class="required input-wrapper inline">
         <label>Name</label>
-        <textbox :mode="mode" asp-for="Entity.Name" placeholder="Name" required />
+        <textbox :mode="mode" asp-for="Entity.Name" placeholder="Name" required/>
     </div>
-    <div class="input-wrapper inline">
+    <div class="required input-wrapper inline">
         <label>Gestration (Days)</label>
-        <textbox type="number" :mode="mode" asp-for="Entity.GestrationPeriod" timespan="Days"></textbox>
+        <textbox type="number" :mode="mode" asp-for="Entity.GestrationPeriod" timespan="Days" required></textbox>
     </div>
     <alert type="error" fm-model-error="true"></alert>
     <button class="top margined blue fluid"

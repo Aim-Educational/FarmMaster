@@ -12,12 +12,18 @@
         font-size: 15px;
     }
 
+    &.required {
+        label::after {
+            content: '*';
+            color: red;
+        }
+    }
+
     &.inline {
         $LABEL_WIDTH: 10%;
         $INPUT_WIDTH: 100% - $LABEL_WIDTH;
     
         label {
-            flex-direction: column;
             align-self: center;
             min-width: $LABEL_WIDTH;
         }

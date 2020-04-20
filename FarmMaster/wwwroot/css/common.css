@@ -10,8 +10,11 @@
   font-weight: bold;
   font-size: 15px;
 }
+.input-wrapper.required label::after {
+  content: "*";
+  color: red;
+}
 .input-wrapper.inline label {
-  flex-direction: column;
   align-self: center;
   min-width: 10%;
 }
