@@ -33,6 +33,16 @@ namespace FarmMasterTests.Integration
         /// 
         /// FmTest:Pass - The password to use. (Default: test)
         /// 
+        /// FmTest:Smtp:Test - Enable the use of the SMTP testing variables. (Default: false). Mostly used for CI.
+        /// 
+        /// FmTest:Smtp:User - The username for SMTP. (Default: )
+        /// 
+        /// FmTest:Smtp:Pass - The password for SMTP. (Default: )
+        /// 
+        /// FmTest:Smtp:Server - The server for SMTP. (Default: localhost)
+        /// 
+        /// FmTest:Smtp:Port - The port for SMTP. (Default: 5025)
+        /// 
         /// Note that the user needs permissions to create and delete their own database.
         /// </remarks>
         public static TestServer TestHost => new TestServer(
