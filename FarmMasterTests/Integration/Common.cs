@@ -33,8 +33,6 @@ namespace FarmMasterTests.Integration
         /// 
         /// FmTest:Pass - The password to use. (Default: test)
         /// 
-        /// FmTest:Smtp:Test - Enable the use of the SMTP testing variables. (Default: false). Mostly used for CI.
-        /// 
         /// FmTest:Smtp:User - The username for SMTP. (Default: )
         /// 
         /// FmTest:Smtp:Pass - The password for SMTP. (Default: )
@@ -80,22 +78,21 @@ namespace FarmMasterTests.Integration
             .UseStartup<FarmMaster.Startup>()
             .ConfigureTestServices(c => 
             {
+                // Setup the databases
                 var provider = c.BuildServiceProvider();
                 FarmMaster.Program.SetupDatabase(provider);
 
+                // Set the SMTP settings.
                 var config      = provider.GetRequiredService<IConfiguration>();
                 var settings    = provider.GetRequiredService<IFarmMasterSettingsAccessor>();
                 var newSettings = settings.Settings;
 
-                if(config.GetValue("FmTest:Smtp:Test", false))
-                {
-                    newSettings.SmtpPassword = config.GetValue("FmTest:Smtp:Pass", "");
-                    newSettings.SmtpUsername = config.GetValue("FmTest:Smtp:User", "");
-                    newSettings.SmtpServer   = config.GetValue("FmTest:Smtp:Server", "localhost");
-                    newSettings.SmtpPort     = config.GetValue<ushort>("FmTest:Smtp:Port", 5025);
+                newSettings.SmtpPassword = config.GetValue("FmTest:Smtp:Pass", "");
+                newSettings.SmtpUsername = config.GetValue("FmTest:Smtp:User", "");
+                newSettings.SmtpServer   = config.GetValue("FmTest:Smtp:Server", "localhost");
+                newSettings.SmtpPort     = config.GetValue<ushort>("FmTest:Smtp:Port", 5025);
 
-                    settings.Settings = newSettings;
-                }
+                settings.Settings = newSettings;
             })
         );
     }

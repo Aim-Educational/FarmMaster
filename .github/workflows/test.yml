@@ -41,5 +41,4 @@ jobs:
       env:
         FMTEST__HOST: localhost
         FMTEST__PORT: ${{ job.services.postgres.ports[5432] }} # get randomly assigned published port
-        FMTEST__SMTP__TEST: true
         FMTEST__SMTP__PORT: ${{ job.services.smtp.ports[5025] }}
