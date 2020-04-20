@@ -89,6 +89,19 @@ namespace FarmMasterTests.Integration
         }
 
         /// <summary>
+        /// Checks that an logged in, but unauthoirsed user is redirected to the access denied page if they fail an auth check.
+        /// 
+        /// Purpose: Just a general sanity check.
+        /// </summary>
+        [Fact()]
+        public async Task CheckUnauthorisedRedirect()
+        {
+            await base.Client.SignupAsync("Andy", "Smells123");
+            var response = await base.Client.GetEnsureStatusAsync("/Breed", HttpStatusCode.Redirect);
+            Assert.Contains("Account/AccessDenied", response.Headers.Location.ToString());
+        }
+
+        /// <summary>
         /// Checks that we can login.
         /// 
         /// Purpose: Basic foundational test required for any other tests that require authentication.
