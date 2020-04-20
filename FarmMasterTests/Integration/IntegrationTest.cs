@@ -56,8 +56,6 @@ namespace FarmMasterTests.Integration
             this.Host    = Common.TestHost; // Creates a new one each time.
             this.Client  = new FarmClient(this.Host);
             this.Context = this.Host.Services.GetRequiredService<FarmMasterContext>();
-
-            FarmMaster.Program.SetupDatabase(this.Host.Services);
         }
 
         public void Dispose()

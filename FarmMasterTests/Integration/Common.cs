@@ -70,17 +70,22 @@ namespace FarmMasterTests.Integration
             .UseStartup<FarmMaster.Startup>()
             .ConfigureTestServices(c => 
             {
-                var provider    = c.BuildServiceProvider();
+                var provider = c.BuildServiceProvider();
+                FarmMaster.Program.SetupDatabase(provider);
+
                 var config      = provider.GetRequiredService<IConfiguration>();
                 var settings    = provider.GetRequiredService<IFarmMasterSettingsAccessor>();
                 var newSettings = settings.Settings;
 
-                newSettings.SmtpPassword = config.GetValue("FmTest:Smtp:Pass", "");
-                newSettings.SmtpUsername = config.GetValue("FmTest:Smtp:User", "");
-                newSettings.SmtpServer   = config.GetValue("FmTest:Smtp:Server", "localhost");
-                newSettings.SmtpPort     = config.GetValue<ushort>("FmTest:Smtp:Port", 5025);
+                if(config.GetValue("FmTest:Smtp:Test", false))
+                {
+                    newSettings.SmtpPassword = config.GetValue("FmTest:Smtp:Pass", "");
+                    newSettings.SmtpUsername = config.GetValue("FmTest:Smtp:User", "");
+                    newSettings.SmtpServer   = config.GetValue("FmTest:Smtp:Server", "localhost");
+                    newSettings.SmtpPort     = config.GetValue<ushort>("FmTest:Smtp:Port", 5025);
 
-                settings.Settings = newSettings;
+                    settings.Settings = newSettings;
+                }
             })
         );
     }
