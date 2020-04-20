@@ -104,6 +104,11 @@
 
     <!--Navbar JS-->
     <script>
+        // Auto collapse on small screens
+        const menu = document.getElementById("leftMenu");
+        if (window.innerWidth < 780)
+            menu.classList.add("collapsed");
+
         new Vue({
             el: "#leftMenu",
             data: {
