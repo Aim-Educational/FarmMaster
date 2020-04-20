@@ -46,7 +46,7 @@ Requirements:
 }
 
 <div id="app">
-    <window title="Create a new @entityName">
+    <window title="@action a new @entityName">
         @if (!Model.IsCreate)
         {
             <form id="deleteForm" method="post" asp-action="Delete" asp-route-id="@entityId">
