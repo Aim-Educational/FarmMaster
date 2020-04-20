@@ -61,7 +61,7 @@ body > aside > section > a:hover, body > aside > section > a.active {
   background-color: #1d636a;
 }
 body > aside > section > a:hover > .indicator, body > aside > section > a.active > .indicator {
-  background-color: #801414;
+  background-color: #0f1c91;
 }
 body > aside > section > a > img {
   display: flex;

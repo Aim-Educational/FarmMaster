@@ -1,7 +1,9 @@
-﻿html {
+﻿// Ensure we always use the full height of the screen.
+html {
     height: 100%;
 }
 
+// Only show link underlines on hover. Use a more comfortable colour.
 a {
     text-decoration: none;
     color: rgb(57, 59, 207);
@@ -14,12 +16,14 @@ a {
 body {
     $ASIDE_BACKGROUND_COLOUR: #1a727b;
 
+    // Set default font stuff, as well as removing that weird margin at the top left of the body.
     font-size: 18px;
     margin: 0;
     display: flex;
     font-family: Lato, sans-serif;
     min-height: 100%;
 
+    // This is the left navbar.
     > aside {
         display: flex;
         flex-direction: column;
@@ -29,6 +33,7 @@ body {
         background-color: $ASIDE_BACKGROUND_COLOUR;
         color: white;
 
+        // Collapse the navbar.
         &.collapsed {
             min-width: 0;
             width: 0;
@@ -36,17 +41,20 @@ body {
             transition: min-width ease 1s;
         }
 
+        // The "FarmMaster" logo, which is just a h1 for now.
         > h1 {
             display: flex;
             align-self: center;
             font-size: 28px;
         }
 
+        // A grouping of links, e.g. "Admin" and "Manage".
         > section {
             display: flex;
             flex-direction: column;
             padding-bottom: 1em;
 
+            // The header for the grouping.
             > header {
                 padding-left: 1em;
                 margin-bottom: 1em;
@@ -55,10 +63,12 @@ body {
                 font-size: 16px;
             }
 
+            // An item in the group, e.g. "Breeds", "Users", etc.
             > a {
                 display: flex;
                 text-decoration: none;
 
+                // The little coloured bar at the left hand side of an item when it's active/selected.
                 > .indicator {
                     width: 5px;
                     height: 40px;
@@ -68,10 +78,11 @@ body {
                     background-color: #1d636a;
 
                     > .indicator {
-                        background-color: #801414;
+                        background-color: #0f1c91;
                     }
                 }
 
+                // A little image representing the item's purpose.
                 > img {
                     display: flex;
                     flex-direction: column;
@@ -80,6 +91,7 @@ body {
                     height: 25px;
                 }
 
+                // The name of the item.
                 > span {
                     display: flex;
                     flex-direction: column;
@@ -95,16 +107,19 @@ body {
         }
     }
 
+    // This is the main wrapper containing the top navbar and body.
     > .wrapper {
         display: flex;
         flex-direction: column;
         width: 100%;
 
+        // This is the top navbar
         > header {
             display: flex;
             width: 100%;
             min-height: 60px;
 
+            // This is the toggle button for the left navbar.
             > .aside.toggle {
                 min-width: 60px;
                 height: 100%;
@@ -119,6 +134,7 @@ body {
                 }
             }
 
+            // The navigation breadcrumb, and each crumb.
             > .breadcrumb {
                 width: 33%;
                 height: 100%;
@@ -139,6 +155,7 @@ body {
                 }
             }
 
+            // The profile information.
             > .profile {
                 width: 67%;
                 height: 100%;
@@ -165,6 +182,7 @@ body {
             }
         }
 
+        // The main content.
         > main {
             display: flex;
             flex-direction: column;
