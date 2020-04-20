@@ -41,6 +41,8 @@ namespace DataAccessLogic
 
         public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
         {
+            return;
+/*
             if(!this.IsEnabled(logLevel))
                 return;
 
@@ -79,7 +81,7 @@ namespace DataAccessLogic
                 Message         = message
             };
 
-            this.AddEntry(entry);
+            this.AddEntry(entry);*/
         }
 
         void AddEntry(LogEntry entry)
