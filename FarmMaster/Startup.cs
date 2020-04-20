@@ -63,6 +63,7 @@ namespace FarmMaster
             FarmMaster.Constants.EmailExtensions.LoadTemplates(this.WebHostEnvironment);
 
             // Identity + All login providers
+            services.AddAntiforgery(o => o.HeaderName = FarmMasterConstants.CsrfTokenHeader);
             services.AddIdentity<ApplicationUser, ApplicationRole>(o => 
             {
                 o.SignIn.RequireConfirmedAccount = true;

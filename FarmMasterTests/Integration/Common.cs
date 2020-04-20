@@ -36,8 +36,10 @@ namespace FarmMasterTests.Integration
             .UseWebRoot("../../../../FarmMaster/wwwroot/")
             .ConfigureLogging(c => 
             {
-                c.AddConsole().SetMinimumLevel(LogLevel.Trace);
+                c.AddConsole();
                 c.AddDebug();
+
+                c.AddFilter("Microsoft.EntityFrameworkCore.ChangeTracking", LogLevel.None);
             })
             .ConfigureAppConfiguration(c => 
             {

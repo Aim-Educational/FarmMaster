@@ -1,4 +1,5 @@
 ﻿using DataAccess;
+using FarmMaster.Constants;
 using FarmMaster.Models;
 using Microsoft.AspNetCore.Hosting.Server.Features;
 using Microsoft.AspNetCore.TestHost;
@@ -9,6 +10,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -37,7 +39,6 @@ namespace FarmMasterTests.Integration
 
         public async Task LoginAsync(string username = IdentityContext.DEFAULT_USERNAME, string password = IdentityContext.DEFAULT_PASSWORD)
         {
-            // Use the ViewModels to ensure our code breaks with any changes.
             var loginModel = new AccountLoginViewModel 
             { 
                 Username = username,
@@ -95,17 +96,61 @@ namespace FarmMasterTests.Integration
             }
         }
 
+        private async Task GetVerificationTokenAsync(Uri uri, RequestBuilder parentBuilder)
+        {
+            /**
+             * ASP's Antiforgery has two parts:
+             * 
+             *  - 1. It stores half of the token inside of the __RequestVerificationToken input
+             *  - 2. It stores the other half inside of the .AspNetCore.Antiforgery.XXXXXXX cookie
+             *  
+             * So we GET the Account/Login page, which we should always have anon access to as well as it always providing
+             * these two values for us.
+             * 
+             * We then extract these values, and use them to build up the parentBuilder's request further.
+             * 
+             * This allows us to satisfy [ValidateAntiforgeryToken] :)
+             * **/
+
+            // Expire the forgery token, to ensure we're sent a fresh pair of tokens.
+            var loginUri = new Uri(this._server.BaseAddress, "Account/Login");
+            var loginCookies = this._cookies.GetCookies(loginUri);
+            foreach(Cookie cookie in loginCookies.Where(c => c.Name.StartsWith(".AspNetCore.Antiforgery.")))
+                cookie.Expires = DateTime.Now.Subtract(TimeSpan.FromDays(1));
+
+            var builder = this.BuildRequest("Account/Login", true);
+            using(var response = await builder.GetAsync())
+            {
+                var content = await response.Content.ReadAsStringAsync();
+                var match   = Regex.Match(content, @"<input\s+name=""__RequestVerificationToken""\s+type=""hidden""\s+value=""([^""]+)""\s+/>");
+
+                if(!match.Success)
+                    throw new InvalidOperationException("Could not retrieve verification token.");
+
+                parentBuilder.AddHeader(FarmMasterConstants.CsrfTokenHeader, match.Groups[1].Value);
+                var forgeryCookie = response
+                                    .Headers
+                                    .GetValues(HeaderNames.SetCookie)
+                                    .SelectMany(c => c.Split(";"))
+                                    .Where(c => c.StartsWith(".AspNetCore.Antiforgery."))
+                                    .Select(c => new Cookie(c.Split("=")[0], c.Split("=")[1]))
+                                    .First();
+                this._cookies.Add(uri, forgeryCookie);
+            }
+        }
+
         // https://stackoverflow.com/questions/48704331/setting-cookies-to-httpclient-of-asp-net-core-testserver
-        private RequestBuilder BuildRequest(string url)
+        private RequestBuilder BuildRequest(string url, bool noVerficiationToken = false)
         {
             var uri = new Uri(this._server.BaseAddress, url);
             var builder = this._server.CreateRequest(url);
 
+            if (!noVerficiationToken)
+                this.GetVerificationTokenAsync(uri, builder).Wait();
+
             var cookieHeader = this._cookies.GetCookieHeader(uri);
             if (!string.IsNullOrWhiteSpace(cookieHeader))
-            {
                 builder.AddHeader(HeaderNames.Cookie, cookieHeader);
-            }
 
             return builder;
         }

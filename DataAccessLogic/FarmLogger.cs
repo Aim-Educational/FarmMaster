@@ -12,7 +12,7 @@ namespace DataAccessLogic
 {
     class FarmLogger : ILogger
     {
-        const int COUNTER_THRESHOLD = 100;
+        const int COUNTER_THRESHOLD = 10_000;
         const int MINUTES_BETWEEN_PUSHES = 5;
 
         readonly string            _categoryName;
@@ -53,7 +53,7 @@ namespace DataAccessLogic
             if(formatter == null)
                 throw new ArgumentNullException(nameof(formatter));
 
-            string stateJson = "Could not serialize state.";
+            string stateJson = "{ error: \"Could not serialize state.\" }";
             try
             {
                 stateJson = JsonSerializer.Serialize(state);

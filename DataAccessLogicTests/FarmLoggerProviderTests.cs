@@ -48,8 +48,8 @@ namespace DataAccessLogic.Tests
             var logProvider = services.GetRequiredService<FarmLoggerProvider>();
             var logger      = logProvider.CreateLogger("Batch");
 
-            // NOTE: The flush count is hard coded to 100 right now. I know, I know. Bad programmer.
-            for(int i = 0; i < 99; i++)
+            // NOTE: The flush count is hard coded to 10_000 right now. I know, I know. Bad programmer.
+            for(int i = 0; i < 9999; i++)
                 logger.Log(LogLevel.Information, "Andy bodged it");
             Assert.Empty(db.LogEntries);
 
