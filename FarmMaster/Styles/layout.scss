@@ -66,7 +66,6 @@ body {
             // An item in the group, e.g. "Breeds", "Users", etc.
             > a {
                 display: flex;
-                text-decoration: none;
 
                 // The little coloured bar at the left hand side of an item when it's active/selected.
                 > .indicator {
@@ -76,6 +75,7 @@ body {
 
                 &:hover, &.active {
                     background-color: #1d636a;
+                    text-decoration: none;
 
                     > .indicator {
                         background-color: #0f1c91;
