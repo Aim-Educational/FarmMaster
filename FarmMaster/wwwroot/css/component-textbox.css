@@ -10,6 +10,6 @@ input.farm-master {
   color: #666666;
 }
 input.farm-master:focus {
-  border-color: blue;
+  border-color: #4545db;
   color: #1a1a1a;
 }
