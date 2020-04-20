@@ -5,11 +5,11 @@ input.farm-master {
   border: 1px solid;
   border-color: #d9d9d9;
   border-radius: 2%;
-  transition: border-color ease 0.3s;
   transition: color ease 0.3s;
   color: #666666;
 }
 input.farm-master:focus {
   border-color: #4545db;
   color: #1a1a1a;
+  transition: border-color ease 0.3s;
 }

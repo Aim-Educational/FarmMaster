@@ -5,12 +5,12 @@ input.farm-master {
     border: 1px solid;
     border-color: hsl(0, 0%, 85%);
     border-radius: 2%;
-    transition: border-color ease 0.3s;
     transition: color ease 0.3s;
     color: hsl(0, 0%, 40%);
 
     &:focus {
         border-color: rgb(69, 69, 219);
         color: hsl(0, 0%, 10%);
+        transition: border-color ease 0.3s;
     }
 }
