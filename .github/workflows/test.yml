@@ -17,6 +17,10 @@ jobs:
         - 5432/tcp
         # needed because the postgres container does not provide a healthcheck
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+      smtp:
+        image: gessnerfl/fake-smtp-server
+        ports:
+        - 5025/tcp
 
     steps:
     - uses: actions/checkout@v2
@@ -37,3 +41,4 @@ jobs:
       env:
         FMTEST__HOST: localhost
         FMTEST__PORT: ${{ job.services.postgres.ports[5432] }} # get randomly assigned published port
+        FMTEST__SMTP__PORT: ${{ job.services.smtp.ports[5025] }}

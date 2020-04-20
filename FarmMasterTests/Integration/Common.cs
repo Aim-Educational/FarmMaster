@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using DataAccess;
+using DataAccessLogic;
+using EmailSender;
+using FarmMaster.Services.Configuration;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -64,6 +68,20 @@ namespace FarmMasterTests.Integration
                 });
             })
             .UseStartup<FarmMaster.Startup>()
+            .ConfigureTestServices(c => 
+            {
+                var provider    = c.BuildServiceProvider();
+                var config      = provider.GetRequiredService<IConfiguration>();
+                var settings    = provider.GetRequiredService<IFarmMasterSettingsAccessor>();
+                var newSettings = settings.Settings;
+
+                newSettings.SmtpPassword = config.GetValue("FmTest:Smtp:Pass", "");
+                newSettings.SmtpUsername = config.GetValue("FmTest:Smtp:User", "");
+                newSettings.SmtpServer   = config.GetValue("FmTest:Smtp:Server", "localhost");
+                newSettings.SmtpPort     = config.GetValue<ushort>("FmTest:Smtp:Port", 5025);
+
+                settings.Settings = newSettings;
+            })
         );
     }
 }
