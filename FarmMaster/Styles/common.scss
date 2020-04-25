@@ -19,7 +19,8 @@
         }
     }
 
-    &.inline {
+    // On wider screens, use an inline style, on smaller screens use a more vertical style
+    @media screen and (min-width: 840px) {
         $LABEL_WIDTH: 10%;
         $INPUT_WIDTH: 100% - $LABEL_WIDTH;
     
@@ -34,8 +35,8 @@
             width: $INPUT_WIDTH;
         }
     }
-
-    &:not(.inline) {
+    
+    @media screen and (max-width: 839px) {
         flex-wrap: wrap;
 
         label {

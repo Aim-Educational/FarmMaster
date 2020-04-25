@@ -14,28 +14,32 @@
   content: "*";
   color: red;
 }
-.input-wrapper.inline label {
-  align-self: center;
-  min-width: 10%;
+@media screen and (min-width: 840px) {
+  .input-wrapper label {
+    align-self: center;
+    min-width: 10%;
+  }
+  .input-wrapper label + input, .input-wrapper label + .input {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+  }
 }
-.input-wrapper.inline label + input, .input-wrapper.inline label + .input {
-  display: flex;
-  flex-direction: column;
-  width: 90%;
-}
-.input-wrapper:not(.inline) {
-  flex-wrap: wrap;
-}
-.input-wrapper:not(.inline) label {
-  flex-direction: row;
-  width: 100%;
-}
-.input-wrapper:not(.inline) label + * {
-  margin-top: 1em;
-}
-.input-wrapper:not(.inline) label + input, .input-wrapper:not(.inline) label + .input {
-  display: flex;
-  width: 100%;
+@media screen and (max-width: 839px) {
+  .input-wrapper {
+    flex-wrap: wrap;
+  }
+  .input-wrapper label {
+    flex-direction: row;
+    width: 100%;
+  }
+  .input-wrapper label + * {
+    margin-top: 1em;
+  }
+  .input-wrapper label + input, .input-wrapper label + .input {
+    display: flex;
+    width: 100%;
+  }
 }
 
 button, .button {

@@ -5,18 +5,18 @@
 }
 
 <div id="app">
-    <window title="Inline input-wrapper test">
-        <div class="input-wrapper inline">
+    <window title="input-wrapper test">
+        <div class="input-wrapper">
             <label>This is inline</label>
             <textbox placeholder="Enter text..." />
         </div>
-        <div class="input-wrapper inline">
+        <div class="input-wrapper">
             <label>This is inline</label>
             <textbox placeholder="Enter text..." />
         </div>
     </window>
 
-    <window title="Not-inline input-wrapper test">
+    <window title="Not-input-wrapper test">
         <div class="input-wrapper">
             <label>This is not inline</label>
             <textbox placeholder="Enter text..." />
@@ -28,7 +28,7 @@
     </window>
 
     <window title="Textbox 'view' mode test">
-        <div class="input-wrapper inline">
+        <div class="input-wrapper">
             <label>This is inline</label>
             <textbox mode="view" value="This is a value" />
         </div>
@@ -49,7 +49,7 @@
         </div>
         <div style="display:flex; flex-direction:column; width:50%;">
             <window title="2nd column">
-                <div class="input-wrapper inline">
+                <div class="input-wrapper">
                     <label>This is inline</label>
                     <textbox placeholder="Enter text..." />
                 </div>
@@ -78,7 +78,7 @@
 
     <window title="Multiselect">
         <a href="https://vue-multiselect.js.org/">Documentation</a>
-        <div class="input-wrapper inline">
+        <div class="input-wrapper">
             <label>Single select</label>
             <vue-multiselect v-model="singleselectData" :options="['a', 'b']"></vue-multiselect>
         </div>
@@ -106,7 +106,7 @@
 
     <window title="Calendar">
         <a href="https://vcalendar.io/">Documentation</a>
-        <div class="input-wrapper inline">
+        <div class="input-wrapper">
             <label>Inline Calendar</label>
             <vue-calendar locale="en-GB" :attributes="[{key:'today', highlight: true, dates: date, popover:{ label:eventName }}]"></vue-calendar>
         </div>
@@ -118,7 +118,7 @@
 
     <window title="Date picker">
         <a href="https://vcalendar.io/datepicker.html">Documentation</a>
-        <div class="input-wrapper inline">
+        <div class="input-wrapper">
             <label>Inline picker</label>
             <vue-date-picker locale="en-GB" v-model="date"></vue-date-picker>
         </div>

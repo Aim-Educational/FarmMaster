@@ -28,26 +28,26 @@
             <input type="hidden" asp-for="ShowDeleteButton" />
             <input type="hidden" asp-for="Id" />
 
-            <div class="input-wrapper inline">
+            <div class="input-wrapper">
                 <label>Username</label>
                 <textbox :mode="mode" asp-for="Username"></textbox>
             </div>
-            <div class="input-wrapper inline">
+            <div class="input-wrapper">
                 <label>Email</label>
                 <textbox :mode="mode" asp-for="Email" name="ReadonlyEmail" disabled></textbox>
                 <input type="hidden" asp-for="Email" /> <!--Disabled inputs don't send their value, but we want to keep it for display reasons-->
             </div>
-            <div class="input-wrapper inline"
+            <div class="input-wrapper"
                  v-if="mode === 'edit'">
                 <label>Current Password</label>
                 <textbox :mode="mode" asp-for="CurrentPassword" type="password"></textbox>
             </div>
-            <div class="input-wrapper inline"
+            <div class="input-wrapper"
                  v-if="mode === 'edit'">
                 <label>New Password</label>
                 <textbox :mode="mode" asp-for="Password" type="password"></textbox>
             </div>
-            <div class="input-wrapper inline"
+            <div class="input-wrapper"
                  v-if="mode === 'edit'">
                 <label>Confirm Password</label>
                 <textbox :mode="mode" asp-for="ConfirmPassword" type="password"></textbox>

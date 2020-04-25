@@ -1,14 +1,14 @@
 <template>
     <div class="notes">
         <template v-if="mode === 'edit'">
-            <div class="input-wrapper inline">
+            <div class="input-wrapper">
                 <label>Category</label>
                 <textbox :mode="mode"
                          v-model="category"
                          placeholder="Keep notes organised">
                 </textbox>
             </div>
-            <div class="input-wrapper inline">
+            <div class="input-wrapper">
                 <label>Note</label>
                 <textbox :mode="mode"
                          v-model="note"

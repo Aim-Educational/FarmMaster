@@ -17,19 +17,19 @@
             </alert>
         }
         <form method="post" asp-action="Email">
-            <div class="input-wrapper inline">
+            <div class="input-wrapper">
                 <label>Server</label>
                 <textbox asp-for="Email.Smtp.Server" placeholder="smtp.gmail.com"></textbox>
             </div>
-            <div class="input-wrapper inline">
+            <div class="input-wrapper">
                 <label>Port</label>
                 <textbox asp-for="Email.Smtp.Port" placeholder="465"></textbox>
             </div>
-            <div class="input-wrapper inline">
+            <div class="input-wrapper">
                 <label>Username</label>
                 <textbox asp-for="Email.Smtp.Username" placeholder="andy@aimeducational.org"></textbox>
             </div>
-            <div class="input-wrapper inline">
+            <div class="input-wrapper">
                 <label>Password</label>
                 <textbox asp-for="Email.Smtp.Password" value="" type="password" placeholder="goats 'r' us"></textbox>
             </div>
