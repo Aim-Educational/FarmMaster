@@ -193,6 +193,14 @@
                                  entity-type="species">
         </vue-multiselect-graphql>
     </window>
+
+    <window title="GraphQL Table">
+        <fm-graphql-table selection="none"
+                          :rows="[{name: 'Username', bind: 'username', sort: true}]"
+                          query-root="users"
+                          items-query="username">
+        </fm-graphql-table>
+    </window>
 </div>
 
 @section Scripts {

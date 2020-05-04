@@ -69,6 +69,10 @@ namespace DataAccessGraphQL.RootResolvers
             var query = this._users.Users;
             if(order == "id")
                 query = query.OrderBy(u => u.Id);
+            if(order == "username")
+                query = query.OrderBy(u => u.UserName);
+            if(order == "username_desc")
+                query = query.OrderByDescending(u => u.UserName);
 
             var users = await query.Skip(after)
                                    .Take(first)

@@ -9,6 +9,7 @@ import Modal from "../Components/modal.vue";
 import DeleteModal from "../Components/delete_modal.vue";
 import Notes from "../Components/notes.vue";
 import MultiselectGraphQL from "../Components/multiselect_graphql";
+import GraphQLTable from "../Components/table_graphql.vue";
 
 Vue.component("window", Window);
 Vue.component("textbox", Textbox);
@@ -21,3 +22,4 @@ Vue.component("modal", Modal);
 Vue.component("delete-modal", DeleteModal);
 Vue.component("notes", Notes);
 Vue.component("vue-multiselect-graphql", MultiselectGraphQL);
+Vue.component("fm-graphql-table", GraphQLTable);
