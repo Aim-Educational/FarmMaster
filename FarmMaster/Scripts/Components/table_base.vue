@@ -38,12 +38,13 @@
                 <td v-for="row in rows"
                     :key="row.name + index + row.bind">
                     <!--Allow values to contain links.-->
-                    <a v-if="obj[row.bind] && obj[row.bind].href"
-                       :href="obj[row.bind].href">
-                        {{ obj[row.bind].value }}
+                    <!--TODO: Figure out how the fuck to make this not as horrific. This doesn't mesh properly with how Vue wants me to work.-->
+                    <a v-if="bindingString.getByBindingString(obj, row.bind) && bindingString.getByBindingString(obj, row.bind).href"
+                       :href="bindingString.getByBindingString(obj, row.bind).href">
+                        {{ bindingString.getByBindingString(obj, row.bind).value }}
                     </a>
                     <template v-else>
-                        {{ obj[row.bind] }}
+                        {{ bindingString.getByBindingString(obj, row.bind) }}
                     </template>
                 </td>
             </tr>
@@ -57,6 +58,8 @@
 </template>
 
 <script>
+import { getByBindingString } from "../Libraries/binding_string";
+
 const ROWT_EXAMPLE = {
     name: "Username",
     bind: "username", // e.g. This row will bind to "values.username", where "values" is the "values" prop passed to the table.
@@ -93,7 +96,8 @@ export default {
             },
             selectedValueIndicies: [], // [0] = false means values[0] is not selected, [1] = true means values[1] is.
             selectAll: false,
-            ignoreNextSelectAll: false // If true, then make the watch function for selectAll return immediately. Used for UI cohesiveness
+            ignoreNextSelectAll: false, // If true, then make the watch function for selectAll return immediately. Used for UI cohesiveness
+            bindingString: window.libs.BindingString // :( Vue doesn't want to work the way I want it to, so we're having to use this as a way to forward BindingString into a template
         }
     },
 
@@ -248,7 +252,7 @@ export default {
          * CAN RETURN undefined if the value doesn't exist.
          */
         getRowValue(valueObject, ownerRow) {
-            let value = valueObject[ownerRow.bind];
+            let value = getByBindingString(valueObject, ownerRow.bind);
             if(value && value.value) // Value might be a special object
                 value = value.value;
 
