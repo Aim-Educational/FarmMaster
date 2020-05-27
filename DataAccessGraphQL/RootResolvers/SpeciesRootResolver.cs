@@ -32,6 +32,8 @@ namespace DataAccessGraphQL.RootResolvers
             if(order == "id")
                 query = query.OrderBy(s => s.SpeciesId);
 
+            query.AddTableOrderBy(order, "name", s => s.Name);
+
             return query;
         }
     }

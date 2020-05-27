@@ -11,10 +11,12 @@
             <i class="las la-plus"></i>
             <span>Create new species</span>
         </a>
-        <fm-value-table selection="none"
-                        :rows="rows"
-                        :values="values">
-        </fm-value-table>
+        <fm-graphql-table selection="none"
+                          :rows="[{name: 'Name', bind: 'name', sort: true, sortByDefault: 'asc'}]"
+                          query-root="specieses"
+                          items-query="id name"
+                          @@transformhook="onTransformTable">
+        </fm-graphql-table>
     </window>
 </div>
 
@@ -22,17 +24,12 @@
     <script>
         new Vue({
             el: "#app",
-            data: {
-                rows: [
-                    { name: "Name", bind: "name", sort: true }
-                ],
-                values: [
-                    @foreach(var species in Model.Entities)
-                    {
-                        @:{ name: { value: "@species.Name", href: "@Url.Action("Edit", "Species", new { id = species.SpeciesId })" }
-                        @:},
+            methods: {
+                onTransformTable(items) {
+                    for (const item of items) {
+                        item.name = { value: item.name, href: "/Species/Edit?id=" + item.id };
                     }
-                ]
+                }
             }
         });
     </script>
