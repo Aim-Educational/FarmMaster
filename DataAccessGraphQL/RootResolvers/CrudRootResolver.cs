@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using DataAccess;
 using DataAccess.Constants;
 using DataAccessLogic;
 using GraphQL.Types;
@@ -65,6 +67,25 @@ namespace DataAccessGraphQL.RootResolvers
                      .Take(first)
                      .AsEnumerable()
             );
+        }
+    }
+
+    public static class CrudRootResolverHelpers
+    {
+        public static IQueryable<T> AddTableOrderBy<T, TKey>(
+            this IQueryable<T> query, 
+            string order,
+            string expectedOrder,
+            Expression<Func<T, TKey>> keySelector
+        )
+        where T : class
+        {
+            if(order == expectedOrder)
+                return query.OrderBy(keySelector);
+            else if(order == expectedOrder + "_desc")
+                return query.OrderByDescending(keySelector);
+            else
+                return query;
         }
     }
 }

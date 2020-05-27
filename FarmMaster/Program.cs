@@ -33,6 +33,7 @@ namespace FarmMaster
                 var roles = scope.ServiceProvider.GetRequiredService<RoleManager<ApplicationRole>>();
                 var users = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
 
+                
                 db.Database.Migrate();
                 db.Seed(roles, users);
 

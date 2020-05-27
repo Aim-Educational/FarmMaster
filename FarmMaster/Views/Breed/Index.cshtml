@@ -11,10 +11,12 @@
             <i class="las la-plus"></i>
             <span>Create new breed</span>
         </a>
-        <fm-value-table selection="none"
-                        :rows="rows"
-                        :values="values">
-        </fm-value-table>
+        <fm-graphql-table selection="none"
+                          :rows="[{name: 'Name', bind: 'name', sort: true, sortByDefault: 'asc'}, {name: 'Species', bind: 'species.name', sort: true}]"
+                          query-root="breeds"
+                          items-query="id name species { id name }"
+                          @@transformhook="onTransformTable">
+        </fm-graphql-table>
     </window>
 </div>
 
@@ -22,19 +24,13 @@
     <script>
         new Vue({
             el: "#app",
-            data: {
-                rows: [
-                    { name: "Name",    bind: "name",        sort: true },
-                    { name: "Species", bind: "speciesName", sort: true }
-                ],
-                values: [
-                    @foreach(var breed in Model.Entities.OrderBy(b => b.Name))
-                    {
-                        @:{ name: { value: "@breed.Name", href: "@Url.Action("Edit", "Breed", new { id = breed.BreedId})" },
-                        @:  speciesName: { value: "@breed.Species.Name", href: "@Url.Action("Edit", "Species", new { id = breed.SpeciesId })" }
-                        @:},
+            methods: {
+                onTransformTable(items) {
+                    for (const item of items) {
+                        item.name = { value: item.name, href: "/Breed/Edit?id=" + item.id };
+                        item.species.name = { value: item.species.name, href: "/Species/Edit?id=" + item.species.id };
                     }
-                ]
+                }
             }
         });
     </script>

@@ -73,6 +73,7 @@ export default {
                 })
                 .then(json => {
                     var data = json[this.queryRoot];
+                    this.$emit("transformhook", data.items);
                     this.values = data.items;
                     this.pageInfo = data.pageInfo;
                 })
