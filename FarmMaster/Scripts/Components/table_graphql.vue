@@ -97,10 +97,6 @@ export default {
         }
     },
 
-    created() {
-        this.onSort({});
-    },
-
     components: {
         'fm-table': FarmTableBase
     }

@@ -196,7 +196,7 @@
 
     <window title="GraphQL Table">
         <fm-graphql-table selection="none"
-                          :rows="[{name: 'Username', bind: 'username', sort: true}]"
+                          :rows="[{name: 'Username', bind: 'username', sort: true, sortByDefault: 'asc'}]" <!--It's very important to sort by default with graphql-table-->
                           query-root="users"
                           items-query="username">
         </fm-graphql-table>
