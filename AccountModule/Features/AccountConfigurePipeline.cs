@@ -9,7 +9,7 @@ using AccountModule.Constants;
 
 namespace AccountModule.Features
 {
-    public class AccountConfigurePipeline : OnConfigurePipeline
+    public class AccountConfigurePipeline : ConfigurePipelinePart
     {
         public override void Configure(IServiceProvider services, IWebHostEnvironment env)
         {

@@ -15,7 +15,7 @@ using System.Text;
 
 namespace AccountModule.Features
 {
-    public class AccountConfigureServices : OnConfigureServices
+    public class AccountConfigureServices : ConfigureServicesPart
     {
         public override void ConfigureServices(IServiceCollection services, IConfiguration configuration)
         {

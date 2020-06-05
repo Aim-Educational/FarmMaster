@@ -9,19 +9,12 @@ using System.Text;
 
 namespace AccountModule
 {
-    public class ConfigureServicesProvider : IApplicationFeatureProvider<OnConfigureServicesFeature>
+    internal class AccountConfigureProvider : IApplicationFeatureProvider<ConfigureFeature>
     {
-        public void PopulateFeature(IEnumerable<ApplicationPart> parts, OnConfigureServicesFeature feature)
+        public void PopulateFeature(IEnumerable<ApplicationPart> parts, ConfigureFeature feature)
         {
-            feature.Features.Add(new AccountConfigureServices());
-        }
-    }
-
-    public class ConfigurePipelineProvider : IApplicationFeatureProvider<OnConfigurePipelineFeature>
-    {
-        public void PopulateFeature(IEnumerable<ApplicationPart> parts, OnConfigurePipelineFeature feature)
-        {
-            feature.Features.Add(new AccountConfigurePipeline());
+            feature.ConfigurePipeline.Add(new AccountConfigurePipeline());
+            feature.ConfigureServices.Add(new AccountConfigureServices());
         }
     }
 
@@ -29,8 +22,7 @@ namespace AccountModule
     {
         public override void RegisterFeatureProviders(ApplicationPartManager parts)
         {
-            parts.FeatureProviders.Add(new ConfigureServicesProvider());
-            parts.FeatureProviders.Add(new ConfigurePipelineProvider());
+            parts.FeatureProviders.Add(new AccountConfigureProvider());
         }
     }
 }

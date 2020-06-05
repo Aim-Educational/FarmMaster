@@ -90,10 +90,10 @@ namespace FarmMaster
 
             var provider = services.BuildServiceProvider();
             var appParts = provider.GetRequiredService<ApplicationPartManager>();
-            var feature  = new OnConfigureServicesFeature();
+            var feature  = new ConfigureFeature();
             appParts.PopulateFeature(feature);
             
-            foreach(var configFeature in feature.Features)
+            foreach(var configFeature in feature.ConfigureServices)
                 configFeature.ConfigureServices(services, Configuration);
 
             // Misc
@@ -110,8 +110,8 @@ namespace FarmMaster
             ApplicationPartManager parts
         )
         {
-            var configPipelineFeature = new OnConfigurePipelineFeature();
-            parts.PopulateFeature(configPipelineFeature);
+            var configFeature = new ConfigureFeature();
+            parts.PopulateFeature(configFeature);
 
             loggerFactory.AddProvider(farmProvider);
 
@@ -131,7 +131,7 @@ namespace FarmMaster
             app.UseAddRoleClaimsToUserMiddleware();
             app.UseAuthorization();
 
-            foreach(var module in configPipelineFeature.Features)
+            foreach(var module in configFeature.ConfigurePipeline)
                 module.Configure(services, this.WebHostEnvironment);
 
             app.UseGraphQL<DataAccessGraphQLSchema>("/graphql");
