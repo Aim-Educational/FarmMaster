@@ -21,7 +21,7 @@ namespace UserModule
             {
                 DisplayText      = "Users",
                 RequiredPolicies = new[] { Permissions.User.ManageUI },
-                LinkHref         = new Uri("/Admin/User/Users", UriKind.Relative)
+                LinkHref         = new Uri("/Admin/Users", UriKind.Relative)
             });
         }
     }
