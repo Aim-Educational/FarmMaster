@@ -1,5 +1,7 @@
 ﻿using DataAccess;
 using DataAccess.Constants;
+using DataAccessGraphQL;
+using DataAccessGraphQL.RootResolvers;
 using GraphQL;
 using GraphQL.Types;
 using Microsoft.AspNetCore.Identity;
@@ -11,7 +13,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccessGraphQL.RootResolvers
+namespace AccountModule.GraphQL
 {
     public class UserRootResolver : RootResolver<DataAccessUserContext>
     {

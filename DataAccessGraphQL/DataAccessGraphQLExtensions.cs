@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 
 namespace DataAccessGraphQL
@@ -11,20 +12,16 @@ namespace DataAccessGraphQL
     {
         public static IServiceCollection AddDataAccessGraphQLSchema(this IServiceCollection services)
         {
-            return services.AddRootResolvers()
+            return services.AddRootResolvers(typeof(DataAccessGraphQLExtensions).Assembly)
                            .AddScoped<DataAccessGraphQLSchema>()
                            .AddScoped<GraphQLUserContextAccessor>();
         }
 
-        static IServiceCollection AddRootResolvers(this IServiceCollection services)
+        public static IServiceCollection AddRootResolvers(this IServiceCollection services, Assembly assembly)
         {
-            // Get the DataAccessGraphQL assembly, as we're gonna inspect all classes to automatically
-            // register the root resolvers.
-            var thisAssembly = typeof(DataAccessGraphQLExtensions).Assembly;
-
-            //    Get all types in DataAccessGraphQL
+            //    Get all types in the assembly
             // -> Find all non-abstract classes that end in "RootResolver".
-            var resolvers = thisAssembly
+            var resolvers = assembly
                             .DefinedTypes
                             .Where(t => t.IsClass)
                             .Where(t => !t.IsAbstract)

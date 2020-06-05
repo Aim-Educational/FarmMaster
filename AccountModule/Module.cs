@@ -1,6 +1,8 @@
 ﻿using AccountModule.Features;
+using AccountModule.GraphQL;
 using FarmMaster.Module.Core;
 using FarmMaster.Module.Core.Features;
+using GraphQLModule.Api;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.AspNetCore.Mvc.TagHelpers;
 using System;
@@ -18,6 +20,14 @@ namespace AccountModule
         }
     }
 
+    internal class AccountGraphQLProvider : IApplicationFeatureProvider<GraphQLFeature>
+    {
+        public void PopulateFeature(IEnumerable<ApplicationPart> parts, GraphQLFeature feature)
+        {
+            feature.AddGraphQLPart<AccountQueries>();
+        }
+    }
+
     public class Module : ModuleConfigurator
     {
         public override ModuleInfo Info => _info;
@@ -30,6 +40,7 @@ namespace AccountModule
         public override void RegisterFeatureProviders(ApplicationPartManager parts)
         {
             parts.FeatureProviders.Add(new AccountConfigureProvider());
+            parts.FeatureProviders.Add(new AccountGraphQLProvider());
         }
     }
 }

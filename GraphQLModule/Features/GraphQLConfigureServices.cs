@@ -11,6 +11,7 @@ using DataAccessGraphQL;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using GraphQLModule.Api;
 using System.Reflection;
+using DataAccessGraphQL.Api;
 
 namespace GraphQLModule.Features
 {
@@ -36,11 +37,17 @@ namespace GraphQLModule.Features
             appParts.PopulateFeature(feature);
 
             var assemblyHashSet = new HashSet<Assembly>();
-            foreach(var part in feature.Parts)
+            foreach(var part in feature.PartTypes)
             {
-                var assembly = part.GetType().Assembly;
+                var assembly = part.Assembly;
                 if(assemblyHashSet.Add(assembly))
+                {
                     builder.AddGraphTypes(assembly, ServiceLifetime.Scoped);
+                    services.AddRootResolvers(assembly);
+                }
+
+                services.AddScoped(typeof(IGraphQLQueryProvider),    part);
+                services.AddScoped(typeof(IGraphQLMutationProvider), part);
             }
         }
     }

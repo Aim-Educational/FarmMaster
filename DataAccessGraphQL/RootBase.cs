@@ -17,10 +17,10 @@ namespace DataAccessGraphQL
     // Trust me, I hate this almost as much as you do.
     public abstract class RootBase : ObjectGraphType<object>
     {
-        protected DataAccessUserContext        DataContext  { private set; get; }
-        protected FarmMasterContext            FarmMasterDb { private set; get; }
-        protected IdentityContext              IdentityDb   { private set; get; }
-        protected UserManager<ApplicationUser> UserManager  { private set; get; }
+        public DataAccessUserContext        DataContext  { private set; get; }
+        public FarmMasterContext            FarmMasterDb { private set; get; }
+        public IdentityContext              IdentityDb   { private set; get; }
+        public UserManager<ApplicationUser> UserManager  { private set; get; }
 
         public RootBase(
             IHttpContextAccessor            context,

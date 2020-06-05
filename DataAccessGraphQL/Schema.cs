@@ -13,8 +13,8 @@ namespace DataAccessGraphQL
         public DataAccessGraphQLSchema(IServiceProvider services) 
             : base(services)
         {
-            this.Query = ServiceProviderExtensions.GetRequiredService<DataAccessRootQuery>(services);
-            this.Mutation = ServiceProviderExtensions.GetRequiredService<DataAccessRootMutation>(services);
+            this.Query = ServiceProviderExtensions.GetRequiredService<RootGraphQLQuery>(services);
+            this.Mutation = ServiceProviderExtensions.GetRequiredService<RootGraphQLMutation>(services);
         }
     }
 }

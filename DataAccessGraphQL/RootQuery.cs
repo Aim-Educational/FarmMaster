@@ -1,5 +1,6 @@
 ﻿using DataAccess;
 using DataAccess.Constants;
+using DataAccessGraphQL.Api;
 using DataAccessGraphQL.Constants;
 using DataAccessGraphQL.GraphTypes;
 using DataAccessGraphQL.RootResolvers;
@@ -10,6 +11,7 @@ using GraphQL.Types.Relay.DataObjects;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -20,43 +22,37 @@ using System.Threading.Tasks;
 
 namespace DataAccessGraphQL
 {
-    public class DataAccessRootQuery : RootBase
+    public class RootGraphQLQuery : RootBase
     {
-        readonly RootResolver<DataAccessUserContext> _userResolver;
-        readonly RootResolver<Contact>               _contactResolver;
-        readonly RootResolver<Species>               _speciesResolver;
-        readonly RootResolver<Breed>                 _breedResolver;
-
-        public DataAccessRootQuery(
+        public RootGraphQLQuery(
             // Required for RootBase
-            IHttpContextAccessor         context, 
-            UserManager<ApplicationUser> users,
-            GraphQLUserContextAccessor   accessor,
-            FarmMasterContext            fmDb,
-            IdentityContext              idDb,
-            IAuthorizationService        auth,
+            IHttpContextAccessor                context, 
+            UserManager<ApplicationUser>        users,
+            GraphQLUserContextAccessor          accessor,
+            FarmMasterContext                   fmDb,
+            IdentityContext                     idDb,
+            IAuthorizationService               auth,
 
-            // Custom
-            RootResolver<DataAccessUserContext> userResolver,
-            RootResolver<Contact>               contactResolver,
-            RootResolver<Species>               speciesResolver,
-            RootResolver<Breed>                 breedResolver
+            // Extern providers
+            IEnumerable<IGraphQLQueryProvider>  providers
         ) : base(context, users, accessor, fmDb, idDb, auth)
         {
-            this._userResolver    = userResolver;
-            this._contactResolver = contactResolver;
-            this._speciesResolver = speciesResolver;
-            this._breedResolver   = breedResolver;
+            foreach(var provider in providers)
+                provider.AddQueries(this);
+            //this._userResolver    = userResolver;
+            //this._contactResolver = contactResolver;
+            //this._speciesResolver = speciesResolver;
+            //this._breedResolver   = breedResolver;
 
-            this.AddPermissionsQuery();
+            //this.AddPermissionsQuery();
             
-            this.DefineSingleAndConnection<UserGraphType,    DataAccessUserContext>("user",    this._userResolver);
-            this.DefineSingleAndConnection<ContactGraphType, Contact>              ("contact", this._contactResolver);
-            this.DefineSingleAndConnection<BreedGraphType,   Breed>                ("breed",   this._breedResolver);
-            this.DefineSingleAndConnection<SpeciesGraphType, Species>              ("species", this._speciesResolver);
+            //this.DefineSingleAndConnection<UserGraphType,    DataAccessUserContext>("user",    this._userResolver);
+            //this.DefineSingleAndConnection<ContactGraphType, Contact>              ("contact", this._contactResolver);
+            //this.DefineSingleAndConnection<BreedGraphType,   Breed>                ("breed",   this._breedResolver);
+            //this.DefineSingleAndConnection<SpeciesGraphType, Species>              ("species", this._speciesResolver);
         }
 
-        private void DefineSingleAndConnection<TGraphType, TSourceType>(string name, RootResolver<TSourceType> resolver)
+        public void DefineSingleAndConnection<TGraphType, TSourceType>(string name, RootResolver<TSourceType> resolver)
         where TGraphType : GraphType
         where TSourceType : class
         {

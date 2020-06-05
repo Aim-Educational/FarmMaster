@@ -1,5 +1,6 @@
 ﻿using DataAccess;
 using DataAccess.Constants;
+using DataAccessGraphQL;
 using GraphQL;
 using GraphQL.Types;
 using Microsoft.AspNetCore.Identity;
@@ -10,23 +11,20 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccessGraphQL.Mutations
+namespace AccountModule.GraphQL
 {
     public class UserRootMutation : ObjectGraphType<DataAccessUserContext>
     {
         readonly UserManager<ApplicationUser> _users;
-        readonly RoleManager<ApplicationRole> _roles;
         readonly DataAccessUserContext        _context;
 
         public UserRootMutation(
             GraphQLUserContextAccessor   accessor, 
-            UserManager<ApplicationUser> users,
-            RoleManager<ApplicationRole> roles
+            UserManager<ApplicationUser> users
         )
         {
             this._context = accessor.Context;
             this._users   = users;
-            this._roles   = roles;
 
             this.AddSetPermissions();
         }

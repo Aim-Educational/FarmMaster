@@ -1,5 +1,6 @@
 ﻿using DataAccess;
 using DataAccess.Constants;
+using DataAccessGraphQL;
 using GraphQL;
 using GraphQL.Types;
 using Microsoft.AspNetCore.Authorization;
@@ -9,7 +10,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 
-namespace DataAccessGraphQL.GraphTypes
+namespace AccountModule.GraphQL
 {
     public class UserGraphType : ObjectGraphType<DataAccessUserContext>
     {
