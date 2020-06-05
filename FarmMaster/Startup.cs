@@ -7,7 +7,6 @@ using DataAccess.Constants;
 using DataAccessGraphQL;
 using DataAccessLogic;
 using FarmMaster.Services;
-using FarmMaster.Constants;
 using FarmMaster.Services.Configuration;
 using GraphQL.Server;
 using GraphQL.Server.Ui.Playground;

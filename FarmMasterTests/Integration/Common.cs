@@ -94,6 +94,7 @@ namespace FarmMasterTests.Integration
 
                 settings.Settings = newSettings;
             })
+            .UseStaticWebAssets()
         );
     }
 }

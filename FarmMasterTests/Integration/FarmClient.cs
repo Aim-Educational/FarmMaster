@@ -1,6 +1,5 @@
 ﻿using AccountModule.Models;
 using DataAccess;
-using FarmMaster.Constants;
 using FarmMaster.Models;
 using Microsoft.AspNetCore.Hosting.Server.Features;
 using Microsoft.AspNetCore.Identity;
@@ -169,7 +168,7 @@ namespace FarmMasterTests.Integration
                 if(!match.Success)
                     throw new InvalidOperationException("Could not retrieve verification token.");
 
-                parentBuilder.AddHeader(FarmMasterConstants.CsrfTokenHeader, match.Groups[1].Value);
+                parentBuilder.AddHeader("X-CSRF-TOKEN", match.Groups[1].Value);
                 var forgeryCookie = response
                                     .Headers
                                     .GetValues(HeaderNames.SetCookie)
