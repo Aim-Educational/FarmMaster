@@ -20,6 +20,13 @@ namespace AccountModule
 
     public class Module : ModuleConfigurator
     {
+        public override ModuleInfo Info => _info;
+        private readonly ModuleInfo _info = new ModuleInfo 
+        {
+            Name      = "AccountModule",
+            LoadOrder = 0
+        };
+
         public override void RegisterFeatureProviders(ApplicationPartManager parts)
         {
             parts.FeatureProviders.Add(new AccountConfigureProvider());

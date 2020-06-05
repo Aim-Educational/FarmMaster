@@ -8,12 +8,13 @@ using GraphQL.Server;
 using GraphQL.Server.Ui.Playground;
 using GraphQL.SystemTextJson;
 using DataAccessGraphQL;
+using Microsoft.AspNetCore.Mvc.ApplicationParts;
 
 namespace GraphQLModule.Features
 {
     public class GraphQLConfigureServices : ConfigureServicesPart
     {
-        public override void ConfigureServices(IServiceCollection services, IConfiguration configuration)
+        public override void ConfigureServices(IServiceCollection services, IConfiguration configuration, ApplicationPartManager appParts)
         {
             services.AddDataAccessGraphQLSchema();
             services.AddGraphQL(o =>

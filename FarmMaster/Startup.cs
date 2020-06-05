@@ -82,7 +82,7 @@ namespace FarmMaster
             appParts.PopulateFeature(feature);
             
             foreach(var configFeature in feature.ConfigureServices)
-                configFeature.ConfigureServices(services, Configuration);
+                configFeature.ConfigureServices(services, Configuration, appParts);
 
             // Misc
             services.AddDataAccessLogicLayer();
@@ -140,14 +140,25 @@ namespace FarmMaster
             IWebHostEnvironment env
         )
         {
-            var modules = new List<(Assembly assembly, string hotReloadDir)>
+            var moduleList = new List<Assembly>
             {
-                (typeof(AccountModule.Module).Assembly, "AccountModule"),
-                (typeof(GraphQLModule.Module).Assembly, "GraphQLModule")
+                (typeof(AccountModule.Module).Assembly),
+                (typeof(GraphQLModule.Module).Assembly)
             };
 
-            foreach(var assembly in modules.Select(m => m.assembly))
-                builder.AddApplicationPart(assembly);
+            IEnumerable<(Assembly assembly, ModuleConfigurator module)> modules = null;
+            modules = moduleList.Select(m => 
+            {
+                var moduleType     = m.GetTypes().First(t => typeof(ModuleConfigurator).IsAssignableFrom(t));
+                var moduleInstance = (ModuleConfigurator)Activator.CreateInstance(moduleType);
+
+                return (m, moduleInstance);
+            })
+            .OrderBy(m => m.moduleInstance.Info.LoadOrder);
+            
+
+            foreach(var module in modules)
+                builder.AddApplicationPart(module.assembly);
 
             #if DEBUG
             services.Configure<MvcRazorRuntimeCompilationOptions>(o => 
@@ -158,20 +169,14 @@ namespace FarmMaster
 
                 var basePath = Path.Combine(env.ContentRootPath, "..");
                 foreach(var module in modules)
-                    o.FileProviders.Add(new PhysicalFileProvider(Path.Combine(basePath, module.hotReloadDir)));
+                    o.FileProviders.Add(new PhysicalFileProvider(Path.Combine(basePath, module.module.Info.Name)));
             });
             #endif
 
             builder.ConfigureApplicationPartManager(o => 
             {
-                foreach (var assembly in modules.Select(m => m.assembly))
-                {
-                    var configuratorType = assembly.GetTypes()
-                                                   .First(t => typeof(ModuleConfigurator).IsAssignableFrom(t));
-
-                    var configuratorInstance = (ModuleConfigurator)Activator.CreateInstance(configuratorType);
-                    configuratorInstance.RegisterFeatureProviders(o);
-                }
+                foreach (var module in modules)
+                    module.module.RegisterFeatureProviders(o);
             });
 
             return builder;

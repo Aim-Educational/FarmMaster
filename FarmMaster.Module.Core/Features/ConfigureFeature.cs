@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -23,7 +24,7 @@ namespace FarmMaster.Module.Core.Features
 
     public abstract class ConfigureServicesPart
     {
-        public abstract void ConfigureServices(IServiceCollection services, IConfiguration configuration);
+        public abstract void ConfigureServices(IServiceCollection services, IConfiguration configuration, ApplicationPartManager appParts);
     }
 
     public abstract class ConfigurePipelinePart

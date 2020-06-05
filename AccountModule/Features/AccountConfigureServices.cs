@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authentication.AzureAD.UI;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -17,7 +18,7 @@ namespace AccountModule.Features
 {
     public class AccountConfigureServices : ConfigureServicesPart
     {
-        public override void ConfigureServices(IServiceCollection services, IConfiguration configuration)
+        public override void ConfigureServices(IServiceCollection services, IConfiguration configuration, ApplicationPartManager appParts)
         {
             services.AddAntiforgery(o => o.HeaderName = "X-CSRF-TOKEN");
             services.AddIdentity<ApplicationUser, ApplicationRole>(o =>
