@@ -4,16 +4,13 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using DataAccess;
-using DataAccess.Constants;
 using DataAccessLogic;
-using FarmMaster.Models;
 using FarmMaster.Module.Core.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace FarmMaster.Controllers
+namespace FarmMaster.Module.Core.Controllers
 {
     /// <summary>
     /// Configuration passed directly by an implementor of <see cref="CrudController{EntityT, CrudT}"/>.
