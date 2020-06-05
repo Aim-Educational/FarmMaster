@@ -4,7 +4,7 @@
     ViewData["NavName"] = "Users";
     ViewData["Breadcrumb"] = new Breadcrumb()
                                 .Add("Admin", "#")
-                                .Add("Users", "/Admin/Users");
+                                .Add("Users", "/Admin/User/Users");
 }
 
 <div id="app">
@@ -33,7 +33,7 @@
                     @foreach(var user in Model.Users)
                     {
                         @:{
-                            @:username: { value: "@user.UserName", href: "/Admin/ManageUser?userId=@user.Id" }, 
+                            @:username: { value: "@user.UserName", href: "/Admin/User/ManageUser?userId=@user.Id" }, 
                             @:email: "@user.Email"
                         @:},
                     }

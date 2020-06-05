@@ -13,14 +13,14 @@ using UserModule.Models;
 namespace UserModule.Controllers
 {
     [Area("Admin")]
-    [Route("/Admin/{action}")]
-    public class ModuleController : Controller
+    [Route("/Admin/User/{action}")]
+    public class UserController : Controller
     {
         readonly UserManager<ApplicationUser> _users;
         readonly SignInManager<ApplicationUser> _signIn;
         readonly IAuthorizationService _auth;
 
-        public ModuleController(
+        public UserController(
             UserManager<ApplicationUser> users,
             SignInManager<ApplicationUser> signIn,
             IAuthorizationService auth
