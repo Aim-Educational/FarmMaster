@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -34,6 +34,7 @@
     <ProjectReference Include="..\DataAccessLogic\DataAccessLogic.csproj" />
     <ProjectReference Include="..\DataAccess\DataAccess.csproj" />
     <ProjectReference Include="..\EmailSender\EmailSender.csproj" />
+    <ProjectReference Include="..\TestModule\TestModule.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -30,6 +30,10 @@ using Microsoft.Extensions.Options;
 using FarmMaster.Middleware;
 using EmailSender;
 using Microsoft.Extensions.Logging;
+using System.Reflection;
+using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
+using System.IO;
+using Microsoft.Extensions.FileProviders;
 
 namespace FarmMaster
 {
@@ -148,6 +152,7 @@ namespace FarmMaster
 
             // MVC
             services.AddControllersWithViews()
+                    .AddFarmMasterBuiltinModules(services, this.WebHostEnvironment)
                     .AddRazorRuntimeCompilation();
             services.AddRazorPages();
             services.AddRouting(o => 
@@ -196,10 +201,38 @@ namespace FarmMaster
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute("defaultArea", "{area:exists}/{controller=Home}/{action=Index}");
                 endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}");
                 endpoints.MapControllers();
                 endpoints.MapRazorPages();
             });
+        }
+    }
+
+    public static class FarmMasterModuleExtensions
+    {
+        public static IMvcBuilder AddFarmMasterBuiltinModules(
+            this IMvcBuilder builder, 
+            IServiceCollection services,
+            IWebHostEnvironment env
+        )
+        {
+            var modules = new List<(Assembly assembly, string hotReloadDir)>
+            {
+                (typeof(TestModule.Areas.Test.Controllers.HomeController).Assembly, "TestModule")
+            };
+
+            foreach(var assembly in modules.Select(m => m.assembly))
+                builder.AddApplicationPart(assembly);
+
+            services.Configure<MvcRazorRuntimeCompilationOptions>(o => 
+            {
+                var basePath = Path.Combine(env.ContentRootPath, "..");
+                foreach(var path in modules.Select(p => Path.Combine(basePath, p.hotReloadDir)))
+                    o.FileProviders.Add(new PhysicalFileProvider(path));
+            });
+
+            return builder;
         }
     }
 }
