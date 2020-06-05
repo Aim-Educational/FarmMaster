@@ -17,11 +17,20 @@ namespace AccountModule
         }
     }
 
+    public class ConfigurePipelineProvider : IApplicationFeatureProvider<OnConfigurePipelineFeature>
+    {
+        public void PopulateFeature(IEnumerable<ApplicationPart> parts, OnConfigurePipelineFeature feature)
+        {
+            feature.Features.Add(new AccountConfigurePipeline());
+        }
+    }
+
     public class Module : ModuleConfigurator
     {
         public override void RegisterFeatureProviders(ApplicationPartManager parts)
         {
             parts.FeatureProviders.Add(new ConfigureServicesProvider());
+            parts.FeatureProviders.Add(new ConfigurePipelineProvider());
         }
     }
 }

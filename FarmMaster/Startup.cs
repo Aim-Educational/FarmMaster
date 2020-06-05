@@ -106,9 +106,14 @@ namespace FarmMaster
             IApplicationBuilder app, 
             IWebHostEnvironment env, 
             ILoggerFactory loggerFactory,
-            FarmLoggerProvider farmProvider
+            IServiceProvider services,
+            FarmLoggerProvider farmProvider,
+            ApplicationPartManager parts
         )
         {
+            var configPipelineFeature = new OnConfigurePipelineFeature();
+            parts.PopulateFeature(configPipelineFeature);
+
             loggerFactory.AddProvider(farmProvider);
 
             app.UseForwardedHeaders();
@@ -126,6 +131,9 @@ namespace FarmMaster
             app.UseAuthentication();
             app.UseAddRoleClaimsToUserMiddleware();
             app.UseAuthorization();
+
+            foreach(var module in configPipelineFeature.Features)
+                module.Configure(services, this.WebHostEnvironment);
 
             app.UseGraphQL<DataAccessGraphQLSchema>("/graphql");
             app.UseGraphQLPlayground(new GraphQLPlaygroundOptions

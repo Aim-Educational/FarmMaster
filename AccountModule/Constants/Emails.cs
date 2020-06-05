@@ -19,7 +19,7 @@ namespace AccountModule.Constants
         static EmailTemplate _confirmPassword;
         static EmailTemplateValues _values; // So we don't recreate it every single time.
 
-        public static void LoadTemplates(IWebHostEnvironment env)
+        public static void LoadTemplates(this IWebHostEnvironment env)
         {
             Func<string, string> templatePath = file => Path.Combine("_content", "AccountModule", "email", file);
 
