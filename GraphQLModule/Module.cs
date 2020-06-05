@@ -1,4 +1,6 @@
-﻿using FarmMaster.Module.Core;
+﻿using DataAccess.Constants;
+using FarmMaster.Module.Core;
+using FarmMaster.Module.Core.Api;
 using FarmMaster.Module.Core.Features;
 using GraphQLModule.Features;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
@@ -29,6 +31,16 @@ namespace GraphQLModule
         public override void RegisterFeatureProviders(ApplicationPartManager parts)
         {
             parts.FeatureProviders.Add(new GraphQLConfigureProvider());
+        }
+
+        public override void RegisterNavMenuItems(NavMenu menu)
+        {
+            menu.GroupFromName("Admin").Add(new NavMenuItem
+            {
+                DisplayText      = "GraphQL",
+                RequiredPolicies = new[] { Permissions.Other.GraphQLUI },
+                LinkHref         = new Uri("/ui/playground", UriKind.Relative)
+            });
         }
     }
 }

@@ -34,6 +34,7 @@ using Microsoft.Extensions.FileProviders;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using FarmMaster.Module.Core;
 using FarmMaster.Module.Core.Features;
+using FarmMaster.Module.Core.Api;
 
 namespace FarmMaster
 {
@@ -156,9 +157,14 @@ namespace FarmMaster
             })
             .OrderBy(m => m.moduleInstance.Info.LoadOrder);
             
-
-            foreach(var module in modules)
+            var navMenu = new NavMenu();
+            foreach(var module in modules) 
+            {
                 builder.AddApplicationPart(module.assembly);
+                module.module.RegisterNavMenuItems(navMenu);
+            }
+
+            services.AddSingleton(navMenu);
 
             #if DEBUG
             services.Configure<MvcRazorRuntimeCompilationOptions>(o => 

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.ApplicationParts;
+﻿using FarmMaster.Module.Core.Api;
+using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -15,5 +16,6 @@ namespace FarmMaster.Module.Core
     {
         public abstract ModuleInfo Info { get; }
         public virtual void RegisterFeatureProviders(ApplicationPartManager parts) { }
+        public virtual void RegisterNavMenuItems(NavMenu menu) { }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using AccountModule.Features;
 using AccountModule.GraphQL;
 using FarmMaster.Module.Core;
+using FarmMaster.Module.Core.Api;
 using FarmMaster.Module.Core.Features;
 using GraphQLModule.Api;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
