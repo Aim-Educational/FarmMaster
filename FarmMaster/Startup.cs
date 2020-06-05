@@ -34,6 +34,9 @@ using System.Reflection;
 using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
 using System.IO;
 using Microsoft.Extensions.FileProviders;
+using Microsoft.AspNetCore.Mvc.ApplicationParts;
+using FarmMaster.Module.Core;
+using FarmMaster.Module.Core.Features;
 
 namespace FarmMaster
 {
@@ -64,81 +67,6 @@ namespace FarmMaster
             // Email
             services.AddSingleton<IConfigureOptions<EmailSenderConfig>, ConfigureEmailOptions>();
             services.AddTemplatedEmailSender();
-            FarmMaster.Constants.EmailExtensions.LoadTemplates(this.WebHostEnvironment);
-
-            // Identity + All login providers
-            services.AddAntiforgery(o => o.HeaderName = FarmMasterConstants.CsrfTokenHeader);
-            services.AddIdentity<ApplicationUser, ApplicationRole>(o => 
-            {
-                o.SignIn.RequireConfirmedAccount = true;
-
-                o.Password.RequiredLength = 6;
-                o.Password.RequireDigit = true;
-                o.Password.RequireLowercase = true;
-                o.Password.RequireUppercase = true;
-                o.Password.RequireNonAlphanumeric = false;
-
-                o.Lockout.AllowedForNewUsers = true;
-                o.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
-                o.Lockout.MaxFailedAccessAttempts = 5;
-
-                o.User.RequireUniqueEmail = true;
-            })
-            .AddEntityFrameworkStores<IdentityContext>()
-            .AddDefaultTokenProviders();
-
-            services.ConfigureApplicationCookie(o => 
-            {
-                o.Cookie.HttpOnly = true;
-                o.ExpireTimeSpan = TimeSpan.FromHours(4);
-
-                o.LoginPath = "/Account/Login";
-                o.LogoutPath = "/Account/Logout";
-                o.AccessDeniedPath = "/Identity/Account/AccessDenied";
-                o.SlidingExpiration = true;
-            });
-
-            services.Configure<OpenIdConnectOptions>(AzureADDefaults.OpenIdScheme, options =>
-            {
-                options.Authority += "/v2.0/";
-                options.TokenValidationParameters.ValidateIssuer = false;
-            });
-
-            services.AddAuthentication(o => 
-            {
-                o.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-            })
-            .AddAzureAD(options => 
-            { 
-                Configuration.Bind("AzureAd", options);
-                options.CookieSchemeName = IdentityConstants.ExternalScheme;
-            });
-
-            services.AddAuthorization(o => 
-            {
-                o.AddPolicy(Policies.IsAdmin, p => p.RequireRole(Roles.SuperAdmin));
-                o.AddPolicy(
-                    Policies.SeeAdminPanel, 
-                    p => p.RequireAssertion
-                    (
-                        ctx => ctx.User.IsInRole(Roles.SuperAdmin)
-                            || ctx.User.HasClaim(Permissions.ClaimType, Permissions.Other.GraphQLUI)
-                            || ctx.User.HasClaim(Permissions.ClaimType, Permissions.Other.DebugUI)
-                            || ctx.User.HasClaim(Permissions.ClaimType, Permissions.Other.Settings)
-                            || ctx.User.HasClaim(Permissions.ClaimType, Permissions.User.ManageUI)
-                    )
-                );
-                
-                // For ease-of-use, all permissions have their own policy.
-                // Any policy containing "read" (e.g. "read_permissions") will implicitly pass for their "write" version ("write_permissions")
-                foreach(var perm in Permissions.AllPermissions)
-                {
-                    o.AddPolicy(
-                        perm, 
-                        p => p.RequireClaim(Permissions.ClaimType, perm, perm.Replace("read", "write"))
-                    );
-                }
-            });
 
             // GraphQL
             services.AddDataAccessGraphQLSchema();
@@ -150,7 +78,7 @@ namespace FarmMaster
             .AddSystemTextJson()
             .AddGraphTypes(typeof(DataAccessGraphQLSchema), ServiceLifetime.Scoped);
 
-            // MVC
+            // MVC & Modules & Run OnConfigureServices features
             services.AddControllersWithViews()
                     .AddFarmMasterBuiltinModules(services, this.WebHostEnvironment)
                     .AddRazorRuntimeCompilation();
@@ -160,6 +88,14 @@ namespace FarmMaster
                 o.LowercaseQueryStrings = false;
                 o.LowercaseUrls = false;
             });
+
+            var provider = services.BuildServiceProvider();
+            var appParts = provider.GetRequiredService<ApplicationPartManager>();
+            var feature  = new OnConfigureServicesFeature();
+            appParts.PopulateFeature(feature);
+            
+            foreach(var configFeature in feature.Features)
+                configFeature.ConfigureServices(services, Configuration);
 
             // Misc
             services.AddDataAccessLogicLayer();
@@ -219,17 +155,35 @@ namespace FarmMaster
         {
             var modules = new List<(Assembly assembly, string hotReloadDir)>
             {
-                (typeof(TestModule.Areas.Test.Controllers.HomeController).Assembly, "TestModule")
+                (typeof(AccountModule.Controllers.ModuleController).Assembly, "AccountModule")
             };
 
             foreach(var assembly in modules.Select(m => m.assembly))
                 builder.AddApplicationPart(assembly);
 
+            #if DEBUG
             services.Configure<MvcRazorRuntimeCompilationOptions>(o => 
             {
+                // This code breaks during unittests, but we don't need it then, so just skip this step.
+                if(AppDomain.CurrentDomain.GetAssemblies().Any(a => a.FullName.ToLower().Contains("xunit")))
+                    return;
+
                 var basePath = Path.Combine(env.ContentRootPath, "..");
-                foreach(var path in modules.Select(p => Path.Combine(basePath, p.hotReloadDir)))
-                    o.FileProviders.Add(new PhysicalFileProvider(path));
+                foreach(var module in modules)
+                    o.FileProviders.Add(new PhysicalFileProvider(Path.Combine(basePath, module.hotReloadDir)));
+            });
+            #endif
+
+            builder.ConfigureApplicationPartManager(o => 
+            {
+                foreach (var assembly in modules.Select(m => m.assembly))
+                {
+                    var configuratorType = assembly.GetTypes()
+                                                   .First(t => typeof(ModuleConfigurator).IsAssignableFrom(t));
+
+                    var configuratorInstance = (ModuleConfigurator)Activator.CreateInstance(configuratorType);
+                    configuratorInstance.RegisterFeatureProviders(o);
+                }
             });
 
             return builder;

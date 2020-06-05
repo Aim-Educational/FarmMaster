@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.AzureAD.UI" Version="3.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="3.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Authorization" Version="3.1.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="3.1.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.Extensions" Version="3.1.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Language" Version="3.1.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DataAccessLogic\DataAccessLogic.csproj" />
+    <ProjectReference Include="..\DataAccess\DataAccess.csproj" />
+    <ProjectReference Include="..\EmailSender\EmailSender.csproj" />
+    <ProjectReference Include="..\FarmMaster.Module.Core\FarmMaster.Module.Core.csproj" />
+    <ProjectReference Include="..\FarmMaster.Module.Models\FarmMaster.Module.Models.csproj" />
+    <ProjectReference Include="..\FarmMaster.Module.TagHelpers\FarmMaster.Module.TagHelpers.csproj" />
+  </ItemGroup>
+
+
+</Project>

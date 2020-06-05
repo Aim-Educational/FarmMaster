@@ -6,7 +6,6 @@ using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using DataAccess;
-using FarmMaster.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
@@ -14,23 +13,26 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using EmailSender;
-using FarmMaster.Constants;
+using AccountModule.Models;
+using AccountModule.Constants;
 
-namespace FarmMaster.Controllers
+namespace AccountModule.Controllers
 {
     [AllowAnonymous]
-    public class AccountController : Controller
+    [Area("Account")]
+    [Route("/Account/{action}")]
+    public class ModuleController : Controller
     {
         readonly SignInManager<ApplicationUser> _signInManager;
         readonly UserManager<ApplicationUser> _userManager;
         readonly ITemplatedEmailSender _emailSender;
         readonly ILogger _logger;
 
-        public AccountController(
+        public ModuleController(
             SignInManager<ApplicationUser> signIn,
             UserManager<ApplicationUser> users,
             ITemplatedEmailSender email,
-            ILogger<AccountController> logger
+            ILogger<ModuleController> logger
         )
         {
             this._signInManager = signIn;

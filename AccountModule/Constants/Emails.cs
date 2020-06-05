@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Hosting;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
+using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 
-namespace FarmMaster.Constants
+namespace AccountModule.Constants
 {
     public class Emails
     {
@@ -21,9 +21,9 @@ namespace FarmMaster.Constants
 
         public static void LoadTemplates(IWebHostEnvironment env)
         {
-            Func<string, string> templatePath = file => Path.Combine(env.WebRootPath, "email", file);
+            Func<string, string> templatePath = file => Path.Combine("_content", "AccountModule", "email", file);
 
-            _confirmPassword = EmailTemplate.FromFile(templatePath(Emails.ConfirmPassword));
+            _confirmPassword = new EmailTemplate(new StreamReader(env.WebRootFileProvider.GetFileInfo(templatePath(Emails.ConfirmPassword)).CreateReadStream()).ReadToEnd());
             _values = new EmailTemplateValues();
         }
 

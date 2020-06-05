@@ -1,4 +1,5 @@
-﻿using DataAccess;
+﻿using AccountModule.Models;
+using DataAccess;
 using FarmMaster.Constants;
 using FarmMaster.Models;
 using Microsoft.AspNetCore.Hosting.Server.Features;
