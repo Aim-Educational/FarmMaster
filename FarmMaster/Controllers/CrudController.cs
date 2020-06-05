@@ -8,7 +8,7 @@ using DataAccess;
 using DataAccess.Constants;
 using DataAccessLogic;
 using FarmMaster.Models;
-using FarmMaster.Module.Models;
+using FarmMaster.Module.Core.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;

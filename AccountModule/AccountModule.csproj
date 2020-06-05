@@ -24,7 +24,6 @@
     <ProjectReference Include="..\DataAccess\DataAccess.csproj" />
     <ProjectReference Include="..\EmailSender\EmailSender.csproj" />
     <ProjectReference Include="..\FarmMaster.Module.Core\FarmMaster.Module.Core.csproj" />
-    <ProjectReference Include="..\FarmMaster.Module.Models\FarmMaster.Module.Models.csproj" />
     <ProjectReference Include="..\FarmMaster.Module.TagHelpers\FarmMaster.Module.TagHelpers.csproj" />
   </ItemGroup>
 

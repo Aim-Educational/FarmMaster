@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FarmMaster.Module.Models
+namespace FarmMaster.Module.Core.Models
 {
     class BreadcrumbPairs : Dictionary<string, string>
     {
