@@ -16,6 +16,10 @@ namespace UserModule.Controllers
     [Route("/Admin/{action}")]
     public class ModuleController : Controller
     {
+        // This allows me to simplify folder structure and routing, at the cost of having to remember to use these strings.
+        const string VIEW_USERS         = "~/Views/UserModule/Users.cshtml";
+        const string VIEW_MANAGE_USER   = "~/Views/UserModule/ManageUser.cshtml";
+
         readonly UserManager<ApplicationUser> _users;
         readonly SignInManager<ApplicationUser> _signIn;
         readonly IAuthorizationService _auth;
@@ -37,7 +41,7 @@ namespace UserModule.Controllers
             if (error != null)
                 ModelState.AddModelError(string.Empty, error);
 
-            return View(new AdminUsersViewModel
+            return View(VIEW_USERS, new AdminUsersViewModel
             {
                 Users = users.Users
             });
@@ -51,7 +55,7 @@ namespace UserModule.Controllers
                 return RedirectToAction(authResult.selfManage ? "Login" : "Users", new { authResult.error });
 
             var user = authResult.user;
-            return View(new AdminManageUserViewModel
+            return View(VIEW_MANAGE_USER, new AdminManageUserViewModel
             {
                 Username = user.UserName,
                 Email = user.Email,
@@ -123,7 +127,7 @@ namespace UserModule.Controllers
             model.CurrentPassword = null;
             model.Password = null;
             model.ConfirmPassword = null;
-            return View(model);
+            return View(VIEW_MANAGE_USER, model);
         }
 
         private async Task<(bool allowed, string error, ApplicationUser user, bool selfManage, bool hasDeletePerm, bool isAdmin)>
