@@ -8,8 +8,6 @@ using DataAccessGraphQL;
 using DataAccessLogic;
 using FarmMaster.Services;
 using FarmMaster.Services.Configuration;
-using GraphQL.Server;
-using GraphQL.Server.Ui.Playground;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.AzureAD.UI;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -67,16 +65,6 @@ namespace FarmMaster
             services.AddSingleton<IConfigureOptions<EmailSenderConfig>, ConfigureEmailOptions>();
             services.AddTemplatedEmailSender();
 
-            // GraphQL
-            services.AddDataAccessGraphQLSchema();
-            services.AddGraphQL(o => 
-            {
-                o.EnableMetrics = false;
-                o.ExposeExceptions = true;
-            })
-            .AddSystemTextJson()
-            .AddGraphTypes(typeof(DataAccessGraphQLSchema), ServiceLifetime.Scoped);
-
             // MVC & Modules & Run OnConfigureServices features
             services.AddControllersWithViews()
                     .AddFarmMasterBuiltinModules(services, this.WebHostEnvironment)
@@ -132,15 +120,7 @@ namespace FarmMaster
             app.UseAuthorization();
 
             foreach(var module in configFeature.ConfigurePipeline)
-                module.Configure(services, this.WebHostEnvironment);
-
-            app.UseGraphQL<DataAccessGraphQLSchema>("/graphql");
-            app.UseGraphQLPlayground(new GraphQLPlaygroundOptions
-            {
-                PlaygroundSettings = new Dictionary<string, object> {
-                    { "request.credentials", "same-origin" } // Instructs the playground to send cookies, so we can validate the user.
-                }
-            });
+                module.Configure(app, services, this.WebHostEnvironment);
 
             app.UseEndpoints(endpoints =>
             {
@@ -162,7 +142,8 @@ namespace FarmMaster
         {
             var modules = new List<(Assembly assembly, string hotReloadDir)>
             {
-                (typeof(AccountModule.Controllers.ModuleController).Assembly, "AccountModule")
+                (typeof(AccountModule.Module).Assembly, "AccountModule"),
+                (typeof(GraphQLModule.Module).Assembly, "GraphQLModule")
             };
 
             foreach(var assembly in modules.Select(m => m.assembly))

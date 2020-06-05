@@ -6,12 +6,13 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using AccountModule.Constants;
+using Microsoft.AspNetCore.Builder;
 
 namespace AccountModule.Features
 {
     public class AccountConfigurePipeline : ConfigurePipelinePart
     {
-        public override void Configure(IServiceProvider services, IWebHostEnvironment env)
+        public override void Configure(IApplicationBuilder app, IServiceProvider services, IWebHostEnvironment env)
         {
             env.LoadTemplates();
         }

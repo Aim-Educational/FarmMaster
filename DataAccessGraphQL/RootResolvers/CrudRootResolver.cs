@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using DataAccess;
 using DataAccess.Constants;
 using DataAccessLogic;
+using GraphQL;
 using GraphQL.Types;
 
 namespace DataAccessGraphQL.RootResolvers

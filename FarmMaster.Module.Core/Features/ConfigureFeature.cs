@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -27,6 +28,6 @@ namespace FarmMaster.Module.Core.Features
 
     public abstract class ConfigurePipelinePart
     {
-        public abstract void Configure(IServiceProvider services, IWebHostEnvironment env);
+        public abstract void Configure(IApplicationBuilder app, IServiceProvider services, IWebHostEnvironment env);
     }
 }
