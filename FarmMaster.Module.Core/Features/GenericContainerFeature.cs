@@ -6,11 +6,11 @@ namespace FarmMaster.Module.Core.Features
 {
     public class GenericContainerFeature<T>
     {
-        public IList<T> Features { get; private set; }
+        public IList<T> Parts { get; private set; }
 
         public GenericContainerFeature()
         {
-            this.Features = new List<T>();
+            this.Parts = new List<T>();
         }
     }
 }
