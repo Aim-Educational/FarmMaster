@@ -144,7 +144,8 @@ namespace FarmMaster
             var moduleList = new List<Assembly>
             {
                 (typeof(AccountModule.Module).Assembly),
-                (typeof(GraphQLModule.Module).Assembly)
+                (typeof(GraphQLModule.Module).Assembly),
+                (typeof(UserModule.Module).Assembly)
             };
 
             IEnumerable<(Assembly assembly, ModuleConfigurator module)> modules = null;

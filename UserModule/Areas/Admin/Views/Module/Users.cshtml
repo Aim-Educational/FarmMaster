@@ -2,6 +2,9 @@
 @{
     ViewData["Title"] = "Users";
     ViewData["NavName"] = "Users";
+    ViewData["Breadcrumb"] = new Breadcrumb()
+                                .Add("Admin", "#")
+                                .Add("Users", "/Admin/Users");
 }
 
 <div id="app">

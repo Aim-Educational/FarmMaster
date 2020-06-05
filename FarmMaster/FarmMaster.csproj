@@ -32,6 +32,7 @@
     <ProjectReference Include="..\EmailSender\EmailSender.csproj" />
     <ProjectReference Include="..\FarmMaster.Module.TagHelpers\FarmMaster.Module.TagHelpers.csproj" />
     <ProjectReference Include="..\GraphQLModule\GraphQLModule.csproj" />
+    <ProjectReference Include="..\UserModule\UserModule.csproj" />
   </ItemGroup>
 
   <ItemGroup>
