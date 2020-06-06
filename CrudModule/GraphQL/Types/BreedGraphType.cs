@@ -1,8 +1,10 @@
 ﻿using DataAccess;
 using DataAccess.Constants;
+using DataAccessGraphQL;
+using DataAccessGraphQL.GraphTypes;
 using GraphQL.Types;
 
-namespace DataAccessGraphQL.GraphTypes
+namespace CrudModule.GraphQL.Types
 {
     public class BreedGraphType : ObjectGraphType<Breed>
     {

@@ -5,7 +5,7 @@ using FarmMaster.Module.Core.Controllers;
 using FarmMaster.Module.Core.Models;
 using Microsoft.Extensions.Logging;
 
-namespace FarmMaster.Controllers
+namespace CrudModule.Controllers
 {
     public class SpeciesController : CrudController<Species, ISpeciesManager>
     {

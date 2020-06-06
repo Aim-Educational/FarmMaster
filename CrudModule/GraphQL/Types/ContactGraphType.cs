@@ -1,22 +1,24 @@
 ﻿using DataAccess;
 using DataAccess.Constants;
+using DataAccessGraphQL;
+using DataAccessGraphQL.GraphTypes;
 using GraphQL.Types;
 
-namespace DataAccessGraphQL.GraphTypes
+namespace CrudModule.GraphQL.Types
 {
-    public class SpeciesGraphType : ObjectGraphType<Species>
+    public class ContactGraphType : ObjectGraphType<Contact>
     {
-        public SpeciesGraphType(GraphQLUserContextAccessor contextAccessor)
+        public ContactGraphType(GraphQLUserContextAccessor contextAccessor)
         {
             var context = contextAccessor.Context;
 
-            this.Field<StringGraphType>("id", resolve: ctx => ctx.Source.SpeciesId);
+            this.Field<StringGraphType>("id", resolve: ctx => ctx.Source.ContactId);
 
             this.FieldAsync<StringGraphType>(
                 "name",
                 resolve: async ctx =>
                 {
-                    await context.EnforceHasPolicyAsync(Permissions.Species.Read);
+                    await context.EnforceHasPolicyAsync(Permissions.Contact.Read);
                     return ctx.Source.Name;
                 }
             );
@@ -25,7 +27,7 @@ namespace DataAccessGraphQL.GraphTypes
                 "notes",
                 resolve: async ctx =>
                 {
-                    await context.EnforceHasPolicyAsync(Permissions.Species.ReadNotes);
+                    await context.EnforceHasPolicyAsync(Permissions.Contact.ReadNotes);
                     return ctx.Source.NoteOwner?.NoteEntries;
                 }
             );

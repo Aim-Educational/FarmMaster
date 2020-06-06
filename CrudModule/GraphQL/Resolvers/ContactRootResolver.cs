@@ -1,9 +1,10 @@
 ﻿using DataAccess;
 using DataAccess.Constants;
+using DataAccessGraphQL.RootResolvers;
 using DataAccessLogic;
 using System.Linq;
 
-namespace DataAccessGraphQL.RootResolvers
+namespace CrudModule.GraphQL.Resolvers
 {
     public class ContactRootResolver : CrudRootResolver<Contact>
     {

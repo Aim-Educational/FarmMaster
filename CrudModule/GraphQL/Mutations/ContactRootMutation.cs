@@ -1,27 +1,28 @@
 ﻿using DataAccess;
 using DataAccess.Constants;
+using DataAccessGraphQL;
 using DataAccessGraphQL.Util;
 using DataAccessLogic;
 using GraphQL.Types;
 
-namespace DataAccessGraphQL.Mutations
+namespace CrudModule.GraphQL.Mutations
 {
-    public class BreedRootMutation : ObjectGraphType<Breed>
+    public class ContactRootMutation : ObjectGraphType<Contact>
     {
         readonly DataAccessUserContext _context;
-        readonly IBreedManager _breeds;
+        readonly IContactManager _contacts;
         readonly INoteManager _notes;
         readonly IUnitOfWork _unitOfWork;
 
-        public BreedRootMutation(
+        public ContactRootMutation(
             GraphQLUserContextAccessor accessor,
-            IBreedManager breeds,
+            IContactManager contacts,
             INoteManager notes,
             IUnitOfWork unitOfWork
         )
         {
             this._context = accessor.Context;
-            this._breeds = breeds;
+            this._contacts = contacts;
             this._notes = notes;
             this._unitOfWork = unitOfWork;
 
@@ -34,11 +35,11 @@ namespace DataAccessGraphQL.Mutations
                 this._context,
                 this._unitOfWork,
                 this._notes,
-                Permissions.Breed.WriteNotes,
+                Permissions.Contact.WriteNotes,
                 ctx =>
                 {
                     ctx.Source.NoteOwner = ctx.Source.NoteOwner ?? new NoteOwner();
-                    this._breeds.Update(ctx.Source);
+                    this._contacts.Update(ctx.Source);
 
                     return ctx.Source.NoteOwner;
                 }
