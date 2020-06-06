@@ -4,8 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using DataAccess;
 using DataAccessLogic;
-using FarmMaster.Services;
-using FarmMaster.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
@@ -15,37 +13,28 @@ using DataAccess.Constants;
 using EmailSender;
 using Microsoft.Extensions.DependencyInjection;
 using AccountModule.Constants;
+using AdminModule.Models;
 
-namespace FarmMaster.Controllers
+namespace AdminModule.Controllers
 {
+    [Area("Admin")]
+    [Route("/Admin/{action}")]
     [Authorize(Policy = Policies.SeeAdminPanel)]
-    public class AdminController : Controller
+    public class ModuleController : Controller
     {
-        readonly UserManager<ApplicationUser> _users;
-        readonly SignInManager<ApplicationUser> _signIn;
-        readonly IAuthorizationService _auth;
-
-        public AdminController(
-            UserManager<ApplicationUser> users,
-            SignInManager<ApplicationUser> signIn,
-            IAuthorizationService auth
-        )
-        {
-            this._users = users;
-            this._signIn = signIn;
-            this._auth = auth;
-        }
+        const string VIEW_CONTROL_TEST = "~/Views/AdminModule/ControlTest.cshtml";
+        const string VIEW_SETTINGS     = "~/Views/AdminModule/Settings.cshtml";
 
         [Authorize(Policy = Permissions.Other.DebugUI)]
         public IActionResult ControlTest()
         {
-            return View();
+            return View(VIEW_CONTROL_TEST);
         }
 
         [Authorize(Policy = Permissions.Other.Settings)]
         public IActionResult Settings([FromServices] IOptionsSnapshot<EmailSenderConfig> emailConf, [FromQuery] string emailTestError)
         {
-            return View(new AdminSettingsViewModel
+            return View(VIEW_SETTINGS, new AdminSettingsViewModel
             {
                 EmailError = emailTestError,
                 Email = emailConf.Value
@@ -120,7 +109,7 @@ namespace FarmMaster.Controllers
             catch(Exception ex)
             {
                 settings.EmailError = ex.Message;
-                return View("Settings", settings);
+                return View(VIEW_SETTINGS, settings);
             }
 
             return RedirectToAction("Settings");
