@@ -29,6 +29,9 @@ namespace FarmMasterTests.Integration
             "Account:Module:HandleExternalLogin:GET",
             "Account:Module:FinaliseExternalLogin:GET",
             "Account:Module:FinaliseExternalLogin:POST",
+            "Admin:Module:ManageUser:GET",  // Performs auth after being called
+            "Admin:Module:DeleteUser:GET",  // ^^
+            "Admin:Module:ManageUser:POST", // ^^
             "AzureAD:Account:SignIn:GET",
             "AzureAD:Account:SignOut:GET",
             "AzureAD:::GET", // Don't ask, cus I don't know.
