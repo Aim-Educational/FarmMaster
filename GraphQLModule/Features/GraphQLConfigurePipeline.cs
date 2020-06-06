@@ -1,12 +1,10 @@
 ﻿using DataAccessGraphQL;
 using FarmMaster.Module.Core.Features;
-using GraphQL.Server;
 using GraphQL.Server.Ui.Playground;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace GraphQLModule.Features
 {

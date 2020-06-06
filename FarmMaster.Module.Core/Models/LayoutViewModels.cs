@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace FarmMaster.Module.Core.Models
 {
@@ -39,7 +37,7 @@ namespace FarmMaster.Module.Core.Models
         public Breadcrumb Add(string name, string href)
         {
             var exists = this._breadcrumbs.TryGetValue(this._currentKey, out BreadcrumbPairs crumbs);
-            if(!exists)
+            if (!exists)
             {
                 crumbs = new BreadcrumbPairs();
                 this._breadcrumbs.Add(this._currentKey, crumbs);
@@ -58,7 +56,7 @@ namespace FarmMaster.Module.Core.Models
 
         public Breadcrumb Use(string name, bool condition = true)
         {
-            if(condition)
+            if (condition)
                 this._keyToUse = name;
 
             return this;
@@ -67,11 +65,11 @@ namespace FarmMaster.Module.Core.Models
         public IEnumerator<KeyValuePair<string, string>> GetEnumerator()
         {
             var exists = this._breadcrumbs.TryGetValue(KEY_ALWAYS_USE, out BreadcrumbPairs crumbsToAlwaysShow);
-            if(!exists)
+            if (!exists)
                 crumbsToAlwaysShow = new BreadcrumbPairs();
 
             var otherCrumbs = new BreadcrumbPairs();
-            if(this._keyToUse != KEY_ALWAYS_USE)
+            if (this._keyToUse != KEY_ALWAYS_USE)
                 this._breadcrumbs.TryGetValue(this._keyToUse, out otherCrumbs);
 
             return crumbsToAlwaysShow.Concat(otherCrumbs).GetEnumerator();

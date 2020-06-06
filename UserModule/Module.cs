@@ -2,16 +2,14 @@
 using FarmMaster.Module.Core;
 using FarmMaster.Module.Core.Api;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace UserModule
 {
     public class Module : ModuleConfigurator
     {
-        public override ModuleInfo Info => new ModuleInfo 
+        public override ModuleInfo Info => new ModuleInfo
         {
-            Name      = "UserModule",
+            Name = "UserModule",
             LoadOrder = 0
         };
 
@@ -19,9 +17,9 @@ namespace UserModule
         {
             menu.GroupFromName("Admin").Add(new NavMenuItem
             {
-                DisplayText      = "Users",
+                DisplayText = "Users",
                 RequiredPolicies = new[] { Permissions.User.ManageUI },
-                LinkHref         = new Uri("/Admin/Users", UriKind.Relative)
+                LinkHref = new Uri("/Admin/Users", UriKind.Relative)
             });
         }
     }

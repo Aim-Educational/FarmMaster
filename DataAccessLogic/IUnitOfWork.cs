@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace DataAccessLogic
 {
@@ -55,7 +54,7 @@ namespace DataAccessLogic
     /// </summary>
     public sealed class UnitOfWorkScope : IDisposable
     {
-        bool                 _isDisposed;
+        bool _isDisposed;
         readonly IUnitOfWork _owner;
 
         /// <summary>
@@ -80,11 +79,11 @@ namespace DataAccessLogic
         /// <param name="owner">The owner of this scope.</param>
         public UnitOfWorkScope(string name, IUnitOfWork owner)
         {
-            if(owner == null)
+            if (owner == null)
                 throw new ArgumentNullException(nameof(owner));
 
             this._owner = owner;
-            this.Name   = name;
+            this.Name = name;
         }
 
         /// <summary>
@@ -113,7 +112,7 @@ namespace DataAccessLogic
         /// </summary>
         public void Dispose()
         {
-            if(this._isDisposed)
+            if (this._isDisposed)
                 return;
 
             this._isDisposed = true;
@@ -123,7 +122,7 @@ namespace DataAccessLogic
         private bool ChangeState(UnitOfWorkScopeState state)
         {
             this.EnforceNotDisposed();
-            if(this.State != UnitOfWorkScopeState.None)
+            if (this.State != UnitOfWorkScopeState.None)
                 return false;
 
             this.State = state;
@@ -132,7 +131,7 @@ namespace DataAccessLogic
 
         private void EnforceNotDisposed()
         {
-            if(this._isDisposed)
+            if (this._isDisposed)
                 throw new ObjectDisposedException(nameof(UnitOfWorkScope));
         }
     }
@@ -148,9 +147,9 @@ namespace DataAccessLogic
     public sealed class DbContextUnitOfWork<ContextT> : IUnitOfWork
     where ContextT : DbContext
     {
-        int                     _activeScopeCount;
+        int _activeScopeCount;
         IList<UnitOfWorkResult> _results;
-        readonly ContextT       _db;
+        readonly ContextT _db;
 
         public DbContextUnitOfWork(ContextT db)
         {
@@ -166,19 +165,19 @@ namespace DataAccessLogic
 
         public void OnScopeDisposing(UnitOfWorkScope scope)
         {
-            if(scope == null)
+            if (scope == null)
                 throw new ArgumentNullException(nameof(scope));
 
             this._activeScopeCount--;
             this._results.Add(new UnitOfWorkResult(scope.Name, scope.State, scope.RollbackReason));
 
-            if(this._activeScopeCount == 0)
+            if (this._activeScopeCount == 0)
                 this.OnAllScopesDisposed();
         }
 
         private void OnAllScopesDisposed()
         {
-            if(this._results.Any(r => r.ScopeState != UnitOfWorkScopeState.Commit))
+            if (this._results.Any(r => r.ScopeState != UnitOfWorkScopeState.Commit))
             {
                 this.RollbackDatabase();
 
@@ -198,9 +197,9 @@ namespace DataAccessLogic
                                   .Where(x => x.State != EntityState.Unchanged)
                                   .ToList(); // Since we'll be modifying the collection as we iterate it.
 
-            foreach(var change in changes)
+            foreach (var change in changes)
             {
-                switch(change.State)
+                switch (change.State)
                 {
                     case EntityState.Modified:
                     case EntityState.Deleted:
@@ -246,7 +245,7 @@ namespace DataAccessLogic
 
         public UnitOfWorkException(IEnumerable<UnitOfWorkResult> results)
         : base(results.Select(r => r.ToString()).Aggregate((a, b) => $"{a}\n{b}"))
-        { 
+        {
             this.ScopeResults = results;
         }
     }

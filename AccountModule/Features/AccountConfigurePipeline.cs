@@ -1,12 +1,8 @@
-﻿using EmailSender;
+﻿using AccountModule.Constants;
 using FarmMaster.Module.Core.Features;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using AccountModule.Constants;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using System;
 
 namespace AccountModule.Features
 {

@@ -1,10 +1,7 @@
 ﻿using DataAccess;
 using GraphQL;
 using Microsoft.AspNetCore.Authorization;
-using System;
-using System.Collections.Generic;
 using System.Security.Claims;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace DataAccessGraphQL
@@ -25,7 +22,7 @@ namespace DataAccessGraphQL
     // This is just so I can access the ApplicationUser easily
     public class DataAccessUserContext
     {
-        public ApplicationUser UserIdentity  { get; private set; }
+        public ApplicationUser UserIdentity { get; private set; }
         public ClaimsPrincipal UserPrincipal { get; private set; }
         public IAuthorizationService Auth { get; set; }
 

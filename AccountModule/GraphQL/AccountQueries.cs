@@ -1,9 +1,6 @@
 ﻿using DataAccessGraphQL;
 using DataAccessGraphQL.RootResolvers;
 using GraphQLModule.Api;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace AccountModule.GraphQL
 {

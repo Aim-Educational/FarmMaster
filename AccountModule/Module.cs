@@ -1,14 +1,10 @@
 ﻿using AccountModule.Features;
 using AccountModule.GraphQL;
 using FarmMaster.Module.Core;
-using FarmMaster.Module.Core.Api;
 using FarmMaster.Module.Core.Features;
 using GraphQLModule.Api;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
-using Microsoft.AspNetCore.Mvc.TagHelpers;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace AccountModule
 {
@@ -31,10 +27,10 @@ namespace AccountModule
 
     public class Module : ModuleConfigurator
     {
-        public override ModuleInfo Info => _info;
-        private readonly ModuleInfo _info = new ModuleInfo 
+        public override ModuleInfo Info => this._info;
+        private readonly ModuleInfo _info = new ModuleInfo
         {
-            Name      = "AccountModule",
+            Name = "AccountModule",
             LoadOrder = 0
         };
 

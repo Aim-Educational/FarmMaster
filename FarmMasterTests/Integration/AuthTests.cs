@@ -6,8 +6,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
@@ -52,42 +50,42 @@ namespace FarmMasterTests.Integration
         {
             var actions = base.Host.Services.GetRequiredService<IActionDescriptorCollectionProvider>();
 
-            var routes        = actions.ActionDescriptors.Items;
+            var routes = actions.ActionDescriptors.Items;
             var routesChecked = new List<string>();
             var routesInvalid = new List<string>();
-            foreach(var route in routes)
+            foreach (var route in routes)
             {
                 // Note: For some reason, every route has [AllowAnonymous] attached to it (usually overriden by [Authorise] though)
                 //       so keep that in mind.
 
-                var isPost       = route.EndpointMetadata.Any(m => m is HttpPostAttribute);
+                var isPost = route.EndpointMetadata.Any(m => m is HttpPostAttribute);
                 var hasAuthorise = route.EndpointMetadata.Any(m => m is AuthorizeAttribute);
-                var area         = route.RouteValues["area"];
-                var controller   = route.RouteValues["controller"];
-                var action       = route.RouteValues["action"];
+                var area = route.RouteValues["area"];
+                var controller = route.RouteValues["controller"];
+                var action = route.RouteValues["action"];
 
-                if(hasAuthorise)
+                if (hasAuthorise)
                     continue;
 
                 var stringToCheck = $"{area}:{controller}:{action}:{(isPost ? "POST" : "GET")}";
 
-                if(!ANONYMOUS_WHITELIST.Contains(stringToCheck))
+                if (!ANONYMOUS_WHITELIST.Contains(stringToCheck))
                     routesInvalid.Add(stringToCheck);
                 else
                     routesChecked.Add(stringToCheck);
             }
 
-            if(routesInvalid.Any())
+            if (routesInvalid.Any())
             {
                 throw new XunitException(
                     $"The following routes don't require authorization, yet are not whitelisted: \n[\n" +
-                    $"    {routesInvalid.Aggregate((a,b) => $"{a}\n{b}")}\n" +
+                    $"    {routesInvalid.Aggregate((a, b) => $"{a}\n{b}")}\n" +
                     $"]"
                 );
             }
 
             // Make sure we don't have any orphaned routes in the whitelist
-            foreach(var whitelist in ANONYMOUS_WHITELIST)
+            foreach (var whitelist in ANONYMOUS_WHITELIST)
                 Assert.Contains(whitelist, routesChecked);
         }
 

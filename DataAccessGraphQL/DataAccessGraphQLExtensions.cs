@@ -1,10 +1,7 @@
 ﻿using DataAccessGraphQL.RootResolvers;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 
 namespace DataAccessGraphQL
 {
@@ -26,8 +23,8 @@ namespace DataAccessGraphQL
                             .Where(t => t.IsClass)
                             .Where(t => !t.IsAbstract)
                             .Where(t => t.Name.EndsWith("RootResolver"));
-            
-            foreach(var resolver in resolvers)
+
+            foreach (var resolver in resolvers)
             {
                 // If the resolver implements RootResolver, then register it as RootResolver<Type>.
                 // Otherwise register it as the resolver's type.
@@ -35,10 +32,10 @@ namespace DataAccessGraphQL
                 var baseType = resolver.BaseType;
 
                 // Rewrite CrudRootResolver<T> -> RootResolver<T>
-                if(baseType.GetGenericTypeDefinition() == typeof(CrudRootResolver<>))
+                if (baseType.GetGenericTypeDefinition() == typeof(CrudRootResolver<>))
                     baseType = typeof(RootResolver<>).MakeGenericType(baseType.GetGenericArguments().First());
 
-                if(baseType.GetGenericTypeDefinition() != typeof(RootResolver<>))
+                if (baseType.GetGenericTypeDefinition() != typeof(RootResolver<>))
                 {
                     services.AddScoped(resolver);
                     continue;

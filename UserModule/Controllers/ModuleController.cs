@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AccountModule.Constants;
+﻿using AccountModule.Constants;
 using DataAccess;
 using DataAccess.Constants;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using UserModule.Models;
 
 namespace UserModule.Controllers
@@ -17,8 +17,8 @@ namespace UserModule.Controllers
     public class ModuleController : Controller
     {
         // This allows me to simplify folder structure and routing, at the cost of having to remember to use these strings.
-        const string VIEW_USERS         = "~/Views/UserModule/Users.cshtml";
-        const string VIEW_MANAGE_USER   = "~/Views/UserModule/ManageUser.cshtml";
+        const string VIEW_USERS = "~/Views/UserModule/Users.cshtml";
+        const string VIEW_MANAGE_USER = "~/Views/UserModule/ManageUser.cshtml";
 
         readonly UserManager<ApplicationUser> _users;
         readonly SignInManager<ApplicationUser> _signIn;
@@ -39,9 +39,9 @@ namespace UserModule.Controllers
         public IActionResult Users([FromServices] UserManager<ApplicationUser> users, [FromQuery] string error)
         {
             if (error != null)
-                ModelState.AddModelError(string.Empty, error);
+                this.ModelState.AddModelError(string.Empty, error);
 
-            return View(VIEW_USERS, new AdminUsersViewModel
+            return this.View(VIEW_USERS, new AdminUsersViewModel
             {
                 Users = users.Users
             });
@@ -52,10 +52,10 @@ namespace UserModule.Controllers
         {
             var authResult = await this.CanManageUser(userId);
             if (!authResult.allowed) // Interesting tidbit, because IAuthorizationService fails the check, it forcefully takes the user to AccessDenied
-                return RedirectToAction(authResult.selfManage ? "Login" : "Users", new { authResult.error });
+                return this.RedirectToAction(authResult.selfManage ? "Login" : "Users", new { authResult.error });
 
             var user = authResult.user;
-            return View(VIEW_MANAGE_USER, new AdminManageUserViewModel
+            return this.View(VIEW_MANAGE_USER, new AdminManageUserViewModel
             {
                 Username = user.UserName,
                 Email = user.Email,
@@ -68,27 +68,27 @@ namespace UserModule.Controllers
         public async Task<IActionResult> DeleteUser(string userId)
         {
             if (userId == null)
-                return RedirectToAction("Users", new { error = "No user id was specified." });
+                return this.RedirectToAction("Users", new { error = "No user id was specified." });
 
             var authResult = await this.CanManageUser(userId);
             if (!authResult.allowed)
-                return RedirectToAction(authResult.selfManage ? "Login" : "Users", new { authResult.error });
+                return this.RedirectToAction(authResult.selfManage ? "Login" : "Users", new { authResult.error });
 
             if (!authResult.hasDeletePerm)
-                return RedirectToAction(authResult.selfManage ? "Login" : "Users", new { error = "You do not have permission to delete this user." });
+                return this.RedirectToAction(authResult.selfManage ? "Login" : "Users", new { error = "You do not have permission to delete this user." });
 
             if (authResult.isAdmin)
-                return RedirectToAction("Users", new { error = "Admins cannot be deleted." });
+                return this.RedirectToAction("Users", new { error = "Admins cannot be deleted." });
 
-            var deletingSelf = (await this._users.GetUserAsync(User)) == authResult.user;
+            var deletingSelf = (await this._users.GetUserAsync(this.User)) == authResult.user;
             if (deletingSelf)
                 await this._signIn.SignOutAsync();
 
             var result = await this._users.DeleteAsync(authResult.user);
             if (!result.Succeeded)
-                return RedirectToAction(authResult.selfManage ? "Login" : "Users", new { error = result.Errors.First().Description });
+                return this.RedirectToAction(authResult.selfManage ? "Login" : "Users", new { error = result.Errors.First().Description });
 
-            return RedirectToAction(deletingSelf ? "Login" : "Users", new { error = "User deleted successfully!" });
+            return this.RedirectToAction(deletingSelf ? "Login" : "Users", new { error = "User deleted successfully!" });
         }
 
         [HttpPost]
@@ -98,9 +98,9 @@ namespace UserModule.Controllers
         {
             var authResult = await this.CanManageUser(model.Id);
             if (!authResult.allowed)
-                return RedirectToAction(authResult.selfManage ? "Login" : "Users", new { authResult.error });
+                return this.RedirectToAction(authResult.selfManage ? "Login" : "Users", new { authResult.error });
 
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
                 var results = new List<IdentityResult>();
                 var user = authResult.user;
@@ -114,27 +114,27 @@ namespace UserModule.Controllers
                         if (model.Password == model.ConfirmPassword)
                             results.Add(await this._users.ChangePasswordAsync(user, model.CurrentPassword, model.Password));
                         else
-                            ModelState.AddModelError(nameof(model.ConfirmPassword), "New Password doesn't match Confirm Password.");
+                            this.ModelState.AddModelError(nameof(model.ConfirmPassword), "New Password doesn't match Confirm Password.");
                     }
                     else
-                        ModelState.AddModelError(nameof(model.Password), "All three password fields must be provided to change the password.");
+                        this.ModelState.AddModelError(nameof(model.Password), "All three password fields must be provided to change the password.");
                 }
 
                 foreach (var error in results.Where(r => !r.Succeeded).SelectMany(r => r.Errors))
-                    ModelState.AddModelError(string.Empty, error.Description);
+                    this.ModelState.AddModelError(string.Empty, error.Description);
             }
 
             model.CurrentPassword = null;
             model.Password = null;
             model.ConfirmPassword = null;
-            return View(VIEW_MANAGE_USER, model);
+            return this.View(VIEW_MANAGE_USER, model);
         }
 
         private async Task<(bool allowed, string error, ApplicationUser user, bool selfManage, bool hasDeletePerm, bool isAdmin)>
         CanManageUser(string userId)
         {
             // Get our user, and the one we're modifying.
-            var loggedInUser = await this._users.GetUserAsync(User);
+            var loggedInUser = await this._users.GetUserAsync(this.User);
             if (loggedInUser == null)
                 return (false, "You are not logged in", null, false, false, false);
 

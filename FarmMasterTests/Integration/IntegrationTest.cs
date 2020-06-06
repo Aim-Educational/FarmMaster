@@ -1,13 +1,8 @@
 ﻿using DataAccess;
-using Microsoft.AspNetCore.Hosting.Server.Features;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.TestHost;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Net.Http;
 using System.Text;
 using Xunit.Abstractions;
 
@@ -17,10 +12,10 @@ namespace FarmMasterTests.Integration
     // This is because *XUnit decides to gut Console.WriteLine otherwise*.
     class Converter : TextWriter
     {
-        ITestOutputHelper _output;
+        readonly ITestOutputHelper _output;
         public Converter(ITestOutputHelper output)
         {
-            _output = output;
+            this._output = output;
         }
         public override Encoding Encoding
         {
@@ -28,11 +23,11 @@ namespace FarmMasterTests.Integration
         }
         public override void WriteLine(string message)
         {
-            _output.WriteLine(message);
+            this._output.WriteLine(message);
         }
         public override void WriteLine(string format, params object[] args)
         {
-            _output.WriteLine(format, args);
+            this._output.WriteLine(format, args);
         }
     }
 
@@ -53,8 +48,8 @@ namespace FarmMasterTests.Integration
         {
             Console.SetOut(new Converter(output));
 
-            this.Host    = Common.TestHost; // Creates a new one each time.
-            this.Client  = new FarmClient(this.Host);
+            this.Host = Common.TestHost; // Creates a new one each time.
+            this.Client = new FarmClient(this.Host);
             this.Context = this.Host.Services.GetRequiredService<FarmMasterContext>();
         }
 
@@ -64,7 +59,7 @@ namespace FarmMasterTests.Integration
             {
                 this.Context.Database.EnsureDeleted();
             }
-            catch(Exception) { }
+            catch (Exception) { }
             this.Host.Dispose();
         }
     }

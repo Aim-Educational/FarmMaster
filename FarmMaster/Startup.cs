@@ -1,40 +1,28 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using DataAccess;
-using DataAccess.Constants;
-using DataAccessGraphQL;
 using DataAccessLogic;
-using FarmMaster.Services;
+using EmailSender;
+using FarmMaster.Middleware;
+using FarmMaster.Module.Core;
+using FarmMaster.Module.Core.Api;
+using FarmMaster.Module.Core.Features;
 using FarmMaster.Services.Configuration;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.AzureAD.UI;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication.OpenIdConnect;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
-using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.AspNetCore.Mvc.ApplicationParts;
+using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Options;
-using FarmMaster.Middleware;
-using EmailSender;
-using Microsoft.Extensions.Logging;
-using System.Reflection;
-using Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation;
-using System.IO;
 using Microsoft.Extensions.FileProviders;
-using Microsoft.AspNetCore.Mvc.ApplicationParts;
-using FarmMaster.Module.Core;
-using FarmMaster.Module.Core.Features;
-using FarmMaster.Module.Core.Api;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection;
 
 namespace FarmMaster
 {
@@ -45,22 +33,22 @@ namespace FarmMaster
 
         public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
-            Configuration = configuration;
-            WebHostEnvironment = env;
+            this.Configuration = configuration;
+            this.WebHostEnvironment = env;
         }
 
         public void ConfigureServices(IServiceCollection services)
         {
             // Cookies
-            services.Configure<CookiePolicyOptions>(o => 
+            services.Configure<CookiePolicyOptions>(o =>
             {
                 o.CheckConsentNeeded = c => true;
                 o.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
             // Database
-            services.AddDbContext<IdentityContext>(o => o.UseNpgsql(Configuration.GetConnectionString("Identity")));
-            services.AddDbContext<FarmMasterContext>(o => o.UseNpgsql(Configuration.GetConnectionString("FarmMaster")));
+            services.AddDbContext<IdentityContext>(o => o.UseNpgsql(this.Configuration.GetConnectionString("Identity")));
+            services.AddDbContext<FarmMasterContext>(o => o.UseNpgsql(this.Configuration.GetConnectionString("FarmMaster")));
 
             // Email
             services.AddSingleton<IConfigureOptions<EmailSenderConfig>, ConfigureEmailOptions>();
@@ -71,7 +59,7 @@ namespace FarmMaster
                     .AddFarmMasterBuiltinModules(services, this.WebHostEnvironment)
                     .AddRazorRuntimeCompilation();
             services.AddRazorPages();
-            services.AddRouting(o => 
+            services.AddRouting(o =>
             {
                 o.LowercaseQueryStrings = false;
                 o.LowercaseUrls = false;
@@ -79,11 +67,11 @@ namespace FarmMaster
 
             var provider = services.BuildServiceProvider();
             var appParts = provider.GetRequiredService<ApplicationPartManager>();
-            var feature  = new ConfigureFeature();
+            var feature = new ConfigureFeature();
             appParts.PopulateFeature(feature);
-            
-            foreach(var configFeature in feature.ConfigureServices)
-                configFeature.ConfigureServices(services, Configuration, appParts);
+
+            foreach (var configFeature in feature.ConfigureServices)
+                configFeature.ConfigureServices(services, this.Configuration, appParts);
 
             // Misc
             services.AddDataAccessLogicLayer();
@@ -91,8 +79,8 @@ namespace FarmMaster
         }
 
         public void Configure(
-            IApplicationBuilder app, 
-            IWebHostEnvironment env, 
+            IApplicationBuilder app,
+            IWebHostEnvironment env,
             ILoggerFactory loggerFactory,
             IServiceProvider services,
             FarmLoggerProvider farmProvider,
@@ -120,7 +108,7 @@ namespace FarmMaster
             app.UseAddRoleClaimsToUserMiddleware();
             app.UseAuthorization();
 
-            foreach(var module in configFeature.ConfigurePipeline)
+            foreach (var module in configFeature.ConfigurePipeline)
                 module.Configure(app, services, this.WebHostEnvironment);
 
             app.UseEndpoints(endpoints =>
@@ -136,7 +124,7 @@ namespace FarmMaster
     public static class FarmMasterModuleExtensions
     {
         public static IMvcBuilder AddFarmMasterBuiltinModules(
-            this IMvcBuilder builder, 
+            this IMvcBuilder builder,
             IServiceCollection services,
             IWebHostEnvironment env
         )
@@ -150,17 +138,17 @@ namespace FarmMaster
             };
 
             IEnumerable<(Assembly assembly, ModuleConfigurator module)> modules = null;
-            modules = moduleList.Select(m => 
+            modules = moduleList.Select(m =>
             {
-                var moduleType     = m.GetTypes().First(t => typeof(ModuleConfigurator).IsAssignableFrom(t));
+                var moduleType = m.GetTypes().First(t => typeof(ModuleConfigurator).IsAssignableFrom(t));
                 var moduleInstance = (ModuleConfigurator)Activator.CreateInstance(moduleType);
 
                 return (m, moduleInstance);
             })
             .OrderBy(m => m.moduleInstance.Info.LoadOrder);
-            
+
             var navMenu = new NavMenu();
-            foreach(var module in modules) 
+            foreach (var module in modules)
             {
                 builder.AddApplicationPart(module.assembly);
                 module.module.RegisterNavMenuItems(navMenu);
@@ -168,20 +156,20 @@ namespace FarmMaster
 
             services.AddSingleton(navMenu);
 
-            #if DEBUG
-            services.Configure<MvcRazorRuntimeCompilationOptions>(o => 
+#if DEBUG
+            services.Configure<MvcRazorRuntimeCompilationOptions>(o =>
             {
                 // This code breaks during unittests, but we don't need it then, so just skip this step.
-                if(AppDomain.CurrentDomain.GetAssemblies().Any(a => a.FullName.ToLower().Contains("xunit")))
+                if (AppDomain.CurrentDomain.GetAssemblies().Any(a => a.FullName.ToLower().Contains("xunit")))
                     return;
 
                 var basePath = Path.Combine(env.ContentRootPath, "..");
-                foreach(var module in modules)
+                foreach (var module in modules)
                     o.FileProviders.Add(new PhysicalFileProvider(Path.Combine(basePath, module.module.Info.Name)));
             });
-            #endif
+#endif
 
-            builder.ConfigureApplicationPartManager(o => 
+            builder.ConfigureApplicationPartManager(o =>
             {
                 foreach (var module in modules)
                     module.module.RegisterFeatureProviders(o);

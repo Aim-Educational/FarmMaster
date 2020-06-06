@@ -2,16 +2,14 @@
 using FarmMaster.Module.Core;
 using FarmMaster.Module.Core.Api;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace AdminModule
 {
     public class Module : ModuleConfigurator
     {
-        public override ModuleInfo Info => new ModuleInfo 
+        public override ModuleInfo Info => new ModuleInfo
         {
-            Name      = "AdminModule",
+            Name = "AdminModule",
             LoadOrder = 0
         };
 

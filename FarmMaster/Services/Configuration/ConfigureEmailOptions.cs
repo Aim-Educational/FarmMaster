@@ -1,14 +1,9 @@
 ﻿using DataAccess;
 using EmailSender;
-using FarmMaster.Services;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
-using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace FarmMaster.Services.Configuration
 {
@@ -28,9 +23,9 @@ namespace FarmMaster.Services.Configuration
             if (settings == null)
                 return;
 
-            options.Layout        = new EmailTemplate(this._layoutTemplate);
-            options.Smtp.Server   = settings.SmtpServer;
-            options.Smtp.Port     = settings.SmtpPort;
+            options.Layout = new EmailTemplate(this._layoutTemplate);
+            options.Smtp.Server = settings.SmtpServer;
+            options.Smtp.Port = settings.SmtpPort;
             options.Smtp.Username = settings.SmtpUsername;
             options.Smtp.Password = settings.SmtpPassword; // CURRENTLY STORED UNENCRYPTED
         }

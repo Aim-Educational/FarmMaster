@@ -1,10 +1,6 @@
 ﻿using DataAccess;
-using DataAccessLogic;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
 using Microsoft.Extensions.Logging;
-using System.Text;
 using Xunit;
 
 namespace DataAccessLogic.Tests
@@ -14,7 +10,7 @@ namespace DataAccessLogic.Tests
     // headaches than it causes.
     public class FarmLoggerProviderTests
     {
-        ServiceCollection _services;
+        readonly ServiceCollection _services;
 
         public FarmLoggerProviderTests()
         {
@@ -29,12 +25,12 @@ namespace DataAccessLogic.Tests
         [Fact()]
         public void LoggersShouldBeReused()
         {
-            var services    = this._services.BuildServiceProvider();
+            var services = this._services.BuildServiceProvider();
             var logProvider = services.GetRequiredService<FarmLoggerProvider>();
 
-            var loggerA  = logProvider.CreateLogger("A");
+            var loggerA = logProvider.CreateLogger("A");
             var loggerA2 = logProvider.CreateLogger("A");
-            var loggerB  = logProvider.CreateLogger("B");
+            var loggerB = logProvider.CreateLogger("B");
 
             Assert.Same(loggerA, loggerA2);
             Assert.NotSame(loggerA, loggerB);
@@ -43,13 +39,13 @@ namespace DataAccessLogic.Tests
         [Fact()]
         public void LogsShouldUploadInBatch()
         {
-            var services    = this._services.BuildServiceProvider();
-            var db          = services.GetRequiredService<FarmMasterContext>();
+            var services = this._services.BuildServiceProvider();
+            var db = services.GetRequiredService<FarmMasterContext>();
             var logProvider = services.GetRequiredService<FarmLoggerProvider>();
-            var logger      = logProvider.CreateLogger("Batch");
+            var logger = logProvider.CreateLogger("Batch");
 
             // NOTE: The flush count is hard coded to 10_000 right now. I know, I know. Bad programmer.
-            for(int i = 0; i < 9999; i++)
+            for (int i = 0; i < 9999; i++)
                 logger.Log(LogLevel.Information, "Andy bodged it");
             Assert.Empty(db.LogEntries);
 

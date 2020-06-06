@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace AccountModule.Models
 {
@@ -19,7 +15,7 @@ namespace AccountModule.Models
         public bool RememberMe { get; set; }
 
         public bool ConfirmEmail { get; set; } // Set by query string to show "Please confirm your email"
-        
+
         public string Error { get; set; } // ^^
 
         public bool Success { get; set; } // ^^

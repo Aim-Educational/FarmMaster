@@ -1,12 +1,8 @@
-﻿using DataAccess;
-using DataAccessLogic;
+﻿using DataAccessLogic;
 using GraphQL;
 using GraphQL.Types;
-using Microsoft.AspNetCore.Identity;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace DataAccessGraphQL.RootResolvers
@@ -33,8 +29,8 @@ namespace DataAccessGraphQL.RootResolvers
 
         public abstract Task<IEnumerable<TResolveEntity>> ResolvePageAsync(
             DataAccessUserContext userContext,
-            int first, 
-            int after, 
+            int first,
+            int after,
             string order
         );
 

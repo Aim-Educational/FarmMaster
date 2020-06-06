@@ -1,8 +1,5 @@
 ﻿using DataAccess;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace DataAccessLogic
 {
@@ -25,7 +22,7 @@ namespace DataAccessLogic
             get
             {
                 var settings = this._context.Settings.FirstOrDefault();
-                if(settings == null)
+                if (settings == null)
                 {
                     settings = this._context.Settings.Add(new Settings()).Entity;
                     this._context.SaveChanges();

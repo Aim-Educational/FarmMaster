@@ -1,7 +1,5 @@
 ﻿using AccountModule.Models;
 using DataAccess;
-using FarmMaster.Models;
-using Microsoft.AspNetCore.Hosting.Server.Features;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,7 +9,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Xunit;
@@ -30,20 +27,20 @@ namespace FarmMasterTests.Integration
     /// </remarks>
     public class FarmClient
     {
-        private CookieContainer _cookies  { get; set; }
+        private CookieContainer _cookies { get; set; }
         private TestServer _server { get; set; }
 
         public FarmClient(TestServer server)
         {
-            this._server  = server;
+            this._server = server;
             this._cookies = new CookieContainer();
         }
 
         #region ACTIONS
         public async Task LoginAsync(string username = IdentityContext.DEFAULT_USERNAME, string password = IdentityContext.DEFAULT_PASSWORD)
         {
-            var loginModel = new AccountLoginViewModel 
-            { 
+            var loginModel = new AccountLoginViewModel
+            {
                 Username = username,
                 Password = password,
                 RememberMe = true
@@ -63,11 +60,11 @@ namespace FarmMasterTests.Integration
 
         public async Task SignupAsync(string username, string password)
         {
-            var signupModel = new AccountRegisterViewModel 
+            var signupModel = new AccountRegisterViewModel
             {
-                Username        = username,
-                Password        = password,
-                Email           = "no@example.com",
+                Username = username,
+                Password = password,
+                Email = "no@example.com",
                 ConfirmPassword = password
             };
 
@@ -85,9 +82,9 @@ namespace FarmMasterTests.Integration
 
             // Forcefully confirm email.
             var userManager = this._server.Services.GetRequiredService<UserManager<ApplicationUser>>();
-            var user        = await userManager.FindByNameAsync(username);
-            var token       = await userManager.GenerateEmailConfirmationTokenAsync(user);
-            var result      = await userManager.ConfirmEmailAsync(user, token);
+            var user = await userManager.FindByNameAsync(username);
+            var token = await userManager.GenerateEmailConfirmationTokenAsync(user);
+            var result = await userManager.ConfirmEmailAsync(user, token);
 
             Assert.True(result.Succeeded);
 
@@ -116,9 +113,9 @@ namespace FarmMasterTests.Integration
         // https://stackoverflow.com/questions/48704331/setting-cookies-to-httpclient-of-asp-net-core-testserver
         public async Task<HttpResponseMessage> GetAsync(string url)
         {
-            using (var response = await BuildRequest(url).GetAsync())
+            using (var response = await this.BuildRequest(url).GetAsync())
             {
-                UpdateCookies(url, response);
+                this.UpdateCookies(url, response);
                 return response;
             }
         }
@@ -126,11 +123,11 @@ namespace FarmMasterTests.Integration
         // https://stackoverflow.com/questions/48704331/setting-cookies-to-httpclient-of-asp-net-core-testserver
         public async Task<HttpResponseMessage> PostAsync(string url, HttpContent content)
         {
-            var builder = BuildRequest(url);
+            var builder = this.BuildRequest(url);
             builder.And(request => request.Content = content);
             using (var response = await builder.PostAsync())
             {
-                UpdateCookies(url, response);
+                this.UpdateCookies(url, response);
                 return response;
             }
         }
@@ -156,16 +153,16 @@ namespace FarmMasterTests.Integration
             // Expire the forgery token, to ensure we're sent a fresh pair of tokens.
             var loginUri = new Uri(this._server.BaseAddress, "Account/Login");
             var loginCookies = this._cookies.GetCookies(loginUri);
-            foreach(Cookie cookie in loginCookies.Where(c => c.Name.StartsWith(".AspNetCore.Antiforgery.")))
+            foreach (Cookie cookie in loginCookies.Where(c => c.Name.StartsWith(".AspNetCore.Antiforgery.")))
                 cookie.Expires = DateTime.Now.Subtract(TimeSpan.FromDays(1));
 
             var builder = this.BuildRequest("Account/Login", true);
-            using(var response = await builder.GetAsync())
+            using (var response = await builder.GetAsync())
             {
                 var content = await response.Content.ReadAsStringAsync();
-                var match   = Regex.Match(content, @"<input\s+name=""__RequestVerificationToken""\s+type=""hidden""\s+value=""([^""]+)""\s+/>");
+                var match = Regex.Match(content, @"<input\s+name=""__RequestVerificationToken""\s+type=""hidden""\s+value=""([^""]+)""\s+/>");
 
-                if(!match.Success)
+                if (!match.Success)
                     throw new InvalidOperationException("Could not retrieve verification token.");
 
                 parentBuilder.AddHeader("X-CSRF-TOKEN", match.Groups[1].Value);

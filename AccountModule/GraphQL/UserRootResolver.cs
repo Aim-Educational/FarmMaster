@@ -6,20 +6,17 @@ using GraphQL;
 using GraphQL.Types;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Claims;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace AccountModule.GraphQL
 {
     public class UserRootResolver : RootResolver<DataAccessUserContext>
     {
-        readonly UserManager<ApplicationUser>   _users;
+        readonly UserManager<ApplicationUser> _users;
         readonly SignInManager<ApplicationUser> _signIn;
-        readonly RoleManager<ApplicationRole>   _roles;
+        readonly RoleManager<ApplicationRole> _roles;
 
         public UserRootResolver(
             UserManager<ApplicationUser> users,
@@ -27,9 +24,9 @@ namespace AccountModule.GraphQL
             RoleManager<ApplicationRole> roles
         )
         {
-            this._users  = users;
+            this._users = users;
             this._signIn = signIn;
-            this._roles  = roles;
+            this._roles = roles;
 
             base.Add(new QueryArgument<NonNullGraphType<StringGraphType>>
             {
@@ -39,7 +36,7 @@ namespace AccountModule.GraphQL
         }
 
         public override async Task<object> ResolveAsync(
-            IResolveFieldContext<object> context, 
+            IResolveFieldContext<object> context,
             DataAccessUserContext userContext
         )
         {
@@ -50,7 +47,7 @@ namespace AccountModule.GraphQL
 
             // Find the user
             var user = await this._users.FindByNameAsync(username);
-            if(user == null)
+            if (user == null)
                 throw new ExecutionError($"No user called {username} was found");
 
             var principal = await this._signIn.CreateUserPrincipalAsync(user);
@@ -60,27 +57,27 @@ namespace AccountModule.GraphQL
         }
 
         public override async Task<IEnumerable<DataAccessUserContext>> ResolvePageAsync(
-            DataAccessUserContext userContext, 
-            int first, 
-            int after, 
+            DataAccessUserContext userContext,
+            int first,
+            int after,
             string order
         )
         {
             await userContext.EnforceHasPolicyAsync(Permissions.User.Read);
 
             var query = this._users.Users;
-            if(order == "id")
+            if (order == "id")
                 query = query.OrderBy(u => u.Id);
-            if(order == "username")
+            if (order == "username")
                 query = query.OrderBy(u => u.UserName);
-            if(order == "username_desc")
+            if (order == "username_desc")
                 query = query.OrderByDescending(u => u.UserName);
 
             var users = await query.Skip(after)
                                    .Take(first)
                                    .ToListAsync();
 
-            return users.Select(u => 
+            return users.Select(u =>
                         {
                             var principal = this._signIn.CreateUserPrincipalAsync(u).Result; // This is yuck, but .Select is being too weird.
                             return new DataAccessUserContext(u, principal, userContext.Auth);

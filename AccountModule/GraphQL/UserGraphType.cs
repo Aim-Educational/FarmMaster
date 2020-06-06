@@ -1,14 +1,8 @@
-﻿using DataAccess;
-using DataAccess.Constants;
+﻿using DataAccess.Constants;
 using DataAccessGraphQL;
-using GraphQL;
 using GraphQL.Types;
-using Microsoft.AspNetCore.Authorization;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Claims;
-using System.Text;
 
 namespace AccountModule.GraphQL
 {
@@ -18,14 +12,14 @@ namespace AccountModule.GraphQL
         {
             var context = contextAccessor.Context;
 
-            Field<StringGraphType>(
+            this.Field<StringGraphType>(
                 "username",
                 resolve: ctx => ctx.Source.UserIdentity.UserName
             );
 
-            FieldAsync<ListGraphType<StringGraphType>>(
+            this.FieldAsync<ListGraphType<StringGraphType>>(
                 "permissions",
-                resolve: async ctx => 
+                resolve: async ctx =>
                 {
                     await context.EnforceHasPolicyAsync(Permissions.User.ReadPermissions);
                     return ctx.Source

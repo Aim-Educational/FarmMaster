@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
 
 namespace DataAccessLogic
 {
@@ -22,9 +21,9 @@ namespace DataAccessLogic
 
         public static ResultObject Ok
         {
-            get 
+            get
             {
-                if(_okInstance == null)
+                if (_okInstance == null)
                 {
                     _okInstance = new ResultObject()
                     {
@@ -38,11 +37,11 @@ namespace DataAccessLogic
 
         public IEnumerable<string> GatherErrorMessages()
         {
-            #if DEBUG
+#if DEBUG
             // To help with debugging.
-            if(this.Exceptions.Any())
+            if (this.Exceptions.Any())
                 Debugger.Break();
-            #endif
+#endif
 
             return this.Exceptions
                        .Select(e => e.Message)

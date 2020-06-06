@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using DataAccessLogic;
+﻿using DataAccessLogic;
 using FarmMaster.Module.Core.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace FarmMaster.Module.Core.Controllers
 {
@@ -80,21 +78,21 @@ namespace FarmMaster.Module.Core.Controllers
     where CrudT : ICrudAsync<EntityT>
     where EntityT : class
     {
-        protected readonly CrudT       Crud;
+        protected readonly CrudT Crud;
         protected readonly IUnitOfWork UnitOfWork;
-        protected readonly ILogger     Logger;
+        protected readonly ILogger Logger;
 
         protected abstract CrudControllerConfig Config { get; }
 
         public CrudController(
-            CrudT       crud,
+            CrudT crud,
             IUnitOfWork unitOfWork,
-            ILogger     logger
+            ILogger logger
         )
         {
-            this.Crud       = crud;
+            this.Crud = crud;
             this.UnitOfWork = unitOfWork;
-            this.Logger     = logger;
+            this.Logger = logger;
         }
 
         /// <summary>
@@ -113,11 +111,11 @@ namespace FarmMaster.Module.Core.Controllers
 
         public virtual async Task<IActionResult> Index([FromServices] IAuthorizationService auth)
         {
-            var isAuthed = await auth.AuthorizeAsync(User, this.Config.ManagePolicy);
-            if(!isAuthed.Succeeded)
-                return RedirectToAction("AccessDenied", "Account");
+            var isAuthed = await auth.AuthorizeAsync(this.User, this.Config.ManagePolicy);
+            if (!isAuthed.Succeeded)
+                return this.RedirectToAction("AccessDenied", "Account");
 
-            return View("Index", new CrudIndexViewModel<EntityT>
+            return this.View("Index", new CrudIndexViewModel<EntityT>
             {
                 Entities = this.Crud.IncludeAll(this.Crud.Query()) // Effectively a .GetAll
             });
@@ -125,11 +123,11 @@ namespace FarmMaster.Module.Core.Controllers
 
         public virtual async Task<IActionResult> Create([FromServices] IAuthorizationService auth)
         {
-            var isAuthed = await auth.AuthorizeAsync(User, this.Config.WritePolicy);
+            var isAuthed = await auth.AuthorizeAsync(this.User, this.Config.WritePolicy);
             if (!isAuthed.Succeeded)
-                return RedirectToAction("Account/AccessDenied");
+                return this.RedirectToAction("Account/AccessDenied");
 
-            return View("CreateEdit", new CrudCreateEditViewModel<EntityT>
+            return this.View("CreateEdit", new CrudCreateEditViewModel<EntityT>
             {
                 IsCreate = true
             });
@@ -137,17 +135,17 @@ namespace FarmMaster.Module.Core.Controllers
 
         public virtual async Task<IActionResult> Edit(int? id, [FromServices] IAuthorizationService auth)
         {
-            var isAuthed = await auth.AuthorizeAsync(User, this.Config.ReadPolicy); // Allow viewing, but default is hidden behind WritePolicy.
+            var isAuthed = await auth.AuthorizeAsync(this.User, this.Config.ReadPolicy); // Allow viewing, but default is hidden behind WritePolicy.
             if (!isAuthed.Succeeded)
-                return RedirectToAction("AccessDenied", "Account");
+                return this.RedirectToAction("AccessDenied", "Account");
 
             var result = await this.Crud.GetByIdAsync(id ?? -1);
             if (!result.Succeeded)
-                return RedirectToAction("Index", new { error = result.GatherErrorMessages().FirstOrDefault() });
+                return this.RedirectToAction("Index", new { error = result.GatherErrorMessages().FirstOrDefault() });
 
-            return View("CreateEdit", new CrudCreateEditViewModel<EntityT>
+            return this.View("CreateEdit", new CrudCreateEditViewModel<EntityT>
             {
-                Entity   = result.Value,
+                Entity = result.Value,
                 IsCreate = false
             });
         }
@@ -155,15 +153,15 @@ namespace FarmMaster.Module.Core.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public virtual async Task<IActionResult> Create(
-            CrudCreateEditViewModel<EntityT>     model, 
+            CrudCreateEditViewModel<EntityT> model,
             [FromServices] IAuthorizationService auth
         )
         {
-            var isAuthed = await auth.AuthorizeAsync(User, this.Config.WritePolicy);
+            var isAuthed = await auth.AuthorizeAsync(this.User, this.Config.WritePolicy);
             if (!isAuthed.Succeeded)
-                return Forbid();
+                return this.Forbid();
 
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
                 var entity = this.CreateEntityFromModel(model);
 
@@ -175,8 +173,8 @@ namespace FarmMaster.Module.Core.Controllers
                         workScope.Rollback("CreateAsync failed.");
 
                         foreach (var error in result.GatherErrorMessages())
-                            ModelState.AddModelError(string.Empty, error);
-                        return View("CreateEdit", model);
+                            this.ModelState.AddModelError(string.Empty, error);
+                        return this.View("CreateEdit", model);
                     }
 
                     entity = result.Value;
@@ -186,31 +184,31 @@ namespace FarmMaster.Module.Core.Controllers
                 this.Logger.LogInformation(
                     "Entity {Entity} created by {User}",
                     typeof(EntityT).Name,
-                    User.FindFirstValue(ClaimTypes.Name)
+                    this.User.FindFirstValue(ClaimTypes.Name)
                 );
 
-                return RedirectToAction("Edit", new { id = this.GetEntityId(entity) });
+                return this.RedirectToAction("Edit", new { id = this.GetEntityId(entity) });
             }
 
-            return View("CreateEdit", model);
+            return this.View("CreateEdit", model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public virtual async Task<IActionResult> Edit(
-            CrudCreateEditViewModel<EntityT>     model,
+            CrudCreateEditViewModel<EntityT> model,
             [FromServices] IAuthorizationService auth
         )
         {
-            var isAuthed = await auth.AuthorizeAsync(User, this.Config.WritePolicy);
+            var isAuthed = await auth.AuthorizeAsync(this.User, this.Config.WritePolicy);
             if (!isAuthed.Succeeded)
-                return Forbid();
+                return this.Forbid();
 
-            if (ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
                 var result = await this.Crud.GetByIdAsync(this.GetEntityId(model.Entity));
                 if (!result.Succeeded)
-                    return RedirectToAction("Index", new { error = result.GatherErrorMessages().FirstOrDefault() });
+                    return this.RedirectToAction("Index", new { error = result.GatherErrorMessages().FirstOrDefault() });
 
                 var dbEntity = result.Value;
                 this.UpdateEntityFromModel(model, ref dbEntity);
@@ -223,8 +221,8 @@ namespace FarmMaster.Module.Core.Controllers
                         workScope.Rollback("CreateAsync failed.");
 
                         foreach (var error in result.GatherErrorMessages())
-                            ModelState.AddModelError(string.Empty, error);
-                        return View("CreateEdit", model);
+                            this.ModelState.AddModelError(string.Empty, error);
+                        return this.View("CreateEdit", model);
                     }
 
                     workScope.Commit();
@@ -233,24 +231,24 @@ namespace FarmMaster.Module.Core.Controllers
                 this.Logger.LogInformation(
                     "Entity {Entity} updated by {User}",
                     typeof(EntityT).Name,
-                    User.FindFirstValue(ClaimTypes.Name)
+                    this.User.FindFirstValue(ClaimTypes.Name)
                 );
             }
 
-            return View("CreateEdit", model);
+            return this.View("CreateEdit", model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public virtual async Task<IActionResult> Delete(int? id, [FromServices] IAuthorizationService auth)
         {
-            var isAuthed = await auth.AuthorizeAsync(User, this.Config.DeletePolicy);
+            var isAuthed = await auth.AuthorizeAsync(this.User, this.Config.DeletePolicy);
             if (!isAuthed.Succeeded)
-                return Forbid();
+                return this.Forbid();
 
             var result = await this.Crud.GetByIdAsync(id ?? -1);
             if (!result.Succeeded)
-                return RedirectToAction("Edit", new { error = result.GatherErrorMessages().FirstOrDefault() });
+                return this.RedirectToAction("Edit", new { error = result.GatherErrorMessages().FirstOrDefault() });
 
             using (var workScope = this.UnitOfWork.Begin("Delete Entity"))
             {
@@ -259,7 +257,7 @@ namespace FarmMaster.Module.Core.Controllers
                 {
                     workScope.Rollback("Delete failed.");
 
-                    return RedirectToAction("Edit", new { error = deleteResult.Errors.First() });
+                    return this.RedirectToAction("Edit", new { error = deleteResult.Errors.First() });
                 }
 
                 workScope.Commit();
@@ -268,10 +266,10 @@ namespace FarmMaster.Module.Core.Controllers
             this.Logger.LogInformation(
                 "Entity {Entity} deleted by {User}",
                 typeof(EntityT).Name,
-                User.FindFirstValue(ClaimTypes.Name)
+                this.User.FindFirstValue(ClaimTypes.Name)
             );
 
-            return RedirectToAction("Index");
+            return this.RedirectToAction("Index");
         }
 
         private int GetEntityId(EntityT entity)

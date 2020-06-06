@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DataAccessGraphQL.Constants
+﻿namespace DataAccessGraphQL.Constants
 {
     internal static class PagingConstants
     {

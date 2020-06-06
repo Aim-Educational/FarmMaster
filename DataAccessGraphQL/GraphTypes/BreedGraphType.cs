@@ -1,13 +1,6 @@
 ﻿using DataAccess;
 using DataAccess.Constants;
-using GraphQL;
 using GraphQL.Types;
-using Microsoft.AspNetCore.Authorization;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Text;
 
 namespace DataAccessGraphQL.GraphTypes
 {
@@ -17,18 +10,18 @@ namespace DataAccessGraphQL.GraphTypes
         {
             var context = contextAccessor.Context;
 
-            Field<StringGraphType>("id", resolve: ctx => ctx.Source.BreedId);
+            this.Field<StringGraphType>("id", resolve: ctx => ctx.Source.BreedId);
 
-            FieldAsync<StringGraphType>(
+            this.FieldAsync<StringGraphType>(
                 "name",
-                resolve: async ctx => 
+                resolve: async ctx =>
                 {
                     await context.EnforceHasPolicyAsync(Permissions.Breed.Read);
                     return ctx.Source.Name;
                 }
             );
 
-            FieldAsync<SpeciesGraphType>(
+            this.FieldAsync<SpeciesGraphType>(
                 "species",
                 resolve: async ctx =>
                 {
@@ -38,9 +31,9 @@ namespace DataAccessGraphQL.GraphTypes
                 }
             );
 
-            FieldAsync<ListGraphType<NoteGraphType>>(
-                "notes", 
-                resolve: async ctx => 
+            this.FieldAsync<ListGraphType<NoteGraphType>>(
+                "notes",
+                resolve: async ctx =>
                 {
                     await context.EnforceHasPolicyAsync(Permissions.Breed.ReadNotes);
                     return ctx.Source.NoteOwner?.NoteEntries;

@@ -1,10 +1,6 @@
 ﻿using DataAccess;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace FarmMaster.Services.Configuration
 {
@@ -19,7 +15,7 @@ namespace FarmMaster.Services.Configuration
 
         public void Configure(T options)
         {
-            using(var scope = this._serviceScopeFactory.CreateScope())
+            using (var scope = this._serviceScopeFactory.CreateScope())
             {
                 var db = scope.ServiceProvider.GetRequiredService<FarmMasterContext>();
                 this.ConfigWithDatabase(options, db);

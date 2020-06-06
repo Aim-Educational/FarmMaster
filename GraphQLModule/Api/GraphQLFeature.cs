@@ -1,16 +1,14 @@
 ﻿using DataAccessGraphQL;
 using DataAccessGraphQL.Api;
-using FarmMaster.Module.Core.Features;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace GraphQLModule.Api
 {
     public class GraphQLFeature
     {
-        private List<Type> _partTypes;
-        public IEnumerable<Type> PartTypes => _partTypes;
+        private readonly List<Type> _partTypes;
+        public IEnumerable<Type> PartTypes => this._partTypes;
 
         public GraphQLFeature()
         {

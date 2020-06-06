@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using System;
 using System.Collections.Generic;
@@ -82,7 +81,7 @@ namespace EmailSender
         /// <returns>True if <paramref name="values"/> contains all the values that this template needs.</returns>
         public bool AreAllValuesDefined(EmailTemplateValues values)
         {
-            if(values == null)
+            if (values == null)
                 throw new ArgumentNullException(nameof(values));
 
             return this.ValueKeys.All(k => values.ContainsKey(k));
@@ -98,11 +97,11 @@ namespace EmailSender
         /// <returns>A resolved version of this template, where all placeholders are replaced with their values.</returns>
         public string Resolve(EmailTemplateValues values, IHttpContextAccessor accessor, LinkGenerator generator)
         {
-            if(!this.AreAllValuesDefined(values))
+            if (!this.AreAllValuesDefined(values))
                 throw new InvalidOperationException("Not all values have been defined for this template. TODO: List which values.");
 
             var output = new StringBuilder(this._rawText.Length);
-            var start  = 0;
+            var start = 0;
 
             Action<int> commit = endIndex => // endIndex is exclusive
             {
@@ -111,30 +110,30 @@ namespace EmailSender
 
             // I'm not the greatest fan of single-function parsers, but it's *just* on the edge of what I'd
             // consider not featureful enough to bother with a properly structured one.
-            for(int i = 0; i < this._rawText.Length; i++)
+            for (int i = 0; i < this._rawText.Length; i++)
             {
                 var ch = this._rawText[i];
 
                 // If we reach a placeholder, commit the current selection, then begin processing.
-                if(ch == '{' && i != this._rawText.Length - 1 && this._rawText[i + 1] == '{')
+                if (ch == '{' && i != this._rawText.Length - 1 && this._rawText[i + 1] == '{')
                 {
                     commit(i);
                     i += 2; // Skip both {{
 
-                    if(i >= this._rawText.Length)
+                    if (i >= this._rawText.Length)
                         break;
 
                     // Skip spaces (not all whitespace, since that's invalid syntax in this case)
-                    while(i < this._rawText.Length && this._rawText[i] == ' ')
+                    while (i < this._rawText.Length && this._rawText[i] == ' ')
                         i++;
 
-                    if(i >= this._rawText.Length)
+                    if (i >= this._rawText.Length)
                         break;
 
                     // Decide what type of placeholder it is.
                     bool isLink = this._rawText[i] == '@';
 
-                    if(isLink) // Link placeholder. ex: @Account#ConfirmEmail?token=valueKey }}
+                    if (isLink) // Link placeholder. ex: @Account#ConfirmEmail?token=valueKey }}
                     {
                         // (This doesn't validate input enough, but honestly it's more effort than it's worth for a basic single-function parser.)
                         // Also code duplication.
@@ -146,7 +145,7 @@ namespace EmailSender
                         string valueKey;
 
                         // Read until a #
-                        while(i < this._rawText.Length && this._rawText[++i] != '#') { }
+                        while (i < this._rawText.Length && this._rawText[++i] != '#') { }
 
                         controller = this._rawText.Substring(start, i - start);
                         i++;
@@ -179,11 +178,11 @@ namespace EmailSender
                         start = i;
 
                         string url;
-                        if(generator != null)
+                        if (generator != null)
                         {
                             url = generator.GetUriByAction(
-                                accessor.HttpContext, 
-                                action, 
+                                accessor.HttpContext,
+                                action,
                                 controller,
                                 null,
                                 accessor.HttpContext.Request.Scheme
@@ -197,7 +196,7 @@ namespace EmailSender
                     {
                         // Read until space or bracket.
                         start = i;
-                        while(i < this._rawText.Length && this._rawText[i] != ' ' && this._rawText[i] != '}')
+                        while (i < this._rawText.Length && this._rawText[i] != ' ' && this._rawText[i] != '}')
                             i++;
 
                         var key = this._rawText.Substring(start, i - start);
@@ -212,7 +211,7 @@ namespace EmailSender
                 }
             }
 
-            if(start < this._rawText.Length)
+            if (start < this._rawText.Length)
                 commit(this._rawText.Length);
 
             return output.ToString();

@@ -1,14 +1,10 @@
-﻿using System;
+﻿using DataAccessLogic;
+using GraphQL.Types;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
-using DataAccess;
-using DataAccess.Constants;
-using DataAccessLogic;
-using GraphQL;
-using GraphQL.Types;
 
 namespace DataAccessGraphQL.RootResolvers
 {
@@ -61,7 +57,7 @@ namespace DataAccessGraphQL.RootResolvers
         {
             // The dynamic ordering is a bit too annoying to express with Managers, so we're accessing .Query
             var query = this._crud.IncludeAll(this._crud.Query());
-                query = this.OrderPageQuery(query, order);
+            query = this.OrderPageQuery(query, order);
 
             return Task.FromResult(
                 query.Skip(after)
@@ -74,16 +70,16 @@ namespace DataAccessGraphQL.RootResolvers
     public static class CrudRootResolverHelpers
     {
         public static IQueryable<T> AddTableOrderBy<T, TKey>(
-            this IQueryable<T> query, 
+            this IQueryable<T> query,
             string order,
             string expectedOrder,
             Expression<Func<T, TKey>> keySelector
         )
         where T : class
         {
-            if(order == expectedOrder)
+            if (order == expectedOrder)
                 return query.OrderBy(keySelector);
-            else if(order == expectedOrder + "_desc")
+            else if (order == expectedOrder + "_desc")
                 return query.OrderByDescending(keySelector);
             else
                 return query;

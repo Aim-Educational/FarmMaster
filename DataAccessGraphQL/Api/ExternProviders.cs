@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DataAccessGraphQL.Api
+﻿namespace DataAccessGraphQL.Api
 {
     public interface IGraphQLQueryProvider
     {

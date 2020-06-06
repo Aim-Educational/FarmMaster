@@ -3,12 +3,10 @@ using DataAccess.Internal;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Design;
 using System;
 using System.Collections.Generic;
-using System.Security.Claims;
-using System.Text;
 using System.Linq;
+using System.Security.Claims;
 
 namespace DataAccess
 {
@@ -25,7 +23,7 @@ namespace DataAccess
     }
 
     public class ApplicationRole : IdentityRole<int>
-    { 
+    {
     }
 
     public class ApplicationRoleClaim : IdentityRoleClaim<int>
@@ -33,7 +31,7 @@ namespace DataAccess
     }
 
     public class ApplicationUserRole : IdentityUserRole<int>
-    { 
+    {
     }
 
     public class ApplicationUserToken : IdentityUserToken<int>
@@ -41,13 +39,13 @@ namespace DataAccess
     }
 
     public class IdentityContext : IdentityDbContext<
-        ApplicationUser, 
-        ApplicationRole, 
-        int, 
-        ApplicationUserClaim, 
+        ApplicationUser,
+        ApplicationRole,
+        int,
+        ApplicationUserClaim,
         ApplicationUserRole,
         ApplicationUserLogin,
-        ApplicationRoleClaim, 
+        ApplicationRoleClaim,
         ApplicationUserToken
     >
     {
@@ -62,19 +60,19 @@ namespace DataAccess
         {
             this.SeedRoles(roles);
             this.SeedUsers(users);
-            
+
             this.SpringCleanRoles(roles);
             this.SpringCleanUsers(users);
         }
 
         private void SeedRoles(RoleManager<ApplicationRole> roles)
         {
-            var roleInfo = new(string name, string[] perms)[]
+            var roleInfo = new (string name, string[] perms)[]
             {
                 (Constants.Roles.SuperAdmin, Permissions.AllPermissions)
             };
 
-            foreach(var info in roleInfo)
+            foreach (var info in roleInfo)
             {
                 var role = new ApplicationRole
                 {
@@ -82,20 +80,20 @@ namespace DataAccess
                     NormalizedName = info.name.ToUpper()
                 };
 
-                if(!roles.RoleExistsAsync(role.Name).Result)
+                if (!roles.RoleExistsAsync(role.Name).Result)
                     roles.CreateAsync(role).Wait();
                 else
                     role = roles.FindByNameAsync(role.Name).Result;
 
                 // Always try to add new permissions
                 var roleClaims = roles.GetClaimsAsync(role).Result;
-                foreach(var perm in info.perms)
+                foreach (var perm in info.perms)
                 {
                     var claim = new Claim(Permissions.ClaimType, perm);
 
-                    if(!roleClaims.Any(c => c.Type == claim.Type && c.Value == claim.Value))
+                    if (!roleClaims.Any(c => c.Type == claim.Type && c.Value == claim.Value))
                         roles.AddClaimAsync(role, claim).Wait();
-                }   
+                }
             }
         }
 
@@ -104,7 +102,7 @@ namespace DataAccess
             foreach (var role in roles.Roles.ToList())
             {
                 // Remove any permissions that no longer exist.
-                var roleClaims        = roles.GetClaimsAsync(role).Result;
+                var roleClaims = roles.GetClaimsAsync(role).Result;
                 var invalidPermClaims = this.GetInvalidPermissionClaims(roleClaims);
                 foreach (var claim in invalidPermClaims)
                     roles.RemoveClaimAsync(role, claim).Wait();
@@ -119,11 +117,11 @@ namespace DataAccess
 
             var user = new ApplicationUser
             {
-                Email              = "admin@example.com",
-                EmailConfirmed     = true,
-                NormalizedEmail    = "ADMIN@EXAMPLE.COM",
+                Email = "admin@example.com",
+                EmailConfirmed = true,
+                NormalizedEmail = "ADMIN@EXAMPLE.COM",
                 NormalizedUserName = "ADMIN@EXAMPLE.COM",
-                UserName           = DEFAULT_USERNAME
+                UserName = DEFAULT_USERNAME
             };
 
             user.PasswordHash = new PasswordHasher<ApplicationUser>().HashPassword(user, DEFAULT_PASSWORD);
@@ -138,12 +136,12 @@ namespace DataAccess
             foreach (var user in users.Users.ToList())
             {
                 // Remove any permissions that no longer exist.
-                var userClaims        = users.GetClaimsAsync(user).Result;
+                var userClaims = users.GetClaimsAsync(user).Result;
                 var invalidPermClaims = this.GetInvalidPermissionClaims(userClaims);
                 foreach (var claim in invalidPermClaims)
                     users.RemoveClaimAsync(user, claim).Wait();
             }
-     
+
         }
 
         private IEnumerable<Claim> GetInvalidPermissionClaims(IEnumerable<Claim> claims)

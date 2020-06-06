@@ -1,7 +1,4 @@
-﻿using DataAccess;
-using DataAccessLogic;
-using EmailSender;
-using FarmMaster.Services.Configuration;
+﻿using DataAccessLogic;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.Configuration;
@@ -10,7 +7,6 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
 namespace FarmMasterTests.Integration
 {
@@ -46,14 +42,14 @@ namespace FarmMasterTests.Integration
         public static TestServer TestHost => new TestServer(
             new WebHostBuilder()
             .UseWebRoot("../../../../FarmMaster/wwwroot/")
-            .ConfigureLogging(c => 
+            .ConfigureLogging(c =>
             {
                 c.AddConsole();
                 c.AddDebug();
 
                 c.AddFilter("Microsoft.EntityFrameworkCore.ChangeTracking", LogLevel.None);
             })
-            .ConfigureAppConfiguration(c => 
+            .ConfigureAppConfiguration(c =>
             {
                 // A few options to provide the FmTest section
                 c.AddEnvironmentVariables();
@@ -62,12 +58,12 @@ namespace FarmMasterTests.Integration
                 // For the Azure options
                 c.AddJsonFile(Path.GetFullPath("../../../../FarmMaster/appsettings.json"));
 
-                var config  = c.Build(); // So we can access env vars for the next part.
-                var uuid    = Guid.NewGuid(); // So each instance has their own databases.
-                var host    = config.GetValue<string>("FmTest:Host", "localhost");
-                var port    = config.GetValue<string>("FmTest:Port", "5432");
-                var user    = config.GetValue<string>("FmTest:User", "test");
-                var pass    = config.GetValue<string>("FmTest:Pass", "test");
+                var config = c.Build(); // So we can access env vars for the next part.
+                var uuid = Guid.NewGuid(); // So each instance has their own databases.
+                var host = config.GetValue<string>("FmTest:Host", "localhost");
+                var port = config.GetValue<string>("FmTest:Port", "5432");
+                var user = config.GetValue<string>("FmTest:User", "test");
+                var pass = config.GetValue<string>("FmTest:Pass", "test");
 
                 c.AddInMemoryCollection(new Dictionary<string, string>()
                 {
@@ -76,21 +72,21 @@ namespace FarmMasterTests.Integration
                 });
             })
             .UseStartup<FarmMaster.Startup>()
-            .ConfigureTestServices(c => 
+            .ConfigureTestServices(c =>
             {
                 // Setup the databases
                 var provider = c.BuildServiceProvider();
                 FarmMaster.Program.SetupDatabase(provider);
 
                 // Set the SMTP settings.
-                var config      = provider.GetRequiredService<IConfiguration>();
-                var settings    = provider.GetRequiredService<IFarmMasterSettingsAccessor>();
+                var config = provider.GetRequiredService<IConfiguration>();
+                var settings = provider.GetRequiredService<IFarmMasterSettingsAccessor>();
                 var newSettings = settings.Settings;
 
                 newSettings.SmtpPassword = config.GetValue("FmTest:Smtp:Pass", "");
                 newSettings.SmtpUsername = config.GetValue("FmTest:Smtp:User", "");
-                newSettings.SmtpServer   = config.GetValue("FmTest:Smtp:Server", "localhost");
-                newSettings.SmtpPort     = config.GetValue<ushort>("FmTest:Smtp:Port", 5025);
+                newSettings.SmtpServer = config.GetValue("FmTest:Smtp:Server", "localhost");
+                newSettings.SmtpPort = config.GetValue<ushort>("FmTest:Smtp:Port", 5025);
 
                 settings.Settings = newSettings;
             })

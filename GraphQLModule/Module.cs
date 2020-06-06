@@ -6,7 +6,6 @@ using GraphQLModule.Features;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace GraphQLModule
 {
@@ -21,10 +20,10 @@ namespace GraphQLModule
 
     public class Module : ModuleConfigurator
     {
-        public override ModuleInfo Info => _info;
+        public override ModuleInfo Info => this._info;
         private readonly ModuleInfo _info = new ModuleInfo
         {
-            Name      = "AccountModule",
+            Name = "AccountModule",
             LoadOrder = int.MaxValue // Since other modules can register things with us, we need to stay at the bottom.
         };
 
@@ -37,9 +36,9 @@ namespace GraphQLModule
         {
             menu.GroupFromName("Admin").Add(new NavMenuItem
             {
-                DisplayText      = "GraphQL",
+                DisplayText = "GraphQL",
                 RequiredPolicies = new[] { Permissions.Other.GraphQLUI },
-                LinkHref         = new Uri("/ui/playground", UriKind.Relative)
+                LinkHref = new Uri("/ui/playground", UriKind.Relative)
             });
         }
     }

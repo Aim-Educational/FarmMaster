@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace FarmMaster.Module.Core.Api
 {
@@ -11,7 +10,7 @@ namespace FarmMaster.Module.Core.Api
         {
             var result = this.FirstOrDefault(g => g.DisplayText == name);
 
-            if(result == null)
+            if (result == null)
             {
                 result = new NavMenuGroup() { DisplayText = name };
                 this.Add(result);

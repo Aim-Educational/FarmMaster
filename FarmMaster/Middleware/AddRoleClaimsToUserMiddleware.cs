@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using DataAccess;
+﻿using DataAccess;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace FarmMaster.Middleware
 {
@@ -23,19 +20,19 @@ namespace FarmMaster.Middleware
 
         public AddRoleClaimsToUserMiddleware(RequestDelegate next)
         {
-            _next = next;
+            this._next = next;
         }
 
         public async Task InvokeAsync(
-            HttpContext httpContext, 
+            HttpContext httpContext,
             UserManager<ApplicationUser> users,
             RoleManager<ApplicationRole> roles)
         {
             var user = await users.GetUserAsync(httpContext.User);
-            if(user != null)
+            if (user != null)
             {
                 var identity = new ClaimsIdentity();
-                foreach(var roleName in await users.GetRolesAsync(user))
+                foreach (var roleName in await users.GetRolesAsync(user))
                 {
                     var roleObj = await roles.FindByNameAsync(roleName);
                     identity.AddClaims(await roles.GetClaimsAsync(roleObj));
@@ -44,7 +41,7 @@ namespace FarmMaster.Middleware
                 httpContext.User.AddIdentity(identity);
             }
 
-            await _next(httpContext);
+            await this._next(httpContext);
         }
     }
 

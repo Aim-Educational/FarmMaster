@@ -1,16 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using DataAccess;
+﻿using DataAccess;
 using DataAccess.Constants;
 using DataAccessLogic;
-using FarmMaster.Models;
 using FarmMaster.Module.Core.Controllers;
 using FarmMaster.Module.Core.Models;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace FarmMaster.Controllers
@@ -18,19 +10,19 @@ namespace FarmMaster.Controllers
     public class ContactController : CrudController<Contact, IContactManager>
     {
         // So we don't constantly recreate instances.
-        static readonly CrudControllerConfig CONFIG = new CrudControllerConfig 
+        static readonly CrudControllerConfig CONFIG = new CrudControllerConfig
         {
             DeletePolicy = Permissions.Contact.Delete,
             ManagePolicy = Permissions.Contact.ManageUI,
-            ReadPolicy   = Permissions.Contact.Read,
-            WritePolicy  = Permissions.Contact.Write
+            ReadPolicy = Permissions.Contact.Read,
+            WritePolicy = Permissions.Contact.Write
         };
 
         protected override CrudControllerConfig Config => CONFIG;
 
         public ContactController(
-            IContactManager contacts, 
-            IUnitOfWork unitOfWork, 
+            IContactManager contacts,
+            IUnitOfWork unitOfWork,
             ILogger<ContactController> logger
         )
         : base(contacts, unitOfWork, logger)
@@ -48,10 +40,10 @@ namespace FarmMaster.Controllers
         protected override void UpdateEntityFromModel(CrudCreateEditViewModel<Contact> model, ref Contact entity)
         {
             // Whitelisting values that the user can provide
-            entity.Name  = model.Entity.Name;
+            entity.Name = model.Entity.Name;
             entity.Email = model.Entity.Email;
             entity.Phone = model.Entity.Phone;
-            entity.Type  = model.Entity.Type;
+            entity.Type = model.Entity.Type;
         }
     }
 }

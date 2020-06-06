@@ -2,9 +2,7 @@
 using DataAccessLogic;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -15,18 +13,18 @@ namespace DataAccessLogicTests
         [Fact()]
         public async Task BasicCrud()
         {
-            var db      = FarmMasterContext.InMemory();
+            var db = FarmMasterContext.InMemory();
             var species = new SpeciesManager(db);
-            var uow     = new DbContextUnitOfWork<FarmMasterContext>(db);
+            var uow = new DbContextUnitOfWork<FarmMasterContext>(db);
 
             var goat = new Species
             {
                 GestrationPeriod = TimeSpan.FromDays(121),
-                Name             = "Goat"
+                Name = "Goat"
             };
 
             // C & R (DbSet)
-            using(var scope = uow.Begin())
+            using (var scope = uow.Begin())
             {
                 var result = await species.CreateAsync(goat);
                 Assert.True(result.Succeeded);
@@ -36,7 +34,7 @@ namespace DataAccessLogicTests
             Assert.Same(goat, db.Species.First());
 
             // U & R (Query)
-            using(var scope = uow.Begin())
+            using (var scope = uow.Begin())
             {
                 goat.GestrationPeriod = TimeSpan.FromDays(1);
                 species.Update(goat);
@@ -50,7 +48,7 @@ namespace DataAccessLogicTests
             Assert.True(valueResult.Succeeded);
             Assert.Same(goat, valueResult.Value);
 
-            using(var scope = uow.Begin())
+            using (var scope = uow.Begin())
             {
                 species.Delete(goat);
                 scope.Commit();

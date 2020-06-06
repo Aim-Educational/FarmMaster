@@ -1,24 +1,13 @@
 ﻿using DataAccess;
 using DataAccess.Constants;
 using DataAccessGraphQL.Api;
-using DataAccessGraphQL.Constants;
-using DataAccessGraphQL.GraphTypes;
 using DataAccessGraphQL.RootResolvers;
 using DataAccessGraphQL.Util;
-using GraphQL;
 using GraphQL.Types;
-using GraphQL.Types.Relay.DataObjects;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc.ApplicationParts;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccessGraphQL
 {
@@ -26,18 +15,18 @@ namespace DataAccessGraphQL
     {
         public RootGraphQLQuery(
             // Required for RootBase
-            IHttpContextAccessor                context, 
-            UserManager<ApplicationUser>        users,
-            GraphQLUserContextAccessor          accessor,
-            FarmMasterContext                   fmDb,
-            IdentityContext                     idDb,
-            IAuthorizationService               auth,
+            IHttpContextAccessor context,
+            UserManager<ApplicationUser> users,
+            GraphQLUserContextAccessor accessor,
+            FarmMasterContext fmDb,
+            IdentityContext idDb,
+            IAuthorizationService auth,
 
             // Extern providers
-            IEnumerable<IGraphQLQueryProvider>  providers
+            IEnumerable<IGraphQLQueryProvider> providers
         ) : base(context, users, accessor, fmDb, idDb, auth)
         {
-            foreach(var provider in providers)
+            foreach (var provider in providers)
                 provider.AddQueries(this);
             //this._userResolver    = userResolver;
             //this._contactResolver = contactResolver;
@@ -45,7 +34,7 @@ namespace DataAccessGraphQL
             //this._breedResolver   = breedResolver;
 
             //this.AddPermissionsQuery();
-            
+
             //this.DefineSingleAndConnection<UserGraphType,    DataAccessUserContext>("user",    this._userResolver);
             //this.DefineSingleAndConnection<ContactGraphType, Contact>              ("contact", this._contactResolver);
             //this.DefineSingleAndConnection<BreedGraphType,   Breed>                ("breed",   this._breedResolver);
@@ -60,7 +49,7 @@ namespace DataAccessGraphQL
                              ? name + "es" // species -> specieses. Since we *have* to differentiate, even if not gramatically correct.
                              : name + "s"; // contact -> contacts.
 
-            FieldAsync<TGraphType>(
+            this.FieldAsync<TGraphType>(
                 name,
                 arguments: resolver,
                 resolve: ctx => resolver.ResolveAsync(ctx, base.DataContext)
@@ -75,7 +64,7 @@ namespace DataAccessGraphQL
 
         private void AddPermissionsQuery()
         {
-            Field<ListGraphType<StringGraphType>>(
+            this.Field<ListGraphType<StringGraphType>>(
                 "permissions",
                 "All permissions accepted by GraphQL.",
                 resolve: ctx => Permissions.AllPermissions
