@@ -27,6 +27,7 @@
   <ItemGroup>
     <ProjectReference Include="..\AccountModule\AccountModule.csproj" />
     <ProjectReference Include="..\AdminModule\AdminModule.csproj" />
+    <ProjectReference Include="..\CrudModule\CrudModule.csproj" />
     <ProjectReference Include="..\DataAccessGraphQL\DataAccessGraphQL.csproj" />
     <ProjectReference Include="..\DataAccessLogic\DataAccessLogic.csproj" />
     <ProjectReference Include="..\DataAccess\DataAccess.csproj" />

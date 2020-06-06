@@ -15,7 +15,8 @@ namespace FarmMaster.Controllers
             DeletePolicy = Permissions.Breed.Delete,
             ManagePolicy = Permissions.Breed.ManageUI,
             ReadPolicy = Permissions.Breed.Read,
-            WritePolicy = Permissions.Breed.Write
+            WritePolicy = Permissions.Breed.Write,
+            ViewSubFolder = "CrudModule/Breed"
         };
 
         protected override CrudControllerConfig Config => CONFIG;

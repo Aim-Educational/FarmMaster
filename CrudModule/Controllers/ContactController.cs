@@ -15,7 +15,8 @@ namespace FarmMaster.Controllers
             DeletePolicy = Permissions.Contact.Delete,
             ManagePolicy = Permissions.Contact.ManageUI,
             ReadPolicy = Permissions.Contact.Read,
-            WritePolicy = Permissions.Contact.Write
+            WritePolicy = Permissions.Contact.Write,
+            ViewSubFolder = "CrudModule/Contact"
         };
 
         protected override CrudControllerConfig Config => CONFIG;

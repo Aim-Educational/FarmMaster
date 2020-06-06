@@ -37,6 +37,11 @@ namespace FarmMaster.Module.Core.Controllers
         /// The policy that the user must pass to be able to see the list page for the entity.
         /// </summary>
         public string ManagePolicy { get; set; }
+
+        public string ViewSubFolder { get; set; }
+
+        public string VIEW_CREATE_EDIT => $"~/Views/{ViewSubFolder}/CreateEdit.cshtml";
+        public string VIEW_INDEX       => $"~/Views/{ViewSubFolder}/Index.cshtml";
     }
 
     /// <summary>
@@ -115,7 +120,7 @@ namespace FarmMaster.Module.Core.Controllers
             if (!isAuthed.Succeeded)
                 return this.RedirectToAction("AccessDenied", "Account");
 
-            return this.View("Index", new CrudIndexViewModel<EntityT>
+            return this.View(this.Config.VIEW_INDEX, new CrudIndexViewModel<EntityT>
             {
                 Entities = this.Crud.IncludeAll(this.Crud.Query()) // Effectively a .GetAll
             });
@@ -127,7 +132,7 @@ namespace FarmMaster.Module.Core.Controllers
             if (!isAuthed.Succeeded)
                 return this.RedirectToAction("Account/AccessDenied");
 
-            return this.View("CreateEdit", new CrudCreateEditViewModel<EntityT>
+            return this.View(this.Config.VIEW_CREATE_EDIT, new CrudCreateEditViewModel<EntityT>
             {
                 IsCreate = true
             });
@@ -143,7 +148,7 @@ namespace FarmMaster.Module.Core.Controllers
             if (!result.Succeeded)
                 return this.RedirectToAction("Index", new { error = result.GatherErrorMessages().FirstOrDefault() });
 
-            return this.View("CreateEdit", new CrudCreateEditViewModel<EntityT>
+            return this.View(this.Config.VIEW_CREATE_EDIT, new CrudCreateEditViewModel<EntityT>
             {
                 Entity = result.Value,
                 IsCreate = false
@@ -174,7 +179,7 @@ namespace FarmMaster.Module.Core.Controllers
 
                         foreach (var error in result.GatherErrorMessages())
                             this.ModelState.AddModelError(string.Empty, error);
-                        return this.View("CreateEdit", model);
+                        return this.View(this.Config.VIEW_CREATE_EDIT, model);
                     }
 
                     entity = result.Value;
@@ -190,7 +195,7 @@ namespace FarmMaster.Module.Core.Controllers
                 return this.RedirectToAction("Edit", new { id = this.GetEntityId(entity) });
             }
 
-            return this.View("CreateEdit", model);
+            return this.View(this.Config.VIEW_CREATE_EDIT, model);
         }
 
         [HttpPost]
@@ -222,7 +227,7 @@ namespace FarmMaster.Module.Core.Controllers
 
                         foreach (var error in result.GatherErrorMessages())
                             this.ModelState.AddModelError(string.Empty, error);
-                        return this.View("CreateEdit", model);
+                        return this.View(this.Config.VIEW_CREATE_EDIT, model);
                     }
 
                     workScope.Commit();
@@ -235,7 +240,7 @@ namespace FarmMaster.Module.Core.Controllers
                 );
             }
 
-            return this.View("CreateEdit", model);
+            return this.View(this.Config.VIEW_CREATE_EDIT, model);
         }
 
         [HttpPost]

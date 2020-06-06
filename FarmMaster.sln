@@ -39,7 +39,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GraphQLModule", "GraphQLMod
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserModule", "UserModule\UserModule.csproj", "{D989C608-D8F9-401A-AAC0-C3969BD65CAF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdminModule", "AdminModule\AdminModule.csproj", "{5713CC99-ADD4-4A1A-8808-4785B2AEAD0B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdminModule", "AdminModule\AdminModule.csproj", "{5713CC99-ADD4-4A1A-8808-4785B2AEAD0B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrudModule", "CrudModule\CrudModule.csproj", "{CAAA5F0B-0464-43BE-8369-030C6CAB7D64}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -103,6 +105,10 @@ Global
 		{5713CC99-ADD4-4A1A-8808-4785B2AEAD0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5713CC99-ADD4-4A1A-8808-4785B2AEAD0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5713CC99-ADD4-4A1A-8808-4785B2AEAD0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CAAA5F0B-0464-43BE-8369-030C6CAB7D64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAAA5F0B-0464-43BE-8369-030C6CAB7D64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAAA5F0B-0464-43BE-8369-030C6CAB7D64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAAA5F0B-0464-43BE-8369-030C6CAB7D64}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -122,6 +128,7 @@ Global
 		{2CA5CCDC-04E0-4F42-9477-28302E8B34DD} = {7E337641-E563-4798-B9E0-9A4794AB847E}
 		{D989C608-D8F9-401A-AAC0-C3969BD65CAF} = {7E337641-E563-4798-B9E0-9A4794AB847E}
 		{5713CC99-ADD4-4A1A-8808-4785B2AEAD0B} = {7E337641-E563-4798-B9E0-9A4794AB847E}
+		{CAAA5F0B-0464-43BE-8369-030C6CAB7D64} = {7E337641-E563-4798-B9E0-9A4794AB847E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A8B24A22-12A2-4331-BE7D-763A026063E2}

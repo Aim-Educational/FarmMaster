@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DataAccessGraphQL\DataAccessGraphQL.csproj" />
+    <ProjectReference Include="..\DataAccessLogic\DataAccessLogic.csproj" />
+    <ProjectReference Include="..\DataAccess\DataAccess.csproj" />
+    <ProjectReference Include="..\FarmMaster.Module.Core\FarmMaster.Module.Core.csproj" />
+    <ProjectReference Include="..\FarmMaster.Module.TagHelpers\FarmMaster.Module.TagHelpers.csproj" />
+    <ProjectReference Include="..\GraphQLModule\GraphQLModule.csproj" />
+  </ItemGroup>
+
+
+</Project>
