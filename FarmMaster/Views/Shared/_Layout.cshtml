@@ -115,12 +115,12 @@
             el: "#leftMenu",
             data: {
                 sections: {
-                    @foreach(var group in navMenu)
+                    @foreach(var group in navMenu.OrderBy(g => g.DisplayText))
                     {
                         @(group.DisplayText)@:: {
-                            @:shown: true,
+                            @:shown: @(group.Any(i => i.RequiredPolicies.All(p => checkPolicy(p))) ? "true" : "false"),
                             @:items: {
-                                foreach(var item in group)
+                                foreach(var item in group.OrderBy(i => i.DisplayText))
                                 {
                                     @(item.DisplayText)@:: {
                                         @:shown: @(item.RequiredPolicies.All(p => checkPolicy(p)) ? "true" : "false"),
@@ -140,17 +140,7 @@
                             species:  { shown: @checkPolicy(Permissions.Species.ManageUI), icon: null, href: "/Species" },
                             breeds:   { shown: @checkPolicy(Permissions.Breed.ManageUI),   icon: null, href: "/Breed"   }
                             }
-                        },
-                    admin: {
-                        shown: @checkPolicy(Policies.SeeAdminPanel),
-                        items: {
-                            controls: { shown: @checkPolicy(Permissions.Other.DebugUI),   icon: null, href: "/Admin/ControlTest" },
-                            graphql:  { shown: @checkPolicy(Permissions.Other.GraphQLUI), icon: null, href: "/ui/playground" },
-                            settings: { shown: @checkPolicy(Permissions.Other.Settings),  icon: null, href: "/Admin/Settings" },
-                            users:    { shown: @checkPolicy(Permissions.User.ManageUI),   icon: null, href: "/Admin/Users" }
-                            }
-                        }
-                    }*@
+                        },*@
             },
             beforeMount() {
                 @if(ViewData.ContainsKey("NavName"))
