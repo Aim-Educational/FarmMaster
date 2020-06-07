@@ -28,17 +28,6 @@ namespace DataAccessGraphQL
         {
             foreach (var provider in providers)
                 provider.AddQueries(this);
-            //this._userResolver    = userResolver;
-            //this._contactResolver = contactResolver;
-            //this._speciesResolver = speciesResolver;
-            //this._breedResolver   = breedResolver;
-
-            //this.AddPermissionsQuery();
-
-            //this.DefineSingleAndConnection<UserGraphType,    DataAccessUserContext>("user",    this._userResolver);
-            //this.DefineSingleAndConnection<ContactGraphType, Contact>              ("contact", this._contactResolver);
-            //this.DefineSingleAndConnection<BreedGraphType,   Breed>                ("breed",   this._breedResolver);
-            //this.DefineSingleAndConnection<SpeciesGraphType, Species>              ("species", this._speciesResolver);
         }
 
         public void DefineSingleAndConnection<TGraphType, TSourceType>(string name, RootResolver<TSourceType> resolver)
@@ -59,15 +48,6 @@ namespace DataAccessGraphQL
                 namePlural,
                 base.DataContext,
                 (ctx, first, after, order) => resolver.ResolvePageAsync(ctx, first, after, order)
-            );
-        }
-
-        private void AddPermissionsQuery()
-        {
-            this.Field<ListGraphType<StringGraphType>>(
-                "permissions",
-                "All permissions accepted by GraphQL.",
-                resolve: ctx => Permissions.AllPermissions
             );
         }
     }

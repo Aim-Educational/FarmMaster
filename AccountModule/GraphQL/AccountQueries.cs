@@ -1,5 +1,7 @@
-﻿using DataAccessGraphQL;
+﻿using DataAccess.Constants;
+using DataAccessGraphQL;
 using DataAccessGraphQL.RootResolvers;
+using GraphQL.Types;
 using GraphQLModule.Api;
 
 namespace AccountModule.GraphQL
@@ -16,6 +18,11 @@ namespace AccountModule.GraphQL
         public override void AddQueries(RootGraphQLQuery rootQuery)
         {
             rootQuery.DefineSingleAndConnection<UserGraphType, DataAccessUserContext>("user", this._resolver);
+            rootQuery.Field<ListGraphType<StringGraphType>>(
+                "permissions",
+                "All permissions accepted by GraphQL.",
+                resolve: ctx => Permissions.AllPermissions
+            );
         }
 
         public override void AddMutations(RootGraphQLMutation rootMutation)
