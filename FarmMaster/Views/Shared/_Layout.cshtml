@@ -1,15 +1,17 @@
 ﻿@inject SignInManager<ApplicationUser> signIn
 @inject UserManager<ApplicationUser> users
 @inject IAuthorizationService auth
+@inject NavMenu navMenu
 
 @using Microsoft.AspNetCore.Authorization
-@using FarmMaster.Constants
+@using AccountModule.Constants
 @using DataAccess.Constants
+@using FarmMaster.Module.Core.Api
 
 @{ 
-    Func<string, string> checkPolicy = policy => 
+    Func<string, bool> checkPolicy = policy => 
     {
-        return (auth.AuthorizeAsync(User, policy).Result.Succeeded) ? "true" : "false"; // Result is to be mixed into JS
+        return auth.AuthorizeAsync(User, policy).Result.Succeeded;
     };
 }
 
@@ -113,24 +115,32 @@
             el: "#leftMenu",
             data: {
                 sections: {
-                    manage: {
+                    @foreach(var group in navMenu.OrderBy(g => g.DisplayText))
+                    {
+                        @(group.DisplayText)@:: {
+                            @:shown: @(group.Any(i => i.RequiredPolicies.All(p => checkPolicy(p))) ? "true" : "false"),
+                            @:items: {
+                                foreach(var item in group.OrderBy(i => i.DisplayText))
+                                {
+                                    @(item.DisplayText)@:: {
+                                        @:shown: @(item.RequiredPolicies.All(p => checkPolicy(p)) ? "true" : "false"),
+                                        @:icon:  "@item.IconSrc",
+                                        @:href:  "@item.LinkHref"
+                                    @:},
+                                }
+                            @:}
+                        @:},
+                    }
+                }
+
+                    @*manage: {
                         shown: true,
                         items: {
                             contacts: { shown: @checkPolicy(Permissions.Contact.ManageUI), icon: null, href: "/Contact" },
                             species:  { shown: @checkPolicy(Permissions.Species.ManageUI), icon: null, href: "/Species" },
                             breeds:   { shown: @checkPolicy(Permissions.Breed.ManageUI),   icon: null, href: "/Breed"   }
-                        }
-                    },
-                    admin: {
-                        shown: @checkPolicy(Policies.SeeAdminPanel),
-                        items: {
-                            controls: { shown: @checkPolicy(Permissions.Other.DebugUI),   icon: null, href: "/Admin/ControlTest" },
-                            graphql:  { shown: @checkPolicy(Permissions.Other.GraphQLUI), icon: null, href: "/ui/playground" },
-                            settings: { shown: @checkPolicy(Permissions.Other.Settings),  icon: null, href: "/Admin/Settings" },
-                            users:    { shown: @checkPolicy(Permissions.User.ManageUI),   icon: null, href: "/Admin/Users" }
-                        }
-                    }
-                }
+                            }
+                        },*@
             },
             beforeMount() {
                 @if(ViewData.ContainsKey("NavName"))

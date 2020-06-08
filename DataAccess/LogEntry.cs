@@ -1,9 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
 
 namespace DataAccess
 {
@@ -12,8 +10,8 @@ namespace DataAccess
     /// </summary>
     public class LogEntry
     {
-        public const int MAX_TEXT_LENGTH    = 512;
-        public const int MAX_DATA_LENGTH    = 2048;
+        public const int MAX_TEXT_LENGTH = 512;
+        public const int MAX_DATA_LENGTH = 2048;
         public const int MAX_GENERIC_LENGTH = 75;
 
         [Key]

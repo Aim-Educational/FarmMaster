@@ -1,0 +1,44 @@
+﻿@model AdminUsersViewModel
+@{
+    ViewData["Title"] = "Users";
+    ViewData["NavName"] = "Users";
+    ViewData["Breadcrumb"] = new Breadcrumb()
+                                .Add("Admin", "#")
+                                .Add("Users", "/Admin/Users");
+}
+
+<div id="app">
+    <window title="Users">
+        <alert class="bottom margined" fm-model-error="true">
+            <header>Error</header>
+        </alert>
+        <fm-value-table selection="none"
+                        :rows="rows"
+                        :values="values">
+        </fm-value-table>
+    </window>
+</div>
+
+@section Scripts {
+    <script>
+        new Vue({
+            el: "#app",
+
+            data: {
+                rows: [
+                    { name: "Username", bind: "username", sort: true, sortByDefault: "desc" },
+                    { name: "Email",    bind: "email",    sort: true }
+                ],
+                values: [
+                    @foreach(var user in Model.Users)
+                    {
+                        @:{
+                            @:username: { value: "@user.UserName", href: "/Admin/ManageUser?userId=@user.Id" }, 
+                            @:email: "@user.Email"
+                        @:},
+                    }
+                ]
+            }
+        });
+    </script>
+}

@@ -1,10 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using EmailSender;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Linq;
-using Microsoft.AspNetCore.Http;
 
 namespace EmailSender.Tests
 {
@@ -26,7 +21,7 @@ namespace EmailSender.Tests
         {
             var template = new EmailTemplate(EXAMPLE_TEMPLATE);
 
-            Assert.IsTrue(template.AreAllValuesDefined(new EmailTemplateValues{ { "username", "SealabJaster" } }));
+            Assert.IsTrue(template.AreAllValuesDefined(new EmailTemplateValues { { "username", "SealabJaster" } }));
             Assert.IsFalse(template.AreAllValuesDefined(new EmailTemplateValues()));
         }
 
@@ -37,7 +32,7 @@ namespace EmailSender.Tests
             Assert.AreEqual(
                 "Hello SealabJaster",
                 template.Resolve(
-                    new EmailTemplateValues{ { "username", "SealabJaster" } },
+                    new EmailTemplateValues { { "username", "SealabJaster" } },
                     null,
                     null
                 )

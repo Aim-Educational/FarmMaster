@@ -1,27 +1,25 @@
-﻿using GraphQL.Builders;
+﻿using DataAccessGraphQL.Constants;
+using GraphQL;
 using GraphQL.Types;
+using GraphQL.Types.Relay.DataObjects;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Linq;
 using System.Threading.Tasks;
-using DataAccessGraphQL.Constants;
-using GraphQL.Types.Relay.DataObjects;
-using GraphQL;
 
 namespace DataAccessGraphQL.Util
 {
     internal static class ConnectionHelper
     {
         public delegate Task<IEnumerable<TSourceType>> ConnectionNodeResolver<TSourceType>(
-            DataAccessUserContext ctx, 
-            int first, 
+            DataAccessUserContext ctx,
+            int first,
             int after,
             string order
         );
 
         public static void DefineConnectionAsync<TMyT, TGraphType, TSourceType>(
-            this ObjectGraphType<TMyT> obj, 
+            this ObjectGraphType<TMyT> obj,
             string name,
             DataAccessUserContext userContext,
             ConnectionNodeResolver<TSourceType> nodeResolve
@@ -38,7 +36,7 @@ namespace DataAccessGraphQL.Util
                     var after = ctx.GetArgument<int>("after");
                     var order = ctx.GetArgument<string>("order");
 
-                    if(first >= PagingConstants.ItemsPerPage || first == 0)
+                    if (first >= PagingConstants.ItemsPerPage || first == 0)
                         first = PagingConstants.ItemsPerPage;
 
                     var values = await nodeResolve(userContext, first, after, order);
@@ -46,17 +44,17 @@ namespace DataAccessGraphQL.Util
                     return new Connection<TSourceType>
                     {
                         TotalCount = values.Count(),
-                        PageInfo   = new PageInfo
+                        PageInfo = new PageInfo
                         {
-                            EndCursor       = Convert.ToString(after + values.Count()),
-                            StartCursor     = Convert.ToString(after),
-                            HasNextPage     = values.Count() == PagingConstants.ItemsPerPage,
+                            EndCursor = Convert.ToString(after + values.Count()),
+                            StartCursor = Convert.ToString(after),
+                            HasNextPage = values.Count() == PagingConstants.ItemsPerPage,
                             HasPreviousPage = after > 0
                         },
                         Edges = values.Select(c => new Edge<TSourceType>
                         {
                             Cursor = "TODO",
-                            Node   = c
+                            Node = c
                         }).ToList()
                     };
                 });

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -6,14 +6,19 @@
 
   <ItemGroup>
     <PackageReference Include="GraphQL" Version="3.0.0-preview-1490" />
-    <PackageReference Include="Microsoft.AspNetCore.Authorization" Version="3.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Authorization" Version="3.1.4" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\DataAccessLogic\DataAccessLogic.csproj" />
     <ProjectReference Include="..\DataAccess\DataAccess.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Mutations\" />
   </ItemGroup>
 
 </Project>

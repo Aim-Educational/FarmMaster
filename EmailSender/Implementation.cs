@@ -1,15 +1,13 @@
-﻿using Microsoft.AspNetCore.Identity.UI.Services;
+﻿using MailKit.Net.Smtp;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using MailKit.Net.Smtp;
 using Microsoft.Extensions.Options;
 using MimeKit;
 using MimeKit.Text;
-using Microsoft.AspNetCore.Routing;
-using Microsoft.AspNetCore.Http;
+using System;
+using System.Threading.Tasks;
 
 namespace EmailSender
 {
@@ -35,10 +33,10 @@ namespace EmailSender
 
         public async Task SendEmailAsync(string email, string subject, string htmlMessage)
         {
-            var smtp        = this._config.Smtp;
-            var message     = this.CreateMessage(smtp, email);
+            var smtp = this._config.Smtp;
+            var message = this.CreateMessage(smtp, email);
             message.Subject = subject;
-            message.Body    = new TextPart(TextFormat.Html)
+            message.Body = new TextPart(TextFormat.Html)
             {
                 Text = htmlMessage
             };
@@ -49,17 +47,17 @@ namespace EmailSender
 
         public async Task<EmailResult> SendTemplatedEmailAsync(string toAddress, string subject, EmailTemplate template, EmailTemplateValues values)
         {
-            var config   = this._config;
+            var config = this._config;
             var contents = template.Resolve(values, this._accessor, this._generator);
 
-            if(config.Layout != null)
+            if (config.Layout != null)
                 contents = config.Layout.Resolve(new EmailTemplateValues { { "body", contents } }, this._accessor, this._generator);
 
             try
             {
-                var message     = this.CreateMessage(config.Smtp, toAddress);
+                var message = this.CreateMessage(config.Smtp, toAddress);
                 message.Subject = subject;
-                message.Body    = new TextPart(TextFormat.Html)
+                message.Body = new TextPart(TextFormat.Html)
                 {
                     Text = contents
                 };
@@ -67,7 +65,7 @@ namespace EmailSender
                 await this.CreateClientAsync();
                 await this._client.SendAsync(message);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return new EmailResult { Succeeded = false, Error = ex.Message };
             }
@@ -101,12 +99,12 @@ namespace EmailSender
             if (!this._client.IsConnected)
                 await this._client.ConnectAsync(config.Smtp.Server, config.Smtp.Port, true);
 
-            if(!this._client.IsAuthenticated)
+            if (!this._client.IsAuthenticated)
                 await this._client.AuthenticateAsync(config.Smtp.Username, config.Smtp.Password);
         }
     }
 
-    public static class Extensions 
+    public static class Extensions
     {
         public static IServiceCollection AddTemplatedEmailSender(this IServiceCollection services)
         {

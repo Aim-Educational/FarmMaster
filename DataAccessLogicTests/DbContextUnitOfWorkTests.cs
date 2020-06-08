@@ -1,10 +1,6 @@
-﻿using DataAccessLogic;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using DataAccessLogicTests.TestDb;
-using System.Linq;
+﻿using DataAccessLogicTests.TestDb;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using Xunit;
 
 namespace DataAccessLogic.Tests
@@ -17,9 +13,9 @@ namespace DataAccessLogic.Tests
             var db = UnitTestDbContext.InMemory();
             var uow = new DbContextUnitOfWork<UnitTestDbContext>(db);
 
-            using(var scope = uow.Begin("Single Commit"))
+            using (var scope = uow.Begin("Single Commit"))
             {
-                db.Add(new Product{ Name = "Commitment Ring" });
+                db.Add(new Product { Name = "Commitment Ring" });
                 Assert.True(scope.Commit());
             }
 

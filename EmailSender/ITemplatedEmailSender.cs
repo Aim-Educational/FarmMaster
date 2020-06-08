@@ -1,7 +1,4 @@
 ﻿using Microsoft.AspNetCore.Identity.UI.Services;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace EmailSender
@@ -36,7 +33,7 @@ namespace EmailSender
         /// The SMTP server to connect to.
         /// </summary>
         public string Server { get; set; }
-        
+
         /// <summary>
         /// The port to connect to.
         /// </summary>

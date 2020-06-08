@@ -1,10 +1,7 @@
 ﻿using DataAccess.Internal;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Design;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace DataAccess
 {
@@ -50,13 +47,13 @@ namespace DataAccess
         }
 
         #region Tables
-        public DbSet<Settings>  Settings    { get; set; }
-        public DbSet<LogEntry>  LogEntries  { get; set; }
-        public DbSet<Contact>   Contacts    { get; set; }
-        public DbSet<NoteOwner> NoteOwners  { get; set; }
+        public DbSet<Settings> Settings { get; set; }
+        public DbSet<LogEntry> LogEntries { get; set; }
+        public DbSet<Contact> Contacts { get; set; }
+        public DbSet<NoteOwner> NoteOwners { get; set; }
         public DbSet<NoteEntry> NoteEntries { get; set; }
-        public DbSet<Species>   Species     { get; set; }
-        public DbSet<Breed>     Breeds      { get; set; }
+        public DbSet<Species> Species { get; set; }
+        public DbSet<Breed> Breeds { get; set; }
         #endregion
 
         // Identity uses a runtime call to Seed because I need to make use of the UserManager etc. services to ensure
@@ -74,16 +71,16 @@ namespace DataAccess
             // So we have no chance in hell of overwriting user-made species/breeds.
             const int BASE_ID = int.MaxValue - 100_000;
 
-            Func<int, string, int, ICollection<Breed>, Species> makeSpecies = (id, name, gestrationDays, breeds) => 
+            Func<int, string, int, ICollection<Breed>, Species> makeSpecies = (id, name, gestrationDays, breeds) =>
             {
                 // For some very, very strange reason, if we don't use ID 1 for Species we get a weird error from ef-add-migration.
-                if(id != 1)
+                if (id != 1)
                     id += BASE_ID;
-                
-                foreach(var breed in breeds)
+
+                foreach (var breed in breeds)
                     breed.SpeciesId = id;
 
-                return new Species 
+                return new Species
                 {
                     SpeciesId = id,
                     Name = name,
@@ -92,10 +89,10 @@ namespace DataAccess
                 };
             };
 
-            Func<int, string, Breed> makeBreed = (id, name) => 
+            Func<int, string, Breed> makeBreed = (id, name) =>
             {
                 id += BASE_ID;
-                return new Breed 
+                return new Breed
                 {
                     BreedId = id,
                     Name = name
@@ -121,21 +118,21 @@ namespace DataAccess
 
             // Ensure we don't have duplicate ids
             var speciesIndexSet = new HashSet<int>();
-            var breedIndexSet   = new HashSet<int>();
-            foreach(var species in speciesList)
+            var breedIndexSet = new HashSet<int>();
+            foreach (var species in speciesList)
             {
-                foreach(var breed in species.Breeds)
+                foreach (var breed in species.Breeds)
                 {
-                    if(!breedIndexSet.Add(breed.BreedId))
+                    if (!breedIndexSet.Add(breed.BreedId))
                         throw new InvalidOperationException($"Breed {breed.Name} of Species {species.Name} has duplicate ID of {breed.BreedId}");
                 }
 
-                if(!speciesIndexSet.Add(species.SpeciesId))
+                if (!speciesIndexSet.Add(species.SpeciesId))
                     throw new InvalidOperationException($"Species {species.Name} has duplicate ID of {species.SpeciesId}");
             }
 
             // Seed all the data.
-            foreach(var species in speciesList)
+            foreach (var species in speciesList)
             {
                 // EF doesn't like us using navigation collections when seeding, so we need to set it to null first.
                 var breeds = species.Breeds;
