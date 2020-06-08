@@ -84,7 +84,7 @@ namespace FarmMasterTests.Integration
             {
                 throw new XunitException(
                     $"The following routes don't require authorization, yet are not whitelisted: \n[\n" +
-                    $"    {routesInvalid.Aggregate((a, b) => $"{a}\n{b}")}\n" +
+                    $"{routesInvalid.Aggregate((a, b) => $"    {a}\n    {b}")}\n" +
                     $"]"
                 );
             }
