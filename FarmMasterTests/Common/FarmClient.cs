@@ -13,7 +13,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace FarmMasterTests.Integration
+namespace FarmMasterTests.Common
 {
     /// <summary>
     /// A HttpClient used to interface with the <see cref="TestServer"/>.

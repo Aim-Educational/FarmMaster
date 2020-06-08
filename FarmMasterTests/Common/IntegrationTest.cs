@@ -6,7 +6,7 @@ using System.IO;
 using System.Text;
 using Xunit.Abstractions;
 
-namespace FarmMasterTests.Integration
+namespace FarmMasterTests.Common
 {
     // Used as a proxy of Console.WriteLine -> ITestOutputHelper.WriteLine.
     // This is because *XUnit decides to gut Console.WriteLine otherwise*.

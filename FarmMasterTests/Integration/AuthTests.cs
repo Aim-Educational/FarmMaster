@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using FarmMasterTests.Common;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
@@ -53,7 +54,7 @@ namespace FarmMasterTests.Integration
         {
             var actions = base.Host.Services.GetRequiredService<IActionDescriptorCollectionProvider>();
 
-            var routes = actions.ActionDescriptors.Items;
+            var routes        = actions.ActionDescriptors.Items;
             var routesChecked = new List<string>();
             var routesInvalid = new List<string>();
             foreach (var route in routes)
@@ -61,11 +62,11 @@ namespace FarmMasterTests.Integration
                 // Note: For some reason, every route has [AllowAnonymous] attached to it (usually overriden by [Authorise] though)
                 //       so keep that in mind.
 
-                var isPost = route.EndpointMetadata.Any(m => m is HttpPostAttribute);
+                var isPost       = route.EndpointMetadata.Any(m => m is HttpPostAttribute);
                 var hasAuthorise = route.EndpointMetadata.Any(m => m is AuthorizeAttribute);
-                var area = route.RouteValues["area"];
-                var controller = route.RouteValues["controller"];
-                var action = route.RouteValues["action"];
+                var area         = route.RouteValues["area"];
+                var controller   = route.RouteValues["controller"];
+                var action       = route.RouteValues["action"];
 
                 if (hasAuthorise)
                     continue;
