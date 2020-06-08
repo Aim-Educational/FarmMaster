@@ -25,12 +25,7 @@ namespace FarmMasterTests.Common
 
             await this.PostEnsureStatusAsync(
                 "/Account/Login",
-                new FormUrlEncodedContent(new Dictionary<string, string>()
-                {
-                    { nameof(AccountLoginViewModel.Username),   loginModel.Username },
-                    { nameof(AccountLoginViewModel.Password),   loginModel.Password },
-                    { nameof(AccountLoginViewModel.RememberMe), loginModel.RememberMe ? "true" : "false" }
-                }),
+                loginModel.ToFormEncodedContent(),
                 HttpStatusCode.Redirect
             );
         }
@@ -39,21 +34,15 @@ namespace FarmMasterTests.Common
         {
             var signupModel = new AccountRegisterViewModel
             {
-                Username = username,
-                Password = password,
-                Email = "no@example.com",
+                Username        = username,
+                Password        = password,
+                Email           = "no@example.com",
                 ConfirmPassword = password
             };
 
             await this.PostEnsureStatusAsync(
                 "/Account/Register",
-                new FormUrlEncodedContent(new Dictionary<string, string>()
-                {
-                    { nameof(AccountRegisterViewModel.Username),        signupModel.Username },
-                    { nameof(AccountRegisterViewModel.Password),        signupModel.Password },
-                    { nameof(AccountRegisterViewModel.Email),           signupModel.Email },
-                    { nameof(AccountRegisterViewModel.ConfirmPassword), signupModel.ConfirmPassword }
-                }),
+                signupModel.ToFormEncodedContent(),
                 HttpStatusCode.Redirect
             );
 
