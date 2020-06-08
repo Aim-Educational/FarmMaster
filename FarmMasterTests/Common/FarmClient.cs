@@ -67,11 +67,14 @@ namespace FarmMasterTests.Common
         // https://stackoverflow.com/questions/48704331/setting-cookies-to-httpclient-of-asp-net-core-testserver
         public async Task<HttpResponseMessage> GetAsync(string url)
         {
-            using (var response = await this.BuildRequest(url).GetAsync())
-            {
-                this.UpdateCookies(url, response);
-                return response;
-            }
+            // NOTE: We don't dispose of the responses, since our testing code may need access to the response content,
+            //       which can only be accessed on a non-disposed object.
+            //
+            //       This does mean that the memory lingers about until the GC kicks in, but this is testing code, and is
+            //       very short lived, so this shouldn't matter at all.
+            var response = await this.BuildRequest(url).GetAsync();
+            this.UpdateCookies(url, response);
+            return response;
         }
 
         // https://stackoverflow.com/questions/48704331/setting-cookies-to-httpclient-of-asp-net-core-testserver
@@ -79,11 +82,10 @@ namespace FarmMasterTests.Common
         {
             var builder = this.BuildRequest(url);
             builder.And(request => request.Content = content);
-            using (var response = await builder.PostAsync())
-            {
-                this.UpdateCookies(url, response);
-                return response;
-            }
+            var response = await builder.PostAsync();
+
+            this.UpdateCookies(url, response);
+            return response;
         }
         #endregion
 
