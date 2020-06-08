@@ -25,7 +25,7 @@ namespace FarmMasterTests.Common
     /// 
     /// So this class is used to solve all our issues.
     /// </remarks>
-    public class FarmClient
+    public partial class FarmClient
     {
         private CookieContainer _cookies { get; set; }
         private TestServer _server { get; set; }
@@ -35,63 +35,6 @@ namespace FarmMasterTests.Common
             this._server = server;
             this._cookies = new CookieContainer();
         }
-
-        #region ACTIONS
-        public async Task LoginAsync(string username = IdentityContext.DEFAULT_USERNAME, string password = IdentityContext.DEFAULT_PASSWORD)
-        {
-            var loginModel = new AccountLoginViewModel
-            {
-                Username = username,
-                Password = password,
-                RememberMe = true
-            };
-
-            await this.PostEnsureStatusAsync(
-                "/Account/Login",
-                new FormUrlEncodedContent(new Dictionary<string, string>()
-                {
-                    { nameof(AccountLoginViewModel.Username),   loginModel.Username },
-                    { nameof(AccountLoginViewModel.Password),   loginModel.Password },
-                    { nameof(AccountLoginViewModel.RememberMe), loginModel.RememberMe ? "true" : "false" }
-                }),
-                HttpStatusCode.Redirect
-            );
-        }
-
-        public async Task SignupAsync(string username, string password)
-        {
-            var signupModel = new AccountRegisterViewModel
-            {
-                Username = username,
-                Password = password,
-                Email = "no@example.com",
-                ConfirmPassword = password
-            };
-
-            await this.PostEnsureStatusAsync(
-                "/Account/Register",
-                new FormUrlEncodedContent(new Dictionary<string, string>()
-                {
-                    { nameof(AccountRegisterViewModel.Username),        signupModel.Username },
-                    { nameof(AccountRegisterViewModel.Password),        signupModel.Password },
-                    { nameof(AccountRegisterViewModel.Email),           signupModel.Email },
-                    { nameof(AccountRegisterViewModel.ConfirmPassword), signupModel.ConfirmPassword }
-                }),
-                HttpStatusCode.Redirect
-            );
-
-            // Forcefully confirm email.
-            var userManager = this._server.Services.GetRequiredService<UserManager<ApplicationUser>>();
-            var user = await userManager.FindByNameAsync(username);
-            var token = await userManager.GenerateEmailConfirmationTokenAsync(user);
-            var result = await userManager.ConfirmEmailAsync(user, token);
-
-            Assert.True(result.Succeeded);
-
-            // Log in
-            await this.LoginAsync(username, password);
-        }
-        #endregion
 
         #region GET/POST
         public async Task<HttpResponseMessage> GetEnsureStatusAsync(string url, HttpStatusCode status)
