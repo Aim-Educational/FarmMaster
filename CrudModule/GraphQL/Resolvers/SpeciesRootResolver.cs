@@ -24,7 +24,7 @@ namespace CrudModule.GraphQL.Resolvers
             if (order == "id")
                 query = query.OrderBy(s => s.SpeciesId);
 
-            query.AddTableOrderBy(order, "name", s => s.Name);
+            query.TableOrderBy(order, "name", s => s.Name);
 
             return query;
         }

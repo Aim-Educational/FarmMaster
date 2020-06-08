@@ -69,7 +69,7 @@ namespace DataAccessGraphQL.RootResolvers
 
     public static class CrudRootResolverHelpers
     {
-        public static IQueryable<T> AddTableOrderBy<T, TKey>(
+        public static IQueryable<T> TableOrderBy<T, TKey>(
             this IQueryable<T> query,
             string order,
             string expectedOrder,
@@ -83,6 +83,29 @@ namespace DataAccessGraphQL.RootResolvers
                 return query.OrderByDescending(keySelector);
             else
                 return query;
+        }
+
+        public static IQueryable<T> TableOrderBy<T>(
+            this IQueryable<T> query,
+            string order,
+            string expectedOrder,
+            Expression<Func<T, string>> keySelector
+        )
+        where T : class
+        {
+            if(keySelector.Body.NodeType == ExpressionType.MemberAccess)
+            {
+                var param   = keySelector.Parameters.First();           // entity =>
+                var member  = ((MemberExpression)keySelector.Body);     // entity => entity.Key
+                var toLower = Expression.Call(member, "ToLower", null); // entity => entity.Key.ToLower()
+
+                keySelector = Expression.Lambda<Func<T, string>>(
+                    toLower,
+                    param
+                );
+            }
+
+            return query.TableOrderBy<T, string>(order, expectedOrder, keySelector);
         }
     }
 }
