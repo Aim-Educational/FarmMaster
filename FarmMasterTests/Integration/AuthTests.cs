@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
@@ -101,8 +102,11 @@ namespace FarmMasterTests.Integration
         [Fact()]
         public async Task CheckLoggedOutRedirect()
         {
-            var response = await base.Client.GetEnsureStatusAsync("/Admin/Users", HttpStatusCode.Redirect);
-            Assert.Contains("Account/Login", response.Headers.Location.ToString());
+            await base.Client.GetEnsureStatusAsync(
+                "/Admin/Users", 
+                HttpStatusCode.Redirect,
+                new Regex(@"/Account/Login")
+            );
         }
 
         /// <summary>
@@ -114,8 +118,11 @@ namespace FarmMasterTests.Integration
         public async Task CheckUnauthorisedRedirect()
         {
             await base.Client.SignupAsync("Andy", "Smells123");
-            var response = await base.Client.GetEnsureStatusAsync("/Breed", HttpStatusCode.Redirect);
-            Assert.Contains("Account/AccessDenied", response.Headers.Location.ToString());
+            await base.Client.GetEnsureStatusAsync(
+                "/Breed", 
+                HttpStatusCode.Redirect,
+                new Regex(@"/Account/AccessDenied")
+            );
         }
 
         /// <summary>

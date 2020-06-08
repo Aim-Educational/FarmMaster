@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -26,7 +27,8 @@ namespace FarmMasterTests.Common
             await this.PostEnsureStatusAsync(
                 "/Account/Login",
                 loginModel.ToFormEncodedContent(),
-                HttpStatusCode.Redirect
+                HttpStatusCode.Redirect,
+                new Regex(@"^/$")
             );
         }
 
@@ -43,7 +45,8 @@ namespace FarmMasterTests.Common
             await this.PostEnsureStatusAsync(
                 "/Account/Register",
                 signupModel.ToFormEncodedContent(),
-                HttpStatusCode.Redirect
+                HttpStatusCode.Redirect,
+                new Regex(@"/Account/Login\?confirmEmail=true", RegexOptions.IgnoreCase)
             );
 
             // Forcefully confirm email.

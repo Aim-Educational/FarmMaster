@@ -37,18 +37,29 @@ namespace FarmMasterTests.Common
         }
 
         #region GET/POST
-        public async Task<HttpResponseMessage> GetEnsureStatusAsync(string url, HttpStatusCode status)
+        public async Task<HttpResponseMessage> GetEnsureStatusAsync(string url, HttpStatusCode status, Regex urlRegexTest = null)
         {
             var response = await this.GetAsync(url);
             Assert.Equal(status, response.StatusCode);
 
+            if (urlRegexTest != null)
+                Assert.Matches(urlRegexTest, response.Headers.Location.ToString());
+
             return response;
         }
 
-        public async Task<HttpResponseMessage> PostEnsureStatusAsync(string url, HttpContent content, HttpStatusCode status)
+        public async Task<HttpResponseMessage> PostEnsureStatusAsync(
+            string         url,
+            HttpContent    content, 
+            HttpStatusCode status, 
+            Regex          urlRegexTest = null
+        )
         {
             var response = await this.PostAsync(url, content);
             Assert.Equal(status, response.StatusCode);
+            
+            if(urlRegexTest != null)
+                Assert.Matches(urlRegexTest, response.Headers.Location.ToString());
 
             return response;
         }
