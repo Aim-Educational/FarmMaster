@@ -5,10 +5,12 @@ using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Net.Http.Headers;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Xunit;
@@ -35,6 +37,13 @@ namespace FarmMasterTests.Common
             this._server = server;
             this._cookies = new CookieContainer();
         }
+
+        #region COMMON ACTIONS
+        public void ClearCookies()
+        {
+            this._cookies = new CookieContainer();
+        }
+        #endregion
 
         #region GET/POST
         public async Task<HttpResponseMessage> GetEnsureStatusAsync(string url, HttpStatusCode status, Regex urlRegexTest = null)
@@ -108,8 +117,7 @@ namespace FarmMasterTests.Common
 
             // Expire the forgery token, to ensure we're sent a fresh pair of tokens.
             var loginUri = new Uri(this._server.BaseAddress, "Account/Login");
-            var loginCookies = this._cookies.GetCookies(loginUri);
-            foreach (Cookie cookie in loginCookies.Where(c => c.Name.StartsWith(".AspNetCore.Antiforgery.")))
+            foreach (Cookie cookie in this.GetAllCookies().Where(c => c.Name.StartsWith(".AspNetCore.Antiforgery.")))
                 cookie.Expires = DateTime.Now.Subtract(TimeSpan.FromDays(1));
 
             var builder = this.BuildRequest("Account/Login", true);
@@ -159,6 +167,26 @@ namespace FarmMasterTests.Common
                 foreach (var cookie in cookies)
                 {
                     this._cookies.SetCookies(uri, cookie);
+                }
+            }
+        }
+
+        // https://stackoverflow.com/a/31900670
+        // One would imagine this would be easier to do, but #JustMicrosoftThings
+        private IEnumerable<Cookie> GetAllCookies()
+        {
+            var c = this._cookies;
+            Hashtable k = (Hashtable)c.GetType().GetField("m_domainTable", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(c);
+            foreach (DictionaryEntry element in k)
+            {
+                SortedList l = (SortedList)element.Value.GetType().GetField("m_list", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(element.Value);
+                foreach (var e in l)
+                {
+                    var cl = (CookieCollection)((DictionaryEntry)e).Value;
+                    foreach (Cookie fc in cl)
+                    {
+                        yield return fc;
+                    }
                 }
             }
         }
