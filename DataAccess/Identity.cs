@@ -69,7 +69,7 @@ namespace DataAccess
         {
             var roleInfo = new (string name, string[] perms)[]
             {
-                (Constants.Roles.SuperAdmin, Permissions.AllPermissions)
+                (Constants.Roles.SuperAdmin, Permissions.AllPermissions.ToArray())
             };
 
             foreach (var info in roleInfo)

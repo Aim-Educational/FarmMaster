@@ -1,4 +1,9 @@
-﻿namespace DataAccess.Constants
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+
+namespace DataAccess.Constants
 {
     // NOTE: Always use the terms "read" and "write" inside of the values, see how Startup.cs creates policies to see why.
     public static class Permissions
@@ -61,45 +66,29 @@
             public const string Delete = "location.delete";
         }
 
-        public static readonly string[] AllPermissions = new[]
+        public static readonly IEnumerable<string> AllPermissions = PermissionHelper.GetAllPermissions();
+    }
+
+    static class PermissionHelper
+    {
+        public static IEnumerable<string> AddPermissions(this IEnumerable<string> list, Type type)
         {
-            Contact.ReadNotes,
-            Contact.WriteNotes,
-            Contact.ManageUI,
-            Contact.Read,
-            Contact.Write,
-            Contact.Delete,
+            var properties = type.GetFields(BindingFlags.Public | BindingFlags.Static)
+                                 .Where(f => f.IsStatic && f.IsLiteral)
+                                 .Select(f => (string)f.GetRawConstantValue());
 
-            Species.ReadNotes,
-            Species.WriteNotes,
-            Species.ManageUI,
-            Species.Read,
-            Species.Write,
-            Species.Delete,
+            return list.Concat(properties);
+        }
 
-            Breed.ReadNotes,
-            Breed.WriteNotes,
-            Breed.ManageUI,
-            Breed.Read,
-            Breed.Write,
-            Breed.Delete,
+        public static IEnumerable<string> GetAllPermissions()
+        {
+            var subClasses = typeof(Permissions).GetNestedTypes().Where(t => t.IsClass);
+            IEnumerable<string> permissions = new string[] { };
 
-            Location.ReadNotes,
-            Location.WriteNotes,
-            Location.ManageUI,
-            Location.Read,
-            Location.Write,
-            Location.Delete,
+            foreach (var subClass in subClasses)
+                permissions = permissions.AddPermissions(subClass);
 
-            User.ReadPermissions,
-            User.WritePermissions,
-            User.Read,
-            User.ManageUI,
-            User.Delete,
-
-            Other.GraphQLUI,
-            Other.DebugUI,
-            Other.Settings,
-        };
+            return permissions;
+        }
     }
 }
