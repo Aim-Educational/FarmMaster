@@ -53,9 +53,10 @@
                                      entity-type="contact"
                                      :mode="mode">
             </vue-multiselect-graphql>
-            <input type="hidden" asp-for="Entity.Holding.OwnerId"    :value="owner.id" />
+            <input type="hidden" asp-for="Entity.Holding.OwnerId" :value="owner.id" />
             <input type="hidden" asp-for="Entity.Holding.Owner.Name" :value="owner.name" /> <!--Read only anyway-->
         </div>
+        <input type="hidden" asp-for="Entity.HoldingId" value="@(Model.Entity?.HoldingId ?? -1)" />
     </template>
 
     <alert type="error" fm-model-error="true"></alert>
@@ -81,7 +82,7 @@
     data: {
         locationType: "@Model.Entity?.Type",
         owner: {
-            id: @(Model.Entity?.Holding?.Owner?.NoteOwnerId ?? -1),
+            id: @(Model.Entity?.Holding?.Owner?.ContactId ?? -1),
             name: "@Model.Entity?.Holding?.Owner?.Name"
         }
     }

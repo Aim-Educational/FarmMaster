@@ -32,9 +32,10 @@ namespace CrudModule.Controllers
 
         protected override Location CreateEntityFromModel(CrudCreateEditViewModel<Location> model)
         {
-            var location        = model.Entity;
-            location.LocationId = 0; // Blacklist setting ID
-
+            var location = new Location
+            {
+                Type = model.Entity.Type // Type is only whitelisted during creation.
+            };
             this.UpdateEntityFromModel(model, ref location);
 
             return location;
@@ -44,6 +45,22 @@ namespace CrudModule.Controllers
         {
             entity.Name      = model.Entity.Name;
             entity.HoldingId = model.Entity.HoldingId;
+            
+            // Whitelist changes.
+            if(model.Entity.Holding != null && model.Entity.Type == LocationType.Holding)
+            {
+                var left  = entity.Holding ?? new LocationHolding();
+                var right = model.Entity.Holding;
+
+                left.Address       = right.Address;
+                left.GridReference = right.GridReference;
+                left.HoldingNumber = right.HoldingNumber;
+                left.OwnerId       = right.OwnerId;
+                left.Postcode      = right.Postcode;
+                left.Timestamp     = right.Timestamp;
+
+                entity.Holding = left;
+            }
         }
     }
 }
