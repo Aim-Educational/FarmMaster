@@ -1,7 +1,8 @@
 ﻿@model CrudCreateEditViewModel<Contact>
 @{
     Layout = "_LayoutCrudCreateEdit";
-
+    
+    ViewData["NavName"] = "Contacts";
     ViewData["LayoutModel"] = new CrudLayoutViewModel 
     {
         EntityName         = "Contact",

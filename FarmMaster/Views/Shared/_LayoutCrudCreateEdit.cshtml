@@ -30,14 +30,11 @@ Requirements:
     var entityIdExpression = model.EntityIdExpression;
 
     ViewData["Title"] = $"Create a new {entityName}";
-    ViewData["NavName"] = entityName;
-
     ViewData["Breadcrumb"] = new Breadcrumb()
                              .Add(entityName, $"/{entityName}")
                              .For("Create")
                                 .Add("Create", $"/{entityName}/Create")
                              .For("Edit")
-                                .Add("Edit", "#")
                                 .Add(Model.Entity?.Name ?? "N/A", "#")
                              .Use("Create", Model.IsCreate)
                              .Use("Edit", !Model.IsCreate);
