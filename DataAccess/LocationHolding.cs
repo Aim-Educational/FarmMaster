@@ -13,6 +13,10 @@ namespace DataAccess
         public int LocationHoldingId { get; set; }
 
         [Required]
+        public int LocationId { get; set; }
+        public Location Location { get; set; }
+
+        [Required]
         [StringLength(MAX_STRING_LENGTH)]
         public string HoldingNumber { get; set; }
 

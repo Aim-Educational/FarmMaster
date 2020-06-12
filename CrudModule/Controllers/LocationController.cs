@@ -43,8 +43,7 @@ namespace CrudModule.Controllers
 
         protected override void UpdateEntityFromModel(CrudCreateEditViewModel<Location> model, ref Location entity)
         {
-            entity.Name      = model.Entity.Name;
-            entity.HoldingId = model.Entity.HoldingId;
+            entity.Name = model.Entity.Name;
             
             // Whitelist changes.
             if(model.Entity.Holding != null && model.Entity.Type == LocationType.Holding)
@@ -58,6 +57,7 @@ namespace CrudModule.Controllers
                 left.OwnerId       = right.OwnerId;
                 left.Postcode      = right.Postcode;
                 left.Timestamp     = right.Timestamp;
+                left.Location      = entity;
 
                 entity.Holding = left;
             }

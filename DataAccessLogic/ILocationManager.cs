@@ -25,8 +25,8 @@ namespace DataAccessLogic
                     return _keysInstance;
 
                 _keysInstance = new MutuallyExclusiveForeignKeys<LocationType, Location>()
-                    .Define(LocationType.Unknown, _ => null,        _ => null)
-                    .Define(LocationType.Holding, l => l.HoldingId, l => l.Holding);
+                    .Define(LocationType.Unknown, _ => null, _ => null)
+                    .Define(LocationType.Holding, l => null, l => l.Holding);
                 
                 return _keysInstance;
             }

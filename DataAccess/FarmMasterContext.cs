@@ -29,10 +29,12 @@ namespace DataAccess
              .WithOne(e => e.NoteOwner);
 
             b.Entity<Contact>()
-             .HasOne(c => c.NoteOwner);
+             .HasOne(c => c.NoteOwner)
+             .WithMany();
 
             b.Entity<Species>()
-             .HasOne(s => s.NoteOwner);
+             .HasOne(s => s.NoteOwner)
+             .WithMany();
             b.Entity<Species>()
              .HasMany(s => s.Breeds)
              .WithOne(br => br.Species)
@@ -40,17 +42,17 @@ namespace DataAccess
 
             b.Entity<Breed>()
              .HasOne(br => br.NoteOwner)
-             .WithMany()
-             .OnDelete(DeleteBehavior.Cascade);
+             .WithMany();
 
             b.Entity<Location>()
              .HasOne(l => l.NoteOwner)
-             .WithMany()
-             .OnDelete(DeleteBehavior.Cascade);
-            b.Entity<Location>()
-             .HasOne(l => l.Holding)
-             .WithOne()
-             .OnDelete(DeleteBehavior.Cascade);
+             .WithMany();
+
+            b.Entity<LocationHolding>()
+              .HasOne(h => h.Location)
+              .WithOne(l => l.Holding)
+              .HasForeignKey<LocationHolding>(h => h.LocationId)
+              .OnDelete(DeleteBehavior.Cascade);
             b.Entity<LocationHolding>()
              .HasOne(h => h.Owner)
              .WithMany()

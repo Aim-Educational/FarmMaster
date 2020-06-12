@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace DataAccess
@@ -25,11 +26,10 @@ namespace DataAccess
         [Required]
         public LocationType Type { get; set; }
 
-        public int? HoldingId { get; set; }
-        public LocationHolding Holding { get; set; }
-
         public int? NoteOwnerId { get; set; }
         public NoteOwner NoteOwner { get; set; }
+
+        public LocationHolding Holding { get; set; }
 
         [Timestamp]
         public byte[] Timestamp { get; set; }

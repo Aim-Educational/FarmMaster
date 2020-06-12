@@ -3,15 +3,17 @@ using System;
 using DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(FarmMasterContext))]
-    partial class FarmMasterContextModelSnapshot : ModelSnapshot
+    [Migration("20200612091741_CascadeFixesAttempt1")]
+    partial class CascadeFixesAttempt1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -158,6 +160,9 @@ namespace DataAccess.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+                    b.Property<int?>("HoldingId")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("character varying(150)")
@@ -175,6 +180,9 @@ namespace DataAccess.Migrations
                         .HasColumnType("integer");
 
                     b.HasKey("LocationId");
+
+                    b.HasIndex("HoldingId")
+                        .IsUnique();
 
                     b.HasIndex("NoteOwnerId");
 
@@ -203,9 +211,6 @@ namespace DataAccess.Migrations
                         .HasColumnType("character varying(150)")
                         .HasMaxLength(150);
 
-                    b.Property<int>("LocationId")
-                        .HasColumnType("integer");
-
                     b.Property<int>("OwnerId")
                         .HasColumnType("integer");
 
@@ -220,9 +225,6 @@ namespace DataAccess.Migrations
                         .HasColumnType("bytea");
 
                     b.HasKey("LocationHoldingId");
-
-                    b.HasIndex("LocationId")
-                        .IsUnique();
 
                     b.HasIndex("OwnerId");
 
@@ -378,7 +380,8 @@ namespace DataAccess.Migrations
                 {
                     b.HasOne("DataAccess.NoteOwner", "NoteOwner")
                         .WithMany()
-                        .HasForeignKey("NoteOwnerId");
+                        .HasForeignKey("NoteOwnerId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("DataAccess.Species", "Species")
                         .WithMany("Breeds")
@@ -396,19 +399,19 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("DataAccess.Location", b =>
                 {
+                    b.HasOne("DataAccess.LocationHolding", "Holding")
+                        .WithOne()
+                        .HasForeignKey("DataAccess.Location", "HoldingId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.HasOne("DataAccess.NoteOwner", "NoteOwner")
                         .WithMany()
-                        .HasForeignKey("NoteOwnerId");
+                        .HasForeignKey("NoteOwnerId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("DataAccess.LocationHolding", b =>
                 {
-                    b.HasOne("DataAccess.Location", "Location")
-                        .WithOne("Holding")
-                        .HasForeignKey("DataAccess.LocationHolding", "LocationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("DataAccess.Contact", "Owner")
                         .WithMany()
                         .HasForeignKey("OwnerId")
@@ -429,7 +432,8 @@ namespace DataAccess.Migrations
                 {
                     b.HasOne("DataAccess.NoteOwner", "NoteOwner")
                         .WithMany()
-                        .HasForeignKey("NoteOwnerId");
+                        .HasForeignKey("NoteOwnerId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

@@ -3,15 +3,17 @@ using System;
 using DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(FarmMasterContext))]
-    partial class FarmMasterContextModelSnapshot : ModelSnapshot
+    [Migration("20200612093015_CascadeFixesAttempt2")]
+    partial class CascadeFixesAttempt2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -206,6 +208,9 @@ namespace DataAccess.Migrations
                     b.Property<int>("LocationId")
                         .HasColumnType("integer");
 
+                    b.Property<int?>("LocationId1")
+                        .HasColumnType("integer");
+
                     b.Property<int>("OwnerId")
                         .HasColumnType("integer");
 
@@ -222,6 +227,9 @@ namespace DataAccess.Migrations
                     b.HasKey("LocationHoldingId");
 
                     b.HasIndex("LocationId")
+                        .IsUnique();
+
+                    b.HasIndex("LocationId1")
                         .IsUnique();
 
                     b.HasIndex("OwnerId");
@@ -404,10 +412,14 @@ namespace DataAccess.Migrations
             modelBuilder.Entity("DataAccess.LocationHolding", b =>
                 {
                     b.HasOne("DataAccess.Location", "Location")
-                        .WithOne("Holding")
+                        .WithOne()
                         .HasForeignKey("DataAccess.LocationHolding", "LocationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("DataAccess.Location", null)
+                        .WithOne("Holding")
+                        .HasForeignKey("DataAccess.LocationHolding", "LocationId1");
 
                     b.HasOne("DataAccess.Contact", "Owner")
                         .WithMany()
