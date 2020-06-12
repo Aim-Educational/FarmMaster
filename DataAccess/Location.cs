@@ -7,8 +7,6 @@ namespace DataAccess
 {
     public enum LocationType
     {
-        // WHEN ADDING NEW TYPES: Please modify the LocationManager.PopulateIdHolder() function.
-        // NOTE: It is essential to keep the enum values in sequence, due to the above function.
         Unknown,
         Holding
     }
