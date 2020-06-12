@@ -52,7 +52,7 @@
     data: {
         selectedSpecies: {
             id: @(Model.Entity?.SpeciesId ?? -1),
-            name: "@Model.Entity?.Species.Name"
+            name: "@Model.Entity?.Species?.Name"
         }
     }
 }

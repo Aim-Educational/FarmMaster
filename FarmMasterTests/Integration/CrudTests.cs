@@ -6,6 +6,7 @@ using System.Text;
 using System.Net;
 using Xunit;
 using Xunit.Abstractions;
+using System.Threading.Tasks;
 
 namespace FarmMasterTests.Integration
 {
@@ -65,11 +66,11 @@ namespace FarmMasterTests.Integration
         public async void SpeciesAndBreedTest()
         {
             await this.Client.LoginAsync();
-            this.SpeciesTest();
-            this.BreedTest();
+            await this.SpeciesTest();
+            await this.BreedTest();
         }
 
-        private async void SpeciesTest()
+        private async Task SpeciesTest()
         {
             // Create
             await this.Client.CrudCreateAsync("/Species/Create", new Species
@@ -88,7 +89,7 @@ namespace FarmMasterTests.Integration
             // We can't test Index, since it uses JS to dynamically populate the table :p
 
             // Read(Edit)
-            var response = await this.Client.GetEnsureStatusAsync("/Species/Edit?id=1", HttpStatusCode.OK);
+            var response = await this.Client.GetEnsureStatusAsync("/Species/Edit?id=2", HttpStatusCode.OK);
             var content  = await response.Content.ReadAsStringAsync();
             Assert.Contains("Lalafell", content);
             Assert.Contains("666",      content);
@@ -96,27 +97,28 @@ namespace FarmMasterTests.Integration
             // Edit & Read
             await this.Client.CrudEditAsync("/Species/Edit", new Species
             {
-                SpeciesId        = 1,
+                SpeciesId        = 2,
                 GestrationPeriod = TimeSpan.FromDays(6),
                 Name             = "Devilspawn"
             });
 
-            response = await this.Client.GetEnsureStatusAsync("/Species/Edit?id=1", HttpStatusCode.OK);
+            response = await this.Client.GetEnsureStatusAsync("/Species/Edit?id=2", HttpStatusCode.OK);
             content  = await response.Content.ReadAsStringAsync();
             Assert.Contains("Devilspawn", content);
             Assert.Contains("6", content);
         }
 
-        private async void BreedTest()
+        private async Task BreedTest()
         {
-            // Species #1: Devilspawn
-            // Species #2: Miqo'te
+            // Species #1: Cow, because bugs.
+            // Species #2: Devilspawn
+            // Species #3: Miqo'te
             // Informally: Same species >:c
 
             // Create
             await this.Client.CrudCreateAsync("/Breed/Create", new Breed
             {
-                SpeciesId = 1,
+                SpeciesId = 2,
                 Name = "Pocket Rocket"
             });
 
@@ -127,16 +129,17 @@ namespace FarmMasterTests.Integration
             Assert.Contains("Devilspawn",    content);
 
             // Edit & Read
-            await this.Client.CrudEditAsync("/Breed/Edit?id=1", new Breed
+            await this.Client.CrudEditAsync("/Breed/Edit", new Breed
             {
-                SpeciesId = 2,
+                BreedId = 1,
+                SpeciesId = 3,
                 Name = "Hyperspace fish bowl mode" // "Don't use inside jokes in your code", says the sensible developer.
             });
 
             response = await this.Client.GetEnsureStatusAsync("/Breed/Edit?id=1", HttpStatusCode.OK);
             content  = await response.Content.ReadAsStringAsync();
             Assert.Contains("Hyperspace", content);
-            Assert.Contains("Miqo'te",    content);
+            Assert.Contains("Miqo",       content);
         }
     }
 }

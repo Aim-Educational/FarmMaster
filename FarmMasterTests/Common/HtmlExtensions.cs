@@ -34,6 +34,11 @@ namespace FarmMasterTests.Common
                 switch (element.ValueKind)
                 {
                     case JsonValueKind.Object:
+                        // Special support for TimeSpan
+                        var totalDays = element.EnumerateObject().FirstOrDefault(p => p.NameEquals("TotalDays"));
+                        if (totalDays.Value.ValueKind != JsonValueKind.Undefined)
+                            addToDict((prefix == null) ? "" : prefix, totalDays.Value);
+
                         foreach (var child in element.EnumerateObject())
                             addToDict((prefix == null) ? child.Name : prefix + "." + child.Name, child.Value);
                         break;

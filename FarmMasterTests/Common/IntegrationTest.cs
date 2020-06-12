@@ -58,6 +58,7 @@ namespace FarmMasterTests.Common
             try
             {
                 this.Context.Database.EnsureDeleted();
+                this.Host.Services.GetRequiredService<IdentityContext>().Database.EnsureDeleted();
             }
             catch (Exception) { }
             this.Host.Dispose();
