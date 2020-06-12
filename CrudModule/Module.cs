@@ -51,6 +51,12 @@ namespace CrudModule
                     DisplayText      = "Contacts",
                     RequiredPolicies = new[]{ Permissions.Contact.ManageUI },
                     LinkHref         = new Uri("/Contact", UriKind.Relative)
+                },
+                new NavMenuItem
+                {
+                    DisplayText      = "Locations",
+                    RequiredPolicies = new[]{ Permissions.Location.ManageUI },
+                    LinkHref         = new Uri("/Location", UriKind.Relative)
                 }
             });
         }

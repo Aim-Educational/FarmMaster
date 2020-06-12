@@ -1,0 +1,35 @@
+﻿@model CrudIndexViewModel<Location>
+@{
+    ViewData["Title"] = "Locations";
+    ViewData["NavName"] = "Locations";
+    ViewData["Breadcrumb"] = (new Breadcrumb()).Add("Locations", "/Location");
+}
+
+<div id="app">
+    <window title="Locations">
+        <a class="bottom margined icon blue button" asp-action="Create">
+            <i class="las la-plus"></i>
+            <span>Create new location</span>
+        </a>
+        <fm-graphql-table selection="none"
+                          :rows="[{name: 'Name', bind: 'name', sort: true, sortByDefault: 'asc'}, {name: 'Type', bind: 'type', sort: true}]"
+                          query-root="locations"
+                          items-query="id name type"
+                          @@transformhook="onTransformTable">
+        </fm-graphql-table>
+    </window>
+</div>
+
+@section Scripts {
+    <script>
+        new Vue({
+            el: "#app",
+            methods: {
+                onTransformTable(items) {
+                    for (const item of items)
+                        item.name = { value: item.name, href: "/Location/Edit?id=" + item.id };
+                }
+            }
+        });
+    </script>
+}

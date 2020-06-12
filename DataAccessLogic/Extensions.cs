@@ -12,7 +12,8 @@ namespace DataAccessLogic
                              .AddScoped<IContactManager, ContactManager>()
                              .AddScoped<INoteManager, NoteManager>()
                              .AddScoped<ISpeciesManager, SpeciesManager>()
-                             .AddScoped<IBreedManager, BreedManager>();
+                             .AddScoped<IBreedManager, BreedManager>()
+                             .AddScoped<ILocationManager, LocationManager>();
         }
     }
 }

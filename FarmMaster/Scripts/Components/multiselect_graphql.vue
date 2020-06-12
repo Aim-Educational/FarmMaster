@@ -24,6 +24,18 @@ const queries = {
             }
         }`,
         accessor: "specieses"
+    },
+
+    contact: {
+        query: `query {
+            contacts {
+                items {
+                    id
+                    name
+                }
+            }
+        }`,
+        accessor: "contacts"
     }
 };
 

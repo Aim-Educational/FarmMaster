@@ -51,6 +51,16 @@
             public const string Delete = "breed.delete";
         }
 
+        public static class Location
+        {
+            public const string ReadNotes = "location.notes.read";
+            public const string WriteNotes = "location.notes.write";
+            public const string ManageUI = "location.manage.ui";
+            public const string Read = "location.read";
+            public const string Write = "location.write";
+            public const string Delete = "location.delete";
+        }
+
         public static readonly string[] AllPermissions = new[]
         {
             Contact.ReadNotes,
@@ -73,6 +83,13 @@
             Breed.Read,
             Breed.Write,
             Breed.Delete,
+
+            Location.ReadNotes,
+            Location.WriteNotes,
+            Location.ManageUI,
+            Location.Read,
+            Location.Write,
+            Location.Delete,
 
             User.ReadPermissions,
             User.WritePermissions,

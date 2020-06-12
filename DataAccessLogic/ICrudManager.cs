@@ -57,6 +57,10 @@ namespace DataAccessLogic
 
         public async Task<ValueResultObject<EntityT>> CreateAsync(EntityT entity)
         {
+            var result = this.PreCreateCheck(entity);
+            if (result != null)
+                return new ValueResultObject<EntityT>{ Succeeded = result.Succeeded, Value = null, Errors = result.Errors, Exceptions = result.Exceptions };
+
             await this.DbContext.AddAsync(entity);
             return new ValueResultObject<EntityT>()
             {
@@ -95,6 +99,10 @@ namespace DataAccessLogic
 
         public ResultObject Update(EntityT entity)
         {
+            var result = this.PreUpdateCheck(entity);
+            if(result != null)
+                return result;
+
             this.DbContext.Update(entity);
             return ResultObject.Ok;
         }
@@ -108,6 +116,16 @@ namespace DataAccessLogic
         public IQueryable<EntityT> Query()
         {
             return this.DbContext.Set<EntityT>();
+        }
+
+        public virtual ResultObject PreCreateCheck(EntityT entity)
+        {
+            return null;
+        }
+
+        public virtual ResultObject PreUpdateCheck(EntityT entity)
+        {
+            return null;
         }
 
         public virtual IQueryable<EntityT> IncludeAll(IQueryable<EntityT> query)

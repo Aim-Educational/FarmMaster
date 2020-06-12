@@ -43,6 +43,19 @@ namespace DataAccess
              .WithMany()
              .OnDelete(DeleteBehavior.Cascade);
 
+            b.Entity<Location>()
+             .HasOne(l => l.NoteOwner)
+             .WithMany()
+             .OnDelete(DeleteBehavior.Cascade);
+            b.Entity<Location>()
+             .HasOne(l => l.Holding)
+             .WithOne()
+             .OnDelete(DeleteBehavior.Cascade);
+            b.Entity<LocationHolding>()
+             .HasOne(h => h.Owner)
+             .WithMany()
+             .OnDelete(DeleteBehavior.Restrict);
+
             this.Seed(b);
         }
 
@@ -54,6 +67,8 @@ namespace DataAccess
         public DbSet<NoteEntry> NoteEntries { get; set; }
         public DbSet<Species> Species { get; set; }
         public DbSet<Breed> Breeds { get; set; }
+        public DbSet<Location> Locations { get; set; }
+        public DbSet<LocationHolding> LocationHoldingInfo { get; set; }
         #endregion
 
         // Identity uses a runtime call to Seed because I need to make use of the UserManager etc. services to ensure

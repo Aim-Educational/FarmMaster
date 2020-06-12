@@ -91,6 +91,12 @@ const queries = {
         query: genericQuery("breed"),
         add: genericAdd("breed"),
         delete: genericDelete("breed")
+    },
+
+    location: {
+        query: genericQuery("location"),
+        add: genericAdd("location"),
+        delete: genericDelete("location")
     }
 };
 

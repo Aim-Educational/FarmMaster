@@ -1,0 +1,87 @@
+﻿@model CrudCreateEditViewModel<Location>
+@{
+    Layout = "_LayoutCrudCreateEdit";
+
+    ViewData["LayoutModel"] = new CrudLayoutViewModel
+    {
+        EntityName         = "Location",
+        EntityId           = Model.Entity?.LocationId,
+        EntityIdExpression = "Entity.LocationId"
+    };
+
+    var action = (Model.IsCreate) ? "Create" : "Edit";
+}
+
+@section MainWindowForm {
+    <input type="hidden" asp-for="Entity.LocationId" value="@(Model.Entity?.LocationId ?? -1)" />
+    <div class="required input-wrapper">
+        <label>Name</label>
+        <textbox :mode="mode" asp-for="Entity.Name" placeholder="Name" required />
+    </div>
+    <div class="required input-wrapper">
+        <label>Type</label>
+        <vue-multiselect :options="['@nameof(LocationType.Holding)']"
+                         :disabled="mode === 'view'@(Model.IsCreate ? null : " || true")"
+                         v-model="locationType"
+                         required>
+        </vue-multiselect>
+        <input type="hidden" asp-for="Entity.Type" :value="locationType" />
+    </div>
+
+    <template v-if="locationType === 'Holding'">
+        <div class="required input-wrapper">
+            <label>Holding Number</label>
+            <textbox :mode="mode" asp-for="Entity.Holding.HoldingNumber" placeholder="Holding Number" required />
+        </div>
+        <div class="required input-wrapper">
+            <label>Grid Reference</label>
+            <textbox :mode="mode" asp-for="Entity.Holding.GridReference" placeholder="Grid Reference" required />
+        </div>
+        <div class="required input-wrapper">
+            <label>Address</label>
+            <textbox :mode="mode" asp-for="Entity.Holding.Address" placeholder="Address" required />
+        </div>
+        <div class="required input-wrapper">
+            <label>Postcode</label>
+            <textbox :mode="mode" asp-for="Entity.Holding.Postcode" placeholder="Postcode" required />
+        </div>
+        <div class="required input-wrapper">
+            <label>Owner</label>
+            <vue-multiselect-graphql v-model="owner"
+                                     placeholder="Select owner"
+                                     entity-type="contact"
+                                     :mode="mode">
+            </vue-multiselect-graphql>
+            <input type="hidden" asp-for="Entity.Holding.OwnerId"    :value="owner.id" />
+            <input type="hidden" asp-for="Entity.Holding.Owner.Name" :value="owner.name" /> <!--Read only anyway-->
+        </div>
+    </template>
+
+    <alert type="error" fm-model-error="true"></alert>
+    <button class="top margined blue fluid"
+            v-if="mode === 'edit'">
+        @action Location
+    </button>
+}
+
+@section PostMainWindow {
+    @if (!Model.IsCreate)
+    {
+        <window title="Notes">
+            <notes :mode="mode"
+                   parent-type="location"
+                   :parent-id="Number('@Model.Entity.LocationId')">
+            </notes>
+        </window>
+    }
+}
+
+@section VueScript {
+    data: {
+        locationType: "@Model.Entity?.Type",
+        owner: {
+            id: @(Model.Entity?.Holding?.Owner?.NoteOwnerId ?? -1),
+            name: "@Model.Entity?.Holding?.Owner?.Name"
+        }
+    }
+}
