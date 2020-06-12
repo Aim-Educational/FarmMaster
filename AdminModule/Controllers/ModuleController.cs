@@ -59,8 +59,6 @@ namespace AdminModule.Controllers
             return this.RedirectToAction("Settings");
         }
 
-
-
         [HttpPost]
         [Authorize(Policy = Permissions.Other.Settings)]
         [ValidateAntiForgeryToken]
