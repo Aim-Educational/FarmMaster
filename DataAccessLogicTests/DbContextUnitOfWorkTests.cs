@@ -13,11 +13,14 @@ namespace DataAccessLogic.Tests
             var db = UnitTestDbContext.InMemory();
             var uow = new DbContextUnitOfWork<UnitTestDbContext>(db);
 
-            using (var scope = uow.Begin("Single Commit"))
+            UnitOfWorkScope scope = null;
+            using (scope = uow.Begin("Single Commit"))
             {
                 db.Add(new Product { Name = "Commitment Ring" });
                 Assert.True(scope.Commit());
             }
+
+            Assert.Equal(UnitOfWorkScopeState.Commit, scope.State);
 
             var product = db.Products.First(p => p.Name == "Commitment Ring");
             Assert.NotNull(product);
@@ -29,47 +32,26 @@ namespace DataAccessLogic.Tests
         {
             var db = UnitTestDbContext.InMemory();
             var uow = new DbContextUnitOfWork<UnitTestDbContext>(db);
-            var thrown = false;
 
             // Test .Rollback
-            try
+            UnitOfWorkScope scope;
+            using (scope = uow.Begin("Single Rollback"))
             {
-                using (var scope = uow.Begin("Single Rollback"))
-                {
-                    db.Add(new Product { Name = "Roll-back" });
-                    scope.Rollback("Roll-back corp are defunct");
-                }
+                db.Add(new Product { Name = "Roll-back" });
+                scope.Rollback("Roll-back corp are defunct");
             }
-            catch (UnitOfWorkException ex)
-            {
-                thrown = true;
-                Assert.Single(ex.ScopeResults);
 
-                var result = ex.ScopeResults.First();
-                Assert.Equal(UnitOfWorkScopeState.Rollback, result.ScopeState);
-                Assert.Equal("Single Rollback", result.ScopeName);
-                Assert.True(result.RollbackReason.Length > 0);
-            }
-            Assert.True(thrown);
+            Assert.Equal(UnitOfWorkScopeState.Rollback, scope.State);
+            Assert.Equal("Single Rollback", scope.Name);
+            Assert.True(scope.RollbackReason.Length > 0);
 
             // Test not setting a state
-            thrown = false;
-            try
+            using (scope = uow.Begin("Single None"))
             {
-                using (var scope = uow.Begin("Single None"))
-                {
-                    db.Add(new Product { Name = "Void" });
-                }
+                db.Add(new Product { Name = "Void" });
             }
-            catch (UnitOfWorkException ex)
-            {
-                thrown = true;
-                Assert.Single(ex.ScopeResults);
 
-                var result = ex.ScopeResults.First();
-                Assert.Equal(UnitOfWorkScopeState.None, result.ScopeState);
-            }
-            Assert.True(thrown);
+            Assert.Equal(UnitOfWorkScopeState.None, scope.State);
 
             // Test that changes are in fact, not committed
             Assert.Empty(db.ChangeTracker.Entries());

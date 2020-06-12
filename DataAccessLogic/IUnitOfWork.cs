@@ -35,13 +35,12 @@ namespace DataAccessLogic
     /// Multiple scopes can be used at once. When more than one scope is active, this is called a "unit of work chain".
     /// 
     /// *All* scopes in a chain must end with the <see cref="UnitOfWorkScopeState.Commit"/> state, otherwise all changes
-    /// from the chain are rejected, and a <see cref="UnitOfWorkException"/> is thrown.
+    /// from the chain are rejected.
     /// 
     /// After all scopes are .Dispose() of, and only if all scopes end with the <see cref="UnitOfWorkScopeState.Commit"/>
     /// state, then all changes are committed.
     /// 
-    /// Scopes can be given names, so in the even that a <see cref="UnitOfWorkException"/> is thrown, the user
-    /// can inspect the <see cref="UnitOfWorkException.ScopeResults"/> field to see which scopes failed, helpful for debugging.
+    /// Scopes can be given names, which can be helpful for debugging.
     /// </remarks>
     public interface IUnitOfWork
     {
@@ -178,16 +177,11 @@ namespace DataAccessLogic
         private void OnAllScopesDisposed()
         {
             if (this._results.Any(r => r.ScopeState != UnitOfWorkScopeState.Commit))
-            {
                 this.RollbackDatabase();
-
-                var results = this._results;
-                this._results = new List<UnitOfWorkResult>(); // We need to clear the list, but the exception needs the data, so we new() instead of .Clear().
-                throw new UnitOfWorkException(results);
-            }
+            else
+                this._db.SaveChanges();
 
             this._results.Clear();
-            this._db.SaveChanges();
         }
 
         private void RollbackDatabase()
