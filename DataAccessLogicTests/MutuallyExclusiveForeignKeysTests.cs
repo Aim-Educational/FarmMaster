@@ -27,12 +27,6 @@ namespace DataAccessLogicTests
         }
 
         [Fact()]
-        public void TestSingleIdIsTrue()
-        {
-            this.TestAllValues(new Location{ HoldingId = 1 }, LocationType.Holding);
-        }
-
-        [Fact()]
         public void TestSingleInstanceIsTrue()
         {
             this.TestAllValues(new Location{ Holding = new LocationHolding() }, LocationType.Holding);
